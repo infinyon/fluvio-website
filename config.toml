@@ -1,0 +1,44 @@
+languageCode = "en-us"
+title = "Fluvio - Central hub for data-in-motion"
+
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+  name = "Fluvio.io"
+  description = "Connect, Transform, and Distribute data"
+  how = "in real-time"
+  blog_time_format = "January 02, 2006"
+
+[menu]
+  [[menu.main]]
+    identifier = "docs"
+    name = "Docs"
+    url = "/docs/"
+    weight = 100
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    weight = 110
+
+  [[menu.main]]
+    identifier = "faq"
+    name = "FAQ"
+    url = "/faq/"
+    weight = 120
+
+  [[menu.main]]
+    identifier = "github"
+    name = "github"
+    url = "https://github.com/infinyon"
+    pre = "fa-github"
+    weight = 130
+
+  [[menu.main]]
+    identifier = "twitter"
+    name = "twitter"
+    url = "https://twitter.com/infinyon"
+    pre = "fa-twitter"
+    weight = 140

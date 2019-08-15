@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="jumbotron">
+  <div class="container main">
+    <h1>{{.Title}}</h1>
+    <h2 class="desc">{{ .Site.Params.Description }} <span>{{ .Site.Params.How }}</span></h2>
+  </div>
+</div>
+
+<div class="container main">
+  <div class="row">
+    {{ range (where .Pages "Type" "main" ) }}
+      <div class="col-md-6 col-lg-4">
+        <div class="card bg-light">
+          <div class="m-3 align-self-center">
+            <h2 class="m-3" style="text-align:center">
+              <a class="text-body" href="{{ .RelPermalink | relURL}}">{{ .Title | markdownify}}</a>
+            </h2>
+
+            <img src="/images/{{.Params.image}}" class="mx-auto d-block" width="200" height="100">
+
+            <article class="mt-4 text-muted" style="width: 200px">
+              <p>{{ .Summary }}</p>
+            </article>
+
+            <center>
+              <a class="btn btn-info" href="{{ .RelPermalink | relURL }}">Read more...</a>
+            </center>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</div>
+
+{{ end }}

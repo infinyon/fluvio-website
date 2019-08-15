@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <div class="container-fluid m-3">
+    <div class="row">
+      <div class="col-sm p-2 mr-5">
+        {{- block "content" . }}{{- end }}
+      </div>
+    </div>
+  </div>
+{{ end }}
+
+{{ define "content" }}
+  {{ $pages := .Pages.ByWeight }}
+  {{ partial "faq/faq-title.html" . }}
+  {{ partial "faq/faq-toc" (dict "pages" $pages) }}
+  {{ partial "faq/faq-questions" (dict "pages" $pages) }}
+{{ end }}

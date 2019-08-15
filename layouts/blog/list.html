@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <div class="container-fluid blog m-3">
+    <div class="row">
+      <div class="col-sm content ">
+        {{- block "content" . }}{{- end }}
+      </div>
+      <div class="col menu">
+        {{ partial "blog/recent-posts-title.html" . }}
+        {{ partial "blog/recent-posts.html" . }}
+      </div>              
+    </div>
+  </div>
+{{ end }}
+
+{{ define "content" }}
+    {{- $found_page := false -}}
+    {{ range where .Pages ".Params.hidden" "ne" true }}
+        {{if ne $found_page true}}
+          {{ partial "blog/blog_post" (dict "page" .) }}
+          {{ partial "blog/page_nav" (dict "page" .) }}
+          {{- $found_page = true -}}
+        {{- end -}}
+    {{- end -}}
+{{ end }}

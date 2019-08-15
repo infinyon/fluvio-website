@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <div class="container-fluid m-3">
+    <div class="row">
+      <div class="sidemenu">
+        {{ partial "docs/side-menu-title.html" . }}
+        {{ partial "docs/side-menu.html" . }}
+      </div>
+      <div class="col-sm p-2 mr-5">
+        {{- block "content" . }}{{- end }}
+      </div>
+    </div>
+  </div>
+{{ end }}
+
+{{ define "content" }}
+  {{ partial "docs/page-content" (dict "page" .) }}
+{{ end }}
