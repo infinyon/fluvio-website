@@ -9,13 +9,28 @@ body {
 h1 {font-size: 2.1rem; }
 h2 {font-size: 1.7rem; }
 h3 {font-size: 1.45rem; }
-h4 {font-size: 1.25rem; }
-h5 {font-size: 1rem; }
+h4, .h4clean {font-size: 1.25rem; }
+h5, .h5clean {font-size: 1rem; }
 h6 {font-size: 0.8rem; }
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .h4clean, .h5clean {
   color: $color-headers;
   font-family: $font-headers;
 }
+h4:after, h5:after {
+  background: none repeat scroll 0 0  $color-diffusedblue;
+  content: "";
+  display: block;
+  position: relative;
+}
+h4:after, h5:after {
+  bottom: -2px;
+  height: 3px;
+  width: 50px;
+}
+h5:after {
+  width: 25px;
+}
+
 p {
   font-size: 17px;
   font-family: $font-paragraph;
@@ -101,15 +116,16 @@ footer {
   padding:5px;
 }
 
-.sidemenu h4 { 
+.sidemenu .h4clean { 
   font-size:1.2rem;
+  margin-bottom: 5px;
 }
 
-.sidemenu h4 a { 
-  color: $color-sidemenu-header;
+.sidemenu .h4clean a { 
+  color: $color-darkblue;
 }
 
-.sidemenu h4 a:hover { 
+.sidemenu .h4clean a:hover { 
   text-decoration: none;
 }
 
@@ -130,7 +146,7 @@ footer {
 
 .flv_acrd .card-page.selected a {
   font-weight: 500;
-  color: $color-sidemenu-selected;
+  color: $color-darkblue;
 }
 
 .flv_acrd .card-header {
@@ -145,7 +161,7 @@ footer {
   font-weight: 600;
   font-size:15px;
   padding-right:4px;
-  color: $color-sidemenu-header;
+  color: $color-darkblue;
 }
 
 .flv_acrd .card-header a[aria-expanded="true"]:before {
@@ -209,18 +225,14 @@ footer {
     padding:5px;
   }
 
-  .menu h4 { 
+  .menu .h4clean { 
     border-bottom: 1px solid $color-blog-header-line;
     padding-bottom: 4px;
     margin-bottom: 10px;
   }
 
-  .menu h4 a { 
+  .menu .h4clean a { 
     color: $color-blog-header;
-  }
-
-  .menu a { 
-    color: $color-blog;
   }
 
   .menu a:hover { 
@@ -234,11 +246,12 @@ footer {
   .menu ul li { 
     list-style: none;
   }
-
+  
   .menu .item a { 
     font-size: 15px;
     font-family: $font-blog;
     font-weight: 400;
+    color: $color-blog;
     line-height: 1.84em;
   }
 
@@ -328,4 +341,18 @@ footer {
   }
 }
 
+// --------------
+// Others
+// --------------
+.fa-rotate-45 {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 
+.archor {
+  color: $color-diffusedblue;
+  font-size: .85rem;
+}

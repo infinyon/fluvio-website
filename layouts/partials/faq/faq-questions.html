@@ -2,7 +2,7 @@
   {{- range .pages -}}
     {{- $hidden := .Params.hidden | default false -}}
     {{- if ne $hidden true }}
-      <h5 id="{{ .File.BaseFileName | urlize }}" class="question">{{ .Title }}</h5>
+      <div id="{{ .File.BaseFileName | urlize }}" class="h5clean question">{{ .Title }}</div>
       <div class="answer">
         {{ .Content }}
       </div>
