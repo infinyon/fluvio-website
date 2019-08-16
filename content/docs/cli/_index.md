@@ -1,4 +1,4 @@
 ---
-title: Fluvio CLI
+title: CLI
 weight: 30
 ---

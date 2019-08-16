@@ -3,6 +3,8 @@
   <div class="container main">
     <h1>{{.Title}}</h1>
     <h2 class="desc">{{ .Site.Params.Description }} <span>{{ .Site.Params.How }}</span></h2>
+     <a class="btn btn-info" href="{{ .RelPermalink | relURL }}">Introduction</a>
+     <a class="btn btn-info" href="{{ .RelPermalink | relURL }}">Getting Started</a>
   </div>
 </div>
 
