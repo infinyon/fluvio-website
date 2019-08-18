@@ -1,0 +1,54 @@
+.callout {
+    padding: .5em;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    display: inline-block;
+    position: relative;
+
+    margin: .5em 0 .5em .5em;
+    max-width: calc(100% - .5em - .5em - 1em);
+    
+    @media (min-width: 768px) {
+        margin: 0 1.25em;
+        max-width: calc(100% - .5em - .5em - 1.25em - 1.25em);
+    }
+
+    .type {
+        left: -.7em;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+    }
+
+    .content {
+        font-family: $font-paragraph;
+        margin-left: 1em;
+        min-height: 100%;
+
+        p:first-of-type {
+            margin-top: 0;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &.idea {
+        background-color:$idea-color-bg;
+        border-color:$idea-color-border;
+    }
+
+    &.warning {
+        background-color: $warningCalloutBackgroundColor;
+        border-color: $warningCalloutBorderColor;
+    }
+
+    &.quote {
+        background-color: $quoteCalloutBackgroundColor;
+        border-color: $quoteCalloutBorderColor;
+        font-style: italic;
+    }
+
+}

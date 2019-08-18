@@ -1,0 +1,11 @@
+<div>
+    <aside class="callout idea">
+        <div class="type">
+            {{ partial "others/callout_icon.html" }}
+        </div>
+        <div class="content">
+            {{- $text := partial "others/strip_indent.html"  (dict "inner" .Inner "pos" .Position) -}}
+            {{- $text | markdownify -}}
+        </div>
+    </aside>
+</div>

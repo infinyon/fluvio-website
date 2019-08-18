@@ -26,6 +26,7 @@ $font-faq-toc: "Open Sans", sans-serif;
 $color-text: #666;
 $color-headers: #333;
 $color-footer: #fff;
+$color-hyperlink: #3b7abb;
 $color-footer-bg: #094888; //#042444;
 
 // Top Menu
@@ -56,3 +57,13 @@ $color-lightgray: #ddd;
 $color-darkblue: #548bc3;
 $color-lightblue: #79C2FB;
 $color-diffusedblue: #89DFFB;
+
+// Callouts
+$idea-color-bg: #f0fcee;
+$idea-color-border: #d5f9cf;
+
+$warningCalloutBackgroundColor: #dfd;
+$warningCalloutBorderColor: green;
+
+$quoteCalloutBackgroundColor: lightblue;
+$quoteCalloutBorderColor: blue;

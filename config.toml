@@ -1,8 +1,8 @@
 languageCode = "en-us"
-title = "Fluvio - Central hub for data-in-motion"
+title = "Fluvio - Central control for data-in-motion"
 
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+pygmentsCodefences = true
+pygmentsStyle = "manni"
 
 [params]
   name = "Fluvio.io"
