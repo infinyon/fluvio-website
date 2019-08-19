@@ -1,5 +1,7 @@
 @import 'params';
 @import 'callout';
+@import 'highlight-position';
+@import 'highlight-colors';
 
 body {
   font-family: $font-body;
@@ -7,6 +9,7 @@ body {
   min-height: 100vh; 
 }
 
+// Site-wide
 h1 {font-size: 2.1rem; }
 h2 {font-size: 1.7rem; }
 h3 {font-size: 1.45rem; }
@@ -14,12 +17,8 @@ h4, .h4clean {font-size: 1.25rem; }
 h5, .h5clean {font-size: 1rem; }
 h6 {font-size: 0.8rem; }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .h4clean, .h5clean {
-  margin-top: 1rem;
   color: $color-headers;
   font-family: $font-headers;
-}
-h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .h4clean, .h5clean {
-  margin-top: 1.5rem;
 }
 h4:after, h5:after {
   background: none repeat scroll 0 0  $color-diffusedblue;
@@ -41,15 +40,11 @@ a {
 }
 
 p {
-  font-size: 17px;
+  font-size: 1.1rem;
   font-family: $font-paragraph;
   font-weight: 400;
-  line-height: 1.8em;
+  line-height: 1.5em;
   margin-bottom: .7rem;
-}
-
-li {
-  margin-top: .4rem;
 }
 
 #logo {
@@ -63,10 +58,23 @@ a#logo {
   padding: 0;
 }
 
+// Content
 #content {
   flex: 1;
+
+  h1 {
+    margin-top: 1rem;
+  }
+  h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .h4clean, .h5clean {
+    margin-top: 1.5rem;
+  }
+  li {
+    font-size: 1.05rem;
+    margin-top: .2rem;
+  }
 }
 
+// Footer
 footer {
   background-color: $color-footer-bg;
   
@@ -145,7 +153,7 @@ footer {
 
 .flv_acrd {
   line-height:1.6em;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-family: $font-side-menu;
 }
 

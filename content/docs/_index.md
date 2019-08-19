@@ -18,7 +18,32 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 
 <br/>
 
-{{< highlight rust "linenos=table,hl_lines=15-17" >}}
+{{< highlight tcsh>}}
+$ fluvio
+fluvio 0.1.0
+Fluvio Command Line Interface
+
+USAGE:
+    fluvio <SUBCOMMAND>
+
+FLAGS:
+    -h, --help    Prints help information
+
+SUBCOMMANDS:
+    consume       Read messages from a topic/partition
+    produce       Write log records to a topic/partition
+    spu           SPU operations
+    topic         Topic operations
+    auth-token    Athorization token operations
+    advanced      Advanced operations
+    help          Prints this message or the help of the given subcommand(s)s
+
+$  ./target/debug/fluvio auth-token list "test" -o 1
+error: cannot retrieve auth topics: Connection refused (os error 61)    
+{{< / highlight >}}
+
+* This is a test
+{{< highlight rust >}}
 //!
 //! # Streaming Coordinator Metadata
 //!
@@ -84,6 +109,7 @@ impl ScMetadata {
 }
 {{< / highlight >}}
 
+* Another test
 
 #### Next Steps
 * [Getting Started]({{< relref "getting-started/overview.md" >}})

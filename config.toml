@@ -2,7 +2,7 @@ languageCode = "en-us"
 title = "Fluvio - Central control for data-in-motion"
 
 pygmentsCodefences = true
-pygmentsStyle = "manni"
+pygmentsUseClasses = true
 
 [params]
   name = "Fluvio.io"
