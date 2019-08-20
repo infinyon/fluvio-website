@@ -1,9 +1,6 @@
 languageCode = "en-us"
 title = "Fluvio - Central control for data-in-motion"
 
-pygmentsCodefences = true
-pygmentsUseClasses = true
-
 [params]
   name = "Fluvio.io"
   description = "Connect, Transform, and Distribute data"
