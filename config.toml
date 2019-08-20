@@ -3,6 +3,7 @@ title = "Fluvio - Central control for data-in-motion"
 
 pygmentsCodefences = true
 pygmentsUseClasses = true
+pygmentsCodefencesGuessSyntax = true
 
 [params]
   name = "Fluvio.io"

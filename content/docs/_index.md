@@ -18,7 +18,7 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 
 <br/>
 
-{{< highlight tcsh>}}
+{{< fluvio >}}
 $ fluvio
 fluvio 0.1.0
 Fluvio Command Line Interface
@@ -38,9 +38,29 @@ SUBCOMMANDS:
     advanced      Advanced operations
     help          Prints this message or the help of the given subcommand(s)s
 
-$  ./target/debug/fluvio auth-token list "test" -o 1
-error: cannot retrieve auth topics: Connection refused (os error 61)    
-{{< / highlight >}}
+$ fluvio auth-token list "test" -o 1
+error: cannot retrieve auth topics: Connection refused (os error 61) 
+
+$ fluvio auth-token create -h
+fluvio-auth-token-create 0.1.0
+Create auth token
+
+USAGE:
+    fluvio auth-token create [FLAGS] [OPTIONS] --max-spu <integer> --min-spu <integer> --token-name <string> --secret <alpha-numeric>
+
+FLAGS:
+    -g, --generate-secret    Generate a random secret
+    -h, --help               Prints help information
+
+OPTIONS:
+    -n, --token-name <string>        Token name
+    -s, --secret <alpha-numeric>     Token secret of 16 characters in length
+    -m, --min-spu <integer>          First SPU id in the match range (inclusive)
+    -x, --max-spu <integer>          Last SPU id in the match range (inclusive)
+    -t, --token-type <token-type>    Types [possible values: Custom, Managed, Any]
+    -c, --sc <host:port>             Address of Streaming Controller
+    -P, --profile <profile>          Profile name
+{{< / fluvio >}}
 
 * This is a test
 {{< highlight rust >}}
@@ -110,6 +130,30 @@ impl ScMetadata {
 {{< / highlight >}}
 
 * Another test
+
+```console
+$ fluvio
+fluvio 0.1.0
+Fluvio Command Line Interface
+
+USAGE:
+    fluvio <SUBCOMMAND>
+
+FLAGS:
+    -h, --help    Prints help information
+
+SUBCOMMANDS:
+    consume       Read messages from a topic/partition
+    produce       Write log records to a topic/partition
+    spu           SPU operations
+    topic         Topic operations
+    auth-token    Athorization token operations
+    advanced      Advanced operations
+    help          Prints this message or the help of the given subcommand(s)s
+
+$  ./target/debug/fluvio auth-token list "test" -o 1
+error: cannot retrieve auth topics: Connection refused (os error 61) 
+```
 
 #### Next Steps
 * [Getting Started]({{< relref "getting-started/overview.md" >}})

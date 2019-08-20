@@ -1,0 +1,6 @@
+<div class="fluvio cli">
+    <div class="content">
+        {{- $text := partial "others/fluvio_cli.html"  (dict "inner" .Inner "pos" .Position) -}}
+        {{- $text | markdownify -}}
+    </div>
+</div>

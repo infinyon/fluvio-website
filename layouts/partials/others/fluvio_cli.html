@@ -1,0 +1,73 @@
+{{ $text := "testing" }}
+{{- $input := .inner -}}
+{{- $pos := .pos -}}
+{{- $lines := split $input "\n" -}}
+
+{{- $numLines := len $lines -}}
+{{- if gt $numLines 1 -}}
+    {{- $text := "<pre>" -}}
+
+    {{- range $index, $line := $lines -}}
+        {{- if eq $index 0 -}}
+            {{- /* skip the first line it's the shortcode */ -}}
+        {{- else if eq $index (sub $numLines 1) -}}
+            {{- /* skip the last line since it's the shortcode */ -}}
+        {{- else -}}
+            {{ $line := (replace $line "<" "&lt;") }}
+
+            {{- if hasPrefix $line "$" -}}
+                {{- $words := split $line " " -}}
+                {{- $wordCount := len $words -}}
+                {{- range $idx, $word := $words -}}
+
+                    {{- /* default class*/ -}}
+                    {{- $class := "d" -}}
+                    {{- if eq $idx 0 -}}
+                        {{- /* prompt: $ */ -}}
+                        {{- $class = "p" -}}
+                    {{- else if eq $idx 1 -}}
+                        {{- /* command: fluvio */ -}}
+                        {{- $class = "c" -}}
+                    {{- else if eq $idx 2 -}}
+                        {{- /* module: spu */ -}}
+                        {{- $class = "md" -}}
+                    {{- else if eq $idx 3 -}}
+                        {{- if hasPrefix $word "-" -}}
+                            {{- /* parameters: spu */ -}}
+                            {{- $class = "pr" -}}
+                        {{- else -}}
+                            {{- /* command: spu list*/ -}}
+                            {{- $class = "cm" -}}
+                        {{- end -}}
+                    {{- else if hasPrefix $word "-" }}
+                        {{- /* parameters: spu */ -}}
+                        {{- $class = "pr" -}}
+                    {{- else if hasPrefix $word "\"" }}
+                        {{- /* parameters: spu */ -}}
+                        {{- $class = "tx" -}}
+                    {{- end -}}
+
+                    {{- /*apply class*/ -}}
+                    {{- $text = (print $text "<span class=\"" $class "\">") -}}
+                    {{- $text = (print $text $word) -}}
+                    {{- if eq $idx (sub $wordCount 1) -}}
+                        {{- $text = (print $text "\n</span>") -}}
+                    {{- else -}}
+                        {{- $text = (print $text " </span>") -}}
+                    {{- end -}}
+
+                {{- end -}}
+            {{- else -}}
+                {{- /* copy the line */ -}}
+                {{- $text = (print $text "<span>" $line "\n</span>") -}}
+            {{- end -}}
+
+        {{- end -}}
+    {{- end -}}
+
+    {{- $text = (print $text  "</pre>") -}}
+    {{- $text | safeHTML -}}
+    
+{{- else -}}
+    {{- errorf "Shortcode must span muliple lines (%s)" $pos -}}
+{{- end -}}
