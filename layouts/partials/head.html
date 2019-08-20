@@ -2,7 +2,7 @@
 {{- $style := $scss | resources.ToCSS -}}
 {{- $isDevelopment := false -}}
 {{- if in (string .Site.BaseURL) "localhost" -}}
-    {{ $isDevelopment = false }}
+    {{ $isDevelopment = true }}
 {{- end -}}
 
 <head>
