@@ -1,7 +1,7 @@
 @import 'params';
+@import 'fluvio-code';
 @import 'callout';
-@import 'highlight-position';
-@import 'highlight-colors';
+@import 'prism';
 
 body {
   font-family: $font-body;
@@ -84,19 +84,6 @@ footer {
 }
 
 // --------------
-// Main
-// --------------
-
-.main {
-  .card {
-    margin: 0 auto;
-    float: none;
-    margin-bottom: 30px;
-    width: 18rem;
-  }
-}
-
-// --------------
 // Navbar
 // --------------
 
@@ -133,18 +120,19 @@ footer {
 // --------------
 
 .sidemenu { 
-  min-width: 220px;
-  max-width: 300px;
+  min-width: 240px;
+  max-width: 310px;
   padding:5px;
+  margin: 0 .5em 1em 1em;
 }
 
 .sidemenu .h4clean { 
-  font-size:1.2rem;
+  font-size:1.4rem;
   margin-bottom: 5px;
 }
 
 .sidemenu .h4clean a { 
-  color: $color-darkblue;
+  color:$color-sidemenu-header;
 }
 
 .sidemenu .h4clean a:hover { 
@@ -152,9 +140,9 @@ footer {
 }
 
 .flv_acrd {
-  line-height:1.6em;
-  font-size: 0.95rem;
-  font-family: $font-side-menu;
+  line-height:1.5em;
+  font-size: .98rem;
+  font-family: $font-paragraph;
 }
 
 .flv_acrd .card,
@@ -167,8 +155,8 @@ footer {
 }
 
 .flv_acrd .card-page.selected a {
-  font-weight: 500;
-  color: $color-darkblue;
+  font-weight: 700;
+  color: $color-sidemenu-selected;
 }
 
 .flv_acrd .card-header {
@@ -211,26 +199,40 @@ footer {
 // Main
 // --------------
 
+.main-area {
+  min-width:300px;
+  margin: .5em 1em .5em .5em;
+}
+
 .main {
   text-align: center
 }
 
-.main h1{
-  font-family: $font-logo;
-  font-size: 60px;
-  font-weight: 700;
-  color: $color-main-title;
-}
-
-.main desc {
-  color: $color-main-desc;
-}
+.main {
+  .card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 30px;
+    width: 18rem;
+  }
+  
+  h1{
+    font-family: $font-logo;
+    font-size: 60px;
+    font-weight: 700;
+    color: $color-main-title;
+  }
+  desc {
+    color: $color-main-desc;
+  }
+ }
 
 // --------------
 // Blog
 // --------------
 
 .blog {
+  margin: .5em 1em;
   
   .content { 
     padding-left: 10px;

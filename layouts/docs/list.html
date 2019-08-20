@@ -1,12 +1,12 @@
 {{ define "main" }}
-  <div class="container-fluid m-3">
+  <div class="container-fluid">
     <div class="row">
-      <div class="sidemenu">
+      <div class="col-sm sidemenu">
         {{ partial "docs/side-menu-title.html" . }}
         {{ partial "docs/side-menu.html" . }}
       </div>
-      <div class="col-sm p-2 mr-5">
-        {{- block "content" . }}{{- end }}
+      <div class="col-sm main-area">
+          {{- block "content" . }}{{- end }}
       </div>
     </div>
   </div>

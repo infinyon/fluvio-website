@@ -1,32 +1,29 @@
-.callout {
+.fluvio {
     padding: .5em;
     border-radius: 10px;
     border-width: 1px;
     border-style: solid;
     display: inline-block;
     position: relative;
+    width: 100%;
 
     margin: .5em 0 .5em .5em;
     max-width: calc(100% - .5em - .5em - 1em);
-    
+
     @media (min-width: 768px) {
         margin: 0 1.25em;
         max-width: calc(100% - .5em - .5em - 1.25em - 1.25em);
     }
 
-    .type {
-        left: -.7em;
-        top: 50%;
-        transform: translateY(-50%);
-        position: absolute;
-    }
-
     .content {
-        font-family: $font-paragraph;
-        font-size: 1.05em;
         margin-left: 1em;
         min-height: 100%;
         line-height: 1.6em;
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            
+        span {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        }
 
         p:first-of-type {
             margin-top: 0;
@@ -37,20 +34,18 @@
         }
     }
 
-    &.idea {
-        background-color:$idea-color-bg;
-        border-color:$idea-color-border;
+    &.cli {
+        background-color:$cli-color-bg;
+        border-color:$cli-color-border;
     }
 
-    &.warning {
-        background-color: $warningCalloutBackgroundColor;
-        border-color: $warningCalloutBorderColor;
-    }
-
-    &.quote {
-        background-color: $quoteCalloutBackgroundColor;
-        border-color: $quoteCalloutBorderColor;
-        font-style: italic;
-    }
-
+    pre { margin-bottom: 0.1em; }
+    pre .df { color: #3a3a3a; }
+    pre .pt { color: #3a3a3a; }
+    pre .fl { color: #cc00ff; }
+    pre .tx { color: #cc3300; }
+    pre .md { color: #3a3a3a; }
+    pre .cm { color: #0b5aaa; }
+    pre .pr { color: #0b5aaa; }
 }
+

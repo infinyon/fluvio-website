@@ -8,17 +8,16 @@ https://prismjs.com/download.html#themes=prism&languages=bash+docker+json+rust+y
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: black;
+	color: #3a3a3a;
 	background: none;
-	text-shadow: 0 1px white;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 1em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	line-height: 1.5;
+	font-size: .9rem;
+	line-height: 1.4;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
@@ -33,13 +32,13 @@ pre[class*="language-"] {
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
 	text-shadow: none;
-	background: #b3d4fc;
+	background: #f8f8f8;
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	text-shadow: none;
-	background: #b3d4fc;
+	background: #f8f8f8;
 }
 
 @media print {
@@ -51,23 +50,22 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 /* Code blocks */
 pre[class*="language-"] {
-	padding: 1em;
-	margin: .5em 0;
+	margin-left: 0em;
 	overflow: auto;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #f5f2f0;
+	background: #f8f8f8;
 }
 
-/* Inline code */
+/* Inline code 
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
 	white-space: normal;
 }
-
+*/
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -90,7 +88,7 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #905;
+	color: #0077aa;
 }
 
 .token.selector,
@@ -99,7 +97,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #690;
+	color: #669900;
 }
 
 .token.operator,
@@ -114,7 +112,7 @@ pre[class*="language-"] {
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: #07a;
+	color: #0077aa;
 }
 
 .token.function,

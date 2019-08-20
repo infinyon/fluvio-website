@@ -23,7 +23,7 @@ $font-faq-toc: "Open Sans", sans-serif;
 // --------------
 
 // Site
-$color-text: #666;
+$color-text: #555;
 $color-headers: #333;
 $color-footer: #fff;
 $color-hyperlink: #3b7abb;
@@ -37,7 +37,8 @@ $color-top-menu-border: #fff;
 
 // Side Menu
 $color-sidemenu: #555;
-$color-sidemenu-marker: #3371e3;
+$color-sidemenu-header: #0b5aaa;
+$color-sidemenu-selected: #236ab2;
 
 // Main
 $color-main-title: #0b5aaa;
@@ -58,12 +59,16 @@ $color-darkblue: #548bc3;
 $color-lightblue: #79C2FB;
 $color-diffusedblue: #89DFFB;
 
+// Fluvio
+$cli-color-bg: #f8f8f8;
+$cli-color-border: #ddd;
+
 // Callouts
 $idea-color-bg: #f0fcee;
 $idea-color-border: #d5f9cf;
 
 $warningCalloutBackgroundColor: #dfd;
-$warningCalloutBorderColor: green;
+$warningCalloutBorderColor: #00aa00;
 
 $quoteCalloutBackgroundColor: lightblue;
 $quoteCalloutBorderColor: blue;
