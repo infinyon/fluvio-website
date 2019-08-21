@@ -73,6 +73,10 @@ a#logo {
   }
 }
 
+.jumbotron {
+  margin-top: -1em;
+}
+
 // Footer
 footer {
   background-color: $color-footer-bg;
@@ -211,7 +215,6 @@ footer {
   .card {
     margin: 0 auto;
     float: none;
-    margin-bottom: 30px;
     width: 18rem;
   }
   
