@@ -9,29 +9,25 @@ body {
 }
 
 // Site-wide
-h1 {font-size: 2.1rem; }
-h2 {font-size: 1.7rem; }
-h3 {font-size: 1.45rem; }
-h4, .h4clean {font-size: 1.25rem; }
-h5, .h5clean {font-size: 1rem; }
-h6 {font-size: 0.8rem; }
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .h4clean, .h5clean {
+h1, .font-xxl {font-size: 2.1rem; }
+h2, .font-xl {font-size: 1.7rem; }
+h3, .font-lg {font-size: 1.45rem; }
+h4, .font-md {font-size: 1.25rem; }
+p, .font-rg {font-size: 1.1rem; }
+h5, li, .font-sm {font-size: 1rem; }
+h6, .font-xs {font-size: 0.8rem; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .font-xs, .font-sm, .font-rg, .font-md, .font-lg, .font-xl, .font-xxl {
   color: $color-headers;
   font-family: $font-headers;
 }
-h4:after, h5:after {
-  background: none repeat scroll 0 0  $color-diffusedblue;
+h2:after {
+  background: none repeat scroll 0 0 $flv-gray-light3;
   content: "";
   display: block;
   position: relative;
-}
-h4:after, h5:after {
-  bottom: -2px;
-  height: 3px;
-  width: 50px;
-}
-h5:after {
-  width: 25px;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
 }
 
 a {
@@ -39,7 +35,6 @@ a {
 }
 
 p {
-  font-size: 1.1rem;
   font-family: $font-paragraph;
   font-weight: 400;
   line-height: 1.5em;
@@ -64,11 +59,10 @@ a#logo {
   h1 {
     margin-top: 1rem;
   }
-  h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .h4clean, .h5clean {
+  h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-top: 1.5rem;
   }
   li {
-    font-size: 1.05rem;
     margin-top: .2rem;
   }
 }
@@ -129,16 +123,16 @@ footer {
   margin: 0 .5em 1em 1em;
 }
 
-.sidemenu .h4clean { 
-  font-size:1.4rem;
+.sidemenu .header {
+  margin-top: 1em;
   margin-bottom: 5px;
 }
 
-.sidemenu .h4clean a { 
+.sidemenu .header a { 
   color:$color-sidemenu-header;
 }
 
-.sidemenu .h4clean a:hover { 
+.sidemenu .header a:hover { 
   text-decoration: none;
 }
 
@@ -218,16 +212,27 @@ footer {
     width: 18rem;
   }
   
-  h1{
+  .title {
     font-family: $font-logo;
-    font-size: 60px;
+    font-size: 4em;
     font-weight: 700;
     color: $color-main-title;
   }
-  desc {
+  
+  .desc {
     color: $color-main-desc;
   }
- }
+  
+  .box-header {
+    text-align: center;
+    margin: .3em 0 .6em;
+
+    a {
+      font-family: $font-headers;
+      color: $flv-gray-base;
+    }
+  }
+}
 
 // --------------
 // Blog
@@ -276,13 +281,13 @@ footer {
     padding:5px;
   }
 
-  .menu .h4clean { 
+  .menu .h4 { 
     border-bottom: 1px solid $color-blog-header-line;
     padding-bottom: 4px;
     margin-bottom: 10px;
   }
 
-  .menu .h4clean a { 
+  .menu .h4 a { 
     color: $color-blog-header;
   }
 
@@ -403,6 +408,8 @@ footer {
 }
 
 .archor {
-  color: $color-diffusedblue;
-  font-size: .85rem;
+  color: $flv-gray-light2;
+  font-size: .9rem;
+  margin-left: .2em;
+  vertical-align: middle;
 }

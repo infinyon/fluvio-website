@@ -1,8 +1,8 @@
 {{ define "main" }}
 <div class="jumbotron">
   <div class="container main">
-    <h1>{{.Title}}</h1>
-    <h2 class="desc">{{ .Site.Params.Description }} <span>{{ .Site.Params.How }}</span></h2>
+    <div class="title">{{.Title}}</div>
+    <div class="font-xl desc">{{ .Site.Params.Description }} <span>{{ .Site.Params.How }}</span></div>
     <a class="btn btn-info mt-3 mr-1" href="{{ .RelPermalink | relURL }}">Introduction</a>
     <a class="btn btn-info mt-3 ml-1" href="{{ .RelPermalink | relURL }}">Getting Started</a>
   </div>
@@ -14,9 +14,9 @@
       <div class="col-md-6 col-lg-4">
         <div class="card bg-light">
           <div class="m-3 align-self-center">
-            <h2 class="m-3" style="text-align:center">
-              <a class="text-body" href="{{ .RelPermalink | relURL}}">{{ .Title | markdownify}}</a>
-            </h2>
+            <div class="font-xl box-header">
+              <a href="{{ .RelPermalink | relURL}}">{{ .Title | markdownify}}</a>
+            </div>
 
             <img src="/images/{{.Params.image}}" class="mx-auto d-block" width="200" height="100">
 

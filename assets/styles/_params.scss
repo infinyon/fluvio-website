@@ -57,15 +57,54 @@ $color-faq-toc: #3371e3;
 $color-lightgray: #dddddd;
 $color-darkblue: #548bc3;
 $color-lightblue: #79C2FB;
-$color-diffusedblue: #89DFFB;
-
-// Fluvio
-$cli-color-bg: #f8f8f8;
-$cli-color-border: #ddd;
 
 // Callouts
+$cli-color-bg: #f8f8f8;
+$cli-color-border: #ddd;
 $idea-color-bg: #f0fcee;
 $idea-color-border: #d5f9cf;
+
+// Fluvio Blue
+$flv-blue-dark9: #010911;
+$flv-blue-dark8: #021222;
+$flv-blue-dark7: #031b33;
+$flv-blue-dark6: #042444;
+$flv-blue-dark5: #052d55;
+$flv-blue-dark4: #063666;
+$flv-blue-dark3: #073e76;
+$flv-blue-dark2: #084888;
+$flv-blue-dark1: #095199;
+$flv-blue-base: #0b5aaa;
+$flv-blue-light1: #236ab2;
+$flv-blue-light2: #3b7abb;
+$flv-blue-light3: #548bc3;
+$flv-blue-light4: #6c9ccc;
+$flv-blue-light5: #85acd4;
+$flv-blue-light6: #9dbddd;
+$flv-blue-light7: #b5cde5;
+$flv-blue-light8: #cedeee;
+$flv-blue-light9: #e6eef6;
+
+// Fluvio Gray
+$flv-gray-dark9: #090909;
+$flv-gray-dark8: #121212;
+$flv-gray-dark7: #1b1b1b;
+$flv-gray-dark6: #242424;
+$flv-gray-dark5: #2d2d2d;
+$flv-gray-dark4: #363636;
+$flv-gray-dark3: #3e3e3e;
+$flv-gray-dark2: #484848;
+$flv-gray-dark1: #515151;
+$flv-gray-base: #5a5a5a;
+$flv-gray-light1: #6a6a6a;
+$flv-gray-light2: #7a7a7a;
+$flv-gray-light3: #8b8b8b;
+$flv-gray-light4: #9c9c9c;
+$flv-gray-light5: #acacac;
+$flv-gray-light6: #bdbdbd;
+$flv-gray-light7: #cdcdcd;
+$flv-gray-light8: #dedede;
+$flv-gray-light9: #eeeeee;
 
 $warningCalloutBackgroundColor: #dfd;
 $warningCalloutBorderColor: #00aa00;
