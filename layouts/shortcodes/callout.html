@@ -21,7 +21,7 @@
         {{- $text := partial "others/command.html"  (dict "line" $command) -}}
         {{- $text | markdownify -}}
         <pre><code class="language-{{ $lang }}">
-            {{- $output | safeHTML -}}
+            {{- $output -}}
         </code></pre>
     </div>
 </div>

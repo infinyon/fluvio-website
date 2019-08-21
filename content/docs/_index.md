@@ -22,7 +22,7 @@ after the idea...
 * [Getting Started]({{< relref "getting-started/overview.md" >}})
 * [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview.md" >}})
 
-{{< callout >}}
+{{< callout yaml>}}
 $ fluvio auth-token list "test" -o 1
 fluvio 0.1.0
 Fluvio Command Line Interface
