@@ -1,5 +1,5 @@
 ---
-title: About Fluvio"
+title: About Fluvio
 author: 
     name: "The Fluvio Team"
 date: 2019-08-15

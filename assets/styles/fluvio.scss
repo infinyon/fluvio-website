@@ -232,16 +232,41 @@ footer {
 // --------------
 
 .blog {
-  margin: .5em 1em;
+  margin: .5em;
   
   .content { 
     padding-left: 10px;
   }
 
-  .author { 
-    font-family: $font-blog-author;
-    font-weight:700;
+  .inner {
+    margin: 1.5em .5em;
   }
+
+  .author-area {
+    background: none repeat scroll 0 0 #f8f8f8;
+    border: 1px solid #efefef;
+    content: "";
+    display: block;
+    position: relative;
+    padding: 5px 10px;
+
+    i {
+      font-size: 1em;
+    }
+    
+    .by, .date {
+      font-size: .9em;
+      font-family: $font-blog;
+    }
+
+    .author {
+      color: #555555;
+      font-size: 1.05em;
+      font-family: $font-blog-author;
+      text-transform: uppercase;
+    }
+  }
+
 
   .menu { 
     max-width: 240px;
