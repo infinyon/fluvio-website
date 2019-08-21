@@ -1,5 +1,4 @@
 @import 'params';
-@import 'fluvio-code';
 @import 'callout';
 @import 'prism';
 
@@ -120,8 +119,8 @@ footer {
 // --------------
 
 .sidemenu { 
-  min-width: 240px;
-  max-width: 310px;
+  min-width: 220px;
+  max-width: 300px;
   padding:5px;
   margin: 0 .5em 1em 1em;
 }

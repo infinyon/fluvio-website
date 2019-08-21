@@ -16,9 +16,13 @@ To work with Fluvio, ...
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it's not genuine, correct, or comprehensible Latin anymore. While lorem ipsum's still resembles classical Latin, it actually has no meaning whatsoever. As Cicero's text doesn't contain the letters K, W, or Z, alien to latin, these, and others are often inserted randomly to mimic the typographic appearence of European languages, as are digraphs not to be found in the original.
 {{< /idea >}}
 
-<br/>
+after the idea...
 
-{{< fluvio >}}
+#### Next Steps
+* [Getting Started]({{< relref "getting-started/overview.md" >}})
+* [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview.md" >}})
+
+{{< callout >}}
 $ fluvio auth-token list "test" -o 1
 fluvio 0.1.0
 Fluvio Command Line Interface
@@ -60,18 +64,9 @@ OPTIONS:
     -t, --token-type <token-type>    Types [possible values: Custom, Managed, Any]
     -c, --sc <host:port>             Address of Streaming Controller
     -P, --profile <profile>          Profile name
-{{< / fluvio >}}
+{{< /callout >}}
 
-* This is a test
-
-<br/>
-
-```
-test
-```
-
-
-{{< fluvio rust >}}
+{{< callout rust >}}
 //!
 //! # Streaming Coordinator Metadata
 //!
@@ -135,57 +130,19 @@ impl ScMetadata {
         table
     }
 }
-{{< /fluvio >}}
+{{< /callout >}}
 
-
-* Another test
-
-```yaml
-$ fluvio
-fluvio 0.1.0
-Fluvio Command Line Interface
-
-USAGE:
-    fluvio <SUBCOMMAND>
-
-FLAGS:
-    -h, --help    Prints help information
-
-SUBCOMMANDS:
-    consume       Read messages from a topic/partition
-    produce       Write log records to a topic/partition
-    spu           SPU operations
-    topic         Topic operations
-    auth-token    Athorization token operations
-    advanced      Advanced operations
-    help          Prints this message or the help of the given subcommand(s)s
-
-$  ./target/debug/fluvio auth-token list "test" -o 1
-error: cannot retrieve auth topics: Connection refused (os error 61) 
-```
-
-#### Next Steps
-* [Getting Started]({{< relref "getting-started/overview.md" >}})
-* [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview.md" >}})
-
-Use similar commands against your own application running in a Kubernetes cluster.
-
-## Get an overview of your mesh
-
-The `proxy-status` command allows you to get an overview of your mesh. If you suspect one of your sidecars isn't
-receiving configuration or is out of sync then `proxy-status` will tell you this.
-
-{{< fluvio>}}
+{{< callout >}}
 $ consul config read -kind service-defaults -name web
 {
    "Kind": "service-defaults",
    "Name": "web",
    "Protocol": "http"
 }
-{{< /fluvio >}}
+{{< /callout >}}
 
-<br/>
-{{< fluvio >}}
+
+{{< callout >}}
 $ test
 apiVersion: "rbac.istio.io/v1alpha1"
 kind: ServiceRole
@@ -198,9 +155,9 @@ spec:
     constraints:
     - key: "destination.port"
         values: ["27017"]
-{{< /fluvio >}}
+{{< /callout >}}
 
-{{< fluvio json >}}
+{{< callout json >}}
 $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 --- Pilot Clusters
 +++ Envoy Clusters
@@ -244,5 +201,6 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 
 Listeners Match
 Routes Match
-{{< /fluvio >}}
+{{< /callout >}}
 
+the end
