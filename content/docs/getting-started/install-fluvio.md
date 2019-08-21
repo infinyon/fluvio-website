@@ -1,9 +1,10 @@
 ---
-title: Install Fluvio
+title: Install Fluvio - Streaming Controller (SC)
+menu: Install Fluvio
 weight: 40
 ---
 
 Installation ... goes here
 
 #### Next Steps
-* <a href="../install-cli/">Install CLI</a>
+* [Install CLI]({{< relref "install-cli" >}})

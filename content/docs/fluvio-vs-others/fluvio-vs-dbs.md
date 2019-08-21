@@ -1,5 +1,6 @@
 ---
-title: vs. Datatabases
+title: Fluvio vs. Databases
+menu: vs. Databases
 weight: 40
 ---
 

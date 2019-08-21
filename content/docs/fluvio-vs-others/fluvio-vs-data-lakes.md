@@ -1,6 +1,7 @@
 ---
-title: vs. Data Lakes
-weight: 20
+title: Fluvio vs. Data Lakes
+menu: vs. Data Lakes
+weight: 30
 ---
 
 Comparission analysis

@@ -8,4 +8,4 @@ Some stuff here ...
 
 Take you to Github
 
-* <a href="../kafka/">Github</a>
+* [Kafka Compatibility](http://github.com/infinyon)

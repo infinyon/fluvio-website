@@ -1,9 +1,11 @@
 ---
-title: Install CLI
+title: Install Fluvio Command Line Interface (CLI)
+menu: Install CLI
 weight: 50
 ---
 
 Installation ... goes here
 
 #### Next Steps
-* <a href="../../tasks/create-spu-group/">Setup SPU Group</a>
+* [Deploy SPU Group]({{< relref "../tasks/deploy-spu-groups" >}})
+* [Create Topics]({{< relref "../tasks/create-topics" >}})

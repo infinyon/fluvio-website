@@ -19,8 +19,8 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 after the idea...
 
 #### Next Steps
-* [Getting Started]({{< relref "getting-started/overview.md" >}})
-* [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview.md" >}})
+* [Getting Started]({{< relref "getting-started/overview" >}})
+* [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview" >}})
 
 {{< callout yaml>}}
 $ fluvio auth-token list "test" -o 1
@@ -41,10 +41,14 @@ SUBCOMMANDS:
     auth-token    Athorization token operations
     advanced      Advanced operations
     help          Prints this message or the help of the given subcommand(s)s
+{{< /callout >}}
 
+{{< callout yaml>}}
 $ fluvio auth-token list "test" -o 1
 error: cannot retrieve auth topics: Connection refused (os error 61) 
+{{< /callout >}}
 
+{{< callout yaml>}}
 $ fluvio auth-token create -h
 fluvio-auth-token-create 0.1.0
 Create auth token

@@ -1,5 +1,6 @@
 ---
 title: Streaming Controller (SC)
+menu: Streaming Controller
 weight: 20
 ---
 

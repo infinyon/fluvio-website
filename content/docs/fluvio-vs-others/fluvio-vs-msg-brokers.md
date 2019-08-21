@@ -1,5 +1,6 @@
 ---
-title: vs. Msg Brokers
+title: Fluvio vs. Message Brokers
+menu: vs. Message Brokers
 weight: 30
 ---
 

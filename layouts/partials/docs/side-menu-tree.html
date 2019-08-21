@@ -32,10 +32,11 @@
 
 {{- define "page-card" -}}
 	{{- $selected := "" -}}
+	{{- $menu := .page.Params.menu | default .page.LinkTitle -}}
 	{{- if eq .page .selected }}
 		{{- $selected = " selected" -}}
 	{{- end -}}
-	<div class="card card-page {{ $selected }}"><a href="{{ .page.RelPermalink }}">{{ .page.LinkTitle }}</a></div>
+	<div class="card card-page {{ $selected }}"><a href="{{ .page.RelPermalink }}">{{ $menu }}</a></div>
 {{- end -}}
 
 {{- define "section-header-card" -}}

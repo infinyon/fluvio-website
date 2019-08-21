@@ -1,6 +1,7 @@
 ---
-title: vs. In Memory Dbs
-weight: 40
+title: Fluvio vs. In Memory Datatabase
+menu: vs. Memory Databases
+weight: 50
 ---
 
 Comparission analysis
