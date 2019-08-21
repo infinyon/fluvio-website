@@ -2,7 +2,7 @@
 {{- $numLines := len $lines -}}
 {{- $command := "" -}}
 {{- $output := "" -}}
-{{- $lang := .Get 0 | default "yaml"}}
+{{- $lang := .Get 0 | default "yaml" -}}
 
 {{- range $idx, $line := $lines -}}
     {{- if eq $idx 0 -}}
