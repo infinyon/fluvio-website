@@ -1,0 +1,9 @@
+{{- $lang := .Get 0 | default "yaml" -}}
+
+<div class="callout code mb-3">
+    <div class="content">
+        <pre><code class="language-{{ $lang }}">
+            {{- .Inner -}}
+        </code></pre>
+    </div>
+</div>

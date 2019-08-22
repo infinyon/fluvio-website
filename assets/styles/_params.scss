@@ -16,7 +16,7 @@ $font-blog-author: "Titillium SemiBold", helvetica, sans-serif;
 $font-faq-toc: "Open Sans", sans-serif;
 
 // Callout
-$font-callouut-idea: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+$font-callout: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
 // --------------
 // Colors
@@ -59,10 +59,14 @@ $color-darkblue: #548bc3;
 $color-lightblue: #79C2FB;
 
 // Callouts
-$cli-color-bg: #f8f8f8;
-$cli-color-border: #ddd;
-$idea-color-bg: #f0fcee;
-$idea-color-border: #d5f9cf;
+$color-callout-bg: #f8f8f8;
+$color-callout-border: #ddd;
+$color-idea-bg: #f0fcee;
+$color-idea-border: #d5f9cf;
+$color-idea-icon: #79c16c;
+$color-caution-bg: #fae37f;
+$color-caution-border: #ddb05f;
+$color-caution-icon: #ff9966 ;
 
 // Fluvio Blue
 $flv-blue-dark9: #010911;
@@ -105,9 +109,3 @@ $flv-gray-light6: #bdbdbd;
 $flv-gray-light7: #cdcdcd;
 $flv-gray-light8: #dedede;
 $flv-gray-light9: #eeeeee;
-
-$warningCalloutBackgroundColor: #dfd;
-$warningCalloutBorderColor: #00aa00;
-
-$quoteCalloutBackgroundColor: lightblue;
-$quoteCalloutBorderColor: blue;

@@ -30,15 +30,15 @@
     }
 
     &.code {
-        background-color:$cli-color-bg;
-        border-color:$cli-color-border;
+        background-color:$color-callout-bg;
+        border-color:$color-callout-border;
 
         .content {
             font-size: 1.08em;
-            font-family: $font-callouut-idea;
+            font-family: $font-callout;
 
             span {
-                font-family: $font-callouut-idea;
+                font-family: $font-callout;
             }    
         }
 
@@ -51,15 +51,27 @@
         pre .cm { color: #0b5aaa; }
         pre .pr { color: #0b5aaa; }
     }
+    
+    &.text {
+        background-color: $color-callout-bg;
+        border-color: $color-callout-border;
 
-    &.idea {
-        background-color:$idea-color-bg;
-        border-color:$idea-color-border;
+        .content {
+            font-size: 1.05em;
+            font-family: $font-paragraph;
+        }
+    }
+
+    &.idea, &.caution {
+        min-height: 3em;
+        line-height: 0;
 
         .icon {
-            left: -.7em;
+            left: -.8em;
             top: 50%;
             position: absolute;
+
+            i {line-height: 0;}
         }
 
         .content {
@@ -68,15 +80,23 @@
         }
     }
 
-    &.warning {
-        background-color: $warningCalloutBackgroundColor;
-        border-color: $warningCalloutBorderColor;
+    &.idea {
+        background-color: $color-idea-bg;
+        border-color: $color-idea-border;
+
+        i {
+            font-size:2.1em; 
+            color: $color-idea-icon;
+        }
     }
 
-    &.quote {
-        background-color: $quoteCalloutBackgroundColor;
-        border-color: $quoteCalloutBorderColor;
-        font-style: italic;
-    }
+    &.caution {
+        background-color: $color-caution-bg;
+        border-color: $color-caution-border;
 
+        i {
+            font-size:1.5em; 
+            color: $color-caution-icon;
+        }
+    }
 }

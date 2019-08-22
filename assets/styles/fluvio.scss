@@ -33,15 +33,15 @@ h2:after {
   height: 2px;
   width: 100%;
 }
-.font-md-underline { line-height: 2em; }
+.font-md-underline { line-height: 2.1em; }
 .font-md-underline:after {
   background: none repeat scroll 0 0 $flv-blue-light3;
   content: "";
   display: block;
   position: relative;
-  bottom: 4px;
+  bottom: 2px;
   height: 2px;
-  width: 60px;
+  width: 70px;
 }
 
 a {
@@ -132,7 +132,7 @@ footer {
 
 .sidemenu { 
   min-width: 220px;
-  max-width: 300px;
+  max-width: 270px;
   padding:5px;
   margin: 0 .5em 1em 1em;
 }
