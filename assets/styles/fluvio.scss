@@ -55,6 +55,15 @@ p {
   margin-bottom: .7rem;
 }
 
+strong {
+  color: $flv-blue-dark5;
+  font-weight: 700;
+}
+em {
+  color: $flv-blue-dark7;
+}
+
+
 #logo {
   font-family: $font-logo;
   font-size: 26px;
