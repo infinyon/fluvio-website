@@ -2,11 +2,11 @@
 title: Introduction to Fluvio
 ---
 
-Welcome to Fluvio intro guide, the best place to start if you are new to Fluvio. We cover what Fluvio is, the problems it can solve, and how it compares to other products. Anxious to get started? [Click here]({{< relref "getting-started/overview" >}}).  
+Welcome to Fluvio intro guide, the best place to start. We cover what Fluvio is, the problems it can solve, and how it compares to other products. Anxious to get started? [Click here]({{< relref "getting-started/overview" >}}).  
 
-There are several macro-trends that overwhelming IT departments responsible for data handling in many organizations. Data is __growing exponentially__, it is __more diverse__ as new applications come online, and __more fragmented__ as these applications are moving to Microservices.
+There are several macro-trends that overwhelming departments responsible for data management and governanace in many organizations. Data is __growing exponentially__, from __different geographies__, it is __more diverse__ as new applications come online, and __more fragmented__ as these applications are moving to Microservices.
 
-We believe the ability to capture data at __massive scale__ in __real-time__ from __any data source__ across the organization will become a critical requirement in the future.
+We believe the ability to capture data at __massive scale__ in __real-time__ from __any data source__ across the organization is mandatory.
 
 
 ## What is Fluvio?
