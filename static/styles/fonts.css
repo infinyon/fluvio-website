@@ -50,3 +50,16 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Fira Mono";
+  src: url("../fonts//FiraMono-Regular.eot"); /* IE9 Compat Modes */
+  src: url("../fonts//FiraMono-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts//FiraMono-Regular.otf") format("opentype"), /* Open Type Font */
+    url("../fonts//FiraMono-Regular.svg") format("svg"), /* Legacy iOS */
+    url("../fonts//FiraMono-Regular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("../fonts//FiraMono-Regular.woff") format("woff"), /* Modern Browsers */
+    url("../fonts//FiraMono-Regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}

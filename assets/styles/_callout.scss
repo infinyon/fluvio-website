@@ -34,7 +34,7 @@
         border-color:$color-callout-border;
 
         .content {
-            font-size: 1.08em;
+            font-size: 1em;
             font-family: $font-callout;
 
             span {
@@ -43,11 +43,11 @@
         }
 
         pre { margin-bottom: 0.1em; }
-        pre .df { color: #3a3a3a; }
-        pre .pt { color: #3a3a3a; }
+        pre .df { color: #444444; }
+        pre .pt { color: #444444; }
         pre .fl { color: #cc00ff; }
         pre .tx { color: #cc3300; }
-        pre .md { color: #3a3a3a; }
+        pre .md { color: #444444; }
         pre .cm { color: #0b5aaa; }
         pre .pr { color: #0b5aaa; }
     }
@@ -57,7 +57,7 @@
         border-color: $color-callout-border;
 
         .content {
-            font-size: 1.05em;
+            font-size: 1em;
             font-family: $font-paragraph;
         }
     }
@@ -75,7 +75,7 @@
         }
 
         .content {
-            font-size: 1.05em;
+            font-size: 1em;
             font-family: $font-paragraph;
         }
     }

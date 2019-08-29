@@ -8,16 +8,16 @@ https://prismjs.com/download.html#themes=prism&languages=bash+docker+json+rust+y
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #3a3a3a;
+	color: #444444;
 	background: none;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: "Fira Mono", monospace, 'Andale Mono', 'Ubuntu Mono', Monaco;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	font-size: .89rem;
-	line-height: 1.4;
+	font-size: .92em;
+	line-height: 1.45;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;

@@ -75,7 +75,7 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 Lorem ipsum is a pseudo-Latin text used in web design
 {{< /text >}}
 
-{{< cli yaml>}}
+{{< cli yaml >}}
 $ fluvio auth-token list "test" -o 1
 fluvio 0.1.0
 Fluvio Command Line Interface

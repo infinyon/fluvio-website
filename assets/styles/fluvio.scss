@@ -13,7 +13,7 @@ h1, .font-xxl {font-size: 2.1rem; }
 h2, .font-xl {font-size: 1.7rem; }
 h3, .font-lg {font-size: 1.45rem; }
 h4, .font-md, .font-md-underline {font-size: 1.25rem; }
-p, li, .font-rg {font-size: 1.1rem; }
+p, li, .font-rg {font-size: 1rem; }
 h5, .font-sm {font-size: 1rem; }
 h6, .font-xs {font-size: 0.8rem; }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .font-xs, .font-sm, .font-rg, .font-md, .font-lg, .font-xl, .font-xxl, .font-md-underline {
@@ -387,7 +387,7 @@ footer {
 // Screen Size
 // --------------
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .blog .content { 
     padding-right: 30px;
   }
@@ -402,7 +402,12 @@ footer {
       padding: 5px;
       margin: 5px;
     }
-    
+
+    .navbar-nav {
+      margin-top:10px;
+      margin-right:-10px;
+    }
+
     .navbar-item.active {   
       border-bottom: none;
       background-color: $color-top-menu-collaped-sel;
