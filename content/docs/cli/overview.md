@@ -20,7 +20,7 @@ Binaries are available for download at:
 
 ## CLI Overview
 
-The fluvio CLI is user friendly and hierarchical. To view a list of available options at any level use {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}}.  At top level, just run __fluvio__ with no arguments:
+The fluvio CLI is user friendly and hierarchical. Use {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} at any level to list all available options or subcommands.  At top level, you can run __fluvio__ with no arguments:
 
 {{< cli yaml >}}
 $ fluvio
@@ -55,4 +55,4 @@ There are two exceptions to this rule:
 * __consume/produce__
 * __advanced__
 
-"Consume/Produce" subcommands are frequently utilized operations and "Advanced" is an aggregate of system-wide operations and don't belong to a particular module.
+"Consume/Produce" subcommands are frequently utilized operations hence kept at top level. "Advanced" is an aggregate of system-wide operations and don't belong to a particular module.
