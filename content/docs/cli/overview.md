@@ -20,7 +20,26 @@ Binaries are available for download at:
 
 ## CLI Overview
 
-The fluvio CLI is user friendly and hierarchical. Use {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} at any level to list all available options or subcommands. At top level, you can run __fluvio__ with no arguments:
+Fluvio CLI is user friendly and hierarchical. The syntax follows a well-defined pattern: __fluvio__, succeeded by __module__, __operation__ and a series of _options_ and _flags_. There are a couple of exceptions to this rule which are describe later on.
+
+
+{{< text >}}
+<strong>fluvio module operation</strong> [FLAGS] [OPTIONS]
+{{< /text >}}
+
+Most options and flags are optional but there are some that are mandatory. Mandatory options are shown in the CLI usage line right below the title. For example:
+
+{{< text >}}
+Create a topic
+
+<strong>fluvio topic create</strong> [FLAGS] [OPTIONS] --partitions &lt;integer&gt; --replication &lt;integer&gt; --topic &lt;string&gt;
+{{< /text >}}
+
+In create topic command {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}}, and {{< pre >}}--replication{{< /pre >}}, are mandatory.
+
+### Fluvio
+
+Command line help is available at any level by appending {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} to the command. At top level, you can run __fluvio__ with without arguments to get a list of available options.
 
 {{< cli yaml >}}
 $ fluvio 
@@ -43,24 +62,23 @@ SUBCOMMANDS:
     help          Prints this message or the help of the given subcommand(s)
 {{< /cli >}}
 
-This CLI is organized in sections, where the first subcommand is the module:
+Top level fluvio CLI is organized by modules (aside from a couple of exceptions):
 
 * spu
 * spu-group
 * custom-spu
 * topic
 
-There are two exceptions to this rule:
+The exceptions are as follows:
 
 * consume/produce
 * advanced
 
-"Consume/Produce" subcommands are frequently utilized operations hence kept at top level.  
-"Advanced" is an aggregate of system-wide operations and don't belong to any particular module.
+"Consume/Produce" are kept at top level as they frequently used operations and we chose convenience over convention. "Advanced" is an aggregate of system-wide operations that don't belong to any particular module.
 
 ### Operations
 
-The top level subcommands are followed by the an operation such as create, list or delete.
+Each module is followed by a series of operations that describe their capabilities. For example, __topic__ module has the ability to create, list, describe, or delete topics:
 
 {{< cli yaml >}}
 $ fluvio topic
@@ -79,12 +97,16 @@ SUBCOMMANDS:
     help        Prints this message or the help of the given subcommand(s)
 {{< /cli >}}
 
+Other modules, such as __spu__ have different options, hence different capabilities.
+
 ### Options
 
-Operations are followed by parameter options
+The modules and operations are followed by a series of options and flags. Each option is composed of a unique attribute, such as: {{< pre >}}-t, --topic{{< /pre >}} and followed by the modifier.  
+
+Mandatory options are shown in the syntax definition. All others are optional.
 
 {{< cli yaml >}}
-$topic create -h
+$ fluvio topic create -h
 Create a topic
 
 fluvio topic create [FLAGS] [OPTIONS] --partitions <integer> --replication <integer> --topic <string>
@@ -103,3 +125,11 @@ OPTIONS:
     -k, --kf <host:port>                    Address of Kafka Controller
     -P, --profile <profile>                 Profile name
 {{< /cli >}}
+
+The following options: {{< pre >}}--kf, --sc,{{< /pre >}} and {{< pre >}}--profile{{< /pre >}} are applied globally and help __fluvio__ identify the server where to send the command. 
+
+### Profiles
+
+
+### Target Servers
+
