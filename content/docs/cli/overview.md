@@ -23,14 +23,14 @@ Binaries are available for download at:
 The fluvio CLI is user friendly and hierarchical. Use {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} at any level to list all available options or subcommands. At top level, you can run __fluvio__ with no arguments:
 
 {{< cli yaml >}}
-$ fluvio
+$ fluvio 
 Fluvio Command Line Interface
 
-USAGE:
-    fluvio <SUBCOMMAND>
+fluvio <SUBCOMMAND>
 
 FLAGS:
-    -h, --help    Prints help information
+    -h, --help       Prints help information
+    -V, --version    Prints version information
 
 SUBCOMMANDS:
     consume       Read messages from a topic/partition
@@ -60,7 +60,7 @@ There are two exceptions to this rule:
 
 ### Operations
 
-The top level subcommand is followed by the an operation such as create, list or delete.
+The top level subcommands are followed by the an operation such as create, list or delete.
 
 {{< cli yaml >}}
 $ fluvio topic
@@ -77,4 +77,29 @@ SUBCOMMANDS:
     describe    Show details of a topic
     list        Show all topics
     help        Prints this message or the help of the given subcommand(s)
+{{< /cli >}}
+
+### Options
+
+Operations are followed by parameter options
+
+{{< cli yaml >}}
+$topic create -h
+Create a topic
+
+fluvio topic create [FLAGS] [OPTIONS] --partitions <integer> --replication <integer> --topic <string>
+
+FLAGS:
+    -i, --ignore-rack-assignment    Ignore racks while computing replica assignment
+    -v, --validate-only             Validates configuration, does not provision
+    -h, --help                      Prints help information
+
+OPTIONS:
+    -t, --topic <string>                    Topic name
+    -p, --partitions <integer>              Number of partitions
+    -r, --replication <integer>             Replication factor per partition
+    -f, --replica-assignment <file.json>    Replica assignment file
+    -c, --sc <host:port>                    Address of Streaming Controller
+    -k, --kf <host:port>                    Address of Kafka Controller
+    -P, --profile <profile>                 Profile name
 {{< /cli >}}
