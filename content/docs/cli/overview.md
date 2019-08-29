@@ -20,7 +20,7 @@ Binaries are available for download at:
 
 ## CLI Overview
 
-The fluvio CLI is user friendly and hierarchical. Use {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} at any level to list all available options or subcommands.  At top level, you can run __fluvio__ with no arguments:
+The fluvio CLI is user friendly and hierarchical. Use {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} at any level to list all available options or subcommands. At top level, you can run __fluvio__ with no arguments:
 
 {{< cli yaml >}}
 $ fluvio
@@ -45,14 +45,36 @@ SUBCOMMANDS:
 
 This CLI is organized in sections, where the first subcommand is the module:
 
-* __spu__
-* __spu-group__
-* __custom-spu__
-* __topic__
+* spu
+* spu-group
+* custom-spu
+* topic
 
 There are two exceptions to this rule:
 
-* __consume/produce__
-* __advanced__
+* consume/produce
+* advanced
 
-"Consume/Produce" subcommands are frequently utilized operations hence kept at top level. "Advanced" is an aggregate of system-wide operations and don't belong to a particular module.
+"Consume/Produce" subcommands are frequently utilized operations hence kept at top level.  
+"Advanced" is an aggregate of system-wide operations and don't belong to any particular module.
+
+### Operations
+
+The top level subcommand is followed by the an operation such as create, list or delete.
+
+{{< cli yaml >}}
+$ fluvio topic
+Topic operations
+
+fluvio topic <SUBCOMMAND>
+
+FLAGS:
+    -h, --help    Prints help information
+
+SUBCOMMANDS:
+    create      Create a topic
+    delete      Delete a topic
+    describe    Show details of a topic
+    list        Show all topics
+    help        Prints this message or the help of the given subcommand(s)
+{{< /cli >}}
