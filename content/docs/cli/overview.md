@@ -172,16 +172,16 @@ port = 9003
 
 #### Default Profile
 
-Fluvio CLI may be utilized with one __default__ profile and an unlimited number of __user-defined__ profiles. The CLI will look-up the __default__ profile if both conditions are met:
+Fluvio CLI has one __default__ profile and an unlimited number of __user-defined__ profiles. The __default__ profile is the choice of last resort; it is looked-up only if both conditions are met:
 
-* no server ({{< pre >}}--sc, --spu, --kf{{< /pre >}}) is provisioned,
-* no user-defined profile ({{< pre >}}--profile{{< /pre >}}) is been provided.
+* no server ({{< pre >}}--sc, --spu, --kf{{< /pre >}}) is provisioned.
+* no user-defined profile ({{< pre >}}--profile{{< /pre >}}) is provisioned.
 
-Conversely, if both parameters are provisioned the server configuration takes precedence.  
+Conversely, if both parameters are provisioned the server configuration takes precedence over profiles. 
 
-The CLI searches for the __default.toml__ profile file as follows:
+The CLI searches for the __default.toml__ profile file in the following order: 
 
-* if $FLUVIO_HOME environment variable is, look-up:
+* if $FLUVIO_HOME environment variable is set, look-up:
     {{< text >}}
     $FLUVIO_HOME/.fluvio/profiles/default.toml
     {{< /text >}}
@@ -190,7 +190,7 @@ The CLI searches for the __default.toml__ profile file as follows:
     $HOME/.fluvio/profiles/default.toml 
     {{< /text >}}
 
-Note, the directory hierarchy  __/.fluvio/profiles/__ should be preserved whether $FLUVIO_HOME is provisioned or not.
+The directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUVIO_HOME is provisioned or not.
 
 ### Target Servers
 
