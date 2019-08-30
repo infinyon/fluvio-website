@@ -202,7 +202,7 @@ The __target server__ is computed in the following order:
 * __user-defined profile__ ({{< pre >}}--profile{{< /pre >}}) if provisioned.
 * __default profile__ if found
 
-Return error if all look-ups fail.
+Return error if the look-up fails to compute a Fluvio or a Kafka __target server__.
 
 {{< links "Related Topics" >}}
 * [Produce CLI]({{< relref "produce" >}})
