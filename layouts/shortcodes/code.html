@@ -1,9 +1,27 @@
+{{/* String the first and last lines, if empty */}}
 {{- $lang := .Get 0 | default "yaml" -}}
+{{- $input := .Inner -}}
+{{- $lines := split $input "\n" -}}
+{{- $line_count := len $lines -}}
+{{- $collector := "" -}}
+{{- range $index, $line := $lines -}}
+    {{- if eq $index 0 -}}
+        {{- if gt (len $line) 0 -}}
+            {{- $collector = (print $collector $line "\n") -}}
+        {{- end -}}
+    {{- else if eq $index (sub $line_count 1) -}}
+        {{- if gt (len $line) 0 -}}
+            {{- $collector = (print $collector $line "\n") -}}
+        {{- end -}}
+    {{- else -}}
+        {{- $collector = (print $collector $line "\n") -}}
+    {{- end -}}
+{{- end -}}
 
 <div class="callout code mb-3">
     <div class="content">
         <pre><code class="language-{{ $lang }}">
-            {{- .Inner -}}
+            {{- $collector -}}
         </code></pre>
     </div>
 </div>

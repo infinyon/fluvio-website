@@ -126,10 +126,29 @@ OPTIONS:
     -P, --profile <profile>                 Profile name
 {{< /cli >}}
 
-The following options: {{< pre >}}--kf, --sc,{{< /pre >}} and {{< pre >}}--profile{{< /pre >}} are applied globally and help __fluvio__ identify the server where to send the command. 
+The following options {{< pre >}}--kf, --sc,{{< /pre >}} and {{< pre >}}--profile{{< /pre >}}, are applied to every command and help __fluvio__ identify the server where to send the command. 
 
 ### Profiles
 
+The CLI can to manage multiple Fluvio and Kafka deployments at the same time. Switching from one deployment to another is simple, just invoke a different __profile__.  
+
+A __profile__ is a .toml configuration file that stores location of the servers:
+
+{{< code >}}
+version = "1.0"
+
+[sc]
+host = "0.0.0.0"
+port = 9003
+
+[spu]
+host = "0.0.0.0"
+port = 9005
+
+[kf]
+host = "0.0.0.0"
+port = 9093
+{{< /code >}}
 
 ### Target Servers
 

@@ -255,9 +255,10 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
                    {
 
                    }
-
-Listeners Match
-Routes Match
+             }
+        }
+    }
+}
 {{< /cli>}}
 
 {{< links "Next Steps" >}}
