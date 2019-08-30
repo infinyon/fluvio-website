@@ -208,7 +208,8 @@ Return error if the look-up fails to compute a Fluvio or a Kafka __target server
 {{< links "Related Topics" >}}
 * [Produce CLI]({{< relref "produce" >}})
 * [Consume CLI]({{< relref "consume" >}})
+* [SPUs CLI]({{< relref "spus" >}})
 * [Custom SPU CLI]({{< relref "custom-spus" >}})
-* [SPU-Groups CLI]({{< relref "custom-spus" >}})
+* [SPU-Groups CLI]({{< relref "spu-groups" >}})
 * [Topics CLI]({{< relref "custom-spus" >}})
 {{< /links >}}
