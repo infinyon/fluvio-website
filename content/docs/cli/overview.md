@@ -190,7 +190,24 @@ The CLI searches for the __default.toml__ profile file in the following order:
     $HOME/.fluvio/profiles/default.toml 
     {{< /text >}}
 
-The directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUVIO_HOME is provisioned or not.
+Note, the directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUVIO_HOME is provisioned or not.
 
 ### Target Servers
 
+The Fluvio CLI is an independent binary that generates commands and sends them to a __target server__. If the connection to the server is fails, the CLI return an error.
+
+The __target server__ is computed in the following order:
+
+* __configurations__ ({{< pre >}}--sc, --spu, --kf{{< /pre >}}) if provisioned,
+* __user-defined profile__ ({{< pre >}}--profile{{< /pre >}}) if provisioned.
+* __default profile__ if found
+
+Return error if all look-ups fail.
+
+{{< links "Related Topics" >}}
+* [Produce CLI]({{< relref "produce" >}})
+* [Consume CLI]({{< relref "consume" >}})
+* [Custom SPU CLI]({{< relref "custom-spus" >}})
+* [SPU-Groups CLI]({{< relref "custom-spus" >}})
+* [Topics CLI]({{< relref "custom-spus" >}})
+{{< /links >}}
