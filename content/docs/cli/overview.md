@@ -20,24 +20,22 @@ Binaries are available for download at:
 
 ## CLI Overview
 
-Fluvio CLI is user friendly and hierarchical. The syntax follows a well-defined pattern: __fluvio__, succeeded by __module__, __operation__ and a series of _options_ and _flags_. There are a couple of exceptions to this rule which are describe later on.
+Fluvio CLI is user friendly and hierarchical. The syntax follows a well-defined pattern: __fluvio__, succeeded by __module__, __operation__ and a series of _options_ and _flags_. There are a couple of exceptions to this rule which are described later on.
 
 
 {{< text >}}
 <strong>fluvio module operation</strong> [FLAGS] [OPTIONS]
 {{< /text >}}
 
-Most options and flags are optional but there are some that are mandatory. Mandatory options are shown in the CLI usage line right below the title. For example:
+Most options and flags are optional but there are some that are mandatory. Mandatory options are shown in the CLI usage line. For example, the syntax for __Create a Topic__ is:
 
 {{< text >}}
-Create a topic
-
 <strong>fluvio topic create</strong> [FLAGS] [OPTIONS] --partitions &lt;integer&gt; --replication &lt;integer&gt; --topic &lt;string&gt;
 {{< /text >}}
 
-In create topic command {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}}, and {{< pre >}}--replication{{< /pre >}}, are mandatory.
+It shows that {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}}, and {{< pre >}}--replication{{< /pre >}}, are mandatory.
 
-### Fluvio
+### Modules
 
 Command line help is available at any level by appending {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} to the command. At top level, you can run __fluvio__ with without arguments to get a list of available options.
 
@@ -101,12 +99,12 @@ Other modules, such as __spu__ have different options, hence different capabilit
 
 ### Options / Flags
 
-The modules are followed by options and flags. Options are composed of a unique attribute, such as: {{< pre >}}-t, --topic{{< /pre >}} and are followed modifiers. Flags are just attributes without any value.
+The modules are followed by options and flags. Options are composed of unique attributes, such as: {{< pre >}}-t, --topic{{< /pre >}}, followed by modifiers. Flags are attributes without value.
 
 Mandatory options are shown in the syntax definition. All other flags and options are optional.
 
 {{< cli yaml >}}
-$ fluvio topic create -h
+$ fluvio topic create --help
 Create a topic
 
 fluvio topic create [FLAGS] [OPTIONS] --partitions <integer> --replication <integer> --topic <string>
@@ -126,16 +124,21 @@ OPTIONS:
     -P, --profile <profile>                 Profile name
 {{< /cli >}}
 
-A small subset of the options, {{< pre >}}--kf, --sc,{{< /pre >}} and {{< pre >}}--profile{{< /pre >}}, are applied to every command. The purpose of these options is to help __fluvio__ identify the server where to send the command.
+A small subset of the options, {{< pre >}}--kf, --sc,{{< /pre >}} and {{< pre >}}--profile{{< /pre >}}, are applied to every command. The purpose of these options is to help the CLI identify the location of the services where to send the command.
+
+### Target Service
+
+The Fluvio CLI is an independent binary that generates commands and sends them to a __target service__. Fluvio CLI can simultaneously manage multiple Fluvio and Kafka deployments.  
+
+The __target service__  be specified through command line or profiles. The command line has higher precedence than profiles.
 
 ### Profiles
 
-Fluvio CLI can to simultaneously manage multiple Fluvio and Kafka deployment. Switching from one deployment to another is simple, just provision a different __profile__. 
 
-The __profile__ is a .toml configuration file that stores location of the servers. The syntax is as follows:
+The __profiles__ makes managing multiple deployments simple. A __profile__ is a .toml configuration file that stores the location of the services. The syntax is as follows:
 
 {{< code toml >}}
-version = <profiles-version>
+version = <profile-version>
 
 [sc]
 host = <hostname/ip>
@@ -152,21 +155,21 @@ port = <port>
 
 The parameters are as follows:
 
-* __version__ should match the cli version, otherwise the profile is rejected.
-* __hostname/ip__ is the location of the serve, it may be a domain name or an IP address.
-* __port__ is the listening port of the server.
+* __version__ is currently set to "1.0".
+* __hostname/ip__ is the location of the service, it may be a domain name or an IP address.
+* __port__ is the listening port of the service.
 
 {{< caution >}}
-While it is possible to configure all three servers, it is not a useful configuration. Servers with lower priority are shadowed by the servers with higher priority. The lookup order is: SC => SPU => KF
+While it is possible to configure all three services, it is not a useful configuration. Services with lower priority are shadowed by the services with higher priority. The lookup order is: SC => SPU => KF
 {{< /caution >}}
 
-The most common configuration is _one server server per profile_.
+The most common configuration is _one service per profile_.
 
 {{< code toml >}}
 version = "1.0"
 
 [sc]
-host = "0.0.0.0"
+host = "sc.fluvio.dev.acme.com"
 port = 9003
 {{< /code >}}
 
@@ -174,11 +177,9 @@ port = 9003
 
 Fluvio CLI has one __default__ profile and an unlimited number of __user-defined__ profiles. The __default__ profile has the lowest precedence and it is looked-up in the following order:
 
-* look-up __server__ ({{< pre >}}--sc, --spu, --kf{{< /pre >}}) if provisioned,
-* look-up __user-defined profile__ ({{< pre >}}--profile{{< /pre >}}) if provisioned.
-* look-up __default profile__
-
-Conversely, if both all parameters are provisioned the server configuration takes precedence over any of the profiles. 
+* command line parameter __service__ ({{< pre >}}--sc, --spu, --kf{{< /pre >}}),
+* command line parameter __user-defined profile__ ({{< pre >}}--profile{{< /pre >}}).
+* __default profile__
 
 The CLI searches for the __default.toml__ profile file in the following order: 
 
@@ -191,19 +192,10 @@ The CLI searches for the __default.toml__ profile file in the following order:
     $HOME/.fluvio/profiles/default.toml 
     {{< /text >}}
 
-Note, the directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUVIO_HOME is provisioned or not.
+{{< idea >}}
+The directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUVIO_HOME is provisioned or not.
+{{< /idea >}}
 
-### Target Servers
-
-The Fluvio CLI is an independent binary that generates commands and sends them to a __target server__. If the connection to the server fails, the CLI returns an error.
-
-The __target server__ is computed in the following order:
-
-* __configurations__ ({{< pre >}}--sc, --spu, --kf{{< /pre >}}) if provisioned,
-* __user-defined profile__ ({{< pre >}}--profile{{< /pre >}}) if provisioned.
-* __default profile__ if found
-
-Return error if the look-up fails to compute a Fluvio or a Kafka __target server__.
 
 {{< links "Related Topics" >}}
 * [Produce CLI]({{< relref "produce" >}})

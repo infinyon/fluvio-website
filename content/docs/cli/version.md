@@ -5,7 +5,7 @@ weight: 100
 
 As Fluvio evolves, the Command Line Interface (CLI) will also change to support additional features. We intend to keep Fluvio backward compatible with previous versions.
 
-The Fluvio Command Line and Fluvio servers should run the same version. We recommend to update the CLI each time a new version of the system becomes available.
+The Fluvio Command Line and Fluvio services should run the same version. We recommend to update the CLI each time a new version of the system becomes available.
 
 ## Check Version
 
