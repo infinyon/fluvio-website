@@ -10,7 +10,7 @@ Fluvio CLI has built-in Kafka compatibility which allows you to chain  __Fluvio_
 
 ## Download and Install
 
-Fluvio command-line tool is available in __Mac__ and __Linux__ distributions and it can be used from the command prompt in your favorite terminal program.  
+Fluvio command-line tool is available for __Mac__ and __Linux__ distributions and it can be used from the command prompt in your favorite terminal program.  
 
 Binaries are available for download at:
 
@@ -62,14 +62,14 @@ SUBCOMMANDS:
     help          Prints this message or the help of the given subcommand(s)
 {{< /cli >}}
 
-Top level fluvio CLI is organized by modules (aside from a couple of exceptions):
+Top level fluvio CLI is organized by modules:
 
 * spu
 * spu-group
 * custom-spu
 * topic
 
-The exceptions are as follows:
+However, there are a few exceptions:
 
 * consume/produce
 * advanced
@@ -172,12 +172,13 @@ port = 9003
 
 #### Default Profile
 
-Fluvio CLI has one __default__ profile and an unlimited number of __user-defined__ profiles. The __default__ profile is the choice of last resort; it is looked-up only if both conditions are met:
+Fluvio CLI has one __default__ profile and an unlimited number of __user-defined__ profiles. The __default__ profile has the lowest precedence and it is looked-up in the following order:
 
-* no server ({{< pre >}}--sc, --spu, --kf{{< /pre >}}) is provisioned.
-* no user-defined profile ({{< pre >}}--profile{{< /pre >}}) is provisioned.
+* look-up __server__ ({{< pre >}}--sc, --spu, --kf{{< /pre >}}) if provisioned,
+* look-up __user-defined profile__ ({{< pre >}}--profile{{< /pre >}}) if provisioned.
+* look-up __default profile__
 
-Conversely, if both parameters are provisioned the server configuration takes precedence over profiles. 
+Conversely, if both all parameters are provisioned the server configuration takes precedence over any of the profiles. 
 
 The CLI searches for the __default.toml__ profile file in the following order: 
 
@@ -194,7 +195,7 @@ Note, the directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUV
 
 ### Target Servers
 
-The Fluvio CLI is an independent binary that generates commands and sends them to a __target server__. If the connection to the server is fails, the CLI return an error.
+The Fluvio CLI is an independent binary that generates commands and sends them to a __target server__. If the connection to the server fails, the CLI returns an error.
 
 The __target server__ is computed in the following order:
 
