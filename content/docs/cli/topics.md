@@ -42,7 +42,7 @@ OPTIONS:
 The flags and options are defined as follows:
 
 * <strong>{{< pre >}}--ignore-rack-assignment{{< /pre >}}</strong>: 
-[rack](create_topic) labels are optional parameters assiged to SPUs. The rack label is used during replica assignment to compute rack-aware replica distribution. Apply *ignore_rack_assignment* flag to skip rack-aware assignment. If the SPUs do not have rack labels assigned, the flag is ignored.
+[rack](create_topic) labels are optional parameters assigned to SPUs. The rack label is used during replica assignment to compute rack-aware replica distribution. Apply *ignore_rack_assignment* flag to skip rack-aware assignment. If the SPUs do not have rack labels assigned, the flag is ignored.
 
 * <strong>{{< pre >}}--validate-only{{< /pre >}}</strong>: 
 allows you to check if the configuration is correct without applying the changes to the system. This flag is particularly useful to ensure a custom {{< pre >}}--replica-assignment{{< /pre >}} is correct before applying it to the system.
@@ -102,10 +102,10 @@ is the custom-defined replica assignment file. Replica-assignment is mutually ex
 {{< /code >}}
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Cotroller. The SC is optional and mutually exclusive with {{< pre >}}--kf{{< /pre >}}. The SC is computed in combination with [CLI Profiles]({{< relref "overview#profiles" >}}).
+is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Kafka Cotroller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}}. The KF is computed in combination with [CLI Profiles]({{< relref "overview#profiles" >}}).
+is the public interface of the Kafka Controller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}}. The KF is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
@@ -141,13 +141,13 @@ The options are defined as follows:
 is the name of the topic to be deleted. Topic is a mandatory option.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 
 ### Delete Topic Examples 
@@ -159,6 +159,7 @@ Defined in [Create Topic](#create-topic)
 #### Delete a Kafka Topic
 
 ... Kafka
+
 
 ## Describe Topics
 
@@ -181,16 +182,16 @@ The options are defined as follows:
 are the names of the topics to be described. A list of one or more topic names is required.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--output &lt;type&gt;{{< /pre >}}</strong>:
-is the format to be used to display the topics. The output is an optional field and it defaults to __table__ format. Alternative format types are: __yaml__ and __json__.
+is the format to be used to display the topics. The output is an optional field and it defaults to __table__ format. Alternative formats are: __yaml__ and __json__.
 
 
 ### Describe Topics Examples 
@@ -202,6 +203,7 @@ is the format to be used to display the topics. The output is an optional field 
 #### Describe Kafka Topics
 
 ... Kafka
+
 
 ## List Topics
 
@@ -220,16 +222,16 @@ OPTIONS:
 The options are defined as follows:
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-Defined in [Create Topic](#create-topic)
+See [Create Topic](#create-topic)
 
 * <strong>{{< pre >}}--output &lt;type&gt;{{< /pre >}}</strong>:
-Defined in [Describe Topics](#describe-topics)
+See [Describe Topics](#describe-topics)
 
 
 ### List Topics Examples 
@@ -241,6 +243,7 @@ Defined in [Describe Topics](#describe-topics)
 #### List Kafka Topics
 
 ... Kafka
+
 
 {{< links "Related Topics" >}}
 * [Produce CLI]({{< relref "produce" >}})

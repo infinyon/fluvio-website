@@ -36,13 +36,13 @@ OPTIONS:
 The options are defined as follows:
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Cotroller. The SC is an optional field and it is computed in combination with [CLI Profiles]({{< relref "overview#profiles" >}}).
+is the public interface of the Streaming Controller. The SC is an optional field used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
 
 * <strong>{{< pre >}}--output &lt;type&gt;{{< /pre >}}</strong>:
-is the format to be used to display the SPUs. The output is an optional field and it defaults to __table__ format. Alternative format types are: __yaml__ and __json__.
+is the format to be used to display the SPUs. The output is an optional field and it defaults to __table__ format. Alternative formats are: __yaml__ and __json__.
 
 ### List SPUs Example
 
