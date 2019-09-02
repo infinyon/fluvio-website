@@ -5,7 +5,7 @@ weight: 60
 
 The __topic__ is the primary construct for creating a data stream. A topic coupled with a partition creates a unique identifier for a data stream in a Fluvio deployment. The __topic/partition__ unique identifier is used by the producers and the consumers to exchange messages over a data stream.  
 
-Topics module has the following CLI operations: 
+Topics module defines the following CLI operations: 
 
 {{< code >}}
 fluvio topic <SUBCOMMAND>
@@ -20,7 +20,7 @@ SUBCOMMANDS:
 
 ## Create Topic
 
-__Create topic__ operation adds a topic to a __Fluvio__ or a __Kafka__ deployment. 
+Create __topic__ operation adds a topic to a __Fluvio__ or a __Kafka__ deployment. 
 
 {{< code >}}
 fluvio topic create [FLAGS] [OPTIONS] --topic <string> --partitions <integer> --replication <integer> 
@@ -108,7 +108,7 @@ is the public interface of the Streaming Cotroller. The SC is optional and mutua
 is the public interface of the Kafka Cotroller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}}. The KF is computed in combination with [CLI Profiles]({{< relref "overview#profiles" >}}).
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, check out [Target Service]({{< relref "overview#target-service" >}}) section.
+is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
 
 ### Create Topic Examples 
 
@@ -123,7 +123,7 @@ is the custom-defined profile file. The profile is an optional field used to com
 
 ## Delete Topic
 
-__Delete topic__ operation deletes a topic from a __Fluvio__ or a __Kafka__ deployment. 
+Delete __topic__ operation deletes a topic from a __Fluvio__ or a __Kafka__ deployment. 
 
 {{< code >}}
 fluvio topic delete [OPTIONS] --topic <string>
@@ -162,7 +162,7 @@ Defined in [Create Topic](#create-topic)
 
 ## Describe Topics
 
-__Describe topics__ operation describes one or more a topics in a __Fluvio__ or a __Kafka__ deployment. 
+Describe __topics__ operation describes one or more a topics in a __Fluvio__ or a __Kafka__ deployment. 
 
 {{< code >}}
 fluvio topic describe [OPTIONS]
@@ -205,7 +205,7 @@ is the format to be used to display the topics. The output is an optional field 
 
 ## List Topics
 
-__List topics__ operation lists all topics in a __Fluvio__ or a __Kafka__ deployment. 
+List __topics__ operation lists all topics in a __Fluvio__ or a __Kafka__ deployment. 
 
 {{< code >}}
 fluvio topic list [OPTIONS]
