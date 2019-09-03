@@ -3,7 +3,10 @@ title: Overview
 weight: 10
 ---
 
-Getting Started Overview ... goes here
+To run Fluvio platform services, you need to have access to Kubernetes cluster.   
+For quickest, we recommend [Setup on Minikube]({{< relref "minikube" >}}) which can run on your local macOS or Linux installation.
+
+To install on existing Kubernetes cluster, follow [Setup on existing Kubernetes cluster]({{< relref "kubernetes" >}})
 
 {{< links "Next Steps" >}}
 * [Setup on Minikube]({{< relref "minikube" >}})
