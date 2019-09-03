@@ -15,7 +15,7 @@ SUBCOMMANDS:
     run         Send request to server
 {{< /code >}}
 
-## Generate Kafka Request
+## Generate Kafka Requests
 
 Generate request operation creates a custom JSON template for a specific request. The template needs to be filled-in with additional information for a proper request. 
 
@@ -35,7 +35,7 @@ OPTIONS:
 is a list of requests supported by the CLI. Request is a mandatory option.
 
     {{< idea >}}
-Fluvio uses a code generator to build a Rust implementation of the Kafka API for Kafka interoperability. [Kafka Protocol Messages](https://github.com/infinyon/fluvio/tree/master/kf-protocol/kf-protocol-message/src/kf_code_gen) is a good reference to create JSON requests.
+__Fluvio__ has a built-in code generator to create a __Rust API__ interface for __Kafka__ interoperability. [Rust API for Kafka](https://github.com/infinyon/fluvio/tree/master/kf-protocol/kf-protocol-message/src/kf_code_gen) can be used as reference to create JSON requests.
 {{< /idea >}}
 
 ### Generate Kafka Request Example
@@ -43,7 +43,7 @@ Fluvio uses a code generator to build a Rust implementation of the Kafka API for
 ... Fluvio
 
 
-## Run Kafka Request
+## Run Kafka Requests
 
 Run request operation with a properly formatted JSON file against a Kafka server. 
 
