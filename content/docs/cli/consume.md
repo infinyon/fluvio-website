@@ -4,7 +4,7 @@ weight: 20
 ---
 
 
-The __Consumer__ is responsible for reading messages from data streams in a __Fluvio__ or a __Kafka__ deployment. The messages are written to the queue by the __Producers__.
+The __Consumer__ is responsible for reading messages from data streams in a __Fluvio__ or a __Kafka__ deployment. The messages are written to the topic/partitions by the __Producers__.
 
 
 ## Consume Messages
@@ -37,11 +37,11 @@ OPTIONS:
 
 The flags and options are defined as follows:
 
-* <strong>{{< pre >}}--from-beginning{{< /pre >}}</strong>: is a flag that instructs the system read from the beginning fo the queue. This is an optional flag; if blank the CLI will wait for the __Producer__ to write to the queue.
+* <strong>{{< pre >}}--from-beginning{{< /pre >}}</strong>: is a flag that instructs the SPU to read from the beginning of the topic/partition. This is an optional flag; if blank the CLI will wait for the __Producer__ to write to the data stream.
 
-* <strong>{{< pre >}}--continuous{{< /pre >}}</strong>: is a flag that instructs the CLI to read from the data stream queue in an infinite loop. Press Ctrl-C, or send SIGINT, to exit loop.
+* <strong>{{< pre >}}--continuous{{< /pre >}}</strong>: is a flag that instructs the CLI to read from the data stream in an infinite loop. Press Ctrl-C, or send SIGINT, to exit loop.
 
-* <strong>{{< pre >}}--suppress-unknown{{< /pre >}}</strong>: is a flag that instructs the CLI to skip messages that were not parsed correctly. Suppress-unknown is used with queues that contain message with mixed types where some messages cannot be successfully parsed. This is an optional flag.
+* <strong>{{< pre >}}--suppress-unknown{{< /pre >}}</strong>: is a flag that instructs the CLI to skip messages that were not parsed correctly. Suppress-unknown is used with data streams that contain messages with mixed types where some messages cannot be successfully parsed. This is an optional flag.
 
 * <strong>{{< pre >}}--topic &lt;string&gt;{{< /pre >}}</strong>:
 is the name of the topic from which to read the messages. The topic is a mandatory option and it is used in combination with {{< pre >}}--partition{{< /pre >}} to uniquely identify a data stream.
@@ -50,7 +50,7 @@ is the name of the topic from which to read the messages. The topic is a mandato
 is the partition index of a topic from which to read the messages. The partition is a mandatory option and it is used in combination with {{< pre >}}--topic{{< /pre >}} to uniquely identify a data stream.
 
 * <strong>{{< pre >}}--maxbytes &lt;integer&gt;{{< /pre >}}</strong>:
-is the maximum umber of bytes that should be retrieved in one read. The maxbytes field is optional.
+is the maximum number of bytes of a message retrieved. The maxbytes field is optional.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
 is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--spu{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
@@ -65,7 +65,7 @@ is the public interface of the Kafka Controller. The KF is optional and mutually
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
 
 * <strong>{{< pre >}}--output &lt;type&gt;{{< /pre >}}</strong>:
-is the format to be used to display the messages. The output is an optional field and it defaults to __dynamic__ format, where the parser will guess the message type. Alternative formats are: __text__, __binary__, __json__, __raw__.
+is the format to be used to display the messages. The output is an optional field and it defaults to __dynamic__, where the parser will attempt to guess the message type. Known formats are: __text__, __binary__, __json__, and __raw__.
 
 
 ### Consume Messages Examples 

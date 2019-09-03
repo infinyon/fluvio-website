@@ -22,7 +22,7 @@ SUBCOMMANDS:
 
 ## Create Custom-SPU
 
-Create __Custom-SPU__ operation adds a custom SPU to a __Fluvio__ deployment. 
+Create __Custom-SPU__ operation registers a custom SPU to a __Fluvio__ deployment. 
 
 {{< code >}}
 fluvio custom-spu create [OPTIONS] --id <id> --private-server <host:port> --public-server <host:port>
@@ -40,22 +40,22 @@ OPTIONS:
 The options are defined as follows:
 
 * <strong>{{< pre >}}--id &lt;id&gt;{{< /pre >}}</strong>:
-is the id of the SPU that is authorized to be managed by a Fluvio deployment. The Custom-SPU id is compared with the SPU service id every time the service connects to the SC. SPU services that do not have a matching Custom-SPU id are rejected. The id is mandatory and it must be unique to the Fluvio deployment.
+is the identifier of the SPU that is authorized to be managed by a Fluvio deployment. The Custom-SPU id is compared with the SPU service id every time the service connects to the SC. SPU services that do not have a matching Custom-SPU id are rejected. The id is mandatory and it must be unique to the Fluvio deployment.
 
 * <strong>{{< pre >}}--name &lt;string&gt;{{< /pre >}}</strong>:
 is the name of the Custom-SPU. The name is optional and it is automatically generated if left empty. The format for auto-generated Custom-SPU names is: _spu-[id]_.
 
 * <strong>{{< pre >}}--rack &lt;string&gt;{{< /pre >}}</strong>:
-is the rack label of the Custom-SPU. Racks names have an impact on the *replica-assignment* when new topics are created. The rack is an optional field.
+is the rack label of the Custom-SPU. Rack names have an impact on the *replica-assignment* when new topics are provisioned. The rack is an optional field.
 
 * <strong>{{< pre >}}--public-server &lt;host:port&gt;{{< /pre >}}</strong>:
 is the public interface of the Custom-SPU services. The public server information is used by Produce/Consumer to connect with the leader of a topic/partition. The public server is a mandatory field.
 
 * <strong>{{< pre >}}--private-server &lt;host:port&gt;{{< /pre >}}</strong>:
-is the private interface of the Custom-SPU services. SPUs establish private connections to negotiate leader election and replicate data from leaders to followers. The private server is a mandatory field.
+is the private interface of the Custom-SPU service. SPUs establish private connections to negotiate leader election and replicate data from leaders to followers. The private server is a mandatory field.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Controller.The SC is an optional field used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Controller. The SC is an optional field used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
@@ -82,7 +82,7 @@ OPTIONS:
 The options are defined as follows:
 
 * <strong>{{< pre >}}--id &lt;id&gt;{{< /pre >}}</strong>:
-is the id of the Custom-SPU to be deleted. Id is a mandatory and mutually exclusive with {{< pre >}}--name{{< /pre >}}.
+is the identifier of the Custom-SPU to be deleted. Id is a mandatory and mutually exclusive with {{< pre >}}--name{{< /pre >}}.
 
 * <strong>{{< pre >}}--name &lt;string&gt;{{< /pre >}}</strong>:
 is the name of the Custom-SPU to be deleted. Name is a optional and mutually exclusive {{< pre >}}--id{{< /pre >}}.

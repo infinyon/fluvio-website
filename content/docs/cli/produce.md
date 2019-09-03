@@ -3,7 +3,7 @@ title: Produce
 weight: 10
 ---
 
-The __Producer__ is responsible for sending messages to data streams in a __Fluvio__ or a __Kafka__ deployment. The messages are placed in queue and retrieved by the __Consumers__.
+The __Producer__ is responsible for sending messages to data streams in a __Fluvio__ or a __Kafka__ deployment. The messages are placed in topics/partitions that are retrieved by the __Consumers__.
 
 
 ## Produce Messages
@@ -40,13 +40,13 @@ The flags and options are defined as follows:
 is the name of the topic to receive the messages. The topic is a mandatory option and it is used in combination with {{< pre >}}--partition{{< /pre >}} to uniquely identify a data stream.
 
 * <strong>{{< pre >}}--partition &lt;integer&gt;{{< /pre >}}</strong>:
-is the partition index of a topic to receive the messages. The partition is a mandatory option and it is used in combination with {{< pre >}}--topic{{< /pre >}} to uniquely identify a data stream.
+is the index of a topic to receive the messages. The partition is a mandatory option and it is used in combination with {{< pre >}}--topic{{< /pre >}} to uniquely identify a data stream.
 
 * <strong>{{< pre >}}--record-per-line &lt;filename&gt;{{< /pre >}}</strong>:
 is the file that contains the records to be sent to the topic/partition. Each line consists of one record. This is an optional field.
 
 * <strong>{{< pre >}}--record-file &lt;filename&gt;{{< /pre >}}</strong>:
-is the file that contains the record to be sent to the topic/partition. The entire file is sent as one record. This field can be used to send binary objects such as images to the message queue. This is an optional field.
+is the file that contains the record to be sent to the topic/partition. The entire file is sent as one record. This field can be used to send binary objects such as images to the data stream. This is an optional field.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
 is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--spu{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.

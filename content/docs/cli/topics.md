@@ -3,7 +3,7 @@ title: Topics
 weight: 60
 ---
 
-The __topic__ is the primary construct for creating a data stream. A topic coupled with a partition creates a unique identifier for a data stream in a Fluvio deployment. The __topic/partition__ unique identifier is used by the producers and the consumers to exchange messages over a data stream.  
+The __topic__ is the primary construct for creating a data stream. A topic coupled with a partition creates a unique identifier for a data stream in a Fluvio deployment. The __topic/partition__ unique identifier is used by the __Producers__ and the __Consumers__ to exchange messages over data streams.  
 
 Topics module defines the following CLI operations: 
 
@@ -48,18 +48,18 @@ The flags and options are defined as follows:
 allows you to check if the configuration is correct without applying the changes to the system. This flag is particularly useful to ensure a custom {{< pre >}}--replica-assignment{{< /pre >}} is correct before applying it to the system.
 
 * <strong>{{< pre >}}--topic &lt;string&gt;{{< /pre >}}</strong>:
-is the name of the topic to be created. Topic is a mandatory option and it must be unique to the Fluvio or Kafka deployment.
+is the name of the topic to be created. Topic is a mandatory option and it must be unique.
 
 * <strong>{{< pre >}}--partitions &lt;integer&gt;{{< /pre >}}</strong>:
 is the number of partitions for the topic. Partitions is mandatory but mutually exclusive with *replica-assigment*. It must be a number greater than 0.
 
 * <strong>{{< pre >}}--replication &lt;integer&gt;{{< /pre >}}</strong>:
-is the replication factor for the topic. Replication is mandatory but mutually exclusive with *replica-assigment*. For example, a replication factor of 3 ensures that each message is replicated to three different SPUs. Replication must be a number greater than 0.
+is the replication factor for the topic. Replication is mandatory but mutually exclusive with *replica-assigment*. For example, a replication factor of 3 ensures that each message is replicated to 3 different SPUs. Replication must be a number greater than 0.
 
 * <strong>{{< pre >}}--replica-assignment &lt;file.json&gt;{{< /pre >}}</strong>:
 is the custom-defined replica assignment file. Replica-assignment is mutually exclusive with *partitions* and *replication*. The replica assignment file allows you to replace Fluvio's built-in replication algorithm with your custom SPU map for each topic/partitions.  
 
-    The replica-assignment JSON file syntax is as follows:
+    The replica-assignment JSON file has the following syntax:
 
     {{< code toml >}}
 { 
@@ -163,7 +163,7 @@ See [Create Topic](#create-topic)
 
 ## Describe Topics
 
-Describe __topics__ operation describes one or more a topics in a __Fluvio__ or a __Kafka__ deployment. 
+Describe __topics__ operation show one or more a topics in a __Fluvio__ or a __Kafka__ deployment. 
 
 {{< code >}}
 fluvio topic describe [OPTIONS]
@@ -207,7 +207,7 @@ is the format to be used to display the topics. The output is an optional field 
 
 ## List Topics
 
-List __topics__ operation lists all topics in a __Fluvio__ or a __Kafka__ deployment. 
+List __topics__ operation shows all topics in a __Fluvio__ or a __Kafka__ deployment. 
 
 {{< code >}}
 fluvio topic list [OPTIONS]
