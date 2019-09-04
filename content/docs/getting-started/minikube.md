@@ -4,37 +4,36 @@ menu: Setup Minikube
 weight: 20
 ---
 
-### Installing Minikube
+### Install Minikube
 
-Follow [Minikube doc](https://minikube.sigs.k8s.io/docs/start) to install minikube for your environment.
+Follow the instructions on [Minikube Getting Started](https://minikube.sigs.k8s.io/docs/start) guide to install Minikube in your environment.
 
-### Creating Minikube cluster
+### Create Minikube Cluster
 
-Fluvio currently support Kubernetes version 1.13.x.
-
-To create minikube cluster with the right version:
+Fluvio currently support Kubernetes version 1.13.x.  
+Run the following shell script to create a Minikube cluster with the right Kubernetes version number:
 
 {{< cli yaml>}}
 $ ./k8-util/minikube-start-mac.sh
 {{< /cli>}}
 
-### Setting up Minikube tunnel
+### Setup Minikube Tunnel
 
-To expose minikube ports to your environment, we need to set up [tunnel](https://minikube.sigs.k8s.io/docs/tasks/loadbalancer/) to local network.
+To expose Minikube ports to your environment, we need to setup a [tunnel](https://minikube.sigs.k8s.io/docs/tasks/loadbalancer/) to your local network.  
+Run the following script to setup the tunnel:
 
 {{< cli yaml>}}
 $ ./k8-util/minikube-tunnel.sh
 {{< /cli>}}
 
 
-### Help for Hyperkit driver
-Minikube may hang when running macOS/Hyperkit with message “Starting VM…”.  
-In that case, you need to rebuild the cluster after removing hyperkit pid.
+### Help with Hyperkit Driver
+Minikube may hang when running macOS/Hyperkit with message “Starting VM…” message displayed at the command line prompt. In that case, you need to remove hyperkit pid and rebuild the cluster.
 
 {{< cli yaml>}}
-rm ~/.minikube/machines/minikube/hyperkit.pid
-minikube stop
-minikube delete
+$ rm ~/.minikube/machines/minikube/hyperkit.pid
+$ minikube stop
+$ minikube delete
 {{< /cli>}} 
 
 {{< links "Next Steps" >}}
