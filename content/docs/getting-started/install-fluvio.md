@@ -35,5 +35,6 @@ kubernetes        ClusterIP      10.96.0.1        <none>          443/TCP       
 
 Note that service ```flv-sc-public``` must have EXTERNAL-IP to be reachable from CLI.
 
-#### Next Steps
+{{< links "Next Steps" >}}
 * [Install CLI]({{< relref "install-cli" >}})
+{{< /links >}}

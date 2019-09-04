@@ -1,11 +1,10 @@
 ---
-title: Overview
-title2: Contributing to Fluvio
+title: Fluvio for Developers
+menu: Overview
 weight: 100
 ---
 
-Some stuff here ...
+Thank you for your interest in joining Fluvio Development Community!  
+The best place to start is at:
 
-Take you to Github
-
-* [Kafka Compatibility](http://github.com/infinyon)
+* [Fluvio for Developers (github)](https://github.com/infinyon/fluvio/tree/master/DEVELOPER.md)

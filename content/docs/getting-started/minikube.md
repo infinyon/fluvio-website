@@ -1,5 +1,6 @@
 ---
-title: Setup Minikube
+title: Install and Setup Minikube
+menu: Setup Minikube
 weight: 20
 ---
 
@@ -36,8 +37,7 @@ minikube stop
 minikube delete
 ``` 
 
-
-
-#### Next Steps
+{{< links "Next Steps" >}}
 * [Install Fluvio]({{< relref "install-fluvio" >}})
 * [Install CLI]({{< relref "install-cli" >}})
+{{< /links >}}

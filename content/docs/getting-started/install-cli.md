@@ -17,7 +17,7 @@ Run follow snippets to check make sure you have Fluvio CLI
 $ fluvio --help
 Fluvio Command Line Interface
 
-fluvio.x86_64-apple-darwin <SUBCOMMAND>
+fluvio <SUBCOMMAND>
 
 FLAGS:
     -h, --help       Prints help information
@@ -32,8 +32,8 @@ SUBCOMMANDS:
     topic         Topic operations
     advanced      Advanced operations
     help          Prints this message or the help of the given subcommand(s)
-
 {{< /cli>}}
 
-#### Next Steps
+{{< links "Next Steps" >}}
 * [Example]({{< relref "example" >}})
+{{< /links >}}

@@ -14,7 +14,7 @@ title = "Fluvio - Central control for data-in-motion"
     url = "/docs/"
     weight = 100
 
-  [[menu.main]]
+  [[not-used.main]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"
@@ -29,7 +29,7 @@ title = "Fluvio - Central control for data-in-motion"
   [[menu.main]]
     identifier = "github"
     name = "github"
-    url = "https://github.com/infinyon"
+    url = "https://github.com/infinyon/fluvio"
     pre = "fa-github"
     weight = 130
 
