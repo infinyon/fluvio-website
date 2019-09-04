@@ -4,4 +4,4 @@ weight: 10
 image: "connect-diag.png"
 ---
 
-Connect services with different data data needs.
+Send and receive data from any source to any destination.

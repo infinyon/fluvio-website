@@ -4,4 +4,4 @@ weight: 20
 image: "transform-diag.png"
 ---
 
-Give stakeholder the ability to transform data in real time.
+Turn data into any format with low latency and high throughput.
