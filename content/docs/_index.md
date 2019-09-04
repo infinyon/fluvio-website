@@ -8,7 +8,7 @@ We believe the ability to *capture* data at __massive scale__ in __real-time__ f
 
 Fluvio is a cloud native platform for data-in-motion that provides centralized control to connect, transform, and distribute data in real-time across the organization. 
 
-Some of the unique aspects of our platform are:
+Some of the unique aspects of the Fluvio platform are:
 
 * Declarative Management - An intention-based approach to data management.
 * Cloud Native by Design - Built-in Kubernetes support.
@@ -21,5 +21,4 @@ Some of the unique aspects of our platform are:
 
 {{< links "Next Steps" >}}
 * [Getting Started]({{< relref "getting-started/overview" >}})
-* [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview" >}})
 {{< /links >}}
