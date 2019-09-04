@@ -3,8 +3,8 @@
   <div class="container main">
     <div class="title">{{.Title}}</div>
     <div class="font-xl desc">{{ .Site.Params.Description }} <span>{{ .Site.Params.How }}</span></div>
-    <a class="btn btn-info mt-3 mr-1" href="{{ .RelPermalink | relURL }}">Introduction</a>
-    <a class="btn btn-info mt-3 ml-1" href="{{ .RelPermalink | relURL }}">Getting Started</a>
+    <a class="btn btn-info mt-3 mr-1" href="/docs">Introduction</a>
+    <a class="btn btn-info mt-3 ml-1" href="/docs/getting-started/overview">Getting Started</a>
   </div>
 </div>
 
@@ -25,7 +25,9 @@
             </article>
 
             <center>
+              {{/* }}
               <a class="btn btn-info" href="{{ .RelPermalink | relURL }}">Read more...</a>
+              {{ */}}
             </center>
           </div>
         </div>

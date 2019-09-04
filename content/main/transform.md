@@ -4,4 +4,4 @@ weight: 20
 image: "transform-diag.png"
 ---
 
-Transform text goes here...
+Give stakeholder the ability to transform data in real time.

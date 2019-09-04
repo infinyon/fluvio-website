@@ -4,4 +4,4 @@ weight: 30
 image: "distribute-diag.png"
 ---
 
-Distribute text goes here...
+Clone to data to virtually unlimited number of sinks.
