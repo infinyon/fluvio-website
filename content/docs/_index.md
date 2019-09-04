@@ -2,26 +2,22 @@
 title: Introduction to Fluvio
 ---
 
-Welcome to Fluvio intro guide, the best place to start. We cover what Fluvio is, the problems it can solve, and how it compares to other products. Anxious to get started? [Click here]({{< relref "getting-started/overview" >}}).  
-
-The faster you can get insights from the data more valuable and monetizable it is.
-
-Companies have to move real-time to gain competitive advantage & serve customer better. 
-__growing exponentially__
-__more fragmented__
-
-__process the data realtime__
-
-There are several macro-trends that overwhelming departments responsible for data management and governanace in many organizations. Data is __growing exponentially__, from __different geographies__, it is __more diverse__ as new applications come online, and __more fragmented__ as these applications are moving to Microservices.
-
-
-
-We believe the ability to *capture* data at __massive scale__ in __real-time__ from __any data source__ across the organization is a competitive advantage.
-
+We believe the ability to *capture* data at __massive scale__ in __real-time__ from __any data source__ across the organization is a competitive advantage. Efficient use of real-time data helps organizations offer new services, better customer experience and adjust quickly to changes in market conditions.
 
 ## What is Fluvio?
 
-Fluvio is a cloud native platform for data-in-motion that provides centralized control to connect, transform, and distribute dara in real-time across the organization. 
+Fluvio is a cloud native platform for data-in-motion that provides centralized control to connect, transform, and distribute data in real-time across the organization. 
+
+Some of the unique aspects of our platform are:
+
+* Declarative Management - An intention-based approach to data management.
+* Cloud Native by Design - Built-in Kubernetes support.
+* Real-time Architecture - Built for low latency and high throughput environments.
+* Simple to Operate - Powerful Command Line Interface.
+* Compiled to Machine Code - Small, Secure, and Fast. No garbage collection!
+* Modular and Plugable - Works with Kafka client and server APIs.
+
+
 
 {{< links "Next Steps" >}}
 * [Getting Started]({{< relref "getting-started/overview" >}})
