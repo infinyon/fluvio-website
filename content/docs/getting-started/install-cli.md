@@ -36,6 +36,8 @@ SUBCOMMANDS:
     help          Prints this message or the help of the given subcommand(s)
 {{< /cli>}}
 
+Congratulation! You have successfully deployed Fluvio.
+
 {{< links "Next Steps" >}}
 * [Example]({{< relref "example" >}})
 {{< /links >}}
