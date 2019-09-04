@@ -4,15 +4,17 @@ menu: Install CLI
 weight: 50
 ---
 
-### Downloading CLI
+### Download CLI
 
-Download binaries for your environment from [github release](https://github.com/infinyon/fluvio/releases).  
-Copy binary to your bin path and make it executable.  
-Currently we only support macOS and Linux.
+Fluvio Command Line Interface binaries are available in macOS and Linux versions:
+
+* Download binaries for your environment from [github release](https://github.com/infinyon/fluvio/releases).  
+* Copy binary to your bin path and make it executable.
 
 ### Test CLI
 
-Run following snippets to check make sure you have Fluvio CLI
+Run following command to ensure Fluvio CLI is working correctly:
+
 {{< cli yaml>}}
 $ fluvio --help
 Fluvio Command Line Interface
