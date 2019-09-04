@@ -107,6 +107,8 @@ No topics found
 
 Congratulation! You have successfully sent your first message!
 
-#### Next Steps
-* [Deploy SPU Group]({{< relref "../tasks/deploy-spu-groups" >}})
-* [Create Topics]({{< relref "../tasks/create-topics" >}})
+{{< links "Related Topics" >}}
+* [Install and Setup Minikube]({{< relref "minikube" >}})
+* [Install Fluvio]({{< relref "install-fluvio" >}})
+* [Install CLI]({{< relref "install-cli" >}})
+{{< /links >}}

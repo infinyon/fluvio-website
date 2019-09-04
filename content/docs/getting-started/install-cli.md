@@ -39,5 +39,5 @@ SUBCOMMANDS:
 Congratulation! You have successfully deployed Fluvio.
 
 {{< links "Next Steps" >}}
-* [Example]({{< relref "example" >}})
+* [Send your First Message]({{< relref "example" >}})
 {{< /links >}}
