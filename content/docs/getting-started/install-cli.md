@@ -12,7 +12,7 @@ Currently we only support macOS and Linux.
 
 ### Test CLI
 
-Run follow snippets to check make sure you have Fluvio CLI
+Run following snippets to check make sure you have Fluvio CLI
 {{< cli yaml>}}
 $ fluvio --help
 Fluvio Command Line Interface

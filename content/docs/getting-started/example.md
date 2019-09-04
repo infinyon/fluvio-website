@@ -4,7 +4,6 @@ menu: Example
 weight: 50
 ---
 
-
 ### Creating SPU
 
 First set alias for SC controller
