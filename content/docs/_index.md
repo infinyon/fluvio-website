@@ -13,6 +13,7 @@ Some of the unique aspects of the Fluvio platform are:
 * Declarative Management - An intention-based approach to data management.
 * Cloud Native by Design - Built-in Kubernetes support.
 * Real-time Architecture - Built for low latency and high throughput environments.
+* Flexible Deployments - Fluvio Controller can manage Cloud and on-Premise services simultaneously.
 * Simple to Operate - Powerful Command Line Interface.
 * Compiled to Machine Code - Small, Secure, and Fast. No garbage collection!
 * Modular and Plugable - Works with Kafka client and server APIs.
