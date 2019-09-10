@@ -11,8 +11,6 @@ Follow the instructions on [Minikube Getting Started](https://minikube.sigs.k8s.
 
 ### Check Minikube Cluster  version
 
-
-
 To check minikube has created the right version of the cluster. 
 {{< cli yaml>}}
 $ kubectl version
