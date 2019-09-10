@@ -1,6 +1,6 @@
 ---
 title: Setup AWS EKS for Fluvio Deployment
-menu: Setup on EKS
+menu: Setup on AWS EKS
 weight: 20
 ---
 
