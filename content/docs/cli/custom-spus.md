@@ -20,6 +20,22 @@ SUBCOMMANDS:
     list      List custom SPUs
 {{< /code >}}
 
+
+### Deploy Custom-SPU
+
+Fluvio publishes and maintains SPU images in Docker Container format, other binary formats must be compiled from source code.
+* [fluvio-sc](https://hub.docker.com/r/infinyon/fluvio-sc)
+* [fluvio-spu](https://hub.docker.com/r/infinyon/fluvio-spu)
+While __fluvio-spu__ container can be used as a __Custom-SPU__, it is more common to compile the SPU image from source code directly on target.
+
+Also, you may need to expose internal port of the SC outside if you have deployed custom SPU outside Kubernetes cluster.
+
+To do so, you can run:
+{{< code >}}
+kubectl apply  -f k8-util/sc-deployment/sc-internal-dev.yaml 
+{{< code >}}
+
+
 ## Create Custom-SPU
 
 Create __Custom-SPU__ operation registers a custom SPU to a __Fluvio__ deployment. 
@@ -60,9 +76,6 @@ is the public interface of the Streaming Controller. The SC is an optional field
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
 
-### Create Custom-SPU Example
-
-... Fluvio
 
 
 ## Delete Custom-SPU
