@@ -20,6 +20,9 @@ $ alias SC="kc get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[
 alias SC="kc get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 {{< /cli>}}
 
+{{< caution >}}
+It may take many seconds for AWS external load balancer to propagate hostname for service endpoint after creating of new SPU.   If CLI fails to look up SPU, please retry after a minute or two. 
+{{< /caution >}}
 
 ### Step 2: Create an SPU-Group
 
