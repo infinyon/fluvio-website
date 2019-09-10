@@ -8,13 +8,17 @@ weight: 30
 
 Follow the instructions on [Minikube Getting Started](https://minikube.sigs.k8s.io/docs/start) guide to install Minikube in your environment.
 
+{{< caution >}}
+The instructions below assume that Minikube is installed with __Hyperkit__ hypervisor. 
+{{< /caution >}}
+
 ### Create Minikube Cluster
 
 Fluvio currently support Kubernetes version 1.13.x.  
 Run the following shell script to create a Minikube cluster with the right Kubernetes version number:
 
 {{< cli yaml>}}
-$ ./k8-util/minikube-start-mac.sh
+$ ./k8-util/minikube-start.sh
 {{< /cli>}}
 
 ### Install Minikube specific storage class
@@ -31,7 +35,7 @@ To expose Minikube ports to your environment, we need to setup a [tunnel](https:
 Run the following script to setup the tunnel:
 
 {{< cli yaml>}}
-$ ./k8-util/minikube-tunnel.sh
+$ sudo ./k8-util/minikube-tunnel.sh
 {{< /cli>}}
 
 

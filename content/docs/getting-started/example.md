@@ -12,12 +12,12 @@ Set an alias for the Streaming Controller (SC) to simplify your CLI setup:
 
 #### For Minikube
 {{< cli yaml>}}
-$ alias SC="kc get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
+$ alias SC="kubectl get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
 {{< /cli>}}
 
 #### For AWS EKS
 {{< cli yaml>}}
-alias SC="kc get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+alias SC="kubectl get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'"
 {{< /cli>}}
 
 {{< caution >}}
