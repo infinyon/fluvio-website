@@ -114,11 +114,21 @@ is the custom-defined profile file. The profile is an optional field used to com
 
 #### Create a Fluvio Topic
 
-... Fluvio
+Create a topic with 2 partitions and 3 replica in a Fluvio deployment:
+
+{{< cli yaml >}}
+$ fluvio topic create --topic sc-topic --partitions 2 --replication 3  --sc `SC`:9003
+topic 'sc-topic' created successfully
+{{< /cli >}}
 
 #### Create a Kafka Topic
 
-... Kafka
+Create the a similar topic in a Kafka deployment:
+
+{{< cli yaml >}}
+$ fluvio topic create --topic kf-topic --partitions 2 --replication 3  --kf 0.0.0.0:9092
+topic 'kf-topic' created successfully
+{{< /cli >}}
 
 
 ## Delete Topic
@@ -154,11 +164,22 @@ See [Create Topic](#create-topic)
 
 #### Delete a Fluvio Topic
 
-... Fluvio
+Delete a Fluvio topic:
+
+{{< cli yaml >}}
+$ fluvio topic delete --topic sc-topic --sc `SC`:9003
+topic 'sc-topic' deleted successfully
+{{< /cli >}}
+
 
 #### Delete a Kafka Topic
 
-... Kafka
+Delete a Kafka topic:
+
+{{< cli yaml >}}
+$ fluvio topic delete --topic kf-topic  --kf 0.0.0.0:9092
+topic 'kf-topic' deleted successfully
+{{< /cli >}}
 
 
 ## Describe Topics
@@ -196,14 +217,129 @@ is the format to be used to display the topics. The output is an optional field 
 
 ### Describe Topics Examples 
 
+Use __Fluvio CLI__ describe a __Fluvio__ and a __Kafka__ topic.
+
 #### Describe Fluvio Topics
 
-... Fluvio
+Describe a Fluvio topic in a human-readable format:
+
+{{< cli yaml >}}
+$ fluvio topic describe --topic sc-topic --sc `SC`:9003
+ Name                    :  sc-topic 
+ Type                    :  computed 
+ Partition Count         :  2 
+ Replication Factor      :  3 
+ Ignore Rack Assignment  :  - 
+ Status                  :  provisioned 
+ Reason                  :  - 
+ Partition Map               
+ -----------------           
+     ID      LEADER      REPLICAS         LIVE-REPLICAS 
+      0        2         [2, 200, 0]      [0, 200] 
+      1       200        [200, 1, 2]      [1, 2] 
+{{< /cli >}}
+
+Describe the same topic in _yaml__ format:
+
+{{< cli yaml >}}
+$ fluvio topic describe --topic sc-topic --sc `SC`:9003 -O yaml
+---
+- topic_metadata:
+    name: sc-topic
+    topic:
+      type_computed: true
+      partitions: 2
+      replication_factor: 3
+      ignore_rack_assignment: false
+      status: Provisioned
+      reason: ""
+      partition_map:
+        - id: 0
+          leader: 2
+          replicas:
+            - 2
+            - 200
+            - 0
+          live_replicas:
+            - 0
+            - 200
+        - id: 1
+          leader: 200
+          replicas:
+            - 200
+            - 1
+            - 2
+          live_replicas:
+            - 1
+            - 2
+{{< /cli >}}
 
 #### Describe Kafka Topics
 
-... Kafka
+Describe a Kafka topic in a human-readable format:
 
+{{< cli yaml >}}
+$ fluvio topic describe --topic kf-topic  --kf 0.0.0.0:9092
+ Name                :  kf-topic 
+ Internal            :  false 
+ Partition Count     :  2 
+ Replication Factor  :  3 
+ Partition Replicas      
+ -----------------       
+     ID      STATUS      LEADER      REPLICAS       ISR 
+      0        Ok          1         [1, 2, 3]      [1, 2, 3] 
+      1        Ok          2         [2, 3, 1]      [2, 3, 1] 
+{{< /cli >}}
+
+Describe the same topic in __json__ format:
+
+{{< cli json >}}
+$ fluvio topic describe --topic kf-topic  --kf 0.0.0.0:9092 -O json
+ [
+  {
+    "topic_metadata": {
+      "name": "kf-topic",
+      "topic": {
+        "is_internal": false,
+        "partitions": 2,
+        "replication_factor": 3,
+        "partition_map": [
+          {
+            "id": 0,
+            "leader": 1,
+            "replicas": [
+              1,
+              2,
+              3
+            ],
+            "isr": [
+              1,
+              2,
+              3
+            ],
+            "status": "Ok"
+          },
+          {
+            "id": 1,
+            "leader": 2,
+            "replicas": [
+              2,
+              3,
+              1
+            ],
+            "isr": [
+              2,
+              3,
+              1
+            ],
+            "status": "Ok"
+          }
+        ]
+      }
+    }
+  }
+]
+{{< /cli >}}
 
 ## List Topics
 
@@ -238,11 +374,24 @@ See [Describe Topics](#describe-topics)
 
 #### List Fluvio Topics
 
-... Fluvio
+List a Fluvio topic in table format:
+
+{{< cli yaml >}}
+$ fluvio topic list --sc `SC`:9003
+ NAME      TYPE      PARTITIONS  REPLICAS  IGNORE-RACK  STATUS       REASON 
+ my-topic  computed      1          3           -       provisioned   
+ sc-topic  computed      2          3           -       provisioned   
+{{< /cli >}}
 
 #### List Kafka Topics
 
-... Kafka
+List a Kafka topic in table format:
+
+{{< cli yaml >}}
+$ fluvio topic list --kf 0.0.0.0:9092
+ NAME      INTERNAL  PARTITIONS  REPLICAS 
+ kf-topic   false        2          3 
+{{< /cli >}}
 
 
 {{< links "Related Topics" >}}
