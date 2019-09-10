@@ -11,7 +11,7 @@ Follow the instructions on [Getting Started with Amazon EKS](https://docs.aws.am
 
 ### Install AWS EKS specific storage class
 
-Fluvio needs local storage to save messages for topic/partitions.  To install an AWS EKS storage driver, run:
+Fluvio needs access to storage to save messages for topic/partitions.  To install an AWS EKS storage driver, run:
 {{< cli yaml>}}
 $ ./k8-util/crd/config/gp2-storageclass-spu.yaml 
 {{< /cli>}}
