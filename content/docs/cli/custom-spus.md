@@ -22,11 +22,36 @@ While __fluvio-spu__ container can be used as a __Custom-SPU__, it is more commo
 Fluvio [Developer Guide](https://github.com/infinyon/fluvio/blob/master/DEVELOPER.md) provides step-by-step instructions to compile an SPU image from source code.
 {{< /idea >}}
 
+
+### Custom-SPUs Deployed outside Kubernetes cluster
+
 __Custom-SPUs__ that are deployed outside of your Kubernetes cluster need access to the SC internal channel. Run the following script to expose SC internal port:
 
 {{< cli yaml >}}
 $ kubectl apply  -f k8-util/sc-deployment/sc-internal-dev.yaml 
 {{< /cli >}}
+
+#### On Minikube
+
+Ensure __SC__ private port __flv-sc-internal__ load balancer has been created:
+
+{{< cli yaml >}}
+kubectl get services
+NAME               TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)             AGE
+flv-sc-internal    LoadBalancer   10.111.202.47    10.111.202.47    9004:30314/TCP      4h25m
+flv-sc-public      LoadBalancer   10.98.178.109    10.98.178.109    9003:31974/TCP      4h25m
+flv-spg-group3     ClusterIP      None             <none>           9005/TCP,9006/TCP   4h9m
+flv-spu-group3-0   LoadBalancer   10.105.174.231   10.105.174.231   9005:31368/TCP      4h9m
+flv-spu-group3-1   LoadBalancer   10.105.169.200   10.105.169.200   9005:30391/TCP      4h9m
+flv-spu-group3-2   LoadBalancer   10.101.143.60    10.101.143.60    9005:30080/TCP      4h9m
+kubernetes         ClusterIP      10.96.0.1        <none>           443/TCP             4h34m
+{{< /cli >}}
+
+Save __SC__ private port in an alias
+
+{{< cli yaml>}}
+$ alias SC-PRIVATE="kubectl get svc flv-sc-internal -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
+{{< /cli>}}
 
 The next steps must be performed in the following sequence:
 
