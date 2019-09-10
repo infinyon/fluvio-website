@@ -1,7 +1,7 @@
 ---
-title: Install and Setup Minikube
-menu: Setup Minikube
-weight: 20
+title: Install and Setup Minikube for Fluvio Deployment
+menu: Setup on Minikube
+weight: 30
 ---
 
 ### Install Minikube
