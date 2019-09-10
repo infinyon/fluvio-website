@@ -112,11 +112,35 @@ is the public interface of the Streaming Controller. The SC is an optional field
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
 
+
 ### Register Custom-SPU Example
 
-Register __Custom-SPU__ with the SC:
+Register __Custom-SPU__ with the __SC__:
 
+{{< cli yaml >}}
+$ fluvio custom-spu register --id 200 --public-server `SC`:9005 --private-server `SC`:9006 --sc `SC`:9003
+custom-spu 'custom-spu-200' registered successfully
+{{< /cli >}}
 
+Run __spu_server__ :
+
+{{< cli yaml >}}
+$ spu-server --id 200 --sc-controller `SC-PRIVATE`:9004
+starting custom-spu services (id:200)
+{{< /cli >}}
+
+Note that the SPU server must connect to the private interface and port number of the SC Controller.
+
+Ensure __Custom-SPU__ with id 200 has successfully joined the depoyment and it is online.
+
+{{< cli yaml >}}
+ $ fluvio spu list --sc `SC`:9003
+ ID   NAME            STATUS  TYPE     RACK  PUBLIC               PRIVATE 
+ 200  custom-spu-200  online  custom    -    10.98.178.109:9005   10.98.178.109:9006 
+   0  group3-0        online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
+   1  group3-1        online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
+   2  group3-2        online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
+{{< /cli >}}
 
 
 ## Unregister Custom-SPU
@@ -149,7 +173,12 @@ See [Register Custom-SPU](#register-custom-spu)
 
 ### Unregister Custom-SPU Example
 
-... Fluvio
+Unregister __Custom-SPU__: 
+
+{{< cli yaml >}}
+fluvio custom-spu unregister --id 200 --sc `SC`:9003
+custom-spu '200' deleted unregistered
+{{< /cli >}}
 
 
 ## List Custom-SPUs
@@ -178,7 +207,13 @@ is the format to be used to display the Custom-SPUs. The output is an optional f
 
 ### List Custom-SPUs Example
 
-... Fluvio
+List __Custom-SPUs__: 
+
+{{< cli yaml >}}
+$ fluvio custom-spu list --sc `SC`:9003
+ ID   NAME            STATUS  TYPE    RACK  PUBLIC              PRIVATE 
+ 200  custom-spu-200  online  custom   -    10.98.178.109:9005  10.98.178.109:9006 
+{{< /cli >}}
 
 
 {{< links "Related Topics" >}}

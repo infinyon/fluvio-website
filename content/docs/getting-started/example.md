@@ -17,7 +17,7 @@ $ alias SC="kubectl get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ing
 
 #### For AWS EKS
 {{< cli yaml>}}
-alias SC="kubectl get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'"
+$ alias SC="kubectl get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'"
 {{< /cli>}}
 
 {{< caution >}}
