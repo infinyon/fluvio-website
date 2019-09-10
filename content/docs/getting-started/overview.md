@@ -8,11 +8,11 @@ Fluvio is a Cloud-native platform that was designed from the ground up to work w
 * [Minikube](https://minikube.sigs.k8s.io/)
 * [AWS EKS](https://aws.amazon.com/eks/)
 
-The Fluvio repo provides setup scripts to provision each infrastructure. While it is possible to download the scripts independently, we recommend cloning the full repository.
+The Fluvio repo provides setup scripts to provision each infrastructure.
 
 ### Clone Fluvio Repo
 
-Open a terminal and clone the Fluvio repository from [github](https://github.com/infinyon/fluvio) to target machine:
+Open a terminal and clone the Fluvio repository from [github](https://github.com/infinyon/fluvio):
 
 {{< cli yaml>}}
 $ git clone https://github.com/infinyon/fluvio.git
@@ -40,11 +40,12 @@ dev-tools		kf-service		    utils
 future-aio		kf-socket
 {{< /cli>}}
 
-Choose your infrastructure and navigate to the setup instructions below.
-
-{{< links "Next Steps" >}}
+To continue setup, choose one of the following instructions:
 * [Setup on AWS EKS]({{< relref "aws-eks">}})
 * [Setup on Minikube]({{< relref "minikube" >}})
+
+
+{{< links "Related Topics" >}}
 * [Install Fluvio]({{< relref "install-fluvio" >}})
 * [Install CLI]({{< relref "install-cli" >}})
 {{< /links >}}
