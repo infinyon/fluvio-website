@@ -21,7 +21,7 @@ Client Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.3", GitCom
 Server Version: version.Info{Major:"1", Minor:"13+", GitVersion:"v1.13.10-eks-5ac0f1", GitCommit:"5ac0f1d9ab2c254ea2b0ce3534fd72932094c6e1", GitTreeState:"clean", BuildDate:"2019-08-20T22:39:46Z", GoVersion:"go1.11.13", Compiler:"gc", Platform:"linux/amd64"}
 {{< /cli>}}
 
-Server version should be “v1.13.x” or higher.
+Server version should be ```v1.13.x``` or greater.
 
 ### Install AWS EKS specific storage class
 
