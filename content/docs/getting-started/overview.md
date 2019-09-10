@@ -8,7 +8,7 @@ Fluvio is a Cloud-native platform that was designed from the ground up to work w
 * [Minikube](https://minikube.sigs.k8s.io/)
 * [AWS EKS](https://aws.amazon.com/eks/)
 
-The Fluvio repo provides provides setup scripts to provision each infrastructure. While it is possible to download the scripts independently, we recommend cloning the full repository.
+The Fluvio repo provides setup scripts to provision each infrastructure. While it is possible to download the scripts independently, we recommend cloning the full repository.
 
 ### Clone Fluvio Repo
 
