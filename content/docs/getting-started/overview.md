@@ -41,6 +41,7 @@ future-aio		kf-socket
 {{< /cli>}}
 
 To continue setup, choose one of the following instructions:
+
 * [Setup on AWS EKS]({{< relref "aws-eks">}})
 * [Setup on Minikube]({{< relref "minikube" >}})
 
