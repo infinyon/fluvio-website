@@ -6,13 +6,24 @@ weight: 60
 
 This is a simple end-to-end example that describes how to provision a system and send a simple message from a Producer to a Consumer.
 
-### Step 1: Create an SPU-Group
+### Step 1: Set up Alias for SC
 
-Set an alias for the Streaming Controller (SC) to simplify your operations:
+Set an alias for the Streaming Controller (SC) to simplify your CLI setup:
 
+#### For Minikube
 {{< cli yaml>}}
 $ alias SC="kc get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
 {{< /cli>}}
+
+#### For AWS EKS
+{{< cli yaml>}}
+alias SC="kc get svc flv-sc-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+{{< /cli>}}
+
+
+### Step 2: Create an SPU-Group
+
+
 
 Create an SPU-Group with 3 SPUs:
 
@@ -31,7 +42,7 @@ ID  NAME      STATUS  TYPE     RACK  PUBLIC                                   PR
   2  group3-2  online  managed   -    group3-2.default.svc.cluster.local:9005  group3-2.group3:9006 
 {{< /cli>}}
 
-### Step 2: Create a Topic
+### Step 3: Create a Topic
 
 Create a topic with 1 partition and 3 replicas:
 
@@ -66,7 +77,7 @@ $ fluvio topic describe --sc `SC`:9003
 {{< /cli>}}
 
 
-### Step 3: Send a Message
+### Step 4: Send a Message
 
 Produce and consume a simple message.
 
@@ -89,7 +100,7 @@ $ fluvio consume  --topic my-topic -p 0 -g --output text --sc `SC`:9003
 hello world
 {{< /cli>}}
 
-### Step 4: Clean-up 
+### Step 5: Clean-up 
 
 Delete the topic "my-topic" and it's associated partition:
 

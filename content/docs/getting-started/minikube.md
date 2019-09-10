@@ -17,6 +17,14 @@ Run the following shell script to create a Minikube cluster with the right Kuber
 $ ./k8-util/minikube-start-mac.sh
 {{< /cli>}}
 
+### Install Minikube specific storage class
+
+Fluvio need Minikube storage driver to save message on topic.  To install:
+{{< cli yaml>}}
+$ kubectl apply -f ./k8-util/crd/config/minikube-storageclass-spu.yaml
+{{< /cli>}}
+
+
 ### Setup Minikube Tunnel
 
 To expose Minikube ports to your environment, we need to setup a [tunnel](https://minikube.sigs.k8s.io/docs/tasks/loadbalancer/) to your local network.  
