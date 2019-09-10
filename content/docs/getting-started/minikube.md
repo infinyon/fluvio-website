@@ -4,22 +4,14 @@ menu: Setup on Minikube
 weight: 30
 ---
 
-### Install Minikube
+### Install Minikube and Setup Cluster
 
-Follow the instructions on [Minikube Getting Started](https://minikube.sigs.k8s.io/docs/start) guide to install Minikube in your environment.
+Follow the instructions on [Minikube Getting Started](https://minikube.sigs.k8s.io/docs/start) guide to install Minikube in your environment and set up local Kubernetes cluster.
 
-{{< caution >}}
-The instructions below assume that Minikube is installed with __Hyperkit__ hypervisor. 
-{{< /caution >}}
 
-### Create Minikube Cluster
+### Check Minikube Cluster  version
 
-Fluvio currently support Kubernetes version 1.13.x.  
-Run the following shell script to create a Minikube cluster with the right Kubernetes version number:
 
-{{< cli yaml>}}
-$ ./k8-util/minikube-start.sh
-{{< /cli>}}
 
 To check minikube has created the right version of the cluster. 
 {{< cli yaml>}}
@@ -28,7 +20,7 @@ Client Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.3", GitCom
 Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.7", GitCommit:"4683545293d792934a7a7e12f2cc47d20b2dd01b", GitTreeState:"clean", BuildDate:"2019-06-06T01:39:30Z", GoVersion:"go1.11.5", Compiler:"gc", Platform:"linux/amd64"}
 {{< /cli>}}
 
-Server version should show "v1.13.7"
+Server version should at least "v1.13.x"
 
 ### Install Minikube specific storage class
 
