@@ -11,20 +11,22 @@ Defining multiple Custom-SPUs without an associated __SPU__ service will yield a
 
 ## Generate and Deploy a Custom-SPU binary
 
-Fluvio publishes and maintains SPU images in Docker Container format, other binary formats must be compiled from source code.
+Fluvio publishes and maintains SPU images in Docker Container format, other binary formats must be compiled from source code. Docker images are published at:
+
 * [fluvio-sc](https://hub.docker.com/r/infinyon/fluvio-sc)
 * [fluvio-spu](https://hub.docker.com/r/infinyon/fluvio-spu)
-While __fluvio-spu__ container can be used as a __Custom-SPU__, it is more common to compile the SPU image from source code directly on target.
+
+While __fluvio-spu__ container can be used as a __Custom-SPU__, it is more common to compile an SPU image from source code directly on target.
 
 {{< idea >}}
 Fluvio [Developer Guide](https://github.com/infinyon/fluvio/blob/master/DEVELOPER.md) provides step-by-step instructions to compile an SPU image from source code.
 {{< /idea >}}
 
-Custom-SPUs that are deployed outside of your Kubernetes cluster need access to the SC internal channel. Run the following script to expose SC internal port:
+__Custom-SPUs__ that are deployed outside of your Kubernetes cluster need access to the SC internal channel. Run the following script to expose SC internal port:
 
-{{< code >}}
-kubectl apply  -f k8-util/sc-deployment/sc-internal-dev.yaml 
-{{< code >}}
+{{< cli yaml >}}
+$ kubectl apply  -f k8-util/sc-deployment/sc-internal-dev.yaml 
+{{< /cli >}}
 
 The next steps must be performed in the following sequence:
 
