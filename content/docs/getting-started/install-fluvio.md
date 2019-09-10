@@ -34,11 +34,12 @@ flv-sc-public     LoadBalancer   10.102.216.65    10.102.216.65   9003:31333/TCP
 kubernetes        ClusterIP      10.96.0.1        <none>          443/TCP          21m
 {{< /cli>}}
 
+
 The services are operational, let's install the CLI.
 
-{{< idea >}}
+{{< caution >}}
 Service ```flv-sc-public``` must have EXTERNAL-IP to be reachable from CLI.
-{{< /idea >}}
+{{< /caution >}}
 
 {{< links "Next Steps" >}}
 * [Install CLI]({{< relref "install-cli" >}})
