@@ -18,11 +18,11 @@ Client Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.3", GitCom
 Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.7", GitCommit:"4683545293d792934a7a7e12f2cc47d20b2dd01b", GitTreeState:"clean", BuildDate:"2019-06-06T01:39:30Z", GoVersion:"go1.11.5", Compiler:"gc", Platform:"linux/amd64"}
 {{< /cli>}}
 
-Server version should be at least "v1.13.x"
+Server version should be “v1.13.x” or higher.
 
 ### Install Minikube specific storage class
 
-Fluvio need Minikube storage driver to save message on topic.  To install:
+Fluvio needs Minikube storage driver to save messages for topic/partitions.  To install:
 {{< cli yaml>}}
 $ kubectl apply -f ./k8-util/crd/config/minikube-storageclass-spu.yaml
 {{< /cli>}}
@@ -37,15 +37,6 @@ Run the following script to setup the tunnel:
 $ sudo ./k8-util/minikube-tunnel.sh
 {{< /cli>}}
 
-
-### Help with Hyperkit Driver
-Minikube may hang when running macOS/Hyperkit with message “Starting VM…” message displayed at the command line prompt. In that case, you need to remove hyperkit pid and rebuild the cluster.
-
-{{< cli yaml>}}
-$ rm ~/.minikube/machines/minikube/hyperkit.pid
-$ minikube stop
-$ minikube delete
-{{< /cli>}} 
 
 {{< links "Next Steps" >}}
 * [Install Fluvio]({{< relref "install-fluvio" >}})
