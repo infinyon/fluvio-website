@@ -46,7 +46,120 @@ is the format to be used to display the SPUs. The output is an optional field an
 
 ### List SPUs Example
 
-... Fluvio
+All list commands support 3 format types: __table__, __yaml__ and __json__. The following examples show _List SPU_ command in all three format types:
+
+#### TABLE format (default)
+
+{{< cli yaml >}}
+$ fluvio spu list  --sc `SC`:9003
+ ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE 
+  0  group3-0  online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
+  1  group3-1  online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
+  2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
+{{< /cli >}}
+
+#### YAML format
+
+{{< cli yaml >}}
+$ fluvio spu list  --sc `SC`:9003 -O yaml
+---
+- name: group3-0
+  spu:
+    id: 0
+    name: group3-0
+    spu_type: Managed
+    public_server:
+      host: 10.105.174.231
+      port: 9005
+    private_server:
+      host: flv-spg-group3-0.flv-spg-group3
+      port: 9006
+    status: Online
+- name: group3-1
+  spu:
+    id: 1
+    name: group3-1
+    spu_type: Managed
+    public_server:
+      host: 10.105.169.200
+      port: 9005
+    private_server:
+      host: flv-spg-group3-1.flv-spg-group3
+      port: 9006
+    status: Online
+- name: group3-2
+  spu:
+    id: 2
+    name: group3-2
+    spu_type: Managed
+    public_server:
+      host: 10.101.143.60
+      port: 9005
+    private_server:
+      host: flv-spg-group3-2.flv-spg-group3
+      port: 9006
+    status: Online
+{{< /cli >}}
+
+
+#### JSON format
+
+{{< cli json >}}
+$ fluvio spu list  --sc `SC`:9003 -O json
+[
+  {
+    "name": "group3-0",
+    "spu": {
+      "id": 0,
+      "name": "group3-0",
+      "spu_type": "Managed",
+      "public_server": {
+        "host": "10.105.174.231",
+        "port": 9005
+      },
+      "private_server": {
+        "host": "flv-spg-group3-0.flv-spg-group3",
+        "port": 9006
+      },
+      "status": "Online"
+    }
+  },
+  {
+    "name": "group3-1",
+    "spu": {
+      "id": 1,
+      "name": "group3-1",
+      "spu_type": "Managed",
+      "public_server": {
+        "host": "10.105.169.200",
+        "port": 9005
+      },
+      "private_server": {
+        "host": "flv-spg-group3-1.flv-spg-group3",
+        "port": 9006
+      },
+      "status": "Online"
+    }
+  },
+  {
+    "name": "group3-2",
+    "spu": {
+      "id": 2,
+      "name": "group3-2",
+      "spu_type": "Managed",
+      "public_server": {
+        "host": "10.101.143.60",
+        "port": 9005
+      },
+      "private_server": {
+        "host": "flv-spg-group3-2.flv-spg-group3",
+        "port": 9006
+      },
+      "status": "Online"
+    }
+  }
+]
+{{< /cli >}}
 
 
 {{< links "Related Topics" >}}

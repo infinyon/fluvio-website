@@ -14,8 +14,8 @@ Fluvio command-line tool is available for __Mac__ and __Linux__ distributions an
 
 Binaries are available for download at:
 
-* [Mac binary](http://github.com/infinyon)
-* [Linux binary](http://github.com/infinyon)
+* [Mac binary](https://github.com/infinyon/fluvio/releases)
+* [Linux binary](https://github.com/infinyon/fluvio/releases)
 
 
 ## CLI Overview

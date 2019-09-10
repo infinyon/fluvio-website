@@ -9,23 +9,44 @@ __Custom SPUs__ allow Fluvio __Streaming Controller__ (__SC__) to identify and m
 Defining multiple Custom-SPUs without an associated __SPU__ service will yield a suboptimal replica assignment. Use caution when provisioning them.
 {{< /caution >}}
 
+## Generate a Custom-SPU binary
+
+Fluvio publishes and maintains SPU images in Docker Container format, other binary formats must be compiled from source code. 
+
+* [fluvio-sc](https://hub.docker.com/r/infinyon/fluvio-sc)
+* [fluvio-spu](https://hub.docker.com/r/infinyon/fluvio-spu)
+
+While __fluvio-spu__ container can be used as a __Custom-SPU__, it is more common to compile the SPU image from source code for the intended target.
+
+{{< idea >}}
+Fluvio [Developer Guide](https://github.com/infinyon/fluvio/blob/master/DEVELOPER.md) provides step-by-step instructions to compile an SPU image from source code.
+{{< /idea >}}
+
+The next steps must be performed in the following sequence:
+
+1. Register __custom-spu__ with the __SC__
+2. Run __spu-server__ binary compiled above
+
+
+## Custom-SPU CLI
+
 Custom-SPU module defines the following CLI operations: 
 
 {{< code >}}
 fluvio custom-spu <SUBCOMMAND>
 
 SUBCOMMANDS:
-    create    Create custom SPU
-    delete    Delete custom SPU
-    list      List custom SPUs
+    register    Register custom SPU
+    unregister  Unregister custom SPU
+    list        List custom SPUs
 {{< /code >}}
 
-## Create Custom-SPU
+## Register Custom-SPU
 
-Create __Custom-SPU__ operation registers a custom SPU to a __Fluvio__ deployment. 
+Register __Custom-SPU__ operation informs the __SC__ that a custom __SPU__ with the specific id is authorized to join to a __Fluvio__ deployment. 
 
 {{< code >}}
-fluvio custom-spu create [OPTIONS] --id <id> --private-server <host:port> --public-server <host:port>
+fluvio custom-spu register [OPTIONS] --id <id> --private-server <host:port> --public-server <host:port>
 
 OPTIONS:
     -i, --id <id>                       SPU id
@@ -60,17 +81,17 @@ is the public interface of the Streaming Controller. The SC is an optional field
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
 
-### Create Custom-SPU Example
-
-... Fluvio
+### Register Custom-SPU Example
 
 
-## Delete Custom-SPU
 
-Delete __Custom-SPU__ operation detaches an __SPU__ service from a __Fluvio__ deployment. The __SC__ rejects all new connections from the __SPU__ service associated with this __Custom-SPU__.
+
+## Unregister Custom-SPU
+
+Unregister __Custom-SPU__ operation informs the __SC__ that the __SPU__ is no longer authorized to participate in this __Fluvio__ deployment. The __SC__ rejects all new connections from the __SPU__ service associated with this __Custom-SPU__.
 
 {{< code >}}
-fluvio custom-spu delete [OPTIONS] --id <id>
+fluvio custom-spu unregister [OPTIONS] --id <id>
 
 OPTIONS:
     -i, --id <id>              SPU id
@@ -82,18 +103,18 @@ OPTIONS:
 The options are defined as follows:
 
 * <strong>{{< pre >}}--id &lt;id&gt;{{< /pre >}}</strong>:
-is the identifier of the Custom-SPU to be deleted. Id is a mandatory and mutually exclusive with {{< pre >}}--name{{< /pre >}}.
+is the identifier of the Custom-SPU to be detached. Id is a mandatory and mutually exclusive with {{< pre >}}--name{{< /pre >}}.
 
 * <strong>{{< pre >}}--name &lt;string&gt;{{< /pre >}}</strong>:
-is the name of the Custom-SPU to be deleted. Name is a optional and mutually exclusive {{< pre >}}--id{{< /pre >}}.
+is the name of the Custom-SPU to be detached. Name is a optional and mutually exclusive {{< pre >}}--id{{< /pre >}}.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-See [Create Custom-SPU](#create-custom-spu)
+See [Register Custom-SPU](#register-custom-spu)
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-See [Create Custom-SPU](#create-custom-spu)
+See [Register Custom-SPU](#register-custom-spu)
 
-### Delete Custom-SPU Example
+### Unregister Custom-SPU Example
 
 ... Fluvio
 
@@ -114,10 +135,10 @@ OPTIONS:
 The options are defined as follows:
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-See [Create Custom-SPU](#create-custom-spu)
+See [Register Custom-SPU](#register-custom-spu)
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-See [Create Custom-SPU](#create-custom-spu)
+See [Register Custom-SPU](#register-custom-spu)
 
 * <strong>{{< pre >}}--output &lt;type&gt;{{< /pre >}}</strong>:
 is the format to be used to display the Custom-SPUs. The output is an optional field and it defaults to __table__ format. Alternative formats are: __yaml__ and __json__.
