@@ -11,7 +11,7 @@
         <li class="navbar-item {{if eq $currentPage.Section (.Name | lower) }} active{{end}}">
           <a class="nav-link" href="{{ .URL }}" title="{{ .Title }}">
           {{ if .Pre }}
-            <i class="fab {{ .Pre }}"></i>
+            <i class="{{ .Pre }}"></i>
           {{ end }}
           {{ .Name }}</a>
         </li>

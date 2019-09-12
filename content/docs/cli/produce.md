@@ -64,16 +64,50 @@ is the custom-defined profile file. The profile is an optional field used to com
 
 #### Produce Messages for Fluvio SC
 
-... Fluvio SC
+Produce one message to Fluvio SC:
 
-#### Produce Messages for Fluvio SPU
+{{< cli yaml >}}
+$ fluvio produce -t my-topic -p 0 --sc `SC`:9003
+hello World!
+Ok!
+{{< /cli >}}
 
-... Fluvio SPU
+Continuously produce messages to Fluvio SC:
+
+{{< cli yaml >}}
+$ fluvio produce -t my-topic -p 0 --sc `SC`:9003 -C
+one 
+Ok!
+two
+Ok!
+three
+Ok!
+^C
+{{< /cli >}}
+
 
 #### Produce Messages for Kafka
 
-... Kafka
+Produce one message to Kafka:
 
+{{< cli yaml >}}
+$ fluvio produce -t kf-topic -p 0 --kf 0.0.0.0:9092
+Hello World
+Ok!
+{{< /cli >}}
+
+Continuously produce messages to Kafka:
+
+{{< cli yaml >}}
+$ fluvio produce -t kf-topic -p 0 --kf 0.0.0.0:9092 -C
+one
+Ok!
+two
+Ok!
+three
+Ok!
+^C
+{{< /cli >}}
 
 
 {{< links "Related Topics" >}}

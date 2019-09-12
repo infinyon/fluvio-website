@@ -6,7 +6,7 @@ weight: 50
 __Custom SPUs__ allow Fluvio __Streaming Controller__ (__SC__) to identify and manage __SPU__ services that are provisioned out-of-band. The __Custom-SPU__ informs the __SC__ that an __SPU__ service will attach to the deployment at some point in the future. The __Custom-SPU__ is used in the replica assignment as soon as it is configured. Initially it is marked offline until the __SPU__ service connects to the __SC__. 
 
 {{< caution >}}
-Defining multiple Custom-SPUs without an associated __SPU__ service will yield a suboptimal replica assignment. Use caution when provisioning them.
+Custom-SPUs communicates with other SPUs though the private port. It is not recommended to mix Custom-SPUs with Managed-SPUs unless private port is visible to all services.
 {{< /caution >}}
 
 ## Generate and Deploy a Custom-SPU binary
@@ -131,15 +131,12 @@ starting custom-spu services (id:200)
 
 Note that the SPU server must connect to the private interface and port number of the SC Controller.
 
-Ensure __Custom-SPU__ with id 200 has successfully joined the depoyment and it is online.
+Ensure __Custom-SPU__ with id 200 has successfully joined the deployment and it is online.
 
 {{< cli yaml >}}
  $ fluvio spu list --sc `SC`:9003
  ID   NAME            STATUS  TYPE     RACK  PUBLIC               PRIVATE 
  200  custom-spu-200  online  custom    -    10.98.178.109:9005   10.98.178.109:9006 
-   0  group3-0        online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
-   1  group3-1        online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
-   2  group3-2        online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
 {{< /cli >}}
 
 

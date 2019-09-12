@@ -76,7 +76,5 @@ is the JSON file for the request type. JSON file is a mandatory option.
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
 is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
 
-### Run Kafka Request Example
-
 ... Fluvio
 

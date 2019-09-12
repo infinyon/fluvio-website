@@ -72,15 +72,31 @@ is the format to be used to display the messages. The output is an optional fiel
 
 #### Consume Messages from Fluvio SC
 
-... Fluvio SC
+Consume all _my-topic_  messages from the beginning of the Fluvio SC queue:
 
-#### Consume Messages from Fluvio SPU
+{{< cli yaml >}}
+$ fluvio consume -t my-topic -p 0 --sc `SC`:9003 -g
+hello world
+test
+hello World!
+one 
+two
+three
+{{< /cli >}}
 
-... Fluvio SPU
 
 #### Consume Messages for Kafka
 
-... Kafka
+Consume all _kf-topic_  messages from the beginning of the Kafka queue:
+
+{{< cli yaml >}}
+$ fluvio consume -t kf-topic -p 0 --kf 0.0.0.0:9092 -g
+Hello World
+one
+two
+three
+^C
+{{< /cli >}}
 
 
 

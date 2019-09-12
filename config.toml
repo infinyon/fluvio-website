@@ -30,12 +30,19 @@ title = "Fluvio - Central control for data-in-motion"
     identifier = "github"
     name = "github"
     url = "https://github.com/infinyon/fluvio"
-    pre = "fa-github"
+    pre = "fab fa-github"
     weight = 130
 
   [[menu.main]]
     identifier = "twitter"
     name = "twitter"
     url = "https://twitter.com/infinyon"
-    pre = "fa-twitter"
+    pre = "fab fa-twitter"
     weight = 140
+
+  [[notused.menu.main]]
+    identifier = "contact"
+    name = "contact"
+    url = "/contact"
+    pre = "fas fa-envelope"
+    weight = 150    
