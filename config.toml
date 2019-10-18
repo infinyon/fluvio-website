@@ -3,8 +3,8 @@ title = "Fluvio - Central control for data-in-motion"
 
 [params]
   name = "Fluvio.io"
-  description = "Connect, Transform, and Distribute data"
-  how = "in real-time"
+  description = "Orchestrate Event Driven Microservices"
+  how = ""
   blog_time_format = "January 02, 2006"
 
 [menu]

@@ -92,6 +92,8 @@ a#logo {
 
 .jumbotron {
   margin-top: -1em;
+  background: $flv-gray-light10;
+  border-bottom: 1px solid $flv-gray-light8;
 }
 
 // Footer
@@ -230,9 +232,9 @@ footer {
 
 .main {
   .card {
-    margin: .8rem auto;
+    margin: .5rem auto;
     float: none;
-    width: 18rem;
+    width: 19rem;
   }
   
   .title {
@@ -243,17 +245,36 @@ footer {
   }
   
   .desc {
-    color: $color-main-desc;
+    .title {
+      color: $flv-gray-dark5;
+      font-family: $font-headers;
+      font-weight:700;
+      font-size:3em;  
+    }
+    .wrapper {
+      max-width: 640px;
+      margin: 30px auto 0; 
+
+      .subtitle {
+        color:  $flv-gray-base;
+        font-size:1.6em;
+      }  
+    }
   }
-  
+    
   .box-header {
     text-align: center;
-    margin: .3em 0 .6em;
+    margin: .3em 0 1em;
 
     a {
       font-family: $font-headers;
       color: $flv-gray-base;
     }
+  }
+
+  .box-content {
+    margin-top: 1.6em;
+    color: $flv-gray-base;
   }
 }
 
