@@ -4,4 +4,4 @@ weight: 20
 image: "loosely-coupled.png"
 ---
 
-Microservides communicate through Pub/Sub streaming.
+Microservices communicate through Event streaming.
