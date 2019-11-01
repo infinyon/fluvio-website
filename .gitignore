@@ -11,5 +11,6 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# OSX
+## Dev
 .DS_Store
+.vscode
