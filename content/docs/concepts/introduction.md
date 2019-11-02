@@ -2,7 +2,7 @@
 title: Overview
 ---
 
-For the past few years companies made significant investments on building and deploying Microservices to accelerate product development life cycle and shorten the time to market. That fostered lot of innovation around container technology, continuous deployment, GitOps, DevOps, Cloud, and Serverless. Many of the challenges around deployment, networking, security, and monitoring have been solved.
+For the past few years companies made significant investments on building and deploying Microservices to accelerate product development and shorten the time to market. That fostered innovation around container technology, continuous deployment, GitOps, DevOps, Cloud, and Serverless. Challenges around deployment, networking, security, and monitoring have been addressed. Implementing distributed data across services remains a laborious task. 
 
 Companies start small and gradually move to larger more complex Apps. As they gain confidence and realize the benefits of Microservices, they start decomposing existing Monolithic Apps. These Monoliths that made the company successful have years of accumulated technical debt and cross cutting concerns. 
  
@@ -22,10 +22,15 @@ The **Data Mesh** spares services from implementing distributed data relate conc
 
 ## Introduction to Data Mesh 
 
-The **Data Mesh** is a dedicated infrastructure 
+The **Data Mesh** is a dedicated infrastructure layer that implements distributed data related concerns. The benefits are better code quality, accelerate development, and the ability to add out of band data management for access, auditing, and monitoring.
 
 
-
+* Language agnostic
+* Enables transactions
+* 
+* Governanace
+* Monitoring
+*
 
 
 
