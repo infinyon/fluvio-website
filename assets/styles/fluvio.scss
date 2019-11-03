@@ -75,6 +75,18 @@ a#logo {
   padding: 0;
 }
 
+#image {
+  padding: 10px 0 15px;
+}
+
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+
+
 // Content
 #content {
   flex: 1;
@@ -407,8 +419,11 @@ footer {
 // --------------
 // Screen Size
 // --------------
-
 @media (max-width: 768px) {
+  img#scaled-90 {width: 90%;}
+  img#scaled-75 {width: 75%;}
+  img#scaled-50 {width: 50%;}
+
   .blog .content { 
     padding-right: 30px;
   }
