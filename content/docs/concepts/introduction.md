@@ -17,7 +17,9 @@ The Strangler approach is a popular design pattern that incrementally transforms
 
 Solutions in the market are custom built with each team embedding their own flavor of distributed data layer into the service logic. The outcome is a diverse set of solutions across teams, services, and programming languages that creates unnecessary **accidental complexity**.
 
-We believe distributed data management should have a _dedicated infrastructure_ decoupled from the business logic and **shared by all services**. 
+{{<idea>}}
+We believe distributed data management should have a _dedicated infrastructure_ decoupled from the business logic that is **shared by all services**. 
+{{</idea>}}
 
 
 ## What is Data Mesh?
@@ -38,7 +40,7 @@ The **Data Mesh** is:
 * **Secure** - apply corporate data policy without rebuilding or deploying application code.
 * **Compliant** - perform data audits without impacting the application.
 
-Data Mesh is a powerful middle layer that **democratizes** the use of data across the organization.
+Data Mesh is a powerful infrastructure component that **democratizes** the use of data across the organization.
 
 ### SubSection 2.1
 ...
