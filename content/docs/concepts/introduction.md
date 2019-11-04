@@ -31,11 +31,11 @@ how? call apis... etc...
 The benefits are better code quality, accelerate development, and the ability to add out of band data management for access, auditing, and monitoring.
 
 
-* Language agnostic
-* Enables transactions
-* 
-* Governanace
-* Monitoring
+* Language agnostic. You can use your favorite language such as Java, C++, TypeScript, Go, Scala, Ruby, and etc.
+* Codeless.  Everyone can communicate their use case and workflow without writing code.
+* Democratization.  Anyone can operate the data mesh without requiring expertise in distributed data.
+* Governance.  We can perform centralized policy enforcement without rebuilding or deploying application code.
+* Monitoring.  Debugging and monitoring is much easier since there is common model.
 *
 
 
