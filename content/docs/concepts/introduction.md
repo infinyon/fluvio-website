@@ -15,30 +15,30 @@ The Strangler approach is a popular design pattern that incrementally transforms
 * Perform transactions
 * Join data from multiple services
 
-Solutions in the market are custom built and embedded in the implementation of each service. That brings **accidental complexity** to each service across different teams and programming languages.
+Solutions in the market are custom built with each team embedding their own flavor of distributed data layer into the service logic. The outcome is a diverse set of solutions across teams, services, and programming languages that creates unnecessary **accidental complexity**.
 
-We believe, this functionality should have its own dedicated infrastructure, a "Data Mesh" that is **language agnostic** and **shared** by all services. **Data Mesh is the glue that connects services to distributed data**.
+We believe distributed data management should have a _dedicated infrastructure_ decoupled from the business logic and **shared by all services**. 
 
 
-## Introduction to Data Mesh
+## What is Data Mesh?
 
-**Data Mesh** is a language agnostic dedicated infrastructure that allows services to share data without coding the data layer itself. 
+**Data Mesh** is a **standards-based**, **language agnostic** infrastructure that glues services to distributed data. Data Mesh gives services the ability to share data without coding the data layer itself.
 
-how? call apis... etc...
+The benefits are shorter time to market, better code quality, and the ability to add out of band data management features such as role based access, auditing, monitoring, and troubleshooting.
 
 {{< image src="data-mesh.svg" alt="Custom vs. Data Mesh" justify="center" width="700" type="scaled-90">}}
 
-The benefits are better code quality, accelerate development, and the ability to add out of band data management for access, auditing, and monitoring.
+The **Data Mesh** is:
 
+* **Language agnostic** - use your favorite language, Java, C++, TypeScript, Go, Scala, Ruby, etc.
+* **Versatile** - covers many distributed data data use cases from CQRS to Saga out of the box.
+* **Painless** - you don't have to be a distributed data wizard to operate it.
+* **Expressive** - just define the workflow, the chain of services and the data they exchange, no coding required.
+* **Traceable** - track, debug, and monitor any data as it traverses services.
+* **Secure** - apply corporate data policy without rebuilding or deploying application code.
+* **Compliant** - perform data audits without impacting the application.
 
-* Language agnostic. You can use your favorite language such as Java, C++, TypeScript, Go, Scala, Ruby, and etc.
-* Codeless.  Everyone can communicate their use case and workflow without writing code.
-* Democratization.  Anyone can operate the data mesh without requiring expertise in distributed data.
-* Governance.  We can perform centralized policy enforcement without rebuilding or deploying application code.
-* Monitoring.  Debugging and monitoring is much easier since there is common model.
-*
-
-
+Data Mesh is a powerful middle layer that **democratizes** the use of data across the organization.
 
 ### SubSection 2.1
 ...
