@@ -110,28 +110,29 @@ Microservices that use an **Event Driven Data Model** have the following advanta
 An **Event Driven Data Model** is a powerful infrastructure that brings along many moving parts which can lead to accidental complexity if not properly addressed:
 
 * Event format and versioning
-* Trace events across services
-* Integrate or Propagate events from and to legacy systems
+* Event tracing across services
+* Event integration with legacy systems
 * Consistent behavior across all services, languages in the app
 * Consistent transaction & compensation management
+* Multi-service data correlation
 
 
 ### Conclusion
 
-Despite ample evidence that **Event Driven Data Model** is a future proof model for building scalable Microservices, adoption has been slow. There is a lack of off-the-shelf technologies to help organizations roll out and operate an event driven data model for Microservices.
+Despite ample evidence that **Event Driven Data Model** is a future proof model for building scalable Microservices, adoption has been slow. There is a lack of off-the-shelf technologies to help organizations roll out and operate an  **Event Driven Data Model** for Microservices.
 
-This observation inspired us to build **Fluvio**, an off-the-shelf solution to simplify the adoption of the **Event Driven Data Model** for scalable Microservices Apps. 
+This observation inspired us to build **Fluvio**, an off-the-shelf solution to simplify the adoption of the **Event Driven Data Model** to deploy, manage, and monitor large scale Microservices Apps. 
 
 
 ## Fluvio - Distributed Data Infrastructure (DDI)
 
-**Fluvio** open source project implements a **Distributed Data Infrastructure (DDI)**, a  standards-based, language agnostic software that glues services to distributed data. 
+**Fluvio** open source project implements a **Distributed Data Infrastructure (DDI)**, a  _standards-based_, _language agnostic_ software that glues services to distributed data. 
 
 {{< idea >}}
 **DDI** abstracts distributed data concerns into a separate layer shared by all Microservices and managed by the _Distributed Data Control Plane_. Application architects use an _EventQL Model_ to describe the interactions between Microservices and the **DDI** does the rest.
 {{< /idea >}}
 
-For example, when a transaction is required, _Model Interpreter_ builds the state machines, the Data Flow engine applies the SAGA, and the Data Streaming Engine sends the events. If one or more components fail, the engine runs through the compensation state machine.
+For example, when a transaction is required, _Model Interpreter_ builds the state machines, the _Data Flow Engine_ applies the SAGA, and the _Data Streaming Engine_ sends the events. If one or more components fail, the engine calls the compensation state machine.
 
 {{< image src="fluvio-ddi.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
 
