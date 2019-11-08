@@ -118,13 +118,16 @@ An **Event Driven Data Model** is a powerful infrastructure that brings along ma
 
 ### Conclusion
 
-**Event Driven Data Model** 
+Despite ample evidence that **Event Driven Data Model** is a future proof model for building scalable Microservices, adoption has been slow. There is a lack of off-the-shelf technologies to help organizations roll out and operate an event driven data model for Microservices.
 
-Microservices using **Event Driven Data Model** are future proof. 
+Fluvio is the first off-the-shelf product to help organizations adopt an **Event Driven Data Model**. Fluvio offers a **Distributed Data Infrastructure (DDI)** is a standards-based, language agnostic software that glues services to distributed data. It allows services to share data without coding the data layer itself.
 
-Building Data discovery mechanism, Building Transactions, is hard...  It needs another layer of intelligence for transaction data definition. 
 
 In the next section we'll discuss **Fluvio**, a Distribute Data Infrastructure layer that brings together **Event Driven Data Model** with an additional layer of intelligence to break Microservices free from data challenges.
+
+## Fluvio - Distributed Data Infrastructure (DDI)
+
+{{< image src="fluvio-ddi.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
 
 
 {{< links "Related Topics" >}}
