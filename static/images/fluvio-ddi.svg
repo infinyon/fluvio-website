@@ -69,7 +69,7 @@
     </marker>
   </defs>
   <metadata> Produced by OmniGraffle 7.12 
-    <dc:date>2019-11-08 17:21:11 +0000</dc:date>
+    <dc:date>2019-11-08 18:09:10 +0000</dc:date>
   </metadata>
   <g id="Fluvio_-_DDI" stroke-dasharray="none" stroke-opacity="1" fill="none" stroke="none" fill-opacity="1">
     <title>Fluvio - DDI</title>
@@ -375,7 +375,7 @@
         <rect x="26.142256" y="373.067" width="85.33128" height="34.615997" fill="white"/>
         <text transform="translate(31.142256 376.039)" fill="#095aaa">
           <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="3.771642" y="11">Transactions</tspan>
-          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="18.669642" y="25.336">(sagas)</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="15.339642" y="25.336">(SAGAs)</tspan>
         </text>
       </g>
       <g id="Graphic_353">
@@ -389,7 +389,7 @@
         <rect x="293.57423" y="373.067" width="108.10611" height="34.615997" fill="white"/>
         <text transform="translate(298.57423 376.039)" fill="#095aaa">
           <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="20.271055" y="11">Monitoring</tspan>
-          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="4.047055" y="25.336">(troubleshooting)</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="26.499055" y="25.336">(Tracing)</tspan>
         </text>
       </g>
       <g id="Line_376">
@@ -525,14 +525,14 @@
         </g>
       </g>
       <g id="Graphic_449">
-        <rect x="-182.60407" y="9.218008" width="113.67383" height="48.833984" fill="white"/>
-        <text transform="translate(-177.60407 14.218008)" fill="#095aaa">
+        <rect x="-182.10407" y="9.218008" width="113.67383" height="48.833984" fill="white"/>
+        <text transform="translate(-177.10407 14.218008)" fill="#095aaa">
           <tspan font-family="Futura" font-size="14" font-weight="500" fill="#095aaa" x=".1196289" y="15">Distributed Data</tspan>
           <tspan font-family="Futura" font-size="14" font-weight="500" fill="#095aaa" x="8.873047" y="34.416992">Control Plane</tspan>
         </text>
       </g>
       <g id="Line_468">
-        <line x1="-125.76715" y1="67.83004" x2="-125.76715" y2="487.76596" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <line x1="-125.76715" y1="58.05199" x2="-125.76715" y2="487.76596" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
       </g>
       <g id="Line_471">
         <line x1="-50.625" y1="310.70232" x2="-27.136848" y2="310.70232" marker-end="url(#StickArrow_Marker_7)" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6.0,6.0" stroke-width="1.5"/>
