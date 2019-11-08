@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="-184 3 595 534" width="595" height="534">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="-183 3 594 534" width="594" height="534">
   <defs>
     <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#055aaa">
       <g>
@@ -57,7 +57,7 @@
         <font-face-name name="HelveticaNeue"/>
       </font-face-src>
     </font-face>
-    <font-face font-family="Futura" font-size="13" panose-1="2 11 6 2 2 2 4 2 3 3" units-per-em="1000" underline-position="-97.65625" underline-thickness="78.125" slope="0" x-height="482.4219" cap-height="761.2305" ascent="1038.5742" descent="-259.76562" font-weight="500">
+    <font-face font-family="Futura" font-size="14" panose-1="2 11 6 2 2 2 4 2 3 3" units-per-em="1000" underline-position="-97.65625" underline-thickness="78.125" slope="0" x-height="482.4219" cap-height="761.2305" ascent="1038.5742" descent="-259.76562" font-weight="500">
       <font-face-src>
         <font-face-name name="Futura-Medium"/>
       </font-face-src>
@@ -67,14 +67,9 @@
         <path d="M 5.866667 0 L 0 0 M 0 -2.2 L 5.866667 0 L 0 2.2" fill="none" stroke="currentColor" stroke-width="1"/>
       </g>
     </marker>
-    <font-face font-family="Futura" font-size="14" panose-1="2 11 6 2 2 2 4 2 3 3" units-per-em="1000" underline-position="-97.65625" underline-thickness="78.125" slope="0" x-height="482.4219" cap-height="761.2305" ascent="1038.5742" descent="-259.76562" font-weight="500">
-      <font-face-src>
-        <font-face-name name="Futura-Medium"/>
-      </font-face-src>
-    </font-face>
   </defs>
   <metadata> Produced by OmniGraffle 7.12 
-    <dc:date>2019-11-08 16:02:23 +0000</dc:date>
+    <dc:date>2019-11-08 17:21:11 +0000</dc:date>
   </metadata>
   <g id="Fluvio_-_DDI" stroke-dasharray="none" stroke-opacity="1" fill="none" stroke="none" fill-opacity="1">
     <title>Fluvio - DDI</title>
@@ -429,8 +424,8 @@
         </g>
       </g>
       <g id="Graphic_389">
-        <text transform="translate(9.192135 58.885)" fill="#055aaa">
-          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#055aaa" x="0" y="11">EventQL</tspan>
+        <text transform="translate(-11.286779 58.885)" fill="#055aaa">
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#055aaa" x="0" y="11">EventQL Model</tspan>
         </text>
       </g>
       <g id="Group_420">
@@ -530,15 +525,14 @@
         </g>
       </g>
       <g id="Graphic_449">
-        <rect x="-182.60407" y="4.5" width="113.67383" height="63.33004" fill="white"/>
-        <rect x="-182.60407" y="4.5" width="113.67383" height="63.33004" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-        <text transform="translate(-177.60407 18.777813)" fill="#095aaa">
-          <tspan font-family="Futura" font-size="13" font-weight="500" fill="#095aaa" x="3.8137207" y="14">Distributed Data</tspan>
-          <tspan font-family="Futura" font-size="13" font-weight="500" fill="#095aaa" x="11.941895" y="31.387207">Control Plane</tspan>
+        <rect x="-182.60407" y="9.218008" width="113.67383" height="48.833984" fill="white"/>
+        <text transform="translate(-177.60407 14.218008)" fill="#095aaa">
+          <tspan font-family="Futura" font-size="14" font-weight="500" fill="#095aaa" x=".1196289" y="15">Distributed Data</tspan>
+          <tspan font-family="Futura" font-size="14" font-weight="500" fill="#095aaa" x="8.873047" y="34.416992">Control Plane</tspan>
         </text>
       </g>
       <g id="Line_468">
-        <line x1="-125.76715" y1="83.75266" x2="-125.76715" y2="487.76596" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <line x1="-125.76715" y1="67.83004" x2="-125.76715" y2="487.76596" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
       </g>
       <g id="Line_471">
         <line x1="-50.625" y1="310.70232" x2="-27.136848" y2="310.70232" marker-end="url(#StickArrow_Marker_7)" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6.0,6.0" stroke-width="1.5"/>

@@ -120,15 +120,22 @@ An **Event Driven Data Model** is a powerful infrastructure that brings along ma
 
 Despite ample evidence that **Event Driven Data Model** is a future proof model for building scalable Microservices, adoption has been slow. There is a lack of off-the-shelf technologies to help organizations roll out and operate an event driven data model for Microservices.
 
-Fluvio is the first off-the-shelf product to help organizations adopt an **Event Driven Data Model**. Fluvio offers a **Distributed Data Infrastructure (DDI)** is a standards-based, language agnostic software that glues services to distributed data. It allows services to share data without coding the data layer itself.
+This observation inspired us to build **Fluvio**, an off-the-shelf solution to simplify the adoption of the **Event Driven Data Model** for scalable Microservices Apps. 
 
-
-In the next section we'll discuss **Fluvio**, a Distribute Data Infrastructure layer that brings together **Event Driven Data Model** with an additional layer of intelligence to break Microservices free from data challenges.
 
 ## Fluvio - Distributed Data Infrastructure (DDI)
 
+**Fluvio** open source project implements a **Distributed Data Infrastructure (DDI)**, a  standards-based, language agnostic software that glues services to distributed data. 
+
+{{< idea >}}
+**DDI** abstracts distributed data concerns into a separate layer shared by all Microservices and managed by the _Distributed Data Control Plane_. Application architects use an _EventQL Model_ to describe the interactions between Microservices and the **DDI** does the rest.
+{{< /idea >}}
+
+For example, when a transaction is required, _Model Interpreter_ builds the state machines, the Data Flow engine applies the SAGA, and the Data Streaming Engine sends the events. If one or more components fail, the engine runs through the compensation state machine.
+
 {{< image src="fluvio-ddi.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
 
+### Advantages 
 
 {{< links "Related Topics" >}}
 * [Distributed Data Infrastructure (DDI)]({{< relref "ddi" >}})
