@@ -1,10 +1,13 @@
 ---
 title: Distributed Data Infrastructure (DDI)
-menu: DDI
+menu: Fluvio DDI
 weight: 30
 ---
 
 **Distributed Data Infrastructure (DDI)** is a **standards-based**, **language agnostic** software that glues services to distributed data. It allows services to share data without coding the data layer itself.
+
+{{< image src="ddi-abstract.svg" alt="DDI Overview" justify="center" width="300" type="scaled-50">}}
+
 
 **Distributed Data Infrastructure (DDI)** is a **infrastructure layer** that move distributed data concerns out of Microservice.
 
@@ -20,7 +23,7 @@ weight: 30
 
 The benefits are shorter time to market, better code quality, and the ability to add out of band data management features such as role based access, auditing, monitoring, and troubleshooting.
 
-{{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="700" type="scaled-90">}}
+{{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="600" type="scaled-90">}}
 
 The **Distribute Data Infrastructure** is:
 
