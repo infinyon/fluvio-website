@@ -25,12 +25,13 @@ and ability to apply frictionless corporate policy.
 ## DDI Stack
 
 The Distributed Data Infrastructure is a stack consists of four components:
+
 * Distributed Control Plane
 * Model Interpreter
 * Data Flow Engine
 * Data Streaming Engine
 
-At high level, the _Distributed Control Plane_ sends an EventQL application definition to the _Model Interpreter_. The interpreter provisions the event controllers for in all Microservices of the application.
+At high level, the _Distributed Control Plane_ sends an EventQL application definition to the _Model Interpreter_. The interpreter provisions the event controllers for in all Microservices of the application. When an 
 
-{{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="600" type="scaled-90">}}
+{{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="640" type="scaled-90">}}
 
