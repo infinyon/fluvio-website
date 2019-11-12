@@ -126,7 +126,7 @@ This observation inspired us to build **Fluvio**, an off-the-shelf solution to s
 
 ## Fluvio - Distributed Data Infrastructure (DDI)
 
-**Fluvio** open source project implements a **Distributed Data Infrastructure (DDI)**, a  _standards-based_, _language agnostic_ software that glues services to distributed data. 
+**Distributed Data Infrastructure (DDI)** is an _open source_, _standards-based_, _language agnostic_ software that glues services to distributed data. 
 
 {{< idea >}}
 **DDI** abstracts distributed data concerns into a separate layer shared by all Microservices and managed by the _Distributed Data Control Plane_. Application architects use an _EventQL Model_ to describe the interactions between Microservices and the **DDI** does the rest.

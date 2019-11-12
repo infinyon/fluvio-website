@@ -1,38 +1,36 @@
 ---
-title: Distributed Data Infrastructure (DDI)
+title: Fluvio - Distributed Data Infrastructure (DDI)
 menu: Fluvio DDI
 weight: 30
 ---
 
-**Distributed Data Infrastructure (DDI)** is a **standards-based**, **language agnostic** software that glues services to distributed data. It allows services to share data without coding the data layer itself.
+**Distributed Data Infrastructure (DDI)** is a **standards-based**, **language agnostic** software layer designed to enable Microservices to construct _data rich_ applications. Unlike other systems for distributed data, **Fluvio DDI** is a _dedicated infrastructure layer_ built outside of the service and managed by a control plane.
 
-{{< image src="ddi-abstract.svg" alt="DDI Overview" justify="center" width="300" type="scaled-50">}}
+{{< image src="ddi-abstract.svg" alt="DDI Overview" justify="center" width="340" type="scaled-50">}}
+
+The _technical benefits_ of the **DDI** are as follows:
+
+* **Language Agnostic** - use your favorite language, Java, C++, TypeScript, Go, Scala, Ruby, etc.
+* **Clean Code** - keeps distributed data concerns outside of the business logic.
+* **Simplicity** - exposes Saga, CQRS, Commands, Projections through simple interfaces.
+* **Consistency** - consolidates data communication through a well defined data interface.
+* **Clarity** - uses expressive modeling language to define workflows, commands, transactions, reports, etc.
+* **Traceability** - provides interfaces for monitor data exchanges as it traverses services.
+* **Compliance** - enables service team to gain instant feedback on whether data adheres to corporate policy.
+
+The _business benefits_ are shorter time to market, better code quality, faster troubleshooting,
+and ability to apply frictionless corporate policy.
 
 
-**Distributed Data Infrastructure (DDI)** is a **infrastructure layer** that move distributed data concerns out of Microservice.
+## DDI Stack
 
-* It lets developers to focus on business logic not distributed data problems.
-* It provides saga based transactions.
-* It uses Event as first class citizen.  All operations and tooling can operate that level.
-* It is implemented as distribute architecture to offer highly resilient and scalable services.
-* It is language agonistic.  You can use any language (Java, C#, C++, Go, Scala, etc).
-* Centralized governess thru control plane.
-* It use Domain Specification Language to describe event syntax and lifecycle.
+The Distributed Data Infrastructure is a stack consists of four components:
+* Distributed Control Plane
+* Model Interpreter
+* Data Flow Engine
+* Data Streaming Engine
 
-
-
-The benefits are shorter time to market, better code quality, and the ability to add out of band data management features such as role based access, auditing, monitoring, and troubleshooting.
+At high level, the _Distributed Control Plane_ sends an EventQL application definition to the _Model Interpreter_. The interpreter provisions the event controllers for in all Microservices of the application.
 
 {{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="600" type="scaled-90">}}
 
-The **Distribute Data Infrastructure** is:
-
-* **Language agnostic** - use your favorite language, Java, C++, TypeScript, Go, Scala, Ruby, etc.
-* **Versatile** - covers many distributed data data use cases from CQRS to Saga out of the box.
-* **Painless** - you don't have to be a distributed data wizard to operate it.
-* **Expressive** - just define the workflow, the chain of services and the data they exchange, no coding required.
-* **Traceable** - track, debug, and monitor any data as it traverses services.
-* **Secure** - apply corporate data policy without rebuilding or deploying application code.
-* **Compliant** - perform data audits without impacting the application.
-
-The DDI **democratizes** the use of data across the organization.
