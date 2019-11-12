@@ -24,14 +24,24 @@ and ability to apply frictionless corporate policy.
 
 ## DDI Stack
 
-The Distributed Data Infrastructure is a stack consists of four components:
+The Distributed Data Infrastructure is a stack that consists of four components:
 
 * Distributed Control Plane
 * Model Interpreter
 * Data Flow Engine
 * Data Streaming Engine
 
-At high level, the _Distributed Control Plane_ sends an EventQL application definition to the _Model Interpreter_. The interpreter provisions the event controllers for in all Microservices of the application. When an 
+The diagram below illustrates a hierarchical view of the components:
 
 {{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="640" type="scaled-90">}}
+
+Microservices Apps are defined using Fluvio EventQL models. When a new model is provisioned, the _Distributed Control Plane_ forwards the model to the _Model Interpreter_. The interpreter looks-up the Microservices and provisions an _Event Controller_ for each service. Each controller connects to the _Data Streaming Engine_ and subscribes to various channels based on the EventQL definition.
+
+At runtime, a Microservices receives a command or an event. Commands are imperatives that ask services to perform an operation, whereas an events notify services of changes that occurred elsewhere. The services business logic performs the necessary updates and send the result to the _Event Controller_. The controller notifies the _Data Flow Engine_ to run the workflow defined in the EventQL definition. The model describes the sequence of operations and the events that are to be published to peer services.
+
+### EventQL Definition
+
+EventQL is an open source query language (QL) to describe event oriented distributed data flows. It expresses data models, events types, operations, aand relationship between services. At core, EventQL is a modeling language that converts event-centric service interactions into code.
+
+
 
