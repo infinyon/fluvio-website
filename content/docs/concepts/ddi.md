@@ -35,13 +35,41 @@ The diagram below illustrates a hierarchical view of the components:
 
 {{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="640" type="scaled-90">}}
 
-Microservices Apps are defined using Fluvio EventQL models. When a new model is provisioned, the _Distributed Control Plane_ forwards the model to the _Model Interpreter_. The interpreter looks-up the Microservices and provisions an _Event Controller_ for each service. Each controller connects to the _Data Streaming Engine_ and subscribes to various channels based on the EventQL definition.
+Microservices applications are defined using EventQL models. When a new model is provisioned, the _Distributed Control Plane_ forwards the model to the _Model Interpreter_. The interpreter looks-up the Microservices and provisions an _Event Controller_ for each service. Each controller connects to the _Data Streaming Engine_ and subscribes to various channels based on the EventQL definition.
 
 At runtime, a Microservices receives a command or an event. Commands are imperatives that ask services to perform an operation, whereas an events notify services of changes that occurred elsewhere. The services business logic performs the necessary updates and send the result to the _Event Controller_. The controller notifies the _Data Flow Engine_ to run the workflow defined in the EventQL definition. The model describes the sequence of operations and the events that are to be published to peer services.
 
+
+### Event Definition
+
+An Event is a Fact, a thing of importance that occurred in the past. When Microservices communicate through events they can express a series of facts about the domain which helps the system gain context and build hierarchical information tree for data exchange.
+
+{{< image src="facts.svg" alt="Facts and Events" justify="center" width="600" type="scaled-75">}}
+
+**Fluvio DDI** assumes that all inter-service communication is handled through **events**. 
+
+Events ensure a data rich future proof distributed data infrastructure. For example, events can be payed back with different filtering algorithms and retrieve new insights from the same data.
+
+
 ### EventQL Definition
 
-EventQL is an open source query language (QL) to describe event oriented distributed data flows. It expresses data models, events types, operations, aand relationship between services. At core, EventQL is a modeling language that converts event-centric service interactions into code.
+EventQL is an open source query language (QL) that describes event oriented distributed data flows. It expresses data domains, events types, operations, and inter-service relationships. At core, EventQL is a modeling language that converts event-centric service interactions into code.
 
+{{< code >}}
+Aggregate Order {
 
+    Event OrderSubmitted {...}
+    Event OrderCreated {...}
+    
+    State OrderState {...}
+    
+    Command UpdateEmailAddress {...}
+
+    ...
+}   
+{{< /code >}}
+
+EventQL modeling can be used as a design language for quick prototyping. Write interaction model and the compiler generates language bindings for Java, Go, Rust, C#, TypeScript and Go.
+
+It is a strong typed language by design to ensure no undefined behavior and it has built-in versioning for CI/CD pipeline and GitOps operation model.
 
