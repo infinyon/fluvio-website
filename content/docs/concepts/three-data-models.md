@@ -132,9 +132,9 @@ This observation inspired us to build **Fluvio**, an off-the-shelf solution to s
 **DDI** abstracts distributed data concerns into a separate layer shared by all Microservices and managed by the _Distributed Data Control Plane_. Application architects use an _EventQL Model_ to describe the interactions between Microservices and the **DDI** does the rest.
 {{< /idea >}}
 
-For example, when a transaction is required, the _Model Interpreter_ builds the state machines, the _Data Flow Engine_ applies the SAGA, and the _Data Streaming Engine_ sends the events. If one or more components fail, the engine calls the compensation state machine.
+For example, when a transaction is required, the _Model Interpreter_ builds the state machines, the _Data Flow Engine_ applies the SAGA, and the _Event Streaming Engine_ sends the events. If one or more components fail, the engine calls the compensation state machine.
 
-{{< image src="fluvio-ddi.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
+{{< image src="ddi-msvc.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
 
 A detail definition on all aspects of DDI can be found in the [next chapter]({{< relref "ddi" >}}).
 

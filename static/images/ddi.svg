@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="-125 125 584 438" width="584" height="438">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="-125 126 581 437" width="581" height="437">
   <defs>
     <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#666">
       <g>
@@ -44,11 +44,11 @@
     </marker>
   </defs>
   <metadata> Produced by OmniGraffle 7.12.1 
-    <dc:date>2019-11-12 17:34:20 +0000</dc:date>
+    <dc:date>2019-11-13 16:17:36 +0000</dc:date>
   </metadata>
-  <g id="Fluvio_-_MSVC" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+  <g id="Fluvio_-_DDI" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
     <title>Fluvio - DDI</title>
-    <g id="Fluvio_-_MSVC: Layer 1">
+    <g id="Fluvio_-_DDI: Layer 1">
       <title>Layer 1</title>
       <g id="Line_1377">
         <line x1="231.2126" y1="319.1986" x2="231.2126" y2="458.21633" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
@@ -60,19 +60,19 @@
         <line x1="413.6586" y1="319.8771" x2="413.6586" y2="458.89487" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       </g>
       <g id="Graphic_1100">
-        <rect x="53.355" y="126.61309" width="399.375" height="78.14745" fill="white"/>
-        <rect x="53.355" y="126.61309" width="399.375" height="78.14745" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <rect x="53.355" y="126.97422" width="401.20985" height="78.14745" fill="white"/>
+        <rect x="53.355" y="126.97422" width="401.20985" height="78.14745" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
       </g>
       <g id="Line_1034">
         <line x1="139.74415" y1="318.1986" x2="139.74415" y2="457.21633" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       </g>
       <g id="Graphic_877">
-        <rect x="53.355" y="352.60504" width="399.375" height="78.14745" fill="white"/>
-        <rect x="53.355" y="352.60504" width="399.375" height="78.14745" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <rect x="53.355" y="352.60504" width="401.20985" height="78.14745" fill="white"/>
+        <rect x="53.355" y="352.60504" width="401.20985" height="78.14745" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
       </g>
       <g id="Graphic_373">
-        <rect x="58.5" y="483.24" width="399.375" height="78.14745" fill="white"/>
-        <rect x="58.5" y="483.24" width="399.375" height="78.14745" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <rect x="53.355" y="483.11174" width="401.20985" height="78.14745" fill="white"/>
+        <rect x="53.355" y="483.11174" width="401.20985" height="78.14745" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
       </g>
       <g id="Line_238">
         <line x1="83.99471" y1="526.07125" x2="429.5315" y2="526.07125" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
@@ -178,7 +178,7 @@
       <g id="Graphic_448">
         <rect x="-124.12534" y="507.3389" width="113.67383" height="48.833984" fill="white"/>
         <text transform="translate(-119.12534 512.3389)" fill="#055aaa">
-          <tspan font-family="Futura" font-size="14" font-weight="500" fill="#055aaa" x="2.1601562" y="15">Data Streaming </tspan>
+          <tspan font-family="Futura" font-size="14" font-weight="500" fill="#055aaa" x=".6323242" y="15">Event Streaming </tspan>
           <tspan font-family="Futura" font-size="14" font-weight="500" fill="#055aaa" x="30.395996" y="34.416992">Engine</tspan>
         </text>
       </g>

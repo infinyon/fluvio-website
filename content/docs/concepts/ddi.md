@@ -4,51 +4,55 @@ menu: Fluvio DDI
 weight: 30
 ---
 
-**Distributed Data Infrastructure (DDI)** is a **standards-based**, **language agnostic** software layer designed to enable Microservices to construct _data rich_ applications. Unlike other systems for distributed data, **Fluvio DDI** is a _dedicated infrastructure layer_ built outside of the service and managed by a control plane.
+**Distributed Data Infrastructure (DDI)** is a **standards-based**, **language agnostic** software layer designed to enable microservices to construct _data rich_ applications. Unlike other systems for distributed data, **Fluvio DDI** is a _dedicated infrastructure layer_ built outside of the service and managed by its own control plane.
 
 {{< image src="ddi-abstract.svg" alt="DDI Overview" justify="center" width="340" type="scaled-50">}}
 
-The _technical benefits_ of the **DDI** are as follows:
+_Technical benefits_ for using **Fluvio DDI**:
 
 * **Language Agnostic** - use your favorite language, Java, C++, TypeScript, Go, Scala, Ruby, etc.
-* **Clean Code** - keeps distributed data concerns outside of the business logic.
-* **Simplicity** - exposes Saga, CQRS, Commands, Projections through simple interfaces.
-* **Consistency** - consolidates data communication through a well defined data interface.
+* **Clean Code** - keeps distributed data implementation outside of the business logic.
+* **Simplicity** - encapsulates SAGAs, CQRS, Commands, Projections behind API interfaces.
+* **Consistency** - consolidates distributed data handling a uniform data interface.
 * **Clarity** - uses expressive modeling language to define workflows, commands, transactions, reports, etc.
-* **Traceability** - provides interfaces for monitor data exchanges as it traverses services.
-* **Compliance** - enables service team to gain instant feedback on whether data adheres to corporate policy.
+* **Traceability** - exposes monitoring interface for tracing data end-to-end.
+* **Compliance** - has a control plane to ensure data exchange adheres to corporate policy.
 
-The _business benefits_ are shorter time to market, better code quality, faster troubleshooting,
-and ability to apply frictionless corporate policy.
+_Business benefits_ for using **Fluvio DDI**:
+ 
+* shorter time to market
+* better code quality
+* faster troubleshooting,
+* ability to apply frictionless corporate policy
 
+The **Distributed Data Infrastructure** is also multi-tenant aware. Multiple applications can run side-by-side without interfering with each other.
 
 ## DDI Stack
 
-The Distributed Data Infrastructure is a stack that consists of four components:
+The **Distributed Data Infrastructure** stack has four core components:
 
 * Distributed Control Plane
 * Model Interpreter
 * Data Flow Engine
-* Data Streaming Engine
+* Event Streaming Engine
 
-The diagram below illustrates a hierarchical view of the components:
+An _EventQL Model_ defines the hierarchy and interaction of the microservices in an application. When a new application is provisioned, the _Distributed Control Plane_ forwards the EventQL spec to the _Model Interpreter_. The interpreter provisions an _Event Controller_ for each microservice. The controllers connect to the _Event Streaming Engine_ and subscribe to the channels defined in the EventQL specification.
 
 {{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="640" type="scaled-90">}}
 
-Microservices applications are defined using EventQL models. When a new model is provisioned, the _Distributed Control Plane_ forwards the model to the _Model Interpreter_. The interpreter looks-up the Microservices and provisions an _Event Controller_ for each service. Each controller connects to the _Data Streaming Engine_ and subscribes to various channels based on the EventQL definition.
+At runtime, microservices receive commands or events. _Commands_ are imperatives that ask services to perform an operation, whereas _events_ notify services of changes that occurred elsewhere. Microservices receive the input, perform the business logic, and send the output to the _Event Controller_. The controller notifies the _Data Flow Engine_ to run the workflow in the EventQL spec and publishes the output to corresponding channels. 
 
-At runtime, a Microservices receives a command or an event. Commands are imperatives that ask services to perform an operation, whereas an events notify services of changes that occurred elsewhere. The services business logic performs the necessary updates and send the result to the _Event Controller_. The controller notifies the _Data Flow Engine_ to run the workflow defined in the EventQL definition. The model describes the sequence of operations and the events that are to be published to peer services.
-
+A command or event is finished processing when all services in the EventQL workflow completed their operations.
 
 ### Event Definition
 
-An Event is a Fact, a thing of importance that occurred in the past. When Microservices communicate through events they can express a series of facts about the domain which helps the system gain context and build hierarchical information tree for data exchange.
+_Events_ are facts, things of importance that occurred in the past. _Events_ are the source of truth expressed as immutable actions. When microservices publish events they communicate the behavior of their domain. This information helps the **DDI** gain business context, model workflows, and build hierarchical information tree for all data exchanges.
 
 {{< image src="facts.svg" alt="Facts and Events" justify="center" width="600" type="scaled-75">}}
 
-**Fluvio DDI** assumes that all inter-service communication is handled through **events**. 
+Microservices that exchange _events_ rather than _state_ share the full history all things of importance and ensure their data is future proof. For example, events can be played back in the future with new filtering criteria to retrieve additional insights.
 
-Events ensure a data rich future proof distributed data infrastructure. For example, events can be payed back with different filtering algorithms and retrieve new insights from the same data.
+**Fluvio DDI** assumes that all inter-service communication is handled through **events**. 
 
 
 ### EventQL Definition

@@ -19,7 +19,7 @@
     </font-face>
   </defs>
   <metadata> Produced by OmniGraffle 7.12.1 
-    <dc:date>2019-11-13 02:20:06 +0000</dc:date>
+    <dc:date>2019-11-13 02:36:11 +0000</dc:date>
   </metadata>
   <g id="facts" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
     <title>facts</title>
@@ -91,9 +91,8 @@
       </g>
       <g id="Graphic_83">
         <text transform="translate(-144.5002 35.856125)" fill="#666">
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Order “</tspan>
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Order </tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" y="12">A</tspan>
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" y="12">”</tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="27.364">Completed</tspan>
         </text>
       </g>
@@ -105,9 +104,8 @@
       </g>
       <g id="Graphic_80">
         <text transform="translate(-142.4352 79.69612)" fill="#666">
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Order “</tspan>
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Order </tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" y="12">B</tspan>
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" y="12">”</tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="27.364">Cancelled</tspan>
         </text>
       </g>
@@ -217,9 +215,8 @@
       </g>
       <g id="Graphic_47">
         <text transform="translate(325.6649 36.637834)" fill="#666">
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Payment “</tspan>
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Payment </tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" y="12">A</tspan>
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" y="12">”</tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="27.364">Received</tspan>
         </text>
       </g>
@@ -230,9 +227,8 @@
       </g>
       <g id="Graphic_45">
         <text transform="translate(325.1099 79.69612)" fill="#666">
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Payment “</tspan>
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="12">Payment </tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" y="12">B</tspan>
-          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" y="12">”</tspan>
           <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="#666" x="0" y="27.364">Failed</tspan>
         </text>
       </g>
