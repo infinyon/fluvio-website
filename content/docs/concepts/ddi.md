@@ -157,7 +157,7 @@ Aggregates are called by the _Event Controller_.
 
 ##### Commands
 
-_Commands_ express intent, an operations that to be executed in the future. Commands may be executed or rejected by the _Command Handler_. A command may be use in combination with _state_ and can generate one or more _events_.
+_Commands_ express intent, an operations to be executed in the future. Commands may be executed or rejected by the _Command Handler_. A command may be use in combination with _state_ and can generate one or more _events_.
 
 Example of a command definition:
 
