@@ -50,30 +50,120 @@ _Events_ are facts, things of importance that occurred in the past. _Events_ are
 
 {{< image src="facts.svg" alt="Facts and Events" justify="center" width="600" type="scaled-75">}}
 
-Microservices that exchange _events_ rather than _state_ share the full history all things of importance and ensure their data is future proof. For example, events can be played back in the future with new filtering criteria to retrieve additional insights.
+Microservices that exchange _events_ rather than _state_ share the full history all things of importance and ensure their data is future proof. For example, events can be played back with new filtering criteria anytime in the future.
 
 **Fluvio DDI** assumes that all inter-service communication is handled through **events**. 
 
 
 ### EventQL Definition
 
-EventQL is an open source query language (QL) that describes event oriented distributed data flows. It expresses data domains, events types, operations, and inter-service relationships. At core, EventQL is a modeling language that converts event-centric service interactions into code.
+_EventQL_ is an open source query language (QL) that describes distributed data flows. The language has a rich set of directives to define domain properties, events types, operations, and inter-service relationships. **Fluvio DDI** uses _EventQL_ models to create aggregates, setup data flows, provision projections and run transactions.
+
+At core, EventQL is a modeling language that converts event-centric service interactions into code. It simplifies prototyping and accelerates development. Initially, EventQl models generate language bindings for Rust and it can be extended to other programming language (Java, Go, Python, C#, etc.).
+
+#### EventQL Language Definition
+
+EventQL language uses the following keywords to define distributed data flows: _types, events, states, aggregates, commands, transactions_, and _reactors_.
+
+
+##### Types
+
+EventQL primitive types are:
+
+* int
+* bool
+* enum
+* UTF8 string
+* id (all events have ids)
+
+Null types are not supported. 
+
+
+##### Events
+
+_Event_ are described in detail [above](http://localhost:1313/docs/concepts/ddi/#event-definition). _Events_ have two built-in fields:
+
+* event ID (UUID)
+* time
+
+Example of an event definition:
 
 {{< code >}}
-Aggregate Order {
+event CustomerEmailChanged {
+   user_id: ID,
+   email: String
+}
+{{< /code >}}
 
-    Event OrderSubmitted {...}
-    Event OrderCreated {...}
-    
-    State OrderState {...}
-    
-    Command UpdateEmailAddress {...}
+Events are grouped inside _Aggregates_.
 
-    ...
+##### States
+
+_States_ are the latest known condition of things. States can be derived from events or computed from a combination of indicators. Complex business logic is usually divided by states.
+
+For example, an _AccountBalance_ state can be computed from _AccountDeposited_ and _AccountWithdrawn_ events:
+
+{{< code >}}
+state AccountBalance {
+    account_id: ID,
+    total: u16
+}
+
+event AccountDeposited {
+    account_id: ID,
+    amount: U16
+ }
+ 
+event AccountWithdrawn {
+    account_id: ID,
+    amount: U16
+ }
+{{< /code >}}
+
+A discrete state can be defined as follows:
+
+{{< code >}}
+state CustomerOrder {
+    Status(OrderStatus)
+}
+
+enum OrderStatus {
+   OrderCreated,
+   OrderShipped,
+   OrderClosed
+}
+{{< /code >}}
+
+States are derived from events inside _Aggregates_.
+
+
+##### Aggregates
+
+_Aggregates_ are business logic wrappers that describe _events_ and _service behavior_. Each service has one aggregate. Aggregates manage service state, transactions, and command handlers. They are responsible for enforcing business constrains.
+
+Example of an aggregate definition:
+
+{{< code >}}
+aggregate Order {
+    event OrderSubmitted ...
+    event OrderCreated ...
+    state OrderState ...
+    command UpdateEmailAddress ...
 }   
 {{< /code >}}
 
-EventQL modeling can be used as a design language for quick prototyping. Write interaction model and the compiler generates language bindings for Java, Go, Rust, C#, TypeScript and Go.
+Aggregates are called by the _Event Controller_.
 
-It is a strong typed language by design to ensure no undefined behavior and it has built-in versioning for CI/CD pipeline and GitOps operation model.
+
+##### Commands
+
+##### Transactions (SAGAs)
+
+##### Reactors
+
+
+
+
+#### EventQL and Git
+EventQL models are textual representation of distributed data flows for microservice applications. Models may be changed, versioned and reapplied to running Apps. They may be stored in git and applied by CI/CD pipelines in GitOps operation models.
 

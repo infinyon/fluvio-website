@@ -14,14 +14,16 @@ h2, .font-xl {font-size: 1.7rem; }
 h3, .font-lg {font-size: 1.45rem; }
 h4, .font-md, .font-md-underline {font-size: 1.25rem; }
 p, li, .font-rg {font-size: 1rem; }
-h5, .font-sm {font-size: 1rem; }
+h5, .font-sm {font-size: 0.9rem; }
 h6, .font-xs {font-size: 0.8rem; }
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .font-xs, .font-sm, .font-rg, .font-md, .font-lg, .font-xl, .font-xxl, .font-md-underline {
+h1, h2, h3, h4, .h1, .h2, .h3, .h4, .h5, .h6, .font-xs, .font-sm, .font-rg, .font-md, .font-lg, .font-xl, .font-xxl, .font-md-underline {
   color: $color-headers;
   font-family: $font-headers;
 }
 h5, h6 {
-  font-weight: 700;
+  font-family: $font-blog;
+  font-weight: bold;
+  color: $color-headers;
 }
 h2 { line-height: 1.7em; }
 h2:after {
