@@ -50,7 +50,7 @@ _Events_ are facts, things of importance that occurred in the past. _Events_ are
 
 {{< image src="facts.svg" alt="Facts and Events" justify="center" width="600" type="scaled-75">}}
 
-Microservices that exchange _events_ rather than _state_ share the full history all things of importance and ensure their data is future proof. For example, events can be played back with new filtering criteria anytime in the future.
+Microservices that exchange _events_ rather than _states_ share the full history all things of importance and ensure their data is future proof. For example, events can be played back with new filtering criteria anytime in the future.
 
 **Fluvio DDI** assumes that all inter-service communication is handled through **events**. 
 
@@ -173,9 +173,13 @@ Commands are grouped inside _Aggregates_.
 
 ##### Transactions (SAGAs)
 
+[SAGAs](http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf) are the recommended mechanism for transaction management in a distributed system. Sagas keyword describes series of command/events that must be processed as an atomic operation. All components must succeed, or fail together. Therefore, every command must have compensating command/events combination.
+
+Transactions are grouped inside _Aggregates_.
+
 ##### Reactors
 
-
+_Reactors_ define reactive behavior triggered by other service events. Unlike commands that require a _Command Handler_, reactors, don't have _Reactor Handler_.
 
 
 #### EventQL and Git
