@@ -157,7 +157,7 @@ Aggregates are called by the _Event Controller_.
 
 ##### Commands
 
-_Commands_ express intent, an operations to be executed in the future. Commands may be executed or rejected by the _Command Handler_. A command may be use in combination with _state_ and can generate one or more _events_.
+_Commands_ express intent, an operations to be executed in the future. Commands may be executed or rejected by the _Command Handler_. Commands may be used in combination with _states_ and can generate one or more _events_.
 
 Example of a command definition:
 
@@ -173,15 +173,15 @@ Commands are grouped inside _Aggregates_.
 
 ##### Transactions (SAGAs)
 
-[SAGAs](http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf) are the recommended mechanism for transaction management in a distributed system. Sagas keyword describes series of command/events that must be processed as an atomic operation. All components must succeed, or fail together. Therefore, every command must have compensating command/events combination.
+[SAGAs](http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf) are the recommended mechanism for transaction management in a distributed system. Sagas keyword describes series of command/events that must be processed as an atomic operation. All components must succeed, or fail together. Therefore, every command must have compensating operation.
 
 Transactions are grouped inside _Aggregates_.
 
 ##### Reactors
 
-_Reactors_ define reactive behavior triggered by other service events. Unlike commands that require a _Command Handler_, reactors, don't have _Reactor Handler_.
+_Reactors_ define reactive behavior triggered by other service events. Unlike commands that require a _Command Handler_, reactors, don't have an explicit _Reactor Handler_.
 
 
 #### EventQL and Git
-EventQL models are textual representation of distributed data flows for microservice applications. Models may be changed, versioned and reapplied to running Apps. They may be stored in git and applied by CI/CD pipelines in GitOps operation models.
+EventQL models are textual representation of distributed data flows for microservice applications. Models may be changed, versioned, and reapplied to running Apps. They may be stored in git and applied by CI/CD pipelines in GitOps operation models.
 
