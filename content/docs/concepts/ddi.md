@@ -88,12 +88,12 @@ _Event_ are described in detail [above](http://localhost:1313/docs/concepts/ddi/
 
 Example of an event definition:
 
-{{< code >}}
-event CustomerEmailChanged {
+{{< eventql >}}
+<eql>event</eql> CustomerEmailChanged {
    user_id: ID,
    email: String
 }
-{{< /code >}}
+{{< /eventql >}}
 
 Events are grouped inside _Aggregates_.
 
@@ -103,36 +103,36 @@ _States_ are the latest known condition of things. States can be derived from ev
 
 For example, an _AccountBalance_ state can be computed from _AccountDeposited_ and _AccountWithdrawn_ events:
 
-{{< code >}}
-state AccountBalance {
+{{< eventql >}}
+<eql>state</eql> AccountBalance {
     account_id: ID,
     total: u16
 }
 
-event AccountDeposited {
+<eql>event</eql> AccountDeposited {
     account_id: ID,
-    amount: U16
+    amount: u16
  }
  
-event AccountWithdrawn {
+<eql>event</eql> AccountWithdrawn {
     account_id: ID,
-    amount: U16
+    amount: u16
  }
-{{< /code >}}
+{{< /eventql >}}
 
 A discrete state can be defined as follows:
 
-{{< code >}}
-state CustomerOrder {
+{{< eventql >}}
+<eql>state</eql> CustomerOrder {
     Status(OrderStatus)
 }
 
-enum OrderStatus {
+<eql>enum</eql> OrderStatus {
    OrderCreated,
    OrderShipped,
    OrderClosed
 }
-{{< /code >}}
+{{< /eventql >}}
 
 States are derived from events inside _Aggregates_.
 
@@ -143,14 +143,14 @@ _Aggregates_ are business logic wrappers that describe _events_ and _service beh
 
 Example of an aggregate definition:
 
-{{< code >}}
-aggregate Order {
-    event OrderSubmitted ...
-    event OrderCreated ...
-    state OrderState ...
-    command UpdateEmailAddress ...
+{{< eventql >}}
+<eql>aggregate</eql> Order {
+    <eqk>event</eqk> OrderSubmitted ...
+    <eqk>event</eqk> OrderCreated ...
+    <eqk>state</eqk> OrderState ...
+    <eqk>command</eqk> UpdateEmailAddress ...
 }   
-{{< /code >}}
+{{< /eventql >}}
 
 Aggregates are called by the _Event Controller_.
 
@@ -161,12 +161,12 @@ _Commands_ express intent, an operations to be executed in the future. Commands 
 
 Example of a command definition:
 
-{{< code >}}
-command UpdateEmailAddress {
+{{< eventql >}}
+<eql>command</eql> UpdateEmailAddress {
     user_id: ID
     email_address: String
 }
-{{< /code >}}
+{{< /eventql >}}
 
 Commands are grouped inside _Aggregates_.
 

@@ -1,5 +1,5 @@
 /* PrismJS 1.17.1
-https://prismjs.com/download.html#themes=prism&languages=bash+docker+json+rust+yaml+toml */
+https://prismjs.com/download.html#themes=prism&languages=bash+docker+graphql+json+rust+yaml+toml */
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
@@ -138,3 +138,10 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+kbd {
+    outline: 3px solid red;
+    padding: 0.1em;
+}
+em {
+    text-decoration: underline;
+}
