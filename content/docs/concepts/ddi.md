@@ -95,7 +95,7 @@ Example of an event definition:
 }
 {{< /eventql >}}
 
-Events are grouped inside _Aggregates_.
+Events are grouped inside _aggregates_.
 
 ##### States
 
@@ -134,7 +134,7 @@ A discrete state can be defined as follows:
 }
 {{< /eventql >}}
 
-States are derived from events inside _Aggregates_.
+States are derived from events inside _aggregates_.
 
 
 ##### Aggregates
@@ -152,7 +152,7 @@ Example of an aggregate definition:
 }   
 {{< /eventql >}}
 
-Aggregates are called by the _Event Controller_.
+Aggregates are called by the _event controller_.
 
 
 ##### Commands
@@ -168,20 +168,25 @@ Example of a command definition:
 }
 {{< /eventql >}}
 
-Commands are grouped inside _Aggregates_.
+Commands are grouped inside _aggregates_.
 
 
 ##### Transactions (SAGAs)
 
-[SAGAs](http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf) are the recommended mechanism for transaction management in a distributed system. Sagas keyword describes series of command/events that must be processed as an atomic operation. All components must succeed, or fail together. Therefore, every command must have compensating operation.
+[SAGAs](http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf) are the recommended mechanism for transactions in a distributed system. Sagas keyword describes series of command/events that must be processed as an atomic operation. All components must succeed, or fail together. Therefore, every command must define a compensating operation.
 
-Transactions are grouped inside _Aggregates_.
+Transactions are grouped inside _aggregates_.
 
 ##### Reactors
 
-_Reactors_ define reactive behavior triggered by other service events. Unlike commands that require a _Command Handler_, reactors, don't have an explicit _Reactor Handler_.
+_Reactors_ are operations triggered by other service events. Unlike commands that require a _Command Handler_, reactors, don't have an explicit _Reactor Handler_.
 
 
 #### EventQL and Git
+
 EventQL models are textual representation of distributed data flows for microservice applications. Models may be changed, versioned, and reapplied to running Apps. They may be stored in git and applied by CI/CD pipelines in GitOps operation models.
 
+
+### Event Controller
+
+_Event Controller_ is a coordinator that connects EventQL operations with the _aggregates_ business logic. During initialization, _DDI control plane_ sends each _event controller_ the EventQL definition corresponding to an _aggregate_. The _event controller_ interprets EventQL definitions, subscribes to event streams, provisions state machines, and binds callbacks for incoming events and commands.
