@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="305 -1 299 228" width="299" height="228">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="306 51 288 178" width="288" height="178">
   <defs>
     <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#929292">
       <g>
@@ -19,451 +19,479 @@
     </marker>
   </defs>
   <metadata> Produced by OmniGraffle 7.12.1 
-    <dc:date>2019-11-12 15:39:55 +0000</dc:date>
+    <dc:date>2019-11-20 23:38:57 +0000</dc:date>
   </metadata>
-  <g id="Fluvio_-_DDI_(abstract)" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
-    <title>Fluvio - DDI (abstract)</title>
-    <g id="Fluvio_-_DDI_(abstract): Layer 1">
+  <g id="DDI_(abstract)" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>DDI (abstract)</title>
+    <g id="DDI_(abstract): Layer 1">
       <title>Layer 1</title>
       <g id="Graphic_504">
-        <rect x="307.0797" y="178.80612" width="288.0453" height="46.895996" fill="white"/>
-        <rect x="307.0797" y="178.80612" width="288.0453" height="46.895996" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <rect x="367.875" y="176.85161" width="225.55752" height="51.33968" fill="white"/>
+        <rect x="367.875" y="176.85161" width="225.55752" height="51.33968" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       </g>
       <g id="Group_909">
         <g id="Group_905">
           <g id="Graphic_908">
-            <rect x="398.3357" y="169.3125" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="398.3357" y="169.3125" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="409.08477" y="166.90226" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="409.08477" y="166.90226" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_907">
-            <rect x="398.344" y="175.27595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="398.344" y="175.27595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="409.09303" y="172.8657" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="409.09303" y="172.8657" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_906">
-            <rect x="398.344" y="181.2394" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="398.344" y="181.2394" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="409.09303" y="178.82916" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="409.09303" y="178.82916" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_904">
           <g id="Graphic_900">
-            <rect x="394.6652" y="171.5625" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="394.6652" y="171.5625" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="405.41423" y="169.15226" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="405.41423" y="169.15226" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_899">
-            <rect x="394.67344" y="177.52595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="394.67344" y="177.52595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="405.4225" y="175.1157" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="405.4225" y="175.1157" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_898">
-            <rect x="394.67344" y="183.4894" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="394.67344" y="183.4894" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="405.4225" y="181.07916" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="405.4225" y="181.07916" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_871">
           <g id="Graphic_514">
-            <rect x="390.99464" y="173.83736" width="12.375" height="17.97875" fill="white"/>
-            <rect x="390.99464" y="173.83736" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="401.7437" y="171.42711" width="12.375" height="17.97875" fill="white"/>
+            <rect x="401.7437" y="171.42711" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_598">
-            <rect x="391.73837" y="180.30486" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="391.73837" y="180.30486" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="402.4874" y="177.89461" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="402.4874" y="177.89461" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_597">
-            <rect x="391.73837" y="185.51736" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="391.73837" y="185.51736" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="402.4874" y="183.10711" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="402.4874" y="183.10711" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_591">
-            <rect x="391.86123" y="174.86264" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="391.86123" y="174.86264" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="402.6103" y="172.4524" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="402.6103" y="172.4524" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_590">
-            <rect x="391.86837" y="180.28498" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="391.86837" y="180.28498" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="402.6174" y="177.87473" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="402.6174" y="177.87473" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_589">
-            <rect x="391.86837" y="185.7073" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="391.86837" y="185.7073" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="402.6174" y="183.29707" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="402.6174" y="183.29707" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
       </g>
-      <g id="Line_680">
-        <line x1="513.16723" y1="150.1787" x2="513.16723" y2="157.5823" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
-      </g>
       <g id="Line_705">
-        <line x1="400.3527" y1="150.1787" x2="400.3527" y2="157.5823" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
-      </g>
-      <g id="Line_708">
-        <line x1="456.75996" y1="121.933" x2="456.75996" y2="157.5823" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+        <line x1="414.8075" y1="149.3028" x2="414.8075" y2="156.70641" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
       </g>
       <g id="Line_709">
-        <line x1="321.03175" y1="210.9375" x2="582.63396" y2="210.9375" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      </g>
-      <g id="Line_886">
-        <line x1="569.64435" y1="121.933" x2="569.64435" y2="157.5823" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+        <line x1="388.53834" y1="208.37204" x2="583.2563" y2="208.37204" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
       </g>
       <g id="Group_910">
         <g id="Group_922">
           <g id="Graphic_925">
-            <rect x="454.743" y="169.3125" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="454.743" y="169.3125" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="460.6296" y="166.90226" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="460.6296" y="166.90226" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_924">
-            <rect x="454.75126" y="175.27595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="454.75126" y="175.27595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="460.6379" y="172.8657" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="460.6379" y="172.8657" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_923">
-            <rect x="454.75126" y="181.2394" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="454.75126" y="181.2394" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="460.6379" y="178.82916" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="460.6379" y="178.82916" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_918">
           <g id="Graphic_921">
-            <rect x="451.07246" y="171.5625" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="451.07246" y="171.5625" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="456.9591" y="169.15226" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="456.9591" y="169.15226" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_920">
-            <rect x="451.0807" y="177.52595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="451.0807" y="177.52595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="456.96734" y="175.1157" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="456.96734" y="175.1157" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_919">
-            <rect x="451.0807" y="183.4894" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="451.0807" y="183.4894" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="456.96734" y="181.07916" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="456.96734" y="181.07916" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_911">
           <g id="Graphic_917">
-            <rect x="447.4019" y="173.83736" width="12.375" height="17.97875" fill="white"/>
-            <rect x="447.4019" y="173.83736" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="453.28854" y="171.42711" width="12.375" height="17.97875" fill="white"/>
+            <rect x="453.28854" y="171.42711" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_916">
-            <rect x="448.14565" y="180.30486" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="448.14565" y="180.30486" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="454.03227" y="177.89461" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="454.03227" y="177.89461" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_915">
-            <rect x="448.14565" y="185.51736" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="448.14565" y="185.51736" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="454.03227" y="183.10711" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="454.03227" y="183.10711" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_914">
-            <rect x="448.2685" y="174.86264" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="448.2685" y="174.86264" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="454.1551" y="172.4524" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="454.1551" y="172.4524" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_913">
-            <rect x="448.27565" y="180.28498" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="448.27565" y="180.28498" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="454.16227" y="177.87473" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="454.16227" y="177.87473" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_912">
-            <rect x="448.27565" y="185.7073" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="448.27565" y="185.7073" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="454.16227" y="183.29707" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="454.16227" y="183.29707" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
       </g>
       <g id="Group_926">
         <g id="Group_938">
           <g id="Graphic_941">
-            <rect x="511.15027" y="169.3125" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="511.15027" y="169.3125" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="512.17446" y="167.35799" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="512.17446" y="167.35799" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_940">
-            <rect x="511.15853" y="175.27595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="511.15853" y="175.27595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="512.1827" y="173.32144" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="512.1827" y="173.32144" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_939">
-            <rect x="511.15853" y="181.2394" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="511.15853" y="181.2394" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="512.1827" y="179.2849" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="512.1827" y="179.2849" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_934">
           <g id="Graphic_937">
-            <rect x="507.47973" y="171.5625" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="507.47973" y="171.5625" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="508.5039" y="169.60799" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="508.5039" y="169.60799" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_936">
-            <rect x="507.488" y="177.52595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="507.488" y="177.52595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="508.5122" y="175.57144" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="508.5122" y="175.57144" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_935">
-            <rect x="507.488" y="183.4894" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="507.488" y="183.4894" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="508.5122" y="181.5349" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="508.5122" y="181.5349" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_927">
           <g id="Graphic_933">
-            <rect x="503.8092" y="173.83736" width="12.375" height="17.97875" fill="white"/>
-            <rect x="503.8092" y="173.83736" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="504.8334" y="171.88285" width="12.375" height="17.97875" fill="white"/>
+            <rect x="504.8334" y="171.88285" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_932">
-            <rect x="504.5529" y="180.30486" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="504.5529" y="180.30486" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="505.5771" y="178.35035" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="505.5771" y="178.35035" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_931">
-            <rect x="504.5529" y="185.51736" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="504.5529" y="185.51736" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="505.5771" y="183.56285" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="505.5771" y="183.56285" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_930">
-            <rect x="504.6758" y="174.86264" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="504.6758" y="174.86264" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="505.7" y="172.90813" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="505.7" y="172.90813" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_929">
-            <rect x="504.6829" y="180.28498" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="504.6829" y="180.28498" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="505.7071" y="178.33047" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="505.7071" y="178.33047" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_928">
-            <rect x="504.6829" y="185.7073" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="504.6829" y="185.7073" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="505.7071" y="183.7528" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="505.7071" y="183.7528" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
       </g>
       <g id="Group_942">
         <g id="Group_954">
           <g id="Graphic_957">
-            <rect x="567.6274" y="169.3125" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="567.6274" y="169.3125" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="562.5343" y="167.35799" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="562.5343" y="167.35799" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_956">
-            <rect x="567.63565" y="175.27595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="567.63565" y="175.27595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="562.54255" y="173.32144" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="562.54255" y="173.32144" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_955">
-            <rect x="567.63565" y="181.2394" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="567.63565" y="181.2394" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="562.54255" y="179.2849" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="562.54255" y="179.2849" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_950">
           <g id="Graphic_953">
-            <rect x="563.95685" y="171.5625" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="563.95685" y="171.5625" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="558.86375" y="169.60799" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="558.86375" y="169.60799" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_952">
-            <rect x="563.9651" y="177.52595" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="563.9651" y="177.52595" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="558.872" y="175.57144" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="558.872" y="175.57144" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_951">
-            <rect x="563.9651" y="183.4894" width="12.366735" height="5.791843" fill="white"/>
-            <rect x="563.9651" y="183.4894" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="558.872" y="181.5349" width="12.366735" height="5.791843" fill="white"/>
+            <rect x="558.872" y="181.5349" width="12.366735" height="5.791843" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
         <g id="Group_943">
           <g id="Graphic_949">
-            <rect x="560.2863" y="173.83736" width="12.375" height="17.97875" fill="white"/>
-            <rect x="560.2863" y="173.83736" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="555.1932" y="171.88285" width="12.375" height="17.97875" fill="white"/>
+            <rect x="555.1932" y="171.88285" width="12.375" height="17.97875" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_948">
-            <rect x="561.03004" y="180.30486" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="561.03004" y="180.30486" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="555.93694" y="178.35035" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="555.93694" y="178.35035" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_947">
-            <rect x="561.03004" y="185.51736" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="561.03004" y="185.51736" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+            <rect x="555.93694" y="183.56285" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="555.93694" y="183.56285" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
           </g>
           <g id="Graphic_946">
-            <rect x="561.1529" y="174.86264" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="561.1529" y="174.86264" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="556.0598" y="172.90813" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="556.0598" y="172.90813" width="10.6875" height="5.0625" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_945">
-            <rect x="561.16004" y="180.28498" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="561.16004" y="180.28498" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="556.06694" y="178.33047" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="556.06694" y="178.33047" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
           <g id="Graphic_944">
-            <rect x="561.16004" y="185.7073" width="10.6875" height="5.0625" fill="#095aaa"/>
-            <rect x="561.16004" y="185.7073" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
+            <rect x="556.06694" y="183.7528" width="10.6875" height="5.0625" fill="#095aaa"/>
+            <rect x="556.06694" y="183.7528" width="10.6875" height="5.0625" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75"/>
           </g>
         </g>
       </g>
       <g id="Group_962">
         <g id="Line_718">
-          <line x1="395.98584" y1="206.99668" x2="395.98584" y2="195.8266" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="405.83136" y1="205.04217" x2="405.83136" y2="193.8721" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_960">
-          <line x1="402.159" y1="205.10584" x2="402.159" y2="193.93576" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="412.00453" y1="203.15132" x2="412.00453" y2="191.98125" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_961">
-          <line x1="407.5266" y1="202.53045" x2="407.5266" y2="191.36037" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="417.3721" y1="200.57594" x2="417.3721" y2="189.40586" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
       </g>
       <g id="Group_963">
         <g id="Line_966">
-          <line x1="452.06174" y1="206.99668" x2="452.06174" y2="195.8266" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="458.94213" y1="204.41125" x2="458.94213" y2="193.24118" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_965">
-          <line x1="458.2349" y1="205.10584" x2="458.2349" y2="193.93576" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="465.1153" y1="202.5204" x2="465.1153" y2="191.35033" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_964">
-          <line x1="463.60247" y1="202.53045" x2="463.60247" y2="191.36037" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="470.48286" y1="199.94503" x2="470.48286" y2="188.77495" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
       </g>
       <g id="Group_971">
         <g id="Line_974">
-          <line x1="507.99796" y1="207.89773" x2="507.99796" y2="196.72765" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="509.2646" y1="204.9697" x2="509.2646" y2="193.79962" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_973">
-          <line x1="514.1711" y1="206.00689" x2="514.1711" y2="194.8368" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="515.43775" y1="203.07885" x2="515.43775" y2="191.90877" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_972">
-          <line x1="519.5387" y1="203.4315" x2="519.5387" y2="192.26143" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="520.8053" y1="200.50347" x2="520.8053" y2="189.3334" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
       </g>
       <g id="Group_975">
         <g id="Line_978">
-          <line x1="564.004" y1="207.87058" x2="564.004" y2="196.7005" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="559.707" y1="204.9697" x2="559.707" y2="193.79962" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_977">
-          <line x1="570.1772" y1="205.97973" x2="570.1772" y2="194.80966" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+          <line x1="565.88016" y1="203.07885" x2="565.88016" y2="191.90877" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
         <g id="Line_976">
-          <line x1="575.54475" y1="203.40435" x2="575.54475" y2="192.23427" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
-        </g>
-      </g>
-      <g id="Group_989">
-        <g id="Graphic_502">
-          <path d="M 368.88353 111.48602 L 383.4812 88.32977 C 384.0306 87.45825 384.98876 86.9296 386.019 86.9296 L 415.68636 86.9296 C 416.7166 86.9296 417.67477 87.45825 418.2242 88.32977 L 432.8218 111.48602 C 433.43807 112.46356 433.43807 113.70815 432.8218 114.68569 L 418.2242 137.84194 C 417.67477 138.71346 416.7166 139.2421 415.68636 139.2421 L 386.019 139.2421 C 384.98876 139.2421 384.0306 138.71346 383.4812 137.84194 L 368.88353 114.68569 C 368.2673 113.70815 368.2673 112.46356 368.88353 111.48602 Z" fill="white"/>
-          <path d="M 368.88353 111.48602 L 383.4812 88.32977 C 384.0306 87.45825 384.98876 86.9296 386.019 86.9296 L 415.68636 86.9296 C 416.7166 86.9296 417.67477 87.45825 418.2242 88.32977 L 432.8218 111.48602 C 433.43807 112.46356 433.43807 113.70815 432.8218 114.68569 L 418.2242 137.84194 C 417.67477 138.71346 416.7166 139.2421 415.68636 139.2421 L 386.019 139.2421 C 384.98876 139.2421 384.0306 138.71346 383.4812 137.84194 L 368.88353 114.68569 C 368.2673 113.70815 368.2673 112.46356 368.88353 111.48602 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"/>
-        </g>
-        <g id="Line_515">
-          <line x1="400.78006" y1="118.36797" x2="400.6095" y2="108.8088" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        </g>
-        <g id="Graphic_517">
-          <path d="M 394.6895 93.05881 L 406.5295 93.05881 C 407.63407 93.05881 408.5295 93.95424 408.5295 95.05881 L 408.5295 106.8088 C 408.5295 107.91338 407.63407 108.8088 406.5295 108.8088 L 394.6895 108.8088 C 393.58493 108.8088 392.6895 107.91338 392.6895 106.8088 L 392.6895 95.05881 C 392.6895 93.95424 393.58493 93.05881 394.6895 93.05881 Z" fill="#06aa90"/>
-        </g>
-        <g id="Group_983">
-          <g id="Graphic_988">
-            <rect x="394.2198" y="122.27012" width="13.265717" height="9.065572" fill="#06aa90"/>
-            <rect x="394.2198" y="122.27012" width="13.265717" height="9.065572" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_987">
-            <ellipse cx="400.8527" cy="131.24979" rx="6.68779776336299" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="400.8527" cy="131.24979" rx="6.68779776336299" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_986">
-            <ellipse cx="400.8527" cy="128.34628" rx="6.68779776336299" ry="3.56998776720179" fill="#06aa90"/>
-            <ellipse cx="400.8527" cy="128.34628" rx="6.68779776336299" ry="3.56998776720179" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_985">
-            <ellipse cx="400.88014" cy="125.59071" rx="6.66033349550471" ry="3.32059436366051" fill="#06aa90"/>
-            <ellipse cx="400.88014" cy="125.59071" rx="6.66033349550471" ry="3.32059436366051" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_984">
-            <ellipse cx="400.8527" cy="122.43771" rx="6.68779776336299" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="400.8527" cy="122.43771" rx="6.68779776336299" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-        </g>
-      </g>
-      <g id="Group_990">
-        <g id="Graphic_999">
-          <path d="M 425.2908 79.45031 L 439.88846 56.294056 C 440.43786 55.422535 441.39604 54.89389 442.4263 54.89389 L 472.09364 54.89389 C 473.1239 54.89389 474.08205 55.422535 474.63146 56.294056 L 489.2291 79.45031 C 489.84534 80.42785 489.84534 81.67243 489.2291 82.64998 L 474.63146 105.80623 C 474.08205 106.67775 473.1239 107.20639 472.09364 107.20639 L 442.4263 107.20639 C 441.39604 107.20639 440.43786 106.67775 439.88846 105.80623 L 425.2908 82.64998 C 424.67457 81.67243 424.67457 80.42785 425.2908 79.45031 Z" fill="white"/>
-          <path d="M 425.2908 79.45031 L 439.88846 56.294056 C 440.43786 55.422535 441.39604 54.89389 442.4263 54.89389 L 472.09364 54.89389 C 473.1239 54.89389 474.08205 55.422535 474.63146 56.294056 L 489.2291 79.45031 C 489.84534 80.42785 489.84534 81.67243 489.2291 82.64998 L 474.63146 105.80623 C 474.08205 106.67775 473.1239 107.20639 472.09364 107.20639 L 442.4263 107.20639 C 441.39604 107.20639 440.43786 106.67775 439.88846 105.80623 L 425.2908 82.64998 C 424.67457 81.67243 424.67457 80.42785 425.2908 79.45031 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"/>
-        </g>
-        <g id="Line_998">
-          <line x1="457.18734" y1="86.33226" x2="457.0168" y2="76.773095" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        </g>
-        <g id="Graphic_997">
-          <path d="M 451.0968 61.023095 L 462.9368 61.023095 C 464.04135 61.023095 464.9368 61.918525 464.9368 63.023095 L 464.9368 74.773095 C 464.9368 75.87766 464.04135 76.773095 462.9368 76.773095 L 451.0968 76.773095 C 449.9922 76.773095 449.0968 75.87766 449.0968 74.773095 L 449.0968 63.023095 C 449.0968 61.918525 449.9922 61.023095 451.0968 61.023095 Z" fill="#06aa90"/>
-        </g>
-        <g id="Group_991">
-          <g id="Graphic_996">
-            <rect x="450.6271" y="90.23441" width="13.265717" height="9.065572" fill="#06aa90"/>
-            <rect x="450.6271" y="90.23441" width="13.265717" height="9.065572" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_995">
-            <ellipse cx="457.25996" cy="99.21408" rx="6.68779776336294" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="457.25996" cy="99.21408" rx="6.68779776336294" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_994">
-            <ellipse cx="457.25996" cy="96.31056" rx="6.68779776336294" ry="3.56998776720177" fill="#06aa90"/>
-            <ellipse cx="457.25996" cy="96.31056" rx="6.68779776336294" ry="3.56998776720177" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_993">
-            <ellipse cx="457.2874" cy="93.555" rx="6.66033349550472" ry="3.32059436366051" fill="#06aa90"/>
-            <ellipse cx="457.2874" cy="93.555" rx="6.66033349550472" ry="3.32059436366051" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_992">
-            <ellipse cx="457.25996" cy="90.402" rx="6.68779776336294" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="457.25996" cy="90.402" rx="6.68779776336294" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-        </g>
-      </g>
-      <g id="Group_1010">
-        <g id="Graphic_1019">
-          <path d="M 481.5584 110.69241 L 496.15606 87.53616 C 496.70546 86.66464 497.66364 86.13599 498.6939 86.13599 L 528.36124 86.13599 C 529.3915 86.13599 530.34965 86.66464 530.89906 87.53616 L 545.4967 110.69241 C 546.11295 111.66995 546.11295 112.91454 545.4967 113.89208 L 530.89906 137.04833 C 530.34965 137.91985 529.3915 138.4485 528.36124 138.4485 L 498.6939 138.4485 C 497.66364 138.4485 496.70546 137.91985 496.15606 137.04833 L 481.5584 113.89208 C 480.9422 112.91454 480.9422 111.66995 481.5584 110.69241 Z" fill="white"/>
-          <path d="M 481.5584 110.69241 L 496.15606 87.53616 C 496.70546 86.66464 497.66364 86.13599 498.6939 86.13599 L 528.36124 86.13599 C 529.3915 86.13599 530.34965 86.66464 530.89906 87.53616 L 545.4967 110.69241 C 546.11295 111.66995 546.11295 112.91454 545.4967 113.89208 L 530.89906 137.04833 C 530.34965 137.91985 529.3915 138.4485 528.36124 138.4485 L 498.6939 138.4485 C 497.66364 138.4485 496.70546 137.91985 496.15606 137.04833 L 481.5584 113.89208 C 480.9422 112.91454 480.9422 111.66995 481.5584 110.69241 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"/>
-        </g>
-        <g id="Line_1018">
-          <line x1="513.45494" y1="117.57436" x2="513.2844" y2="108.0152" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        </g>
-        <g id="Graphic_1017">
-          <path d="M 507.3644 92.2652 L 519.2044 92.2652 C 520.30895 92.2652 521.2044 93.16063 521.2044 94.2652 L 521.2044 106.0152 C 521.2044 107.11977 520.30895 108.0152 519.2044 108.0152 L 507.3644 108.0152 C 506.2598 108.0152 505.3644 107.11977 505.3644 106.0152 L 505.3644 94.2652 C 505.3644 93.16063 506.2598 92.2652 507.3644 92.2652 Z" fill="#06aa90"/>
-        </g>
-        <g id="Group_1011">
-          <g id="Graphic_1016">
-            <rect x="506.8947" y="121.47651" width="13.265717" height="9.065572" fill="#06aa90"/>
-            <rect x="506.8947" y="121.47651" width="13.265717" height="9.065572" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1015">
-            <ellipse cx="513.52756" cy="130.45618" rx="6.68779776336294" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="513.52756" cy="130.45618" rx="6.68779776336294" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1014">
-            <ellipse cx="513.52756" cy="127.55267" rx="6.68779776336294" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="513.52756" cy="127.55267" rx="6.68779776336294" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1013">
-            <ellipse cx="513.555" cy="124.7971" rx="6.66033349550474" ry="3.32059436366051" fill="#06aa90"/>
-            <ellipse cx="513.555" cy="124.7971" rx="6.66033349550474" ry="3.32059436366051" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1012">
-            <ellipse cx="513.52756" cy="121.6441" rx="6.68779776336294" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="513.52756" cy="121.6441" rx="6.68779776336294" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-        </g>
-      </g>
-      <g id="Group_1000">
-        <g id="Graphic_1009">
-          <path d="M 537.89585 79.45031 L 552.4935 56.294056 C 553.0429 55.422535 554.0011 54.89389 555.0313 54.89389 L 584.6987 54.89389 C 585.7289 54.89389 586.6871 55.422535 587.2365 56.294056 L 601.83415 79.45031 C 602.4504 80.42785 602.4504 81.67243 601.83415 82.64998 L 587.2365 105.80623 C 586.6871 106.67775 585.7289 107.20639 584.6987 107.20639 L 555.0313 107.20639 C 554.0011 107.20639 553.0429 106.67775 552.4935 105.80623 L 537.89585 82.64998 C 537.2796 81.67243 537.2796 80.42785 537.89585 79.45031 Z" fill="white"/>
-          <path d="M 537.89585 79.45031 L 552.4935 56.294056 C 553.0429 55.422535 554.0011 54.89389 555.0313 54.89389 L 584.6987 54.89389 C 585.7289 54.89389 586.6871 55.422535 587.2365 56.294056 L 601.83415 79.45031 C 602.4504 80.42785 602.4504 81.67243 601.83415 82.64998 L 587.2365 105.80623 C 586.6871 106.67775 585.7289 107.20639 584.6987 107.20639 L 555.0313 107.20639 C 554.0011 107.20639 553.0429 106.67775 552.4935 105.80623 L 537.89585 82.64998 C 537.2796 81.67243 537.2796 80.42785 537.89585 79.45031 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"/>
-        </g>
-        <g id="Line_1008">
-          <line x1="569.7924" y1="86.33226" x2="569.6218" y2="76.773095" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        </g>
-        <g id="Graphic_1007">
-          <path d="M 563.7018 61.023095 L 575.5418 61.023095 C 576.6464 61.023095 577.5418 61.918525 577.5418 63.023095 L 577.5418 74.773095 C 577.5418 75.87766 576.6464 76.773095 575.5418 76.773095 L 563.7018 76.773095 C 562.59725 76.773095 561.7018 75.87766 561.7018 74.773095 L 561.7018 63.023095 C 561.7018 61.918525 562.59725 61.023095 563.7018 61.023095 Z" fill="#06aa90"/>
-        </g>
-        <g id="Group_1001">
-          <g id="Graphic_1006">
-            <rect x="563.23214" y="90.23441" width="13.265717" height="9.065572" fill="#06aa90"/>
-            <rect x="563.23214" y="90.23441" width="13.265717" height="9.065572" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1005">
-            <ellipse cx="569.865" cy="99.21408" rx="6.68779776336293" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="569.865" cy="99.21408" rx="6.68779776336293" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1004">
-            <ellipse cx="569.865" cy="96.31056" rx="6.68779776336293" ry="3.56998776720179" fill="#06aa90"/>
-            <ellipse cx="569.865" cy="96.31056" rx="6.68779776336293" ry="3.56998776720179" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1003">
-            <ellipse cx="569.89246" cy="93.555" rx="6.66033349550465" ry="3.32059436366052" fill="#06aa90"/>
-            <ellipse cx="569.89246" cy="93.555" rx="6.66033349550465" ry="3.32059436366052" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
-          <g id="Graphic_1002">
-            <ellipse cx="569.865" cy="90.402" rx="6.68779776336293" ry="3.56998776720178" fill="#06aa90"/>
-            <ellipse cx="569.865" cy="90.402" rx="6.68779776336293" ry="3.56998776720178" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          </g>
+          <line x1="571.2477" y1="200.50347" x2="571.2477" y2="189.3334" stroke="#9dbedd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
         </g>
       </g>
       <g id="Group_1031">
         <g id="Graphic_1028">
-          <rect x="307.0797" y=".47405247" width="65.95536" height="52.53582" fill="white"/>
-          <rect x="307.0797" y=".47405247" width="65.95536" height="52.53582" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          <rect x="308.25" y="52.49399" width="52.48325" height="40.719307" fill="white"/>
+          <rect x="308.25" y="52.49399" width="52.48325" height="40.719307" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
         </g>
         <g id="Graphic_1021">
           <title>icon-cogs</title>
-          <path d="M 349.5453 18.054236 C 349.5453 18.730574 349.75435 19.294189 350.17665 19.74959 C 350.5948 20.20499 351.10908 20.430436 351.707 20.430436 C 352.3342 20.430436 352.86103 20.20499 353.2875 19.74959 C 353.714 19.294189 353.92725 18.7441 353.92725 18.099325 C 353.92725 17.422987 353.7182 16.854864 353.29588 16.394954 C 352.87775 15.930535 352.35928 15.70509 351.74463 15.70509 C 351.11744 15.70509 350.5948 15.930535 350.17665 16.394954 C 349.75435 16.854864 349.5453 17.40946 349.5453 18.054236 M 348.5627 36.166563 C 348.5627 36.874464 348.79266 37.483168 349.25678 38.001693 C 349.7167 38.52022 350.277 38.777227 350.946 38.777227 C 351.5983 38.777227 352.16276 38.529237 352.6394 38.037765 C 353.1119 37.532766 353.35024 36.919553 353.35024 36.166563 C 353.35024 35.458663 353.1161 34.863486 352.65615 34.362996 C 352.1962 33.867015 351.62755 33.619024 350.946 33.619024 C 350.29373 33.619024 349.72926 33.867015 349.26514 34.362996 C 348.79684 34.863486 348.5627 35.458663 348.5627 36.166563 M 357.05066 20.04267 C 356.87504 20.561195 356.67016 21.012087 356.42765 21.399854 C 356.4569 21.46298 356.51127 21.575702 356.5907 21.756058 C 356.67016 21.936415 356.76215 22.1303 356.8625 22.342218 C 356.95867 22.549628 357.0423 22.739003 357.11337 22.91485 C 357.1761 23.08168 357.20954 23.189895 357.20954 23.216948 C 357.20954 23.302618 357.059 23.469448 356.76215 23.721947 C 356.4611 23.974447 356.1266 24.235964 355.75864 24.50199 C 355.3907 24.763507 355.04783 25.00248 354.73005 25.2144 C 354.4081 25.42181 354.23666 25.521006 354.2074 25.521006 C 354.1572 25.521006 354.06105 25.45788 353.92725 25.318104 C 353.79763 25.182837 353.6513 25.029534 353.4966 24.853686 C 353.34605 24.686856 353.20807 24.515517 353.0868 24.348687 C 352.96556 24.181857 352.88193 24.069134 352.82758 24.015027 C 352.6394 24.069134 352.45126 24.114223 352.25474 24.145785 C 352.0624 24.17284 351.8659 24.17284 351.6652 24.145785 L 351.38504 24.145785 C 351.33487 24.199893 351.25124 24.321633 351.1467 24.50199 C 351.038 24.677838 350.9251 24.867213 350.7955 25.061096 C 350.67004 25.25498 350.5446 25.426318 350.42335 25.566095 C 350.30627 25.71038 350.21847 25.787032 350.1641 25.787032 C 350.11394 25.787032 349.90905 25.70587 349.5662 25.54806 C 349.21914 25.390247 348.85537 25.20538 348.4749 24.993462 C 348.0944 24.786052 347.74734 24.578642 347.43374 24.366723 C 347.12015 24.159312 346.96126 24.015027 346.96126 23.929357 C 346.96126 23.902304 346.98217 23.79409 347.0198 23.613733 C 347.0616 23.433376 347.11597 23.239493 347.18287 23.0411 C 347.24977 22.842708 347.3083 22.644315 347.36266 22.450432 C 347.417 22.256548 347.45465 22.1303 347.4839 22.071683 C 347.1787 21.738023 346.92363 21.314184 346.72293 20.795659 C 346.0163 20.768605 345.51454 20.732534 345.22185 20.687445 C 344.92917 20.642355 344.73265 20.511597 344.64066 20.29066 C 344.54867 20.065214 344.51522 19.690974 344.5403 19.154412 C 344.56958 18.626869 344.5403 17.842317 344.46086 16.805265 C 344.46086 16.715087 344.5445 16.633927 344.71174 16.543748 C 344.879 16.458079 345.0755 16.390445 345.3013 16.32732 C 345.5271 16.268704 345.75288 16.232633 345.9745 16.20107 C 346.1919 16.169508 346.34243 16.142454 346.42188 16.110892 C 346.55568 15.641964 346.76056 15.177546 347.0407 14.735672 C 347.0156 14.672547 346.96126 14.550806 346.8818 14.356923 C 346.80237 14.163039 346.71875 13.964647 346.63094 13.761745 C 346.5473 13.558844 346.46787 13.378487 346.40515 13.211657 C 346.33407 13.044827 346.3048 12.932104 346.3048 12.877997 C 346.3048 12.787819 346.44697 12.630007 346.7313 12.391034 C 347.0198 12.152061 347.34594 11.899562 347.7139 11.633535 C 348.07766 11.372018 348.4247 11.133045 348.74666 10.934653 C 349.06444 10.731752 349.2526 10.632555 349.30277 10.632555 C 349.35713 10.632555 349.44493 10.69568 349.5662 10.82193 C 349.68327 10.957198 349.82125 11.110501 349.97595 11.290858 C 350.13066 11.466705 350.26446 11.638044 350.3857 11.795857 C 350.5028 11.953669 350.5906 12.061883 350.64496 12.120499 C 350.8331 12.061883 351.02545 12.021303 351.2136 11.98974 C 351.41013 11.958178 351.60665 11.958178 351.80735 11.98974 L 352.0875 11.98974 C 352.1126 11.935633 352.18784 11.813892 352.3091 11.633535 C 352.42618 11.453179 352.5516 11.272822 352.67705 11.083447 C 352.8025 10.894073 352.91956 10.727243 353.02828 10.578448 C 353.1328 10.429654 353.21225 10.348494 353.2666 10.348494 C 353.32097 10.348494 353.52167 10.434163 353.8687 10.600993 C 354.21576 10.763314 354.5879 10.952689 354.98093 11.160099 C 355.37397 11.372018 355.72938 11.57041 356.0388 11.773312 C 356.3524 11.976213 356.51127 12.120499 356.51127 12.206168 C 356.51127 12.264784 356.4862 12.372998 356.42765 12.539828 C 356.37747 12.706658 356.3231 12.891524 356.26876 13.103443 C 356.2186 13.310853 356.16005 13.509246 356.1015 13.694111 C 356.0388 13.883486 355.99698 14.005227 355.9719 14.063843 C 356.2395 14.424556 356.49873 14.857413 356.7496 15.357903 C 357.43115 15.416518 357.92454 15.466117 358.23395 15.511206 C 358.5392 15.551786 358.73152 15.687054 358.81097 15.903482 C 358.8904 16.133437 358.92804 16.503168 358.9113 17.030711 C 358.89877 17.558255 358.9197 18.324771 358.97404 19.33026 C 358.97404 19.41593 358.8904 19.506108 358.72316 19.600795 C 358.5559 19.690974 358.36357 19.772134 358.1545 19.82624 C 357.9371 19.884857 357.72384 19.929946 357.50223 19.957 C 357.28063 19.984053 357.1301 20.015616 357.05066 20.04267 M 357.01302 37.420043 C 356.89177 37.96562 356.73706 38.47513 356.5489 38.953075 C 356.57817 39.034236 356.65344 39.17401 356.77887 39.34986 C 356.9085 39.530217 357.03393 39.72861 357.151 39.93602 C 357.27226 40.13892 357.3768 40.337313 357.47296 40.52669 C 357.56495 40.711554 357.61095 40.84682 357.61095 40.914455 C 357.61095 40.97307 357.4855 41.1399 357.243 41.423963 C 356.9963 41.703516 356.7078 42.001104 356.38165 42.30771 C 356.0555 42.614317 355.73774 42.907397 355.44087 43.17793 C 355.1398 43.452976 354.94748 43.64235 354.86803 43.741547 L 354.70915 43.831725 C 354.6548 43.831725 354.54608 43.7686 354.37883 43.64686 C 354.21158 43.52061 354.04014 43.380834 353.8687 43.22302 C 353.6973 43.06521 353.52585 42.911906 353.3586 42.758603 C 353.19135 42.6053 353.08263 42.506103 353.02828 42.447487 C 352.5349 42.618826 352.01223 42.758603 351.4645 42.8578 C 351.4394 42.94347 351.37668 43.10128 351.28887 43.32222 C 351.1927 43.543155 351.08817 43.76409 350.97528 43.98052 C 350.8624 44.19695 350.75367 44.39534 350.64496 44.57119 C 350.54042 44.756054 350.44426 44.841723 350.3648 44.841723 C 350.28537 44.841723 350.0512 44.792125 349.66654 44.6794 C 349.2777 44.57119 348.85956 44.44043 348.41216 44.27811 C 347.96895 44.120296 347.56754 43.953466 347.21214 43.77311 C 346.85673 43.592753 346.6811 43.43494 346.6811 43.290655 C 346.6811 42.956995 346.71457 42.614317 346.78147 42.26262 C 346.84837 41.910926 346.9111 41.577266 346.96126 41.257133 C 346.748 41.085794 346.55986 40.89642 346.3926 40.68901 C 346.22536 40.4816 346.07483 40.26066 345.94103 40.030707 C 345.6358 40.06227 345.33057 40.080305 345.0295 40.09834 C 344.73265 40.111867 344.4316 40.116376 344.1431 40.116376 L 343.8504 40.116376 C 343.7626 40.116376 343.70824 40.035216 343.67897 39.877404 C 343.6539 39.76017 343.59952 39.50767 343.52008 39.110887 C 343.44064 38.714103 343.34865 38.29928 343.2483 37.861917 C 343.14795 37.420043 343.06432 37.02326 343.0016 36.662544 C 342.93052 36.30183 342.90125 36.09442 342.90125 36.035805 C 342.90125 35.950135 342.98906 35.85545 343.16885 35.75625 C 343.34865 35.657055 343.5577 35.55335 343.79186 35.440627 C 344.02183 35.332413 344.2476 35.246744 344.46086 35.1746 C 344.6741 35.10246 344.82045 35.05286 344.8999 35.025807 C 344.95425 34.687638 345.01697 34.412594 345.09224 34.17813 C 345.1633 33.948175 345.26785 33.686658 345.40165 33.38005 C 345.3473 33.325944 345.26367 33.199695 345.1424 33.01483 C 345.02115 32.825454 344.8999 32.627062 344.77028 32.42416 C 344.64484 32.21675 344.53195 32.01385 344.43996 31.819965 C 344.34797 31.626082 344.30198 31.495323 344.30198 31.441216 C 344.30198 31.3826 344.42323 31.21126 344.66993 30.9272 C 344.91662 30.652155 345.20513 30.359076 345.53127 30.04796 C 345.8574 29.741354 346.171 29.448274 346.47205 29.186757 C 346.7731 28.91622 346.96126 28.740374 347.0407 28.659213 L 347.20377 28.569035 C 347.25813 28.569035 347.36684 28.63216 347.5341 28.7539 C 347.70135 28.871133 347.8686 29.015418 348.0442 29.17323 C 348.21564 29.331042 348.38707 29.484345 348.55432 29.63314 C 348.72157 29.790952 348.8303 29.890148 348.88464 29.953273 C 349.35295 29.777425 349.85888 29.642158 350.40662 29.538453 C 350.4317 29.452783 350.49443 29.29948 350.5864 29.074034 C 350.6784 28.853097 350.7871 28.63216 350.91674 28.42024 C 351.04218 28.199304 351.15925 28.00542 351.26796 27.820554 C 351.3725 27.644707 351.4645 27.554528 351.5481 27.554528 C 351.5983 27.554528 351.82407 27.604126 352.22966 27.70783 C 352.62688 27.80252 353.0492 27.937786 353.4966 28.104616 C 353.94397 28.271446 354.34956 28.438276 354.70915 28.614124 C 355.06874 28.785463 355.24853 28.947784 355.24853 29.105596 C 355.24853 29.439256 355.2109 29.777425 355.1398 30.124612 C 355.06455 30.46729 355.00184 30.80546 354.94748 31.13461 C 355.16072 31.30595 355.35306 31.499832 355.5203 31.707243 C 355.68756 31.914653 355.8381 32.13559 355.9719 32.365545 C 356.3022 32.33849 356.63253 32.315947 356.95867 32.30242 C 357.289 32.284384 357.60676 32.279875 357.912 32.279875 C 358.01653 32.279875 358.1378 32.46925 358.2716 32.852508 C 358.4054 33.235766 358.52246 33.668622 358.6228 34.160094 C 358.72316 34.647058 358.8068 35.111476 358.8737 35.55335 C 358.9406 35.990715 358.97404 36.274777 358.97404 36.401027 C 358.97404 36.491205 358.88205 36.581384 358.70226 36.68509 C 358.52246 36.784285 358.32594 36.878973 358.1127 36.960133 C 357.89945 37.05031 357.68203 37.14049 357.4604 37.235177 C 357.243 37.325355 357.09247 37.38848 357.01302 37.420043 M 332.6488 28.785463 C 333.14636 28.785463 333.61048 28.681758 334.0495 28.483365 C 334.49273 28.280464 334.8774 28.00542 335.20354 27.653724 C 335.5297 27.30203 335.78474 26.887208 335.9729 26.413772 C 336.16105 25.935826 336.25304 25.435336 336.25304 24.898775 C 336.25304 24.366723 336.16105 23.857215 335.9729 23.37927 C 335.78474 22.896815 335.5297 22.472977 335.20354 22.12128 C 334.8774 21.769585 334.49273 21.49454 334.0495 21.282622 C 333.61048 21.075212 333.14636 20.966998 332.6488 20.966998 C 331.63692 20.966998 330.7756 21.350256 330.06895 22.112263 C 329.3623 22.87427 329.0069 23.803108 329.0069 24.898775 C 329.0069 25.435336 329.10307 25.935826 329.2996 26.413772 C 329.49193 26.887208 329.75117 27.30203 330.0773 27.653724 C 330.40345 28.00542 330.7923 28.280464 331.2397 28.483365 C 331.6871 28.681758 332.1554 28.785463 332.6488 28.785463 M 340.55974 20.173428 C 340.86498 20.732534 341.1242 21.395345 341.33746 22.157352 C 341.47126 22.184406 341.71795 22.220477 342.07754 22.265566 C 342.43713 22.306147 342.80926 22.369271 343.18976 22.450432 C 343.57025 22.527084 343.90894 22.612753 344.21 22.693914 C 344.51104 22.784092 344.66156 22.883288 344.66156 23.00052 L 344.66156 26.84212 C 344.66156 26.981895 344.51104 27.108145 344.21 27.193815 C 343.90894 27.29301 343.57025 27.369663 343.18976 27.446314 C 342.80926 27.518457 342.43295 27.568055 342.05664 27.59511 C 341.6845 27.62667 341.442 27.653724 341.33746 27.685287 C 341.1493 28.30301 340.9068 28.934257 340.59737 29.58354 C 340.9068 30.029925 341.19948 30.46278 341.488 30.89113 C 341.7765 31.310458 342.09845 31.734296 342.45804 32.153625 L 342.49985 32.365545 C 342.49985 32.451214 342.36187 32.667642 342.0901 33.01483 C 341.81412 33.362016 341.49635 33.72273 341.13676 34.105987 C 340.77717 34.489245 340.4385 34.822905 340.12907 35.120494 C 339.8113 35.413574 339.61478 35.56237 339.53533 35.56237 C 339.51025 35.56237 339.37226 35.46317 339.12557 35.26929 C 338.87887 35.075405 338.6071 34.85447 338.30604 34.60197 C 338.005 34.34947 337.72484 34.119514 337.4656 33.898577 C 337.2022 33.686658 337.03494 33.542373 336.9555 33.46572 C 336.3534 33.79938 335.768 34.065407 335.191 34.26831 C 335.191 34.412594 335.1701 34.67862 335.13246 35.06188 C 335.09065 35.454154 335.04047 35.859957 334.97357 36.283795 C 334.90667 36.712143 334.82305 37.086383 334.7227 37.406516 C 334.62235 37.73116 334.5178 37.89348 334.4133 37.89348 L 330.85084 37.89348 C 330.74213 37.89348 330.6418 37.73116 330.54143 37.406516 C 330.44108 37.086383 330.36164 36.712143 330.30728 36.283795 C 330.2571 35.859957 330.20693 35.454154 330.1693 35.075405 C 330.1275 34.692147 330.11076 34.42612 330.11076 34.26831 C 329.50866 34.09697 328.9191 33.826434 328.34627 33.46572 C 327.93232 33.79938 327.52256 34.13304 327.11697 34.47121 C 326.7114 34.813888 326.31 35.156565 325.9253 35.51728 L 325.7246 35.56237 C 325.67444 35.56237 325.49046 35.413574 325.1727 35.120494 C 324.8591 34.822905 324.53295 34.489245 324.19427 34.105987 C 323.8514 33.72273 323.54617 33.362016 323.2744 33.01483 C 322.99843 32.667642 322.86463 32.451214 322.86463 32.365545 C 322.86463 32.33849 322.94825 32.189697 323.12386 31.92367 C 323.2953 31.662153 323.496 31.369074 323.71342 31.062467 C 323.93503 30.75135 324.1399 30.453763 324.33225 30.17421 C 324.52877 29.894657 324.65003 29.7143 324.7044 29.624122 C 324.39497 29.01091 324.13573 28.330062 323.9225 27.59511 C 323.7887 27.568055 323.542 27.531984 323.1824 27.486894 C 322.8228 27.446314 322.45486 27.396716 322.0702 27.3381 C 321.6897 27.279484 321.351 27.202833 321.04996 27.112654 C 320.7489 27.017967 320.60256 26.914262 320.60256 26.79703 L 320.60256 22.91485 C 320.60256 22.802128 320.7489 22.684896 321.04996 22.58119 C 321.351 22.468468 321.69805 22.387307 322.0911 22.32869 C 322.48413 22.274584 322.86463 22.220477 323.2242 22.179897 C 323.5838 22.134808 323.8305 22.112263 323.9643 22.112263 C 324.1232 21.408872 324.3699 20.777623 324.7044 20.214008 C 324.39497 19.772134 324.0939 19.325751 323.79287 18.888386 C 323.496 18.45102 323.1824 18.018165 322.86463 17.603344 L 322.7852 17.386916 C 322.7852 17.301247 322.919 17.089327 323.19077 16.751158 C 323.46673 16.41299 323.78032 16.056785 324.13155 15.673527 C 324.48696 15.290269 324.82146 14.9521 325.13505 14.654511 C 325.44865 14.36594 325.64517 14.212637 325.7246 14.212637 C 325.7539 14.212637 325.8877 14.307324 326.13438 14.496699 C 326.38107 14.681565 326.65703 14.902502 326.9581 15.150492 C 327.25496 15.402992 327.54346 15.650982 327.81524 15.889955 C 328.0912 16.124419 328.25428 16.268704 328.30445 16.32732 C 328.88147 15.966607 329.48357 15.70509 330.11076 15.529241 C 330.11076 15.416518 330.1275 15.145983 330.1693 14.735672 C 330.20693 14.316342 330.2571 13.901522 330.30728 13.49121 C 330.36164 13.07639 330.4327 12.706658 330.52052 12.36849 C 330.60415 12.03032 330.71704 11.86349 330.85084 11.86349 L 334.4133 11.86349 C 334.5178 11.86349 334.62235 12.03032 334.7227 12.36849 C 334.82305 12.706658 334.8983 13.07639 334.95267 13.49121 C 335.00702 13.901522 335.053 14.316342 335.09065 14.735672 C 335.13246 15.145983 335.1659 15.416518 335.191 15.529241 C 335.7931 15.70509 336.36593 15.957589 336.91368 16.28223 C 337.32762 15.957589 337.74575 15.628438 338.16388 15.308304 C 338.5862 14.979153 338.99177 14.645493 339.37644 14.302815 L 339.53533 14.212637 C 339.5897 14.212637 339.77367 14.37045 340.08726 14.677056 C 340.40086 14.988171 340.73118 15.32634 341.0782 15.696071 C 341.42527 16.061294 341.74304 16.41299 342.02737 16.751158 C 342.31587 17.089327 342.45804 17.301247 342.45804 17.386916 C 342.45804 17.445532 342.37023 17.603344 342.19044 17.87388 C 342.00646 18.139905 341.80576 18.423967 341.58833 18.735083 C 341.36673 19.046198 341.1535 19.339278 340.9486 19.62334 C 340.73954 19.902893 340.6099 20.08325 340.55974 20.173428" fill="#095aaa"/>
+          <path d="M 342.04153 66.11999 C 342.04153 66.6442 342.2079 67.08105 342.54394 67.43402 C 342.87665 67.78699 343.2859 67.96173 343.7617 67.96173 C 344.26077 67.96173 344.68 67.78699 345.01937 67.43402 C 345.35874 67.08105 345.52843 66.65469 345.52843 66.154936 C 345.52843 65.63072 345.36207 65.19038 345.02602 64.83392 C 344.6933 64.47396 344.28073 64.29922 343.79163 64.29922 C 343.29255 64.29922 342.87665 64.47396 342.54394 64.83392 C 342.2079 65.19038 342.04153 65.62024 342.04153 66.11999 M 341.25964 80.15844 C 341.25964 80.70711 341.44263 81.17891 341.81195 81.5808 C 342.17794 81.9827 342.6238 82.1819 343.15614 82.1819 C 343.6752 82.1819 344.12435 81.98969 344.50365 81.60876 C 344.87963 81.21735 345.06928 80.74206 345.06928 80.15844 C 345.06928 79.60976 344.88295 79.14845 344.51696 78.76053 C 344.15097 78.37611 343.69847 78.1839 343.15614 78.1839 C 342.6371 78.1839 342.18793 78.37611 341.8186 78.76053 C 341.44596 79.14845 341.25964 79.60976 341.25964 80.15844 M 348.01385 67.66118 C 347.8741 68.063074 347.71107 68.41255 347.5181 68.7131 C 347.5414 68.76203 347.58464 68.849395 347.64785 68.989186 C 347.71107 69.12898 347.78427 69.27925 347.86412 69.443504 C 347.94065 69.60426 348.0072 69.75104 348.06375 69.88734 C 348.11366 70.016645 348.14028 70.10052 348.14028 70.12149 C 348.14028 70.18789 348.0205 70.317194 347.78427 70.5129 C 347.5447 70.70861 347.27854 70.9113 346.98574 71.11749 C 346.69295 71.32019 346.4201 71.50541 346.16725 71.66967 C 345.91106 71.830425 345.77464 71.90731 345.75135 71.90731 C 345.71143 71.90731 345.6349 71.85838 345.52843 71.750046 C 345.4253 71.6452 345.30884 71.52638 345.18573 71.390085 C 345.06595 71.26078 344.95615 71.12798 344.85966 70.99867 C 344.76318 70.86937 344.69663 70.782 344.65338 70.74006 C 344.50365 70.782 344.35393 70.816945 344.19755 70.84141 C 344.0445 70.86238 343.88812 70.86238 343.7284 70.84141 L 343.5055 70.84141 C 343.46557 70.883345 343.39902 70.9777 343.31584 71.11749 C 343.22934 71.25379 343.1395 71.40057 343.03636 71.550844 C 342.93654 71.70112 342.83673 71.83392 342.74024 71.94226 C 342.64708 72.05409 342.5772 72.1135 342.53395 72.1135 C 342.49403 72.1135 342.331 72.050595 342.05816 71.92828 C 341.782 71.80596 341.49254 71.66268 341.18977 71.49842 C 340.887 71.33766 340.61083 71.176905 340.3613 71.01265 C 340.11176 70.85189 339.98532 70.74006 339.98532 70.67366 C 339.98532 70.65269 340.00196 70.56882 340.0319 70.42903 C 340.06517 70.28924 340.10843 70.13896 340.16166 69.98519 C 340.2149 69.83142 340.26148 69.67765 340.30473 69.52738 C 340.348 69.3771 340.37793 69.27925 340.40122 69.23382 C 340.15834 68.97521 339.95538 68.6467 339.79567 68.2448 C 339.23338 68.22383 338.8341 68.195875 338.6012 68.16093 C 338.3683 68.12598 338.21193 68.02463 338.13873 67.85339 C 338.06553 67.67865 338.0389 67.388586 338.05888 66.97271 C 338.08217 66.56382 338.05888 65.955734 337.99566 65.15194 C 337.99566 65.082045 338.0622 65.01914 338.1953 64.94924 C 338.32838 64.88284 338.48476 64.83042 338.66442 64.781495 C 338.8441 64.73606 339.02376 64.708105 339.2001 64.68364 C 339.3731 64.65918 339.4929 64.63821 339.5561 64.61375 C 339.6626 64.25029 339.8256 63.89033 340.04854 63.547845 C 340.02858 63.49892 339.98532 63.40456 339.9221 63.254285 C 339.8589 63.10401 339.79234 62.95024 339.72247 62.79298 C 339.65593 62.63571 339.5927 62.49592 339.5428 62.36662 C 339.48624 62.23731 339.46295 62.14994 339.46295 62.108004 C 339.46295 62.03811 339.57608 61.91579 339.80233 61.73057 C 340.0319 61.54535 340.29142 61.34964 340.5842 61.14345 C 340.8737 60.940755 341.14984 60.75553 341.40603 60.60176 C 341.6589 60.4445 341.80863 60.367614 341.84855 60.367614 C 341.8918 60.367614 341.96168 60.41654 342.05816 60.514394 C 342.15133 60.61924 342.26112 60.73806 342.38423 60.87785 C 342.50734 61.014145 342.6138 61.146945 342.7103 61.26926 C 342.80346 61.39158 342.87333 61.47545 342.9166 61.520885 C 343.0663 61.47545 343.21936 61.444 343.3691 61.41954 C 343.52546 61.39507 343.68184 61.39507 343.84154 61.41954 L 344.06446 61.41954 C 344.08443 61.3776 344.1443 61.28324 344.2408 61.14345 C 344.33397 61.00366 344.4338 60.86387 344.5336 60.71709 C 344.6334 60.57031 344.72658 60.441004 344.8131 60.32568 C 344.89626 60.21035 344.9595 60.147444 345.00273 60.147444 C 345.046 60.147444 345.2057 60.213845 345.48185 60.34315 C 345.758 60.46896 346.05413 60.61574 346.3669 60.7765 C 346.67964 60.940755 346.96245 61.094524 347.20866 61.25179 C 347.4582 61.40905 347.58464 61.520885 347.58464 61.587285 C 347.58464 61.63272 347.56467 61.71659 347.5181 61.8459 C 347.47817 61.9752 347.4349 62.11849 347.39166 62.28274 C 347.35173 62.4435 347.30515 62.59727 347.25857 62.740556 C 347.20866 62.887336 347.1754 62.981694 347.15543 63.027126 C 347.36837 63.30671 347.57466 63.6422 347.7743 64.03012 C 348.3166 64.075554 348.70923 64.114 348.95544 64.14894 C 349.19833 64.1804 349.35138 64.28524 349.4146 64.45299 C 349.4778 64.63122 349.50776 64.91779 349.49445 65.32668 C 349.48447 65.735565 349.5011 66.32967 349.54436 67.109005 C 349.54436 67.175405 349.4778 67.2453 349.34472 67.31869 C 349.21164 67.388586 349.0586 67.45149 348.89223 67.49343 C 348.7192 67.53886 348.54952 67.57381 348.3732 67.59478 C 348.19684 67.615745 348.07706 67.64021 348.01385 67.66118 M 347.9839 81.12998 C 347.8874 81.55285 347.7643 81.94775 347.6146 82.3182 C 347.63787 82.3811 347.69776 82.48944 347.79758 82.62574 C 347.90072 82.76553 348.00054 82.9193 348.0937 83.08006 C 348.1902 83.23732 348.27337 83.39109 348.3499 83.53787 C 348.4231 83.68115 348.4597 83.786 348.4597 83.83842 C 348.4597 83.88385 348.35987 84.01316 348.1669 84.23333 C 347.9706 84.45 347.741 84.68066 347.4815 84.9183 C 347.22197 85.15594 346.9691 85.3831 346.73288 85.59279 C 346.4933 85.80597 346.34027 85.95275 346.27705 86.02963 L 346.1506 86.09953 C 346.10736 86.09953 346.02086 86.0506 345.88777 85.95624 C 345.7547 85.85839 345.61826 85.75005 345.48185 85.62774 C 345.34543 85.50542 345.209 85.3866 345.07593 85.26778 C 344.94284 85.14895 344.85634 85.07207 344.8131 85.02664 C 344.42047 85.15944 344.00457 85.26778 343.5687 85.34466 C 343.54875 85.41106 343.49884 85.53338 343.42897 85.70462 C 343.35244 85.87586 343.26926 86.04711 343.17943 86.21485 C 343.0896 86.3826 343.0031 86.53637 342.9166 86.67267 C 342.8334 86.81595 342.75688 86.88235 342.69366 86.88235 C 342.63044 86.88235 342.4441 86.84391 342.138 86.75654 C 341.8286 86.67267 341.49587 86.57132 341.13986 86.44551 C 340.78718 86.32319 340.46777 86.19389 340.18495 86.0541 C 339.90214 85.91431 339.7624 85.79199 339.7624 85.68016 C 339.7624 85.42154 339.789 85.15594 339.84225 84.88335 C 339.8955 84.61076 339.9454 84.35215 339.98532 84.10402 C 339.81563 83.97122 339.6659 83.82444 339.53282 83.66368 C 339.39974 83.50292 339.27996 83.33168 339.1735 83.15345 C 338.9306 83.17791 338.6877 83.19189 338.44816 83.20587 C 338.21193 83.21635 337.97237 83.21985 337.7428 83.21985 L 337.5099 83.21985 C 337.44 83.21985 337.39676 83.15694 337.37347 83.03462 C 337.3535 82.94376 337.31026 82.74805 337.24704 82.44051 C 337.18382 82.13298 337.11062 81.81146 337.03077 81.47247 C 336.9509 81.12998 336.88437 80.82244 336.83447 80.54286 C 336.7779 80.26328 336.7546 80.10252 336.7546 80.05709 C 336.7546 79.99069 336.8245 79.9173 336.96755 79.84041 C 337.11062 79.76353 337.277 79.68315 337.4633 79.59578 C 337.6463 79.51191 337.82597 79.44551 337.99566 79.38959 C 338.16535 79.33367 338.2818 79.29523 338.345 79.27426 C 338.38827 79.01216 338.43818 78.79898 338.49806 78.61725 C 338.55463 78.439015 338.6378 78.23632 338.74428 77.99868 C 338.70102 77.95674 338.6345 77.858885 338.538 77.7156 C 338.4415 77.56882 338.345 77.41505 338.24187 77.25779 C 338.14205 77.09703 338.05222 76.93976 337.97902 76.78949 C 337.90582 76.63921 337.86922 76.53787 337.86922 76.49593 C 337.86922 76.4505 337.9657 76.3177 338.162 76.09753 C 338.35832 75.88435 338.5879 75.65719 338.84742 75.41605 C 339.10694 75.178405 339.3565 74.951245 339.59604 74.74855 C 339.8356 74.53886 339.98532 74.40257 340.04854 74.33966 L 340.1783 74.26977 C 340.22155 74.26977 340.30806 74.31869 340.44115 74.41305 C 340.57424 74.50392 340.70732 74.61575 340.84707 74.738065 C 340.9835 74.86038 341.1199 74.9792 341.253 75.09453 C 341.38607 75.21685 341.47258 75.29373 341.51583 75.34266 C 341.88848 75.20636 342.29107 75.10152 342.72693 75.02114 C 342.7469 74.95474 342.7968 74.83592 342.87 74.66118 C 342.9432 74.48994 343.0297 74.31869 343.13285 74.15444 C 343.23266 73.9832 343.32583 73.83292 343.41233 73.68964 C 343.4955 73.55334 343.5687 73.48345 343.63526 73.48345 C 343.6752 73.48345 343.85485 73.52189 344.1776 73.60227 C 344.49367 73.67566 344.8297 73.7805 345.18573 73.90981 C 345.54174 74.03911 345.86448 74.16842 346.1506 74.304715 C 346.43675 74.43752 346.57982 74.56333 346.57982 74.68564 C 346.57982 74.94426 346.5499 75.20636 346.4933 75.47546 C 346.43343 75.74106 346.3835 76.00317 346.34027 76.258285 C 346.50995 76.39109 346.663 76.54136 346.7961 76.70212 C 346.9292 76.86288 347.04896 77.03412 347.15543 77.21235 C 347.41828 77.19139 347.68113 77.17391 347.94065 77.16343 C 348.2035 77.14945 348.45636 77.14595 348.69925 77.14595 C 348.78243 77.14595 348.8789 77.29273 348.9854 77.58979 C 349.09186 77.88684 349.185 78.22234 349.26487 78.60327 C 349.34472 78.9807 349.41127 79.34066 349.4645 79.68315 C 349.51774 80.02214 349.54436 80.24231 349.54436 80.34016 C 349.54436 80.41006 349.47116 80.47995 349.3281 80.56033 C 349.185 80.63722 349.02864 80.71061 348.85895 80.77351 C 348.68927 80.84341 348.51625 80.9133 348.3399 80.98669 C 348.1669 81.05659 348.0471 81.10552 347.9839 81.12998 M 328.59633 74.43752 C 328.99227 74.43752 329.3616 74.35714 329.71094 74.20337 C 330.06362 74.0461 330.36972 73.83292 330.62925 73.56033 C 330.88877 73.28774 331.09173 72.96622 331.24145 72.59927 C 331.39117 72.22883 331.46437 71.84091 331.46437 71.42503 C 331.46437 71.01265 331.39117 70.61774 331.24145 70.2473 C 331.09173 69.87336 330.88877 69.54485 330.62925 69.27226 C 330.36972 68.99967 330.06362 68.78649 329.71094 68.622236 C 329.3616 68.46148 328.99227 68.3776 328.59633 68.3776 C 327.79115 68.3776 327.10575 68.67466 326.54345 69.26527 C 325.98115 69.85589 325.69834 70.57581 325.69834 71.42503 C 325.69834 71.84091 325.77487 72.22883 325.93125 72.59927 C 326.0843 72.96622 326.2906 73.28774 326.5501 73.56033 C 326.80962 73.83292 327.11905 74.0461 327.47506 74.20337 C 327.83107 74.35714 328.20372 74.43752 328.59633 74.43752 M 334.8914 67.762525 C 335.13427 68.195875 335.34056 68.709605 335.51024 69.30022 C 335.6167 69.32119 335.813 69.349146 336.09916 69.38409 C 336.3853 69.41555 336.6814 69.46447 336.9842 69.52738 C 337.28697 69.58679 337.55647 69.65319 337.79603 69.716096 C 338.0356 69.78599 338.15536 69.862875 338.15536 69.95374 L 338.15536 72.93127 C 338.15536 73.03961 338.0356 73.137465 337.79603 73.203865 C 337.55647 73.28075 337.28697 73.34016 336.9842 73.39957 C 336.6814 73.45549 336.38197 73.49393 336.08252 73.5149 C 335.7864 73.53936 335.59342 73.56033 335.51024 73.58479 C 335.3605 74.06358 335.16754 74.55284 334.92133 75.05609 C 335.16754 75.40207 335.40045 75.73757 335.63002 76.06957 C 335.8596 76.39458 336.1158 76.72309 336.40193 77.0481 L 336.4352 77.21235 C 336.4352 77.278755 336.3254 77.4465 336.10914 77.7156 C 335.88954 77.9847 335.63668 78.26428 335.35054 78.56133 C 335.0644 78.85839 334.7949 79.117 334.5487 79.34765 C 334.2958 79.57481 334.13944 79.69014 334.07622 79.69014 C 334.05626 79.69014 333.94646 79.61325 333.75016 79.46298 C 333.55385 79.312705 333.3376 79.14146 333.09803 78.945755 C 332.85847 78.75005 332.63555 78.57182 332.42926 78.40057 C 332.21965 78.23632 332.08656 78.12449 332.02334 78.06508 C 331.54423 78.32369 331.0784 78.52988 330.61926 78.68714 C 330.61926 78.79898 330.60263 79.00517 330.5727 79.30222 C 330.5394 79.606265 330.4995 79.92079 330.44625 80.2493 C 330.393 80.5813 330.32647 80.87137 330.2466 81.1195 C 330.16677 81.37112 330.0836 81.49693 330.0004 81.49693 L 327.16563 81.49693 C 327.07913 81.49693 326.99928 81.37112 326.91942 81.1195 C 326.83957 80.87137 326.77635 80.5813 326.7331 80.2493 C 326.69317 79.92079 326.65325 79.606265 326.6233 79.312705 C 326.59003 79.01565 326.57672 78.80946 326.57672 78.68714 C 326.0976 78.55434 325.62847 78.34466 325.17264 78.06508 C 324.84325 78.32369 324.5172 78.5823 324.19445 78.84441 C 323.8717 79.11001 323.5523 79.37561 323.2462 79.65519 L 323.0865 79.69014 C 323.04657 79.69014 322.90017 79.57481 322.6473 79.34765 C 322.39776 79.117 322.13824 78.85839 321.86874 78.56133 C 321.5959 78.26428 321.35302 77.9847 321.13676 77.7156 C 320.91716 77.4465 320.8107 77.278755 320.8107 77.21235 C 320.8107 77.19139 320.87723 77.07606 321.01698 76.86987 C 321.1534 76.66717 321.3131 76.44001 321.4861 76.20237 C 321.66245 75.96123 321.8255 75.73058 321.97854 75.5139 C 322.1349 75.29723 322.2314 75.15744 322.27466 75.08754 C 322.02844 74.61225 321.82216 74.084545 321.65247 73.5149 C 321.546 73.49393 321.3497 73.46597 321.06356 73.431025 C 320.7774 73.39957 320.48463 73.36113 320.17852 73.3157 C 319.87575 73.27027 319.60625 73.210855 319.3667 73.14096 C 319.12713 73.06757 319.01068 72.98719 319.01068 72.89633 L 319.01068 69.88734 C 319.01068 69.79997 319.12713 69.70911 319.3667 69.62873 C 319.60625 69.54136 319.8824 69.47845 320.19516 69.43302 C 320.5079 69.39108 320.8107 69.349146 321.09683 69.31769 C 321.38297 69.282745 321.57927 69.26527 321.68574 69.26527 C 321.81218 68.72009 322.0085 68.23082 322.27466 67.79398 C 322.02844 67.45149 321.7889 67.10551 321.54933 66.76652 C 321.3131 66.42753 321.06356 66.09203 320.8107 65.77051 L 320.74747 65.60276 C 320.74747 65.53636 320.85394 65.37211 321.0702 65.11 C 321.2898 64.847896 321.53935 64.57181 321.81883 64.274755 C 322.10164 63.9777 322.3678 63.71559 322.61736 63.48494 C 322.8669 63.261275 323.02328 63.14245 323.0865 63.14245 C 323.1098 63.14245 323.21625 63.21584 323.41256 63.36262 C 323.60886 63.50591 323.82846 63.67715 324.068 63.86936 C 324.30425 64.06507 324.53382 64.25728 324.7501 64.4425 C 324.9697 64.62423 325.09945 64.73606 325.13937 64.781495 C 325.59853 64.501915 326.07764 64.29922 326.57672 64.16292 C 326.57672 64.075554 326.59003 63.86587 326.6233 63.547845 C 326.65325 63.22283 326.69317 62.901315 326.7331 62.58329 C 326.77635 62.261774 326.8329 61.9752 326.9028 61.7131 C 326.96933 61.45099 327.05916 61.32168 327.16563 61.32168 L 330.0004 61.32168 C 330.0836 61.32168 330.16677 61.45099 330.2466 61.7131 C 330.32647 61.9752 330.38636 62.261774 330.4296 62.58329 C 330.47287 62.901315 330.50947 63.22283 330.5394 63.547845 C 330.5727 63.86587 330.5993 64.075554 330.61926 64.16292 C 331.0984 64.29922 331.5542 64.494925 331.99007 64.74655 C 332.31946 64.494925 332.6522 64.23981 332.9849 63.99168 C 333.32095 63.73656 333.6437 63.47795 333.9498 63.21235 L 334.07622 63.14245 C 334.11947 63.14245 334.26587 63.26477 334.5154 63.50241 C 334.76495 63.74355 335.0278 64.00566 335.30396 64.29223 C 335.5801 64.575304 335.833 64.847896 336.05923 65.11 C 336.2888 65.37211 336.40193 65.53636 336.40193 65.60276 C 336.40193 65.648196 336.33206 65.77051 336.189 65.9802 C 336.0426 66.18639 335.8829 66.40656 335.70987 66.6477 C 335.53353 66.888835 335.36385 67.115995 335.2008 67.336164 C 335.03445 67.55284 334.9313 67.69263 334.8914 67.762525" fill="#095aaa"/>
         </g>
         <g id="Graphic_1030">
-          <rect x="307.0797" y="58.740105" width="65.95536" height="1" fill="white"/>
-          <rect x="307.0797" y="58.740105" width="65.95536" height="1" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width="3"/>
+          <rect x="308.25" y="97.65467" width="52.48325" height=".775077" fill="white"/>
+          <rect x="308.25" y="97.65467" width="52.48325" height=".775077" stroke="#095aaa" stroke-linecap="round" stroke-linejoin="miter" stroke-width="3"/>
         </g>
       </g>
       <g id="Line_1032">
-        <line x1="339.55737" y1="165.45747" x2="339.55737" y2="62.7444" marker-start="url(#StickArrow_Marker_3)" stroke="#095aaa" stroke-linecap="butt" stroke-linejoin="miter" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <path d="M 357.475 202.52145 L 334.09894 202.52145 L 334.48453 99.92974" marker-start="url(#StickArrow_Marker_3)" stroke="#095aaa" stroke-linecap="butt" stroke-linejoin="miter" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Line_1104">
+        <line x1="465.70135" y1="119.53738" x2="465.70135" y2="156.77244" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+      </g>
+      <g id="Line_1109">
+        <line x1="516.5952" y1="149.3028" x2="516.5952" y2="156.70641" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+      </g>
+      <g id="Line_1114">
+        <line x1="566.2235" y1="119.53738" x2="566.2235" y2="155.77706" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+      </g>
+      <g id="Group_1162">
+        <g id="Graphic_1173">
+          <path d="M 390.81047 112.82594 L 401.89634 92.85806 C 402.4253 91.90525 403.4294 91.31424 404.5192 91.31424 L 426.4905 91.31424 C 427.5803 91.31424 428.5844 91.90525 429.1134 92.85806 L 440.19925 112.82594 C 440.70207 113.73162 440.70207 114.83263 440.19925 115.73831 L 429.1134 135.70619 C 428.5844 136.659 427.5803 137.25 426.4905 137.25 L 404.5192 137.25 C 403.4294 137.25 402.4253 136.659 401.89634 135.70619 L 390.81047 115.73831 C 390.30765 114.83263 390.30765 113.73162 390.81047 112.82594 Z" fill="white"/>
+          <path d="M 390.81047 112.82594 L 401.89634 92.85806 C 402.4253 91.90525 403.4294 91.31424 404.5192 91.31424 L 426.4905 91.31424 C 427.5803 91.31424 428.5844 91.90525 429.1134 92.85806 L 440.19925 112.82594 C 440.70207 113.73162 440.70207 114.83263 440.19925 115.73831 L 429.1134 135.70619 C 428.5844 136.659 427.5803 137.25 426.4905 137.25 L 404.5192 137.25 C 403.4294 137.25 402.4253 136.659 401.89634 135.70619 L 390.81047 115.73831 C 390.30765 114.83263 390.30765 113.73162 390.81047 112.82594 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        </g>
+        <g id="Line_1172">
+          <line x1="419.8014" y1="109.42426" x2="423.5077" y2="113.34403" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1171">
+          <path d="M 411.9261 95.63235 L 419.0836 95.63235 C 420.1882 95.63235 421.0836 96.52778 421.0836 97.63235 L 421.0836 105.43236 C 421.0836 106.53693 420.1882 107.43236 419.0836 107.43236 L 411.9261 107.43236 C 410.82154 107.43236 409.9261 106.53693 409.9261 105.43236 L 409.9261 97.63235 C 409.9261 96.52778 410.82154 95.63235 411.9261 95.63235 Z" fill="#06aa90"/>
+        </g>
+        <g id="Group_1165">
+          <g id="Graphic_1170">
+            <rect x="422.9379" y="116.6592" width="9.397598" height="6.79199" fill="#06aa90"/>
+            <rect x="422.9379" y="116.6592" width="9.397598" height="6.79199" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1169">
+            <ellipse cx="427.6367" cy="123.38684" rx="4.73771859862676" ry="2.67465988900556" fill="#06aa90"/>
+            <ellipse cx="427.6367" cy="123.38684" rx="4.73771859862676" ry="2.67465988900556" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1168">
+            <ellipse cx="427.6367" cy="121.2115" rx="4.73771859862676" ry="2.67465988900557" fill="#06aa90"/>
+            <ellipse cx="427.6367" cy="121.2115" rx="4.73771859862676" ry="2.67465988900557" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1167">
+            <ellipse cx="427.65615" cy="119.14702" rx="4.71826257180992" ry="2.48781260085442" fill="#06aa90"/>
+            <ellipse cx="427.65615" cy="119.14702" rx="4.71826257180992" ry="2.48781260085442" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1166">
+            <ellipse cx="427.6367" cy="116.78477" rx="4.73771859862676" ry="2.67465988900558" fill="#06aa90"/>
+            <ellipse cx="427.6367" cy="116.78477" rx="4.73771859862676" ry="2.67465988900558" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+        </g>
+        <g id="Line_1164">
+          <line x1="415.37666" y1="109.65793" x2="415.37666" y2="133.92495" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1163">
+          <rect x="409.9308" y="129.02754" width="11.157495" height="6.991261" fill="#095aaa"/>
+          <rect x="409.9308" y="129.02754" width="11.157495" height="6.991261" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+        </g>
+      </g>
+      <g id="Group_1189">
+        <g id="Graphic_1200">
+          <path d="M 441.50696 84.9835 L 452.5928 65.01562 C 453.1218 64.06281 454.1259 63.47181 455.2157 63.47181 L 477.187 63.47181 C 478.2768 63.47181 479.2809 64.06281 479.8099 65.01562 L 490.89574 84.9835 C 491.39856 85.88918 491.39856 86.99019 490.89574 87.89587 L 479.8099 107.86375 C 479.2809 108.81656 478.2768 109.40756 477.187 109.40756 L 455.2157 109.40756 C 454.1259 109.40756 453.1218 108.81656 452.5928 107.86375 L 441.50696 87.89587 C 441.00414 86.99019 441.00414 85.88918 441.50696 84.9835 Z" fill="white"/>
+          <path d="M 441.50696 84.9835 L 452.5928 65.01562 C 453.1218 64.06281 454.1259 63.47181 455.2157 63.47181 L 477.187 63.47181 C 478.2768 63.47181 479.2809 64.06281 479.8099 65.01562 L 490.89574 84.9835 C 491.39856 85.88918 491.39856 86.99019 490.89574 87.89587 L 479.8099 107.86375 C 479.2809 108.81656 478.2768 109.40756 477.187 109.40756 L 455.2157 109.40756 C 454.1259 109.40756 453.1218 108.81656 452.5928 107.86375 L 441.50696 87.89587 C 441.00414 86.99019 441.00414 85.88918 441.50696 84.9835 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        </g>
+        <g id="Line_1199">
+          <line x1="470.49787" y1="81.58182" x2="474.2042" y2="85.50159" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1198">
+          <path d="M 462.6226 67.789915 L 469.7801 67.789915 C 470.88467 67.789915 471.7801 68.68535 471.7801 69.789915 L 471.7801 77.58993 C 471.7801 78.6945 470.88467 79.58993 469.7801 79.58993 L 462.6226 79.58993 C 461.51803 79.58993 460.6226 78.6945 460.6226 77.58993 L 460.6226 69.789915 C 460.6226 68.68535 461.51803 67.789915 462.6226 67.789915 Z" fill="#06aa90"/>
+        </g>
+        <g id="Group_1192">
+          <g id="Graphic_1197">
+            <rect x="473.6344" y="88.81677" width="9.397598" height="6.79199" fill="#06aa90"/>
+            <rect x="473.6344" y="88.81677" width="9.397598" height="6.79199" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1196">
+            <ellipse cx="478.3332" cy="95.5444" rx="4.73771859862673" ry="2.67465988900557" fill="#06aa90"/>
+            <ellipse cx="478.3332" cy="95.5444" rx="4.73771859862673" ry="2.67465988900557" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1195">
+            <ellipse cx="478.3332" cy="93.36907" rx="4.73771859862673" ry="2.67465988900556" fill="#06aa90"/>
+            <ellipse cx="478.3332" cy="93.36907" rx="4.73771859862673" ry="2.67465988900556" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1194">
+            <ellipse cx="478.35264" cy="91.30458" rx="4.71826257180992" ry="2.48781260085442" fill="#06aa90"/>
+            <ellipse cx="478.35264" cy="91.30458" rx="4.71826257180992" ry="2.48781260085442" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1193">
+            <ellipse cx="478.3332" cy="88.94233" rx="4.73771859862673" ry="2.67465988900558" fill="#06aa90"/>
+            <ellipse cx="478.3332" cy="88.94233" rx="4.73771859862673" ry="2.67465988900558" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+        </g>
+        <g id="Line_1191">
+          <line x1="466.07315" y1="81.81549" x2="466.07315" y2="106.08251" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1190">
+          <rect x="460.6273" y="101.18511" width="11.157495" height="6.991261" fill="#095aaa"/>
+          <rect x="460.6273" y="101.18511" width="11.157495" height="6.991261" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+        </g>
+      </g>
+      <g id="Group_1201">
+        <g id="Graphic_1212">
+          <path d="M 492.4008 112.82594 L 503.48667 92.85806 C 504.01566 91.90525 505.01975 91.31424 506.10955 91.31424 L 528.08083 91.31424 C 529.17064 91.31424 530.17473 91.90525 530.7037 92.85806 L 541.7896 112.82594 C 542.2924 113.73162 542.2924 114.83263 541.7896 115.73831 L 530.7037 135.70619 C 530.17473 136.659 529.17064 137.25 528.08083 137.25 L 506.10955 137.25 C 505.01975 137.25 504.01566 136.659 503.48667 135.70619 L 492.4008 115.73831 C 491.898 114.83263 491.898 113.73162 492.4008 112.82594 Z" fill="white"/>
+          <path d="M 492.4008 112.82594 L 503.48667 92.85806 C 504.01566 91.90525 505.01975 91.31424 506.10955 91.31424 L 528.08083 91.31424 C 529.17064 91.31424 530.17473 91.90525 530.7037 92.85806 L 541.7896 112.82594 C 542.2924 113.73162 542.2924 114.83263 541.7896 115.73831 L 530.7037 135.70619 C 530.17473 136.659 529.17064 137.25 528.08083 137.25 L 506.10955 137.25 C 505.01975 137.25 504.01566 136.659 503.48667 135.70619 L 492.4008 115.73831 C 491.898 114.83263 491.898 113.73162 492.4008 112.82594 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        </g>
+        <g id="Line_1211">
+          <line x1="521.3917" y1="109.42426" x2="525.09805" y2="113.34403" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1210">
+          <path d="M 513.51645 95.63235 L 520.67394 95.63235 C 521.7785 95.63235 522.67394 96.52778 522.67394 97.63235 L 522.67394 105.43236 C 522.67394 106.53693 521.7785 107.43236 520.67394 107.43236 L 513.51645 107.43236 C 512.4119 107.43236 511.51645 106.53693 511.51645 105.43236 L 511.51645 97.63235 C 511.51645 96.52778 512.4119 95.63235 513.51645 95.63235 Z" fill="#06aa90"/>
+        </g>
+        <g id="Group_1204">
+          <g id="Graphic_1209">
+            <rect x="524.5282" y="116.6592" width="9.397598" height="6.79199" fill="#06aa90"/>
+            <rect x="524.5282" y="116.6592" width="9.397598" height="6.79199" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1208">
+            <ellipse cx="529.227" cy="123.38684" rx="4.73771859862676" ry="2.67465988900556" fill="#06aa90"/>
+            <ellipse cx="529.227" cy="123.38684" rx="4.73771859862676" ry="2.67465988900556" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1207">
+            <ellipse cx="529.227" cy="121.2115" rx="4.73771859862676" ry="2.67465988900557" fill="#06aa90"/>
+            <ellipse cx="529.227" cy="121.2115" rx="4.73771859862676" ry="2.67465988900557" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1206">
+            <ellipse cx="529.2465" cy="119.14702" rx="4.71826257180985" ry="2.48781260085442" fill="#06aa90"/>
+            <ellipse cx="529.2465" cy="119.14702" rx="4.71826257180985" ry="2.48781260085442" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1205">
+            <ellipse cx="529.227" cy="116.78477" rx="4.73771859862676" ry="2.67465988900558" fill="#06aa90"/>
+            <ellipse cx="529.227" cy="116.78477" rx="4.73771859862676" ry="2.67465988900558" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+        </g>
+        <g id="Line_1203">
+          <line x1="516.967" y1="109.65793" x2="516.967" y2="133.92495" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1202">
+          <rect x="511.52115" y="129.02754" width="11.157495" height="6.991261" fill="#095aaa"/>
+          <rect x="511.52115" y="129.02754" width="11.157495" height="6.991261" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+        </g>
+      </g>
+      <g id="Group_1213">
+        <g id="Graphic_1224">
+          <path d="M 542.0291 84.9835 L 553.11497 65.01562 C 553.64395 64.06281 554.64805 63.47181 555.73785 63.47181 L 577.7091 63.47181 C 578.79894 63.47181 579.803 64.06281 580.332 65.01562 L 591.4179 84.9835 C 591.9207 85.88918 591.9207 86.99019 591.4179 87.89587 L 580.332 107.86375 C 579.803 108.81656 578.79894 109.40756 577.7091 109.40756 L 555.73785 109.40756 C 554.64805 109.40756 553.64395 108.81656 553.11497 107.86375 L 542.0291 87.89587 C 541.5263 86.99019 541.5263 85.88918 542.0291 84.9835 Z" fill="white"/>
+          <path d="M 542.0291 84.9835 L 553.11497 65.01562 C 553.64395 64.06281 554.64805 63.47181 555.73785 63.47181 L 577.7091 63.47181 C 578.79894 63.47181 579.803 64.06281 580.332 65.01562 L 591.4179 84.9835 C 591.9207 85.88918 591.9207 86.99019 591.4179 87.89587 L 580.332 107.86375 C 579.803 108.81656 578.79894 109.40756 577.7091 109.40756 L 555.73785 109.40756 C 554.64805 109.40756 553.64395 108.81656 553.11497 107.86375 L 542.0291 87.89587 C 541.5263 86.99019 541.5263 85.88918 542.0291 84.9835 Z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        </g>
+        <g id="Line_1223">
+          <line x1="571.02" y1="81.58182" x2="574.72634" y2="85.50159" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1222">
+          <path d="M 563.14474 67.789915 L 570.30224 67.789915 C 571.4068 67.789915 572.30224 68.68535 572.30224 69.789915 L 572.30224 77.58993 C 572.30224 78.6945 571.4068 79.58993 570.30224 79.58993 L 563.14474 79.58993 C 562.0402 79.58993 561.14474 78.6945 561.14474 77.58993 L 561.14474 69.789915 C 561.14474 68.68535 562.0402 67.789915 563.14474 67.789915 Z" fill="#06aa90"/>
+        </g>
+        <g id="Group_1216">
+          <g id="Graphic_1221">
+            <rect x="574.1565" y="88.81677" width="9.397598" height="6.79199" fill="#06aa90"/>
+            <rect x="574.1565" y="88.81677" width="9.397598" height="6.79199" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1220">
+            <ellipse cx="578.8553" cy="95.5444" rx="4.73771859862679" ry="2.67465988900557" fill="#06aa90"/>
+            <ellipse cx="578.8553" cy="95.5444" rx="4.73771859862679" ry="2.67465988900557" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1219">
+            <ellipse cx="578.8553" cy="93.36907" rx="4.73771859862679" ry="2.67465988900556" fill="#06aa90"/>
+            <ellipse cx="578.8553" cy="93.36907" rx="4.73771859862679" ry="2.67465988900556" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1218">
+            <ellipse cx="578.8748" cy="91.30458" rx="4.71826257180982" ry="2.48781260085442" fill="#06aa90"/>
+            <ellipse cx="578.8748" cy="91.30458" rx="4.71826257180982" ry="2.48781260085442" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Graphic_1217">
+            <ellipse cx="578.8553" cy="88.94233" rx="4.73771859862679" ry="2.67465988900558" fill="#06aa90"/>
+            <ellipse cx="578.8553" cy="88.94233" rx="4.73771859862679" ry="2.67465988900558" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+        </g>
+        <g id="Line_1215">
+          <line x1="566.5953" y1="81.81549" x2="566.5953" y2="106.08251" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_1214">
+          <rect x="561.14944" y="101.18511" width="11.157495" height="6.991261" fill="#095aaa"/>
+          <rect x="561.14944" y="101.18511" width="11.157495" height="6.991261" stroke="white" stroke-linecap="butt" stroke-linejoin="miter" stroke-width=".75"/>
+        </g>
       </g>
     </g>
   </g>

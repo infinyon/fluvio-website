@@ -69,7 +69,7 @@
     </marker>
   </defs>
   <metadata> Produced by OmniGraffle 7.12.1 
-    <dc:date>2019-11-13 16:17:36 +0000</dc:date>
+    <dc:date>2019-11-20 23:38:57 +0000</dc:date>
   </metadata>
   <g id="Fluvio_-_DDI_(msvc)" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
     <title>Fluvio - DDI (msvc)</title>
@@ -339,21 +339,21 @@
         <rect x="3.6322212" y="299.52964" width="117.5625" height="23.345357" fill="white"/>
         <rect x="3.6322212" y="299.52964" width="117.5625" height="23.345357" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
         <text transform="translate(8.632221 304.03432)" fill="#095aaa">
-          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="10.77925" y="11">Event Controller</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="21.66925" y="11">Event Proxy</tspan>
         </text>
       </g>
       <g id="Graphic_334">
         <rect x="147.50586" y="299.52964" width="117.5625" height="23.345357" fill="white"/>
         <rect x="147.50586" y="299.52964" width="117.5625" height="23.345357" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
         <text transform="translate(152.50586 304.03432)" fill="#095aaa">
-          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="10.77925" y="11">Event Controller</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="21.66925" y="11">Event Proxy</tspan>
         </text>
       </g>
       <g id="Graphic_335">
         <rect x="291.3795" y="299.52964" width="117.5625" height="23.345357" fill="white"/>
         <rect x="291.3795" y="299.52964" width="117.5625" height="23.345357" stroke="#055aaa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
         <text transform="translate(296.3795 304.03432)" fill="#095aaa">
-          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="10.77925" y="11">Event Controller</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="#095aaa" x="21.66925" y="11">Event Proxy</tspan>
         </text>
       </g>
       <g id="Line_338">

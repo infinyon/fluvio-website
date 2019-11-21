@@ -25,15 +25,21 @@ h5, h6 {
   font-weight: bold;
   color: $color-headers;
 }
-h2 { line-height: 1.7em; }
-h2:after {
+h2:after, h3:after {
   background: none repeat scroll 0 0 $flv-blue-light3;
   content: "";
   display: block;
   position: relative;
-  bottom: 5px;
   height: 2px;
+}
+h2 { line-height: 1.7em; }
+h2:after {
   width: 100%;
+  bottom: 5px;
+}
+h3 { line-height:1.5em; }
+h3:after {
+  width: 100px;
 }
 .font-md-underline { line-height: 2.1em; }
 .font-md-underline:after {

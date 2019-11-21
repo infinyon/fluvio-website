@@ -36,11 +36,11 @@ The **Distributed Data Infrastructure** stack has four core components:
 * Data Flow Engine
 * Event Streaming Engine
 
-An _EventQL Model_ defines the hierarchy and interaction of the microservices in an application. When a new application is provisioned, the _Distributed Control Plane_ forwards the EventQL spec to the _Model Interpreter_. The interpreter provisions an _Event Controller_ for each microservice. The controllers connect to the _Event Streaming Engine_ and subscribe to the channels defined in the EventQL specification.
+An _EventQL Model_ defines the hierarchy and interaction of the microservices in an application. When a new application is provisioned, the _Distributed Control Plane_ forwards the EventQL spec to the _Model Interpreter_. The interpreter provisions an _Event Proxy_ for each microservice. The proxies connect to the _Event Streaming Engine_ and subscribe to the channels defined in the EventQL specification.
 
 {{< image src="ddi.svg" alt="Custom vs. DDI" justify="center" width="640" type="scaled-90">}}
 
-At runtime, microservices receive commands or events. _Commands_ are imperatives that ask services to perform an operation, whereas _events_ notify services of changes that occurred elsewhere. Microservices receive the input, perform the business logic, and send the output to the _Event Controller_. The controller notifies the _Data Flow Engine_ to run the workflow in the EventQL spec and publishes the output to corresponding channels. 
+At runtime, microservices receive commands or events. _Commands_ are imperatives that ask services to perform an operation, whereas _events_ notify services of changes that occurred elsewhere. Microservices receive the input, perform the business logic, and send the output to the _Event Proxy_. The proxy notifies the _Data Flow Engine_ to run the workflow in the EventQL spec and publishes the output to corresponding channels. 
 
 A command or event is finished processing when all services in the EventQL workflow completed their operations.
 
@@ -152,7 +152,7 @@ Example of an aggregate definition:
 }   
 {{< /eventql >}}
 
-Aggregates are called by the _event controller_.
+Aggregates are called by the _event proxies_.
 
 
 ##### Commands
@@ -173,7 +173,7 @@ Commands are grouped inside _aggregates_.
 
 ##### Transactions (SAGAs)
 
-[SAGAs](http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf) are the recommended mechanism for transactions in a distributed system. Sagas keyword describes series of command/events that must be processed as an atomic operation. All components must succeed, or fail together. Therefore, every command must define a compensating operation.
+When services own their data and communicate over the network it is no longer possible to leverage the simplicity of local two-phase-commits to maintain data consistency. [SAGAs](http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf), introduced in 1987, is one of the most influential patterns for processing transactions in a distributed system. Sagas keyword describes series of command/events that must be processed as an atomic operation. All components must succeed, or fail together. Therefore, every command must define a compensating operation.
 
 Transactions are grouped inside _aggregates_.
 
@@ -187,6 +187,14 @@ _Reactors_ are operations triggered by other service events. Unlike commands tha
 EventQL models are textual representation of distributed data flows for microservice applications. Models may be changed, versioned, and reapplied to running Apps. They may be stored in git and applied by CI/CD pipelines in GitOps operation models.
 
 
-### Event Controller
+### Event Proxy
 
-_Event Controller_ is a coordinator that connects EventQL operations with the _aggregates_ business logic. During initialization, _DDI control plane_ sends each _event controller_ the EventQL definition corresponding to an _aggregate_. The _event controller_ interprets EventQL definitions, subscribes to event streams, provisions state machines, and binds callbacks for incoming events and commands.
+_Event Proxy_ is an intermediator that connects EventQL operations with the _aggregate_ business logic. During initialization, _DDI control plane_ sends each _event proxy_ the EventQL definition. The _proxy_ interprets the definitions and performs the following operations:
+
+* subscribes to incoming event streams,
+* provisions outgoing event streams,
+* prepares state machines for composite operations (SAGAs, etc),
+* binds incoming events and commands to callback routines.
+
+The business logic is invoked through callbacks which can be written in any programming language. The callbacks notifications can be Serverless routines or Webhook operations.
+

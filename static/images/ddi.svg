@@ -44,7 +44,7 @@
     </marker>
   </defs>
   <metadata> Produced by OmniGraffle 7.12.1 
-    <dc:date>2019-11-13 16:17:36 +0000</dc:date>
+    <dc:date>2019-11-20 23:38:57 +0000</dc:date>
   </metadata>
   <g id="Fluvio_-_DDI" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
     <title>Fluvio - DDI</title>
@@ -1176,7 +1176,7 @@
       <g id="Graphic_1375">
         <text transform="translate(54.009766 266.208)" fill="#055aaa">
           <tspan font-family="Futura" font-size="14" font-weight="500" fill="#055aaa" x="0" y="15">Event </tspan>
-          <tspan font-family="Futura" font-size="14" font-weight="500" fill="#055aaa" x="0" y="34.416992">Contr.</tspan>
+          <tspan font-family="Futura" font-size="14" font-weight="500" fill="#055aaa" x="0" y="34.416992">Proxy</tspan>
         </text>
       </g>
       <g id="Line_1376">
