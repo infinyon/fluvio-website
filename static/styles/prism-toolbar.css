@@ -1,9 +1,10 @@
 div.code-toolbar {
-	position: relative;
+    position: relative;
 }
 
 div.code-toolbar > .toolbar {
-	position: absolute;
+    position: absolute;
+    margin-top: -.5em;
 	top: .3em;
 	right: .2em;
 	transition: opacity 0.3s ease-in-out;
