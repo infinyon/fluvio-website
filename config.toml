@@ -2,9 +2,6 @@ languageCode = "en-us"
 title = "Fluvio - Central control for data-in-motion"
 
 [params]
-  name = "Fluvio.io"
-  description = "Orchestrate Event Driven Microservices"
-  how = ""
   blog_time_format = "January 02, 2006"
 
 [menu]

@@ -1,13 +1,16 @@
 {{ define "main" }}
+{{- $page := .Site.GetPage "/main/_index.md" -}}
+{{- $params := $page.Params -}}
+
 <div class="jumbotron">
   <div class="container main">
     <div class="desc">
-      <div class="title">Orchestrate Event Driven Microservices</div>
+      <div class="title">{{ $params.title }}</div>
       <div class="wrapper">
-        <div class="subtitle">Fluvio is a platform that orchestrates data flows for event-driven Microservices.</div>
+        <div class="subtitle">{{ $params.subtitle | markdownify}}</div>
       </div>
     </div>
-    <a class="btn btn-info mt-3 mr-1" href="/docs">Introduction</a>
+    <a class="btn btn-info mt-3 mr-1" href="{{ $params.button.link }}">{{ $params.button.label }}</a>
   </div>
 </div>
 

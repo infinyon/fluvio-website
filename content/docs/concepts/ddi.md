@@ -6,7 +6,7 @@ weight: 30
 
 **Distributed Data Infrastructure (DDI)** is a **standards-based**, **language agnostic** software layer designed to enable microservices to construct _data rich_ applications. Unlike other systems for distributed data, **Fluvio DDI** is a _dedicated infrastructure layer_ built outside of the service and managed by its own control plane.
 
-{{< image src="ddi-abstract.svg" alt="DDI Overview" justify="center" width="340" type="scaled-50">}}
+{{< image src="ddi-abstract.svg" alt="DDI Overview" justify="center" width="400" type="scaled-50">}}
 
 _Technical benefits_ for using **Fluvio DDI**:
 

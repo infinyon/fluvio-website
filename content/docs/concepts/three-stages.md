@@ -1,6 +1,6 @@
 ---
-title: Three Data Models - for Microservices
-menu: Three Data Models
+title: The Three Stages - from Monolith to Microservices
+menu: The Three Stages
 weight: 20
 ---
 
@@ -10,18 +10,18 @@ Monoliths are easy to develop but **lack boundary enforcement** which makes it n
 
 Organizations turn to Microservices to reduce cross cutting concerns, gain modularity, and accelerate time to market. In theory, Microservices bring **modularity to business logic and data**, however our research shows organizations gain business logic separation and only partial data separation. 
 
-In practice, organizations use **Three Data Models** in their transition to Microservices:
+In practice, organizations go through **Three Stagess** in their transition to Microservices:
 
-* [Shared Data Model](#shared-data-model)
-* [Distributed Data Model](#distributed-data-model)
-* [Event Driven Data Model](#event-driven-data-model)
+* [Stage 1: Shared Data](#stage-1-shared-data)
+* [Stage 2: Distributed Data](#distributed-data-model)
+* [Stage 3: Event Driven Data](#event-driven-data-model)
 
-Before we evaluate the strengths and weaknesses for these three models, we need to take a look at **domains**. A domain gives each service a bounded context, a definition of its purpose in the world and a data model to describes it. Eric Evans coined the term [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design) where it tackles this topic at length.
+Before we deep dive into the three stages, we need to describe **domains**. A domain is a bounded context. A service should have a bounded context to describe its purpose in the world and a data model to describes define ........ Eric Evans coined the term [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design) where it tackles this topic at length.
 
 The core takeaway is that Microservices should be built around domain driven bounded context. 
 
 
-## Shared Data Model
+## Stage 1: Shared Data
 
 A **Shared Data Model** describes Microservices that implement domain centric business logic, communicate over the network, and share the same database. This model is often used as a first step towards Microservices or as an intermediate step during a Monolith decomposition.
 
