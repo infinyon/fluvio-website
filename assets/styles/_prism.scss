@@ -1,5 +1,5 @@
-/* PrismJS 1.17.1
-https://prismjs.com/download.html#themes=prism&languages=bash+docker+graphql+json+rust+yaml+toml */
+/* PrismJS 1.19.0
+https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+bash+docker+graphql+json+rust+toml+yaml */
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
@@ -10,14 +10,15 @@ code[class*="language-"],
 pre[class*="language-"] {
 	color: #444444;
 	background: none;
-	font-family: "Fira Mono", monospace, 'Andale Mono', 'Ubuntu Mono', Monaco;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	font-size: .92em;
-	line-height: 1.45;
+	line-height: 1.5;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
@@ -32,13 +33,13 @@ pre[class*="language-"] {
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
 	text-shadow: none;
-	background: #f8f8f8;
+	background: #b3d4fc;
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	text-shadow: none;
-	background: #f8f8f8;
+	background: #b3d4fc;
 }
 
 @media print {
@@ -50,7 +51,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 /* Code blocks */
 pre[class*="language-"] {
-	margin-left: 0em;
+	margin: .5em 0;
 	overflow: auto;
 }
 
@@ -59,13 +60,14 @@ pre[class*="language-"] {
 	background: #f8f8f8;
 }
 
-/* Inline code 
+/* Inline code
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
 	white-space: normal;
 }
-*/
+ */
+
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -77,7 +79,7 @@ pre[class*="language-"] {
 	color: #999;
 }
 
-.namespace {
+.token.namespace {
 	opacity: .7;
 }
 
@@ -88,7 +90,7 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #0077aa;
+	color: #07a;
 }
 
 .token.selector,
@@ -97,7 +99,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #669900;
+	color: #690;
 }
 
 .token.operator,
@@ -112,7 +114,7 @@ pre[class*="language-"] {
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: #0077aa;
+	color: #07a;
 }
 
 .token.function,

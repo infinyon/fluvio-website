@@ -6,14 +6,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      {{ $currentPage := . }}
+      {{- $currentPage := . -}}
       {{ range .Site.Menus.main }}
-        <li class="navbar-item {{if eq $currentPage.Section (.Name | lower) }} active{{end}}">
-          <a class="nav-link" href="{{ .URL }}" title="{{ .Title }}">
-          {{ if .Pre }}
-            <i class="{{ .Pre }}"></i>
-          {{ end }}
-          {{ .Name }}</a>
+        {{- $active := "" -}}
+        {{- if eq $currentPage.Section (.Name | lower) -}}
+          {{- $active = "active" -}}
+        {{- end -}}       
+        <li class="navbar-item {{ $active }}" >
+          <a class="nav-link{{ .Post }}" href="{{ .URL }}">
+            {{ if .Pre }}
+              <i class="{{ .Pre }}"></i>
+            {{ end }}
+            {{ .Name }}
+          </a>
         </li>
       {{ end }}
     </ul>

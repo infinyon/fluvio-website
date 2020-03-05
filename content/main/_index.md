@@ -1,21 +1,9 @@
 ---
-title: The fastest way to real-time apps
-subtitle: All-in-one platform to build and operate <br/> event driven apps.
+title: The quickest way to<br/>real-time apps
+subtitle: Upgrade your __Node app__ and send data anywhere in the world -- __in real-time__.
+subtitle2: No infrastructure to manage, get up and running in [5 min or less](/docs/getting-started/overview/).
 
 button:
-    label: Introduction
+    label: Start Here
     link: /docs
 ---
-
-Jumbotron
-  Title: [Benefit]
-  subtitle: [Differentiator]
-
-Boxes (3)
-   Content: [Top-Features]
-  
-
-Other Messages
-Fluvio's distributed event store and data orchestration engine 
-
-Fluvio platform that orchestrates data flows for event-driven Microservices.

@@ -1,5 +1,5 @@
 languageCode = "en-us"
-title = "Fluvio - Central control for data-in-motion"
+title = "Fluvio"
 
 [params]
   blog_time_format = "January 02, 2006"
@@ -37,9 +37,16 @@ title = "Fluvio - Central control for data-in-motion"
     pre = "fab fa-twitter"
     weight = 140
 
+  [[menu.main]]
+    identifier = "signup"
+    name = "SignUp"
+    url = "/signup/"
+    post = "-rev"
+    weight = 150
+
   [[notused.menu.main]]
     identifier = "contact"
     name = "contact"
     url = "/contact"
     pre = "fas fa-envelope"
-    weight = 150    
+    weight = 160    

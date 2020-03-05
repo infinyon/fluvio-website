@@ -5,12 +5,34 @@
 <div class="jumbotron">
   <div class="container main">
     <div class="desc">
-      <div class="title">{{ $params.title }}</div>
-      <div class="wrapper">
-        <div class="subtitle">{{ $params.subtitle | markdownify}}</div>
+     <div class="row">
+      <div class="col-lg-6">
+        <div class="title">{{ $params.title | markdownify}}</div>
+        <div class="wrapper">
+          <div class="subtitle">{{ $params.subtitle | markdownify}}</div>
+          <div class="subtitle2">{{ $params.subtitle2 | markdownify}}</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+      <div class="callout code bk-white mlc5 mt-3">
+          <div class="content">
+              <pre data-src="prism.js" class="language-javascript bk-white font-09">
+                <code class="language-javascript">
+addon.connectSc("localhost:9003").then(sc => {
+    console.log("connect to sc at ", sc.addr());
+
+    sc.findLeader("items", 0).then(leader => {
+        leader.consume(emitter.emit.bind(emitter));
+    })
+    
+});
+              </code></pre>
+          </div>
+      </div>      
+        <a class="btn btn-info mt-3 mlc5" href="{{ $params.button.link }}">{{ $params.button.label }}</a>
+      </div>
       </div>
     </div>
-    <a class="btn btn-info mt-3 mr-1" href="{{ $params.button.link }}">{{ $params.button.label }}</a>
   </div>
 </div>
 

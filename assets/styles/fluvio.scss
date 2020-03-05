@@ -94,6 +94,13 @@ a#logo {
   text-align: right;
 }
 
+.bk-white {
+  background: white !important;
+}
+
+.font-09 {
+  font-size: .9em !important;
+}
 
 // Content
 #content {
@@ -150,6 +157,14 @@ footer {
 .navbar-custom .navbar-text,
 .navbar-custom .navbar-nav .nav-link {
   color: $color-top-menu;
+}
+
+.navbar-custom .navbar-nav .nav-link-rev {
+  color:  $color-top-menu-bg;
+  background: white;
+  border: 4px solid white;
+  border-radius: .3em;  
+  text-decoration: none;
 }
 
 .navbar-custom span.navbar-toggler-icon {
@@ -261,24 +276,30 @@ footer {
     font-family: $font-logo;
     font-size: 4em;
     font-weight: 700;
+    line-height: 1.35em;
     color: $color-main-title;
   }
   
   .desc {
     .title {
-      color: $flv-gray-dark5;
+      color: $flv-gray-dark1;
       font-family: $font-headers;
       font-weight:700;
       font-size:3em;  
     }
     .wrapper {
-      max-width: 640px;
-      margin: 30px auto 0; 
+      text-align: left;
+      max-width: 90%;
+      margin: 2.5em auto 0; 
 
-      .subtitle {
+      .subtitle, .subtitle2 {
         color:  $flv-gray-base;
-        font-size:1.6em;
-      }  
+        font-size:1.21em;
+      }
+      .subtitle2 {
+        padding-top: 1.2em;
+        font-weight: 700;
+      }
     }
   }
     
@@ -424,9 +445,20 @@ footer {
   }
 }
 
+.mlc5 {
+  margin-left:5em;
+}
+
 // --------------
-// Screen Size
+// Screen Sizes
 // --------------
+@media (max-width: 1200px ) { //992px
+  .mlc5 {
+    margin-left:0;
+  }
+}
+
+
 @media (max-width: 768px) {
   img#scaled-90 {width: 90%;}
   img#scaled-75 {width: 75%;}
@@ -457,6 +489,11 @@ footer {
       background-color: $color-top-menu-collaped-sel;
     }
   }
+
+  .mlc5 {
+    margin-left:0;
+  }
+
 }
 
 // --------------
