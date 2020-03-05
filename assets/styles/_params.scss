@@ -18,6 +18,12 @@ $font-faq-toc: "Open Sans", sans-serif;
 // Callout
 $font-callout: "Fira Mono", monospace, 'Andale Mono', 'Ubuntu Mono', Monaco;
 
+// Button
+.btn-primary, btn-primary:focus, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #4987c6 !important;
+    border-color:#4987c6 !important;
+}
+
 // --------------
 // Colors
 // --------------
@@ -110,3 +116,8 @@ $flv-gray-light7: #cdcdcd;
 $flv-gray-light8: #dedede;
 $flv-gray-light9: #eeeeee;
 $flv-gray-light10: #f6f6f6;
+
+$flv-green-base: #0baa5b;
+
+$flv-button-base: #4987c6;
+

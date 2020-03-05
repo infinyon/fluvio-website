@@ -14,22 +14,10 @@
         </div>
       </div>
       <div class="col-lg-6">
-      <div class="callout code bk-white mlc5 mt-3">
-          <div class="content">
-              <pre data-src="prism.js" class="language-javascript bk-white font-09">
-                <code class="language-javascript">
-addon.connectSc("localhost:9003").then(sc => {
-    console.log("connect to sc at ", sc.addr());
-
-    sc.findLeader("items", 0).then(leader => {
-        leader.consume(emitter.emit.bind(emitter));
-    })
-    
-});
-              </code></pre>
+          <div class="mlc5 mt-3">
+            {{- partial "pub-sub.html" . -}}
           </div>
-      </div>      
-        <a class="btn btn-info mt-3 mlc5" href="{{ $params.button.link }}">{{ $params.button.label }}</a>
+        <a class="btn btn-primary mt-3 mlc5" href="{{ $params.button.link }}">{{ $params.button.label }}</a>
       </div>
       </div>
     </div>

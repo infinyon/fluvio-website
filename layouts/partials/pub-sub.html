@@ -1,0 +1,35 @@
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-1" name="tab-group-1" checked>
+    <label for="tab-1">Publisher</label>
+    <div class="content">
+<pre data-src="prism.js" class="language-javascript bk-white font-09">
+<code class="language-javascript">
+addon.connectSc("server:port").then(sc => {
+  console.log("connected to sc: ", sc.addr());
+
+  sc.findLeader("topic", 0).then(leader => {
+      leader.produce(emitter.emit.bind(emitter));
+  })
+  
+});
+</code></pre>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-2" name="tab-group-1">
+    <label for="tab-2">Subscriber</label>
+    <div class="content">
+<pre data-src="prism.js" class="language-javascript bk-white font-09"><code class="language-javascript">
+addon.connectSc("server:port").then(sc => {
+  console.log("connected to sc: ", sc.addr());
+
+  sc.findLeader("topic", 0).then(leader => {
+      leader.consume(emitter.emit.bind(emitter));
+  })
+  
+});
+</code></pre>
+    </div>
+  </div>
+</div>

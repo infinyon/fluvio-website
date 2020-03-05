@@ -1,6 +1,7 @@
 @import 'params';
 @import 'callout';
 @import 'prism';
+@import 'tabs';
 
 body {
   font-family: $font-body;
@@ -285,7 +286,7 @@ footer {
       color: $flv-gray-dark1;
       font-family: $font-headers;
       font-weight:700;
-      font-size:3em;  
+      font-size: 2.8em;  
     }
     .wrapper {
       text-align: left;
@@ -294,7 +295,7 @@ footer {
 
       .subtitle, .subtitle2 {
         color:  $flv-gray-base;
-        font-size:1.21em;
+        font-size:1.1em;
       }
       .subtitle2 {
         padding-top: 1.2em;
@@ -446,7 +447,7 @@ footer {
 }
 
 .mlc5 {
-  margin-left:5em;
+  margin-left:3em;
 }
 
 // --------------
@@ -454,7 +455,9 @@ footer {
 // --------------
 @media (max-width: 1200px ) { //992px
   .mlc5 {
-    margin-left:0;
+    padding-top: 1em;
+    margin-left: 2em;
+    margin-right: 1em;
   }
 }
 
