@@ -136,8 +136,6 @@ For example, when a transaction is required, the _Model Interpreter_ builds the 
 
 {{< image src="ddi-msvc.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
 
-A detail definition on all aspects of DDI can be found in the [next chapter]({{< relref "ddi" >}}).
-
 ### Advantages 
 
 A **Distributed Data Infrastructure** allows Microservices to outsource data related concerns which has several the following benefits:
@@ -150,7 +148,3 @@ A **Distributed Data Infrastructure** allows Microservices to outsource data rel
 * Built-in transaction management
 * Built-in tracing and monitoring
 * Built-in versioning
-
-{{< links "Related Topics" >}}
-* [Distributed Data Infrastructure (DDI)]({{< relref "ddi" >}})
-{{< /links >}}

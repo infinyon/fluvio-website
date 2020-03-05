@@ -1,6 +1,6 @@
 ---
-title: Send your First Message
-menu: Example
+title: Build your own App
+menu: Build your App
 weight: 60
 ---
 

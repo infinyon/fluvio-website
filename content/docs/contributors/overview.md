@@ -1,9 +1,12 @@
 ---
-title: Overview
-weight: 10
+title: Fluvio for Contributors
+menu: Overview
+weight: 100
 ---
 
-Fluvio is a Cloud-native platform that was designed from the ground up to work with [Kubernetes](https://kubernetes.io/). While we expect Fluvio to run on any Kubernetes cluster, the setup instructions cover the following infrastructures:
+Thank you for your interest in joining Fluvio Development Community!  
+
+Follow the following setup instructions to run Fluvio on Kubernetes:
 
 * [Minikube](https://minikube.sigs.k8s.io/)
 * [AWS EKS](https://aws.amazon.com/eks/)

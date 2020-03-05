@@ -65,7 +65,7 @@ p {
 }
 
 strong {
-  color: $flv-blue-dark4;
+  color: $color-hyperlink;
   font-weight: 700;
 }
 em {
@@ -122,6 +122,10 @@ a#logo {
   margin-top: -1em;
   background: $flv-gray-light10;
   border-bottom: 1px solid $flv-gray-light8;
+}
+
+.main-card {
+  background: $flv-gray-light12;
 }
 
 // Footer

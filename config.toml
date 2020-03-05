@@ -40,7 +40,7 @@ title = "Fluvio"
   [[menu.main]]
     identifier = "signup"
     name = "SignUp"
-    url = "/signup/"
+    url = "http://app.fluvio.io/signup"
     post = "-rev"
     weight = 150
 

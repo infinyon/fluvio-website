@@ -1,7 +1,7 @@
 ---
 title: Install Fluvio Command Line Interface (CLI)
 menu: Install CLI
-weight: 50
+weight: 9
 ---
 
 ### Download CLI
