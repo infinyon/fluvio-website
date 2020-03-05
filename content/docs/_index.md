@@ -28,5 +28,5 @@ Some of the unique aspects of the Fluvio platform are:
 
 
 {{< links "Next Steps" >}}
-* [Getting Started]({{< relref "getting-started/overview" >}})
+* [Getting Started](...)
 {{< /links >}}

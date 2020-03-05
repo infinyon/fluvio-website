@@ -262,7 +262,7 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 {{< /cli>}}
 
 {{< links "Next Steps" >}}
-* [Getting Started]({{< relref "getting-started/overview" >}})
+* [Getting Started](...)
 
 {{< links "Related Items" >}}
 * [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview" >}})
