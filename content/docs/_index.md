@@ -2,34 +2,43 @@
 title: Fluvio Data Streaming Platform
 ---
 
-#### Introduction
+We believe __data streaming__ is a fundamental building block to deliver real-time stateful App. 
 
-Back in 2011, Marc Andreessen's essay "[Software Is Eating the World](https://a16z.com/2011/08/20/why-software-is-eating-the-world/)" declared that all companies must become software organizations or risk extinction. A decade later, all companies must also become __Data Driven__ to survive. The velocity at which companies get access to data and derive business insights is a competitive advantage. Jeff Bezos attributes the success at Amazon to the number [of experiments they ran per month, week, and day](https://www.goodreads.com/quotes/8871377-our-success-at-amazon-is-a-function-of-how-many).
+Why would I be interested as a developer? Why should I use this rather than other technologies ?
 
+* composable
+* functional
+* reactive
+* async
+* eventual consistency
+
+
+What can I do with it? Use Cases & Benefits
+
+* build real-time apps
+* connect distributed services with low latency
+* traffic routing (many to many)
+* easy to distribute apps
+
+### Existing Solutions
+
+Problem ... with the ecosystem
+* Existing platform are heavy weight, narrow focused, not universal.
+
+### A Better Way
+* Build a low footprint, universal, accessible in any language, easy to integrate, expanding natively to low footprint environment. 
+* Designed for distributed cloud-native environment.
+* Suitable for edge.
 
 ### What is Fluvio?
 
-Fluvio is a real-time __data streaming platform__ that helps Application developers collect data, and deliver real-time services.
+Fluvio is a real-time __data streaming platform__ ...
 
-
-....
-
+* Open Source
+* You can deploy your in cloud or on premise.
+* Designed to work natively in Kubernetes or bare metal platforms.
+* Powerful CLI
+* Control/Data Plane
+* Native Node API (other language bindings upcoming)
 
 ---
-
-Fluvio is a cloud native platform that reduces the complexity associated with building and orchestrating event-based Microservices. 
-
-Some of the unique aspects of the Fluvio platform are:
-
-* Declarative Management - An intention-based approach to data management.
-* Event Store - Built-in event store with built-in replication to ensure availability.
-* Cloud Native by Design - Built-in Kubernetes support.
-* Real-time Architecture - Built for low latency and high throughput environments.
-* Flexible Deployments - Fluvio Controller can manage Cloud and on-Premise services simultaneously.
-* Simple to Operate - Powerful Command Line Interface.
-* Compiled to Machine Code - Small, Secure, and Fast. No garbage collection!
-
-
-{{< links "Next Steps" >}}
-* [Getting Started](...)
-{{< /links >}}
