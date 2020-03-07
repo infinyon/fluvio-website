@@ -5,13 +5,14 @@
     <div class="content">
 <pre data-src="prism.js" class="language-javascript bk-white font-09">
 <code class="language-javascript">
-addon.connectSc("server:port").then(sc => {
-  console.log("connected to sc: ", sc.addr());
+flvClient.connect("server:port").then((sc) => {
 
-  sc.findLeader("topic", 0).then(leader => {
-      leader.produce(emitter.emit.bind(emitter));
-  })
-  
+    sc.leader("my-topic-1", 0).then((leader) => {
+        leader.produce("hello world").then(len => {
+            console.log("message sent!");
+        });
+    })
+
 });
 </code></pre>
     </div>
@@ -21,13 +22,14 @@ addon.connectSc("server:port").then(sc => {
     <label for="tab-2">Subscriber</label>
     <div class="content">
 <pre data-src="prism.js" class="language-javascript bk-white font-09"><code class="language-javascript">
-addon.connectSc("server:port").then(sc => {
-  console.log("connected to sc: ", sc.addr());
+emitter.on('data', (msg) => {
+    console.log(msg);
+});
 
-  sc.findLeader("topic", 0).then(leader => {
-      leader.consume(emitter.emit.bind(emitter));
-  })
-  
+flvClient.connect("server:port").then((sc) => {
+    sc.leader("my-topic-1", 0).then((leader) => {
+        leader.consume(emitter.emit.bind(emitter));
+    })
 });
 </code></pre>
     </div>
