@@ -18,10 +18,10 @@
     .content {
         margin-left: 1em;
         min-height: 100%;
-        line-height: 1.6em;
+        line-height: 1.55em;
 
         .firstLine {
-            font-size: 1.02em;
+            font-size: 1.1em;
         }
 
         p:first-of-type {
@@ -36,7 +36,13 @@
     &.code {
         background-color:$color-callout-bg;
         border-color:$color-callout-border;
-        font-size: .82em;
+        font-size: .8em;
+
+        code[class*="language-"],
+        pre[class*="language-"] {
+            line-height: 1.8;
+            color: $flv-gray-dark1;
+        }
 
         .content {
             font-family: $font-callout;
