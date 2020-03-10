@@ -2,7 +2,7 @@
 {{ $alt := .Get "alt" }}
 {{ $class := .Get "justify" }}
 {{ $type := .Get "type" }}
-{{ $width := .Get "width" }}
+{{ $width := .Get "width" | default "36" }}
 
 <div id="image" class="{{ $class }}">
   <img

@@ -1,5 +1,5 @@
 ---
-title: Topics
+title: Fluvio Rust
 weight: 10
 ---
 

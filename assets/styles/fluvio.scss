@@ -123,8 +123,8 @@ a#logo {
   }
   
   h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
   }
   li {
     margin-top: .2rem;
@@ -195,8 +195,8 @@ footer {
 // --------------
 
 .sidemenu { 
-  min-width: 220px;
-  max-width: 270px;
+  min-width: 200px;
+  max-width: 220px;
   padding:5px;
   margin: 0 .5em 1em 1em;
 }
@@ -216,7 +216,7 @@ footer {
 
 .flv_acrd {
   line-height:1.5em;
-  font-size: .98rem;
+  font-size: .9rem;
   font-family: $font-paragraph;
 }
 

@@ -1,6 +1,6 @@
 ---
 title: Command Line Interface (fluvio)
-menu: Command Line
+menu: CLI
 weight: 40
 ---
 

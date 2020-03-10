@@ -1,7 +1,8 @@
+{{- $producer := .Site.GetPage "/main/producer.md" -}}
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-1" name="tab-group-1" checked>
-    <label for="tab-1">Publisher</label>
+    <label for="tab-1">Producer</label>
     <div class="content">
 <pre data-src="prism.js" class="language-javascript bk-white font-09">
 <code class="language-javascript">
@@ -19,7 +20,7 @@ flvClient.connect("server:port").then((sc) => {
   </div>
   <div class="tab">
     <input type="radio" id="tab-2" name="tab-group-1">
-    <label for="tab-2">Subscriber</label>
+    <label for="tab-2">Consumer</label>
     <div class="content">
 <pre data-src="prism.js" class="language-javascript bk-white font-09"><code class="language-javascript">
 emitter.on('data', (msg) => {

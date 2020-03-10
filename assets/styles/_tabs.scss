@@ -8,10 +8,11 @@
   }
   .tab label {
     font-family: $font-paragraph;
+    font-size:1.1em;
     font-weight: 700;
-    color: $flv-gray-light1; //$color-button-base; 
+    color: $flv-gray-dark2;
     background: #eee;
-    padding: .3em 1em .4em 1em;
+    padding: .45em 1em .25em 1em;
     margin-right: 5px;
     border: 1px solid #ccc;
     border-top-left-radius: .4em;
@@ -25,7 +26,7 @@
   }
   .tab .content {
     position: absolute;
-    top: 2.2em;
+    top: 2.45em;
     left: 0;
     background: white;
     right: 0;

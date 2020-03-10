@@ -1,6 +1,6 @@
 ---
 title: Streaming Processing Unit (SPU)
-menu: Streaming Processing
+menu: SPU
 weight: 30
 ---
 

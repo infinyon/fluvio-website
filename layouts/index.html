@@ -1,23 +1,25 @@
 {{ define "main" }}
 {{- $page := .Site.GetPage "/main/_index.md" -}}
-{{- $params := $page.Params -}}
+{{- $header := .Site.GetPage "/main/header.md" -}}
+{{- $paragraph1 := .Site.GetPage "/main/paragraph1.md" -}}
+{{- $paragraph2 := .Site.GetPage "/main/paragraph2.md" -}}
 
 <div class="jumbotron">
   <div class="container main">
     <div class="desc">
      <div class="row">
       <div class="col-lg-6">
-        <div class="title">{{ $params.title | markdownify}}</div>
+        <div class="title">{{ $header.Content | markdownify}}</div>
         <div class="wrapper">
-          <div class="subtitle">{{ $params.subtitle | markdownify}}</div>
-          <div class="subtitle2">{{ $params.subtitle2 | markdownify}}</div>
+          <div class="subtitle">{{ $paragraph1.Content | markdownify}}</div>
+          <div class="subtitle2">{{$paragraph2.Content | markdownify}}</div>
         </div>
       </div>
       <div class="col-lg-6">
           <div class="mlc5 mt-4">
             {{- partial "pub-sub.html" . -}}
           </div>
-        <a class="btn btn-primary mt-3 mlc5" href="{{ $params.button.link }}">{{ $params.button.label }}</a>
+        <a class="btn btn-primary mt-3 mlc5" href="{{ $page.Params.button.link }}">{{ $page.Params.button.label }}</a>
       </div>
       </div>
     </div>

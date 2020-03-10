@@ -1,4 +1,4 @@
 ---
 title: How to Contribute
-weight: 200
+weight: 300
 ---
