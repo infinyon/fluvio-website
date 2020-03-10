@@ -21,7 +21,7 @@
         line-height: 1.6em;
 
         .firstLine {
-            font-size: 1em;
+            font-size: 1.02em;
         }
 
         p:first-of-type {
@@ -36,7 +36,7 @@
     &.code {
         background-color:$color-callout-bg;
         border-color:$color-callout-border;
-        font-size: .9em;
+        font-size: .82em;
 
         .content {
             font-family: $font-callout;
@@ -61,7 +61,7 @@
         border-color: $color-callout-border;
 
         .content {
-            font-size: 1.05em;
+            font-size: .95em;
             font-family: $font-paragraph;
         }
     }
