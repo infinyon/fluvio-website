@@ -1,3 +1,3 @@
 ---
-title: "Fluvio Data Streaming"
+title: "Fluvio Streaming"
 ---

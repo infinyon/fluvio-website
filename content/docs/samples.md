@@ -45,7 +45,7 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 ##### Header h5
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
 
-##### Header h6
+###### Header h6
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing ...
 
 

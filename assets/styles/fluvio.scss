@@ -14,10 +14,10 @@ body {
 h1, .font-xxl {font-size: 2.1rem; }
 h2, .font-xl {font-size: 1.7rem; }
 h3, .font-lg {font-size: 1.45rem; }
-h4, .font-md, .font-md-underline {font-size: 1.25rem; }
+h4, .font-md, .font-md-underline {font-size: 1.4rem; }
 p, li, .font-rg {font-size: 1.05rem; }
-h5, .font-sm {font-size: 0.9rem; }
-h6, .font-xs {font-size: 0.8rem; }
+h5, .font-sm {font-size: 1.1rem; }
+h6, .font-xs {font-size: 1.0rem; }
 h1, h2, h3, h4, .h1, .h2, .h3, .h4, .h5, .h6, .font-xs, .font-sm, .font-rg, .font-md, .font-lg, .font-xl, .font-xxl, .font-md-underline {
   color: $col-headers;
   font-family: $font-headers;
@@ -128,7 +128,7 @@ a#logo {
     margin-bottom: 1.2rem;
   }
   li {
-    margin-top: .2rem;
+    padding-bottom: .4rem;
   }
 }
 
