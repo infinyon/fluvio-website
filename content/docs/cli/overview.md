@@ -23,15 +23,15 @@ Binaries are available for download at:
 Fluvio CLI is user friendly and hierarchical. The syntax follows a well-defined pattern: __fluvio__, succeeded by __module__, __operation__ and a series of _options_ and _flags_. There are a couple of exceptions to this rule which are described later on.
 
 
-{{< text >}}
-<strong>fluvio module operation</strong> [FLAGS] [OPTIONS]
-{{< /text >}}
+{{< cmd >}}
+fluvio module operation [FLAGS] [OPTIONS]
+{{< /cmd >}}
 
 Most options and flags are optional but there are some that are mandatory. Mandatory options are shown in the CLI usage line. For example, the syntax for __Create a Topic__ is:
 
-{{< text >}}
-<strong>fluvio topic create</strong> [FLAGS] [OPTIONS] --partitions &lt;integer&gt; --replication &lt;integer&gt; --topic &lt;string&gt;
-{{< /text >}}
+{{< cmd >}}
+fluvio topic create --partitions <integer> --replication <integer> --topic <string>
+{{< /cmd >}}
 
 It shows that {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}}, and {{< pre >}}--replication{{< /pre >}}, are mandatory.
 

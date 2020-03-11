@@ -3,7 +3,7 @@ title: Quick Start
 weight: 10
 ---
 
-The quickest way to get started is with [Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}}). The cloud platform runs [Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}}) and manages the installation, storage, and runtime environment on your behalf. Each cloud account is assigned a dedicated environment with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU).
+The quickest way to data streaming is with [Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}}). The cloud platform runs **[Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}}) as a Service**, where  installation, storage, and the runtime environment are handled by the platform. When you sign up, we provision a dedicated environment with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU) and assign it to your account.
 
 
 Let's get started:

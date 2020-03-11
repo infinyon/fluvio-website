@@ -2,10 +2,11 @@
 @import 'callout';
 @import 'prism';
 @import 'tabs';
+@import 'various';
 
 body {
   font-family: $font-body;
-  color: $color-text;
+  color: $col-text;
   min-height: 100vh; 
 }
 
@@ -14,20 +15,20 @@ h1, .font-xxl {font-size: 2.1rem; }
 h2, .font-xl {font-size: 1.7rem; }
 h3, .font-lg {font-size: 1.45rem; }
 h4, .font-md, .font-md-underline {font-size: 1.25rem; }
-p, li, .font-rg {font-size: 1rem; }
+p, li, .font-rg {font-size: 1.05rem; }
 h5, .font-sm {font-size: 0.9rem; }
 h6, .font-xs {font-size: 0.8rem; }
 h1, h2, h3, h4, .h1, .h2, .h3, .h4, .h5, .h6, .font-xs, .font-sm, .font-rg, .font-md, .font-lg, .font-xl, .font-xxl, .font-md-underline {
-  color: $color-headers;
+  color: $col-headers;
   font-family: $font-headers;
 }
 h5, h6 {
   font-family: $font-blog;
   font-weight: bold;
-  color: $color-headers;
+  color: $col-headers;
 }
 h2:after, h3:after {
-  background: none repeat scroll 0 0 $flv-blue-light3;
+  background: none repeat scroll 0 0 $col-blue-light3;
   content: "";
   display: block;
   position: relative;
@@ -45,11 +46,11 @@ h3 {
 h3:after {
   bottom: 7px;
   margin-right: -5px;
-  border-bottom: 1px solid  $flv-blue-light3;
+  border-bottom: 1px solid  $col-blue-light3;
 }
 .font-md-underline { line-height: 2.1em; }
 .font-md-underline:after {
-  background: none repeat scroll 0 0 $flv-blue-light3;
+  background: none repeat scroll 0 0 $col-blue-light3;
   content: "";
   display: block;
   position: relative;
@@ -64,7 +65,7 @@ h3:after {
 }
 
 a {
-  color: $color-hyperlink;
+  color: $col-hyperlink;
 }
 
 p {
@@ -75,11 +76,11 @@ p {
 }
 
 strong {
-  color: $color-hyperlink;
+  color: $col-gray-dark9;
   font-weight: 700;
 }
 em {
-  color: $flv-blue-dark6;
+  color: $col-blue-dark6;
 }
 
 
@@ -87,7 +88,7 @@ em {
   font-family: $font-logo;
   font-size: 26px;
   font-weight: 700;
-  color: $color-top-menu;
+  color: $col-top-menu;
 }
 
 a#logo {
@@ -133,20 +134,20 @@ a#logo {
 
 .jumbotron {
   margin-top: -1em;
-  background: $flv-gray-light10;
-  border-bottom: 1px solid $flv-gray-light8;
+  background: $col-gray-light10;
+  border-bottom: 1px solid $col-gray-light8;
 }
 
 .main-card {
-  background: $flv-gray-light12;
+  background: $col-gray-light12;
 }
 
 // Footer
 footer {
-  background-color: $color-footer-bg;
+  background-color: $col-footer-bg;
   
   h1, h6 {
-    color: $color-footer;
+    color: $col-footer;
   }
 }
 
@@ -164,21 +165,21 @@ footer {
 }
 
 .navbar-custom .navbar-item.active {   
-  border-bottom: 2px solid $color-top-menu-border; 
+  border-bottom: 2px solid $col-top-menu-border; 
 }
 
 .navbar-custom {
-  background-color: $color-top-menu-bg;
+  background-color: $col-top-menu-bg;
 }
 
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text,
 .navbar-custom .navbar-nav .nav-link {
-  color: $color-top-menu;
+  color: $col-top-menu;
 }
 
 .navbar-custom .navbar-nav .nav-link-rev {
-  color:  $color-top-menu-bg;
+  color:  $col-top-menu-bg;
   background: white;
   border: 4px solid white;
   border-radius: .3em;  
@@ -207,7 +208,7 @@ footer {
 }
 
 .sidemenu .header a { 
-  color:$color-sidemenu-header;
+  color:$col-sidemenu-header;
 }
 
 .sidemenu .header a:hover { 
@@ -231,7 +232,7 @@ footer {
 
 .flv_acrd .card-page.selected a {
   font-weight: 700;
-  color: $color-sidemenu-selected;
+  color: $col-sidemenu-selected;
 }
 
 .flv_acrd .card-header {
@@ -246,7 +247,7 @@ footer {
   font-weight: 600;
   font-size:15px;
   padding-right:4px;
-  color: $color-darkblue;
+  color: $col-darkblue;
 }
 
 .flv_acrd .card-header a[aria-expanded="true"]:before {
@@ -257,7 +258,7 @@ footer {
 .flv_acrd a {
   display: block;
   position: relative;
-  color: $color-sidemenu;
+  color: $col-sidemenu;
 }
 
 .flv_acrd a:hover{
@@ -295,12 +296,12 @@ footer {
     font-size: 4em;
     font-weight: 700;
     line-height: 1.35em;
-    color: $color-main-title;
+    color: $col-main-title;
   }
   
   .desc {
     .title {
-      color: $color-headers;
+      color: $col-headers;
       font-family: $font-headers;
       font-weight:700;
       font-size: 2.8em;  
@@ -310,13 +311,9 @@ footer {
       max-width: 90%;
       margin: 2.5em auto 0; 
 
-      .subtitle, .subtitle2 {
-        color:  $flv-gray-base;
+      .subtitle {
+        color:  $col-gray-base;
         font-size:1.1em;
-      }
-      .subtitle2 {
-        padding-top: 1.2em;
-        font-weight: 700;
       }
     }
   }
@@ -327,14 +324,19 @@ footer {
 
     a {
       font-family: $font-headers;
-      color: $flv-gray-base;
+      color: $col-gray-base;
     }
   }
 
   .box-content {
     margin-top: 1.6em;
-    color: $flv-gray-base;
+    color: $col-gray-base;
   }
+
+  .bolt-icon {
+    font-size:1.3em;
+    color:$col-rust-orange; 
+  }  
 }
 
 // --------------
@@ -385,13 +387,13 @@ footer {
   }
 
   .menu .h4 { 
-    border-bottom: 1px solid $color-blog-header-line;
+    border-bottom: 1px solid $col-blog-header-line;
     padding-bottom: 4px;
     margin-bottom: 10px;
   }
 
   .menu .h4 a { 
-    color: $color-blog-header;
+    color: $col-blog-header;
   }
 
   .menu a:hover { 
@@ -410,7 +412,7 @@ footer {
     font-size: 15px;
     font-family: $font-blog;
     font-weight: 400;
-    color: $color-blog;
+    color: $col-blog;
     line-height: 1.84em;
   }
 
@@ -419,7 +421,7 @@ footer {
   }
 
   .menu .item.selected a { 
-    color: $color-blog-selected;
+    color: $col-blog-selected;
   }
 }
 
@@ -455,7 +457,7 @@ footer {
   a {
       font-family: $font-faq-toc;
       font-weight: 400;
-      color: $color-faq-toc;
+      color: $col-faq-toc;
   }
 
   a:hover {
@@ -506,7 +508,7 @@ footer {
 
     .navbar-item.active {   
       border-bottom: none;
-      background-color: $color-top-menu-collaped-sel;
+      background-color: $col-top-menu-collaped-sel;
     }
   }
 
@@ -540,7 +542,7 @@ footer {
 }
 
 .archor {
-  color: $flv-gray-light2;
+  color: $col-gray-light2;
   font-size: .9rem;
   margin-left: .2em;
   vertical-align: middle;
