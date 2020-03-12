@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="58 9 1740 693" width="1740" height="693">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="-684 -124 1757 698" width="1757" height="698">
   <defs>
     <font-face font-family="Montserrat Alternates" font-size="560" panose-1="0 0 5 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-125" underline-thickness="50" slope="0" x-height="525" cap-height="700" ascent="968.0023" descent="-251.00708" font-weight="400">
       <font-face-src>
@@ -9,38 +9,32 @@
     </font-face>
   </defs>
   <metadata> Produced by OmniGraffle 7.13 
-    <dc:date>2020-03-11 23:52:30 +0000</dc:date>
+    <dc:date>2020-03-12 23:50:55 +0000</dc:date>
   </metadata>
-  <g id="fluvio-white" fill="none" stroke="none" stroke-opacity="1" fill-opacity="1" stroke-dasharray="none">
-    <title>fluvio-white</title>
-    <g id="fluvio-white: Layer 1">
+  <g id="fluvio-white_1" fill="none" stroke="none" stroke-opacity="1" fill-opacity="1" stroke-dasharray="none">
+    <title>fluvio-white 1</title>
+    <g id="fluvio-white_1: Layer 1">
       <title>Layer 1</title>
-      <g id="Group_83">
-        <g id="Graphic_89">
-          <text transform="translate(580.4536 9)" fill="white">
-            <tspan font-family="Montserrat Alternates" font-size="560" font-weight="400" fill="white" x="682121e-18" y="542">uv</tspan>
+      <g id="Group_2">
+        <g id="Group_5">
+          <g id="Graphic_7">
+            <circle cx="628" cy="60" r="35.0000559265664" fill="white"/>
+            <circle cx="628" cy="60" r="35.0000559265664" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          </g>
+          <g id="Line_6">
+            <path d="M 633.7301 142 C 688.5297 246.4386 518.3543 256.9649 645.5473 401.7619" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width="50"/>
+          </g>
+        </g>
+        <g id="Graphic_4">
+          <text transform="translate(-658.78 -123.18996)" fill="white">
+            <tspan font-family="Montserrat Alternates" font-size="560" font-weight="400" fill="white" x="5684342e-19" y="542">Fluv</tspan>
           </text>
         </g>
-        <g id="Graphic_86">
-          <circle cx="1358.7685" cy="189" r="35.0000559265664" fill="white"/>
-          <circle cx="1358.7685" cy="189" r="35.0000559265664" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        </g>
-        <g id="Graphic_85">
-          <text transform="translate(59 9)" fill="white">
-            <tspan font-family="Montserrat Alternates" font-size="560" font-weight="400" fill="white" x="0" y="542">F</tspan>
-          </text>
-        </g>
-        <g id="Graphic_84">
-          <text transform="translate(1446 18.52381)" fill="white">
+        <g id="Graphic_3">
+          <text transform="translate(716 -114)" fill="white">
             <tspan font-family="Montserrat Alternates" font-size="560" font-weight="400" fill="white" x="0" y="542">o</tspan>
           </text>
         </g>
-      </g>
-      <g id="Line_90">
-        <path d="M 495.1509 179.7619 C 627.1509 343.7619 371.50955 378.7619 496.50955 530.7619" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="50"/>
-      </g>
-      <g id="Line_91">
-        <path d="M 1364.4986 271 C 1419.2982 375.4386 1249.1228 385.9649 1376.3158 530.7619" stroke="white" stroke-linecap="round" stroke-linejoin="miter" stroke-width="50"/>
       </g>
     </g>
   </g>
