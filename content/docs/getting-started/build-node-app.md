@@ -1,7 +1,6 @@
 ---
-title: Build your own App
-menu: Build your App
-weight: 60
+title: Build a Node App
+weight: 20
 ---
 
 This is a simple end-to-end example that describes how to provision a system and send a simple message from a Producer to a Consumer.

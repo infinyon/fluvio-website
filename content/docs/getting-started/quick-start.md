@@ -3,7 +3,11 @@ title: Quick Start
 weight: 10
 ---
 
-The quickest way to get started is with [Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}}). The cloud platform runs **[Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}}) as a Service**, where the storage and runtime environment are handled by the platform. Every account gets a dedicated environment provisioned with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU).
+The quickest path to data streaming is with [Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}}). Every account gets a dedicated **[Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}})** installation in the cloud, provisioned with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU). 
+
+{{< image src="quick-start.svg" alt="Fluvio - Cloud Streaming" justify="center" width="400">}}
+
+Create an account, download Fluvio client library, and you are ready for data streaming.
 
 
 ##### Let's get started
@@ -11,7 +15,6 @@ The quickest way to get started is with [Fluvio Cloud]({{< relref "../fluvio-clo
 * [Create a Fluvio Cloud account]({{< ref "#create-fluvio-account" >}})
 * [Download and configure Command Line Interface]({{< ref "#download-and-configure-cli" >}})
 * [Create topic and stream "Hello World"]({{< ref "#create-topic-and-stream-hello-world">}})
-* [Create Node app and stream "Hello from Node"]({{< ref "#create-node-app-and-stream-hello-from-node">}})
 
 
 ## Create Fluvio Cloud account
