@@ -28,8 +28,9 @@
 
 <div class="container main">
   <div class="row">
-    {{ range (where .Pages "Type" "main" ) }}
-      <div class="col-md-6 col-lg-4">
+    {{- range (where .Pages "Type" "main" ) -}}
+      {{- if eq .Params.boxType true -}}
+      <div class="col-md-6 col-lg-4 box">
         <div class="card bg-light">
           <div class="m-3 align-self-center">
             <div class="box-header font-xl">
@@ -50,7 +51,8 @@
           </div>
         </div>
       </div>
-    {{ end }}
+       {{- end -}}
+    {{- end -}}
   </div>
 </div>
 
