@@ -1,5 +1,6 @@
 ---
-title: Quick Start
+title: Quick Start Guide
+menu: Quick Start
 weight: 10
 ---
 
@@ -12,25 +13,32 @@ Create an account, download Fluvio client library, and you are ready for data st
 
 ##### Let's get started
 
-* [Create a Fluvio Cloud account]({{< ref "#create-fluvio-account" >}})
+* [Create a Fluvio Cloud account]({{< ref "#create-a-fluvio-cloud-account" >}})
 * [Download and configure Command Line Interface]({{< ref "#download-and-configure-cli" >}})
-* [Create topic and stream "Hello World"]({{< ref "#create-topic-and-stream-hello-world">}})
+* [Create topic and stream "Hello World"]({{< ref "#create-a-topic-and-stream-hello-world">}})
 
 
-## Create Fluvio Cloud account
+## Create a Fluvio Cloud account
 
-To create a Fluvio Cloud account you will need a valid email address. We use the email address to send your **security profile** which gives you access to your environment.
+Each Fluvio Cloud installation is assigned a unique **security profile**. Profiles ensure only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Account** to download and install the security profile associated with your environment.
 
 1. {{< target-blank title="SignUp" url="http://app.fluvio.io/signup" >}} for a new account.
         
-    * Complete the form and **SignUp**. 
+    * Fill-in and submit the **New Account** form.
     * A verification message is sent to your email.
 
-2. Check your email and click **Confirm Email** button.
+2. Check your email for the **verification** message.
         
-    * The confirmation page
-    * 
+    * Click the **Confirm Email** button.
+    * The **Congratulation** page confirms your account is enabled.
 
+3. Click **Login** to access your **Cloud Dashboard** 
+
+    * You will receive an email when the **installation is ready**, it may take a few minutes.
+
+4. Download your **Security Profile**
+
+    * Follow the instructions on your **Cloud Dashboard** to download and install your profile.
 
 
 
@@ -39,8 +47,6 @@ To create a Fluvio Cloud account you will need a valid email address. We use the
 ...
 
 
-## Create topic and stream "Hello World"
+## Create a topic and stream "Hello World"
 
 ...
-
-## Create Node app and stream "Hello from Node"
