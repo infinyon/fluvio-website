@@ -14,7 +14,7 @@ Create an account, download Fluvio client library, and you are ready for data st
 ##### Let's get started
 
 * [Create a Fluvio Cloud account]({{< ref "#create-a-fluvio-cloud-account" >}})
-* [Download and configure Command Line Interface]({{< ref "#download-and-configure-cli" >}})
+* [Download and configure the CLI]({{< ref "#download-and-configure-the-cli" >}})
 * [Create topic and stream "Hello World"]({{< ref "#create-a-topic-and-stream-hello-world">}})
 
 
@@ -38,11 +38,11 @@ Each Fluvio Cloud installation is assigned a unique **security profile**. Profil
 
 4. Download your **Security Profile**
 
-    * Follow the instructions on your **Cloud Dashboard** to download and install your profile.
+    * The **installation guide** is published in your {{< target-blank title="Fluvio Cloud Dashboard" url="http://app.fluvio.io" >}}  
 
 
 
-## Download and configure CLI
+## Download and configure the CLI
 
 ...
 
