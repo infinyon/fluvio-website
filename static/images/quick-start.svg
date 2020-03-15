@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="232 99 306 181" width="306" height="181">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="232 98 306 182" width="306" height="182">
   <defs>
     <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-9 -4 10 8" markerWidth="10" markerHeight="8" color="black">
       <g>
@@ -22,17 +22,12 @@
         <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
       </g>
     </marker>
-    <font-face font-family="Avenir Next" font-size="9" panose-1="2 11 5 3 2 2 2 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="468" cap-height="708" ascent="1e3" descent="-365.9973" font-weight="400">
-      <font-face-src>
-        <font-face-name name="AvenirNext-Regular"/>
-      </font-face-src>
-    </font-face>
   </defs>
   <metadata> Produced by OmniGraffle 7.13 
-    <dc:date>2020-03-15 18:24:22 +0000</dc:date>
+    <dc:date>2020-03-15 18:36:15 +0000</dc:date>
   </metadata>
   <g id="Quick_Start_Complete_2" stroke-dasharray="none" fill="none" stroke-opacity="1" fill-opacity="1" stroke="none">
-    <title>Quick Start Complete 2</title>
+    <title>Quick Start</title>
     <g id="Quick_Start_Complete_2: Layer 1">
       <title>Layer 1</title>
       <g id="Graphic_504">
@@ -126,12 +121,12 @@
       </g>
       <g id="Group_1681">
         <g id="Graphic_1683">
-          <ellipse cx="408.6401" cy="109.5" rx="7.17188645995263" ry="7.20001150489366" fill="#06aa90"/>
-          <ellipse cx="408.6401" cy="109.5" rx="7.17188645995263" ry="7.20001150489366" stroke="#06aa90" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <circle cx="409.0782" cy="109.4375" r="8.15626303288736" fill="#06aa90"/>
+          <circle cx="409.0782" cy="109.4375" r="8.15626303288736" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
         </g>
         <g id="Graphic_1682">
-          <text transform="translate(406.4682 104)" fill="white">
-            <tspan font-family="Avenir Next" font-size="9" font-weight="400" fill="white" x="58175686e-20" y="9">2</tspan>
+          <text transform="translate(406.1782 103.27623)" fill="white">
+            <tspan font-family="Avenir Next" font-size="10" font-weight="400" fill="white" x="0" y="10">2</tspan>
           </text>
         </g>
       </g>
@@ -142,29 +137,29 @@
         </text>
       </g>
       <g id="Graphic_1700">
-        <text transform="translate(348.35375 260.9651)" fill="#666">
+        <text transform="translate(343.4518 260.9651)" fill="#666">
           <tspan font-family="Helvetica Neue" font-size="10" font-weight="400" fill="#666" x="0" y="10">Consume</tspan>
         </text>
       </g>
-      <g id="Group_1701">
-        <g id="Graphic_1703">
-          <ellipse cx="286.15562" cy="196.63786" rx="7.17188645995263" ry="7.20001150489367" fill="#06aa90"/>
-          <ellipse cx="286.15562" cy="196.63786" rx="7.17188645995263" ry="7.20001150489367" stroke="#06aa90" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <g id="Group_1713">
+        <g id="Graphic_1715">
+          <circle cx="364.9418" cy="252.40147" r="8.15626303288735" fill="#06aa90"/>
+          <circle cx="364.9418" cy="252.40147" r="8.15626303288735" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
         </g>
-        <g id="Graphic_1702">
-          <text transform="translate(283.98375 191.13786)" fill="white">
-            <tspan font-family="Avenir Next" font-size="9" font-weight="400" fill="white" x="58175686e-20" y="9">1</tspan>
+        <g id="Graphic_1714">
+          <text transform="translate(362.0418 246.2402)" fill="white">
+            <tspan font-family="Avenir Next" font-size="10" font-weight="400" fill="white" x="0" y="10">3</tspan>
           </text>
         </g>
       </g>
-      <g id="Group_1704">
-        <g id="Graphic_1706">
-          <ellipse cx="369.40562" cy="252.82955" rx="7.17188645995263" ry="7.20001150489363" fill="#06aa90"/>
-          <ellipse cx="369.40562" cy="252.82955" rx="7.17188645995263" ry="7.20001150489363" stroke="#06aa90" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <g id="Group_1716">
+        <g id="Graphic_1718">
+          <circle cx="286.59375" cy="196.12964" r="8.15626303288735" fill="#06aa90"/>
+          <circle cx="286.59375" cy="196.12964" r="8.15626303288735" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
         </g>
-        <g id="Graphic_1705">
-          <text transform="translate(367.23375 247.32955)" fill="white">
-            <tspan font-family="Avenir Next" font-size="9" font-weight="400" fill="white" x="58175686e-20" y="9">3</tspan>
+        <g id="Graphic_1717">
+          <text transform="translate(283.69375 189.96837)" fill="white">
+            <tspan font-family="Avenir Next" font-size="10" font-weight="400" fill="white" x="0" y="10">1</tspan>
           </text>
         </g>
       </g>
