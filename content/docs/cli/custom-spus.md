@@ -27,16 +27,16 @@ Fluvio [Developer Guide](https://github.com/infinyon/fluvio/blob/master/DEVELOPE
 
 __Custom-SPUs__ that are deployed outside of your Kubernetes cluster need access to the SC internal channel. Run the following script to expose SC internal port:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ kubectl apply  -f k8-util/sc-deployment/sc-internal-dev.yaml 
-{{< /cli >}}
+{{< /fluvio >}}
 
 #### On Minikube
 
 Ensure __SC__ private port __flv-sc-internal__ load balancer has been created:
 
-{{< cli yaml >}}
-kubectl get services
+{{< fluvio >}}
+$ kubectl get services
 NAME               TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)             AGE
 flv-sc-internal    LoadBalancer   10.111.202.47    10.111.202.47    9004:30314/TCP      4h25m
 flv-sc-public      LoadBalancer   10.98.178.109    10.98.178.109    9003:31974/TCP      4h25m
@@ -45,13 +45,13 @@ flv-spu-group3-0   LoadBalancer   10.105.174.231   10.105.174.231   9005:31368/T
 flv-spu-group3-1   LoadBalancer   10.105.169.200   10.105.169.200   9005:30391/TCP      4h9m
 flv-spu-group3-2   LoadBalancer   10.101.143.60    10.101.143.60    9005:30080/TCP      4h9m
 kubernetes         ClusterIP      10.96.0.1        <none>           443/TCP             4h34m
-{{< /cli >}}
+{{< /fluvio >}}
 
 Save __SC__ private port in an alias
 
-{{< cli yaml>}}
+{{< code >}}
 $ alias SC-PRIVATE="kubectl get svc flv-sc-internal -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
-{{< /cli>}}
+{{< /code >}}
 
 The next steps must be performed in the following sequence:
 
@@ -63,20 +63,20 @@ The next steps must be performed in the following sequence:
 
 Custom-SPU module defines the following CLI operations: 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio custom-spu <SUBCOMMAND>
 
 SUBCOMMANDS:
     register    Register custom SPU
     unregister  Unregister custom SPU
     list        List custom SPUs
-{{< /code >}}
+{{< /fluvio >}}
 
 ## Register Custom-SPU
 
 Register __Custom-SPU__ operation informs the __SC__ that a custom __SPU__ with the specific id is authorized to join to a __Fluvio__ deployment. 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio custom-spu register [OPTIONS] --id <id> --private-server <host:port> --public-server <host:port>
 
 OPTIONS:
@@ -87,7 +87,7 @@ OPTIONS:
     -v, --private-server <host:port>    Private server::port
     -c, --sc <host:port>                Address of Streaming Controller
     -P, --profile <profile>             Profile name
-{{< /code >}}
+{{< /fluvio >}}
 
 The options are defined as follows:
 
@@ -117,42 +117,42 @@ is the custom-defined profile file. The profile is an optional field used to com
 
 Register __Custom-SPU__ with the __SC__:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio custom-spu register --id 200 --public-server `SC`:9005 --private-server `SC`:9006 --sc `SC`:9003
 custom-spu 'custom-spu-200' registered successfully
-{{< /cli >}}
+{{< /fluvio >}}
 
 Run __spu_server__ :
 
-{{< cli yaml >}}
+{{< code >}}
 $ spu-server --id 200 --sc-controller `SC-PRIVATE`:9004
 starting custom-spu services (id:200)
-{{< /cli >}}
+{{< /code >}}
 
 Note that the SPU server must connect to the private interface and port number of the SC Controller.
 
 Ensure __Custom-SPU__ with id 200 has successfully joined the deployment and it is online.
 
-{{< cli yaml >}}
- $ fluvio spu list --sc `SC`:9003
- ID   NAME            STATUS  TYPE     RACK  PUBLIC               PRIVATE 
- 200  custom-spu-200  online  custom    -    10.98.178.109:9005   10.98.178.109:9006 
-{{< /cli >}}
+{{< fluvio >}}
+$ fluvio spu list --sc `SC`:9003
+ID   NAME            STATUS  TYPE     RACK  PUBLIC               PRIVATE 
+200  custom-spu-200  online  custom    -    10.98.178.109:9005   10.98.178.109:9006 
+{{< /fluvio >}}
 
 
 ## Unregister Custom-SPU
 
 Unregister __Custom-SPU__ operation informs the __SC__ that the __SPU__ is no longer authorized to participate in this __Fluvio__ deployment. The __SC__ rejects all new connections from the __SPU__ service associated with this __Custom-SPU__.
 
-{{< code >}}
-fluvio custom-spu unregister [OPTIONS] --id <id>
+{{< fluvio >}}
+$ fluvio custom-spu unregister [OPTIONS] --id <id>
 
 OPTIONS:
     -i, --id <id>              SPU id
     -n, --name <string>        SPU name
     -c, --sc <host:port>       Address of Streaming Controller
     -P, --profile <profile>    Profile name
-{{< /code >}}
+{{< /fluvio >}}
 
 The options are defined as follows:
 
@@ -172,24 +172,24 @@ See [Register Custom-SPU](#register-custom-spu)
 
 Unregister __Custom-SPU__: 
 
-{{< cli yaml >}}
-fluvio custom-spu unregister --id 200 --sc `SC`:9003
+{{< fluvio >}}
+$ fluvio custom-spu unregister --id 200 --sc `SC`:9003
 custom-spu '200' deleted unregistered
-{{< /cli >}}
+{{< /fluvio >}}
 
 
 ## List Custom-SPUs
 
 List __Custom-SPUs__ operation lists all custom SPUs in a __Fluvio__ deployment. 
 
-{{< code >}}
-fluvio custom-spu list [OPTIONS]
+{{< fluvio >}}
+$ fluvio custom-spu list [OPTIONS]
 
 OPTIONS:
     -c, --sc <host:port>       Address of Streaming Controller
     -P, --profile <profile>    Profile name
     -O, --output <type>        Output [possible values: table, yaml, json]
-{{< /code >}}
+{{< /fluvio >}}
 
 The options are defined as follows:
 
@@ -206,11 +206,11 @@ is the format to be used to display the Custom-SPUs. The output is an optional f
 
 List __Custom-SPUs__: 
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio custom-spu list --sc `SC`:9003
- ID   NAME            STATUS  TYPE    RACK  PUBLIC              PRIVATE 
- 200  custom-spu-200  online  custom   -    10.98.178.109:9005  10.98.178.109:9006 
-{{< /cli >}}
+ID   NAME            STATUS  TYPE    RACK  PUBLIC              PRIVATE 
+200  custom-spu-200  online  custom   -    10.98.178.109:9005  10.98.178.109:9006 
+{{< /fluvio >}}
 
 
 {{< links "Related Topics" >}}

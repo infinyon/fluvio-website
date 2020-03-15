@@ -17,19 +17,19 @@ The Fluvio repo provides setup scripts to provision each infrastructure.
 
 Open a terminal and clone the Fluvio repository from [github](https://github.com/infinyon/fluvio):
 
-{{< cli yaml>}}
+{{< fluvio >}}
 $ git clone https://github.com/infinyon/fluvio.git
-{{< /cli>}}  
+{{< /fluvio >}}  
 
 Navigate to fluvio root directory:
 
-{{< cli yaml>}}
+{{< fluvio >}}
 $ cd fluvio
-{{< /cli>}}
+{{< /fluvio >}}
 
 The setup scripts are located in the __k8_util__ directory:
 
-{{< cli yaml>}}
+{{< fluvio >}}
 $ ls
 Cargo.lock		future-helper		metadata
 Cargo.toml		future-helper-03	rust-toolchain
@@ -41,7 +41,7 @@ api			    k8-util			    test-helper
 cli			    kf-protocol		    types
 dev-tools		kf-service		    utils
 future-aio		kf-socket
-{{< /cli>}}
+{{< /fluvio >}}
 
 To continue setup, choose one of the following instructions:
 

@@ -7,19 +7,19 @@ __Advanced__ section is __experimental__ and requires deep understanding of the 
 
 Advanced section defines the following CLI operations:
 
-{{< code >}}
+{{< fluvio >}}
 fluvio advanced <SUBCOMMAND>
 
 SUBCOMMANDS:
     generate    Generate a request template
     run         Send request to server
-{{< /code >}}
+{{< /fluvio >}}
 
 ## Generate Kafka Requests
 
 Generate request operation creates a custom JSON template for a specific request. The template needs to be filled-in with additional information for a proper request. 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio advanced generate --request <>
 
 OPTIONS:
@@ -29,7 +29,7 @@ OPTIONS:
                         JoinGroup, SyncGroup, LeaveGroup, 
                         ListGroups, DescribeGroups, DeleteGroups, 
                         Heartbeat, OffsetFetch]
-{{< /code >}}
+{{< /fluvio >}}
 
 * <strong>{{< pre >}}--request &lt;&gt;{{< /pre >}}</strong>:
 is a list of requests supported by the CLI. Request is a mandatory option.
@@ -47,7 +47,7 @@ __Fluvio__ has a built-in code generator to create a __Rust API__ interface for 
 
 Run request operation with a properly formatted JSON file against a Kafka server. 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio advanced run [OPTIONS] --json-file <file.json> --request <>
 
 OPTIONS:
@@ -60,7 +60,7 @@ OPTIONS:
     -k, --kf <host:port>          Address of Kafka Controller
     -j, --json-file <file.json>   Request details file
     -P, --profile <profile>       Profile name
-{{< /code >}}
+{{< /fluvio >}}
 
 The options are defined as follows:
 

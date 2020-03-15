@@ -11,8 +11,8 @@ The Fluvio Command Line and Fluvio services should run the same version. We reco
 
 For example, use version flag to check Fluvio CLI __version__ number:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio --version
 fluvio 0.1.0-alpha.1
-{{< /cli >}}
+{{< /fluvio >}}
 

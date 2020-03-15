@@ -16,7 +16,7 @@ __Consume__ command can operate in two modes:
 
 __Consume__ CLI command has the following operations: 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio consume [FLAGS] [OPTIONS] --partition <integer> --topic <string>
 
 FLAGS:
@@ -33,7 +33,7 @@ OPTIONS:
     -k, --kf <host:port>         Address of Kafka Controller
     -P, --profile <profile>      Profile name
     -O, --output <type>          Output [possible values: dynamic, text, binary, json, raw]
-{{< /code >}}
+{{< /fluvio >}}
 
 The flags and options are defined as follows:
 
@@ -74,7 +74,7 @@ is the format to be used to display the messages. The output is an optional fiel
 
 Consume all _my-topic_  messages from the beginning of the Fluvio SC queue:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio consume -t my-topic -p 0 --sc `SC`:9003 -g
 hello world
 test
@@ -82,21 +82,21 @@ hello World!
 one 
 two
 three
-{{< /cli >}}
+{{< /fluvio >}}
 
 
 #### Consume Messages for Kafka
 
 Consume all _kf-topic_  messages from the beginning of the Kafka queue:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio consume -t kf-topic -p 0 --kf 0.0.0.0:9092 -g
 Hello World
 one
 two
 three
 ^C
-{{< /cli >}}
+{{< /fluvio >}}
 
 
 

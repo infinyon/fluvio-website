@@ -38,13 +38,44 @@ Each Fluvio Cloud installation is assigned a unique **security profile**. Profil
 
 4. Download your **Security Profile**
 
-    * The **installation guide** is published in your {{< target-blank title="Fluvio Cloud Dashboard" url="http://app.fluvio.io" >}}  
+    * The **installation guide** is published on your {{< target-blank title="Fluvio Cloud Dashboard" url="http://app.fluvio.io" >}}  
 
+All Fluvio clients, **CLI** and **API libraries**, require a **security profile** corresponding to the Fluvio installation you are looking to access. 
 
 
 ## Download and configure the CLI
 
-...
+Fluvio Command Line Interface binaries are available in macOS and Linux versions:
+
+* Download binaries for your environment from [github release](https://github.com/infinyon/fluvio/releases).  
+* Copy binary to your bin path and make it executable.
+
+### Test CLI
+
+Run following command to ensure Fluvio CLI is working correctly:
+
+{{< fluvio >}}
+$ fluvio --help
+Fluvio Command Line Interface
+
+fluvio <SUBCOMMAND>
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+SUBCOMMANDS:
+    consume       Read messages from a topic/partition
+    produce       Write messages to a topic/partition
+    spu           SPU Operations
+    spu-group     SPU Group Operations
+    custom-spu    Custom SPU Operations
+    topic         Topic operations
+    advanced      Advanced operations
+    help          Prints this message or the help of the given subcommand(s)
+{{< /fluvio >}}
+
+Congratulation! You have successfully deployed Fluvio.
 
 
 ## Create a topic and stream "Hello World"

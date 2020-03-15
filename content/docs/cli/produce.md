@@ -15,7 +15,7 @@ __Produce__ command can operate in two modes:
 
 __Produce__ CLI command has the following operations: 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio produce [FLAGS] [OPTIONS] --partition <integer> --topic <string>
 
 FLAGS:
@@ -30,7 +30,7 @@ OPTIONS:
     -u, --spu <host:port>               Address of Streaming Processing Unit
     -k, --kf <host:port>                Address of Kafka Controller
     -P, --profile <profile>             Profile name
-{{< /code >}}
+{{< /fluvio >}}
 
 The flags and options are defined as follows:
 
@@ -66,15 +66,15 @@ is the custom-defined profile file. The profile is an optional field used to com
 
 Produce one message to Fluvio SC:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio produce -t my-topic -p 0 --sc `SC`:9003
 hello World!
 Ok!
-{{< /cli >}}
+{{< /fluvio >}}
 
 Continuously produce messages to Fluvio SC:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio produce -t my-topic -p 0 --sc `SC`:9003 -C
 one 
 Ok!
@@ -83,22 +83,22 @@ Ok!
 three
 Ok!
 ^C
-{{< /cli >}}
+{{< /fluvio >}}
 
 
 #### Produce Messages for Kafka
 
 Produce one message to Kafka:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio produce -t kf-topic -p 0 --kf 0.0.0.0:9092
 Hello World
 Ok!
-{{< /cli >}}
+{{< /fluvio >}}
 
 Continuously produce messages to Kafka:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio produce -t kf-topic -p 0 --kf 0.0.0.0:9092 -C
 one
 Ok!
@@ -107,7 +107,7 @@ Ok!
 three
 Ok!
 ^C
-{{< /cli >}}
+{{< /fluvio >}}
 
 
 {{< links "Related Topics" >}}

@@ -75,7 +75,7 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 Lorem ipsum is a pseudo-Latin text used in web design
 {{< /text >}}
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio auth-token list "test" -o 1
 fluvio 0.1.0
 Fluvio Command Line Interface
@@ -94,14 +94,14 @@ SUBCOMMANDS:
     auth-token    Athorization token operations
     advanced      Advanced operations
     help          Prints this message or the help of the given subcommand(s)s
-{{< /cli>}}
+{{< /fluvio >}}
 
-{{< cli yaml>}}
+{{< fluvio >}}
 $ fluvio auth-token list "test" -o 1
 error: cannot retrieve auth topics: Connection refused (os error 61) 
-{{< /cli>}}
+{{< /fluvio >}}
 
-{{< cli yaml>}}
+{{< fluvio >}}
 $ fluvio auth-token create -h
 fluvio-auth-token-create 0.1.0
 Create auth token
@@ -121,7 +121,7 @@ OPTIONS:
     -t, --token-type <token-type>    Types [possible values: Custom, Managed, Any]
     -c, --sc <host:port>             Address of Streaming Controller
     -P, --profile <profile>          Profile name
-{{< /cli>}}
+{{< /fluvio >}}
 
 {{< code rust >}}
 //!
@@ -196,7 +196,7 @@ $ consul config read -kind service-defaults -name web
    "Name": "web",
    "Protocol": "http"
 }
-{{< /cli>}}
+{{< /fluvio >}}
 
 
 {{< cli >}}
@@ -212,7 +212,7 @@ spec:
     constraints:
     - key: "destination.port"
         values: ["27017"]
-{{< /cli>}}
+{{< /fluvio >}}
 
 {{< cli json >}}
 $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
@@ -259,7 +259,7 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
         }
     }
 }
-{{< /cli>}}
+{{< /fluvio >}}
 
 {{< links "Next Steps" >}}
 * [Getting Started](...)

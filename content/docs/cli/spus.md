@@ -12,26 +12,26 @@ Fluio supports two types of SPUs:
 
 SPU module defines the CLI operations that are common both SPU types: 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio spu <SUBCOMMAND>
 
 SUBCOMMANDS:
     list    List custom & managed SPUs
-{{< /code >}}
+{{< /fluvio >}}
 
 
 ## List SPUs
 
 List __SPUs__ operation lists all managed and custom SPUs in a __Fluvio__ deployment. 
 
-{{< code >}}
+{{< fluvio >}}
 fluvio spu list [OPTIONS]
 
 OPTIONS:
     -c, --sc <host:port>       Address of Streaming Controller
     -P, --profile <profile>    Profile name
     -O, --output <type>        Output [possible values: table, yaml, json]
-{{< /code >}}
+{{< /fluvio >}}
 
 The options are defined as follows:
 
@@ -50,17 +50,17 @@ All list commands support 3 format types: __table__, __yaml__ and __json__. The 
 
 #### TABLE format (default)
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio spu list  --sc `SC`:9003
  ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE 
   0  group3-0  online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
   1  group3-1  online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
   2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
-{{< /cli >}}
+{{< /fluvio >}}
 
 #### YAML format
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio spu list  --sc `SC`:9003 -O yaml
 ---
 - name: group3-0
@@ -99,7 +99,7 @@ $ fluvio spu list  --sc `SC`:9003 -O yaml
       host: flv-spg-group3-2.flv-spg-group3
       port: 9006
     status: Online
-{{< /cli >}}
+{{< /fluvio >}}
 
 
 #### JSON format
@@ -159,7 +159,7 @@ $ fluvio spu list  --sc `SC`:9003 -O json
     }
   }
 ]
-{{< /cli >}}
+{{< /fluvio >}}
 
 
 {{< links "Related Topics" >}}

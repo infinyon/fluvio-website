@@ -23,15 +23,15 @@ Binaries are available for download at:
 Fluvio CLI is user friendly and hierarchical. The syntax follows a well-defined pattern: __fluvio__, succeeded by __module__, __operation__ and a series of _options_ and _flags_. There are a couple of exceptions to this rule which are described later on.
 
 
-{{< cmd >}}
+{{< fluvio >}}
 fluvio module operation [FLAGS] [OPTIONS]
-{{< /cmd >}}
+{{< /fluvio >}}
 
-Most options and flags are optional but there are some that are mandatory. Mandatory options are shown in the CLI usage line. For example, the syntax for __Create a Topic__ is:
+Most options and flags are optional but there are some that are mandatory. Mandatory options are shown in the CLI usage line. For example, the syntax for **Create a Topic** is:
 
-{{< cmd >}}
+{{< fluvio >}}
 fluvio topic create --partitions <integer> --replication <integer> --topic <string>
-{{< /cmd >}}
+{{< /fluvio >}}
 
 It shows that {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}}, and {{< pre >}}--replication{{< /pre >}}, are mandatory.
 
@@ -39,7 +39,7 @@ It shows that {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}
 
 Command line help is available at any level by appending {{< pre >}}-h{{< /pre >}} or {{< pre >}}--help{{< /pre >}} to the command. At top level, you can run __fluvio__ with without arguments to get a list of available options.
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio 
 Fluvio Command Line Interface
 
@@ -58,7 +58,7 @@ SUBCOMMANDS:
     topic         Topic operations
     advanced      Advanced operations
     help          Prints this message or the help of the given subcommand(s)
-{{< /cli >}}
+{{< /fluvio >}}
 
 Top level fluvio CLI is organized by modules:
 
@@ -78,7 +78,7 @@ However, there are a few exceptions:
 
 Each module is followed by a series of operations that describe their capabilities. For example, __topic__ module has the ability to create, list, describe, or delete topics:
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio topic
 Topic operations
 
@@ -93,7 +93,7 @@ SUBCOMMANDS:
     describe    Show details of a topic
     list        Show all topics
     help        Prints this message or the help of the given subcommand(s)
-{{< /cli >}}
+{{< /fluvio >}}
 
 Other modules, such as __spu__ have different options, hence different capabilities.
 
@@ -103,7 +103,7 @@ The modules are followed by options and flags. Options are composed of unique at
 
 Mandatory options are shown in the syntax definition. All other flags and options are optional.
 
-{{< cli yaml >}}
+{{< fluvio >}}
 $ fluvio topic create --help
 Create a topic
 
@@ -122,7 +122,7 @@ OPTIONS:
     -c, --sc <host:port>                    Address of Streaming Controller
     -k, --kf <host:port>                    Address of Kafka Controller
     -P, --profile <profile>                 Profile name
-{{< /cli >}}
+{{< /fluvio >}}
 
 A small subset of the options, {{< pre >}}--kf, --sc,{{< /pre >}} and {{< pre >}}--profile{{< /pre >}}, are applied to every command. The purpose of these options is to help the CLI identify the location of the services where to send the command.
 
@@ -151,7 +151,7 @@ port = <port>
 [kf]
 host = <hostname/ip>
 port = <port>
-{{< /code >}}
+{{< /fluvio >}}
 
 The parameters are as follows:
 
@@ -171,7 +171,7 @@ version = "1.0"
 [sc]
 host = "sc.fluvio.dev.acme.com"
 port = 9003
-{{< /code >}}
+{{< /fluvio >}}
 
 #### Default Profile
 

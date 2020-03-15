@@ -15,7 +15,7 @@ Fluvio Command Line Interface binaries are available in macOS and Linux versions
 
 Run following command to ensure Fluvio CLI is working correctly:
 
-{{< cli yaml>}}
+{{< fluvio >}}
 $ fluvio --help
 Fluvio Command Line Interface
 
@@ -34,7 +34,7 @@ SUBCOMMANDS:
     topic         Topic operations
     advanced      Advanced operations
     help          Prints this message or the help of the given subcommand(s)
-{{< /cli>}}
+{{< /fluvio >}}
 
 Congratulation! You have successfully deployed Fluvio.
 
