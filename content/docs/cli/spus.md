@@ -52,10 +52,10 @@ All list commands support 3 format types: __table__, __yaml__ and __json__. The 
 
 {{< fluvio >}}
 $ fluvio spu list  --sc `SC`:9003
- ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE 
-  0  group3-0  online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
-  1  group3-1  online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
-  2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
+ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE 
+0  group3-0  online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
+1  group3-1  online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
+2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
 {{< /fluvio >}}
 
 #### YAML format

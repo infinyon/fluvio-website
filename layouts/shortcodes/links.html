@@ -1,3 +1,5 @@
 {{- $title := .Get 0 | default "Related Topics" -}}
-<div class="font-md-underline mt-4">{{ $title }}</div>
+<h3 >{{ $title }}</h3>
+<div class="next-steps-list">
 {{- .Inner | markdownify -}}
+</div>
