@@ -92,22 +92,22 @@ ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE
 
 ## Create a topic and stream "Hello World"
 
-Next, we use the CLI to create a topic, produce, and consume our first message.
+Next, we use the CLI to create a topic, produce, and consume your first message.
 
 #### Create a Topic
 
-Create a _topic-1_ with 1 partition and a replication factor of 2.
+Create a topic with 1 partition and a replication factor of 2.
 
 {{< fluvio >}}
-$ fluvio topic create --topic topic-1 --partitions 1 --replication 2 
-topic 'topic-1' created successfully
+$ fluvio topic create --topic my-topic --partitions 1 --replication 2 
+topic 'my-topic' created successfully
 {{< /fluvio >}}
 
-Display topic replica distribution
+Ensure topic has been provisioned by displaying its details.
 
 {{< fluvio >}}
-$ fluvio topic describe --topic topic-1
- Name                    :  topic-1
+$ fluvio topic describe --topic my-topic
+ Name                    :  my-topic
  Type                    :  computed 
  Partition Count         :  1 
  Replication Factor      :  2 
@@ -121,30 +121,30 @@ $ fluvio topic describe --topic topic-1
 {{< /fluvio >}}
 
 
-#### Produce "Hello World" on Topic-1
+#### Produce "Hello World" on my-topic
 
-Produce "Hello word" message to _topic-1_ and partition _0_:
+Produce "Hello word" message to _my-topic_ and partition _0_:
 
 {{< fluvio >}}
-$ fluvio produce -t topic-1 -p 0
+$ fluvio produce -t my-topic -p 0
 Hello World!
 Ok!
 {{< /fluvio >}}
 
-Produce additional messages with _-C, --continuous_ CLI flag.
+To produce multiple messages, use _-C, --continuous_ CLI flag.
 
-#### Consume from Topic-1
+#### Consume from my-topic
 
-Consume messages from beginning on _topic-1_ and partition _0_:
+Consume messages from beginning on _my-topic_ and partition _0_:
 
 {{< fluvio >}}
-$ fluvio consume -t topic-1 -p 0 -g
+$ fluvio consume -t my-topic -p 0 -g
 Hello World!
 {{< /fluvio >}}
 
-Consume continuously with _-C, --continuous_ CLI flag.
+To consume multiple messages, use _-C, --continuous_ CLI flag.
 
-**Congratulations!** You have successfully streamed your fist message!
+**Congratulations!** You have successfully streamed your first message!
 
 {{< links "Next Steps" >}}
 * [Build a Node App]({{< relref "build-node-app" >}})
