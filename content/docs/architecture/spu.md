@@ -1,7 +1,8 @@
 ---
-title: Streaming Processing Unit (SPU)
+title: Streaming Processing Unit (SPU) Design
 menu: SPU
 weight: 30
 ---
 
-Streaming Processing Unit... goes here
+In addition to being an active coordinator for endpoint communication, SPUs also play a passive role. SPUs in an active role are called leaders and in a passive role followers. 
+

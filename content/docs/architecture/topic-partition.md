@@ -1,5 +1,6 @@
 ---
-title: Topics/Partitions
+title: Topic/Partition Design
+menu: Topic/Partition
 weight: 40
 ---
 

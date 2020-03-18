@@ -1,5 +1,5 @@
 ---
-title: Streaming Controller (SC)
+title: Streaming Controller (SC) Design
 menu: SC
 weight: 20
 ---

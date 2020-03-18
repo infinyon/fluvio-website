@@ -1,5 +1,6 @@
 ---
-title: Overview
+title: Architecture Overview
+menu: Overview
 weight: 10
 ---
 
@@ -7,7 +8,7 @@ weight: 10
 
 #### Built in Rust
 
-Fluvio is **built in {{< target-blank title="Rust" url="https://www.rust-lang.org/" >}}**, a system programming language with **higher performance** than Java and **better code safety** than C/C++. Rust has a powerful multi-threaded asynchronous engine that runs natively in multi-core and low powered embedded systems. It has zero cost abstraction and **no garbage collection**, ideal for low network latency and high IO throughput distributed system products.
+Fluvio is **built in {{< target-blank title="Rust" url="https://www.rust-lang.org/" >}}**, a system programming language with **higher performance** than Java and **better code safety** than C/C++. Rust has a powerful multi-threaded asynchronous engine that runs natively in multi-core and low powered embedded systems. Zero cost abstraction and **no garbage collection**, makes this language ideal for low network latency and high IO throughput distributed system products.
 
 The choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions, from MacOS, Linux, and Windows, to small footprint embedded systems such as {{< target-blank title="Raspberry Pi" url="https://www.raspberrypi.org/" >}}.
 
@@ -16,7 +17,7 @@ The choice of programming language makes Fluvio a low memory, high performance p
 
 Fluvio architecture is centered around **high speed data** processing, where multiple endpoints exchange a large volume of data in **real time**. To address this challenge, Fluvio was designed for **horizontal scale**.
 
-{{< image src="sc-spu.png" alt="Fluvio - Cloud Streaming" justify="center" width="auto" type="scaled-90">}}
+{{< image src="sc-spu.svg" alt="Architecture Components - SC/SPUs" justify="center" width="440" type="scaled-90">}}
 
 **Streaming Controller (SC)** is the central coordinator responsible for the size of the cluster and data stream distribution across **Streaming Processing Units (SPUs)**.
 
@@ -24,40 +25,46 @@ Fluvio architecture is centered around **high speed data** processing, where mul
 ### Streaming Controller (SC)
 
 Fluvio was designed to address a variety of deployment scenarios from private data centers and public clouds, to edge and IOT devices. **Streaming Controller (SC)** is the central coordinator responsible for the **topology map** and the overall **traffic distribution**.
+When producers and consumers join a cluster, the **SC** ensures they are routed to the appropriate **SPU** for data processing.
 
 {{< image src="cloud-edge-iot.svg" alt="DC, Cloud, Edge, IoT" justify="center" width="580" type="scaled-90">}}
 
-When a producer/consumer join the cluster, the **SC** ensures it is routed to the appropriate **SPU** for data processing.
-
-The decision to separate the **SC** from the **SPU** has the following benefits:
-
-* clean division of responsibility
-    * SC handles control plane concerns
-    * SPU handles data plane concerns
-* deployment flexibility
-* SC and SPU can scale independently
+SC and SPU were designed as **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. The ability to change the **topology map dynamically** allows us to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
 For a deep dive in the SC design, checkout the [SC section]({{< relref "SC" >}}).
 
 
 ### Streaming Processing Unit
 
-**Streaming Processing Unit (SPU)** is the most important component of the architecture, it is responsible for all data streaming related matters. It receives data from producers, serves data to consumers, saves copies of the data to local storage, sends copies of the data to peer SPUs.
+**Streaming Processing Units (SPUs)** are the most important components of the architecture. They are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
 
-Each SPU performs all these operations **on multiple data streams** in parallel by utilizing all available system CPU cores. 
+{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="380" type="scaled-75">}}
+
+SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout the [Replication section]({{< relref "replication" >}}).
+
+Each SPU performs **leader** and **follower** duties **on multiple data streams** in parallel. For optimal performance, Fluvio utilizing all available **CPU cores**. 
+For a deep dive in the SPU design, checkout the [SPU section]({{< relref "SPU" >}}).
+
+### Topic/Partitions
+
+Data Streams are provisioned through **topics**. Each topic has one or more partitions and a replication factor. A **topic/partition pair** creates a **unique identifier** for a data stream. The **replication factor** specifies the number a copies each topic/partition should be have.
+
+{{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="620" type="scaled-90">}}
 
 
-### Designed for Kubernetes
-
-...
-
-### Deployment Models
-
-Fluvio architecture is designed to cover various deployment models from cloud to edge, mobile to IOT devices, in any combination. This diversity in deployment models, required clean separation between the **Control** and **Data** planes.
 
 ### Streaming APIs
 
-Libraries
+Fluvio architecture places strong emphasis on ease of use. From the user point of view it translates into well designed and documented APIs.
+In addition, Fluvio aims to offer native integrations in most common programming languages.
+
+{{< image src="external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-90">}}
+
+
+{{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="440" type="scaled-90">}}
+
+test
+
 
 * Native Rust API
 * Native Node API
@@ -75,19 +82,11 @@ Internal APIs
 
 Everything is TLS enabled.
 
-
-
-<hr />
-
-#### Things to cover:
-
-* horizontal replication
-* append-only event streaming
-* predictable
-* use-friendly (apis, cli)
-* expandable (Kubernetes)
-    * pluggable in your own ecosystem
-* control & data plane separation
-* self-healing
-    * eventual consistency
-    * predictable
+{{< links >}}
+* [SC Design]({{<relref "sc">}})
+* [SPU Design]({{<relref "spu">}})
+* [Topic/Partition Design]({{<relref "topic-partition">}})
+* [Replication Design]({{<relref "replication">}})
+* [Kubernetes Integration Design]({{<relref "k8-integration">}})
+* [Deployment Models]({{<relref "deployments">}})
+{{< /links >}} 
