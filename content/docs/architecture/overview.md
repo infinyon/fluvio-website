@@ -49,16 +49,23 @@ For a deep dive in the SPU design, checkout the [SPU section]({{< relref "SPU" >
 
 **Topics** are the underlying primitives used to define Data Streams. Each topic has one or more partitions and a replication factor. A **topic/partition pair** creates a **unique identifier** for each data stream. The **replication factor** is the number of copies desired for each topic/partition. 
 
-{{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="720" type="scaled-98">}}
+For example, a configuration with the 2 topics below generates the replication map in the diagram:
 
-In this example, *SPU-1* is the leader for **topic-1 /0** , *SPU-2* for **topic-2 /0** and *SPU-3* for **topic-1 /1**. The two topics have different partition and replication settings.
+* **topic-1** => 2 partitions, 2 replicas 
+* **topic-2** => 1 partition, 3 replicas
+
+SPU-1 is the leader for **topic-1:0** , SPU-2 for **topic-1:1**, and SPU-3 for **topic-2:0**.
+
+{{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="650" type="scaled-90">}}
 
 For additional information on partitions and replica assignment, checkout the [Topic/Partition section]({{< relref "topic-partition" >}}).
 
 
 ### Data Persistence
 
-Each data stream message is **saved** on local file system of the SPUs in append-only **immutable queues**. The SPU uses **zero-copy** kernel writes to save data on disk. Files are placed in directory structures indexed by **topic/partition**. Fluvio guarantees **in order writes** for all messages designated for the same a topic/partition.
+Each SPU leader receives data stream messages from producers and **save** them on local storage in append-only **immutable queues**. The SPUs uses **zero-copy** kernel operations to write data to disk. Files are placed in directory structures indexed by **topic/partition**. Fluvio ensures **in-order writes** for all messages on the same topic/partition.
+
+{{< image src="storage.svg" alt="Data Storage" justify="center" width="750" type="scaled-98">}}
 
 
 
