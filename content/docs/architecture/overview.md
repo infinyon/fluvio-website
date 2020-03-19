@@ -63,7 +63,7 @@ For additional information on partitions and replica assignment, checkout the [T
 
 ### Data Persistence
 
-SPU leaders receive data stream messages from producers and **save** them on local storage. The SPUs use **zero-copy** kernel operations to write data to disk. Files are placed in directory structures indexed by **topic/partition** in append-only **immutable queues**. Fluvio guarantees **in-order writes** for all messages on the same topic/partition.
+SPU leaders **save** all data stream messages received from producers on local storage. The SPUs use **zero-copy** kernel operations to write data to disk. Files are placed in directory structures indexed by **topic/partition** in append-only **immutable queues**. Fluvio guarantees **in-order writes** for all messages on the same topic/partition.
 
 {{< image src="storage.svg" alt="Data Storage" justify="center" width="720" type="scaled-98">}}
 
@@ -89,9 +89,9 @@ For **Native API** references, checkout [Node API]({{< relref "../node-api/api-r
 
 {{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="500" type="scaled-75">}}
 
-Both **APIs** are TLS enabled to ensure secure communication. 
-
 If you'd like to learn more about the **Internal APIs** checkout Fluvio development guide on {{< target-blank title="github" url="https://github.com/infinyon/fluvio" >}}.
+
+Note, both **APIs** are TLS enabled to ensure secure communication. 
 
 
 {{< links >}}
