@@ -31,7 +31,7 @@ When producers and consumers join a cluster, the **SC** ensures they are routed 
 
 SC and SPU were designed as **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. The ability to change the **topology map dynamically** allows us to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
-For a deep dive in the SC design, checkout the [SC section]({{< relref "SC" >}}).
+For a deep dive in the SC design, checkout the [SC]({{< relref "SC" >}}) section.
 
 
 ### Streaming Processing Unit
@@ -40,14 +40,14 @@ For a deep dive in the SC design, checkout the [SC section]({{< relref "SC" >}})
 
 {{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="380" type="scaled-60">}}
 
-SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout the [Replication section]({{< relref "replication" >}}).
+SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout the [Replication]({{< relref "replication" >}}) section.
 
 Each SPU performs **leader** and **follower** duties **on multiple data streams** in parallel. For optimal performance, Fluvio utilizing all available **CPU cores**. 
-For a deep dive in the SPU design, checkout the [SPU section]({{< relref "SPU" >}}).
+For a deep dive in the SPU design, checkout the [SPU]({{< relref "SPU" >}}) section.
 
 ### Topic/Partitions
 
-**Topics** are the underlying primitives used to define Data Streams. Each topic has one or more partitions and a replication factor. A **topic/partition pair** creates a **unique identifier** for each data stream. The **replication factor** is the number of copies desired for each topic/partition. 
+**Topics** are the underlying primitives that define Data Streams. Each topic has one or more partitions and a replication factor. A **topic/partition pair** creates a **unique identifier** for each data stream. The **replication factor** is the number of copies desired for each topic/partition. 
 
 For example, a configuration with the 2 topics below generates the replication map in the diagram:
 
@@ -58,45 +58,41 @@ SPU-1 is the leader for **topic-1:0** , SPU-2 for **topic-1:1**, and SPU-3 for *
 
 {{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="650" type="scaled-90">}}
 
-For additional information on partitions and replica assignment, checkout the [Topic/Partition section]({{< relref "topic-partition" >}}).
+For additional information on partitions and replica assignment, checkout the [Topic/Partition]({{< relref "topic-partition" >}}) section.
 
 
 ### Data Persistence
 
-Each SPU leader receives data stream messages from producers and **save** them on local storage in append-only **immutable queues**. The SPUs uses **zero-copy** kernel operations to write data to disk. Files are placed in directory structures indexed by **topic/partition**. Fluvio ensures **in-order writes** for all messages on the same topic/partition.
+SPU leaders receive data stream messages from producers and **save** them on local storage. The SPUs use **zero-copy** kernel operations to write data to disk. Files are placed in directory structures indexed by **topic/partition** in append-only **immutable queues**. Fluvio guarantees **in-order writes** for all messages on the same topic/partition.
 
-{{< image src="storage.svg" alt="Data Storage" justify="center" width="750" type="scaled-98">}}
+{{< image src="storage.svg" alt="Data Storage" justify="center" width="720" type="scaled-98">}}
 
+Spu persistence was designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**. The system is designed with configurable **retention period** that can span from minutes to days.
 
+Fluvio's advanced persistence design is described in the [Data Persistence]({{< relref "persistence" >}}) section.
 
 ### Streaming APIs
 
-Fluvio architecture places strong emphasis on ease of use. From the user point of view it translates into well designed and documented APIs.
-In addition, Fluvio aims to offer native integrations in most common programming languages.
+Fluvio architecture places heavy emphasis on clean **user-friendly APIs**. There are two types of APIs, **external** and **internal**. 
+
+#### External APIs
+
+**External APIs** are used by the **Fluvio CLI** and a growing number of programming language native interfaces, such as  **Node** and **Rust** to communicate with Fluvio. **External APIs** route provisioning and monitoring requests to the **SC** and producer/consumer requests to the **SPU**.
 
 {{< image src="external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
 
+For **Native API** references, checkout [Node API]({{< relref "../node-api/api-reference" >}}) or [Rust API]({{< relref "../rust-api/api-reference" >}}) sections.
 
-{{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="440" type="scaled-60">}}
+#### Internal APIs
 
-test
+**Internal APIs** are used by the **SC** communicate with the **SPUS** and the **SPUs** to communicate with their peers to elect leaders and exchange replica information. 
 
+{{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="500" type="scaled-75">}}
 
-* Native Rust API
-* Native Node API
-* CLI
+Both **APIs** are TLS enabled to ensure secure communication. 
 
-External APIs
+If you'd like to learn more about the **Internal APIs** checkout Fluvio development guide on {{< target-blank title="github" url="https://github.com/infinyon/fluvio" >}}.
 
-* Control Plane
-* Data Plane
-
-Internal APIs
-
-* SC to SPUs
-* SPUs to SPUs
-
-Everything is TLS enabled.
 
 {{< links >}}
 * [SC Design]({{<relref "sc">}})

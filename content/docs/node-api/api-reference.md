@@ -1,5 +1,5 @@
 ---
-title: Fluvio Node
+title: Node API Reference
 weight: 10
 ---
 

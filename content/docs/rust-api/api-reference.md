@@ -1,5 +1,5 @@
 ---
-title: Fluvio Rust
+title: Rust API Reference
 weight: 10
 ---
 
