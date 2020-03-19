@@ -38,7 +38,7 @@ For a deep dive in the SC design, checkout the [SC section]({{< relref "SC" >}})
 
 **Streaming Processing Units (SPUs)** are the most important components of the architecture. They are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
 
-{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="380" type="scaled-75">}}
+{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="380" type="scaled-60">}}
 
 SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout the [Replication section]({{< relref "replication" >}}).
 
@@ -47,9 +47,18 @@ For a deep dive in the SPU design, checkout the [SPU section]({{< relref "SPU" >
 
 ### Topic/Partitions
 
-Data Streams are provisioned through **topics**. Each topic has one or more partitions and a replication factor. A **topic/partition pair** creates a **unique identifier** for a data stream. The **replication factor** specifies the number a copies each topic/partition should be have.
+**Topics** are the underlying primitives used to define Data Streams. Each topic has one or more partitions and a replication factor. A **topic/partition pair** creates a **unique identifier** for each data stream. The **replication factor** is the number of copies desired for each topic/partition. 
 
-{{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="620" type="scaled-90">}}
+{{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="720" type="scaled-98">}}
+
+In this example, *SPU-1* is the leader for **topic-1 /0** , *SPU-2* for **topic-2 /0** and *SPU-3* for **topic-1 /1**. The two topics have different partition and replication settings.
+
+For additional information on partitions and replica assignment, checkout the [Topic/Partition section]({{< relref "topic-partition" >}}).
+
+
+### Data Persistence
+
+Each data stream message is **saved** on local file system of the SPUs in append-only **immutable queues**. The SPU uses **zero-copy** kernel writes to save data on disk. Files are placed in directory structures indexed by **topic/partition**. Fluvio guarantees **in order writes** for all messages designated for the same a topic/partition.
 
 
 
@@ -58,10 +67,10 @@ Data Streams are provisioned through **topics**. Each topic has one or more part
 Fluvio architecture places strong emphasis on ease of use. From the user point of view it translates into well designed and documented APIs.
 In addition, Fluvio aims to offer native integrations in most common programming languages.
 
-{{< image src="external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-90">}}
+{{< image src="external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
 
 
-{{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="440" type="scaled-90">}}
+{{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="440" type="scaled-60">}}
 
 test
 
@@ -87,6 +96,7 @@ Everything is TLS enabled.
 * [SPU Design]({{<relref "spu">}})
 * [Topic/Partition Design]({{<relref "topic-partition">}})
 * [Replication Design]({{<relref "replication">}})
-* [Kubernetes Integration Design]({{<relref "k8-integration">}})
+* [Data Persistence]({{<relref "persistence">}})
+* [Kubernetes Integration]({{<relref "k8-integration">}})
 * [Deployment Models]({{<relref "deployments">}})
 {{< /links >}} 

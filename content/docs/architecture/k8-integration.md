@@ -1,6 +1,5 @@
 ---
-title: Kubernetes Integration Design
-menu: Kubernetes Integration
+title: Kubernetes Integration
 weight: 110
 ---
 

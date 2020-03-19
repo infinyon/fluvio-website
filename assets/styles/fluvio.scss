@@ -489,8 +489,11 @@ footer {
 
 
 @media (max-width: 768px) {
+  img#scaled-98 {width: 98%;}
   img#scaled-90 {width: 90%;}
+  img#scaled-80 {width: 80%;}
   img#scaled-75 {width: 75%;}
+  img#scaled-60 {width: 60%;}
   img#scaled-50 {width: 50%;}
 
   .blog .content { 
