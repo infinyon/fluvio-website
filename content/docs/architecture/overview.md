@@ -12,6 +12,10 @@ Fluvio is **built in {{< target-blank title="Rust" url="https://www.rust-lang.or
 
 The choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions such as MacOS, Linux, Windows, and small footprint embedded systems such as {{< target-blank title="Raspberry Pi" url="https://www.raspberrypi.org/" >}}.
 
+#### Cloud Native by Design
+
+Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}**. Any vendor vendor running **Kubernetes** can install **Fluvio Helm Chart** and get up and running in matter of minutes. For additional details, [Kubernetes integration]({{< relref "k8-integration" >}}) section.
+
 
 ## High Level Architecture
 
@@ -29,7 +33,7 @@ When producers and consumers join a cluster, the **SC** ensures they are routed 
 
 {{< image src="cloud-edge-iot.svg" alt="DC, Cloud, Edge, IoT" justify="center" width="580" type="scaled-90">}}
 
-SC and SPU were designed as **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. The ability to change the **topology map dynamically** allows us to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
+SC and SPU are **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. The ability to change the **topology map dynamically** allows us to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
 For a deep dive in the SC design, checkout the [SC]({{< relref "SC" >}}) section.
 
