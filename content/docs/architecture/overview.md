@@ -14,35 +14,38 @@ The choice of programming language makes Fluvio a low memory, high performance p
 
 #### Cloud Native by Design
 
-Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}**. Any vendor vendor running **Kubernetes** can install **Fluvio Helm Chart** and get up and running in matter of minutes. For additional details, [Kubernetes integration]({{< relref "k8-integration" >}}) section.
+Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}**. Any infrastructure running **Kubernetes** can install **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, [Kubernetes integration]({{< relref "k8-integration" >}}) section. 
+
+```If you don't want to run your own infrastructure, Fluvio Cloud is managing the infrastructure for you.```
 
 
 ## High Level Architecture
 
-Fluvio architecture is centered around **high speed data** processing, where multiple endpoints exchange a large volume of data in **real time**. To address this challenge, Fluvio was designed for **horizontal scale**.
+Fluvio architecture is centered around **real time streaming** where the platform can **scale horizontally** to accommodate large volumes of data.
 
 {{< image src="sc-spu.svg" alt="Architecture Components - SC/SPUs" justify="center" width="440" type="scaled-90">}}
 
-**Streaming Controller (SC)** is the central coordinator responsible for the size of the cluster and data stream distribution across **Streaming Processing Units (SPUs)**.
+**Streaming Controller (SC)** manages **SPU life cycle** and optimizes **data stream distribution** across the cluster. **Streaming Processing Unit (SPU)** is responsible for data streaming.
+
+SCs and SPUs are **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. 
 
  
 ### Streaming Controller (SC)
 
-Fluvio was designed to address a variety of deployment scenarios from private data centers and public clouds, to edge and IOT devices. **Streaming Controller (SC)** is the central coordinator responsible for the **topology map** and the overall **traffic distribution**.
-When producers and consumers join a cluster, the **SC** ensures they are routed to the appropriate **SPU** for data processing.
+Fluvio is designed to address a variety of **deployment scenarios** from public clouds to private data centers, edge networks and IOT devices. **SC** maintains the **topology map** of the **SPUs** and serves as the first point of contact for producers and consumers.
 
 {{< image src="cloud-edge-iot.svg" alt="DC, Cloud, Edge, IoT" justify="center" width="580" type="scaled-90">}}
 
-SC and SPU are **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. The ability to change the **topology map dynamically** allows us to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
+The **SC** handles **topology map dynamically** to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
 For a deep dive in the SC design, checkout the [SC]({{< relref "SC" >}}) section.
 
 
 ### Streaming Processing Unit
 
-**Streaming Processing Units (SPUs)** are the most important components of the architecture. They are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
+**Streaming Processing Units (SPUs)** are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
 
-{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="380" type="scaled-60">}}
+{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="340" type="scaled-60">}}
 
 SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout the [Replication]({{< relref "replication" >}}) section.
 
@@ -51,27 +54,27 @@ For a deep dive in the SPU design, checkout the [SPU]({{< relref "SPU" >}}) sect
 
 ### Topic/Partitions
 
-**Topics** are the underlying primitives that define Data Streams. Each topic has one or more partitions and a replication factor. A **topic/partition pair** creates a **unique identifier** for each data stream. The **replication factor** is the number of copies desired for each topic/partition. 
+**Topics** define individual **data streams**. Each topic has one or more partition and a replication factor. **Partitions** split the data into independent slices to allow producers and consumers to write and read messages in parallel. **Replication factors** are the number of copies desired for each partition. A **topic/partition pair**, also known as **replica**, creates a **unique identifier** for each data stream.
 
-For example, a configuration with the 2 topics below generates the replication map in the diagram:
+For example, a configuration with the 2 topics generates the replication map in the diagram:
 
-* **topic-1** => 2 partitions, 2 replicas 
-* **topic-2** => 1 partition, 3 replicas
+* **topic-a** => 2 partitions, 2 replicas 
+* **topic-b** => 1 partition, 3 replicas
 
-SPU-1 is the leader for **topic-1:0** , SPU-2 for **topic-1:1**, and SPU-3 for **topic-2:0**.
+SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for **topic-b/0**.
 
 {{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="650" type="scaled-90">}}
 
-For additional information on partitions and replica assignment, checkout the [Topic/Partition]({{< relref "topic-partition" >}}) section.
+For additional information on partitions and replica assignments, checkout the [Topic/Partition]({{< relref "topic-partition" >}}) section.
 
 
 ### Data Persistence
 
-SPU leaders **save** all data stream messages received from producers on local storage. The SPUs use **zero-copy** kernel operations to write data to disk. Files are placed in directory structures indexed by **topic/partition** in append-only **immutable queues**. Fluvio guarantees **in-order writes** for all messages on the same topic/partition.
+SPU leaders **save** all data stream messages received from producers on **local storage**. Based on platform availability, SPUs use **zero-copy IO** to transfer data from disk to network. Messages on local storage are **immutable**, and **ordered**. Fluvio guarantees **in-order writes** for all messages received on the same **replica**.
 
 {{< image src="storage.svg" alt="Data Storage" justify="center" width="720" type="scaled-98">}}
 
-Spu persistence was designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**. The system is designed with configurable **retention period** that can span from minutes to days.
+Spu persistence was designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.  Fluvio adds messages local storage until the **retention period** is met. It is important to sent retention periods that cover **up to 80%** of the disk size. If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system may be compromised.
 
 Fluvio's advanced persistence design is described in the [Data Persistence]({{< relref "persistence" >}}) section.
 
