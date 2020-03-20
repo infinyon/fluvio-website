@@ -74,21 +74,23 @@ SPU leaders **save** all data stream messages received from producers on **local
 
 {{< image src="storage.svg" alt="Data Storage" justify="center" width="720" type="scaled-98">}}
 
-Spu persistence was designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.  Fluvio adds messages local storage until the **retention period** is met. It is important to sent retention periods that cover **up to 80%** of the disk size. If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system may be compromised.
+Spu persistence was designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.  
+
+Fluvio adds messages local storage until the **retention period** is met. The retention periods should be set to cover **up to 80%** of the disk size. If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system may be compromised.
 
 Fluvio's advanced persistence design is described in the [Data Persistence]({{< relref "persistence" >}}) section.
 
 ### Streaming APIs
 
-Fluvio architecture places heavy emphasis on clean **user-friendly APIs**. There are two types of APIs, **external** and **internal**. 
+Fluvio architecture places heavy emphasis on clean **user-friendly APIs**. There are two types of APIs, **external** and **internal**. The APIs use **TLS** to ensure secure communication. 
 
 #### External APIs
 
-**External APIs** are used by the **Fluvio CLI** and a growing number of programming language native interfaces, such as  **Node** and **Rust** to communicate with Fluvio. **External APIs** route provisioning and monitoring requests to the **SC** and producer/consumer requests to the **SPU**.
+**External APIs** are used by the **Fluvio CLI** and a growing number of programming language interfaces, such as  **Node** and **Rust**. There are two categories of APIs, control plane APIs and data plane APIs. **Control Plane APIs** manage the life cycle of the cluster objects such as SPUs, topics, and replicas.  **Data Plane APIs** handle data access for producers and consumers.
 
 {{< image src="external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
 
-For **Native API** references, checkout [Node API]({{< relref "../node-api/api-reference" >}}) or [Rust API]({{< relref "../rust-api/api-reference" >}}) sections.
+For language specific API references, checkout [Node API]({{< relref "../node-api/api-reference" >}}) or [Rust API]({{< relref "../rust-api/api-reference" >}}) sections.
 
 #### Internal APIs
 
@@ -97,8 +99,6 @@ For **Native API** references, checkout [Node API]({{< relref "../node-api/api-r
 {{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="500" type="scaled-75">}}
 
 If you'd like to learn more about the **Internal APIs** checkout Fluvio development guide on {{< target-blank title="github" url="https://github.com/infinyon/fluvio" >}}.
-
-Note, both **APIs** are TLS enabled to ensure secure communication. 
 
 
 {{< links >}}
