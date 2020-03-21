@@ -4,7 +4,7 @@ menu: SC
 weight: 20
 ---
 
-**Streaming Controller (SC)** is the central coordinator and the **authoritative** entity of the cluster. It intermediates configuration changes with the **Key-Value (KV)** store, performs SPU replica assignment, coordinates communication with external clients, and sends periodic reconciliation updates.
+**Streaming Controller (SC)** is the central coordinator and the **authoritative** entity of the cluster. It manages configuration changes, provisions SPUs, performs replica assignment, coordinates communication with external clients, and sends periodic reconciliation updates.
 
 {{< image src="sc-architecture.svg" alt="SC Coordinator" justify="center" width="530" type="scaled-90">}}
 
