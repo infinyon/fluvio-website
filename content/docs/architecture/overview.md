@@ -16,7 +16,9 @@ The choice of programming language makes Fluvio a low memory, high performance p
 
 Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}**. Any infrastructure running **Kubernetes** can install **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, [Kubernetes integration]({{< relref "k8-integration" >}}) section. 
 
-If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, use **[Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}})**. The cloud installation hides the complexity associated with the infrastructure and exposes only relevant streaming APIs. Use the **[Quick Start]({{< relref "../getting-started/quick-start" >}})** guide to setup a dedicated cloud environment.
+##### Fluvio Cloud
+
+If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}})**. The cloud installation hides all complexity associated with the infrastructure and exposes only relevant streaming APIs. Use the **[Quick Start]({{< relref "../getting-started/quick-start" >}})** guide to setup a dedicated cloud environment.
 
 
 ## High Level Architecture
@@ -102,10 +104,10 @@ If you'd like to learn more about the **Internal APIs** checkout Fluvio developm
 
 
 {{< links >}}
-* [SC Design]({{<relref "sc">}})
-* [SPU Design]({{<relref "spu">}})
-* [Topic/Partition Design]({{<relref "topic-partition">}})
-* [Replication Design]({{<relref "replication">}})
+* [SC Architecture]({{<relref "sc">}})
+* [SPU Architecture]({{<relref "spu">}})
+* [Topic/Partitions]({{<relref "topic-partition">}})
+* [Replication]({{<relref "replication">}})
 * [Data Persistence]({{<relref "persistence">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})
 * [Deployment Models]({{<relref "deployments">}})
