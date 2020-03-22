@@ -32,38 +32,45 @@ spec:
   publicEndpoint:
     port: 9005
     ingress:
-      - hostname: localhost 
+      - hostname: "localhost" 
     encryption: TLS
   privateEndpoint: 
     port: 9006
-    host: localhost
+    host: "localhost"
     encryption: TLS
 status:
     resolution: online
 {{< /code >}}
 
-There are two types of SPUs: managed and custom. **Managed** SPUs are provisioned and maintained by Fluvio, whereas **custom SPUs** are provisioned and managed out of band. Fluvio has the ability to support **managed and custom** SPUs at the same time. 
+There are two types of SPUs: managed and custom. **Managed** SPUs are provisioned and maintained by Fluvio, whereas **custom SPUs** are provisioned and managed out of band. Fluvio has the ability to support **managed and custom** SPUs in parallel. This parallelism allows Fluvio to replicate real-time messages across **availability zones** and **geo-locations**.
 
-All SPUs are identified by the **SPU Id** which must be unique across the cluster.
+{{< idea >}}
+**SPU Id** is a shared across all SPU types and it must be **globally unique**.
+{{< /idea >}}
 
 #### Managed SPUs
 
-Fluvio created **custom operators** and a **helm chart** to integrate **managed SPUs** natively with Kubernetes. Fluvio helm charts have replica sets which ensures a specific number of SPUs are provisioned and maintained by Kubernetes. While Managed SPUs display accurate **state information**, they cannot be modified outside of the helm chart. For additional information, checkout [Kubernetes Integration]({{< relref "k8-integration" >}}) section.
+Fluvio uses **custom operators** and a **helm chart** to integrate **managed SPUs** with Kubernetes. Helm charts use replica sets to specify the number of SPUs to be provisioned and maintained by Kubernetes. Managed SPU specs are generated form replica sets and cannot be manually modified. For additional information, checkout [Kubernetes Integration]({{< relref "k8-integration" >}}) section.
 
 #### Custom SPUs
 
-Custom SPUs are designed for on **Edge** devices, **IOT** devices or environments where it is not feasible or desirable to deploy Kubernetes. While SCs continue to use Kubernetes for configuration management, the SPUs can be deployed in any environment and **managed remotely**. Installing a custom SPU is a 3 step process:
+Custom SPUs are designed for **Edge** devices, **IOT** devices or **custom environments** where the infrastructure is managed through deployment tools such as {{< target-blank title="Puppet" url="https://puppet.com" >}}, {{< target-blank title="Chef" url="https://www.chef.io" >}}, or {{< target-blank title="Ansible" url="https://www.ansible.com" >}}. 
 
-1. Provision a new SPU through the CLI or Kubernetes commands.
-2. Start a Custom SPU and point it to the SC.
-3. Check the Custom SPU status to see if it has successfully connected to the SC.
+The SC continues to use Kubernetes for configuration management and manage **Custom SPUs** deployed in any geo-location or remote environment. **Custom SPUs** must be able to connect to the **internal SC network** to join the cluster and **internal SPU network** to participate in replication groups. For additional information, checkout [Deployment Models]({{< relref "deployments" >}}) section.
 
-Aside from the differences in provisioning described above, the SC manages all SPUs types uniformly.
+Aside from the differences in installation, all SPU types are managed uniformly.
 
 
 ### SPU Groups
 
 The SPU group ... 
+
+##### Install Custom SPUs
+Installing a custom SPU is a 3 step process:
+
+1. Provision a new SPU through the CLI or Kubernetes commands.
+2. Start a Custom SPU and point it to the SC.
+3. Check the Custom SPU status to see if it has successfully connected to the SC.
 
 #### Topics
 
