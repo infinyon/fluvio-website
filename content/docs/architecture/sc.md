@@ -24,6 +24,8 @@ There are four object types in a Fluvio cluster: **SPUs**, **SPU-Groups**, **top
 
 The spec describes **SPU configuration** parameters and the state captures the **online/offline** status. The [Connection Manager]({{< relref "#connection-manager" >}}) monitors changes in **connectivity** between the SC and SPUs, and it keeps the status updated.
 
+##### SPU Spec
+
 {{< code yaml >}}
 spec:
   spuId: 100
@@ -38,6 +40,11 @@ spec:
     port: 9006
     host: localhost
     encryption: TLS
+{{< /code >}}
+
+##### SPU Status 
+
+{{< code yaml >}}
 status:
     resolution: online
 {{< /code >}}
@@ -73,8 +80,9 @@ Aside from the differences in installation, all SPU types are managed uniformly.
 
 Fluvio **SPU-groups** define the configuration parameters used for provisioning **Managed SPUs**. Fluvio was designed to manage **multiple SPU-groups** in parallel where each group can define one or more SPUs.
 
-{{< image src="spu-groups.svg" alt="SpuGroups" justify="center" width="740" type="scaled-98">}}
+{{< image src="spu-groups.svg" alt="SpuGroups" justify="center" width="730" type="scaled-98">}}
 
+##### SPU-group Spec
 
 {{< code yaml >}}
 spec:
@@ -99,8 +107,21 @@ spec:
         innSyncReplicaMin: 1
 {{< /code >}}
 
+ **Replicas** specify the number of SPUs to be provisioned. **MinId** is Id of the first SPU in the replica range. **Template** defines initialization parameters passed to all SPUs in the group. 
+ 
+##### SPU-group Status
+
+{{< code yaml >}}
+status:
+    resolution: Reserved
+{{< /code >}}
+
+SPU-group status has 3 **resolutions**: Init, Invalid, Reserved. If the group is marked invalid, a **reason** field describs the error.
+
+ Checkout the [SPU-groups]({{< relref "../cli/spu-groups" >}}) CLI for additional information.
 
 #### Topics
+
 
 
 #### Partitions
