@@ -27,16 +27,16 @@ The spec describes **SPU configuration** parameters and the state captures the *
 {{< code yaml >}}
 spec:
   spuId: 100
-  spuType: "custom"
+  spuType: "Custom"
   rack: "Zone1"
   publicEndpoint:
     port: 9005
     ingress:
-      - hostname: "localhost" 
+      - hostname: localhost
     encryption: TLS
   privateEndpoint: 
     port: 9006
-    host: "localhost"
+    host: localhost
     encryption: TLS
 status:
     resolution: online
@@ -50,7 +50,7 @@ There are two types of SPUs: managed and custom. **Managed** SPUs are provisione
 
 #### Managed SPUs
 
-Fluvio uses **custom operators** and a **helm chart** to integrate **managed SPUs** with Kubernetes. Helm charts use replica sets to specify the number of SPUs to be provisioned and maintained by Kubernetes. Managed SPU specs are generated form replica sets and cannot be manually modified. For additional information, checkout [Kubernetes Integration]({{< relref "k8-integration" >}}) section.
+Fluvio uses {{< target-blank title="custom resources" url="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources" >}} and {{< target-blank title="operators" url="https://kubernetes.io/docs/concepts/extend-kubernetes/operator" >}} to integrate **managed SPUs** with Kubernetes. Custom operators utilize {{< target-blank title="replica sets" url="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset" >}} to govern the number of SPUs that Kubernetes should provision and maintain. Managed SPU provisioned through replica sets cannot be manually modified. For additional information, checkout [Kubernetes Integration]({{< relref "k8-integration" >}}) section.
 
 #### Custom SPUs
 
@@ -58,19 +58,47 @@ Custom SPUs are designed for **Edge** devices, **IOT** devices or **custom envir
 
 The SC continues to use Kubernetes for configuration management and manage **Custom SPUs** deployed in any geo-location or remote environment. **Custom SPUs** must be able to connect to the **internal SC network** to join the cluster and **internal SPU network** to participate in replication groups. For additional information, checkout [Deployment Models]({{< relref "deployments" >}}) section.
 
+##### Install Custom SPUs
+
+The SC require Custom SPUs to be configured before they are allowed toto join the cluster:
+
+1. Provision a new SPU in the SC.
+2. Start a Custom SPU and point it to the SC.
+3. Check Custom SPU status on SC to see if connected successfully.
+
 Aside from the differences in installation, all SPU types are managed uniformly.
 
 
 ### SPU Groups
 
-The SPU group ... 
+Fluvio **SPU-groups** define the configuration parameters used for provisioning **Managed SPUs**. Fluvio was designed to manage **multiple SPU-groups** in parallel where each group can define one or more SPUs.
 
-##### Install Custom SPUs
-Installing a custom SPU is a 3 step process:
+{{< image src="spu-groups.svg" alt="SpuGroups" justify="center" width="740" type="scaled-98">}}
 
-1. Provision a new SPU through the CLI or Kubernetes commands.
-2. Start a Custom SPU and point it to the SC.
-3. Check the Custom SPU status to see if it has successfully connected to the SC.
+
+{{< code yaml >}}
+spec:
+  replicas: 2
+  minId: 11
+  template:
+    rack: "Zone2"
+    publicEndpoint:
+        port: 9005
+        encryption: TLS
+    privateEndpoint: 
+        port: 9006
+        encryption: TLS    
+    scPrivateEndpoint: 
+        port: 9004
+        host: localhost
+        encryption: TLS    
+    storage:
+        size: 2Gi
+        logDir: "/tmp/mylog"
+    replication:
+        innSyncReplicaMin: 1
+{{< /code >}}
+
 
 #### Topics
 
