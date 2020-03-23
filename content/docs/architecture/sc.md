@@ -16,15 +16,13 @@ The SC leverages a **Key-Value (KV) store** to persist cluster object configurat
 **Fluvio** is designed to work seamlessly with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}** and **{{< target-blank title="etcd" url="https://etcd.io" >}}** **KV** store. The **KV interface** is store agnostic and can be extended to support alternative implementations such {{< target-blank title="Consul" url="https://consul.io" >}}, {{< target-blank title="Zookeeper" url="https://zookeeper.apache.org" >}}, or in-memory stores.
 
 
-## Fluvio Objects
+## Configuration Objects
 
-There are four object types in a Fluvio cluster: **SPUs**, **SPU-Groups**, **topics**, and **partitions**. The objects follow the Kubernetes paradigm with two nested fields that govern the object’s configuration: the spec and the status. The **spec** expresses desired state and the **status** describes current state. 
+There are four configuration objects in a Fluvio cluster: **SPU**, **SPU-group**, **Topic**, and **Partition**. The objects follow **Kubernetes paradigm** with two fields that govern the configuration: the spec and the status. **Spec** expresses a desired state and the **status** describes the current state. 
 
 ### SPUs
 
-The spec describes **SPU configuration** parameters and the state captures the **online/offline** status. The [Connection Manager]({{< relref "#connection-manager" >}}) monitors changes in **connectivity** between the SC and SPUs, and it keeps the status updated.
-
-##### SPU Spec
+**SPUs spec** has a unique ID, a type, an optional rack, and endpoint identifier for the API servers. **SPU Id** is shared across all SPU types and it must be **globally unique**.
 
 {{< code yaml >}}
 spec:
@@ -42,47 +40,86 @@ spec:
     encryption: TLS
 {{< /code >}}
 
-##### SPU Status 
+**SPU status** has a resolution field that monitors changes in **connectivity** from the SC's point of view.
 
 {{< code yaml >}}
 status:
     resolution: online
 {{< /code >}}
 
-There are two types of SPUs: managed and custom. **Managed** SPUs are provisioned and maintained by Fluvio, whereas **custom SPUs** are provisioned and managed out of band. Fluvio has the ability to support **managed and custom** SPUs in parallel. This parallelism allows Fluvio to replicate real-time messages across **availability zones** and **geo-locations**.
-
-{{< idea >}}
-**SPU Id** is a shared across all SPU types and it must be **globally unique**.
-{{< /idea >}}
-
-#### Managed SPUs
-
-Fluvio uses {{< target-blank title="custom resources" url="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources" >}} and {{< target-blank title="operators" url="https://kubernetes.io/docs/concepts/extend-kubernetes/operator" >}} to integrate **managed SPUs** with Kubernetes. Custom operators utilize {{< target-blank title="replica sets" url="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset" >}} to govern the number of SPUs that Kubernetes should provision and maintain. Managed SPU provisioned through replica sets cannot be manually modified. For additional information, checkout [Kubernetes Integration]({{< relref "k8-integration" >}}) section.
+There are two types of SPUs: managed and custom. **Managed** SPUs are provisioned and maintained by Fluvio, whereas **custom SPUs** are provisioned and managed out of band. Fluvio has the ability to support multiple **managed and custom** SPUs simultaneously. **SPUs** can be deployed in a virtually unlimited topologies across **availability zones** and **geo-locations**.
 
 #### Custom SPUs
 
-Custom SPUs are designed for **Edge** devices, **IOT** devices or **custom environments** where the infrastructure is managed through deployment tools such as {{< target-blank title="Puppet" url="https://puppet.com" >}}, {{< target-blank title="Chef" url="https://www.chef.io" >}}, or {{< target-blank title="Ansible" url="https://www.ansible.com" >}}. 
-
-The SC continues to use Kubernetes for configuration management and manage **Custom SPUs** deployed in any geo-location or remote environment. **Custom SPUs** must be able to connect to the **internal SC network** to join the cluster and **internal SPU network** to participate in replication groups. For additional information, checkout [Deployment Models]({{< relref "deployments" >}}) section.
+Custom SPUs are designed for **Edge** devices, **IOT** devices or **custom environments** where the infrastructure is managed through deployment tools such as {{< target-blank title="Puppet" url="https://puppet.com" >}}, {{< target-blank title="Chef" url="https://www.chef.io" >}}, or {{< target-blank title="Ansible" url="https://www.ansible.com" >}}. This feature is currently experimental.
 
 ##### Install Custom SPUs
 
-The SC require Custom SPUs to be configured before they are allowed toto join the cluster:
+The SC requires Custom SPUs to be registered before they are allowed to join the cluster:
 
-1. Provision a new SPU in the SC.
-2. Start a Custom SPU and point it to the SC.
-3. Check Custom SPU status on SC to see if connected successfully.
+1. Register a new Custom SPU in the SC.
+2. Configure Custom SPU a network that has connectivity with the SC.
+2. Deploy the Custom SPU.
+3. Check SPU status on the SC to see if connected successfully.
 
-Aside from the differences in installation, all SPU types are managed uniformly.
+Aside from the differences in installation, all SPU types are treated the same.
+
+
+#### Managed SPUs
+
+**Managed SPUs** are groups of SPUs that are **scaled independently** based on user configurable replication factors. Managed SPUs are configured and owned by SPU-groups, defined below.
 
 
 ### SPU Groups
 
-Fluvio **SPU-groups** define the configuration parameters used for provisioning **Managed SPUs**. Fluvio was designed to manage **multiple SPU-groups** in parallel where each group can define one or more SPUs.
+Fluvio **SPU-groups** define the configuration parameters used for provisioning groups of **Managed SPUs**. 
 
 {{< image src="spu-groups.svg" alt="SpuGroups" justify="center" width="730" type="scaled-98">}}
 
+
+**Replica** specifies the number of SPUs in a group and it can be dynamically changed: 
+
+* if higher, new SPUs are **provisioned**
+* if lower, SPUs with the higher ids are **terminated**.
+
+ **MinId** is the Id of the first SPU in the replica range. 
+ 
+ **Template** defines configuration parameters passed to all SPUs in the group. While there are many configuration parameters in the template section, the most relevant one in the **storage/size**. If no **size** is specified, it default to **1 gigabyte**. 
+
 ##### SPU-group Spec
+
+{{< code yaml >}}
+spec:
+  replicas: 2
+  minId: 11
+  template:
+    storage:
+        size: 2Gi
+{{< /code >}}
+
+
+##### SPU-group Status
+
+{{< code yaml >}}
+status:
+    resolution: Reserved
+{{< /code >}}
+
+SPU-group status has 3 **resolutions**: Init, Invalid, and Reserved. If the group is marked invalid, a **reason** field describes the error.
+
+Checkout the [SPU-groups]({{< relref "../cli/spu-groups" >}}) CLI for additional information.
+
+### Topics
+
+**Topics** specify the configuration parameters for data streams. They may have one or more partitions and a replication factor. **Partitions** are distributed evenly across the SPUs. **Replication** factor must be a integer from 1 to the total number of SPUs and applies to all partitions.
+
+For example, a topic with 6 partitions and a replication factor of 3 would generate the following distribution:
+
+{{< image src="partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
+
+There are many aspects to the replication assignment; checkout [Replication]({{< relref "replication" >}}) section for a detailed analysis.
+
+##### Topic Spec
 
 {{< code yaml >}}
 spec:
@@ -106,22 +143,6 @@ spec:
     replication:
         innSyncReplicaMin: 1
 {{< /code >}}
-
- **Replicas** specify the number of SPUs to be provisioned. **MinId** is Id of the first SPU in the replica range. **Template** defines initialization parameters passed to all SPUs in the group. 
- 
-##### SPU-group Status
-
-{{< code yaml >}}
-status:
-    resolution: Reserved
-{{< /code >}}
-
-SPU-group status has 3 **resolutions**: Init, Invalid, Reserved. If the group is marked invalid, a **reason** field describs the error.
-
- Checkout the [SPU-groups]({{< relref "../cli/spu-groups" >}}) CLI for additional information.
-
-#### Topics
-
 
 
 #### Partitions
