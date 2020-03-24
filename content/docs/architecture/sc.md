@@ -20,6 +20,7 @@ The SC leverages a **Key-Value (KV) store** to persist cluster object configurat
 
 There are four configuration objects in a Fluvio cluster: **SPU**, **SPU-group**, **Topic**, and **Partition**. The objects follow **Kubernetes paradigm** with two fields that govern the configuration: the spec and the status. **Spec** expresses a desired state and the **status** describes the current state. 
 
+
 ### SPUs
 
 **SPUs spec** has a unique ID, a type, an optional rack, and endpoint identifier for the API servers. **SPU Id** is shared across all SPU types and it must be **globally unique**.
@@ -74,7 +75,7 @@ Aside from the differences in installation, all SPU types are treated the same.
 
 Fluvio **SPU-groups** define the configuration parameters used for provisioning groups of **Managed SPUs**. 
 
-{{< image src="spu-groups.svg" alt="SpuGroups" justify="center" width="730" type="scaled-98">}}
+{{< image src="spu-groups.svg" alt="SpuGroups" justify="center" width="740" type="scaled-98">}}
 
 
 **Replica** specifies the number of SPUs in a group and it can be dynamically changed: 
@@ -84,7 +85,7 @@ Fluvio **SPU-groups** define the configuration parameters used for provisioning 
 
  **MinId** is the Id of the first SPU in the replica range. 
  
- **Template** defines configuration parameters passed to all SPUs in the group. While there are many configuration parameters in the template section, the most relevant one in the **storage/size**. If no **size** is specified, it default to **1 gigabyte**. 
+ **Template** defines configuration parameters passed to all SPUs in the group. While there are many configuration parameters in the template section, the most relevant one in the **storage/size**. If no **size** is specified, it default to 1 gigabyte. 
 
 ##### SPU-group Spec
 
@@ -94,7 +95,7 @@ spec:
   minId: 11
   template:
     storage:
-        size: 2Gi
+        size: 20Gi
 {{< /code >}}
 
 
@@ -109,51 +110,99 @@ SPU-group status has 3 **resolutions**: Init, Invalid, and Reserved. If the grou
 
 Checkout the [SPU-groups]({{< relref "../cli/spu-groups" >}}) CLI for additional information.
 
+
 ### Topics
 
-**Topics** specify the configuration parameters for data streams. They may have one or more partitions and a replication factor. **Partitions** are distributed evenly across the SPUs. **Replication** factor must be a integer from 1 to the total number of SPUs and applies to all partitions.
-
-For example, a topic with 6 partitions and a replication factor of 3 would generate the following distribution:
-
-{{< image src="partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
-
-There are many aspects to the replication assignment; checkout [Replication]({{< relref "replication" >}}) section for a detailed analysis.
+**Topics** define configuration parameters for data streams. A topic may have one or more partitions and a replication factor. **Partitions** are distributed evenly across the SPUs. **Replication factor** must be a integer from 1 to the total number of SPUs and applies to all partitions.
 
 ##### Topic Spec
 
 {{< code yaml >}}
 spec:
-  replicas: 2
-  minId: 11
-  template:
-    rack: "Zone2"
-    publicEndpoint:
-        port: 9005
-        encryption: TLS
-    privateEndpoint: 
-        port: 9006
-        encryption: TLS    
-    scPrivateEndpoint: 
-        port: 9004
-        host: localhost
-        encryption: TLS    
-    storage:
-        size: 2Gi
-        logDir: "/tmp/mylog"
-    replication:
-        innSyncReplicaMin: 1
+  partitions: 6
+  replicationFactor: 3
 {{< /code >}}
 
+A topic with *6 partitions* and a *replication factor of 3* on a new cluster generates the following distribution:
 
-#### Partitions
+{{< image src="partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
+
+The algorithm that computes partition/replica distribution is described in the [Replication]({{< relref "replication" >}}) section. 
+
+Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topic/Partition]({{< relref "topic-partition" >}}) section.
+
+##### Topic Status
+
+{{< code yaml >}}
+status:
+  resolution: Provisioned
+  replicaMap: 
+    - 0: [0, 1, 2]
+    - 1: [1, 2, 0]
+    - 2: [2, 1, 0]
+    - 3: [0, 1, 2]
+    - 4: [1, 2, 0]
+    - 5: [2, 1, 0]
+{{< /code >}}
+
+The **resolution** reflects the status of topic. Provisioned topics are in working conditions, others are pending resources or have an invalid configuration:
+
+* Init - topic is initializing.
+* Pending - configuration is valid, topic is provisioning SPUs for replica map.
+* InsufficientResources - replica map cannot be created due to lack of resources. 
+* InvalidConfig - invalid configuration (for manual replica assignment).
+* Provisioned - topic is successfully allocated.
+
+If an errors occurs **reason** field describes the cause of the error.
+
+**Replica Map** defines the partition/replica distribution:
+
+* Partitions are the indexes 0 to 5.
+* Replicas list the SPUs with the leader in first position. 
+
+In this example, partition with index 4 has 3 replicas, where:
+
+* SPU 1 is the leader.
+* SPU 0 and SPU 2 are followers.
 
 
+### Partitions
 
-Fluvio uses **controllers** to actively manage every object’s **state** to match a desired **spec**. This workflow is captured in the object **life cycle** section below.
+**Partition** are internal configuration objects generated by the **SC**. When a new topic is provisioned, the **SC** performs the following operations:
 
+1. **generates a partition map** and store in the topic status,
+2. **creates a partition object** for each row in the partition map,
+3. **assign each partition** to the SPU leader.
 
-* K8 paradigm
-    * manage through SC API or directly through K8
+Topics and partitions are linked through a **parent-child** relationship. If a topic is deleted, all child partitions are automatically removed.
+
+{{< image src="topic-2-partitions.svg" alt="Topic 2 Assignment" justify="center" width="680" type="scaled-90">}}
+
+**SC** is responsible for the configuration in the **Partition Spec** and the **SPU** leader is responsible for the **Partition Status**.
+
+##### Partition Spec
+
+{{< code yaml >}}
+spec:
+  initialLeader: 101
+  replicas: [101, 102]
+{{< /code >}}
+
+The **SC** defines **replica assignment** and the SPU **initial leader**. After initial allocation, the **SC** notifies SPU **leader** and **followers** of the new partition.
+
+##### Partition Status
+
+{{< code yaml >}}
+status:
+  leader: 101
+  lrs: [101, 102]
+  ...
+{{< /code >}}
+
+**SPU leader** is responsible for managing the **Live Replicas (lrs)** and other data streaming related parameters.
+
+Replica management algorithm and other status fields are documented in the [SPU]({{< relref "spu" >}}) section.
+
 
 ## Object Life Cycles
 
