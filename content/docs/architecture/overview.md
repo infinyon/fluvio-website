@@ -56,7 +56,7 @@ For a deep dive in the SPU design, checkout the [SPU]({{< relref "SPU" >}}) sect
 
 ### Topic/Partitions
 
-**Topics** define individual **data streams**. Each topic has one or more partition and a replication factor. **Partitions** split the data into independent slices to allow producers and consumers to write and read messages in parallel. **Replication factors** are the number of copies desired for each partition. A **topic/partition pair**, also known as **replica**, creates a **unique identifier** for each data stream.
+**Topics** define groups of partitions. **Partitions** split the data into independent slices to allow producers and consumers to write and read messages in parallel. Each partition can be **replicated** across multiple SPUs. A **topic name** and **partition index** pair uniquely identifies a **partition**, which is also known as a **data stream**.
 
 For example, a configuration with the 2 topics generates the replication map in the diagram:
 
