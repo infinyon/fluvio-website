@@ -342,55 +342,37 @@ Partition Controller listens for Partition and SPU events from KV store and even
 
 ## Connection Manager
 
-* SPU Connection Manager
-    * maintain connections ... keeps tracks of all TCP streams
-    * detects SPU online/offline
-        * if network problems arise, it waits for a new connection from SPU
-    * notifies controllers of online/offline status changes
-    * when new SPU spu
-        * validates SPUs to ensure is valid (rejects if invalid)
-        * Sends Partition SPU metadata spec to SPUs
-    * sends Partition metadata changes to SPU as requested by Controller
-    * sends SPU metadata changes to SPU as requested by Controller
-    * receives LRS updates and send to Controller
-    * SC never initiates Communication
-    * Duplex Channel
+**Connection Manager (CM)** is an **SC Server** module responsible for the connections between **SC** and **SPUs**. The **CM** only **accepts** connections from **registered** SPUs.
 
+#### Connection Setup
 
-## Reconciliation
+A connection is established in the following sequence:
 
-* system tries to compare known state with latest state.
-* in case of major outages, a complete re-sync may occur... runs periodically ... computes deltas...
+{{< image src="connection-setup.svg" alt="Connection Manager" justify="center" width="800" type="scaled-99">}}
 
-* Controller, Connection Manager,
+* **SPU Controller** sends **add SPU** to **CM**.
+* **CM** saves **SPU Spec** in local cache.
+* **SPU** requests a connection authorization.
+* **CM** validates that SPU is registered.
+* **CM** sends authorization **accepted**.
+* **CM** saves connection stream in local cache.
+* **CM** notifies all relevant **Controllers** to change SPU status to **online**
+* **CM** sends **SPU Spec** and **Partition Specs** relevant to the SPU.
 
-* Everything should be incremental... at worst case... there are changes to fix issues.
-    * all components are designed to be recoverable.
-    * compares last know state with the current state and reconcile differences.
-    * reconciliation is done out of band with no impact to traffic.
-* it can start in any order
+After the connection is established, both endpoints can initiate requests.
 
+#### Connection Failure
 
+If the connection drops is due to network failures or SPU going offline, the **CM** takes the following remediation steps:
 
-## High Availability
+* **CM** removes connection stream from local cache.
+* **CM** notifies all relevant controllers that SPU status is **offline**.
 
-* HA for SC
-    * one active SC.. can be multiple backups (upcoming)
-    * Availability of the SC has no impact on SPU streaming services.
-        * Traffic continues... on all existing connections until SC comes online.
-    * SPU 
+When the SPU come back online it initiates a new connection as described in the **Connection Setup** section.
 
-## API Servers
+#### LRS Updates
 
-    * External (default ports)
-        * API server, default port...
-    * Internal
-
-## Configuration Parameters
-
-* Configuration startup command
-    * private & public port, K8...
-* default parameters ... storage directory, replication, etc.
+LRS messages are messages sent from **leader SPU** to **CM** to update replica status information. **CM** forwards this information to relevant **Controllers**.
 
 
 {{< links >}}
