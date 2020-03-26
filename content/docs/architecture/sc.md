@@ -374,7 +374,7 @@ When the SPU come back online it initiates a new connection as described in the 
 
 #### LRS Updates
 
-**Live Replicas (LRS)** are continuous updates sent by **leader SPUs** to the **CM** of changes in replica status. The **CM** forwards this request to relevant **Controllers** for processing.
+**Live Replicas (LRS)** are continuous updates sent by **leader SPUs** to the **CM** to report changes in replica status. The **CM** forwards the requests to relevant **Controllers** for processing.
 
 
 {{< links >}}
