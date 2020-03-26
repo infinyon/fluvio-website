@@ -13,3 +13,14 @@ SPU was designed for horizontal scale.
 SPU is authoritative for all Leader/Follower election status.
 
 Describe Leader election algorithm.
+
+
+Metadata Dispatcher
+
+* Leader Controller
+* Follower Controller
+
+Action Dispatcher
+
+* Strorage Module
+

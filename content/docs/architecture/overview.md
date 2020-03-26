@@ -67,7 +67,7 @@ SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for *
 
 {{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="650" type="scaled-90">}}
 
-For additional information on partitions and replica assignments, checkout the [Topic/Partition]({{< relref "topic-partition" >}}) section.
+For additional information on partitions and replica assignments, checkout the [Replication]({{< relref "replication" >}}) section.
 
 
 ### Data Persistence
@@ -106,7 +106,6 @@ If you'd like to learn more about the **Internal APIs** checkout Fluvio developm
 {{< links >}}
 * [SC Architecture]({{<relref "sc">}})
 * [SPU Architecture]({{<relref "spu">}})
-* [Topic/Partitions]({{<relref "topic-partition">}})
 * [Replication]({{<relref "replication">}})
 * [Data Persistence]({{<relref "persistence">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})

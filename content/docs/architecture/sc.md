@@ -131,7 +131,7 @@ A topic with *6 partitions* and a *replication factor of 3* on a new cluster gen
 
 The algorithm that computes partition/replica distribution is described in the [Replication]({{< relref "replication" >}}) section. 
 
-Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topic/Partition]({{< relref "topic-partition" >}}) section.
+Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Replication]({{< relref "replication" >}}) section.
 
 ##### Topic Status
 
@@ -348,16 +348,18 @@ Partition Controller listens for Partition and SPU events from KV store and even
 
 A connection is established in the following sequence:
 
-{{< image src="connection-setup.svg" alt="Connection Manager" justify="center" width="800" type="scaled-99">}}
+{{< image src="connection-setup.svg" alt="Connection Manager" justify="center" width="780" type="scaled-99">}}
 
-* **SPU Controller** sends **add SPU** to **CM**.
-* **CM** saves **SPU Spec** in local cache.
+* **SPU Controller** sends **add SPU spec** to **CM**.
+* **Partition Controller** sends **add Partitions** to **CM**
+* **CM** saves **SPU** and **Partitions** in local cache.
 * **SPU** requests a connection authorization.
-* **CM** validates that SPU is registered.
-* **CM** sends authorization **accepted**.
+* **CM** authorizes registered SPUs and rejects all others.
+* **CM** sends authorization **accepted** to SPU.
 * **CM** saves connection stream in local cache.
 * **CM** notifies all relevant **Controllers** to change SPU status to **online**
 * **CM** sends **SPU Spec** and **Partition Specs** relevant to the SPU.
+* **CM** receives continuous **LRS updates** from all SPUs in the cluster.
 
 After the connection is established, both endpoints can initiate requests.
 
@@ -377,7 +379,6 @@ LRS messages are messages sent from **leader SPU** to **CM** to update replica s
 
 {{< links >}}
 * [SPU Architecture]({{<relref "spu">}})
-* [Topic/Partitions]({{<relref "topic-partition">}})
 * [Replication]({{<relref "replication">}})
 * [Data Persistence]({{<relref "persistence">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})
