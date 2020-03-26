@@ -207,11 +207,11 @@ Replica management, election, and all other status fields are documented in the 
 
 ## Object Workflows
 
-**SC** design an event driven architecture that **captures cluster changes** and keeps the SPUs and the Key-Value Store **synchronized**. 
+**SC** design is an event driven architecture that **captures cluster changes** and keeps the SPUs and the Key-Value store **synchronized**. 
 
 {{< image src="sc-workflows.svg" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
 
-The SC uses a **common workflow** to process events:
+The SC uses a **common workflow** to process all event types:
 
 1. Readers
     * capture incoming events
@@ -230,104 +230,147 @@ The SC uses a **common workflow** to process events:
 
 ###### Local Store
 
-Metadata dispatcher maintains a **Local Store** of read-only objects types that mirror the KV store. Objects in the local store can only be updated by KV Store requests. The local store is utilized the **Object Controllers** as they translated events into the actions.
+Metadata dispatcher maintains a **Local Store** of read-only objects types that mirror the KV store. Objects in the local store can only be updated by KV Store requests. The local store is utilized by **Controllers** to **transform** events into the actions.
 
 ###### Controllers
 
 SPU, Topic, and Partition Controllers run independently and manage the workflows for their designated objects. 
 
+
 #### SPU Controller
 
-SPU Controller listens for SPU events:
+SPU Controller listens for SPU events from KV store and events from Connection Manager.
+
+{{< image src="spu-controller.svg" alt="SPU Controller" justify="center" width="440" type="scaled-60">}}
 
 * **Add SPU**
     
-    SPU controller asks Connection Manager to add SPU to the connection list. If the SPU is online, the controller asks the KV Store to change SPU status to **online**.
+    SPU controller creates an **action** to add SPU to the Connection Manager.
+
+* **Modify SPU**
+    
+    SPU controller creates an **action** to update SPU in the Connection Manager.
 
 * **Delete SPU**
 
-    SPU controller removes the connection to the SPU.
+    SPU controller creates an **action** to delete SPU from the Connection Manager.
+
+* **Online/Offline**
+
+    When connection status changes, the controller creates an **action** to update SPU **resolution status** in the KV store. 
 
 
 #### Topic Controller
 
-Topic Controller listens for Topic and SPU events:
+Topic Controller listens for Topic and SPU events from KV store.
+
+{{< image src="topic-controller.svg" alt="Topic Controller" justify="center" width="440" type="scaled-60">}}
 
 * **Add Topic**
 
-... 
+    Topic controller creates an **action** to update Topic **status** resolution to **Init** in the KV store.
 
-* **Add Delete**
+* **Modify Topic**
 
-...
+    For topics with status resolution **Init** or **Invalid**, the controller validates partition and replication configuration parameters. Upon validation, the controller:
+
+    * Params OK - creates an **action** to update Topic **status** resolution to **Pending** in KV store.
+    * Params Invalid - creates an **action** to update Topic **status** resolution to **Invalid** in KV store.
+
+    For topics with status resolution **Pending** or **InsufficientResources**, the controller checks if the number SPUs meets the replication factor. Upon validation, the controller:
+
+    * SPUs Ok - generates a Replica Map and creates the following **actions** for the KV Store:
+    
+        * an **action** to update **status** resolution to **Provisioned** and replicaMap to **Replica Map**.
+        * an **action** to create a new **Partition** for each entry in the Replica Map.
+
+    * Not enough SPUs - creates an **action** to update Topic **status** resolution to **InsufficientResources** in KV store.
 
 * **Add SPU**
 
-... 
+    Topic controller selects all topics with **status** resolution in **Pending** or **InsufficientResources** and  generates a new Replica Map. 
 
-* **Modify SPU**
+    * for each topic with a new Replica Map, the controller creates **2 actions** for the KV Store:
 
-...
-
+        * an **action** to update **status** resolution to **Provisioned** and replicaMap to **Replica Map**.
+        * an **action** to create a new **Partition** for each entry in the Replica Map.
+    
 
 #### Partition Controller
 
-Partition Controller listens for Partition and SPU events as well as SPU notifications:
+Partition Controller listens for Partition and SPU events from KV store and events from Connection Manager.
+
+{{< image src="partition-controller.svg" alt="Partition Controller" justify="center" width="440" type="scaled-60">}}
 
 * **Add Partition**
 
-...
+    Partition controller creates the following actions:
+    
+    * **action** to add Partition to the Connection Manager.
+    * **action** to update Partition **status** resolution to **Offline** in KV store.
 
-* **Mod Partition**
+* **Modify Partition**
 
-...
+    Partition controller creates an **action** to update **Partition spec** in the Connection Manager.
 
-* **Del Partition**
+* **Delete Partition**
 
-...
+    Partition controller creates an **action** to delete **Partition spec** from the Connection Manager.
 
-* **Mod SPU**
+* **Modify SPU**
 
-...
+    Partition controller checks if SPU status changed from **Online -> Offline** and it retrieves all Partitions that with the SPU is the leader.
+    
+    * for each partition, the controller computes a **new leader** candidates. Upon completion, the controller:
+    
+        * leader computed: creates an **action** to update leader of Partition Status in Connection Manager.
+        * no suitable leader found: creates **action** to update Partition **status** resolution to **Offline** in KV store.
 
-* **SPU Change LRS**
+    Partition controller checks if SPU status changed from **Offline -> Online** and it retrieves all Partitions with **status** resolution **Offline**. 
+    
+    * for each partition where this SPU is not the leader, the controller checks if the SPU eligible to become leader.
+    
+        * SPU eligible: the controller creates an **action** to update Partition **status** leader to the SPU id in KV store.
+        * SPU not suitable to be leader: the controllers leaves leave partition unchanged.
 
-...
+* **Change LRS**
 
-
-#### Chained Operations
-
-Chained operations, such as topic - partition workflows, will traverse the systems multiple times by sequentially applying changes to KV store objects. These objects in turns notify Metadata Dispatcher through a new event. 
+    Partitions controller receives **Live Replicas (LRS)** updates form **Connection Manager**. The matching Partition is updated in the KV store with the following action:
+    
+    * Update Partition status: **action** to update Partition **status** resolution to **Online**, **leader** to LRS.leader and **replica** to LRS.replica.
 
 
 ## Connection Manager
 
 * SPU Connection Manager
+    * maintain connections ... keeps tracks of all TCP streams
+    * detects SPU online/offline
+        * if network problems arise, it waits for a new connection from SPU
+    * notifies controllers of online/offline status changes
+    * when new SPU spu
+        * validates SPUs to ensure is valid (rejects if invalid)
+        * Sends Partition SPU metadata spec to SPUs
+    * sends Partition metadata changes to SPU as requested by Controller
+    * sends SPU metadata changes to SPU as requested by Controller
+    * receives LRS updates and send to Controller
     * SC never initiates Communication
     * Duplex Channel
-    * Sends Spec to SPU & Receives status from SPU
-        * Replica topology
-    * Leader/follower election
-    * Detects 
-        * SPU online/offline
 
-## Replica Manager
-
-* Replica Distribution
-    * link... 
 
 ## Reconciliation
 
+* system tries to compare known state with latest state.
+* in case of major outages, a complete re-sync may occur... runs periodically ... computes deltas...
+
+* Controller, Connection Manager,
+
+* Everything should be incremental... at worst case... there are changes to fix issues.
     * all components are designed to be recoverable.
     * compares last know state with the current state and reconcile differences.
     * reconciliation is done out of band with no impact to traffic.
 * it can start in any order
-* reconciliation
-* pushes instructions to the SPU
 
-Augmenting the **SC** dynamically
 
-Restarting the **SC**    
 
 ## High Availability
 
@@ -337,16 +380,9 @@ Restarting the **SC**
         * Traffic continues... on all existing connections until SC comes online.
     * SPU 
 
-## Kubernetes Integration
-
-* Kubernetes
-    * use Kubernetes API to communicate with KV store
-    * at startup we read KubeCtl configuration file to detect Kubernetes cluster host.
-    * Link to K9 section (namespaces)
-
 ## API Servers
 
-    * External
+    * External (default ports)
         * API server, default port...
     * Internal
 
@@ -355,11 +391,6 @@ Restarting the **SC**
 * Configuration startup command
     * private & public port, K8...
 * default parameters ... storage directory, replication, etc.
-
-
-## System Initialization
-
-At startup, the **SC** connects to the **KV** store and provisions its internal **global store**. SC global store caches all configuration data: SPUs, topic/partition, and replica assignments.
 
 
 {{< links >}}
