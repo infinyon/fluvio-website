@@ -15,6 +15,13 @@ The SC leverages a **Key-Value (KV) store** to persist cluster object configurat
 
 **Fluvio** is designed to work seamlessly with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}** and **{{< target-blank title="etcd" url="https://etcd.io" >}}** **KV** store. The **KV interface** is store agnostic and can be extended to support alternative implementations such {{< target-blank title="Consul" url="https://consul.io" >}}, {{< target-blank title="Zookeeper" url="https://zookeeper.apache.org" >}}, or in-memory stores.
 
+#### Default Ports
+
+Fluvio SC has a **public** and a **private** server that are attached to the following ports:
+
+* **Public Port**: 9003
+* **Private Port**: 9004
+
 
 ## Configuration Objects
 
