@@ -12,8 +12,15 @@ SPU was designed for horizontal scale.
 
 SPU is authoritative for all Leader/Follower election status.
 
-Describe Leader election algorithm.
+#### Default Ports
 
+Fluvio SPU has a **public** and a **private** server that are attached to the following ports:
+
+* **Public Port**: 9005
+* **Private Port**: 9006
+
+
+## Outline ....
 
 Metadata Dispatcher
 
