@@ -232,12 +232,12 @@ The SC uses a **common workflow** to process all event types:
 
 Metadata dispatcher maintains a **Local Store** of read-only objects types that mirror the KV store. Objects in the local store can only be updated by KV Store requests. The local store is utilized by **Controllers** to **transform** events into the actions.
 
-###### Controllers
+## Object Controllers
 
 SPU, Topic, and Partition Controllers run independently and manage the workflows for their designated objects. 
 
 
-#### SPU Controller
+### SPU Controller
 
 SPU Controller listens for SPU events from KV store and events from Connection Manager.
 
@@ -260,7 +260,7 @@ SPU Controller listens for SPU events from KV store and events from Connection M
     When connection status changes, the controller creates an **action** to update SPU **resolution status** in the KV store. 
 
 
-#### Topic Controller
+### Topic Controller
 
 Topic Controller listens for Topic and SPU events from KV store.
 
@@ -296,7 +296,7 @@ Topic Controller listens for Topic and SPU events from KV store.
         * an **action** to create a new **Partition** for each entry in the Replica Map.
     
 
-#### Partition Controller
+### Partition Controller
 
 Partition Controller listens for Partition and SPU events from KV store and events from Connection Manager.
 
