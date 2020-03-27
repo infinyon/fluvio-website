@@ -1,5 +1,5 @@
 ---
-title: Streaming Processing Unit (SPU) Design
+title: Streaming Processing Unit (SPU) Architecture
 menu: SPU
 weight: 30
 ---
