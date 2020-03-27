@@ -88,21 +88,31 @@ There are **two algorithms** to compute a **replica map**:
 * with rack assignment 
 * without rack assignment
 
-#### CRA without Rack Assignment
+#### CRA with Rack disabled
 
-CRA without rack assignment can be invoked if **no SPUs** have rack define, or **ignore rack flag** is set. 
-The algorithm is based on a **round-robin**, **gap-enabled** distribution assignment. 
+**CRA with rack disabled** can be used if one of the two conditions are met: 
 
-For example, in an environment with **5 x SPUs**, a topic created with:
+* **no racks defined** for any of the **SPUs**. 
+* **ignore rack flag** is set. 
 
-* **15 x partitions** 
-* **3 x replicas** 
+##### Algorithm
 
-starting at index 0, generates the following **replica map**:
+The algorithm uses a **round-robin**, **gap-enabled** distribution assignment. 
+
+The cluster has:
+
+*  SPUs : **5**
+
+The topic configuration parameters are:
+
+* partitions : **15**
+* replicas :  **3**
+
+If the algorithm starts at index 0, it generates the following replica distribution:
  
 {{< code json >}}
 ------------------------------------------
-|p-idx | 5 x SPUs                | gaps  |
+|  idx | 5 x SPUs                | gaps  |
 ------------------------------------------
 |    0 |012                      |   0   |
 |    1 | 123                     |   0   |
@@ -123,21 +133,145 @@ starting at index 0, generates the following **replica map**:
 ------------------------------------------
 {{< /code >}}
 
-At index 15, the algorithm repeat.
+Which translates into the following **replica map**:
 
-##### Algorithm Notes
+{{< code >}}
+---------------------------
+| Partition |  Replicas   |
+---------------------------
+|       0   |  [0, 1, 2]  |
+|       1   |  [1, 2, 3]  |
+|       2   |  [2, 3, 4]  |
+|       3   |  [3, 4, 0]  |
+|       4   |  [4, 0, 1]  |
+|       5   |  [0, 2, 3]  |
+|       6   |  [1, 3, 4]  |
+|       7   |  [2, 4, 0]  |
+|       8   |  [3, 0, 1]  |
+|       9   |  [4, 1, 2]  |
+|      10   |  [0, 3, 4]  |
+|      11   |  [1, 4, 0]  |
+|      12   |  [2, 0, 1]  |
+|      13   |  [3, 1, 2]  |
+|      14   |  [4, 2, 3]  |
+|      15   |  [0, 1, 2]  |
+---------------------------   
+{{< /code >}}
 
-The algorithm:
+For **balanced distribution** the algorithm **chains multiple calls sequentially**. The algorithm starts the next run **at the index** where the last run completed. That index is mapped to partition 0. 
 
-* can **start at any index** and continue the for multiple topic allocations in sequence.
-* produces **well balanced distribution** regardless of the number of **SPUs**.
+In this example, if the last replica assignment completed at index 8, the next run starts at index 9 and partition 0 is assigned replica: [4, 1, 2].
 
-#### CRA with Rack Assignment
 
-CRA with rack assignment can only be called if **all SPUs** in the cluster have the rack field defined.
+#### CRA with Rack Enabled
 
- 
+**CRA with rack enabled** can be used if **all SPUs** in the cluster have **rack** defined.
 
+Rack is used to earmark SPUs a locations such as a server rack, or a cloud availability zones. The algorithm ensures partitions are distributed **across racks**. It is important to have an equal number of SPUs in each rack to get a **balanced distribution**. 
+
+##### Algorithm
+
+The algorithm is designed to work with SPUs in **any rack assignment**. If the rack assignment is unbalanced, the algorithm fills gaps with a round-robin allocation in the SPU matrix.
+
+The algorithm has the following 3 stages:
+
+* Stage 1: Create a rack centric SPU matrix
+* Stage 2: Convert SPU matrix to an SPU sequence
+* Stage 3: Generate replica map
+
+###### Example 1 - Balanced Rack Distribution
+
+The cluster has **4** racks with **11** SPUs:
+
+* rack-a: **0, 1, 2**
+* rack-b: **3, 4, 5**
+* rack-c: **6, 7, 8**
+* rack-d: **9, 10, 11**
+
+The topic configuration parameters are:
+
+* partitions : **12**
+* replicas :  **4**
+
+{{< code json >}}
+Stage 1: SPU Matrix allocation
+------------------------------------------
+    rack-a:  0, 1,  2
+    rack-b:  3, 4,  5
+    rack-c:  6, 7,  8
+    rack-d:  9, 10, 11
+
+Stage 2: SPU sequence (read in diagonal)
+------------------------------------------
+    0, 4, 8, 9, 1, 5, 6, 10, 2, 3, 7, 11
+
+Stage 3: Replica Map
+--------------------------------------------------------------
+Partition |   Replicas         rack-a  rack-b  rack-c  rack-d
+--------------------------------------------------------------
+       0  |   [ 0, 4, 8, 9]      [1]    [ ]1   [ ]1    [ ]1
+       1  |   [ 4, 8, 9, 1]      [1]1   [1]1   [ ]2    [ ]2
+       2  |   [ 8, 9, 1, 5]      [1]2   [1]2   [1]2    [ ]3
+       3  |   [ 9, 1, 5, 6]      [1]3   [1]3   [1]3    [1]3
+       4  |   [ 1, 5, 6,10]      [2]3   [1]4   [1]4    [1]4
+       5  |   [ 5, 6,10, 2]      [2]4   [2]4   [1]5    [1]5
+       6  |   [ 6,10, 2, 3]      [2]5   [2]5   [2]5    [1]6
+       7  |   [10, 2, 3, 7]      [2]6   [2]6   [2]6    [2]6
+       8  |   [ 2, 3, 7,11]      [3]6   [2]7   [2]7    [2]7
+       9  |   [ 3, 7,11, 0]      [3]7   [3]7   [2]8    [2]8
+      10  |   [ 7,11, 0, 4]      [3]8   [3]8   [3]8    [2]9
+      11  |   [11, 0, 4, 8]      [3]9   [3]9   [3]9    [3]9
+--------------------------------------------------------------
+                    Leaders        3      3      3      3
+                    Followers      9      9      9      9
+--------------------------------------------------------------
+{{< /code >}}
+
+The algorithm yields an even distribution with the same number of leader and followers across all racks.
+
+###### Example 2 - Unbalanced Rack Distribution
+
+The cluster has **3** racks with **6** SPUs:
+
+* rack-a: **0**
+* rack-b: **1, 2**
+* rack-c: **3, 4, 5**
+
+The topic configuration parameters are:
+
+* partitions : **6**
+* replicas :  **3**
+
+{{< code json >}}
+Stage 1: SPU Matrix allocation (sorted by rack with most SPUs)
+------------------------------------------
+    rack-c:  3, 4, 5
+    rack-b:  1, 2, _
+    rack-a:  0, _,  _ 
+
+Stage 2: SPU sequence (read in diagonal)
+------------------------------------------
+    3, 2, 0, 4, 1, 5
+
+Stage 3: Replica Map
+-------------------------------------------------------
+Partition |   Replicas         rack-c  rack-b  rack-a
+-------------------------------------------------------
+       0  |   [3, 2, 0]         [1]    [ ]1    [ ]1
+       1  |   [2, 0, 4]         [1]1   [1]1    [ ]2
+       2  |   [0, 4, 1]         [1]2   [1]2    [1]2
+       3  |   [4, 1, 5]         [2]3   [1]3    [1]2
+       4  |   [1, 5, 3]         [2]5   [2]3    [1]2
+       5  |   [5, 3, 2]         [3]6   [2]4    [1]2
+-------------------------------------------------------
+                    Leaders       3      2      1 
+                    Followers     6      4      2
+-------------------------------------------------------
+{{< /code >}}
+
+Each SPU gets a **fair share** of leaders and followers. 
+
+The racks with higher number of SPUs handle **more replicas**. In the event of a power failure on rack-c, SPUs on racks a and b may **get overwhelmed** as the leaders are redistributed.
 
 {{< links >}}
 * [SC Architecture]({{<relref "sc">}})
