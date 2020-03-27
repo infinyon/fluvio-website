@@ -16,9 +16,9 @@ The choice of programming language makes Fluvio a low memory, high performance p
 
 Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}**. Any infrastructure running **Kubernetes** can install **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, [Kubernetes integration]({{< relref "k8-integration" >}}) section. 
 
-##### Fluvio Cloud
+#### Fluvio Cloud
 
-If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}})**. The cloud installation hides all complexity associated with the infrastructure and exposes only relevant streaming APIs. Use the **[Quick Start]({{< relref "../getting-started/quick-start" >}})** guide to setup a dedicated cloud environment.
+If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}})**. The cloud installation hides all complexity associated with the infrastructure and exposes only relevant streaming APIs. Use the **[Quick Start]({{< relref "../getting-started/quick-start" >}})** guide to setup your own dedicated cloud environment.
 
 
 ## High Level Architecture
@@ -47,7 +47,7 @@ For a deep dive in the SC design, checkout the [SC]({{< relref "SC" >}}) section
 
 **Streaming Processing Units (SPUs)** are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
 
-{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="340" type="scaled-60">}}
+{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="330" type="scaled-60">}}
 
 SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout the [Replication]({{< relref "replication" >}}) section.
 

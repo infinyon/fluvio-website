@@ -74,7 +74,7 @@ is the custom-defined replica assignment file. Replica-assignment is mutually ex
         ...
     ]
 }
-{{< /fluvio >}}
+{{< /code >}}
 
     The following example shows a replica assignment file with 2 partitions and 3 replicas: 
 
@@ -99,7 +99,7 @@ is the custom-defined replica assignment file. Replica-assignment is mutually ex
         }
     ]
 }
-{{< /fluvio >}}
+{{< /code >}}
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
 is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
