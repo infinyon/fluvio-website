@@ -4,13 +4,11 @@ menu: SPU
 weight: 30
 ---
 
-**Streaming Processing Unit (SPU)** is server responsible for processing streaming data in real-time.  
-The SPU can be scaled horizontally in order to handle more data or increase throughput.  Each SPU manages sets of **replicas** which represents lowest unit of data stream.  The replica can be either leader or follower of the partition.   SC balances replica distribution such that each SPU can handle leaders and follower replicas evenly. 
-
+**Streaming Processing Unit (SPU)** server is responsible for processing streaming data in real-time.  
+The SPUs can be scaled horizontally for higher data throughput. Each SPU manages sets of **replicas** which represent the lowest unit of a data stream. Each replica can a leader or a follower. SC balances replicas to achieve even distribution across SPUs. 
 
 {{< image src="spu-architecture.svg" alt="SPU Architecture" justify="center" width="600" type="scaled-98">}}
 
-SPU receives SPU/Partition spec from SC and send out partition status back.
 
 #### Default Ports
 
@@ -20,29 +18,67 @@ Fluvio SPU has a **public** and a **private** server that are attached to the fo
 * **Private Port**: 9006
 
 
+## Object Workflows
+
+**SPU** is designed for distributed data processing and responsible with the following:
+
+* manage replicas
+* form peer-to-peer network with other SPUs
+* receive and store data from Producers
+* send processed data to Consumers
+
+The following diagram describes the **SPU architecture**
+
+{{< image src="spu-architecture.png" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
+
+1. Spec Dispatcher
+    * receives SPU and Partition specs
+    * spawns Leader and Follower Controllers
+    * dispatches specs to Leader or Follower Controller
+2. Leader Controller
+    * recevies message from Producers
+    * sends messages to Consumers
+    * syncs replica information with Followers
+    * sends LRS status to SC
+3. Follower Controller
+    * syncs replica information with Leader
+4. Stream Dispatcher
+    * dispatches replica information from other SPU leaders to local follower
+    * dispatches replica information to other SPU followers to local leader
+5. Stream Update
+    * sends replica information from local leader to other SPU followers
+    * sends replica information from local followers to other SPU leader
+
+
 ## Controllers
 
-Like SC, core processing are done by controllers.  There are two controllers:
+SPU has a similar architecture with the SC, where controllers are responsible for core data processing. Each controller can have multiple instances that run in parallel to ensure maximum concurrency.
+
+There are two types of controllers:
 
 * Leader Controller
 * Follower Controller
 
 ### Leader Controller
 
-For each leader replica, a leader controller is spawned.  If leader replica is removed, leader controller is terminated.  When a controller starts up, it set up storage for replica in the local storage of the SPU.  The controller accepts requests from follower controller in other SPU.  Follower controller always initiates duplex connection
+For each leader replica, a leader controller is spawned. When the replica is removed the leader controller is terminated. When a controller starts up, it creates a storage area dedicated to the replica in the local SPU.  The controller accepts requests from follower in other SPU. Follower controllers always initiates duplex connections.
 
-Only leader controller interacts with producer or consumer. 
+Leader controllers are solely responsible for the interaction with producers and consumers. 
 
-When leader controller receives records from producer
-* appends new records to storage
-* send updated offsets to sc, follower controllers
-* for each consumer, send relevant records back depends on their request type
-  * commit type (send any new records or committed records)
-  * starting offset
+When a leader controller receives records from a producer, it performs the following operations:
 
-When follower controller is connected to leader, offsets are sync with each other.  When leader detects follower is behind, it sends delta records to follower until follower is fully catch up.  Sync is trigger whenever any changes to leader's offset.
+* appends new records to local storage
+* sends updated offsets to sc and follower controllers
+* for each consumer, it sends records as stated in their request type:
+  * committed records - records that have been replicated across followers
+  * uncommitted records - records that have been persisted on local storage
 
-For each offsets receives from follower, leader computes high watermark which result in updated committed offset if enough followers have caught up with leader.  if high watermark is updated, it is also send to followers, consumers and SC as LRS.
+Leader and Followers sync their offsets with each other. If followers fall behind, the leader sends missing records until the followers catch-up. 
+
+When the leaders receives an offset index from the follower, the leader computes the lagging indicator, used to detect if records can be committed. Lagging indicator is also used to identify the followers that are behind. This information is sent to the **SC** in the Live Replicas (LRS) message.
+
+
+## continue here -------
 
 
 ### Follower Controller
@@ -55,6 +91,10 @@ Follower controller then goes into reconciliation loop:
 *  Sync offsets with leader
 *  Adds records to follower replica if receives from leader
 
+## Election
+
+... goes here
+
 
 ## Replica Storage
 
@@ -65,7 +105,6 @@ To allow faster access to records in replica, index files are maintained.  Index
 ## Zero Copy
 
 Records in replica are send to consumer using zero copy mechanism.  This avoid need to copy records in memory.
-
 
 
 
