@@ -4,32 +4,32 @@ menu: Replication
 weight: 50
 ---
 
-Fluvio **real-time replication architecture** improves **data availability** without sacrificing performance as it concurrently serves a large number of **producers** and **consumers**.
+Fluvio **real-time replication architecture** improves **data availability** without sacrificing performance. A **balanced distribution** of replicas can concurrently serves a large number of **producers** and **consumers**.
 
 #### Topics
 
-Fluvio's uses **Topics** to define **data distribution** criteria, such as slicing and replication.  **Topic partitions** create data slices that are managed independently by different SPUs. **Topic replication** defines the number of copies for each data slice.
+Fluvio's uses **[Topics]({{< relref "sc#topic" >}})** to define **data distribution** criteria, such as slicing and replication.  **Topic partitions** create data slices that are managed independently by different SPUs. **Topic replication** defines the number of copies for each slice.
 
 {{< fluvio >}}
 $ fluvio topic create --topic topic-a --partitions 1 --replication 3
 {{< /fluvio >}}
 
- A **replication** of 3 creates **3 copies** of data where each copy is written on a different SPU:
+Replication parameter specifies the number of unique copies:
 
 {{< image src="leader-followers.svg" alt="Leader, Followers" justify="center" width="520" type="scaled-90">}}
 
-The SPUs in a replication assignment have different **roles**:
+Replicas have 2 roles, leader and follower:
 
-* SPU-1 is the **Replica Leader**. 
-* SPU-2 and SPU-3 are **Replica Followers**.
+* SPU-1 serves the **Replica leader**. 
+* SPU-2 and SPU-3 serve **Replica followers**.
 
 ## Replication Assignment
 
-Fluvio has two types for replication assignment: manual and computed. **Manual Replica Assignment** provides the ability to apply a **custom replication** algorithm. **Computed Replica Assignment** uses the default replication algorithm to compute replica map.
+Fluvio has two types for replication assignment: manual and computed. **Manual Replica Assignment** provides the ability to apply your own **custom replication** algorithm. **Computed Replica Assignment** uses the Fluvio's replication algorithm to compute the replica map.
 
 ### Manual Replica Assignment (MRA)
 
-**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status]({{< relref "sc#topic-status" >}}). In fact, the **replica map** defined in the file is assigned to this field.
+**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status]({{< relref "sc#topic-status" >}}). In fact, the **replica map** defined as defined in the file is assigned to this field.
 
 The following command creates a topic from a **replica assignment file**:
 
@@ -37,7 +37,7 @@ The following command creates a topic from a **replica assignment file**:
 $ fluvio topic create --topic custom-topic --replica-assignment ./my-assignment
 {{< /fluvio >}}
 
-_Validate-only_ flag is available to verify a replica assignment file without applying changes.
+_Validate-only_ flag is available to verify a replica assignment file without applying any changes.
 
 #### Replica Assignment File
 
@@ -82,18 +82,6 @@ For additional information on how to check the result of a replica assignment fi
 * the number of partitions
 * the replication factor
 * ignore rack assignment flag
-
-There are **two algorithms** to compute a **replica map**:
-
-* with rack assignment 
-* without rack assignment
-
-#### CRA with Rack disabled
-
-**CRA with rack disabled** can be used if one of the two conditions are met: 
-
-* **no racks defined** for any of the **SPUs**. 
-* **ignore rack flag** is set. 
 
 ##### Algorithm
 
@@ -163,7 +151,7 @@ For **balanced distribution** the algorithm **chains multiple calls sequentially
 In this example, if the last replica assignment completed at index 8, the next run starts at index 9 and partition 0 is assigned replica: [4, 1, 2].
 
 
-#### CRA with Rack Enabled
+### Advanced Computed Replica Assignment (CRA) - rack enabled
 
 **CRA with rack enabled** can be used if **all SPUs** in the cluster have **rack** defined.
 
@@ -274,7 +262,6 @@ Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs 
 {{< links >}}
 * [SC Architecture]({{<relref "sc">}})
 * [SPU Architecture]({{<relref "spu">}})
-* [Data Persistence]({{<relref "persistence">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})
 * [Deployment Models]({{<relref "deployments">}})
 {{< /links >}} 

@@ -387,7 +387,6 @@ When the SPU come back online it initiates a new connection as described in the 
 {{< links >}}
 * [SPU Architecture]({{<relref "spu">}})
 * [Replication]({{<relref "replication">}})
-* [Data Persistence]({{<relref "persistence">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})
 * [Deployment Models]({{<relref "deployments">}})
 {{< /links >}} 

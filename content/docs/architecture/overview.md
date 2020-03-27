@@ -80,8 +80,6 @@ Spu persistence was designed as **single-writer, multi-reader** with **zero-copy
 
 Fluvio adds messages local storage until the **retention period** is met. The retention periods should be set to cover **up to 80%** of the disk size. If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system may be compromised.
 
-Fluvio's advanced persistence design is described in the [Data Persistence]({{< relref "persistence" >}}) section.
-
 ### Streaming APIs
 
 Fluvio architecture places heavy emphasis on clean **user-friendly APIs**. There are two types of APIs, **external** and **internal**. The APIs use **TLS** to ensure secure communication. 
@@ -107,7 +105,6 @@ If you'd like to learn more about the **Internal APIs** checkout Fluvio developm
 * [SC Architecture]({{<relref "sc">}})
 * [SPU Architecture]({{<relref "spu">}})
 * [Replication]({{<relref "replication">}})
-* [Data Persistence]({{<relref "persistence">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})
 * [Deployment Models]({{<relref "deployments">}})
 {{< /links >}} 
