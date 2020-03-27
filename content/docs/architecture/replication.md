@@ -206,28 +206,28 @@ Stage 2: SPU sequence (read in diagonal)
     0, 4, 8, 9, 1, 5, 6, 10, 2, 3, 7, 11
 
 Stage 3: Replica Map
---------------------------------------------------------------
-Partition |   Replicas         rack-a  rack-b  rack-c  rack-d
---------------------------------------------------------------
-       0  |   [ 0, 4, 8, 9]      [1]    [ ]1   [ ]1    [ ]1
-       1  |   [ 4, 8, 9, 1]      [1]1   [1]1   [ ]2    [ ]2
-       2  |   [ 8, 9, 1, 5]      [1]2   [1]2   [1]2    [ ]3
-       3  |   [ 9, 1, 5, 6]      [1]3   [1]3   [1]3    [1]3
-       4  |   [ 1, 5, 6,10]      [2]3   [1]4   [1]4    [1]4
-       5  |   [ 5, 6,10, 2]      [2]4   [2]4   [1]5    [1]5
-       6  |   [ 6,10, 2, 3]      [2]5   [2]5   [2]5    [1]6
-       7  |   [10, 2, 3, 7]      [2]6   [2]6   [2]6    [2]6
-       8  |   [ 2, 3, 7,11]      [3]6   [2]7   [2]7    [2]7
-       9  |   [ 3, 7,11, 0]      [3]7   [3]7   [2]8    [2]8
-      10  |   [ 7,11, 0, 4]      [3]8   [3]8   [3]8    [2]9
-      11  |   [11, 0, 4, 8]      [3]9   [3]9   [3]9    [3]9
---------------------------------------------------------------
-                    Leaders        3      3      3      3
-                    Followers      9      9      9      9
---------------------------------------------------------------
+----------------------------------------------------------------
+Partition |   Replicas           rack-a  rack-b  rack-c  rack-d
+----------------------------------------------------------------
+       0  |   [ 0, 4, 8, 9]      [1]     [ ] 1   [ ] 1   [ ] 1
+       1  |   [ 4, 8, 9, 1]      [1] 1   [1] 1   [ ] 2   [ ] 2
+       2  |   [ 8, 9, 1, 5]      [1] 2   [1] 2   [1] 2   [ ] 3
+       3  |   [ 9, 1, 5, 6]      [1] 3   [1] 3   [1] 3   [1] 3
+       4  |   [ 1, 5, 6,10]      [2] 3   [1] 4   [1] 4   [1] 4
+       5  |   [ 5, 6,10, 2]      [2] 4   [2] 4   [1] 5   [1] 5
+       6  |   [ 6,10, 2, 3]      [2] 5   [2] 5   [2] 5   [1] 6
+       7  |   [10, 2, 3, 7]      [2] 6   [2] 6   [2] 6   [2] 6
+       8  |   [ 2, 3, 7,11]      [3] 6   [2] 7   [2] 7   [2] 7
+       9  |   [ 3, 7,11, 0]      [3] 7   [3] 7   [2] 8   [2] 8
+      10  |   [ 7,11, 0, 4]      [3] 8   [3] 8   [3] 8   [2] 9
+      11  |   [11, 0, 4, 8]      [3] 9   [3] 9   [3] 9   [3] 9
+----------------------------------------------------------------
+                    Leaders        3       3       3       3
+                    Followers      9       9       9       9
+----------------------------------------------------------------
 {{< /code >}}
 
-The algorithm yields an even distribution with the same number of leader and followers across all racks.
+Replicas are evenly distributed across racks and SPUs.
 
 ###### Example 2 - Unbalanced Rack Distribution
 
@@ -243,11 +243,11 @@ The topic configuration parameters are:
 * replicas :  **3**
 
 {{< code json >}}
-Stage 1: SPU Matrix allocation (sorted by rack with most SPUs)
+Stage 1: SPU Matrix allocation (sorted by size)
 ------------------------------------------
     rack-c:  3, 4, 5
     rack-b:  1, 2, _
-    rack-a:  0, _,  _ 
+    rack-a:  0, _, _ 
 
 Stage 2: SPU sequence (read in diagonal)
 ------------------------------------------
@@ -255,23 +255,21 @@ Stage 2: SPU sequence (read in diagonal)
 
 Stage 3: Replica Map
 -------------------------------------------------------
-Partition |   Replicas         rack-c  rack-b  rack-a
+Partition |   Replicas          rack-c  rack-b  rack-a
 -------------------------------------------------------
-       0  |   [3, 2, 0]         [1]    [ ]1    [ ]1
-       1  |   [2, 0, 4]         [1]1   [1]1    [ ]2
-       2  |   [0, 4, 1]         [1]2   [1]2    [1]2
-       3  |   [4, 1, 5]         [2]3   [1]3    [1]2
-       4  |   [1, 5, 3]         [2]5   [2]3    [1]2
-       5  |   [5, 3, 2]         [3]6   [2]4    [1]2
+       0  |   [3, 2, 0]         [1]     [ ] 1   [ ] 1
+       1  |   [2, 0, 4]         [1] 1   [1] 1   [ ] 2
+       2  |   [0, 4, 1]         [1] 2   [1] 2   [1] 2
+       3  |   [4, 1, 5]         [2] 3   [1] 3   [1] 2
+       4  |   [1, 5, 3]         [2] 5   [2] 3   [1] 2
+       5  |   [5, 3, 2]         [3] 6   [2] 4   [1] 2
 -------------------------------------------------------
-                    Leaders       3      2      1 
-                    Followers     6      4      2
+                    Leaders       3       2       1 
+                    Followers     6       4       2
 -------------------------------------------------------
 {{< /code >}}
 
-Each SPU gets a **fair share** of leaders and followers. 
-
-The racks with higher number of SPUs handle **more replicas**. In the event of a power failure on rack-c, SPUs on racks a and b may **get overwhelmed** as the leaders are redistributed.
+Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs handle more replicas. If a power failure occurs on a large rack, leader redistribution may overwhelm the SPUs on the smaller racks.
 
 {{< links >}}
 * [SC Architecture]({{<relref "sc">}})
