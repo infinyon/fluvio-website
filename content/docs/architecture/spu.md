@@ -4,8 +4,8 @@ menu: SPU
 weight: 30
 ---
 
-**Streaming Processing Unit (SPU)** server is responsible for processing streaming data in real-time.  
-The SPUs can be scaled horizontally for higher data throughput. Each SPU manages sets of **replicas** which represent the lowest unit of a data stream. Each replica can a leader or a follower. SC balances replicas to achieve even distribution across SPUs. 
+**Streaming Processing Unit (SPU)** server is responsible for processing data streams in real-time.  
+SPUs were designed for horizontal scale. New SPUs can be gradually added to the cluster to accommodate higher data throughput. Each SPU manages sets of replicas which represent the lowest unit of a data stream. Each replica can a leader or a follower. Replicas are evenly distributed across SPUs for optimal performance. 
 
 {{< image src="spu-architecture.svg" alt="SPU Architecture" justify="center" width="600" type="scaled-98">}}
 
@@ -29,7 +29,7 @@ Fluvio SPU has a **public** and a **private** server that are attached to the fo
 
 The following diagram describes the **SPU architecture**
 
-{{< image src="spu-architecture.png" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
+{{< image src="spu-workflow.svg" alt="SC Controller" justify="center" width="640" type="scaled-90">}}
 
 1. Spec Dispatcher
     * receives SPU and Partition specs
@@ -94,7 +94,6 @@ Follower controller then goes into reconciliation loop:
 ## Election
 
 ... goes here
-
 
 ## Replica Storage
 
