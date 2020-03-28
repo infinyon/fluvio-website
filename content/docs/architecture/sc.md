@@ -17,7 +17,7 @@ The SC leverages a **Key-Value (KV) store** to persist cluster object configurat
 
 #### Default Ports
 
-Fluvio SC has a **public** and a **private** server that are attached to the following ports:
+SCs have a **public** and a **private** server that are attached to the following ports:
 
 * **Public Port**: 9003
 * **Private Port**: 9004
