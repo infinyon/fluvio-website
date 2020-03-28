@@ -29,7 +29,7 @@ Fluvio SPU has a **public** and a **private** server that are attached to the fo
 
 The following diagram describes the **SPU architecture**
 
-{{< image src="spu-workflow.svg" alt="SC Controller" justify="center" width="640" type="scaled-90">}}
+{{< image src="spu-workflow.svg" alt="SC Controller" justify="center" width="700" type="scaled-90">}}
 
 1. Spec Dispatcher
     * receives SPU and Partition specs
