@@ -1,4 +1,4 @@
 ---
-title: How to Contribute
+title: For Developers
 weight: 300
 ---
