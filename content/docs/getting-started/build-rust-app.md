@@ -121,7 +121,6 @@ No topics found
 Congratulation! You have successfully sent your first message!
 
 {{< links "Related Topics" >}}
-* [Install and Setup Minikube]({{< relref "minikube" >}})
 * [Install Fluvio]({{< relref "install-fluvio" >}})
 * [Install CLI]({{< relref "install-cli" >}})
 {{< /links >}}
