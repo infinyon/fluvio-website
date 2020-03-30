@@ -98,7 +98,7 @@ To setup your data streaming environment, checkout [Node API]({{< relref "../nod
 
 {{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="500" type="scaled-75">}}
 
-If you'd like to learn more about the **Internal APIs** checkout Fluvio development guide on {{< target-blank title="github" url="https://github.com/infinyon/fluvio" >}}.
+For additional details about **Internal APIs** checkout Fluvio development guide on {{< target-blank title="github" url="https://github.com/infinyon/fluvio" >}}.
 
 
 {{< links >}}

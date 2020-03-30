@@ -70,19 +70,20 @@ As show in the diagram above, there are two types of Controllers:
 * Leader Controller
 * Follower Controller
 
+At startup, the **SC dispatcher** manages the Leader and Follower Controllers and forwards the **SPU** and **Partition** Specs.
+
+
 ### Leader Controller
 
-At startup, a **Core Leader Controller** is created. This controller is responsible for maintenance tasks such as, creating a dedicated storage areas for replicas in the local SPU.
-
-A **Replica Leader Controller (RLC)** is spawned anytime a new Replica is created. Each **RLC** is responsible for managing the Replica Leader This **RLC** is terminated when the Replica is removed. 
+A **Leader Controller** is spawned by the **SC Dispatcher** when a new Leader Replica Spec is received. Each **LC** is responsible for managing the Replica Leader and the storage areas dedicated for the replica. When the Replica is removed, the **LC** is terminated but the storage is preserved. If a Replica with the same id is created again, the storage is reattached. 
 
 #### Inter-SPU Connections 
 
-Similar to the SC-SPU connection setup, **RLC** waits for the Follower SPU to initiate a full duplex connection before it can communicate.
+Similar to the SC-SPU connection setup, **LC** waits for the Follower SPU to initiate a full duplex connection before it can communicate.
 
 #### Producer/Consumers
 
-Each **RLC** is solely responsible for the interaction with producers and consumers. When the **RLC** receives messages from **Producers**, it performs the following operations:
+Each **LC** is solely responsible for the interaction with producers and consumers. When the **LC** receives messages from **Producers**, it performs the following operations:
 
 * appends new records to local storage
 * sends updated offsets to sc and follower controllers
@@ -102,22 +103,29 @@ When the leaders receives an offset index from the follower, the leader computes
 Replica information such as committed records and lagging indicators are sent to the **SC** in the Live Replicas (LRS) message.
 
 
-## continue here -------
-
-
 ### Follower Controller
 
-Follower replica is grouped by their leader.  For each leader, follower controller is spawned.  When controller is starts, it sets up storage for all follower replica it contains. 
+A **Follower Controller (FC)** managed all Follower Replicas grouped by a **Leader**. The **FC** is spawned by the **SC Dispatcher** when the both conditions are met:
 
-Follower controller then goes into reconciliation loop:
-*  Ensure connection to leader is established. if it is not, it initiates connection
-*  Creates/Update follower replica when receives updates from SC
-*  Sync offsets with leader
-*  Adds records to follower replica if receives from leader
+* Follower Spec is new.
+* No **FC** has previously been created.
+
+The **FC** is terminated when the last Follower Spec is removed. Each **FC** is responsible for the storage areas dedicated for all follower replicas. The storage is preserved when the **FC** is terminated.
+
+#### Workflow
+
+**FC** event loop engine performs the following operations:
+
+*  Ensures connection to **Leader SPU** is established, otherwise connect.
+*  Creates or reattach local storage when new Replica Follower is received.
+*  Syncs offsets with **Leader SPU**.
+*  Adds records to Replica from **Leader SPU**.
+
 
 ## Election
 
 ... goes here
+
 
 ## Replica Storage
 
