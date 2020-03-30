@@ -3,9 +3,61 @@ title: Build a Node App
 weight: 20
 ---
 
-This is a simple end-to-end example that describes how to provision a system and send a simple message from a Producer to a Consumer.
+In this guide we’ll cover: how to set up your {{< target-blank title="Node.js" url="https://nodejs.org" >}} environment, and how to build a simple data streaming App.
 
-### Step 1: Set up Alias for SC
+## Install Node.js
+
+Node.js installation varies depending on your operating system.
+
+{{< api-table >}}
+|   Operating System     |         Instructions           |
+|---|---|
+| MacOS      | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **macOS**.  |
+| Windows    | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **Windows**. |
+| Linux     | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of supported packages {{< target-blank title="here" url="https://nodejs.org/en/download/package-manager" >}}.  |
+{{< /api-table >}}
+
+
+## Build a simple data streaming App
+
+In this section we'll provide a step-by-step on how to build a simple data streaming app. If you'd like to download the app instead, skip ahead to [Download Fluvio data streaming App]({{< relref "#download-fluvio-data-streaming-app" >}}).
+
+
+#### Start a new Node project
+
+1. Create a directory
+
+{{< code >}}
+$ mkdir fluvio-app
+$ cd fluvio-app
+{{< /code >}}
+
+2. Create a new node project to create a new package.json file for the app
+
+{{< code json >}}
+$ npm init -y
+Wrote to /Users/user/fluvio-app/package.json:
+
+{
+  "name": "fluvio-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "fluvio <user@fluvio.io> (fluvio.io)",
+  "license": "Apache 2.0"
+}
+{{< /code >}}
+
+
+
+## Download Fluvio data streaming App
+
+The app is available for download on {{< target-blank title="github" url="https://github.com/infinyon/node-demo-apps" >}}. 
+
 
 Set an alias for the Streaming Controller (SC) to simplify your CLI setup:
 

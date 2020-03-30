@@ -90,7 +90,7 @@ Fluvio architecture places heavy emphasis on clean **user-friendly APIs**. There
 
 {{< image src="external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
 
-For language specific API references, checkout [Node API]({{< relref "../node-api/api-reference" >}}) or [Rust API]({{< relref "../rust-api/api-reference" >}}) sections.
+To setup your data streaming environment, checkout [Node API]({{< relref "../node-api/setup-node" >}}) or [Rust API]({{< relref "../rust-api/setup-rust" >}}) sections.
 
 #### Internal APIs
 

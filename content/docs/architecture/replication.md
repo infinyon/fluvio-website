@@ -60,12 +60,10 @@ _Validate-only_ flag is available to verify a replica assignment file without ap
 The **replica map** definition meet the following criteria:
 
 * **id**:
-
     - must start with 0.
     - must be in sequence, without gaps.
 
 * **replicas**:
-
     - must have at least one element.
     - all replicas must have the same number of elements.
     - all elements must be unique.

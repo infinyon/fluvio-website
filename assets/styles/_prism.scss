@@ -8,7 +8,7 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #444444;
+	color: #c5c8c6;
 	background: none;
 	text-shadow: 0 1px white;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -60,14 +60,13 @@ pre[class*="language-"] {
 	background: #f8f8f8;
 }
 
-/* Inline code
+/* Inline code  */
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
 	white-space: normal;
 }
- */
-
+ 
 .token.comment,
 .token.prolog,
 .token.doctype,
