@@ -61,7 +61,7 @@ is the custom-defined replica assignment file. Replica-assignment is mutually ex
 
     The replica-assignment JSON file has the following syntax:
 
-    {{< code toml >}}
+    {{< code lang="json" style="light" >}}
 { 
     "partitions": [
         {
@@ -78,7 +78,7 @@ is the custom-defined replica assignment file. Replica-assignment is mutually ex
 
     The following example shows a replica assignment file with 2 partitions and 3 replicas: 
 
-    {{< code toml >}}
+    {{< code lang="json" style="light" >}}
 {
     "partitions": [
         {

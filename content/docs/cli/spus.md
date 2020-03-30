@@ -60,7 +60,7 @@ ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE
 
 #### YAML format
 
-{{< fluvio >}}
+{{< cli >}}
 $ fluvio spu list  --sc `SC`:9003 -O yaml
 ---
 - name: group3-0
@@ -99,7 +99,7 @@ $ fluvio spu list  --sc `SC`:9003 -O yaml
       host: flv-spg-group3-2.flv-spg-group3
       port: 9006
     status: Online
-{{< /fluvio >}}
+{{< /cli >}}
 
 
 #### JSON format
@@ -159,7 +159,7 @@ $ fluvio spu list  --sc `SC`:9003 -O json
     }
   }
 ]
-{{< /fluvio >}}
+{{< /cli >}}
 
 
 {{< links "Related Topics" >}}

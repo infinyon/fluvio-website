@@ -1,5 +1,4 @@
 @import 'params';
-@import 'code';
 @import 'callout';
 @import 'prism';
 @import 'prism-dark';
@@ -7,6 +6,7 @@
 @import 'tabs';
 @import 'various';
 @import 'api';
+@import 'code';
 
 body {
   font-family: $font-body;

@@ -137,7 +137,7 @@ The __target service__  be specified through command line or profiles. The comma
 
 The __profiles__ makes managing multiple deployments simple. A __profile__ is a .toml configuration file that stores the location of the services. The syntax is as follows:
 
-{{< code toml >}}
+{{< code lang="toml" style="light" >}}
 version = <profile-version>
 
 [sc]
@@ -165,7 +165,7 @@ While it is possible to configure all three services, it is not a useful configu
 
 The most common configuration is _one service per profile_.
 
-{{< code toml >}}
+{{< code lang="toml" style="light" >}}
 version = "1.0"
 
 [sc]

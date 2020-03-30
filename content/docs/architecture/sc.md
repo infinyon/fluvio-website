@@ -32,7 +32,7 @@ There are four configuration objects in a Fluvio cluster: **SPU**, **SPU-group**
 
 **SPUs spec** has a unique ID, a type, an optional rack, and endpoint identifier for the API servers. **SPU Id** is shared across all SPU types and it must be **globally unique**.
 
-{{< code yaml >}}
+{{< code style="light" >}}
 spec:
   spuId: 100
   spuType: "Custom"
@@ -50,7 +50,7 @@ spec:
 
 **SPU status** has a resolution field that monitors changes in **connectivity** from the SC's point of view.
 
-{{< code yaml >}}
+{{< code style="light" >}}
 status:
     resolution: online
 {{< /code >}}
@@ -96,7 +96,7 @@ Fluvio **SPU-groups** define the configuration parameters used for provisioning 
 
 ##### SPU-group Spec
 
-{{< code yaml >}}
+{{< code style="light" >}}
 spec:
   replicas: 2
   minId: 11
@@ -108,7 +108,7 @@ spec:
 
 ##### SPU-group Status
 
-{{< code yaml >}}
+{{< code style="light" >}}
 status:
     resolution: Reserved
 {{< /code >}}
@@ -126,7 +126,7 @@ Checkout the [SPU-groups]({{< relref "../cli/spu-groups" >}}) CLI for additional
 
 ##### Topic Spec
 
-{{< code yaml >}}
+{{< code style="light" >}}
 spec:
   partitions: 6
   replicationFactor: 3
@@ -142,7 +142,7 @@ Fluvio also supports **manual** partition/replica distribution through a **repli
 
 ##### Topic Status
 
-{{< code yaml >}}
+{{< code style="light" >}}
 status:
   resolution: Provisioned
   replicaMap: 
@@ -190,7 +190,7 @@ Topics and partitions are linked through a **parent-child** relationship. If a t
 
 ##### Partition Spec
 
-{{< code yaml >}}
+{{< code style="light" >}}
 spec:
   initialLeader: 101
   replicas: [101, 102]
@@ -200,7 +200,7 @@ The **SC** defines **replica assignment** and the SPU **initial leader**. After 
 
 ##### Partition Status
 
-{{< code yaml >}}
+{{< code style="light" >}}
 status:
   leader: 101
   lrs: [101, 102]

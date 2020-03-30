@@ -27,14 +27,14 @@ In this section we'll provide a step-by-step on how to build a simple data strea
 
 1. Create a directory
 
-{{< code >}}
+{{< code style="light" >}}
 $ mkdir fluvio-app
 $ cd fluvio-app
 {{< /code >}}
 
 2. Create a new node project to create a new package.json file for the app
 
-{{< code json >}}
+{{< code lang="json" style="light" >}}
 $ npm init -y
 Wrote to /Users/user/fluvio-app/package.json:
 

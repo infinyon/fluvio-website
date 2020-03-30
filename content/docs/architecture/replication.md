@@ -43,7 +43,7 @@ _Validate-only_ flag is available to verify a replica assignment file without ap
 
 **Replica assignment file** defines a **replica map** in JSON format. A replica map with 2 partitions and 3 replicas is defined as follows:
 
-{{< code toml >}}
+{{< code lang="toml" style="light" >}}
 { 
     "partitions": [{
             "id": 0,
@@ -96,7 +96,7 @@ The topic configuration parameters are:
 
 If the algorithm starts at index 0, it generates the following replica distribution:
  
-{{< code json >}}
+{{< code lang="json" style="light" >}}
 ------------------------------------------
 |  idx | 5 x SPUs                | gaps  |
 ------------------------------------------
@@ -121,7 +121,7 @@ If the algorithm starts at index 0, it generates the following replica distribut
 
 Which translates into the following **replica map**:
 
-{{< code >}}
+{{< code lang="json" style="light" >}}
 ---------------------------
 | Partition |  Replicas   |
 ---------------------------
@@ -179,7 +179,7 @@ The topic configuration parameters are:
 * partitions : **12**
 * replicas :  **4**
 
-{{< code json >}}
+{{< code lang="json" style="light" >}}
 Stage 1: SPU Matrix allocation
 ------------------------------------------
     rack-a:  0, 1,  2
@@ -228,7 +228,7 @@ The topic configuration parameters are:
 * partitions : **6**
 * replicas :  **3**
 
-{{< code json >}}
+{{< code lang="json" style="light" >}}
 Stage 1: SPU Matrix allocation (sorted by size)
 ------------------------------------------
     rack-c:  3, 4, 5

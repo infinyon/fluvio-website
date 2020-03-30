@@ -28,7 +28,7 @@ Fluvio [Developer Guide](https://github.com/infinyon/fluvio/blob/master/DEVELOPE
 __Custom-SPUs__ that are deployed outside of your Kubernetes cluster need access to the SC internal channel. Run the following script to expose SC internal port:
 
 {{< fluvio >}}
-$ kubectl apply  -f k8-util/sc-deployment/sc-internal-dev.yaml 
+$ kubectl apply -f k8-util/sc-deployment/sc-internal-dev.yaml 
 {{< /fluvio >}}
 
 #### On Minikube
@@ -49,9 +49,9 @@ kubernetes         ClusterIP      10.96.0.1        <none>           443/TCP     
 
 Save __SC__ private port in an alias
 
-{{< code >}}
+{{< fluvio >}}
 $ alias SC-PRIVATE="kubectl get svc flv-sc-internal -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
-{{< /code >}}
+{{< /fluvio >}}
 
 The next steps must be performed in the following sequence:
 
@@ -124,10 +124,10 @@ custom-spu 'custom-spu-200' registered successfully
 
 Run __spu_server__ :
 
-{{< code >}}
+{{< fluvio >}}
 $ spu-server --id 200 --sc-controller `SC-PRIVATE`:9004
 starting custom-spu services (id:200)
-{{< /code >}}
+{{< /fluvio >}}
 
 Note that the SPU server must connect to the private interface and port number of the SC Controller.
 
