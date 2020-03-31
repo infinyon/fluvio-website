@@ -1,6 +1,6 @@
 ---
 title: Publish
-weight: 20
+weight: 30
 ---
 
 ... goes here

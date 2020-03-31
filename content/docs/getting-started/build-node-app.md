@@ -7,7 +7,7 @@ In this guide we’ll cover: how to set up your {{< target-blank title="Node.js"
 
 ## Setup Node Environment
 
-A Fluvio environment for Node requires: Node.js, Rust compiler, and a conversion tool that binds Rust calls to Node. If you have Node installed it should be **version 13** or above.
+A Fluvio environment for Node requires: Node.js and Rust development environments, and a build tool that generates a Node.js library from Rust code. If you have Node installed it should be **version 13** or above.
 
 #### Install Node.js
 
@@ -27,7 +27,7 @@ Rust language utilizes an installer to download and provision Rust on your local
 
 ##### Install Rust toolchain
 
-Fluvio compiler uses nightly toolchain. To install on MacOS, run:
+Fluvio compiler uses nightly toolchain. To install, run:
 
 {{< code style="light">}}
 $ rustup toolchain install nightly
@@ -116,16 +116,15 @@ added 1 package from 1 contributor and audited 1 package in 61.137s
 found 0 vulnerabilities
 {{< /code >}}
 
-A dependency to @fluvio/client has been added to package.json. 
+A dependency to @fluvio/client is added to package.json. 
 
 #### Implement Producer/Consumer exchange
 
-Fluvio client looks for the default **profile file** for the location and the authorization token of the cluster. Next, it connects to the **SC** server to identify the **SPU** where the **Replica Leader** resides. With the replica identified, we can produce and consume messages.
+Fluvio client looks for the [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The client connects to the cluster to produce and consume messages.
 
-#### Implement Producer
+##### Implement Producer
 
-Fluvio producers implementation is a 3 step process:
-1. Establish connection with Fluvio Streaming Controller (SC) and sends one or more
+Inside your node project, create a _src_ directory, and add a _producer.js_ file with the folloing content:
 
 {{< code lang="js" >}}
 const FluvioClient = require('@fluvio/client');
@@ -145,8 +144,24 @@ async function produceMessage() {
 await produceMessage();
 {{< /code >}}
 
+In summary, the code does the following:
 
-#### Implement Consumer
+* __require(@fluvio/client)_ loads library into _FluvioClient_ constant. 
+* _FluvioClient.connect()_ returns the connection to the cluster.
+  * connect reads cluster parameters from _default profile_.
+* _flvConnection.replica(...)_ looks-up _replica_ for the topic/partition.
+* _replica.produce(...)_ send a message to the _cluster_.
+
+Compile run _producer.js_:
+
+{{< code style="light" >}}
+$ node src/produce.js  
+.... 
+
+....
+{{< /code >}}
+
+##### Implement Consumer
 
 {{< code lang="js" >}}
 const FluvioClient = require('@fluvio/client');

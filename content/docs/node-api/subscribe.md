@@ -1,6 +1,6 @@
 ---
 title: Subscribe
-weight: 30
+weight: 40
 ---
 
 ... goes here
