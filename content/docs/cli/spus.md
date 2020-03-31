@@ -1,6 +1,6 @@
 ---
 title: SPUs
-weight: 30
+weight: 50
 ---
 
 The __SPUs__, also known as __Streaming Processing Units__, are the service engines responsible for processing data streams. A data stream has one leader and one or more followers. The leader and the followers are evenly distributed across the __SPUs__. For additional information on leader and follower replica distribution, see [Fluvio Architecture]({{< relref "../architecture/overview" >}}).

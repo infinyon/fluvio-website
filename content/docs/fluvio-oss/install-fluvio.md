@@ -42,5 +42,5 @@ Service ```flv-sc-public``` must have EXTERNAL-IP to be reachable from CLI.
 {{< /caution >}}
 
 {{< links "Next Steps" >}}
-* [Install CLI]({{< relref "install-cli" >}})
+* [Install CLI]({{< relref "../cli/overview" >}})
 {{< /links >}}

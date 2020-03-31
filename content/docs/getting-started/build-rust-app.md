@@ -117,10 +117,3 @@ Ensure the topic has been deleted:
 $ fluvio topic list  --sc `SC`:9003
 No topics found
 {{< /fluvio >}}
-
-Congratulation! You have successfully sent your first message!
-
-{{< links "Related Topics" >}}
-* [Install Fluvio]({{< relref "install-fluvio" >}})
-* [Install CLI]({{< relref "install-cli" >}})
-{{< /links >}}

@@ -1,6 +1,6 @@
 ---
 title: Advanced
-weight: 70
+weight: 100
 ---
 
 __Advanced__ section is __experimental__ and requires deep understanding of the message exchanges between system components. For example, create a __Kafka__ JSON request API to test __Kafka__ response.

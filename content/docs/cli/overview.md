@@ -4,36 +4,39 @@ menu: Overview
 weight: 10
 ---
 
-Fluvio Command Line Interface (CLI) is a powerful tool to deploy and manage your Fluvio services. One command line tool is all you need to control multiple Fluvio deployments and __automate__ them through scripts.  
-
-Fluvio CLI has built-in Kafka compatibility which allows you to chain  __Fluvio__ and __Kafka__ services from a unified command-line interface.
+Fluvio **Command Line Interface (CLI)** is the management tool utilized to provision and monitor Fluvio clusters. The **CLI** uses **profiles** to manage multiple Fluvio clusters. 
 
 ## Download and Install
 
-Fluvio command-line tool is available for __Mac__ and __Linux__ distributions and it can be used from the command prompt in your favorite terminal program.  
+CLI **binaries** are available for download in {{< target-blank title="github" url="https://github.com/infinyon/fluvio/releases" >}}:
 
-Binaries are available for download at:
+* {{< target-blank title="Mac binary" url="https://github.com/infinyon/fluvio/releases" >}}
+* {{< target-blank title="Linux binary" url="https://github.com/infinyon/fluvio/releases" >}}
 
-* [Mac binary](https://github.com/infinyon/fluvio/releases)
-* [Linux binary](https://github.com/infinyon/fluvio/releases)
+Copy the binary to your bin path and make it executable. 
 
+To check CLI version, run:
+
+{{< fluvio >}}
+$ fluvio --version
+ fluvio 0.3.0
+{{< /fluvio >}}
 
 ## CLI Overview
 
-Fluvio CLI is user friendly and hierarchical. The syntax follows a well-defined pattern: __fluvio__, succeeded by __module__, __operation__ and a series of _options_ and _flags_. There are a couple of exceptions to this rule which are described later on.
-
+Fluvio CLI hierarchy has the following pattern: __fluvio__, __module__, __operation__ followed by _options_ and _flags_. 
 
 {{< fluvio >}}
 fluvio module operation [FLAGS] [OPTIONS]
 {{< /fluvio >}}
 
-Most options and flags are optional but there are some that are mandatory. Mandatory options are shown in the CLI usage line. For example, the syntax for **Create a Topic** is:
+Depending on context, _options_ can be mandatory or optional. Mandatory options are shown in the CLI usage line. For example, in _fluvio topic create_ :
 
 {{< fluvio >}}
 fluvio topic create --partitions <integer> --replication <integer> --topic <string>
 {{< /fluvio >}}
 
-It shows that {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}}, and {{< pre >}}--replication{{< /pre >}}, are mandatory.
+options: {{< pre >}}--topic{{< /pre >}}, {{< pre >}}--partitions{{< /pre >}}, and {{< pre >}}--replication{{< /pre >}}, are mandatory.
 
 ### Modules
 
@@ -76,7 +79,7 @@ However, there are a few exceptions:
 
 ### Operations
 
-Each module is followed by a series of operations that describe their capabilities. For example, __topic__ module has the ability to create, list, describe, or delete topics:
+**Operations** describe module capabilities. For example, _topic_ module has the ability to create, list, describe, or delete topics:
 
 {{< fluvio >}}
 $ fluvio topic
@@ -99,7 +102,7 @@ Other modules, such as __spu__ have different options, hence different capabilit
 
 ### Options / Flags
 
-The modules are followed by options and flags. Options are composed of unique attributes, such as: {{< pre >}}-t, --topic{{< /pre >}}, followed by modifiers. Flags are attributes without value.
+**Options** are module attributes, such as: {{< pre >}}-t, --topic{{< /pre >}}, followed by modifiers, whereas **flags** are attributes without value.
 
 Mandatory options are shown in the syntax definition. All other flags and options are optional.
 
@@ -126,78 +129,15 @@ OPTIONS:
 
 A small subset of the options, {{< pre >}}--kf, --sc,{{< /pre >}} and {{< pre >}}--profile{{< /pre >}}, are applied to every command. The purpose of these options is to help the CLI identify the location of the services where to send the command.
 
-### Target Service
+### Fluvio Clusters
 
-The Fluvio CLI is an independent binary that generates commands and sends them to a __target service__. Fluvio CLI can simultaneously manage multiple Fluvio and Kafka deployments.  
+The **CLI** generates commands for a specific **cluster**. The **cluster** is explicit when defined through the an  _option_ or implicit when derived from a _profile_. **CLI** _options_ has higher precedence than _profiles_. 
 
-The __target service__  be specified through command line or profiles. The command line has higher precedence than profiles.
-
-### Profiles
-
-
-The __profiles__ makes managing multiple deployments simple. A __profile__ is a .toml configuration file that stores the location of the services. The syntax is as follows:
-
-{{< code lang="toml" style="light" >}}
-version = <profile-version>
-
-[sc]
-host = <hostname/ip>
-port = <port>
-
-[spu]
-host = <hostname/ip>
-port = <port>
-
-[kf]
-host = <hostname/ip>
-port = <port>
-{{< /fluvio >}}
-
-The parameters are as follows:
-
-* __version__ is currently set to "1.0".
-* __hostname/ip__ is the location of the service, it may be a domain name or an IP address.
-* __port__ is the listening port of the service.
-
-{{< caution >}}
-While it is possible to configure all three services, it is not a useful configuration. Services with lower priority are shadowed by the services with higher priority. The lookup order is: SC => SPU => KF
-{{< /caution >}}
-
-The most common configuration is _one service per profile_.
-
-{{< code lang="toml" style="light" >}}
-version = "1.0"
-
-[sc]
-host = "sc.fluvio.dev.acme.com"
-port = 9003
-{{< /fluvio >}}
-
-#### Default Profile
-
-Fluvio CLI has one __default__ profile and an unlimited number of __user-defined__ profiles. The __default__ profile has the lowest precedence and it is looked-up in the following order:
-
-* command line parameter __service__ ({{< pre >}}--sc, --spu, --kf{{< /pre >}}),
-* command line parameter __user-defined profile__ ({{< pre >}}--profile{{< /pre >}}).
-* __default profile__
-
-The CLI searches for the __default.toml__ profile file in the following order: 
-
-* if $FLUVIO_HOME environment variable is set, look-up:
-    {{< text >}}
-    $FLUVIO_HOME/.fluvio/profiles/default.toml
-    {{< /text >}}
-* if no environment variable is set, look-up:
-    {{< text >}}
-    $HOME/.fluvio/profiles/default.toml 
-    {{< /text >}}
-
-{{< idea >}}
-The directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUVIO_HOME is provisioned or not.
-{{< /idea >}}
+For additional information, checkout [Fluvio Profiles]({{< relref "profiles" >}}) section.
 
 
 {{< links "Related Topics" >}}
+* [Fluvio Profiles]({{< relref "profiles" >}})
 * [Produce CLI]({{< relref "produce" >}})
 * [Consume CLI]({{< relref "consume" >}})
 * [SPUs CLI]({{< relref "spus" >}})

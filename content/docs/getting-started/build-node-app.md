@@ -7,7 +7,7 @@ In this guide we’ll cover: how to set up your {{< target-blank title="Node.js"
 
 ## Setup Node Environment
 
-In addition to Node.js, Fluvio also requires a Rust compiler and a conversion tool that binds Fluvio calls to Node. If you have Node installed ensure it runs **version 13** or above.
+A Fluvio environment for Node requires: Node.js, Rust compiler, and a conversion tool that binds Rust calls to Node. If you have Node installed it should be **version 13** or above.
 
 #### Install Node.js
 
@@ -23,7 +23,42 @@ Node.js installation varies depending on your operating system.
 
 #### Install Rust
 
-Rust language provides installer which different installation instructions based on your operating system. Refer to {{< target-blank title="rustup" url="https://rustup.rs" >}} to instructions.
+Rust language utilizes an installer to download and provision Rust on your local system. Refer to {{< target-blank title="rustup" url="https://rustup.rs" >}} documentation to instructions.
+
+##### Install Rust toolchain
+
+Fluvio compiler uses nightly toolchain. To install on MacOS, run:
+
+{{< code style="light">}}
+$ rustup toolchain install nightly
+ ...
+nightly-x86_64-apple-darwin installed - rustc 1.44.0-nightly (f509b26a7 2020-03-18)
+{{< /code >}}
+
+Make nightly toolchain default:
+
+{{< code style="light" >}}
+$ rustup default nightly
+info: using existing install for 'nightly-x86_64-apple-darwin'
+info: default toolchain set to 'nightly-x86_64-apple-darwin'
+
+nightly-x86_64-apple-darwin unchanged - rustc 1.44.0-nightly (f509b26a7 2020-03-18)
+{{< /code >}}
+
+
+##### Install Node build tool
+
+The **nj-cli** is a tool that generates native Node interfaces for Rust APIs. Use  **cargo** to install nj-cli tool:
+
+{{< code style="light" >}}
+$ cargo install nj-cli
+Updating crates.io index
+...
+Installing /Users/user/.cargo/bin/nj-cli
+Installed package `nj-cli v0.1.2` (executable `nj-cli`)    
+{{< /code >}}
+
+**Congratulations**, your environment is ready for use!
 
 
 ## Build a simple data streaming App
@@ -60,6 +95,82 @@ Wrote to /Users/user/fluvio-app/package.json:
 {{< /code >}}
 
 
+#### Add Fluvio Client library
+
+The client library exports Fluvio data streaming APIs to the Node App.
+
+Use npm install to add {{< target-blank title="@fluvio/client" url="https://www.npmjs.com/package/@fluvio/client" >}} to the project:
+
+{{< code style="light" >}}
+$ npm install @fluvio/client --save
+
+> @fluvio/client@2.0.2 install /Users/user/fluvio-app/node_modules/@fluvio/client
+> nj-cli build
+
+    Updating crates.io index
+    ...
+    Finished dev [unoptimized + debuginfo] target(s) in 59.80s
+
++ @fluvio/client@2.0.2
+added 1 package from 1 contributor and audited 1 package in 61.137s
+found 0 vulnerabilities
+{{< /code >}}
+
+A dependency to @fluvio/client has been added to package.json. 
+
+#### Implement Producer/Consumer exchange
+
+Fluvio client looks for the default **profile file** for the location and the authorization token of the cluster. Next, it connects to the **SC** server to identify the **SPU** where the **Replica Leader** resides. With the replica identified, we can produce and consume messages.
+
+#### Implement Producer
+
+Fluvio producers implementation is a 3 step process:
+1. Establish connection with Fluvio Streaming Controller (SC) and sends one or more
+
+{{< code lang="js" >}}
+const FluvioClient = require('@fluvio/client');
+ 
+async function produceMessage() {
+  try {
+    const flvConnection = await FluvioClient.connect();
+    let replica = await flvConnection.replica("my-test", 0);
+    let len = await replica.produce("test");
+    
+    console.log("OK: %d bytes sent" len);
+  } catch (e) {
+    console.log("error: ", e.msg());
+  }
+}
+
+await produceMessage();
+{{< /code >}}
+
+
+#### Implement Consumer
+
+{{< code lang="js" >}}
+const FluvioClient = require('@fluvio/client');
+const EventEmitter = require('events').EventEmitter;
+const emitter = new EventEmitter();
+
+async function consumeMessages() {
+  emitter.on('data', (msg) => {
+      console.log(msg);
+  })
+
+  try {
+    const flvConnection = await FluvioClient.connect();
+    let replica = await flvConnection.replica("my-test", 0);
+    
+    replica.consume(emitter.emit.bind(emitter));
+  } catch (e) {
+    console.log("error: ", e.msg());
+  }
+}
+
+await consumeMessages();
+{{< /code >}}
+
 
 ## Download Fluvio data streaming App
 
@@ -72,6 +183,5 @@ The app is available for download on {{< target-blank title="github" url="https:
 Congratulation! You have successfully sent your first message!
 
 {{< links "Related Topics" >}}
-* [Install Fluvio]({{< relref "install-fluvio" >}})
-* [Install CLI]({{< relref "install-cli" >}})
+
 {{< /links >}}

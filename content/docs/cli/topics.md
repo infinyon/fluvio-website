@@ -1,6 +1,6 @@
 ---
 title: Topics
-weight: 60
+weight: 70
 ---
 
 The __topic__ is the primary construct for creating a data stream. A topic coupled with a partition creates a unique identifier for a data stream in a Fluvio deployment. The __topic/partition__ unique identifier is used by the __Producers__ and the __Consumers__ to exchange messages over data streams.  

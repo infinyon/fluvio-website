@@ -1,6 +1,6 @@
 ---
 title: SPU Groups
-weight: 40
+weight: 60
 ---
 
 __SPU Groups__ create a set of SPU replicas that are provisioned by Fluvio __Streaming Controller__ (__SC__) and managed by __Kubernetes__. A group can have one or more replicas that are mapped to __Kubernetes__ stateful-sets. 

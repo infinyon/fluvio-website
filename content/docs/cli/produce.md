@@ -1,6 +1,6 @@
 ---
 title: Produce
-weight: 10
+weight: 30
 ---
 
 The __Producer__ is responsible for sending messages to data streams in a __Fluvio__ or a __Kafka__ deployment. The messages are placed in topics/partitions that are retrieved by the __Consumers__.
