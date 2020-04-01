@@ -310,7 +310,7 @@ found 0 vulnerabilities
 
 ###### Run Produce.js
 
-Run _produce.js_ to messages to topic/partition _my-topic/0_ :
+Run _produce.js_ to send messages to topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
 $ node src/produce.js --topic my-topic --partition 0
@@ -327,7 +327,7 @@ ok!
 
 ###### Run Consume.js
 
-Run _consume.js_ receiver messages from topic/partition _my-topic/0_ :
+Run _consume.js_ to receive messages from topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
 $ node src/consume.js --topic my-topic --partition 0
