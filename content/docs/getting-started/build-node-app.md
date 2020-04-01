@@ -6,7 +6,10 @@ weight: 20
 In this guide we’ll cover: how to set up your {{< target-blank title="Node.js" url="https://nodejs.org" >}} environment, and how to build a simple data streaming App.
 
 {{< idea >}}
-This section assumes you have a Fluvio Cluster your Node App can connect to. If you don't have a cluster installed, create one on [Fluvio Cloud]({{< relref "quick-start/#create-a-fluvio-cloud-account" >}}).
+This section assumes you have a running cluster with a topic "my-topic" provisioned. Step-by-step instructions are available in [Quick Start]({{< relref "quick-start" >}}) at:
+
+* [Create a cluster on Fluvio Cloud]({{< relref "quick-start/#create-a-fluvio-cloud-account" >}})
+* [Add topic "my-topic"]({{< relref "quick-start/#create-a-topic-and-stream-hello-world" >}})
 {{< /idea >}}
 
 ## Setup Node Environment
@@ -173,7 +176,7 @@ In summary:
 
 ###### Run Produce.js
 
-Run _produce.js_ to send "test" to the cluster:
+Run _produce.js_ to send "test" to topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
 $ node ./src/produce.js  
@@ -243,7 +246,7 @@ In summary:
 
 ###### Run Consume.js
 
-Run _consume.js_ to receives all messages om the topic/partition _my-topic/0_ :
+Run _consume.js_ to receives all messages from topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
 $ node ./src/consume.js 
@@ -257,14 +260,88 @@ The consumer listens continuously until &lt;CTRL&gt;-C is pressed.
 
 ## Download Fluvio data streaming App
 
-The app is available for download on {{< target-blank title="github" url="https://github.com/infinyon/node-demo-apps" >}}. 
+Fluvio published a series of examples in github at {{< target-blank title="node-demo-apps" url="https://github.com/infinyon/node-demo-apps" >}}. 
 
+Clone the github repository and navigate to api-examples:
 
+{{< code style="light" >}}
+$ git clone https://github.com/infinyon/node-demo-apps.git
+Cloning into 'node-demo-apps'
+...
+Unpacking objects: 100%, done.
 
-# ----
+$ cd node-demo-apps/api-examples/
+{{< /code >}}
 
-Congratulation! You have successfully sent your first message!
+This repository has working examples centered around the API as stated by the file names:
+
+{{< code style="light" >}}
+$  tree -L 2
+.
+├── README.md
+├── package-lock.json
+├── package.json
+└── src
+    ├── consume.js
+    ├── produce.js
+    └── utils
+{{< /code >}}
+
+The directory structure has the following components:
+
+* **consume.js** - consumer example
+* **produce.js** - producer example
+* **utils** - utility functions to support the APIs such as CLI.
+
+###### Compile api-examples
+
+Run npm install to download dependencies such as @fluvio/client:
+
+{{< code style="light" >}}
+$  npm install
+> @fluvio/client@0.1.2 install /Users/aj/dump/node-demo-apps/api-examples/node_modules/@fluvio/client
+> nj-cli build
+...
+  Finished dev [unoptimized + debuginfo] target(s) in 59.22s
+
+added 3 packages from 3 contributors and audited 3 packages in 59.756s
+found 0 vulnerabilities
+{{< /code >}}
+
+###### Run Produce.js
+
+Run _produce.js_ to messages to topic/partition _my-topic/0_ :
+
+{{< code style="light" >}}
+$ node src/produce.js --topic my-topic --partition 0
+SC server (from profile - default.toml): 127.0.0.1:9003 
+Connected to SC:  127.0.0.1:9003
+test
+ok!
+hello world
+ok!
+bye
+ok!
+^C
+{{< /code >}}
+
+###### Run Consume.js
+
+Run _consume.js_ receiver messages from topic/partition _my-topic/0_ :
+
+{{< code style="light" >}}
+$ node src/consume.js --topic my-topic --partition 0
+SC server (from profile - default.toml): 127.0.0.1:9003 
+Connected to SC: 127.0.0.1:9003
+test
+hello world
+bye
+^C
+{{< /code >}}
+
+The APIs are customizable. Checkout [Node API]({{< relref "../node-api/reference" >}}) for additional information.
 
 {{< links "Related Topics" >}}
-
+* [Topics CLI]({{< relref "topics" >}})
+* [Node API]({{< relref "../node-api/reference" >}})
 {{< /links >}}

@@ -1,6 +1,6 @@
 ---
-title: Setup your Node data streaming Environment
-menu: Setup Node
+title: Node API Reference Guide
+menu: API Reference
 weight: 10
 ---
 

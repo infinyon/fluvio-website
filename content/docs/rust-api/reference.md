@@ -1,6 +1,6 @@
 ---
-title: Setup your Rust data streaming Environment
-menu: Setup Rust
+title: Rust API Reference Guide
+menu: API Reference
 weight: 10
 ---
 
