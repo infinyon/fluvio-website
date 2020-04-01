@@ -252,7 +252,7 @@ test
 ^C
 {{< /code >}}
 
-The consumer listens continuously until <CTRL>-C is pressed.
+The consumer listens continuously until &lt;CTRL&gt;-C is pressed.
 
 
 ## Download Fluvio data streaming App
