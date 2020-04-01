@@ -243,7 +243,7 @@ In summary:
 
 ###### Run Consume.js
 
-Run _consume.js_ to receives all messages on 'my-topic' partition 0:
+Run _consume.js_ to receives all messages om the topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
 $ node ./src/consume.js 
