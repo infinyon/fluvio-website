@@ -70,7 +70,7 @@ Installed package `nj-cli v0.1.2` (executable `nj-cli`)
 
 ## Build a simple data streaming App
 
-This section provides a step-by-step on how to build a simple data streaming app. If you'd like to download the app instead, skip ahead to [Download Fluvio data streaming App]({{< relref "#download-fluvio-data-streaming-app" >}}).
+This section provides a step-by-step on how to build a simple data streaming app. If you'd like to download the demo app instead, skip ahead to [Download Fluvio Demo Apps]({{< relref "#download-fluvio-demo-apps" >}}).
 
 
 #### Start a new Node project
@@ -258,7 +258,7 @@ test
 The consumer listens continuously until &lt;CTRL&gt;-C is pressed.
 
 
-## Download Fluvio data streaming App
+## Download Fluvio Demo Apps
 
 Fluvio published a series of examples in github at {{< target-blank title="node-demo-apps" url="https://github.com/infinyon/node-demo-apps" >}}. 
 
@@ -299,7 +299,7 @@ Run npm install to download dependencies such as @fluvio/client:
 
 {{< code style="light" >}}
 $  npm install
-> @fluvio/client@0.1.2 install /Users/aj/dump/node-demo-apps/api-examples/node_modules/@fluvio/client
+> @fluvio/client@0.1.2 install /Users/user/node-demo-apps/api-examples/node_modules/@fluvio/client
 > nj-cli build
 ...
   Finished dev [unoptimized + debuginfo] target(s) in 59.22s
