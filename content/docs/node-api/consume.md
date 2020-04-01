@@ -1,5 +1,5 @@
 ---
-title: Subscribe
+title: Replica.Consume
 weight: 40
 ---
 

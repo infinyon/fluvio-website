@@ -5,6 +5,10 @@ weight: 20
 
 In this guide we’ll cover: how to set up your {{< target-blank title="Node.js" url="https://nodejs.org" >}} environment, and how to build a simple data streaming App.
 
+{{< idea >}}
+This section assumes you have a Fluvio Cluster your Node App can connect to. If you don't have a cluster installed, create one on [Fluvio Cloud]({{< relref "quick-start/#create-a-fluvio-cloud-account" >}}).
+{{< /idea >}}
+
 ## Setup Node Environment
 
 A Fluvio environment for Node requires: Node.js and Rust development environments, and a build tool that generates a Node.js library from Rust code. If you have Node installed it should be **version 13** or above.
@@ -122,9 +126,24 @@ A dependency to @fluvio/client is added to package.json.
 
 Fluvio client looks for the [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The client connects to the cluster to produce and consume messages.
 
-##### Implement Producer
+##### Add Producer
 
-Inside your node project, create a _src_ directory, and add a _producer.js_ file with the folloing content:
+Inside your node project, create a _src_ directory, and add a _produce.js_ file: 
+
+{{< code style="light" >}}
+$ tree -L 2
+.
+├── node_modules
+│   └── @fluvio
+├── package-lock.json
+├── package.json
+└── src
+    └── produce.js
+{{< /code >}}
+
+###### Code for Produce.js
+
+Add the following code in the _produce.js_ file:
 
 {{< code lang="js" >}}
 const FluvioClient = require('@fluvio/client');
@@ -132,10 +151,10 @@ const FluvioClient = require('@fluvio/client');
 async function produceMessage() {
   try {
     const flvConnection = await FluvioClient.connect();
-    let replica = await flvConnection.replica("my-test", 0);
+    let replica = await flvConnection.replica("my-topic", 0);
     let len = await replica.produce("test");
     
-    console.log("OK: %d bytes sent" len);
+    console.log("OK: %d bytes sent", len);
   } catch (e) {
     console.log("error: ", e.msg());
   }
@@ -144,24 +163,45 @@ async function produceMessage() {
 await produceMessage();
 {{< /code >}}
 
-In summary, the code does the following:
+In summary:
 
-* __require(@fluvio/client)_ loads library into _FluvioClient_ constant. 
+* _require(@fluvio/client)_ loads library into _FluvioClient_ constant. 
 * _FluvioClient.connect()_ returns the connection to the cluster.
-  * connect reads cluster parameters from _default profile_.
+  * connect reads the cluster parameters from _default profile_.
 * _flvConnection.replica(...)_ looks-up _replica_ for the topic/partition.
 * _replica.produce(...)_ send a message to the _cluster_.
 
-Compile run _producer.js_:
+###### Run Produce.js
+
+Run _produce.js_ to send "test" to the cluster:
 
 {{< code style="light" >}}
-$ node src/produce.js  
-.... 
-
-....
+$ node ./src/produce.js  
+OK: 4 bytes sent
 {{< /code >}}
 
-##### Implement Consumer
+To generate additional data entries, call _node ./src/produce.js_ multiple times.
+
+
+##### Add Consumer
+
+Inside your _src_ directory, and add a _consume.js_ file: 
+
+{{< code style="light" >}}
+$ tree -L 2
+.
+├── node_modules
+│   └── @fluvio
+├── package-lock.json
+├── package.json
+└── src
+    ├── consume.js
+    └── produce.js
+{{< /code >}}
+
+###### Code for Consume.js
+
+Add the following code in the _consume.js_ file:
 
 {{< code lang="js" >}}
 const FluvioClient = require('@fluvio/client');
@@ -175,9 +215,14 @@ async function consumeMessages() {
 
   try {
     const flvConnection = await FluvioClient.connect();
-    let replica = await flvConnection.replica("my-test", 0);
+    let replica = await flvConnection.replica("my-topic", 0);
     
-    replica.consume(emitter.emit.bind(emitter));
+    replica.consume({ 
+        offset: "earliest"
+      },
+      emitter.emit.bind(emitter)
+    );
+
   } catch (e) {
     console.log("error: ", e.msg());
   }
@@ -185,6 +230,29 @@ async function consumeMessages() {
 
 await consumeMessages();
 {{< /code >}}
+
+In summary:
+
+* _require(@fluvio/client)_ loads library into _FluvioClient_ constant. 
+* _emitter.on('data')_ creates an emitter that is invoked by _replica.consume(..)_ when new messages arrive.
+* _FluvioClient.connect()_ returns the connection to the cluster.
+  * connect reads the cluster parameters from _default profile_.
+* _flvConnection.replica(...)_ looks-up _replica_ for the topic/partition.
+* _replica.consume(...)_ reads messages from the 'earliest' offset.
+  * _consume_ has additional parameters that are listed in the [Replica.Consume API]({{< relref "../node-api/consume" >}}).
+
+###### Run Consume.js
+
+Run _consume.js_ to receives all messages on 'my-topic' partition 0:
+
+{{< code style="light" >}}
+$ node ./src/consume.js 
+test
+test
+^C
+{{< /code >}}
+
+The consumer listens continuously until <CTRL>-C is pressed.
 
 
 ## Download Fluvio data streaming App
