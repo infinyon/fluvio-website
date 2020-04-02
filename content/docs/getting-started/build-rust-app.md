@@ -231,11 +231,11 @@ In summary:
 
 * *run_block_on* creates an async block
 * *FluvioClient::new()* reads the profile and creates a client.
-* *fluvio_client.connect()_ returns the connection to the cluster.
+* *fluvio_client.connect()* returns the connection to the cluster.
 * *connection.get_replica(...)* looks-up _replica_ for the topic/partition.
-* *replica.get_stream(...)* opens a stream with _replica_ and reads from 'earliest' offset.
-  * FetchOffset has additional parameters, see [Replica.Consume]({{< relref "../rust-api/consume" >}}) API.
-* *stream.consume()* reads messages in real-time.
+* *replica.get_stream(...)* opens a stream with _replica_ from 'earliest' offset.
+  * *FetchOffset* has additional parameters, see [Replica.Consume]({{< relref "../rust-api/consume" >}}) API.
+* *stream.consume()* reads messages as the become available.
 
 ##### Build and Run Consumer
 
