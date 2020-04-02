@@ -201,33 +201,41 @@ Add the following code in  _src/main.rs_ file:
 {{< code lang="rust" >}}
 use futures::stream::StreamExt;
 use flv_future_aio::task::run_block_on;
-use flv_client::{FluvioClient, ClientError};
+use flv_client::{FluvioClient, ClientError, FetchOffset, FetchLogOption};
 
 fn main() {
     run_block_on(async move {
 
-        match run_producer().await {
-            Ok(len) => println!("OK: {} bytes sent", len);
-            Err(err) => eprintln!("{}", err);
+        if let Err(err) = run_consumer.await {
+            eprintln!("{}", err);
         }
 
     })
 }
 
-async fn run_producer() -> Result<i32, ClientError> {
+async fn run_consumer() -> Result<(), ClientError> {
     let fluvio_client = FluvioClient::new()?;
     let mut connection = fluvio_client.connect().await?;
     let mut replica = connection.get_replica("my-topic", 0).await?;
-    let len = replica.produce("test").await?;
+    let mut stream = replica.get_stream(FetchOffset::Earliest, FetchLogOption::default())?;
 
-    Ok(len)
+    while let Some(msg) = stream.consume()?.await {
+        println!("{}", msg);
+    }
+
+    Ok(())
 }
 {{< /code >}}
 
 In summary:
 
 * *run_block_on* creates an async block
-
+* *FluvioClient::new()* reads the profile and creates a client.
+* *fluvio_client.connect()_ returns the connection to the cluster.
+* *connection.get_replica(...)* looks-up _replica_ for the topic/partition.
+* *replica.get_stream(...)* opens a stream with _replica_ and reads from 'earliest' offset.
+  * FetchOffset has additional parameters, see [Replica.Consume]({{< relref "../rust-api/consume" >}}) API.
+* *stream.consume()* reads messages in real-time.
 
 ##### Build and Run Consumer
 

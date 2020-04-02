@@ -242,8 +242,8 @@ In summary:
 * _FluvioClient.connect()_ returns the connection to the cluster.
   * connect reads the cluster parameters from _default profile_.
 * _flvConnection.replica(...)_ looks-up _replica_ for the topic/partition.
-* _replica.consume(...)_ reads messages from the 'earliest' offset.
-  * _consume_ has additional parameters that are listed in the [Replica.Consume API]({{< relref "../node-api/consume" >}}).
+* _replica.consume(...)_ reads messages from the 'earliest' offset in real-time.
+  * _consume_ has additional parameters, see [Replica.Consume]({{< relref "../node-api/consume" >}}) API.
 
 ###### Run Consumer
 
