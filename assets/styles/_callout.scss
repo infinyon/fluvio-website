@@ -15,6 +15,11 @@
         max-width: calc(100% - .5em - .5em - 1.25em - 1.25em);
     }
 
+    ul li {
+        margin-top: 5px !important;
+        margin-bottom: 0 !important;
+    }
+
     pre {
         margin: .6em 0;
     }
