@@ -1,18 +1,19 @@
 ---
-title: Build a Node App
+title: Build a data streaming up App in Node.js
+menu: Build a Node App
 weight: 20
 ---
 
-In this guide we’ll cover: how to set up your {{< target-blank title="Node.js" url="https://nodejs.org" >}} environment, and how to build a simple data streaming App.
+In this guide we’ll provide instructions on how to set up a {{< target-blank title="Node.js" url="https://nodejs.org" >}} environment and build a simple data streaming App.
 
 {{< idea >}}
-This section assumes you have a running cluster with a topic "my-topic" provisioned. Step-by-step instructions are available in [Quick Start]({{< relref "quick-start" >}}) at:
+**Prerequisites:** The App we'll build in this section needs access to a Fluvio cluster and a topic the app can use to exchange data streams. If you need step-by-step instructions, the are available in [Quick Start]({{< relref "quick-start" >}}) at:
 
 * [Create a cluster on Fluvio Cloud]({{< relref "quick-start/#create-a-fluvio-cloud-account" >}})
-* [Add topic "my-topic"]({{< relref "quick-start/#create-a-topic-and-stream-hello-world" >}})
+* [Add a topic]({{< relref "quick-start/#create-a-topic-and-stream-hello-world" >}})
 {{< /idea >}}
 
-## Setup Node Environment
+## Setup a Node Environment
 
 A Fluvio environment for Node requires: Node.js and Rust development environments, and a build tool that generates a Node.js library from Rust code. If you have Node installed it should be **version 13** or above.
 
@@ -34,7 +35,7 @@ Rust language utilizes an installer to download and provision Rust on your local
 
 ##### Install Rust toolchain
 
-Fluvio compiler uses nightly toolchain. To install, run:
+Fluvio compiler uses the nightly toolchain. To install, run:
 
 {{< code style="light">}}
 $ rustup toolchain install nightly
@@ -70,25 +71,25 @@ Installed package `nj-cli v0.1.2` (executable `nj-cli`)
 
 ## Build a simple data streaming App
 
-This section provides a step-by-step on how to build a simple data streaming app. If you'd like to download the demo app instead, skip ahead to [Download Fluvio Demo Apps]({{< relref "#download-fluvio-demo-apps" >}}).
+This section provides a step-by-step on how to build a simple data streaming app using Node.js. If you'd like to download the demo app instead, skip ahead to [Download Fluvio Demo Apps]({{< relref "#download-fluvio-demo-apps" >}}).
 
 
 #### Start a new Node project
 
-Create a directory for **fluvio-app**:
+Create a directory for **fluvio-node-app**:
 
 {{< code style="light" >}}
-$ mkdir fluvio-app
-$ cd fluvio-app
+$ mkdir fluvio-node-app
+$ cd fluvio-node-app
 {{< /code >}}
 
 Run npm to create a **node project** and generate package.json file:
 
 {{< code lang="json" style="light" >}}
 $ npm init -y
-Wrote to /Users/user/fluvio-app/package.json:
+Wrote to /Users/user/fluvio-node-app/package.json:
 {
-  "name": "fluvio-app",
+  "name": "fluvio-node-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -111,7 +112,7 @@ Use npm install to add {{< target-blank title="@fluvio/client" url="https://www.
 {{< code style="light" >}}
 $ npm install @fluvio/client --save
 
-> @fluvio/client@2.0.2 install /Users/user/fluvio-app/node_modules/@fluvio/client
+> @fluvio/client@2.0.2 install /Users/user/fluvio-node-app/node_modules/@fluvio/client
 > nj-cli build
 
     Updating crates.io index
@@ -127,9 +128,9 @@ A dependency to @fluvio/client is added to package.json.
 
 #### Implement Producer/Consumer exchange
 
-Fluvio client looks for the [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The client connects to the cluster to produce and consume messages.
+Fluvio client needs a [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The file was generated during cluster setup. The file is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
 
-##### Add Producer
+##### Create Producer
 
 Inside your node project, create a _src_ directory, and add a _produce.js_ file: 
 
@@ -144,7 +145,7 @@ $ tree -L 2
     └── produce.js
 {{< /code >}}
 
-###### Code for Produce.js
+###### Producer Code
 
 Add the following code in the _produce.js_ file:
 
@@ -174,7 +175,7 @@ In summary:
 * _flvConnection.replica(...)_ looks-up _replica_ for the topic/partition.
 * _replica.produce(...)_ send a message to the _cluster_.
 
-###### Run Produce.js
+###### Run Producer
 
 Run _produce.js_ to send "test" to topic/partition _my-topic/0_ :
 
@@ -186,7 +187,7 @@ OK: 4 bytes sent
 To generate additional data entries, call _node ./src/produce.js_ multiple times.
 
 
-##### Add Consumer
+##### Create Consumer
 
 Inside your _src_ directory, and add a _consume.js_ file: 
 
@@ -202,7 +203,7 @@ $ tree -L 2
     └── produce.js
 {{< /code >}}
 
-###### Code for Consume.js
+###### Consumer Code
 
 Add the following code in the _consume.js_ file:
 
@@ -244,9 +245,9 @@ In summary:
 * _replica.consume(...)_ reads messages from the 'earliest' offset.
   * _consume_ has additional parameters that are listed in the [Replica.Consume API]({{< relref "../node-api/consume" >}}).
 
-###### Run Consume.js
+###### Run Consumer
 
-Run _consume.js_ to receives all messages from topic/partition _my-topic/0_ :
+Run _consume.js_ to receive all messages from topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
 $ node ./src/consume.js 
@@ -255,7 +256,7 @@ test
 ^C
 {{< /code >}}
 
-The consumer listens continuously until &lt;CTRL&gt;-C is pressed.
+Consumer listens continuously until &lt;CTRL&gt;-C is pressed.
 
 
 ## Download Fluvio Demo Apps
@@ -276,7 +277,7 @@ $ cd node-demo-apps/api-examples/
 This repository has working examples centered around the API as stated by the file names:
 
 {{< code style="light" >}}
-$  tree -L 2
+$ tree -L 2
 .
 ├── README.md
 ├── package-lock.json
@@ -298,7 +299,7 @@ The directory structure has the following components:
 Run npm install to download dependencies such as @fluvio/client:
 
 {{< code style="light" >}}
-$  npm install
+$ npm install
 > @fluvio/client@0.1.2 install /Users/user/node-demo-apps/api-examples/node_modules/@fluvio/client
 > nj-cli build
 ...
@@ -308,7 +309,7 @@ added 3 packages from 3 contributors and audited 3 packages in 59.756s
 found 0 vulnerabilities
 {{< /code >}}
 
-###### Run Produce.js
+###### Run Producer
 
 Run _produce.js_ to send messages to topic/partition _my-topic/0_ :
 
@@ -325,7 +326,7 @@ ok!
 ^C
 {{< /code >}}
 
-###### Run Consume.js
+###### Run Consumer
 
 Run _consume.js_ to receive messages from topic/partition _my-topic/0_ :
 
