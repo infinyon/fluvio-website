@@ -260,7 +260,7 @@ test
 Consumer listens continuously until &lt;CTRL&gt;-C is pressed.
 
 
-## Download Fluvio Demo Apps
+## Download Node Demo Apps
 
 Fluvio published a series of examples in github at {{< target-blank title="node-demo-apps" url="https://github.com/infinyon/node-demo-apps" >}}. 
 
