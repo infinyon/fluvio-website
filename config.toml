@@ -5,6 +5,12 @@ title = "Fluvio"
   version = "1.0.2"
   blog_time_format = "January 02, 2006"
 
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+
 [menu]
   [[menu.main]]
     identifier = "docs"

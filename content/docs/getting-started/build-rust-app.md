@@ -1,13 +1,14 @@
 ---
 title: Build a data streaming App in Rust
 menu: Build a Rust App
+toc: true
 weight: 30
 ---
 
 In this guide we’ll provide instructions on how to set up a {{< target-blank title="Rust" url="https://www.rust-lang.org" >}} environment and build a simple data streaming App.
 
 {{< idea >}}
-**Prerequisites:** The App we'll build in this section needs access to a Fluvio cluster and a topic the app can use to exchange data streams. If you need step-by-step instructions, the are available in [Quick Start]({{< relref "quick-start" >}}) at:
+**Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start]({{< relref "quick-start" >}}) at:
 
 * [Create a cluster on Fluvio Cloud]({{< relref "quick-start/#create-a-fluvio-cloud-account" >}})
 * [Add a topic]({{< relref "quick-start/#create-a-topic-and-stream-hello-world" >}})
@@ -43,18 +44,18 @@ This section provides a step-by-step on how to build a simple data streaming app
 
 #### Implement Producer/Consumer exchange
 
-Fluvio client needs a [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The file was generated during cluster setup. The file is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
+Fluvio client needs a [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The file was generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
 
 #### Create Producer Package
 
-Rust uses {{< target-blank title="Cargo" url="https://doc.rust-lang.org/cargo/" >}} to create a **rust package** and generate a _Cargo.toml_ dependency file. Use _--bin_ flag to create an application rather than a library.
+Use {{< target-blank title="Cargo" url="https://doc.rust-lang.org/cargo/" >}} _--bin_ flag to create an application:
 
 {{< code lang="json" style="light" >}}
 $ cargo new fluvio-rust-produce --bin
 Created binary (application) `fluvio-rust-produce` package
 {{< /code >}}
 
-Cargo generates a directory with a _Cargo.toml_ file an an _src_ subdirectory:
+This results in following directory layout:
 
 {{< code lang="json" style="light" >}}
 $ cd fluvio-rust-produce/
@@ -65,7 +66,7 @@ $ tree
     └── main.rs
 {{< /code >}}
 
-Update _Cargo.toml_ file to add Fluvio dependencies and a [[bin]] section to shorten the binary name:
+Update _Cargo.toml_ file to add dependencies:
 
 {{< code lang="json" style="light" >}}
 $ cat Cargo.toml
@@ -75,11 +76,6 @@ version = "0.1.0"
 authors = ["user <user@fluvio.io>"]
 edition = "2018"
 
-[[bin]]
-name = "produce"
-path = "src/main.rs"
-doc = false
-
 [dependencies]
 log = "0.4.8"
 futures = { version = "0.3.4", features = ['async-await'] }
@@ -88,22 +84,6 @@ flv-client = { version = "1.0.0"}
 kf-protocol = { version = "1.0.0 "}
 {{< /code >}}
 
-Build the default code to ensure the dependencies are in working order:
-
-{{< code lang="json" style="light" >}}
-$ cargo build
-Updating crates.io index
-...
-Compiling fluvio-rust-produce v0.1.0 (/Users/user/fluvio-rust-produce)
-Finished dev [unoptimized + debuginfo] target(s) in 55.91s
-{{< /code >}}
-
-Run a quick test:
-
-{{< code lang="json" style="light" >}}
-$ ./target/debug/produce
-Hello, world!
-{{< /code >}}
 
 ##### Producer Code
 
@@ -115,7 +95,7 @@ use flv_future_aio::task::run_block_on;
 use flv_client::{FluvioClient, ClientError};
 
 fn main() {
-    run_block_on(async move {
+    run_block_on(async {
 
         match run_producer().await {
             Ok(len) => println!("OK: {} bytes sent", len);
@@ -145,7 +125,7 @@ In summary:
 
 ##### Build and Run Producer
 
-Build the code again:
+Run _cargo build_ to generate binary:
 
 {{< code style="light" >}}
 $ cargo build
@@ -156,7 +136,7 @@ $ cargo build
 Run _producer_ to send "test" to topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
-./target/debug/produce
+./target/debug/fluvio-rust-produce
 OK: 4 bytes sent
 {{< /code >}}
 
@@ -181,11 +161,6 @@ version = "0.1.0"
 authors = ["user <user@fluvio.io>"]
 edition = "2018"
 
-[[bin]]
-name = "consume"
-path = "src/main.rs"
-doc = false
-
 [dependencies]
 log = "0.4.8"
 futures = { version = "0.3.4", features = ['async-await'] }
@@ -204,7 +179,7 @@ use flv_future_aio::task::run_block_on;
 use flv_client::{FluvioClient, ClientError, FetchOffset, FetchLogOption};
 
 fn main() {
-    run_block_on(async move {
+    run_block_on(async {
 
         if let Err(err) = run_consumer.await {
             eprintln!("{}", err);
@@ -239,7 +214,7 @@ In summary:
 
 ##### Build and Run Consumer
 
-Build the code again:
+Run _cargo build_ to generate binary:
 
 {{< code style="light" >}}
 $ cargo build
@@ -250,7 +225,7 @@ $ cargo build
 Run _consumer_ to receive all messages from topic/partition _my-topic/0_ :
 
 {{< code style="light" >}}
-./target/debug/consume
+./target/debug/fluvio-rust-consume
 test
 ^C
 {{< /code >}}

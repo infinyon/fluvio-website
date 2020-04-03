@@ -7,6 +7,7 @@
 @import 'various';
 @import 'api';
 @import 'code';
+@import 'toc';
 
 body {
   font-family: $font-body;
@@ -17,7 +18,7 @@ body {
 // Site-wide
 h1, .font-xxl {font-size: 2.1rem; }
 h2, .font-xl {font-size: 1.7rem; }
-h3, .font-lg {font-size: 1.45rem; }
+h3, .font-lg, .related-hdr {font-size: 1.45rem; }
 h4, .font-md, .font-md-underline {font-size: 1.4rem; }
 p, li, .font-rg {font-size: 1.05rem; }
 h5, .font-sm {font-size: 1.1rem; }
@@ -118,6 +119,16 @@ a#logo {
 
 .next-steps-list {
   margin-top: -5px;
+}
+
+.related-hdr {
+  margin-top: 1.3em;
+}
+
+.related-hr {
+  margin-top: .2em;
+  margin-right: 1.5em;
+  border-top: 2px solid #eee;
 }
 
 // Content
@@ -559,6 +570,9 @@ footer {
 // --------------
 @media print {
   .faq-toc {
+    display: none;
+  }
+  .side-toc {
     display: none;
   }
   .sidemenu {

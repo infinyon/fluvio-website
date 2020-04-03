@@ -1,13 +1,14 @@
 ---
 title: Build a data streaming up App in Node.js
 menu: Build a Node App
+toc: true
 weight: 20
 ---
 
 In this guide we’ll provide instructions on how to set up a {{< target-blank title="Node.js" url="https://nodejs.org" >}} environment and build a simple data streaming App.
 
 {{< idea >}}
-**Prerequisites:** The App we'll build in this section needs access to a Fluvio cluster and a topic the app can use to exchange data streams. If you need step-by-step instructions, the are available in [Quick Start]({{< relref "quick-start" >}}) at:
+**Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start]({{< relref "quick-start" >}}) at:
 
 * [Create a cluster on Fluvio Cloud]({{< relref "quick-start/#create-a-fluvio-cloud-account" >}})
 * [Add a topic]({{< relref "quick-start/#create-a-topic-and-stream-hello-world" >}})
@@ -128,7 +129,7 @@ A dependency to @fluvio/client is added to package.json.
 
 #### Implement Producer/Consumer exchange
 
-Fluvio client needs a [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The file was generated during cluster setup. The file is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
+Fluvio client needs a [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The file was generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
 
 ##### Create Producer
 
@@ -274,7 +275,7 @@ Unpacking objects: 100%, done.
 $ cd node-demo-apps/api-examples/
 {{< /code >}}
 
-This repository has working examples centered around the API as stated by the file names:
+This repository has working examples centered around the core APIs:
 
 {{< code style="light" >}}
 $ tree -L 2
