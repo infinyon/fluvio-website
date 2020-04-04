@@ -1,8 +1,36 @@
 ---
-title: Fluvio Cloud Platform
+title: Fluvio Cloud (Public Beta)
 menu: Cloud Platform
 weight: 10
 ---
 
-* Describe what the cloud patform has
+Fluvio is an open source, **cloud native** platform designed to work with [Kubernetes]({{< relref "k8-integration" >}}). The platform has two core Microservices, SC and SPU that can be containerized, independently provisioned, and dynamically orchestrated. The platform was designed for **horizontal scale** where new components are seamlessly absorbed without disruption to the overall health of the system.
 
+{{< image src="cloud-native.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
+
+
+Fluvio can be deployed in most **public cloud** provider as well and **private data centers**. 
+
+## Fluvio Cloud
+
+Fluvio Cloud is a **Data Streaming as a Service (DSaaS)** platform manged by the Fluvio team. Each account receives a dedicated [Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}}) installation in our public cloud.
+
+The installation is provisioned with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU). 
+
+{{< image src="fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
+
+Each SPU is provisioned with ...
+* ...
+* ...
+* ...
+
+Checkout [Quick Start]({{< relref "../getting-started/quick-start#create-a-fluvio-cloud-account" >}}) on instruction on how to provision a cloud account. 
+
+#### Release
+
+**Fluvio OSS** and **Fluvio Cloud** are currently in Public Beta.
+
+{{< links "Related Topics" >}}
+* [Topics CLI]({{< relref "topics" >}})
+* [Node API]({{< relref "../node-api/reference" >}})
+{{< /links >}}
