@@ -1,6 +1,9 @@
+.toc-area {
+  max-width: 220px;
+}
+
 .side-toc {
-  width: 210px;
-  margin: 20px 5px;
+  margin: 20px 0;
   padding: 5px 10px;
   border-left: 1px solid $col-gray-light7;
 
@@ -22,7 +25,8 @@
 }
 
 @media (max-width: 1200px ) {
-  .side-toc {
+  .toc-area {
     display: none;
+    width: 0;
   }
 }

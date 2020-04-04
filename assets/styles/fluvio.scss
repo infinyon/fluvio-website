@@ -238,8 +238,7 @@ footer {
 .sidemenu { 
   min-width: 200px;
   max-width: 220px;
-  padding:5px;
-  margin: 0 .5em 1em 1em;
+  padding: .5em .5em 1em 1em;
 }
 
 .sidemenu .header {
@@ -316,8 +315,8 @@ footer {
 // --------------
 
 .main-area {
-  min-width:300px;
-  margin: .5em 1em .5em .5em;
+  min-width: 300px;
+  padding: .5em 1em .5em .5em;
 }
 
 .main {
