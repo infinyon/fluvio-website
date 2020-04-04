@@ -38,10 +38,6 @@ There are currently 3 ways to stream real-time data to **Fluvio Cloud**, through
 Data streaming clients require a [profile file]({{< relref "../cli/profiles" >}}) that contains the authorization information associated the cluster. The profile is generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
 
 
-#### Release
-
-**Fluvio OSS** and **Fluvio Cloud** are currently in Public Beta.
-
 {{< links "Related Topics" >}}
 * [Quick Start]({{< relref "../getting-started/quick-start" >}})
 * [CLI]({{< relref "../cli/overview" >}})
