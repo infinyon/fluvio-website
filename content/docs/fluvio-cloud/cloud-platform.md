@@ -11,6 +11,7 @@ Fluvio is an open source, **cloud native** platform designed to work with [Kuber
 
 Fluvio can be deployed in most **public cloud** provider as well and **private data centers**. 
 
+
 ## Fluvio Cloud
 
 Fluvio Cloud is a **Data Streaming as a Service (DSaaS)** platform manged by the Fluvio team. Each account receives a dedicated [Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}}) installation in our public cloud.
@@ -26,11 +27,23 @@ Each SPU is provisioned with ...
 
 Checkout [Quick Start]({{< relref "../getting-started/quick-start#create-a-fluvio-cloud-account" >}}) on instruction on how to provision a cloud account. 
 
+
+### Data Streaming to Cloud
+
+There are currently 3 ways to stream real-time data to **Fluvio Cloud**, through:
+* [CLI]({{< relref "../cli/overview" >}})
+* [Node App]({{< relref "../getting-started/build-node-app" >}})
+* [Rust App]({{< relref "../getting-started/build-rust-app" >}})
+
+Data streaming clients require a [profile file]({{< relref "../cli/profiles" >}}) that contains the authorization information associated the cluster. The profile is generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
+
+
 #### Release
 
 **Fluvio OSS** and **Fluvio Cloud** are currently in Public Beta.
 
 {{< links "Related Topics" >}}
-* [Topics CLI]({{< relref "topics" >}})
-* [Node API]({{< relref "../node-api/reference" >}})
+* [Quick Start]({{< relref "../getting-started/quick-start" >}})
+* [CLI]({{< relref "../cli/overview" >}})
+* [Architecture]({{< relref "../architecture/overview" >}})
 {{< /links >}}
