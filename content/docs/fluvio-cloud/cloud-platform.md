@@ -1,15 +1,10 @@
 ---
-title: Fluvio Cloud (Public Beta)
+title: Fluvio Cloud (Public Alpha)
 menu: Cloud Platform
 weight: 10
 ---
 
-Fluvio is an open source, **cloud native** platform designed to work with [Kubernetes]({{< relref "k8-integration" >}}). The platform has two core Microservices, SC and SPU that can be containerized, independently provisioned, and dynamically orchestrated. The platform was designed for **horizontal scale** where new components are seamlessly absorbed without disruption to the overall health of the system.
-
-{{< image src="cloud-native.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
-
-
-Fluvio can be deployed in most **public cloud** provider as well and **private data centers**. 
+Fluvio cloud is currently in alpha and we are working diligently to fix any issues that may arise. For support, please notify us in {{< target-blank title="Discord" url="https://discordapp.com/invite/bBG2dTz" >}}.
 
 
 ## Fluvio Cloud
@@ -19,11 +14,6 @@ Fluvio Cloud is a **Data Streaming as a Service (DSaaS)** platform manged by the
 The installation is provisioned with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU). 
 
 {{< image src="fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
-
-Each SPU is provisioned with ...
-* ...
-* ...
-* ...
 
 Checkout [Quick Start]({{< relref "../getting-started/quick-start#create-a-fluvio-cloud-account" >}}) on instruction on how to create a cloud account. 
 
@@ -35,7 +25,22 @@ There are currently 3 ways to stream real-time data to **Fluvio Cloud**, through
 * [Node App]({{< relref "../getting-started/build-node-app" >}})
 * [Rust App]({{< relref "../getting-started/build-rust-app" >}})
 
-Data streaming clients require a [profile file]({{< relref "../cli/profiles" >}}) that contains the authorization information associated the cluster. The profile is generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
+Data streaming clients require a [profile file]({{< relref "../cli/profiles" >}}) that contains the authorization information associated with the cluster. The profile is generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
+
+All data between clients and Fluvio Cloud is encrypted using {{< target-blank title="TLS" url="https://en.wikipedia.org/wiki/Transport_Layer_Security" >}}.
+
+### Restrictions
+
+Each installation supports an aggregate of **1Gb** of data streams and **3 SPUs**.
+
+#### Storage 
+
+When the **1GB** storage limit is reached, older data is purged to make room for new data. Note that data streams are replicated by default. Loss of 1 or 2 SPUs will not impact system operation.
+
+#### SPUs 
+Cloud environment does not allow changes to the number of SPUs. 
+
+Later versions will provide the ability to control **storage** and **SPU** configurations.
 
 
 {{< links "Related Topics" >}}
