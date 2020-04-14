@@ -9,11 +9,7 @@
     <div class="desc">
      <div class="row">
       <div class="col-lg-6">
-        <div class="title">{{ $header.Content | markdownify}}</div>
-        <div class="wrapper">
-          <div class="subtitle">{{ $paragraph1.Content | markdownify}}</div>
-          <div class="subtitle pt-3">{{$paragraph2.Content | markdownify}}</div>
-        </div>
+        {{- partial "main-left.html" . -}}
       </div>
       <div class="col-lg-6">
           <div class="mlc5 mt-4">
@@ -28,8 +24,7 @@
 
 <div class="container main">
   <div class="row">
-    {{- range (where .Pages "Type" "main" ) -}}
-      {{- if eq .Params.boxType true -}}
+    {{- range (where $.Site.RegularPages "Section" "main" ) -}}
       <div class="col-md-6 col-lg-4 box">
         <div class="card bg-light">
           <div class="m-3 align-self-center">
@@ -51,7 +46,6 @@
           </div>
         </div>
       </div>
-       {{- end -}}
     {{- end -}}
   </div>
 </div>
