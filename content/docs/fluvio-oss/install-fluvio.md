@@ -41,6 +41,6 @@ The services are operational, let's install the CLI.
 Service ```flv-sc-public``` must have EXTERNAL-IP to be reachable from CLI.
 {{< /caution >}}
 
-{{< links "Next Steps" >}}
+#### Next Steps
+----------------
 * [Install CLI]({{< relref "../cli/overview" >}})
-{{< /links >}}

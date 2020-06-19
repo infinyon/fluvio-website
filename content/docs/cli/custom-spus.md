@@ -213,10 +213,10 @@ ID   NAME            STATUS  TYPE    RACK  PUBLIC              PRIVATE
 {{< /fluvio >}}
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Produce CLI]({{< relref "produce" >}})
 * [Consume CLI]({{< relref "consume" >}})
 * [SPUs CLI]({{< relref "spus" >}})
 * [SPU-Groups CLI]({{< relref "spu-groups" >}})
 * [Topics CLI]({{< relref "topics" >}})
-{{< /links >}}

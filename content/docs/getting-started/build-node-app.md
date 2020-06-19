@@ -344,7 +344,7 @@ bye
 
 The APIs are customizable. Checkout [Node API](/docs/node-api/reference) for additional information.
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Topics CLI](/docs/cli/topics)
 * [Node API](/docs/node-api/reference)
-{{< /links >}}

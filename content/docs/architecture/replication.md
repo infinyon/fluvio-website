@@ -257,9 +257,9 @@ Partition |   Replicas          rack-c  rack-b  rack-a
 
 Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs handle more replicas. If a power failure occurs on a large rack, leader redistribution may overwhelm the SPUs on the smaller racks.
 
-{{< links >}}
+#### Next Steps
+----------------
 * [SC Architecture]({{<relref "sc">}})
 * [SPU Architecture]({{<relref "spu">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})
 * [Deployment Models]({{<relref "deployments">}})
-{{< /links >}} 

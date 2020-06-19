@@ -162,10 +162,10 @@ $ fluvio spu list  --sc `SC`:9003 -O json
 {{< /fluvio >}}
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Produce CLI]({{< relref "produce" >}})
 * [Consume CLI]({{< relref "consume" >}})
 * [Custom SPU CLI]({{< relref "custom-spus" >}})
 * [SPU-Groups CLI]({{< relref "spu-groups" >}})
 * [Topics CLI]({{< relref "topics" >}})
-{{< /links >}}

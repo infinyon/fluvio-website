@@ -136,7 +136,8 @@ The **CLI** generates commands for a specific **cluster**. The **cluster** is ex
 For additional information, checkout [Fluvio Profiles]({{< relref "profiles" >}}) section.
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Fluvio Profiles]({{< relref "profiles" >}})
 * [Produce CLI]({{< relref "produce" >}})
 * [Consume CLI]({{< relref "consume" >}})
@@ -144,4 +145,3 @@ For additional information, checkout [Fluvio Profiles]({{< relref "profiles" >}}
 * [Custom SPU CLI]({{< relref "custom-spus" >}})
 * [SPU-Groups CLI]({{< relref "spu-groups" >}})
 * [Topics CLI]({{< relref "topics" >}})
-{{< /links >}}

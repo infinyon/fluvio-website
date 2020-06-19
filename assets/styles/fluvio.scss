@@ -76,6 +76,12 @@ p {
   line-height: 1.6em;
 }
 
+hr {
+  margin-top: -10px;
+  margin-right: 20px;
+  border-top: 1px solid $col-gray-light6;
+}
+
 strong {
   color: $col-gray-dark9;
   font-weight: 700;
@@ -116,17 +122,6 @@ a#logo {
 
 .next-steps-list {
   margin-top: -5px;
-}
-
-.related-hdr {
-  margin-top: 1.3em;
-  color: $col-main-desc;
-}
-
-.related-hr {
-  margin-top: .2em;
-  margin-right: 1.5em;
-  border-top: 1px solid $col-gray-light7;
 }
 
 // Content

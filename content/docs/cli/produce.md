@@ -110,10 +110,10 @@ Ok!
 {{< /fluvio >}}
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Consume CLI]({{< relref "consume" >}})
 * [SPUs CLI]({{< relref "spus" >}})
 * [Custom SPU CLI]({{< relref "custom-spus" >}})
 * [SPU-Groups CLI]({{< relref "spu-groups" >}})
 * [Topics CLI]({{< relref "topics" >}})
-{{< /links >}}

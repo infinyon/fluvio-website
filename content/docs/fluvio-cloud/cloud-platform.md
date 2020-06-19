@@ -43,8 +43,8 @@ Cloud environment does not allow changes to the number of SPUs.
 Later versions will provide the ability to control **storage** and **SPU** configurations.
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Quick Start]({{< relref "../getting-started/quick-start" >}})
 * [CLI]({{< relref "../cli/overview" >}})
 * [Architecture]({{< relref "../architecture/overview" >}})
-{{< /links >}}

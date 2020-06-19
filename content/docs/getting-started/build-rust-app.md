@@ -308,7 +308,7 @@ bye
 
 The APIs are customizable. Checkout [Rust API]({{< relref "../rust-api/reference" >}}) for additional information.
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Topics CLI]({{< relref "topics" >}})
 * [Rust API]({{< relref "../rust-api/reference" >}})
-{{< /links >}}

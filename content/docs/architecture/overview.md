@@ -104,10 +104,11 @@ API reference guides for programming languages are available at:
 For additional details about **Internal APIs** checkout Fluvio development guide on {{< target-blank title="github" url="https://github.com/infinyon/fluvio" >}}.
 
 
-{{< links >}}
+#### Next Steps
+----------------
 * [SC Architecture]({{<relref "sc">}})
 * [SPU Architecture]({{<relref "spu">}})
 * [Replication]({{<relref "replication">}})
 * [Kubernetes Integration]({{<relref "k8-integration">}})
 * [Deployment Models]({{<relref "deployments">}})
-{{< /links >}} 
+

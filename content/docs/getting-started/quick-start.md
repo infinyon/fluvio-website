@@ -146,8 +146,8 @@ To consume multiple messages, use _-C, --continuous_ CLI flag.
 
 **Congratulations!** You have successfully streamed your first message!
 
-{{< links "Next Steps" >}}
+#### Next Steps
+----------------
 * [Build a Node App]({{<relref "build-node-app">}})
 * [Build a Rust App]({{<relref "build-rust-app">}})
-{{< /links >}} 
 

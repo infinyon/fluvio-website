@@ -261,10 +261,13 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 | Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of supported packages {{< target-blank title="here" url="https://nodejs.org/en/download/package-manager" >}}.  |
 
 
-{{< links "Next Steps" >}}
-* [Getting Started](...)
-{{< /links >}}
 
-{{< links "Related Items" >}}
+
+#### Next Steps
+---------------
+* [Getting Started](...)
+
+
+#### Related Topics
+-------------------
 * [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview" >}})
-{{< /links >}}

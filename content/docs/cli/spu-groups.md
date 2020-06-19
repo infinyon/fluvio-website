@@ -159,10 +159,10 @@ $ fluvio spu list --sc `SC`:9003 | grep my-group
 
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Produce CLI]({{< relref "produce" >}})
 * [Consume CLI]({{< relref "consume" >}})
 * [SPUs CLI]({{< relref "spus" >}})
 * [Custom SPU CLI]({{< relref "custom-spus" >}})
 * [Topics CLI]({{< relref "topics" >}})
-{{< /links >}}

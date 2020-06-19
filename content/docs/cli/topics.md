@@ -394,10 +394,10 @@ $ fluvio topic list --kf 0.0.0.0:9092
 {{< /fluvio >}}
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Produce CLI]({{< relref "produce" >}})
 * [Consume CLI]({{< relref "consume" >}})
 * [SPUs CLI]({{< relref "spus" >}})
 * [Custom SPU CLI]({{< relref "custom-spus" >}})
 * [SPU-Groups CLI]({{< relref "spu-groups" >}})
-{{< /links >}}

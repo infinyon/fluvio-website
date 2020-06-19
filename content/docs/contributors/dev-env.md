@@ -99,8 +99,9 @@ To continue setup, choose one of the following instructions:
 
 
 
-{{< links "Related Topics" >}}
+#### Related Topics
+-------------------
 * [Fluvio Architecture]({{< relref "../architecture/overview" >}})
 * [Fluvio CLI]({{< relref "../cli/overview" >}})
-{{< /links >}}
+
 
