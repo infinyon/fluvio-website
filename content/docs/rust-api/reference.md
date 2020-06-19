@@ -4,7 +4,7 @@ menu: API Guide
 weight: 10
 ---
 
-In this guide we’ll cover how to set up your {{< target-blank title="Rust" url="https://www.rust-lang.org" >}} data streaming environment.
+In this guide we’ll cover how to set up your <a href="https://www.rust-lang.org" target="_blank">Rust</a> data streaming environment.
 
 ## Introduction
 

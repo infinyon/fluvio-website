@@ -8,13 +8,13 @@ weight: 10
 
 #### Built in Rust
 
-Fluvio is **built in {{< target-blank title="Rust" url="https://www.rust-lang.org/" >}}**, a system programming language with **higher performance** than Java and **better code safety** than C/C++. Rust has a powerful multi-threaded asynchronous engine that runs natively in multi-core and low powered embedded systems. Zero cost abstraction and **no garbage collection**, makes this language ideal for low network latency and high IO throughput systems.
+Fluvio is **built in <a href="https://www.rust-lang.org/" target="_blank">Rust</a>**, a system programming language with **higher performance** than Java and **better code safety** than C/C++. Rust has a powerful multi-threaded asynchronous engine that runs natively in multi-core and low powered embedded systems. Zero cost abstraction and **no garbage collection**, makes this language ideal for low network latency and high IO throughput systems.
 
-The choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions such as MacOS, Linux, Windows, and small footprint embedded systems such as {{< target-blank title="Raspberry Pi" url="https://www.raspberrypi.org/" >}}.
+The choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions such as MacOS, Linux, Windows, and small footprint embedded systems such as <a href="https://www.raspberrypi.org/" target="_blank">Raspberry Pi</a>.
 
 #### Cloud Native by Design
 
-Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}**. Any infrastructure running **Kubernetes** can install **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, [Kubernetes integration]({{< relref "k8-integration" >}}) section. 
+Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>**. Any infrastructure running **Kubernetes** can install **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, [Kubernetes integration]({{< relref "k8-integration" >}}) section. 
 
 #### Fluvio Cloud
 
@@ -101,7 +101,7 @@ API reference guides for programming languages are available at:
 
 {{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="500" type="scaled-75">}}
 
-For additional details about **Internal APIs** checkout Fluvio development guide on {{< target-blank title="github" url="https://github.com/infinyon/fluvio" >}}.
+For additional details about **Internal APIs** checkout Fluvio development guide on <a href="https://github.com/infinyon/fluvio" target="_blank">github</a>.
 
 
 #### Next Steps

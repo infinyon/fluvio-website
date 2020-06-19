@@ -8,10 +8,10 @@ Fluvio **Command Line Interface (CLI)** is the management tool utilized to provi
 
 ## Download and Install
 
-CLI **binaries** are available for download in {{< target-blank title="github" url="https://github.com/infinyon/fluvio/releases" >}}:
+CLI **binaries** are available for download in <a href=https://github.com/infinyon/fluvio/releases" target="_blank">github</a>:
 
-* {{< target-blank title="Mac binary" url="https://github.com/infinyon/fluvio/releases" >}}
-* {{< target-blank title="Linux binary" url="https://github.com/infinyon/fluvio/releases" >}}
+* <a href="https://github.com/infinyon/fluvio/releases" target="_blank">Mac binary</a>
+* <a href="https://github.com/infinyon/fluvio/releases" target="_blank">Linux binary</a>
 
 Copy the binary to your bin path and make it executable. 
 

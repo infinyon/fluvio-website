@@ -6,7 +6,7 @@ weight: 20
 
 Fluvio __profiles__ makes managing multiple deployments simple. A __profile__ is a .toml configuration file that stores the location of the services. The syntax is as follows:
 
-{{< code lang="toml" style="light" >}}
+```toml
 version = <profile-version>
 
 [sc]
@@ -20,7 +20,7 @@ port = <port>
 [kf]
 host = <hostname/ip>
 port = <port>
-{{< /code >}}
+```
 
 The parameters are as follows:
 
@@ -34,13 +34,13 @@ While it is possible to configure all three services, it is not a useful configu
 
 The most common configuration is _one service per profile_.
 
-{{< code lang="toml" style="light" >}}
+```toml
 version = "1.0"
 
 [sc]
 host = "sc.fluvio.dev.acme.com"
 port = 9003
-{{< /code >}}
+```
 
 #### Default Profile
 

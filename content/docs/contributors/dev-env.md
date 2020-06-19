@@ -8,14 +8,14 @@ Thank you for your interest on joining Fluvio Development Community!
 
 We look forward to working with you!
 
-Fluvio leverages a **Key-Value (KV) store** to persist cluster object configurations. While the product is designed for a broad range of **KV** stores, the current version is integrated with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}** and **{{< target-blank title="etcd" url="https://etcd.io" >}}**.
+Fluvio leverages a **Key-Value (KV) store** to persist cluster object configurations. While the product is designed for a broad range of **KV** stores, the current version is integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>** and **<a href="https://etcd.io" target="_blank">etcd</a>**.
 
 
 ## Install Kubernetes
 
 To run Kubernetes on your local machine we recommend Minikube. Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM) on your laptop. Follow the instructions on the Minikube website to get started:
 
-* **{{< target-blank title="Minikube - Getting Started" url="https://minikube.sigs.k8s.io/docs/start" >}}**
+* **<a href="https://minikube.sigs.k8s.io/docs/start" target="_blank">Minikube - Getting Started</a>**
 
 ### Check Minikube Cluster version
 

@@ -76,7 +76,7 @@ Installed package `nj-cli v0.1.2` (executable `nj-cli`)
 This section provides a step-by-step on how to build a simple data streaming app using Node.js. If you'd like to download the demo app instead, skip ahead to [Download Fluvio Demo Apps](#download-node-demo-apps).
 
 
-#### Start a new Node project
+### Start a new Node project
 
 Create a directory for **fluvio-node-app**:
 
@@ -107,7 +107,7 @@ $ npm init -y
 ```
 
 
-#### Add Fluvio Client library
+### Add Fluvio Client library
 
 The client library exports Fluvio data streaming APIs to the Node App.
 
@@ -129,11 +129,11 @@ found 0 vulnerabilities
 ```
 A dependency to @fluvio/client is added to package.json. 
 
-#### Implement Producer/Consumer exchange
+### Build "Hello Word" Streaming App
 
 Fluvio client needs a [default profile](/docs/cli/profiles) to identify the location and the authorization token of the cluster. The file was generated during cluster setup and it is available for download in your <a href="https://app.fluvio.io" target="_blank">Fluvio Cloud</a> account.
 
-##### Create Producer
+#### Create Producer
 
 Inside your node project, create a _src_ directory, and add a _produce.js_ file: 
 
@@ -148,7 +148,7 @@ $ tree -L 2
     └── produce.js
 ```
 
-###### Producer Code
+##### Producer Code
 
 Add the following code in the _produce.js_ file:
 
@@ -178,7 +178,7 @@ In summary:
 * _flvConnection.replica(...)_ looks-up _replica_ for the topic/partition.
 * _replica.produce(...)_ send a message to the _cluster_.
 
-###### Run Producer
+##### Run Producer
 
 Run _produce.js_ to send "test" to topic/partition _my-topic/0_ :
 
@@ -190,7 +190,7 @@ OK: 4 bytes sent
 To generate additional data entries, call _node ./src/produce.js_ multiple times.
 
 
-##### Create Consumer
+#### Create Consumer
 
 Inside your _src_ directory, and add a _consume.js_ file: 
 
@@ -207,7 +207,7 @@ $ tree -L 2
     └── produce.js
 ```
 
-###### Consumer Code
+##### Consumer Code
 
 Add the following code in the _consume.js_ file:
 
@@ -249,7 +249,7 @@ In summary:
 * _replica.consume(...)_ reads messages from the 'earliest' offset in real-time.
   * _consume_ has additional parameters, see [Replica.Consume](/docs/node-api/consume) API.
 
-###### Run Consumer
+##### Run Consumer
 
 Run _consume.js_ to receive all messages from topic/partition _my-topic/0_ :
 
@@ -298,7 +298,7 @@ The directory structure has the following components:
 * **produce.js** - producer example
 * **utils** - utility functions to support the APIs such as CLI.
 
-###### Compile api-examples
+#### Compile api-examples
 
 Run npm install to download dependencies such as @fluvio/client:
 
@@ -313,7 +313,7 @@ added 3 packages from 3 contributors and audited 3 packages in 59.756s
 found 0 vulnerabilities
 ```
 
-###### Run Producer
+#### Run Producer
 
 Run _produce.js_ to send messages to topic/partition _my-topic/0_ :
 
@@ -330,7 +330,7 @@ ok!
 ^C
 ```
 
-###### Run Consumer
+#### Run Consumer
 
 Run _consume.js_ to receive messages from topic/partition _my-topic/0_ :
 

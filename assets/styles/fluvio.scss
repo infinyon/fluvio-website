@@ -29,6 +29,11 @@ h5, h6 {
   font-weight: bold;
   color: $col-headers;
 }
+h2 { line-height: 2.5em }
+h3 { line-height: 2.3em }
+h3 { line-height: 2.1em }
+h4, h5 { line-height: 2.0em }
+h6 { line-height: 1.9em }
 h2:after, h3:after {
   background: none repeat scroll 0 0 $col-blue-light3;
   content: "";
@@ -36,15 +41,12 @@ h2:after, h3:after {
   position: relative;
   height: 2px;
 }
-h2 { line-height: 2.2em; }
+
 h2:after {
   width: 100%;
   bottom: 10px;
 }
-h3 { 
-  line-height:2.2em; 
-  display: inline-block;
-}
+h3 { display: inline-block }
 h3:after {
   bottom: 7px;
   margin-right: -5px;

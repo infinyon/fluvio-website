@@ -13,7 +13,7 @@ The SC leverages a **Key-Value (KV) store** to persist cluster object configurat
 
 #### Key-Value Store
 
-**Fluvio** is designed to work seamlessly with **{{< target-blank title="Kubernetes" url="https://kubernetes.io" >}}** and **{{< target-blank title="etcd" url="https://etcd.io" >}}** **KV** store. The **KV interface** is store agnostic and can be extended to support alternative implementations such {{< target-blank title="Consul" url="https://consul.io" >}}, {{< target-blank title="Zookeeper" url="https://zookeeper.apache.org" >}}, or in-memory stores.
+**Fluvio** is designed to work seamlessly with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>** and **<a href="https://etcd.io" target="_blank">etcd</a>** **KV** store. The **KV interface** is store agnostic and can be extended to support alternative implementations such <a href="https://consul.io" target="_blank">Consul</a>, <a href="https://zookeeper.apache.org" target="_blank">Zookeeper</a>, or in-memory stores.
 
 #### Default Ports
 
@@ -32,7 +32,7 @@ There are four configuration objects in a Fluvio cluster: **SPU**, **SPU-group**
 
 **SPUs spec** has a unique ID, a type, an optional rack, and endpoint identifier for the API servers. **SPU Id** is shared across all SPU types and it must be **globally unique**.
 
-{{< code style="light" >}}
+```yaml
 spec:
   spuId: 100
   spuType: "Custom"
@@ -46,20 +46,20 @@ spec:
     port: 9006
     host: localhost
     encryption: TLS
-{{< /code >}}
+```
 
 **SPU status** has a resolution field that monitors changes in **connectivity** from the SC's point of view.
 
-{{< code style="light" >}}
+```yaml
 status:
     resolution: online
-{{< /code >}}
+```
 
 There are two types of SPUs: managed and custom. **Managed** SPUs are provisioned and maintained by Fluvio, whereas **custom SPUs** are provisioned and managed out of band. Fluvio has the ability to support multiple **managed and custom** SPUs simultaneously. **SPUs** can be deployed in a virtually unlimited topologies across **availability zones** and **geo-locations**.
 
 #### Custom SPUs
 
-Custom SPUs are designed for **Edge** devices, **IOT** devices or **custom environments** where the infrastructure is managed through deployment tools such as {{< target-blank title="Puppet" url="https://puppet.com" >}}, {{< target-blank title="Chef" url="https://www.chef.io" >}}, or {{< target-blank title="Ansible" url="https://www.ansible.com" >}}. This feature is currently experimental.
+Custom SPUs are designed for **Edge** devices, **IOT** devices or **custom environments** where the infrastructure is managed through deployment tools such as <a href="https://puppet.com" target="_blank">Puppet</a>, <a href="https://www.chef.io" target="_blank">Chef</a>, or <a href="https://www.ansible.com" target="_blank">Ansible</a>. This feature is currently experimental.
 
 ##### Install Custom SPUs
 
@@ -96,22 +96,22 @@ Fluvio **SPU-groups** define the configuration parameters used for provisioning 
 
 ##### SPU-group Spec
 
-{{< code style="light" >}}
+```yaml
 spec:
   replicas: 2
   minId: 11
   template:
     storage:
         size: 20Gi
-{{< /code >}}
+```
 
 
 ##### SPU-group Status
 
-{{< code style="light" >}}
+```yaml
 status:
     resolution: Reserved
-{{< /code >}}
+```
 
 SPU-group status has 3 **resolutions**: Init, Invalid, and Reserved. If the group is marked invalid, a **reason** field describes the error.
 
@@ -126,11 +126,11 @@ Checkout the [SPU-groups]({{< relref "../cli/spu-groups" >}}) CLI for additional
 
 ##### Topic Spec
 
-{{< code style="light" >}}
+```yaml
 spec:
   partitions: 6
   replicationFactor: 3
-{{< /code >}}
+```
 
 A topic with *6 partitions* and a *replication factor of 3* on a new cluster generates the following distribution:
 
@@ -142,7 +142,7 @@ Fluvio also supports **manual** partition/replica distribution through a **repli
 
 ##### Topic Status
 
-{{< code style="light" >}}
+```yaml
 status:
   resolution: Provisioned
   replicaMap: 
@@ -152,7 +152,7 @@ status:
     - 3: [0, 1, 2]
     - 4: [1, 2, 0]
     - 5: [2, 1, 0]
-{{< /code >}}
+```
 
 **Resolution** reflects the status of topic:
 
@@ -190,22 +190,22 @@ Topics and partitions are linked through a **parent-child** relationship. If a t
 
 ##### Partition Spec
 
-{{< code style="light" >}}
+```yaml
 spec:
   initialLeader: 101
   replicas: [101, 102]
-{{< /code >}}
+```
 
 The **SC** defines **replica assignment** and the SPU **initial leader**. After initial allocation, the **SC** notifies SPU **leader** and **followers** of the new partition.
 
 ##### Partition Status
 
-{{< code style="light" >}}
+```yaml
 status:
   leader: 101
   lrs: [101, 102]
   ...
-{{< /code >}}
+```
 
 **SPU leader** is responsible for managing **Live Replicas (lrs)** and other data streaming related parameters.
 

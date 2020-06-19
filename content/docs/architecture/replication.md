@@ -43,7 +43,7 @@ _Validate-only_ flag is available to verify a replica assignment file without ap
 
 **Replica assignment file** defines a **replica map** in JSON format. A replica map with 2 partitions and 3 replicas is defined as follows:
 
-{{< code lang="toml" style="light" >}}
+```toml
 { 
     "partitions": [{
             "id": 0,
@@ -55,7 +55,7 @@ _Validate-only_ flag is available to verify a replica assignment file without ap
         }
     ]
 }
-{{< /code >}}
+```
 
 The **replica map** definition meet the following criteria:
 
@@ -96,7 +96,7 @@ The topic configuration parameters are:
 
 If the algorithm starts at index 0, it generates the following replica distribution:
  
-{{< code lang="json" style="light" >}}
+```
 ------------------------------------------
 |  idx | 5 x SPUs                | gaps  |
 ------------------------------------------
@@ -117,11 +117,11 @@ If the algorithm starts at index 0, it generates the following replica distribut
 |   14 |              4  23      |   2   |
 |   15 |012                      |   0   |
 ------------------------------------------
-{{< /code >}}
+```
 
 Which translates into the following **replica map**:
 
-{{< code lang="json" style="light" >}}
+```
 ---------------------------
 | Partition |  Replicas   |
 ---------------------------
@@ -142,7 +142,7 @@ Which translates into the following **replica map**:
 |      14   |  [4, 2, 3]  |
 |      15   |  [0, 1, 2]  |
 ---------------------------   
-{{< /code >}}
+```
 
 For **balanced distribution** the algorithm **chains multiple calls sequentially**. The algorithm starts the next run **at the index** where the last run completed. That index is mapped to partition 0. 
 
@@ -179,7 +179,7 @@ The topic configuration parameters are:
 * partitions : **12**
 * replicas :  **4**
 
-{{< code lang="json" style="light" >}}
+```
 Stage 1: SPU Matrix allocation
 ------------------------------------------
     rack-a:  0, 1,  2
@@ -211,7 +211,7 @@ Partition |   Replicas           rack-a  rack-b  rack-c  rack-d
                     Leaders        3       3       3       3
                     Followers      9       9       9       9
 ----------------------------------------------------------------
-{{< /code >}}
+```
 
 Replicas are evenly distributed across racks and SPUs.
 
@@ -228,7 +228,7 @@ The topic configuration parameters are:
 * partitions : **6**
 * replicas :  **3**
 
-{{< code lang="json" style="light" >}}
+```
 Stage 1: SPU Matrix allocation (sorted by size)
 ------------------------------------------
     rack-c:  3, 4, 5
@@ -253,7 +253,7 @@ Partition |   Replicas          rack-c  rack-b  rack-a
                     Leaders       3       2       1 
                     Followers     6       4       2
 -------------------------------------------------------
-{{< /code >}}
+```
 
 Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs handle more replicas. If a power failure occurs on a large rack, leader redistribution may overwhelm the SPUs on the smaller racks.
 

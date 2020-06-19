@@ -59,9 +59,9 @@ is the replication factor for the topic. Replication is mandatory but mutually e
 * <strong>{{< pre >}}--replica-assignment &lt;file.json&gt;{{< /pre >}}</strong>:
 is the custom-defined replica assignment file. Replica-assignment is mutually exclusive with *partitions* and *replication*. The replica assignment file allows you to replace Fluvio's built-in replication algorithm with your custom SPU map for each topic/partitions.  
 
-    The replica-assignment JSON file has the following syntax:
+The replica-assignment JSON file has the following syntax:
 
-    {{< code lang="json" style="light" >}}
+```json
 { 
     "partitions": [
         {
@@ -74,11 +74,11 @@ is the custom-defined replica assignment file. Replica-assignment is mutually ex
         ...
     ]
 }
-{{< /code >}}
+```
 
-    The following example shows a replica assignment file with 2 partitions and 3 replicas: 
+The following example shows a replica assignment file with 2 partitions and 3 replicas: 
 
-    {{< code lang="json" style="light" >}}
+```json
 {
     "partitions": [
         {
@@ -99,7 +99,7 @@ is the custom-defined replica assignment file. Replica-assignment is mutually ex
         }
     ]
 }
-{{< /code >}}
+```
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
 is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.

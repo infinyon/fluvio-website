@@ -4,7 +4,7 @@ menu: Cloud Platform
 weight: 10
 ---
 
-Fluvio cloud is currently in alpha and we are working diligently to fix any issues that may arise. For support, please notify us in {{< target-blank title="Discord" url="https://discordapp.com/invite/bBG2dTz" >}}.
+Fluvio cloud is currently in alpha and we are working diligently to fix any issues that may arise. For support, please notify us in <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a>.
 
 
 ## Fluvio Cloud
@@ -25,9 +25,9 @@ There are currently 3 ways to stream real-time data to **Fluvio Cloud**, through
 * [Node App]({{< relref "../getting-started/build-node-app" >}})
 * [Rust App]({{< relref "../getting-started/build-rust-app" >}})
 
-Data streaming clients require a [profile file]({{< relref "../cli/profiles" >}}) that contains the authorization information associated with the cluster. The profile is generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
+Data streaming clients require a [profile file]({{< relref "../cli/profiles" >}}) that contains the authorization information associated with the cluster. The profile is generated during cluster setup and it is available for download in your <a href="https://app.fluvio.io" target="_blank">Fluvio Cloud</a> account.
 
-All data between clients and Fluvio Cloud is encrypted using {{< target-blank title="TLS" url="https://en.wikipedia.org/wiki/Transport_Layer_Security" >}}.
+All data between clients and Fluvio Cloud is encrypted using <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a>.
 
 ### Restrictions
 

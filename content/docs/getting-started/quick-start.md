@@ -22,7 +22,7 @@ Create an account, download Fluvio client library, and you are ready for data st
 
 Each Fluvio Cloud installation is assigned a unique **security profile**. Profiles ensure only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Account** to download and install the security profile associated with your environment.
 
-1. {{< target-blank title="SignUp" url="http://app.fluvio.io/signup" >}} for a new account.
+1. <a href="http://app.fluvio.io/signup" target="_blank">SignUp</a> for a new account.
         
     * Fill-in and submit the **New Account** form.
     * A verification message is sent to your email.
@@ -38,7 +38,7 @@ Each Fluvio Cloud installation is assigned a unique **security profile**. Profil
 
 4. Download your **Security Profile**
 
-    * The **installation guide** is published on your {{< target-blank title="Fluvio Cloud Dashboard" url="http://app.fluvio.io" >}}  
+    * The **installation guide** is published on your <a href="http://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a>
 
 All Fluvio clients, **CLI** and **API libraries**, require a **security profile** corresponding your Fluvio installation. 
 
