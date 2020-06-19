@@ -12,6 +12,7 @@ In this guide we’ll provide instructions on how to set up a <a href="https://n
 
 * [Create a cluster on Fluvio Cloud](/docs/getting-started/quick-start/#create-a-fluvio-cloud-account)
 * [Add a topic](/docs/getting-started/quick-start/#create-a-topic-and-stream-hello-world)
+
 {{< /idea >}}
 
 ## Setup a Node Environment
