@@ -5,7 +5,7 @@ toc: true
 weight: 20
 ---
 
-In this guide we’ll provide instructions on how to set up a {{< target-blank title="Node.js" url="https://nodejs.org" >}} environment and build a simple data streaming App.
+In this guide we’ll provide instructions on how to set up a <a href="https://nodejs.org" target="_blank">Node.js</a> environment and build a simple data streaming App.
 
 {{< idea >}}
 **Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start](/docs/getting-started/quick-start) at:
@@ -22,16 +22,15 @@ A Fluvio environment for Node requires: Node.js and Rust development environment
 
 Node.js installation varies depending on your operating system.
 
-|   Operating System     |         Instructions           |
 |------------------------|--------------------------------|
-| MacOS                  | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **macOS**.  |
-| Windows                | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **Windows**. |
-| Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of supported packages {{< target-blank title="here" url="https://nodejs.org/en/download/package-manager" >}}.  |
+| MacOS                  | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **macOS**.  |
+| Windows                | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **Windows**. |
+| Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of <a href="https://nodejs.org/en/download/package-manager" target="_blank">supported packages</a>.  |
 
 
 #### Install Rust
 
-Rust language utilizes an installer to download and provision Rust on your local system. Refer to {{< target-blank title="rustup" url="https://rustup.rs" >}} documentation to instructions.
+Rust language utilizes an installer to download and provision Rust on your local system. Refer to <a href="https://rustup.rs" target="_blank">rustup</a> documentation to instructions.
 
 ##### Install Rust toolchain
 
@@ -109,7 +108,7 @@ $ npm init -y
 
 The client library exports Fluvio data streaming APIs to the Node App.
 
-Use npm install to add {{< target-blank title="@fluvio/client" url="https://www.npmjs.com/package/@fluvio/client" >}} to the project:
+Use npm install to add <a href="https://www.npmjs.com/package/@fluvio/client" target="_blank">@fluvio/client</a> to the project:
 
 ```bash
 $ npm install @fluvio/client --save
@@ -129,7 +128,7 @@ A dependency to @fluvio/client is added to package.json.
 
 #### Implement Producer/Consumer exchange
 
-Fluvio client needs a [default profile](/docs/cli/profiles) to identify the location and the authorization token of the cluster. The file was generated during cluster setup and it is available for download in your {{< target-blank title="Fluvio Cloud" url="https://app.fluvio.io" >}} account.
+Fluvio client needs a [default profile](/docs/cli/profiles) to identify the location and the authorization token of the cluster. The file was generated during cluster setup and it is available for download in your <a href="https://app.fluvio.io" target="_blank">Fluvio Cloud</a> account.
 
 ##### Create Producer
 
@@ -263,7 +262,7 @@ Consumer listens continuously until &lt;CTRL&gt;-C is pressed.
 
 ## Download Node Demo Apps
 
-Fluvio published a series of examples in github at {{< target-blank title="node-demo-apps" url="https://github.com/infinyon/node-demo-apps" >}}. 
+Fluvio published a series of examples in github at <a href="https://github.com/infinyon/node-demo-apps" target="_blank">node-demo-apps</a>. 
 
 Clone the github repository and navigate to api-examples:
 

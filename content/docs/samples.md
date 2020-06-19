@@ -256,12 +256,12 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 
 |   Operating System     |         Instructions           |
 |------------------------|--------------------------------|
-| MacOS                  | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **macOS**.  |
-| Windows                | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **Windows**. |
-| Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of supported packages {{< target-blank title="here" url="https://nodejs.org/en/download/package-manager" >}}.  |
+| MacOS                  | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **macOS**.  |
+| Windows                | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **Windows**. |
+| Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of <a href="https://nodejs.org/en/download/package-manager" target="_blank">supported packages</a>.  |
 
 
-
+<a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a>
 
 #### Next Steps
 ---------------
