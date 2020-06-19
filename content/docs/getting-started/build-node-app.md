@@ -22,6 +22,7 @@ A Fluvio environment for Node requires: Node.js and Rust development environment
 
 Node.js installation varies depending on your operating system.
 
+|   Operating System     |         Instructions           |
 |------------------------|--------------------------------|
 | MacOS                  | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **macOS**.  |
 | Windows                | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **Windows**. |
