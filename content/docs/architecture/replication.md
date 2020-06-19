@@ -43,7 +43,7 @@ _Validate-only_ flag is available to verify a replica assignment file without ap
 
 **Replica assignment file** defines a **replica map** in JSON format. A replica map with 2 partitions and 3 replicas is defined as follows:
 
-```toml
+```json
 { 
     "partitions": [{
             "id": 0,
@@ -96,7 +96,7 @@ The topic configuration parameters are:
 
 If the algorithm starts at index 0, it generates the following replica distribution:
  
-```
+```bash
 ------------------------------------------
 |  idx | 5 x SPUs                | gaps  |
 ------------------------------------------

@@ -53,13 +53,13 @@ Fluvio CLI has one __default__ profile and an unlimited number of __user-defined
 The CLI searches for the __default.toml__ profile file in the following order: 
 
 * if $FLUVIO_HOME environment variable is set, look-up:
-    {{< text >}}
+    ```
     $FLUVIO_HOME/.fluvio/profiles/default.toml
-    {{< /text >}}
+    ```
 * if no environment variable is set, look-up:
-    {{< text >}}
+    ```
     $HOME/.fluvio/profiles/default.toml 
-    {{< /text >}}
+    ```
 
 {{< idea >}}
 The directory hierarchy  __/.fluvio/profiles/__ is preserved whether $FLUVIO_HOME is provisioned or not.

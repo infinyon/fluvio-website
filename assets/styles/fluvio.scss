@@ -310,6 +310,7 @@ footer {
 
 .main-area {
   min-width: 300px;
+  margin-right: 20px;
   padding: .5em 1em .5em .5em;
 }
 
@@ -574,13 +575,24 @@ footer {
   }
 }
 
+pre {
+  padding:15px;
+  border-radius: .3em;  
+  background: $col-callout-bg;
+  display: inline-block; 
+  border:1px solid $col-callout-border;  
+  width: 100%;
+}
+
 // --------------
 // Highlight
 // --------------
 .highlight {
   pre {
     padding:15px;
-    background: #233559;
+    background: $col-code-bg;
+    border:1px solid $col-callout-border;  
+    border: 0px;
   }
 
   code[class*="language-"],
