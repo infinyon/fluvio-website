@@ -8,6 +8,7 @@ weight: 20
 In this guide we’ll provide instructions on how to set up a <a href="https://nodejs.org" target="_blank">Node.js</a> environment and build a simple data streaming App.
 
 {{< idea >}}
+
 **Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start](/docs/getting-started/quick-start) at:
 
 * [Create a cluster on Fluvio Cloud](/docs/getting-started/quick-start/#create-a-fluvio-cloud-account)
