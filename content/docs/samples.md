@@ -9,10 +9,16 @@ Welcome to the intro guide to Fluvio! The Concepts section helps you learn about
 ## Header H2
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
 
-Some **Lists**
+Bullet Lists
 
 * Item 1
 * Item 2
+
+**Labeled** Lists
+
+* **Label-1**: items 1
+* **Lable-2**: items 2
+
 
 Some _Numbers_
 
@@ -33,8 +39,8 @@ Some _Numbers_
 - Or minuses
 + Or pluses
 
-### Header H3
-Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
+### Header H3 `with` Stuff
+Lorem ipsum is a `pseudo-Latin` text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
 
 #### Header h4
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
@@ -122,6 +128,85 @@ OPTIONS:
     -c, --sc <host:port>             Address of Streaming Controller
     -P, --profile <profile>          Profile name
 {{< /fluvio >}}
+
+```js
+flvClient.connect("server:port").then((sc) => {
+
+    sc.leader("my-topic", 0).then((leader) => {
+        leader.produce("hello world").then(len => {
+            console.log("message sent!");
+        });
+    })
+
+});
+```
+
+```rust
+
+//!----------------------------------
+//! # Streaming Coordinator Metadata
+//!
+//! Metadata stores a copy of the data from KV store in local memory.
+//!----------------------------------
+
+impl ScMetadata {
+    pub fn shared_metadata(config: ScConfig) -> Arc<Self> {
+        Arc::new(ScMetadata::new(config))
+    }
+
+    /// private function to provision metadata
+    fn new(config: ScConfig) -> Self {
+        ScMetadata {
+            auth_tokens: Arc::new(AuthTokenMemStore::default()),
+            spus: Arc::new(SpuMemStore::default()),
+            partitions: Arc::new(PartitionMemStore::default()),
+            topics: Arc::new(TopicMemStore::default()),
+            config: config,
+        }
+    }
+
+    /// reference to auth tokens
+    pub fn auth_tokens(&self) -> &Arc<AuthTokenMemStore> {
+        &self.auth_tokens
+    }
+
+    /// reference to spus
+    pub fn spus(&self) -> &Arc<SpuMemStore> {
+        &self.spus
+    }
+
+    /// reference to partitions
+    pub fn partitions(&self) -> &Arc<PartitionMemStore> {
+        &self.partitions
+    }
+
+    /// reference to topics
+    pub fn topics(&self) -> &Arc<TopicMemStore> {
+        &self.topics
+    }
+
+    /// reference to config
+    pub fn config(&self) -> &ScConfig {
+        &self.config
+    }
+
+    /// format metadata cache into a table string
+    #[allow(dead_code)]
+    pub fn table_fmt(&self) -> String {
+        let mut table = String::new();
+        let newline = format!("\n");
+
+        table.push_str(&self.auth_tokens().table_fmt());
+        table.push_str(&newline);
+        table.push_str(&self.spus.table_fmt());
+        table.push_str(&newline);
+        table.push_str(&self.topics.table_fmt());
+        table.push_str(&newline);
+        table.push_str(&self.partitions.table_fmt());
+        table
+    }
+}
+```
 
 {{< code lang="rust" >}}
 //!----------------------------------

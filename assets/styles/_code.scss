@@ -1,13 +1,13 @@
-code[class*="language-"],
-pre[class*="language-"] {
-    font-family: $font-callout;
-    font-size: 14px;    
-}
-
 .code-wrapper {
     margin-left: 2em;
     margin-right: 2em;
 
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-family: $font-callout;
+        font-size: 14px;    
+    }
+    
     &#light {
         background: #f8f8f8;
         padding: .3em 1em;

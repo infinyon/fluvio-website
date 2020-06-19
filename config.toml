@@ -1,6 +1,8 @@
 languageCode = "en-us"
 title = "Fluvio"
 
+pygmentsUseClasses=true
+
 [params]
   version = "1.0.2"
   blog_time_format = "January 02, 2006"
