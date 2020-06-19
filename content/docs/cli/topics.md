@@ -293,7 +293,7 @@ $ fluvio topic describe --topic kf-topic  --kf 0.0.0.0:9092
 
 Describe the same topic in __json__ format:
 
-{{< cli json >}}
+{{< fluvio json >}}
 $ fluvio topic describe --topic kf-topic  --kf 0.0.0.0:9092 -O json
  [
   {

@@ -77,37 +77,27 @@ Lorem ipsum is a pseudo-Latin text used in web design
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It’s also called placeholder (or filler) text. It’s a convenient tool for mock-ups. 
 {{< /text >}}
 
-{{< text >}}
-Lorem ipsum is a pseudo-Latin text used in web design
-{{< /text >}}
-
 {{< fluvio >}}
-$ fluvio auth-token list "test" -o 1
-fluvio 0.1.0
-Fluvio Command Line Interface
+$ fluvio auth-token create -h
+fluvio-auth-token-create 0.1.0
+Create auth token
 
 USAGE:
-    fluvio <SUBCOMMAND>
+    fluvio auth-token create [FLAGS] [OPTIONS] --max-spu <integer> --min-spu <integer> --token-name <string> --secret <alpha-numeric>
 
 FLAGS:
-    -h, --help    Prints help information
+    -g, --generate-secret    Generate a random secret
+    -h, --help               Prints help information
+
+OPTIONS:
+    -n, --token-name <string>        Token name
+    -s, --secret <alpha-numeric>     Token secret of 16 characters in length
 
 SUBCOMMANDS:
     consume       Read messages from a topic/partition
-    produce       Write log records to a topic/partition
-    spu           SPU operations
-    topic         Topic operations
-    auth-token    Athorization token operations
-    advanced      Advanced operations
-    help          Prints this message or the help of the given subcommand(s)s
 {{< /fluvio >}}
 
-{{< fluvio >}}
-$ fluvio auth-token list "test" -o 1
-error: cannot retrieve auth topics: Connection refused (os error 61) 
-{{< /fluvio >}}
-
-{{< fluvio >}}
+```
 $ fluvio auth-token create -h
 fluvio-auth-token-create 0.1.0
 Create auth token
@@ -127,7 +117,23 @@ OPTIONS:
     -t, --token-type <token-type>    Types [possible values: Custom, Managed, Any]
     -c, --sc <host:port>             Address of Streaming Controller
     -P, --profile <profile>          Profile name
-{{< /fluvio >}}
+```
+
+```javascript
+var showMessage = function (){
+    alert("Hello World!");
+};
+
+showMessage();
+
+var sayHello = function (firstName) {
+    alert("Hello " + firstName);
+};
+
+showMessage();
+
+sayHello("Bill");
+```
 
 ```js
 flvClient.connect("server:port").then((sc) => {
@@ -158,36 +164,8 @@ impl ScMetadata {
     fn new(config: ScConfig) -> Self {
         ScMetadata {
             auth_tokens: Arc::new(AuthTokenMemStore::default()),
-            spus: Arc::new(SpuMemStore::default()),
-            partitions: Arc::new(PartitionMemStore::default()),
-            topics: Arc::new(TopicMemStore::default()),
             config: config,
         }
-    }
-
-    /// reference to auth tokens
-    pub fn auth_tokens(&self) -> &Arc<AuthTokenMemStore> {
-        &self.auth_tokens
-    }
-
-    /// reference to spus
-    pub fn spus(&self) -> &Arc<SpuMemStore> {
-        &self.spus
-    }
-
-    /// reference to partitions
-    pub fn partitions(&self) -> &Arc<PartitionMemStore> {
-        &self.partitions
-    }
-
-    /// reference to topics
-    pub fn topics(&self) -> &Arc<TopicMemStore> {
-        &self.topics
-    }
-
-    /// reference to config
-    pub fn config(&self) -> &ScConfig {
-        &self.config
     }
 
     /// format metadata cache into a table string
@@ -196,151 +174,14 @@ impl ScMetadata {
         let mut table = String::new();
         let newline = format!("\n");
 
-        table.push_str(&self.auth_tokens().table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.spus.table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.topics.table_fmt());
-        table.push_str(&newline);
         table.push_str(&self.partitions.table_fmt());
         table
     }
 }
 ```
 
-{{< code lang="rust" >}}
-//!----------------------------------
-//! # Streaming Coordinator Metadata
-//!
-//! Metadata stores a copy of the data from KV store in local memory.
-//!----------------------------------
 
-impl ScMetadata {
-    pub fn shared_metadata(config: ScConfig) -> Arc<Self> {
-        Arc::new(ScMetadata::new(config))
-    }
-
-    /// private function to provision metadata
-    fn new(config: ScConfig) -> Self {
-        ScMetadata {
-            auth_tokens: Arc::new(AuthTokenMemStore::default()),
-            spus: Arc::new(SpuMemStore::default()),
-            partitions: Arc::new(PartitionMemStore::default()),
-            topics: Arc::new(TopicMemStore::default()),
-            config: config,
-        }
-    }
-
-    /// reference to auth tokens
-    pub fn auth_tokens(&self) -> &Arc<AuthTokenMemStore> {
-        &self.auth_tokens
-    }
-
-    /// reference to spus
-    pub fn spus(&self) -> &Arc<SpuMemStore> {
-        &self.spus
-    }
-
-    /// reference to partitions
-    pub fn partitions(&self) -> &Arc<PartitionMemStore> {
-        &self.partitions
-    }
-
-    /// reference to topics
-    pub fn topics(&self) -> &Arc<TopicMemStore> {
-        &self.topics
-    }
-
-    /// reference to config
-    pub fn config(&self) -> &ScConfig {
-        &self.config
-    }
-
-    /// format metadata cache into a table string
-    #[allow(dead_code)]
-    pub fn table_fmt(&self) -> String {
-        let mut table = String::new();
-        let newline = format!("\n");
-
-        table.push_str(&self.auth_tokens().table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.spus.table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.topics.table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.partitions.table_fmt());
-        table
-    }
-}
-{{< /code>}}
-
-{{< code lang="rust" style="light" >}}
-//!----------------------------------
-//! # Streaming Coordinator Metadata
-//!
-//! Metadata stores a copy of the data from KV store in local memory.
-//!----------------------------------
-
-impl ScMetadata {
-    pub fn shared_metadata(config: ScConfig) -> Arc<Self> {
-        Arc::new(ScMetadata::new(config))
-    }
-
-    /// private function to provision metadata
-    fn new(config: ScConfig) -> Self {
-        ScMetadata {
-            auth_tokens: Arc::new(AuthTokenMemStore::default()),
-            spus: Arc::new(SpuMemStore::default()),
-            partitions: Arc::new(PartitionMemStore::default()),
-            topics: Arc::new(TopicMemStore::default()),
-            config: config,
-        }
-    }
-
-    /// reference to auth tokens
-    pub fn auth_tokens(&self) -> &Arc<AuthTokenMemStore> {
-        &self.auth_tokens
-    }
-
-    /// reference to spus
-    pub fn spus(&self) -> &Arc<SpuMemStore> {
-        &self.spus
-    }
-
-    /// reference to partitions
-    pub fn partitions(&self) -> &Arc<PartitionMemStore> {
-        &self.partitions
-    }
-
-    /// reference to topics
-    pub fn topics(&self) -> &Arc<TopicMemStore> {
-        &self.topics
-    }
-
-    /// reference to config
-    pub fn config(&self) -> &ScConfig {
-        &self.config
-    }
-
-    /// format metadata cache into a table string
-    #[allow(dead_code)]
-    pub fn table_fmt(&self) -> String {
-        let mut table = String::new();
-        let newline = format!("\n");
-
-        table.push_str(&self.auth_tokens().table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.spus.table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.topics.table_fmt());
-        table.push_str(&newline);
-        table.push_str(&self.partitions.table_fmt());
-        table
-    }
-}
-{{< /code>}}
-
-{{< cli >}}
+{{< fluvio >}}
 $ consul config read -kind service-defaults -name web
 {
    "Kind": "service-defaults",
@@ -350,7 +191,7 @@ $ consul config read -kind service-defaults -name web
 {{< /fluvio >}}
 
 
-{{< cli >}}
+{{< fluvio >}}
 $ test
 apiVersion: "rbac.istio.io/v1alpha1"
 kind: ServiceRole
@@ -365,7 +206,8 @@ spec:
         values: ["27017"]
 {{< /fluvio >}}
 
-{{< cli json >}}
+
+```diff
 $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 --- Pilot Clusters
 +++ Envoy Clusters
@@ -410,10 +252,18 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
         }
     }
 }
-{{< /fluvio >}}
+```
+
+|   Operating System     |         Instructions           |
+|------------------------|--------------------------------|
+| MacOS                  | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **macOS**.  |
+| Windows                | Use the official installer from {{< target-blank title="Node.js" url="https://nodejs.org" >}} to install on **Windows**. |
+| Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of supported packages {{< target-blank title="here" url="https://nodejs.org/en/download/package-manager" >}}.  |
+
 
 {{< links "Next Steps" >}}
 * [Getting Started](...)
+{{< /links >}}
 
 {{< links "Related Items" >}}
 * [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview" >}})
