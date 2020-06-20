@@ -7,12 +7,12 @@
     position: relative;
     width: 100%;
 
-    margin: .5em 0 .5em .5em;
+    margin: .5em 0 .5em 1em;
     max-width: calc(100% - .5em - .5em - 1em);
     
     @media (min-width: 768px) {
-        margin: .5em 1.25em .2em;
-        max-width: calc(100% - .5em - .5em - 1.25em - 1.25em);
+        margin: .5em 0 .5em 1em;
+        max-width: calc(100% - .5em - .5em - .5em);
     }
 
     ul li {
@@ -89,7 +89,7 @@
         line-height: 0;
 
         .icon {
-            left: -.8em;
+            left: -.75em;
             top: 50%;
             position: absolute;
 

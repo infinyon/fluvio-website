@@ -41,7 +41,6 @@ h2:after, h3:after {
   position: relative;
   height: 2px;
 }
-
 h2:after {
   width: 100%;
   bottom: 10px;
@@ -52,6 +51,7 @@ h3:after {
   margin-right: -5px;
   border-bottom: 1px solid  $col-blue-light3;
 }
+
 .font-md-underline { line-height: 2.1em; }
 .font-md-underline:after {
   background: none repeat scroll 0 0 $col-blue-light3;
@@ -164,6 +164,18 @@ a#logo {
       margin-bottom: .2rem;
     }
   }
+
+  dl {
+    dt {
+      margin-left: 1em;      
+      margin-top: 1rem;
+      margin-bottom: .7rem;
+    }
+    dd {
+      margin-left: 2em;
+    }
+  }
+
 }
 
 .jumbotron {

@@ -39,6 +39,23 @@ Some _Numbers_
 - Or minuses
 + Or pluses
 
+## Definition List
+
+A list of definitions:
+
+First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term. 
+: This is another definition of the second term.
+
+## Quotes
+
+The following is a quote
+
+> This is a quote
+
 ### Header H3 `with` Stuff
 Lorem ipsum is a `pseudo-Latin` text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
 
@@ -144,7 +161,6 @@ flvClient.connect("server:port").then((sc) => {
 ```
 
 ```rust
-
 //!----------------------------------
 //! # Streaming Coordinator Metadata
 //!
@@ -184,22 +200,6 @@ $ consul config read -kind service-defaults -name web
    "Name": "web",
    "Protocol": "http"
 }
-{{< /fluvio >}}
-
-
-{{< fluvio >}}
-$ test
-apiVersion: "rbac.istio.io/v1alpha1"
-kind: ServiceRole
-metadata:
-    name: mongodb-viewer
-    namespace: default
-spec:
-    rules:
-    - services: ["mongodb.default.svc.cluster.local"]
-    constraints:
-    - key: "destination.port"
-        values: ["27017"]
 {{< /fluvio >}}
 
 
