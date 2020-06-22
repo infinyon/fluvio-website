@@ -186,8 +186,8 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 
 ### Links
 
-* [Visit W3Schools](https://www.w3schools.com)
-* <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a>
+* [Visit W3Schools (route page)](https://www.w3schools.com)
+* <a href="https://www.w3schools.com" target="_blank">Visit W3Schools (new tab)</a>
 
 ### Definition List
 
