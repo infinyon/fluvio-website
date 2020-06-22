@@ -79,7 +79,7 @@ p {
 }
 
 hr {
-  margin-top: -10px;
+  margin-top: -20px;
   margin-right: 20px;
   border-top: 1px solid $col-gray-light6;
 }
@@ -173,6 +173,17 @@ a#logo {
     }
     dd {
       margin-left: 2em;
+    }
+  }
+
+  blockquote {
+    margin: .5em 1em .5em 1.5em;
+    border-left: 5px solid $col-blue-light8; 
+    p {
+      padding: .2em .8em;
+      font-family: $font-logo;
+      font-size: 1.1em;
+      color: $col-headers;
     }
   }
 

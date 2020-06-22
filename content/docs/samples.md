@@ -54,7 +54,7 @@ Second Term
 
 The following is a quote
 
-> This is a quote
+> Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text.
 
 ### Header H3 `with` Stuff
 Lorem ipsum is a `pseudo-Latin` text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
@@ -198,17 +198,6 @@ impl ScMetadata {
 }
 ```
 
-
-{{< fluvio >}}
-$ consul config read -kind service-defaults -name web
-{
-   "Kind": "service-defaults",
-   "Name": "web",
-   "Protocol": "http"
-}
-{{< /fluvio >}}
-
-
 ```diff
 $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 --- Pilot Clusters
@@ -272,4 +261,4 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 
 #### Related Topics
 -------------------
-* [Compare Fluvio with Compare with Other Software]({{< relref "fluvio-vs-others/overview" >}})
+* [Compare with Other Software](...)
