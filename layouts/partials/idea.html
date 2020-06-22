@@ -1,0 +1,4 @@
+{{ . | replaceRE "<p>-&gt;(.+)</p>" `
+<div><aside class="callout idea mb-3"><div class="icon"><i class="far fa-lightbulb"></i></div><div class="content">
+${1}
+</div></aside></div>` | safeHTML }}
