@@ -1,6 +1,6 @@
 <h1>{{ .page.Title }}</h1>
 {{- $content := .page.Content}}
-{{- $content := partial "idea.html" $content -}}
-{{- $content := partial "caution.html" $content -}}
-{{- $content := partial "headline-hash.html" $content -}}
+{{- $content := partial "augment/idea-symbol.html" $content -}}
+{{- $content := partial "augment/caution-symbol.html" $content -}}
+{{- $content := partial "augment/headline-hash.html" $content -}}
 {{ $content }}
