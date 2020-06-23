@@ -15,7 +15,7 @@
 	{{- $all_sorted := where $level_sections.ByWeight ".Params.hidden" "!=" true -}}
 	{{ range $all_sorted }}
 		{{ if .IsPage }}
-			{{ template "page-card" (dict "page" . "selected" $selected "slug" .Params.slug) }}
+			{{ template "page-card" (dict "page" . "selected" $selected) }}
 		{{ else }}
 			<div class="card">
 				{{- $ancester := false}}
@@ -31,16 +31,8 @@
 
 {{- define "page-card" -}}
 	{{- $menu := .page.Params.menu | default .page.LinkTitle -}}
-
-	{{- $select := false -}}
-	{{- if eq .page .selected }}
-		{{- $select = true -}}
-	{{- else if and (eq .selected.File.LogicalName "_index.md" ) (eq .slug "/") }}
-		{{- $select = true -}}
-	{{- end -}}	
-
 	{{- $selected := "" -}}
-	{{- if eq $select true }}
+	{{- if eq .page .selected }}
 		{{- $selected = " selected" -}}
 	{{- end -}}
 	<div class="card card-page {{ $selected }}"><a href="{{ .page.RelPermalink }}">{{ $menu }}</a></div>
@@ -68,10 +60,17 @@
 	{{- if .ancester -}}
 		{{- $show = " show" -}}
 	{{- end -}}
+	{{- $menu := .section.Params.menu | default .section.LinkTitle -}}
+
+	{{- $selected := "" -}}
+	{{- if eq .selected.File.LogicalName "_index.md" }}
+		{{- $selected = " selected" -}}
+	{{- end -}}
 
   <div id="clps-{{ $section_id }}" class="collapse{{ $show }}" data-parent="#{{ .parent }}" aria-labelledby="hdr-{{ $section_id }}">
     <div id="{{ $section_id }}" class="card-body">
-      {{- template "section-content" (dict "section" .section "parent" $section_id "ancesters" .ancesters "selected" .selected) -}}
+		<div class="card card-page{{ $selected }}"><a href="{{ .section.RelPermalink }}">{{ $menu }}</a></div>
+      	{{- template "section-content" (dict "section" .section "parent" $section_id "ancesters" .ancesters "selected" .selected) -}}
     </div>
   </div>
 {{- end -}}
