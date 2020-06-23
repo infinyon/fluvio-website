@@ -25,53 +25,10 @@ Replicas have 2 roles, leader and follower:
 
 ## Replication Assignment
 
-Fluvio has two types for replication assignment: manual and computed. **Manual Replica Assignment** provides the ability to apply your own **custom replication** algorithm. **Computed Replica Assignment** uses the Fluvio's replication algorithm to compute the replica map.
+Fluvio replication assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment](#manual-replica-assignment) instead.
 
-### Manual Replica Assignment (MRA)
 
-**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status]({{< relref "sc#topic-status" >}}). In fact, the **replica map** defined as defined in the file is assigned to this field.
-
-The following command creates a topic from a **replica assignment file**:
-
-{{< fluvio >}}
-$ fluvio topic create --topic custom-topic --replica-assignment ./my-assignment
-{{< /fluvio >}}
-
-_Validate-only_ flag is available to verify a replica assignment file without applying any changes.
-
-#### Replica Assignment File
-
-**Replica assignment file** defines a **replica map** in JSON format. A replica map with 2 partitions and 3 replicas is defined as follows:
-
-```json
-{ 
-    "partitions": [{
-            "id": 0,
-            "replicas": [0, 1, 2] 
-        }, 
-        {
-            "id": 1,
-            "replicas": [1, 2, 0] 
-        }
-    ]
-}
-```
-
-The **replica map** definition meet the following criteria:
-
-* **id**:
-    - must start with 0.
-    - must be in sequence, without gaps.
-
-* **replicas**:
-    - must have at least one element.
-    - all replicas must have the same number of elements.
-    - all elements must be unique.
-    - all elements must be positive integers.
-
-For additional information on how to check the result of a replica assignment file, see [Topic CLI]({{< relref "../cli/topics" >}}).
-
-### Computed Replica Assignment (CRA)
+### Replica Assignment Algorithm
 
 **CRA** uses Fluvio's replica assignment algorithm to generate a **replica map**. The algorithm takes into account the following elements:
 
@@ -85,18 +42,16 @@ For additional information on how to check the result of a replica assignment fi
 
 The algorithm uses a **round-robin**, **gap-enabled** distribution assignment. 
 
-The cluster has:
+For a cluster with:
 
-*  SPUs : **5**
+| SPUs         |  Replicas    |  Partitions   |
+|--------------|--------------|---------------|
+| **5**        | **3**        | **15**        |
 
-The topic configuration parameters are:
 
-* partitions : **15**
-* replicas :  **3**
-
-If the algorithm starts at index 0, it generates the following replica distribution:
+The algorithm starting at index 0, generates the following replica distribution:
  
-```bash
+```
 ------------------------------------------
 |  idx | 5 x SPUs                | gaps  |
 ------------------------------------------
@@ -119,7 +74,7 @@ If the algorithm starts at index 0, it generates the following replica distribut
 ------------------------------------------
 ```
 
-Which translates into the following **replica map**:
+Next, the indexed distribution is collapsed in the following **replica map**:
 
 ```
 ---------------------------
@@ -153,7 +108,7 @@ In this example, if the last replica assignment completed at index 8, the next r
 
 **CRA with rack enabled** can be used if **all SPUs** in the cluster have **rack** defined.
 
-Rack is used to earmark SPUs a locations such as a server rack, or a cloud availability zones. The algorithm ensures partitions are distributed **across racks**. It is important to have an equal number of SPUs in each rack to get a **balanced distribution**. 
+Racks are used to earmark SPUs with a locations such as a server rack, or a cloud availability zone. The algorithm ensures partitions are distributed **across racks**. To achieve a  **balanced distribution**, you must have the same number of SPUs for each rack.
 
 ##### Algorithm
 
@@ -256,6 +211,50 @@ Partition |   Replicas          rack-c  rack-b  rack-a
 ```
 
 Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs handle more replicas. If a power failure occurs on a large rack, leader redistribution may overwhelm the SPUs on the smaller racks.
+
+### Manual Replica Assignment
+
+**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status]({{< relref "sc#topic-status" >}}). In fact, the **replica map** defined as defined in the file is assigned to this field.
+
+The following command creates a topic from a **replica assignment file**:
+
+{{< fluvio >}}
+$ fluvio topic create --topic custom-topic --replica-assignment ./my-assignment
+{{< /fluvio >}}
+
+_Validate-only_ flag is available to verify a replica assignment file without applying any changes.
+
+#### Replica Assignment File
+
+**Replica assignment file** defines a **replica map** in JSON format. A replica map with 2 partitions and 3 replicas is defined as follows:
+
+```json
+{ 
+    "partitions": [{
+            "id": 0,
+            "replicas": [0, 1, 2] 
+        }, 
+        {
+            "id": 1,
+            "replicas": [1, 2, 0] 
+        }
+    ]
+}
+```
+
+The **replica map** definition meet the following criteria:
+
+* **id**:
+    - must start with 0.
+    - must be in sequence, without gaps.
+
+* **replicas**:
+    - must have at least one element.
+    - all replicas must have the same number of elements.
+    - all elements must be unique.
+    - all elements must be positive integers.
+
+For additional information on how to check the result of a replica assignment file, see [Topic CLI]({{< relref "../cli/topics" >}}).
 
 #### Next Steps
 ----------------

@@ -2,9 +2,7 @@
 table {
     border-collapse: collapse;
     border: 1px solid $col-gray-light8;
-    width: calc(100% - 8em);
     min-width: 420px;
-    max-width: 900px;
     margin-left: 4em;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
@@ -23,5 +21,4 @@ td {
     padding: 0.6rem;
 }
 
-td:nth-child(1) {min-width: 160px} 
 tr:nth-child(even) {background: $col-gray-light12}
