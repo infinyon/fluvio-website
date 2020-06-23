@@ -53,16 +53,16 @@ is the partition index of a topic from which to read the messages. The partition
 is the maximum number of bytes of a message retrieved. The maxbytes field is optional.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--spu{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--spu{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--spu &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Processing Unit. The SPU is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SPU is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Processing Unit. The SPU is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SPU is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Kafka Controller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--spu{{< /pre >}}. The KF is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Kafka Controller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--spu{{< /pre >}}. The KF is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
+is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service](..#target-service) section.
 
 * <strong>{{< pre >}}--output &lt;type&gt;{{< /pre >}}</strong>:
 is the format to be used to display the messages. The output is an optional field and it defaults to __dynamic__, where the parser will attempt to guess the message type. Known formats are: __text__, __binary__, __json__, and __raw__.
@@ -102,8 +102,8 @@ three
 
 #### Related Topics
 -------------------
-* [Produce CLI]({{< relref "produce" >}})
-* [SPUs CLI]({{< relref "spus" >}})
-* [Custom SPU CLI]({{< relref "custom-spus" >}})
-* [SPU-Groups CLI]({{< relref "spu-groups" >}})
-* [Topics CLI]({{< relref "topics" >}})
+* [Produce CLI](../produce)
+* [SPUs CLI](../spus)
+* [Custom SPU CLI](../custom-spus)
+* [SPU-Groups CLI](../spu-groups)
+* [Topics CLI](../topics)

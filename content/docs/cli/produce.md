@@ -49,16 +49,16 @@ is the file that contains the records to be sent to the topic/partition. Each li
 is the file that contains the record to be sent to the topic/partition. The entire file is sent as one record. This field can be used to send binary objects such as images to the data stream. This is an optional field.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--spu{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--spu{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--spu &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Processing Unit. The SPU is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SPU is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Processing Unit. The SPU is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--kf{{< /pre >}}. The SPU is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Kafka Controller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--spu{{< /pre >}}. The KF is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Kafka Controller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}} and {{< pre >}}--spu{{< /pre >}}. The KF is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
+is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service](..#target-service) section.
 
 ### Produce Messages Examples 
 
@@ -112,8 +112,8 @@ Ok!
 
 #### Related Topics
 -------------------
-* [Consume CLI]({{< relref "consume" >}})
-* [SPUs CLI]({{< relref "spus" >}})
-* [Custom SPU CLI]({{< relref "custom-spus" >}})
-* [SPU-Groups CLI]({{< relref "spu-groups" >}})
-* [Topics CLI]({{< relref "topics" >}})
+* [Consume CLI](../consume)
+* [SPUs CLI](../spus)
+* [Custom SPU CLI](../custom-spus)
+* [SPU-Groups CLI](../spu-groups)
+* [Topics CLI](../topics)

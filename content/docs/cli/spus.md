@@ -7,8 +7,8 @@ The __SPUs__, also known as __Streaming Processing Units__, are the service engi
 
 Fluio supports two types of SPUs:
 
-* __Managed SPUs__: defined in [SPU-Groups CLI]({{< relref "spu-groups" >}}).
-* __Custom SPUs__: defined in [Custom-SPUs CLI]({{< relref "custom-spus" >}})
+* **Managed SPUs**: defined in [SPU-Groups CLI](../spu-groups).
+* **Custom SPUs**: defined in [Custom SPU CLI](../custom-spus)
 
 SPU module defines the CLI operations that are common both SPU types: 
 
@@ -36,10 +36,10 @@ OPTIONS:
 The options are defined as follows:
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Controller. The SC is an optional field used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Controller. The SC is an optional field used in combination with Cli Profiles](../#profiles) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
+is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service](..#target-service) section.
 
 * <strong>{{< pre >}}--output &lt;type&gt;{{< /pre >}}</strong>:
 is the format to be used to display the SPUs. The output is an optional field and it defaults to __table__ format. Alternative formats are: __yaml__ and __json__.
@@ -164,8 +164,8 @@ $ fluvio spu list  --sc `SC`:9003 -O json
 
 #### Related Topics
 -------------------
-* [Produce CLI]({{< relref "produce" >}})
-* [Consume CLI]({{< relref "consume" >}})
-* [Custom SPU CLI]({{< relref "custom-spus" >}})
-* [SPU-Groups CLI]({{< relref "spu-groups" >}})
-* [Topics CLI]({{< relref "topics" >}})
+* [Produce CLI](../produce)
+* [Consume CLI](../consume)
+* [Custom SPU CLI](../custom-spus)
+* [SPU-Groups CLI](../spu-groups)
+* [Topics CLI](../topics)

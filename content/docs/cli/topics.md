@@ -102,13 +102,13 @@ The following example shows a replica assignment file with 2 partitions and 3 re
 ```
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Controller. The SC is optional and mutually exclusive with {{< pre >}}--kf{{< /pre >}}. The SC is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Kafka Controller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}}. The KF is used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Kafka Controller. The KF is optional and mutually exclusive with {{< pre >}}--sc{{< /pre >}}. The KF is used in combination with [Cli Profiles](../profiles) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
+is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service](..#target-service) section.
 
 ### Create Topic Examples 
 
@@ -396,8 +396,8 @@ $ fluvio topic list --kf 0.0.0.0:9092
 
 #### Related Topics
 -------------------
-* [Produce CLI]({{< relref "produce" >}})
-* [Consume CLI]({{< relref "consume" >}})
-* [SPUs CLI]({{< relref "spus" >}})
-* [Custom SPU CLI]({{< relref "custom-spus" >}})
-* [SPU-Groups CLI]({{< relref "spu-groups" >}})
+* [Produce CLI](../produce)
+* [Consume CLI](../consume)
+* [SPUs CLI](../spus)
+* [Custom SPU CLI](../custom-spus)
+* [SPU-Groups CLI](../spu-groups)

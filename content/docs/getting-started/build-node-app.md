@@ -1,5 +1,5 @@
 ---
-title: Build a data streaming up App in Node.js
+title: Build a data streaming App in Node
 menu: Build a Node App
 toc: true
 weight: 20

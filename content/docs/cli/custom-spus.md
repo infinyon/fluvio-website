@@ -107,10 +107,10 @@ is the public interface of the Custom-SPU services. The public server informatio
 is the private interface of the Custom-SPU service. SPUs establish private connections to negotiate leader election and replicate data from leaders to followers. The private server is a mandatory field.
 
 * <strong>{{< pre >}}--sc &lt;host:port&gt;{{< /pre >}}</strong>:
-is the public interface of the Streaming Controller. The SC is an optional field used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the public interface of the Streaming Controller. The SC is an optional field used in combination with [Cli Profiles](../#profiles) to compute a target service.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
+is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service](..#target-service) section.
 
 
 ### Register Custom-SPU Example
@@ -215,8 +215,8 @@ ID   NAME            STATUS  TYPE    RACK  PUBLIC              PRIVATE
 
 #### Related Topics
 -------------------
-* [Produce CLI]({{< relref "produce" >}})
-* [Consume CLI]({{< relref "consume" >}})
-* [SPUs CLI]({{< relref "spus" >}})
-* [SPU-Groups CLI]({{< relref "spu-groups" >}})
-* [Topics CLI]({{< relref "topics" >}})
+* [Produce CLI](../produce)
+* [Consume CLI](../consume)
+* [SPUs CLI](../spus)
+* [SPU-Groups CLI](../spu-groups)
+* [Topics CLI](../topics)

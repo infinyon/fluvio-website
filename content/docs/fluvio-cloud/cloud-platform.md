@@ -21,7 +21,7 @@ Checkout [Quick Start]({{< relref "../getting-started/#create-a-fluvio-cloud-acc
 ### Data Streaming to Cloud
 
 There are currently 3 ways to stream real-time data to **Fluvio Cloud**, through:
-* [CLI]({{< relref "../cli/overview" >}})
+* [CLI](/docs/cli)
 * [Node App]({{< relref "../getting-started/build-node-app" >}})
 * [Rust App]({{< relref "../getting-started/build-rust-app" >}})
 
@@ -45,6 +45,6 @@ Later versions will provide the ability to control **storage** and **SPU** confi
 
 #### Related Topics
 -------------------
-* [Quick Start]({{< relref "../getting-started/" >}})
-* [CLI]({{< relref "../cli/overview" >}})
+* [Getting Started](/docs/getting-started)
+* [CLI](/docs/cli)
 * [Architecture](/docs/architecture)

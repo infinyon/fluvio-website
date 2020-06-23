@@ -68,13 +68,13 @@ The options are defined as follows:
 is a list of requests supported by the CLI. Request is a mandatory option.
 
 * <strong>{{< pre >}}--kf &lt;host:port&gt;{{< /pre >}}</strong>:
-is the interface of the Kafka Controller. The Kf is an optional field used in combination with [CLI Profiles]({{< relref "overview#profiles" >}}) to compute a target service.
+is the interface of the Kafka Controller. The Kf is an optional field used in combination with [Cli Profiles](../#profiles) to compute a target service.
 
 * <strong>{{< pre >}}--json-file &lt;file.json&gt;{{< /pre >}}</strong>:
 is the JSON file for the request type. JSON file is a mandatory option.
 
 * <strong>{{< pre >}}--profile &lt;profile&gt;{{< /pre >}}</strong>:
-is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service]({{< relref "overview#target-service" >}}) section.
+is the custom-defined profile file. The profile is an optional field used to compute a target service. For additional information, see [Target Service](..#target-service) section.
 
 ... Fluvio
 

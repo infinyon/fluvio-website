@@ -34,6 +34,5 @@ $ kubectl apply -f ./k8-util/crd/config/gp2-storageclass-spu.yaml
 
 #### Next Steps
 ----------------
-* [Install Fluvio]({{< relref "install-fluvio" >}})
-* [Install CLI]({{< relref "../cli/overview" >}})
-
+* [Install Fluvio](../install-fluvio)
+* [Install CLI](docs/cli)
