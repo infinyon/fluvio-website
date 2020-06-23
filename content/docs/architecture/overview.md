@@ -1,5 +1,5 @@
 ---
-title: Architecture Overview
+title: Architecture
 menu: Overview
 weight: 10
 ---
@@ -18,7 +18,7 @@ Fluvio is a **Cloud Native** platform designed to work with any infrastructure t
 
 #### Fluvio Cloud
 
-If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}})**. The cloud installation hides all complexity associated with the infrastructure and exposes only relevant streaming APIs. Use the **[Quick Start]({{< relref "../getting-started/quick-start" >}})** guide to setup your own dedicated cloud environment.
+If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}})**. The cloud installation hides all complexity associated with the infrastructure and exposes only relevant streaming APIs. Use the **[Quick Start]({{< relref "../getting-started" >}})** guide to setup your own dedicated cloud environment.
 
 
 ## High Level Architecture

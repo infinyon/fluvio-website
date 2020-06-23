@@ -13,10 +13,9 @@
 	{{- $selected := .selected -}}
 	{{- $level_sections :=  (union .section.Pages .section.Sections) -}}
 	{{- $all_sorted := where $level_sections.ByWeight ".Params.hidden" "!=" true -}}
-
 	{{ range $all_sorted }}
 		{{ if .IsPage }}
-			{{ template "page-card" (dict "page" . "selected" $selected) }}
+			{{ template "page-card" (dict "page" . "selected" $selected "slug" .Params.slug) }}
 		{{ else }}
 			<div class="card">
 				{{- $ancester := false}}
@@ -31,9 +30,17 @@
 {{- end -}}
 
 {{- define "page-card" -}}
-	{{- $selected := "" -}}
 	{{- $menu := .page.Params.menu | default .page.LinkTitle -}}
+
+	{{- $select := false -}}
 	{{- if eq .page .selected }}
+		{{- $select = true -}}
+	{{- else if and (eq .selected.File.LogicalName "_index.md" ) (eq .slug "/") }}
+		{{- $select = true -}}
+	{{- end -}}	
+
+	{{- $selected := "" -}}
+	{{- if eq $select true }}
 		{{- $selected = " selected" -}}
 	{{- end -}}
 	<div class="card card-page {{ $selected }}"><a href="{{ .page.RelPermalink }}">{{ $menu }}</a></div>

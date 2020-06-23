@@ -9,10 +9,10 @@ In this guide we’ll provide instructions on how to set up a <a href="https://n
 
 {{< idea >}}
 
-**Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start](/docs/getting-started/quick-start) at:
+**Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start](/docs/getting-started/) at:
 
-* [Create a cluster on Fluvio Cloud](/docs/getting-started/quick-start/#create-a-fluvio-cloud-account)
-* [Add a topic](/docs/getting-started/quick-start/#create-a-topic-and-stream-hello-world)
+* [Create a cluster on Fluvio Cloud](/docs/getting-started/#create-a-fluvio-cloud-account)
+* [Add a topic](/docs/getting-started/#create-a-topic-and-stream-hello-world)
 
 {{< /idea >}}
 

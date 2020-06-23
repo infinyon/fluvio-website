@@ -8,10 +8,12 @@ weight: 30
 In this guide we’ll provide instructions on how to set up a <a href="https://www.rust-lang.org" target="_blank">Rust</a> environment and build a simple data streaming App.
 
 {{< idea >}}
-**Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start]({{< relref "quick-start" >}}) at:
 
-* [Create a cluster on Fluvio Cloud]({{< relref "quick-start/#create-a-fluvio-cloud-account" >}})
-* [Add a topic]({{< relref "quick-start/#create-a-topic-and-stream-hello-world" >}})
+**Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Getting Started](/docs/getting-started) at:
+
+* [Create a cluster on Fluvio Cloud](/docs/getting-started/#create-a-fluvio-cloud-account)
+* [Add a topic](/docs/getting-started/#create-a-topic-and-stream-hello-world)
+
 {{< /idea >}}
 
 ## Setup a Rust Environment

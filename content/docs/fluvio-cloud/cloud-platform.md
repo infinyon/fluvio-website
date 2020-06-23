@@ -15,7 +15,7 @@ The installation is provisioned with 1 x [Streaming Controller]({{< relref "../a
 
 {{< image src="architecture/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 
-Checkout [Quick Start]({{< relref "../getting-started/quick-start#create-a-fluvio-cloud-account" >}}) on instruction on how to create a cloud account. 
+Checkout [Quick Start]({{< relref "../getting-started/#create-a-fluvio-cloud-account" >}}) on instruction on how to create a cloud account. 
 
 
 ### Data Streaming to Cloud
@@ -45,6 +45,6 @@ Later versions will provide the ability to control **storage** and **SPU** confi
 
 #### Related Topics
 -------------------
-* [Quick Start]({{< relref "../getting-started/quick-start" >}})
+* [Quick Start]({{< relref "../getting-started/" >}})
 * [CLI]({{< relref "../cli/overview" >}})
 * [Architecture]({{< relref "../architecture/overview" >}})
