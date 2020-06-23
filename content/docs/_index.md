@@ -4,7 +4,7 @@ title: Fluvio Data Streaming Platform
 
 Fluvio is an open source, **cloud native** platform designed to work with [Kubernetes]({{< relref "k8-integration" >}}). The platform has two core Microservices, SC and SPU that can be containerized, independently provisioned, and dynamically orchestrated. The platform was designed for **horizontal scale** where new components are seamlessly absorbed without disruption to the overall health of the system.
 
-{{< image src="cloud-native.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
+{{< image src="architecture/cloud-native.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 
 Fluvio can be deployed in any **public cloud** and **private data centers** where Kubernetes is available. 
 

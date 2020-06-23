@@ -6,7 +6,7 @@ weight: 10
 
 The quickest path to data streaming is with [Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}}). Every account gets a dedicated **[Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}})** installation in the cloud, provisioned with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU). 
 
-{{< image src="quick-start.svg" alt="Fluvio - Cloud Streaming" justify="center" width="500">}}
+{{< image src="getting-started/quick-start.svg" alt="Fluvio - Cloud Streaming" justify="center" width="500">}}
 
 Create an account, download Fluvio client library, and you are ready for data streaming.
 

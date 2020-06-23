@@ -25,7 +25,7 @@ If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**,
 
 Fluvio architecture is centered around **real time streaming** where the platform can **scale horizontally** to accommodate large volumes of data.
 
-{{< image src="sc-spu.svg" alt="Architecture Components - SC/SPUs" justify="center" width="440" type="scaled-90">}}
+{{< image src="architecture/sc-spu.svg" alt="Architecture Components - SC/SPUs" justify="center" width="440" type="scaled-90">}}
 
 **Streaming Controller (SC)** manages **SPU life cycle** and optimizes **data stream distribution** across the cluster. **Streaming Processing Unit (SPU)** is responsible for data streaming.
 
@@ -36,7 +36,7 @@ SCs and SPUs are **independent**, **loosely coupled** services. Each service can
 
 Fluvio is designed to address a variety of **deployment scenarios** from public clouds to private data centers, edge networks and IOT devices. **SC** maintains the **topology map** of the **SPUs** and serves as the first point of contact for producers and consumers.
 
-{{< image src="cloud-edge-iot.svg" alt="DC, Cloud, Edge, IoT" justify="center" width="580" type="scaled-90">}}
+{{< image src="architecture/cloud-edge-iot.svg" alt="DC, Cloud, Edge, IoT" justify="center" width="580" type="scaled-90">}}
 
 The **SC** handles **topology map dynamically** to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
@@ -47,7 +47,7 @@ For a deep dive in the SC design, checkout the [SC]({{< relref "SC" >}}) section
 
 **Streaming Processing Units (SPUs)** are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
 
-{{< image src="spus.svg" alt="SPU produce/consume & replication" justify="center" width="330" type="scaled-60">}}
+{{< image src="architecture/spus.svg" alt="SPU produce/consume & replication" justify="center" width="330" type="scaled-60">}}
 
 SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout the [Replication]({{< relref "replication" >}}) section.
 
@@ -65,7 +65,7 @@ For example, a configuration with the 2 topics generates the replication map in 
 
 SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for **topic-b/0**.
 
-{{< image src="topic-partition.svg" alt="Topic/Partitions" justify="center" width="650" type="scaled-90">}}
+{{< image src="architecture/topic-partition.svg" alt="Topic/Partitions" justify="center" width="650" type="scaled-90">}}
 
 For additional information on partitions and replica assignments, checkout the [Replication]({{< relref "replication" >}}) section.
 
@@ -74,7 +74,7 @@ For additional information on partitions and replica assignments, checkout the [
 
 SPU leaders **save** all data stream messages received from producers on **local storage**. Based on platform availability, SPUs use **zero-copy IO** to transfer data from disk to network. Messages on local storage are **immutable**, and **ordered**. Fluvio guarantees **in-order writes** for all messages received on the same **replica**.
 
-{{< image src="storage.svg" alt="Data Storage" justify="center" width="720" type="scaled-98">}}
+{{< image src="architecture/storage.svg" alt="Data Storage" justify="center" width="720" type="scaled-98">}}
 
 Spu persistence was designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.  
 
@@ -88,7 +88,7 @@ Fluvio architecture places heavy emphasis on clean **user-friendly APIs**. There
 
 **External APIs** are used by the **Fluvio CLI** and a growing number of programming language interfaces, such as  **Node** and **Rust**. There are two categories of APIs, control plane APIs and data plane APIs. **Control Plane APIs** manage the life cycle of the cluster objects such as SPUs, topics, and replicas.  **Data Plane APIs** handle data access for producers and consumers.
 
-{{< image src="external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
+{{< image src="architecture/external-api.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
 
 API reference guides for programming languages are available at: 
 
@@ -99,7 +99,7 @@ API reference guides for programming languages are available at:
 
 **Internal APIs** are used by the **SC** communicate with the **SPUS** and the **SPUs** to communicate with their peers to elect leaders and exchange replica information. 
 
-{{< image src="internal-api.svg" alt="Internal APIs" justify="center" width="500" type="scaled-75">}}
+{{< image src="architecture/internal-api.svg" alt="Internal APIs" justify="center" width="500" type="scaled-75">}}
 
 For additional details about **Internal APIs** checkout Fluvio development guide on <a href="https://github.com/infinyon/fluvio" target="_blank">github</a>.
 

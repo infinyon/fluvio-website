@@ -3,11 +3,12 @@
 {{ $class := .Get "justify" }}
 {{ $type := .Get "type" }}
 {{ $width := .Get "width" | default "36" }}
+{{ $src = path.Join "/img" $src }}
 
 <div id="image" class="{{ $class }}">
   <img
     id="{{ $type }}"
-    src="/images/{{ $src }}"
+    src="{{ $src }}"
     alt="{{ $alt }}"
     width ="{{ $width }}"
     decoding="async"

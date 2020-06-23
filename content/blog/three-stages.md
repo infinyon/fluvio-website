@@ -6,7 +6,7 @@ weight: 20
 
 Monoliths are easy to develop but **lack boundary enforcement** which makes it nearly impossible to keep code modular. As the number of components grows, module interdependencies snowball, the speed of development decreases, and costs of building software skyrockets.
 
-{{< image src="monolith.svg" alt="Monolith" justify="center" width="420" type="scaled-75">}}
+{{< image src="blog/monolith.svg" alt="Monolith" justify="center" width="420" type="scaled-75">}}
 
 Organizations turn to Microservices to reduce cross cutting concerns, gain modularity, and accelerate time to market. In theory, Microservices bring **modularity to business logic and data**, however our research shows organizations gain business logic separation and only partial data separation. 
 
@@ -25,7 +25,7 @@ The core takeaway is that Microservices should be built around domain driven bou
 
 A **Shared Data Model** describes Microservices that implement domain centric business logic, communicate over the network, and share the same database. This model is often used as a first step towards Microservices or as an intermediate step during a Monolith decomposition.
 
-{{< image src="msvs-networked.svg" alt="Networked Microservices" justify="center" width="420" type="scaled-75">}}
+{{< image src="blog/msvs-networked.svg" alt="Networked Microservices" justify="center" width="420" type="scaled-75">}}
 
 ### Advantages 
 
@@ -54,7 +54,7 @@ Data is still Monolithic which preserves data coupling leading to the following 
 
 **Distributed Data Model** describes Microservices that own both, the business logic and data for its bounded context. Data shared with other services is accessible exclusively through service APIs.
 
-{{< image src="distributed-data.svg" alt="Microservices with Distributed Data" justify="center" width="420" type="scaled-75">}}
+{{< image src="blog/distributed-data.svg" alt="Microservices with Distributed Data" justify="center" width="420" type="scaled-75">}}
 
 
 ### Advantages 
@@ -90,7 +90,7 @@ Microservices using **Event Driven Data Model** use databases for internal state
 
 **Event Streaming** is a powerful infrastructure layer that enables services to scale horizontally, exchange information in real time and solve many of the challenges in the Distributed Data Model. 
 
-{{< image src="msvs-event-driven.svg" alt="Event Driven Microservices" justify="center" width="420" type="scaled-75">}}
+{{< image src="blog/msvs-event-driven.svg" alt="Event Driven Microservices" justify="center" width="420" type="scaled-75">}}
 
 For addition insight in the power of **Event Streaming** checkout our blog at "[...](link)".
 
@@ -134,7 +134,7 @@ This observation inspired us to build **Fluvio**, an off-the-shelf solution to s
 
 For example, when a transaction is required, the _Model Interpreter_ builds the state machines, the _Data Flow Engine_ applies the SAGA, and the _Event Streaming Engine_ sends the events. If one or more components fail, the engine calls the compensation state machine.
 
-{{< image src="ddi-msvc.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
+{{< image src="blog/ddi.svg" alt="Fluvio - Distributed Data Infrastructure" justify="center" width="600" type="scaled-90">}}
 
 ### Advantages 
 

@@ -6,7 +6,7 @@ weight: 20
 
 **Streaming Controller (SC)** is the central coordinator and the **authoritative** entity of the cluster. It manages configuration changes, provisions SPUs, performs replica assignment, coordinates communication with external clients, and sends periodic reconciliation updates.
 
-{{< image src="sc-architecture.svg" alt="SC Coordinator" justify="center" width="530" type="scaled-90">}}
+{{< image src="architecture/sc-architecture.svg" alt="SC Coordinator" justify="center" width="530" type="scaled-90">}}
 
 The SC leverages a **Key-Value (KV) store** to persist cluster object configurations.
 
@@ -82,7 +82,7 @@ Aside from the differences in installation, all SPU types are treated the same.
 
 Fluvio **SPU-groups** define the configuration parameters used for provisioning groups of **Managed SPUs**. 
 
-{{< image src="spu-groups.svg" alt="SpuGroups" justify="center" width="740" type="scaled-98">}}
+{{< image src="architecture/spu-groups.svg" alt="SpuGroups" justify="center" width="740" type="scaled-98">}}
 
 
 **Replica** specifies the number of SPUs in a group and it can be dynamically changed: 
@@ -134,7 +134,7 @@ spec:
 
 A topic with *6 partitions* and a *replication factor of 3* on a new cluster generates the following distribution:
 
-{{< image src="partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
+{{< image src="architecture/partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
 
 The algorithm that computes partition/replica distribution is described in the [Replication]({{< relref "replication" >}}) section. 
 
@@ -184,7 +184,7 @@ In this example, **4: [1, 2, 0]** defines:
 
 Topics and partitions are linked through a **parent-child** relationship. If a topic is deleted, all child partitions are automatically removed.
 
-{{< image src="topic-2-partitions.svg" alt="Topic 2 Assignment" justify="center" width="680" type="scaled-90">}}
+{{< image src="architecture/topic-2-partitions.svg" alt="Topic 2 Assignment" justify="center" width="680" type="scaled-90">}}
 
 **SC** is responsible for the configuration in the **Partition Spec** and the **SPU** leader is responsible for the **Partition Status**.
 
@@ -216,7 +216,7 @@ Replica management, election, and all other status fields are documented in the 
 
 **SC** design is an event driven architecture that **captures cluster changes** and keeps the SPUs and the Key-Value store **synchronized**. 
 
-{{< image src="sc-workflows.svg" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
+{{< image src="architecture/sc-workflows.svg" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
 
 The SC uses a **common workflow** to process all event types:
 
@@ -248,7 +248,7 @@ SPU, Topic, and Partition Controllers run independently and manage the workflows
 
 SPU Controller listens for SPU events from KV store and events from Connection Manager.
 
-{{< image src="spu-controller.svg" alt="SPU Controller" justify="center" width="440" type="scaled-60">}}
+{{< image src="architecture/spu-controller.svg" alt="SPU Controller" justify="center" width="440" type="scaled-60">}}
 
 * **Add SPU**
     
@@ -271,7 +271,7 @@ SPU Controller listens for SPU events from KV store and events from Connection M
 
 Topic Controller listens for Topic and SPU events from KV store.
 
-{{< image src="topic-controller.svg" alt="Topic Controller" justify="center" width="440" type="scaled-60">}}
+{{< image src="architecture/topic-controller.svg" alt="Topic Controller" justify="center" width="440" type="scaled-60">}}
 
 * **Add Topic**
 
@@ -307,7 +307,7 @@ Topic Controller listens for Topic and SPU events from KV store.
 
 Partition Controller listens for Partition and SPU events from KV store and events from Connection Manager.
 
-{{< image src="partition-controller.svg" alt="Partition Controller" justify="center" width="440" type="scaled-60">}}
+{{< image src="architecture/partition-controller.svg" alt="Partition Controller" justify="center" width="440" type="scaled-60">}}
 
 * **Add Partition**
 
@@ -355,7 +355,7 @@ Partition Controller listens for Partition and SPU events from KV store and even
 
 A connection is established in the following sequence:
 
-{{< image src="connection-setup.svg" alt="Connection Manager" justify="center" width="780" type="scaled-99">}}
+{{< image src="architecture/connection-setup.svg" alt="Connection Manager" justify="center" width="780" type="scaled-99">}}
 
 * **SPU Controller** sends **add SPU spec** to **CM**.
 * **Partition Controller** sends **add Partitions** to **CM**
