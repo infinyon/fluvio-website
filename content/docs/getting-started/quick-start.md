@@ -40,7 +40,7 @@ Each Fluvio Cloud installation is assigned a unique _security profile_. Profiles
 
     * Your security profile is published in your <a href="http://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a>
 
--> All Fluvio clients (CLI, Node API, Rust API) require a **security profile** to access a Fluvio installation. 
+-> All Fluvio clients (CLI, Node API, Rust API) require a **security profile** to access a Fluvio cluster. 
 
 
 ## Download and configure the CLI

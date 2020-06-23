@@ -22,7 +22,7 @@ Rust language utilizes an installer to download and provision Rust on your local
 
 Fluvio compiler uses the nightly toolchain. To install, run:
 
-```
+```bash
 $ rustup toolchain install nightly
  ...
 nightly-x86_64-apple-darwin installed - rustc 1.44.0-nightly (f509b26a7 2020-03-18)
@@ -30,7 +30,7 @@ nightly-x86_64-apple-darwin installed - rustc 1.44.0-nightly (f509b26a7 2020-03-
 
 Make nightly toolchain default:
 
-```
+```bash
 $ rustup default nightly
 info: using existing install for 'nightly-x86_64-apple-darwin'
 info: default toolchain set to 'nightly-x86_64-apple-darwin'
@@ -50,14 +50,14 @@ Fluvio client needs a [default profile]({{< relref "profiles" >}}) to identify t
 
 Use <a href="https://doc.rust-lang.org/cargo/" target="_blank">Cargo</a> _--bin_ flag to create an application:
 
-```
+```bash
 $ cargo new fluvio-rust-produce --bin
 Created binary (application) `fluvio-rust-produce` package
 ```
 
 This results in following directory layout:
 
-```
+```bash
 $ cd fluvio-rust-produce/
 $ tree
 .
@@ -70,9 +70,6 @@ Update _Cargo.toml_ file to add dependencies:
 
 ```bash
 $ cat Cargo.toml
-```
-
-```toml
 [package]
 name = "fluvio-rust-produce"
 version = "0.1.0"
@@ -130,7 +127,7 @@ In summary:
 
 Run _cargo build_ to generate binary:
 
-```
+```bash
 $ cargo build
    Compiling fluvio-rust-produce v0.1.0 (/Users/user/fluvio-rust-produce)
     Finished dev [unoptimized + debuginfo] target(s) in 2.83s
@@ -138,7 +135,7 @@ $ cargo build
 
 Run _producer_ to send "test" to topic/partition _my-topic/0_ :
 
-```
+```bash
 ./target/debug/fluvio-rust-produce
 OK: 4 bytes sent
 ```
@@ -147,7 +144,7 @@ OK: 4 bytes sent
 
 Create a consumer package in parallel with the producer.
 
-```
+```bash
 $ cd ..
 $ cargo new fluvio-rust-consume --bin
 Created binary (application) `fluvio-rust-consume` package
@@ -156,11 +153,10 @@ $ cd fluvio-rust-consume/
 
 Update _Cargo.toml_:
 
-```
+```bash
 $ cat Cargo.toml
-```
 
-```toml
+
 [package]
 name = "fluvio-rust-consume"
 version = "0.1.0"
@@ -222,7 +218,7 @@ In summary:
 
 Run _cargo build_ to generate binary:
 
-```
+```bash
 $ cargo build
    Compiling fluvio-rust-consume v0.1.0 (/Users/user/fluvio-rust-consume)
     Finished dev [unoptimized + debuginfo] target(s) in 2.33s
@@ -230,7 +226,7 @@ $ cargo build
 
 Run _consumer_ to receive all messages from topic/partition _my-topic/0_ :
 
-```
+```bash
 ./target/debug/fluvio-rust-consume
 test
 ^C
@@ -245,7 +241,7 @@ Fluvio published a series of examples in github at <a href="https://github.com/i
 
 Clone the github repository and navigate to api-examples:
 
-```
+```bash
 $ git clone https://github.com/infinyon/rust-demo-apps.git
 Cloning into 'rust-demo-apps'
 ...
@@ -256,7 +252,7 @@ $ cd rust-demo-apps/api-examples/
 
 The code is organized in a Cargo workspace where each core API has its own package:
 
-```
+```bash
 $ tree -L 2
 .
 ├── Cargo.lock
@@ -278,7 +274,7 @@ The benefit of this layout is that all packages can be built at the same time.
 
 Run _cargo build_ to generate binaries for all packages
 
-```
+```bash
 $ cargo build
 ...
    Compiling flv-produce-example v0.1.0 (/Users/user/rust-demo-apps/api-examples/produce)
@@ -290,7 +286,7 @@ $ cargo build
 
 Run _producer_ to send messages to topic/partition _my-topic/0_ :
 
-```
+```bash
 $ ./target/debug/flv-produce-example
 Connected to SC:  127.0.0.1:9003
 hello world from rust
@@ -304,7 +300,7 @@ ok!
 
 Run _consumer_ to receive messages from topic/partition _my-topic/0_ :
 
-```
+```bash
 $ ./target/debug/flv-consume-example
 Connected to SC: 127.0.0.1:9003
 hello world from rust

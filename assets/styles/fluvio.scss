@@ -605,7 +605,7 @@ pre {
   display: inline-block; 
   border:1px solid $col-callout-border;  
   width: 100%;
-  code {background: inherit;}
+  code {background: inherit; padding-left: 0;}
 }
 
 // --------------
@@ -631,6 +631,7 @@ code {
 
   code[class*="language-"],
   pre[class*="language-"] {
+    padding-left: 0;
     font-size: 1em;
     text-align: left;
     white-space: pre;
