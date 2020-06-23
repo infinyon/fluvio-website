@@ -47,4 +47,4 @@ Later versions will provide the ability to control **storage** and **SPU** confi
 -------------------
 * [Quick Start]({{< relref "../getting-started/" >}})
 * [CLI]({{< relref "../cli/overview" >}})
-* [Architecture]({{< relref "../architecture/overview" >}})
+* [Architecture](/docs/architecture)

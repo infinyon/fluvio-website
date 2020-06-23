@@ -86,7 +86,7 @@ ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE
 2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
 {{< /fluvio >}}
 
-**Fluvio CLI** connects to **Fluvio Cloud SC**, which in turn queries the **SPUs** for status information. Checkout the [Architecture]({{< relref "../architecture/overview" >}}) section for additional information.
+**Fluvio CLI** connects to **Fluvio Cloud SC**, which in turn queries the **SPUs** for status information. Checkout the [Architecture](/docs/architecture) section for additional information.
 
 **Congratulations!** You have successfully deployed your **Fluvio Cloud** environment!
 

@@ -101,7 +101,7 @@ To continue setup, choose one of the following instructions:
 
 #### Related Topics
 -------------------
-* [Fluvio Architecture]({{< relref "../architecture/overview" >}})
+* [Fluvio Architecture](/docs/architecture)
 * [Fluvio CLI]({{< relref "../cli/overview" >}})
 
 

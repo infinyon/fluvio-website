@@ -63,7 +63,7 @@
 	{{- $menu := .section.Params.menu | default .section.LinkTitle -}}
 
 	{{- $selected := "" -}}
-	{{- if eq .selected.File.LogicalName "_index.md" }}
+	{{- if eq .selected.File.Path .section.File.Path }}
 		{{- $selected = " selected" -}}
 	{{- end -}}
 
