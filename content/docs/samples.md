@@ -6,6 +6,7 @@ hidden: true
 
 Welcome to the intro guide to Fluvio! The Concepts section helps you learn about all parts of the Fluvio system and to gain deeper understanding of how Fluvio works.
 
+
 -> **Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start](/docs/getting-started/quick-start).
 
 {{< idea >}}
@@ -183,7 +184,6 @@ $ istioctl proxy-status details-v1-6dcc6fbb9d-wsjz4.default
 | Windows                | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **Windows**. |
 | Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of <a href="https://nodejs.org/en/download/package-manager" target="_blank">supported packages</a>.  |
 
-
 ### Links
 
 * [Visit W3Schools (route page)](https://www.w3schools.com)
@@ -236,7 +236,9 @@ Some _Numbers_
    Note that this line is separate, but within the same paragraph.  
    (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
 
+### Images
 
+{{< image src="sample.svg" alt="Sample Image" justify="center" width="560" type="scaled-90">}}
 
 ## Header H2
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
