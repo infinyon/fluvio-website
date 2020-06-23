@@ -605,6 +605,17 @@ pre {
   display: inline-block; 
   border:1px solid $col-callout-border;  
   width: 100%;
+  code {background: inherit;}
+}
+
+// --------------
+// Code
+// --------------
+code {
+  padding: 4px 7px 3px;
+  background: darken($col-callout-bg, 3%);
+  color: $col-main-desc;
+  border-radius: .25em;  
 }
 
 // --------------
@@ -636,6 +647,7 @@ pre {
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
+    background:inherit;
   }  
 }
 

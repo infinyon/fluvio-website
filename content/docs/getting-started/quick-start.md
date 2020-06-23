@@ -20,27 +20,27 @@ Create an account, download Fluvio client library, and you are ready for data st
 
 ## Create a Fluvio Cloud account
 
-Each Fluvio Cloud installation is assigned a unique **security profile**. Profiles ensure only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Account** to download and install the security profile associated with your environment.
+Each Fluvio Cloud installation is assigned a unique _security profile_. Profiles ensure only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Dashboard** to download and install the security profile associated with your environment.
 
 1. <a href="http://app.fluvio.io/signup" target="_blank">SignUp</a> for a new account.
         
-    * Fill-in and submit the **New Account** form.
-    * A verification message is sent to your email.
+    * Submit `New Account` form.
+    * Check your email for the verification message.
 
-2. Check your email for the **verification** message.
+2. Validate your email account.
         
-    * Click the **Confirm Email** button.
-    * The **Congratulation** page confirms your account is enabled.
+    * Click the `Confirm Email` button.
+    * _Congratulation_ page confirms your account is enabled.
 
-3. Click **Login** to access your **Cloud Dashboard** 
+3. Click `Login` to access your **Cloud Dashboard** 
 
-    * You will receive an email when the **installation is ready**, it may take a few minutes.
+    * _Installation is ready_ email confirms your environment is ready. It may take a few minutes.
 
-4. Download your **Security Profile**
+4. Download your _Security Profile_
 
-    * The **installation guide** is published on your <a href="http://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a>
+    * Your security profile is published in your <a href="http://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a>
 
-All Fluvio clients, **CLI** and **API libraries**, require a **security profile** corresponding your Fluvio installation. 
+-> All Fluvio clients (CLI, Node API, Rust API) require a **security profile** to access a Fluvio installation. 
 
 
 ## Download and configure the CLI
