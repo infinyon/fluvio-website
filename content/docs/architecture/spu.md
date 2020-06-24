@@ -139,4 +139,9 @@ To allow faster access to records in replica, index files are maintained.  Index
 Records in replica are send to consumer using zero copy mechanism.  This avoid need to copy records in memory.
 
 
-
+#### Related Topics
+-------------------
+* [SC Architecture](../SC)
+* [Replication](../replication)
+* [Kubernetes Integration](../k8-integration)
+* [Deployment Models](../deployments)

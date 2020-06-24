@@ -2,10 +2,11 @@
 title: Getting Started
 folder: Getting Started
 menu: Overview
+toc: true
 weight: 10
 ---
 
-The quickest path to data streaming is with [Fluvio Cloud]({{< relref "../fluvio-cloud/cloud-platform" >}}). Every account gets a dedicated **[Fluvio Open Source]({{< relref "../fluvio-oss/oss-platform/" >}})** installation in the cloud, provisioned with 1 x [Streaming Controller]({{< relref "../architecture/sc/" >}}) (SC) and 3 x [Streaming Processing Units]({{< relref "../architecture/spu/" >}}) (SPU). 
+The quickest path to data streaming is with [Fluvio Cloud](/docs/fluvio-cloud). Every account gets a dedicated `Fluvio` installation in the cloud, provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
 
 {{< image src="getting-started/quick-start.svg" alt="Fluvio - Cloud Streaming" justify="center" width="500">}}
 
@@ -14,9 +15,9 @@ Create an account, download Fluvio client library, and you are ready for data st
 
 ##### Let's get started
 
-* [Create a Fluvio Cloud account]({{< ref "#create-a-fluvio-cloud-account" >}})
-* [Download and configure the CLI]({{< ref "#download-and-configure-the-cli" >}})
-* [Create topic and stream "Hello World"]({{< ref "#create-a-topic-and-stream-hello-world">}})
+1. [Create a Fluvio Cloud account](#create-a-fluvio-cloud-account)
+2. [Download and configure the CLI](#download-and-configure-the-cli)
+3. [Create topic and stream "Hello World"](#create-a-topic-and-stream-hello-world)
 
 
 ## Create a Fluvio Cloud account
@@ -53,7 +54,7 @@ Fluvio Command Line Interface binaries are available for macOS and Linux version
 
 #### Check your installation
 
-{{< fluvio >}}
+```bash
 $ fluvio --help
 Fluvio Command Line Interface
 
@@ -72,20 +73,20 @@ SUBCOMMANDS:
     topic         Topic operations
     advanced      Advanced operations
     help          Prints this message or the help of the given subcommand(s)
-{{< /fluvio >}}
+```
 
 
 #### Check connection to Fluvio Cloud
 
 Use the following CLI command to verify the **security profile** is installed correctly in your home directory:
 
-{{< fluvio >}}
+```bash
 $ fluvio spu list
 ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE 
 0  group3-0  online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
 1  group3-1  online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
 2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
-{{< /fluvio >}}
+```
 
 **Fluvio CLI** connects to **Fluvio Cloud SC**, which in turn queries the **SPUs** for status information. Checkout the [Architecture](/docs/architecture) section for additional information.
 
@@ -99,14 +100,14 @@ Next, we use the CLI to create a topic, produce, and consume your first message.
 
 Create a topic with 1 partition and a replication factor of 2.
 
-{{< fluvio >}}
+```bash
 $ fluvio topic create --topic my-topic --partitions 1 --replication 2 
 topic 'my-topic' created successfully
-{{< /fluvio >}}
+```
 
 Ensure topic has been provisioned by displaying its details.
 
-{{< fluvio >}}
+```bash
 $ fluvio topic describe --topic my-topic
  Name                    :  my-topic
  Type                    :  computed 
@@ -119,18 +120,18 @@ $ fluvio topic describe --topic my-topic
  -----------------           
      ID      LEADER      REPLICAS         LIVE-REPLICAS 
       0        0         [0, 1]           [0, 1] 
-{{< /fluvio >}}
+```
 
 
 #### Produce "Hello World" on my-topic
 
 Produce "Hello word" message to _my-topic_ and partition _0_:
 
-{{< fluvio >}}
+```bash
 $ fluvio produce -t my-topic -p 0
 Hello World!
 Ok!
-{{< /fluvio >}}
+```
 
 To produce multiple messages, use _-C, --continuous_ CLI flag.
 
@@ -138,10 +139,10 @@ To produce multiple messages, use _-C, --continuous_ CLI flag.
 
 Consume messages from beginning on _my-topic_ and partition _0_:
 
-{{< fluvio >}}
+```bash
 $ fluvio consume -t my-topic -p 0 -g
 Hello World!
-{{< /fluvio >}}
+```
 
 To consume multiple messages, use _-C, --continuous_ CLI flag.
 
@@ -149,5 +150,5 @@ To consume multiple messages, use _-C, --continuous_ CLI flag.
 
 #### Next Steps
 ----------------
-* [Build a Node App]({{<relref "build-node-app">}})
-* [Build a Rust App]({{<relref "build-rust-app">}})
+* [Build a Node App](build-node-app)
+* [Build a Rust App](build-rust-app)

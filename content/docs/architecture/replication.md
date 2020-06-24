@@ -9,11 +9,11 @@ Fluvio **real-time replication architecture** improves **data availability** wit
 
 #### Topics
 
-Fluvio's uses **[Topics]({{< relref "sc#topic" >}})** to define **data distribution** criteria, such as slicing and replication.  **Topic partitions** create data slices that are managed independently by different SPUs. **Topic replication** defines the number of copies for each slice.
+Fluvio's uses **[Topics](../sc#topics)** to define **data distribution** criteria, such as slicing and replication.  **Topic partitions** create data slices that are managed independently by different SPUs. **Topic replication** defines the number of copies for each slice.
 
-{{< fluvio >}}
+```bash
 $ fluvio topic create --topic topic-a --partitions 1 --replication 3
-{{< /fluvio >}}
+```
 
 Replication parameter specifies the number of unique copies:
 
@@ -43,16 +43,15 @@ Fluvio replication assignment algorithm ensures that the replica leader and foll
 
 The algorithm uses a **round-robin**, **gap-enabled** distribution assignment. 
 
-For a cluster with:
+In a cluster with **4** SPUs, a topic with:
 
-| SPUs         |  Replicas    |  Partitions   |
-|--------------|--------------|---------------|
-| **5**        | **3**        | **15**        |
+|   Replicas   |   Partitions  |
+|:------------:|:-------------:|
+| **3**        | **15**        |
 
-
-The algorithm starting at index 0, generates the following replica distribution:
+The algorithm generates the following replica distribution:
  
-```
+```bash
 ------------------------------------------
 |  idx | 5 x SPUs                | gaps  |
 ------------------------------------------
@@ -77,7 +76,7 @@ The algorithm starting at index 0, generates the following replica distribution:
 
 Next, the indexed distribution is collapsed in the following **replica map**:
 
-```
+```bash
 ---------------------------
 | Partition |  Replicas   |
 ---------------------------
@@ -123,19 +122,17 @@ The algorithm has the following 3 stages:
 
 ###### Example 1 - Balanced Rack Distribution
 
-The cluster has **4** racks with **11** SPUs:
+On a cluster with **12** SPUs evenly distributed across **4** racks, a topic with:
 
-* rack-a: **0, 1, 2**
-* rack-b: **3, 4, 5**
-* rack-c: **6, 7, 8**
-* rack-d: **9, 10, 11**
+|  Replicas    |  Partitions   |
+|:------------:|:-------------:|
+| **4**        | **12**        |
 
-The topic configuration parameters are:
 
-* partitions : **12**
-* replicas :  **4**
+The **3-stage** algorithm generates the following distributions:
 
-```
+
+```bash
 Stage 1: SPU Matrix allocation
 ------------------------------------------
     rack-a:  0, 1,  2
@@ -173,18 +170,21 @@ Replicas are evenly distributed across racks and SPUs.
 
 ###### Example 2 - Unbalanced Rack Distribution
 
-The cluster has **3** racks with **6** SPUs:
+On a cluster with **6** SPUs unevenly distributed across **3** racks: 
 
 * rack-a: **0**
 * rack-b: **1, 2**
 * rack-c: **3, 4, 5**
 
-The topic configuration parameters are:
+For topic topic with:
 
-* partitions : **6**
-* replicas :  **3**
+|  Replicas    |  Partitions   |
+|:------------:|:-------------:|
+| **3**        |  **6**        |
 
-```
+The **3-stage** algorithm generates the following distributions:
+
+```bash
 Stage 1: SPU Matrix allocation (sorted by size)
 ------------------------------------------
     rack-c:  3, 4, 5
@@ -215,13 +215,13 @@ Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs 
 
 ### Manual Replica Assignment
 
-**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status]({{< relref "sc#topic-status" >}}). In fact, the **replica map** defined as defined in the file is assigned to this field.
+**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status](../sc#topic-status"). In fact, the **replica map** defined as defined in the file is assigned to this field.
 
 The following command creates a topic from a **replica assignment file**:
 
-{{< fluvio >}}
+```bash
 $ fluvio topic create --topic custom-topic --replica-assignment ./my-assignment
-{{< /fluvio >}}
+```
 
 _Validate-only_ flag is available to verify a replica assignment file without applying any changes.
 
@@ -255,11 +255,11 @@ The **replica map** definition meet the following criteria:
     - all elements must be unique.
     - all elements must be positive integers.
 
-For additional information on how to check the result of a replica assignment file, see [Topic CLI]({{< relref "../cli/topics" >}}).
+For additional information on how to check the result of a replica assignment file, checkout [Topics CLI](/docs/cli/topics).
 
-#### Next Steps
-----------------
-* [SC Architecture]({{<relref "sc">}})
-* [SPU Architecture]({{<relref "spu">}})
-* [Kubernetes Integration]({{<relref "k8-integration">}})
-* [Deployment Models]({{<relref "deployments">}})
+#### Related Topics
+-------------------
+* [SC Architecture](../sc)
+* [SPU Architecture](../spu)
+* [Kubernetes Integration](../k8-integration)
+* [Deployment Models](../deployments)

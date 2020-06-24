@@ -385,9 +385,9 @@ When the SPU come back online it initiates a new connection as described in the 
 **Live Replicas (LRS)** are continuous updates sent by **leader SPUs** to the **CM** to report changes in replica status. The **CM** forwards the requests to relevant **Controllers** for processing.
 
 
-#### Next Steps
-----------------
-* [SPU Architecture]({{<relref "spu">}})
-* [Replication]({{<relref "replication">}})
-* [Kubernetes Integration]({{<relref "k8-integration">}})
-* [Deployment Models]({{<relref "deployments">}})
+#### Related Topics
+-------------------
+* [SPU Architecture](../spu)
+* [Replication](../replication)
+* [Kubernetes Integration](../k8-integration)
+* [Deployment Models](../deployments)
