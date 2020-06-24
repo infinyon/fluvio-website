@@ -1,5 +1,6 @@
 ---
 title: SPUs
+toc: true
 weight: 50
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Custom SPUs
+toc: true
 weight: 50
 ---
 

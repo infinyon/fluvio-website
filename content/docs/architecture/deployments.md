@@ -1,5 +1,7 @@
 ---
 title: Deployment Models
+menu: Deployments
+toc: true
 weight: 110
 ---
 

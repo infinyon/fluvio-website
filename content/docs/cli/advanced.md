@@ -1,5 +1,6 @@
 ---
 title: Advanced
+toc: true
 weight: 100
 ---
 

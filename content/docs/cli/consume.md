@@ -1,5 +1,6 @@
 ---
 title: Consume
+toc: true
 weight: 40
 ---
 

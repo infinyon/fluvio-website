@@ -1,5 +1,6 @@
 ---
 title: SPU Groups
+toc: true
 weight: 60
 ---
 

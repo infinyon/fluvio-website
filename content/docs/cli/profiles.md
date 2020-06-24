@@ -1,6 +1,7 @@
 ---
 title: Fluvio Profiles
 menu: Profiles
+toc: true
 weight: 20
 ---
 

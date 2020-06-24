@@ -1,6 +1,7 @@
 ---
 title: Replication Design
 menu: Replication
+toc: true
 weight: 50
 ---
 
