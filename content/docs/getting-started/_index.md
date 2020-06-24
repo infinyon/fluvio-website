@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+folder: Getting Started
 menu: Overview
 weight: 10
 ---

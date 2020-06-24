@@ -44,11 +44,12 @@
 	{{- if .ancester -}}
 			{{- $expanded = "true" -}}
 	{{- end -}}
+	{{- $menu := .section.Params.folder | default .section.LinkTitle -}}
 	
 	<div id="hdr-{{ $section_id }}", class="card-header">
 		<div class="mb-0">
 			<a role="button" data-toggle="collapse" href="#clps-{{ $section_id }}" aria-expanded="{{$expanded}}" aria-controls="clps-{{ $section_id }}">
-				{{ .section.LinkTitle }}
+				{{ $menu }}
 			</a>
 		</div>
 	</div>

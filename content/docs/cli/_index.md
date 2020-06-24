@@ -1,5 +1,6 @@
 ---
-title: CLI
+title: Command Line Interface (CLI)
+folder: CLI 
 menu: Overview
 weight: 30
 ---

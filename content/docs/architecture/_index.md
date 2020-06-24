@@ -1,5 +1,6 @@
 ---
 title: Architecture
+folder: Architecture 
 menu: Overview
 weight: 20
 ---
