@@ -39,11 +39,12 @@ Fluvio replication assignment algorithm ensures that the replica leader and foll
 * the replication factor
 * ignore rack assignment flag
 
+
 ##### Algorithm
 
 The algorithm uses a **round-robin**, **gap-enabled** distribution assignment. 
 
-In a cluster with **4** SPUs, a topic with:
+In a cluster with **4** SPUs, a topic created with:
 
 |   Replicas   |   Partitions  |
 |:------------:|:-------------:|
@@ -51,7 +52,7 @@ In a cluster with **4** SPUs, a topic with:
 
 The algorithm generates the following replica distribution:
  
-```bash
+```text
 ------------------------------------------
 |  idx | 5 x SPUs                | gaps  |
 ------------------------------------------
@@ -76,7 +77,7 @@ The algorithm generates the following replica distribution:
 
 Next, the indexed distribution is collapsed in the following **replica map**:
 
-```bash
+```text
 ---------------------------
 | Partition |  Replicas   |
 ---------------------------
@@ -122,17 +123,17 @@ The algorithm has the following 3 stages:
 
 ###### Example 1 - Balanced Rack Distribution
 
-On a cluster with **12** SPUs evenly distributed across **4** racks, a topic with:
+On a cluster with **12** SPUs evenly distributed across **4** racks, a topic created with:
 
 |  Replicas    |  Partitions   |
 |:------------:|:-------------:|
 | **4**        | **12**        |
 
 
-The **3-stage** algorithm generates the following distributions:
+The **3-stage** algorithm generates the following distribution:
 
 
-```bash
+```text
 Stage 1: SPU Matrix allocation
 ------------------------------------------
     rack-a:  0, 1,  2
@@ -176,15 +177,15 @@ On a cluster with **6** SPUs unevenly distributed across **3** racks:
 * rack-b: **1, 2**
 * rack-c: **3, 4, 5**
 
-For topic topic with:
+For a topic created with:
 
 |  Replicas    |  Partitions   |
 |:------------:|:-------------:|
 | **3**        |  **6**        |
 
-The **3-stage** algorithm generates the following distributions:
+The **3-stage** algorithm generates the following distribution:
 
-```bash
+```text
 Stage 1: SPU Matrix allocation (sorted by size)
 ------------------------------------------
     rack-c:  3, 4, 5

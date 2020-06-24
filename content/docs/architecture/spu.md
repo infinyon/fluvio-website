@@ -18,7 +18,7 @@ SPUs have a **public** and a **private** server that are attached to the followi
 * **Private Port**: 9006
 
 
-## Object Workflows
+## Workflows
 
 The **SPU** is a high performance streaming processing unit that works in unisom with other SPUs to perform the following **core tasks**:
 

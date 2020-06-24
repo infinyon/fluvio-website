@@ -24,9 +24,9 @@ SCs have a **public** and a **private** server that are attached to the followin
 * **Private Port**: 9004
 
 
-## Configuration Objects
+## Core Objects
 
-There are four configuration objects in a Fluvio cluster: **SPU**, **SPU-group**, **Topic**, and **Partition**. The objects follow **Kubernetes paradigm** with two fields that govern the configuration: the spec and the status. **Spec** expresses a desired state and the **status** describes the current state. 
+There are four core objects in a Fluvio cluster: **SPU**, **SPU-group**, **Topic**, and **Partition**. The objects follow **Kubernetes paradigm** with two fields that govern the configuration: the spec and the status. **Spec** expresses a desired state and the **status** describes the current state. 
 
 
 ### SPUs
@@ -116,7 +116,7 @@ status:
 
 SPU-group status has 3 **resolutions**: Init, Invalid, and Reserved. If the group is marked invalid, a **reason** field describes the error.
 
-Checkout the [SPU-groups]({{< relref "../cli/spu-groups" >}}) CLI for additional information.
+Checkout the [SPU-groups CLI](/docs/cli/spu-groups) for additional information.
 
 
 ### Topics
@@ -137,9 +137,9 @@ A topic with *6 partitions* and a *replication factor of 3* on a new cluster gen
 
 {{< image src="architecture/partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
 
-The algorithm that computes partition/replica distribution is described in the [Replication]({{< relref "replication" >}}) section. 
+The algorithm that computes partition/replica distribution is described in the [Replication Design](../replication) section. 
 
-Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Replication]({{< relref "replication" >}}) section.
+Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topics CLI](/docs/cli/topics) section.
 
 ##### Topic Status
 
@@ -210,10 +210,10 @@ status:
 
 **SPU leader** is responsible for managing **Live Replicas (lrs)** and other data streaming related parameters.
 
-Replica management, election, and all other status fields are documented in the [SPU]({{< relref "spu" >}}) section.
+Replica management, election, and all other status fields are documented in the [SPU Architecture](../spu) section.
 
 
-## Object Workflows
+## Workflows
 
 **SC** design is an event driven architecture that **captures cluster changes** and keeps the SPUs and the Key-Value store **synchronized**. 
 
@@ -240,7 +240,7 @@ The SC uses a **common workflow** to process all event types:
 
 Metadata dispatcher maintains a **Local Store** of read-only objects types that mirror the KV store. Objects in the local store can only be updated by KV Store requests. The local store is utilized by **Controllers** to **transform** events into the actions.
 
-## Object Controllers
+## Controllers
 
 SPU, Topic, and Partition Controllers run independently and manage the workflows for their designated objects. 
 
@@ -282,17 +282,17 @@ Topic Controller listens for Topic and SPU events from KV store.
 
     For topics with status resolution **Init** or **Invalid**, the controller validates partition and replication configuration parameters. Upon validation, the controller:
 
-    * Params OK - creates an **action** to update Topic **status** resolution to **Pending** in KV store.
-    * Params Invalid - creates an **action** to update Topic **status** resolution to **Invalid** in KV store.
+    * Params _OK_ - creates an **action** to update Topic **status** resolution to **Pending** in KV store.
+    * Params _Invalid_ - creates an **action** to update Topic **status** resolution to **Invalid** in KV store.
 
     For topics with status resolution **Pending** or **InsufficientResources**, the controller checks if the number SPUs meets the replication factor. Upon validation, the controller:
 
-    * SPUs Ok - generates a Replica Map and creates the following **actions** for the KV Store:
+    * SPUs _Ok_ - generates a Replica Map and creates the following **actions** for the KV Store:
     
         * an **action** to update **status** resolution to **Provisioned** and replicaMap to **Replica Map**.
         * an **action** to create a new **Partition** for each entry in the Replica Map.
 
-    * Not enough SPUs - creates an **action** to update Topic **status** resolution to **InsufficientResources** in KV store.
+    * _Not enough SPUs_ - creates an **action** to update Topic **status** resolution to **InsufficientResources** in KV store.
 
 * **Add SPU**
 
@@ -380,7 +380,7 @@ If the connection drops is due to network failures or SPU going offline, the **C
 
 When the SPU come back online it initiates a new connection as described in the **Connection Setup** section.
 
-#### LRS Updates
+#### Live Replica (LRS) Updates
 
 **Live Replicas (LRS)** are continuous updates sent by **leader SPUs** to the **CM** to report changes in replica status. The **CM** forwards the requests to relevant **Controllers** for processing.
 
