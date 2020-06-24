@@ -14,12 +14,12 @@ body {
 
 // Site-wide
 h1, .font-xxl {font-size: 2.3rem; }
-h2, .font-xl {font-size: 1.7rem; }
-h3, .font-lg, .related-hdr {font-size: 1.45rem; }
+h2, .font-xl {font-size: 1.9rem; }
+h3, .font-lg, .related-hdr {font-size: 1.6rem; }
 h4, .font-md, .font-md-underline {font-size: 1.4rem; }
 p, li, .font-rg {font-size: 1.05rem; }
-h5, .font-sm {font-size: 1.1rem; }
-h6, .font-xs {font-size: 1.0rem; }
+h5, .font-sm {font-size: 1.2rem; }
+h6, .font-xs {font-size: 1.1rem; }
 h1, h2, h3, h4, .h1, .h2, .h3, .h4, .h5, .h6, .font-xs, .font-sm, .font-rg, .font-md, .font-lg, .font-xl, .font-xxl, .font-md-underline {
   color: $col-headers;
   font-family: $font-headers;

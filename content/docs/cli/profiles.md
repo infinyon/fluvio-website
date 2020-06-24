@@ -41,7 +41,7 @@ host = "sc.fluvio.dev.acme.com"
 port = 9003
 ```
 
-#### Default Profile
+## Default Profile
 
 Fluvio CLI has one **default** profile and an unlimited number of **user-defined** profiles. The **default** profile has the lowest precedence and it is looked-up in the following order:
 
