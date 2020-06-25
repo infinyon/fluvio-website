@@ -1,7 +1,7 @@
 ---
 title: Introduction to Fluvio
 ---
-As monoliths are migrated to microservices, the choice of inter-service __communication__ and the __type of data__ they exchange are important decisions. The choices made impact the glue logic and the amount of intelligence each service must implement to participate in the quorum. The larger the application the broader the impact.
+As monoliths transition to microservices, the choice of inter-service __communication__ and the __type of data__ they exchange are important decisions. The choices made impact the glue logic and the amount of intelligence each service must implement to participate in the quorum. The larger the application the broader the impact.
 
 #### Communication
 The microservices community promotes the philosophy of __["smart endpoints and dumb pipes"] (https://martinfowler.com/articles/microservices.html#SmartEndpointsAndDumbPipes)__.  A pipe refers to a time-tested asynchronous protocol, where the client doesn't wait for a response is preferred over a synchronous protocol. This approach allows the clients to stay independent preserving "loose coupling" regardless of state of the server.
