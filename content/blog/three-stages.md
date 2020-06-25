@@ -128,9 +128,7 @@ This observation inspired us to build **Fluvio**, an off-the-shelf solution to s
 
 **Distributed Data Infrastructure (DDI)** is an _open source_, _standards-based_, _language agnostic_ software that glues services to distributed data. 
 
-{{< idea >}}
-**DDI** abstracts distributed data concerns into a separate layer shared by all Microservices and managed by the _Distributed Data Control Plane_. Application architects use an _EventQL Model_ to describe the interactions between Microservices and the **DDI** does the rest.
-{{< /idea >}}
+-> **DDI** abstracts distributed data concerns into a separate layer shared by all Microservices and managed by the _Distributed Data Control Plane_. Application architects use an _EventQL Model_ to describe the interactions between Microservices and the **DDI** does the rest.
 
 For example, when a transaction is required, the _Model Interpreter_ builds the state machines, the _Data Flow Engine_ applies the SAGA, and the _Event Streaming Engine_ sends the events. If one or more components fail, the engine calls the compensation state machine.
 

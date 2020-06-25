@@ -349,4 +349,4 @@ The APIs are customizable. Checkout [Node API](/docs/node-api/reference) for add
 #### Related Topics
 -------------------
 * [Topics CLI](/docs/cli/topics)
-* [Node API](/docs/node-api/reference)
+* [Node API](/docs/node-api)

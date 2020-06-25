@@ -6,14 +6,14 @@ toc: true
 weight: 10
 ---
 
-The quickest path to data streaming is with [Fluvio Cloud](/docs/fluvio-cloud). Every account gets a dedicated `Fluvio` installation in the cloud, provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
+The quickest way to **real-time data** is with [Fluvio Cloud](/docs/fluvio-cloud). 
+Each cloud account receives a dedicated `Fluvio` installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU), and managed by the  <a href="https://infinyon.com" target="_blank">InfinyOn</a> team. 
 
 {{< image src="getting-started/quick-start.svg" alt="Fluvio - Cloud Streaming" justify="center" width="500">}}
 
-Create an account, download Fluvio client library, and you are ready for data streaming.
+One data cloud installation can process all your real-time data streaming needs: from any number of producers, to any number of consumers, in any data formats, to any geo-location, and more. 
 
-
-##### Let's get started
+#### Three Steps to Data Streaming
 
 1. [Create a Fluvio Cloud account](#create-a-fluvio-cloud-account)
 2. [Download and configure the CLI](#download-and-configure-the-cli)
@@ -24,7 +24,7 @@ Create an account, download Fluvio client library, and you are ready for data st
 
 Each Fluvio Cloud installation is assigned a unique _security profile_. Profiles ensure only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Dashboard** to download and install the security profile associated with your environment.
 
-1. <a href="http://app.fluvio.io/signup" target="_blank">SignUp</a> for a new account.
+1. <a href="https://app.fluvio.io/signup" target="_blank">SignUp</a> for a new account.
         
     * Submit `New Account` form.
     * Check your email for the verification message.

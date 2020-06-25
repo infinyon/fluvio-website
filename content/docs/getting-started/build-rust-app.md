@@ -42,11 +42,11 @@ nightly-x86_64-apple-darwin unchanged - rustc 1.44.0-nightly (f509b26a7 2020-03-
 
 ## Build a simple data streaming App
 
-This section provides a step-by-step on how to build a simple data streaming app using Rust. If you'd like to download the demo app instead, skip ahead to [Download Rust Demo Apps]({{< relref "#download-rust-demo-apps" >}}).
+This section provides a step-by-step on how to build a simple data streaming app using Rust. If you'd like to download the demo app instead, skip ahead to [Download Rust Demo Apps](#download-rust-demo-apps).
 
 #### Implement Producer/Consumer exchange
 
-Fluvio client needs a [default profile]({{< relref "profiles" >}}) to identify the location and the authorization token of the cluster. The file was generated during cluster setup and it is available for download in your <a href="https://app.fluvio.io" target="_blank">Fluvio Cloud</a> account.
+Fluvio client needs a [Profile](/docs/cli/profiles) to identify the location and the authorization token of the cluster. The file was generated during cluster setup and it is available for download in your <a href="https://app.fluvio.io" target="_blank">Fluvio Cloud</a> account.
 
 #### Create Producer Package
 
@@ -213,7 +213,7 @@ In summary:
 * *fluvio_client.connect()* returns the connection to the cluster.
 * *connection.get_replica(...)* looks-up _replica_ for the topic/partition.
 * *replica.get_stream(...)* opens a stream with _replica_ from 'earliest' offset.
-  * *FetchOffset* has additional parameters, see [Replica.Consume]({{< relref "../rust-api/consume" >}}) API.
+  * *FetchOffset* has additional parameters, see [Replica.Consume](/docs/rust-api/consume) API.
 * *stream.consume()* reads messages as the become available.
 
 ##### Build and Run Consumer
@@ -310,9 +310,9 @@ bye
 ^C
 ```
 
-The APIs are customizable. Checkout [Rust API]({{< relref "../rust-api/reference" >}}) for additional information.
+The APIs are customizable. Checkout [Rust API](/docs/rust-api) for additional information.
 
 #### Related Topics
 -------------------
-* [Topics CLI]({{< relref "topics" >}})
-* [Rust API]({{< relref "../rust-api/reference" >}})
+* [Topics CLI](/docs/cli/topics)
+* [Rust API](/docs/rust-api)
