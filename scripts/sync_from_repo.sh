@@ -48,29 +48,35 @@ git remote rm origin
 # copy docs to content
 from_docs="${to_local_path}/website/docs"
 to_docs="${DIR}/../content/docs/${docs_folder}"
-if [ -d from_docs ] 
+if [ -d $from_docs ] 
 then
     echo "copy docs from '${local_path}/website/docs' to 'content/docs/${docs_folder}' "
-    cp -rf $from_docs $to_docs
+    cp -rf $from_docs/* $to_docs
 else
     echo "no 'website/docs' path found in ${local_path}"
+    echo $from_docs
 fi
 
 # copy img to static
-from_img="${to_local_path}/website/img"
+from_img= "${to_local_path}/website/img"
 to_img="${DIR}/../static/img/${docs_folder}"
-if [ -d from_img ] 
+if [ -d $from_img ] 
 then
     echo "copy img from '${local_path}/website/img' to 'static/img/${docs_folder}' "
-    cp -rf $from_img $to_img
+    mv -f $from_img $from_img
 else
     echo "no 'website/img' path found in ${local_path}"
+    echo $from_img
 fi
+
+# cd back
+echo "cd to ${PWD}"
+cd $PWD
 
 # stage changes
 echo "git: stage changes"
-git add $to_docs
-git add $to_img
+git add realpath $to_docs
+git add realpath $to_img
 
 # check if anything to commit
 to_commit=$(git diff --staged --name-only)
@@ -83,7 +89,4 @@ fi
 
 # clean-up
 echo "remove temporary directory ${local_path}"
-rm -rf $to_local_path
-
-# cd back
-cd $PWD
+##rm -rf $to_local_path
