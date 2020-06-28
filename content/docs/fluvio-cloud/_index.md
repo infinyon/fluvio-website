@@ -11,7 +11,7 @@ Fluvio Cloud is currently in alpha and we are working diligently to fix any issu
 
 ## Fluvio Cloud
 
-Fluvio Cloud is a **Data Streaming as a Service (DSaaS)** platform manged by the InfinyOn team. Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
+Fluvio Cloud is a **Data Streaming as a Service (DSaaS)** platform manged by InfinyOn team. Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
 
 {{< image src="architecture/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 
