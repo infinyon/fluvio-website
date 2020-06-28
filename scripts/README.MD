@@ -1,5 +1,14 @@
 ## Operations
 
+```
+.\sync-fluvio-cloud.sh
+```
+
+```
+.\sync-fluvio-cloud.sh scripts
+```
+
+
 1. Clone a branch to `.tmp` directory
 
     ```

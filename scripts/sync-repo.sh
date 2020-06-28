@@ -2,7 +2,7 @@
 
 # script path & timestamp
 GIT_BASE="https://github.com/infinyon/"
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DIR="$(dirname $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd ))"
 PWD=$(pwd)
 TS=$(date +%s)
 
@@ -35,58 +35,55 @@ then
 fi
 
 # build repo & local paths
-from_repo="${GIT_BASE}${repo_name}.git"
-local_path=".tmp/${repo_name}-${TS}"
-to_local_path="${DIR}/../${local_path}"
+repo_path="${GIT_BASE}${repo_name}.git"
+local_path="${DIR}/.tmp/${repo_name}-${TS}"
 
 # clone repo & detach from origin
-echo "clone '${from_repo}' ($branch) to '${local_path}'"
-git clone --single-branch --branch $branch $from_repo $to_local_path
-cd $to_local_path
+echo "clone '${repo_path}' ($branch) to '${local_path}'"
+git clone --single-branch --branch $branch $repo_path $local_path
+
+cd $local_path
 git remote rm origin
+cd $DIR
 
 # copy docs to content
-from_docs="${to_local_path}/website/docs"
-to_docs="${DIR}/../content/docs/${docs_folder}"
+from_docs="${local_path}/website/docs"
+to_docs="${DIR}/content/docs/${docs_folder}"
 if [ -d $from_docs ] 
 then
-    echo "copy docs from '${local_path}/website/docs' to 'content/docs/${docs_folder}' "
-    cp -rf $from_docs/* $to_docs
+    echo "copy/replace docs from '${from_docs}' to '${to_docs}' "
+    rm -rf $to_docs
+    cp -rf $from_docs $to_docs
 else
     echo "no 'website/docs' path found in ${local_path}"
-    echo $from_docs
 fi
 
 # copy img to static
-from_img= "${to_local_path}/website/img"
-to_img="${DIR}/../static/img/${docs_folder}"
+from_img="${local_path}/website/img"
+to_img="${DIR}/static/img/${docs_folder}"
 if [ -d $from_img ] 
 then
-    echo "copy img from '${local_path}/website/img' to 'static/img/${docs_folder}' "
-    mv -f $from_img $from_img
+     echo "copy/replace docs from '${from_img}' to '${to_img}' "
+    rm -rf $to_img
+    cp -rf $from_img $to_img
 else
     echo "no 'website/img' path found in ${local_path}"
-    echo $from_img
 fi
-
-# cd back
-echo "cd to ${PWD}"
-cd $PWD
 
 # stage changes
 echo "git: stage changes"
-git add realpath $to_docs
-git add realpath $to_img
+git add $to_docs
+git add $to_img
 
 # check if anything to commit
 to_commit=$(git diff --staged --name-only)
 if [ ! -z "$to_commit" ]
 then
-    git commit -m "website synced with `${repo-name} (${branch})` "
+    git commit -m "website synced with '${repo-name} '${branch}' "
 else
    echo "git: nothing to commit (no changes detected)";
 fi
 
 # clean-up
 echo "remove temporary directory ${local_path}"
-##rm -rf $to_local_path
+rm -rf $local_path
