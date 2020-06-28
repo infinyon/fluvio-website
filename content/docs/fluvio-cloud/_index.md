@@ -13,7 +13,7 @@ Fluvio Cloud is currently in alpha and we are working diligently to fix any issu
 
 Fluvio Cloud is a **Data Streaming as a Service (DSaaS)** platform manged by InfinyOn team. Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
 
-{{< image src="architecture/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
+{{< image src="fluvio-cloud/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 
 [Getting Started](/docs/getting-started/#create-a-fluvio-cloud-account) provides a step-by-step guide on how to create a Fluvio Cloud account and stream "Hello World". 
 
