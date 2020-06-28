@@ -79,7 +79,8 @@ git add $to_img
 to_commit=$(git diff --staged --name-only)
 if [ ! -z "$to_commit" ]
 then
-    git commit -m "website synced with '${repo-name} '${branch}' "
+   echo $to_commit
+   git commit -m "website synced with '${repo-name} '${branch}' "
 else
    echo "git: nothing to commit (no changes detected)";
 fi
