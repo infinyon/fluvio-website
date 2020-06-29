@@ -3,25 +3,25 @@
 1. Clone a branch to `.tmp` directory
 
     ```
-    git clone --single-branch --branch scripts https://github.com/infinyon/fluvio-cloud.git .tmp/fluvio-cloud-123
+    git clone --single-branch --branch <branch-name> https://github.com/infinyon/<project-name>.git .tmp/<project-name>-<timestamp>
     ```
 
 2. detach from `origin`
 
     ```
-    cd .tmp/fluvio-cloud-123
+    cd .tmp/<project-name>-<timestamp>
     git remote rm origin
     ```
 
 3. copy directory content into their target directories
 
     ```
-    cp -rf website/docs ../../content/docs/fluvio-cloud
-    cp -rf website/img ../../static/img/fluvio-cloud
+    cp -rf website/docs ../../content/docs/<project-name>
+    cp -rf website/img ../../static/img/<project-name>
     ```
 
 4. clean-up
 
     ```
-    rm -rf .tmp/fluvio-cloud-123
+    rm -rf .tmp/<project-name>-<timestamp>
     ```
