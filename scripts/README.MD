@@ -1,12 +1,12 @@
 # Website Scripts
 
-Fluvio website is an umbrella project that pull content from other Fluvio projects, such as:
+Fluvio website is an umbrella project that pulls content from other Fluvio projects, such as:
 * [fluvio](https://github.com/infinyon/fluvio)
 * [fluvio-cloud](https://github.com/infinyon/fluvio-cloud)
 * [flv-client-node](https://github.com/infinyon/flv-client-node)
 * [flv-client-rust](https://github.com/infinyon/flv-client-rust)
 
-and others.
+and generate the website.
 
 ## Scripts
 
@@ -30,7 +30,11 @@ Content from 'docs' folder is placed inside 'content/docs/**project-name**' in f
 
 ### img content
 
-Content from 'img' folder is placed inside 'static/img/**project-name**' in fluvio-website. To reference an image, use the following shortcode
+Content from 'img' folder is placed inside 'static/img/**project-name**' in fluvio-website. To reference an image, use the following shortcode. For example:
+
+```
+{{< image src="fluvio-cloud/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
+```
 
 
 ## Convenience Scripts
