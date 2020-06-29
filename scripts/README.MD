@@ -48,9 +48,6 @@ Content from 'img' folder is placed inside 'static/img/**project-name**' in fluv
 {{< image src="fluvio-cloud/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 ```
 
-## Sync Website
-
-
 ## Script Details
 
 * [TEST-REPO.MD](./TEST-REPO.MD)
