@@ -79,7 +79,8 @@ to_commit=$(git diff --staged --name-only)
 if [ ! -z "$to_commit" ]
 then
    echo $to_commit
-   git commit -m "new website content from '${repo_name}' '${branch}' "
+   git commit -m "synced new website content from '${repo_name}' '${branch}' "
+   git push
 else
    echo "git: nothing to commit (no changes detected)";
 fi

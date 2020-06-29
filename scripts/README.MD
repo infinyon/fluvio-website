@@ -13,9 +13,9 @@ and generate the website.
 The following script copies the content from project into Fluvio Website (but does not check-in)
 
 ```
-./test/test-repo.sh
+./test-repo.sh
 
-Usage: test/test-repo.sh -b <branch> -r <repo-name> -d <docs-folder>
+Usage: test-repo.sh -b <branch> -r <repo-name> -d <docs-folder>
     -b  source branch   (master)
     -r  repo name       (fluvio-cloud)
     -d  docs folder     (fluvio-cloud)
