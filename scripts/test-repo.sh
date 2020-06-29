@@ -69,21 +69,6 @@ else
     echo "no 'website/img' path found in ${local_path}"
 fi
 
-# stage changes
-echo "git: stage changes"
-git add $to_docs
-git add $to_img
-
-# check if anything to commit
-to_commit=$(git diff --staged --name-only)
-if [ ! -z "$to_commit" ]
-then
-   echo $to_commit
-   git commit -m "website synced with '${repo-name} '${branch}' "
-else
-   echo "git: nothing to commit (no changes detected)";
-fi
-
 # clean-up
 echo "remove temporary directory ${local_path}"
 rm -rf $local_path

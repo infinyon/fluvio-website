@@ -1,4 +1,4 @@
-## Script Step-by-Step
+## Test Repo Script Step-by-Step
 
 1. Clone a branch to `.tmp` directory
 
@@ -20,25 +20,7 @@
     cp -rf website/img ../../static/img/fluvio-cloud
     ```
 
-4. check-in changes
-
-    ```
-    cd ../../
-    git add content/docs/fluvio-cloud
-    git add static/img/fluvio-cloud
-    ```
-
-    check if anything changed
-    ```
-    git diff --staged --name-only
-    ```
-
-    commit
-    ```
-    git commit -m "updated fluvio-cloud website content"
-    ```
-
-5. clean-up
+4. clean-up
 
     ```
     rm -rf .tmp/fluvio-cloud-123

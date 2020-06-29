@@ -8,11 +8,23 @@ Fluvio website is an umbrella project that pulls content from other Fluvio proje
 
 and generate the website.
 
-## Scripts
+## Test Website
+
+The following script copies the content from project into Fluvio Website (but does not check-in)
 
 ```
-sync-fluvio.sh
-sync-fluvio-cloud.sh
+./test/test-repo.sh
+
+Usage: test/test-repo.sh -b <branch> -r <repo-name> -d <docs-folder>
+    -b  source branch   (master)
+    -r  repo name       (fluvio-cloud)
+    -d  docs folder     (fluvio-cloud)
+```
+
+For example use the following command to copy content form 'fluvio-cloud':
+
+```
+./test-repo.sh -b scripts -r fluvio-cloud -d fluvio-cloud
 ```
 
 ## Script Assumptions
@@ -36,35 +48,9 @@ Content from 'img' folder is placed inside 'static/img/**project-name**' in fluv
 {{< image src="fluvio-cloud/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 ```
 
-
-## Convenience Scripts
-
-For convenience, each project has an independent script. By default the script pull content from **master** branch. 
-
-```
-./sync-fluvio-cloud.sh
-```
-
-To pull content from a different branch, specify the branch name (i.e. scripts):
-
-```
-./sync-fluvio-cloud.sh scripts
-```
-
-## Advanced Script
-
-If you'd like additional customizations, use 'sync-repo.sh'. This script comes with a cli:
-
-```
-scripts/sync-repo.sh
-
-Usage: scripts/sync-repo.sh -b <branch> -r <repo-name> -d <docs-folder>
-    -b  source branch   (master)
-    -r  repo name       (fluvio-cloud)
-    -d  docs folder     (fluvio-cloud)
-```
+## Sync Website
 
 
 ## Script Details
 
-* Script step-by-step defined in [SCRIPT.MD](./SCRIPT.MD)
+* [TEST-REPO.MD](./TEST-REPO.MD)
