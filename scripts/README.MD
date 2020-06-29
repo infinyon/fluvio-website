@@ -11,7 +11,8 @@ and others.
 ## Scripts
 
 ```
-
+sync-fluvio.sh
+sync-fluvio-cloud.sh
 ```
 
 ## Script Assumptions

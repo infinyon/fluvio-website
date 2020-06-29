@@ -1,15 +1,12 @@
 ---
 title: Fluvio Development Environment
-menu: Dev Environment
+menu: For Developers
 weight: 300
 ---
 
-Thank you for your interest on joining Fluvio Development Community! 
+Thank you for your interest on joining Fluvio Development Community. We look forward to working with you!
 
-We look forward to working with you!
-
-Fluvio leverages a **Key-Value (KV) store** to persist cluster object configurations. While the product is designed for a broad range of **KV** stores, the current version is integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>** and **<a href="https://etcd.io" target="_blank">etcd</a>**.
-
+Fluvio leverages **Key-Value (KV)** stores to persist cluster object configurations. The current version is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>** and **<a href="https://etcd.io" target="_blank">etcd</a>**. Additional KV stores, such as Hashicorp **<a href="https://www.consul.io/" target="_blank">Consul</a>**, are planned for future versions.
 
 ## Install Kubernetes
 
