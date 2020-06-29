@@ -13,7 +13,7 @@
     git remote rm origin
     ```
 
-3. copy directory content into their target directories
+3. copy contents into their target directories (content is swapped - rather than augmented)
 
     ```
     cp -rf website/docs ../../content/docs/<project-name>
