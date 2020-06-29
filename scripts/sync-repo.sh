@@ -3,7 +3,6 @@
 # script path & timestamp
 GIT_BASE="https://github.com/infinyon/"
 DIR="$(dirname $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd ))"
-PWD=$(pwd)
 TS=$(date +%s)
 
 # cli help

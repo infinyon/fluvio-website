@@ -42,13 +42,13 @@ Content from 'img' folder is placed inside 'static/img/**project-name**' in fluv
 For convenience, each project has an independent script. By default the script pull content from **master** branch. 
 
 ```
-.\sync-fluvio-cloud.sh
+./sync-fluvio-cloud.sh
 ```
 
 To pull content from a different branch, specify the branch name (i.e. scripts):
 
 ```
-.\sync-fluvio-cloud.sh scripts
+./sync-fluvio-cloud.sh scripts
 ```
 
 ## Advanced Script
