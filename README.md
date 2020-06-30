@@ -37,6 +37,22 @@ Clone the content from the **origin** project into of **fluvio-website** to test
 
 The website is generated using [Hugo Framework](https://gohugo.io/). 
 
+### Run Website on Local Machine
+
+To run the website on your local machine:
+
+1. [Install Hugo](https://gohugo.io/getting-started/installing/)
+2. Run Hugo
+    ```
+    hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender
+    ```
+3. Website is rendered at
+    ```
+    http://localhost:1313/
+    ```
+
+Hugo watches for changes and automatically updates website.
+
 
 ## Website Publisher
 
