@@ -49,7 +49,7 @@ Documentation for `main` and `blog` folders are generated locally, whereas docum
 | content/docs/demo-apps/cdc-demo-node         | external | [flv-cdc-demo-node](https://github.com/infinyon/flv-cdc-demo-node)  |
 | content/docs/demo-apps/cdc-demo-rust         | external | [flv-cdc-demo-rust](https://github.com/infinyon/flv-cdc-demo-rust)  |
 
-Clone the content from the **origin** project into of **fluvio-website** to test rendering. There is a script available for this purpose at [scripts/README.MD](./scripts/README.MD).
+To clone documentation from their **origin** project into of **fluvio-website** to test rendering, use `test-repo.sh` script. For additional information, checkout [scripts/README.MD](./scripts/README.MD).
 
 
 ## Public Website
