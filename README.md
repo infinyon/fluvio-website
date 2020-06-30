@@ -5,9 +5,7 @@ Fluvio website repository stores all documentation published in [fluvio.io](http
 
 ## Website Organization 
 
-Fluvio website is an umbrella project that mixes internal documentation with content form other Fluvio projects.
-
-The documentation is found in `content` directory and it is organized as follows:
+Fluvio website is an **umbrella project** that mixes internal documentation with content form other Fluvio projects. The documentation is stored in `content` directory and it is organized as follows:
 
 ```
 main
@@ -16,9 +14,7 @@ docs
 ...
 ```
 
-While the documentation for `main` and `blog` is is generated locally, the content for `docs` is pulled from different projects.
-
-The origin on the documentation as follows:
+While the documentation for `main` and `blog` is is generated locally, the content for `docs` is pulled from different projects. The origin on the documentation as follows:
 
 |        Folder         |         Origin        |
 |-----------------------|-----------------------|
