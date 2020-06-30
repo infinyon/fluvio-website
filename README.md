@@ -51,7 +51,7 @@ Documentation for `main` and `blog` folders are generated locally, whereas docum
 
 Use `test-repo.sh` script to clone documentation from an **origin** project into **fluvio-website**.  This script should be used to check the rendering of your project documentation without impacting **fluvio.io**.  For additional information, checkout [scripts/README.MD](./scripts/README.MD).
 
--> **Note**: Do not make direct changes to content in **external** folders as the documents will be overwritten with content from **origin** when the website is published.
+-> **Note**: Do not make direct changes to content in **external** folders. The content in these folders are overwritten from **origin** when the website is published.
 
 
 ## Public Website
