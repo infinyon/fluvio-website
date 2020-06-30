@@ -14,18 +14,18 @@ docs
 ...
 ```
 
-While the documentation for `main` and `blog` is is generated locally, the content for `docs` is pulled from different projects. The origin on the documentation as follows:
+While documentation for `main` and `blog` directory is generated locally, the content for `docs` is a mix of local and external content. The external content is pulled from other projects and placed in the content directory for rendering. The **origin** on the documentation as follows:
 
-|        Folder         |         Origin        |
-|-----------------------|-----------------------|
-| main                  |  [fluvio-website](https://github.com/infinyon/fluvio-website) |
-| blog                  |  [fluvio-website](https://github.com/infinyon/fluvio-website) |
-| docs/architecture     |  [fluvio-website](https://github.com/infinyon/fluvio-website) |
-| docs/cli              |  [fluvio](https://github.com/infinyon/fluvio) |
-| docs/fluvio-cloud     |  [fluvio-cloud](https://github.com/infinyon/fluvio-cloud) |
-| docs/getting-started  |  [fluvio-website](https://github.com/infinyon/fluvio-website)  |
-| docs/node-api         |  [flv-client-node](https://github.com/infinyon/flv-client-node)  |
-| docs/rust-api         |  [flv-client-rust](https://github.com/infinyon/flv-client-rust)  |
+|        Folder         |   Type   |         Origin        |
+|-----------------------|----------|-----------------------|
+| main                  | local    | [fluvio-website](https://github.com/infinyon/fluvio-website) |
+| blog                  | local    | [fluvio-website](https://github.com/infinyon/fluvio-website) |
+| docs/architecture     | local    | [fluvio-website](https://github.com/infinyon/fluvio-website) |
+| docs/cli              | external | [fluvio](https://github.com/infinyon/fluvio) |
+| docs/fluvio-cloud     | external | [fluvio-cloud](https://github.com/infinyon/fluvio-cloud) |
+| docs/getting-started  | local    | [fluvio-website](https://github.com/infinyon/fluvio-website)  |
+| docs/node-api         | external | [flv-client-node](https://github.com/infinyon/flv-client-node)  |
+| docs/rust-api         | external | [flv-client-rust](https://github.com/infinyon/flv-client-rust)  |
 
 
 
