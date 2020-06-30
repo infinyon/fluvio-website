@@ -1,6 +1,6 @@
 ---
-title: Use Cases
-folder: Use Cases
+title: Demo Apps
+folder: Demo Apps
 menu: Overview
 description: Various use cases for Fluvio Streaming Platform
 weight: 200

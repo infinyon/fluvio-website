@@ -27,6 +27,9 @@ While documentation for `main` and `blog` directory is generated locally, the co
 | content/docs/getting-started  | local    | [fluvio-website](https://github.com/infinyon/fluvio-website)  |
 | content/docs/node-api         | external | [flv-client-node](https://github.com/infinyon/flv-client-node)  |
 | content/docs/rust-api         | external | [flv-client-rust](https://github.com/infinyon/flv-client-rust)  |
+| content/docs/demo-apps/simple-chat-demo-node         | external | [flv-simple-chat-node](https://github.com/infinyon/flv-simple-chat-demo-node)  |
+| content/docs/demo-apps/cdc-demo-node         | external | [flv-cdc-demo-node](https://github.com/infinyon/flv-cdc-demo-node)  |
+| content/docs/demo-apps/cdc-demo-rust         | external | [flv-cdc-demo-rust](https://github.com/infinyon/flv-cdc-demo-rust)  |
 
 Clone the content from the **origin** project into of **fluvio-website** to test rendering. There is a script available for this purpose at [scripts/README.MD](./scripts/README.MD).
 
