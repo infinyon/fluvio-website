@@ -1,14 +1,4 @@
-# Website Scripts
-
-Fluvio website is an umbrella project that pulls content from other Fluvio projects, such as:
-* [fluvio](https://github.com/infinyon/fluvio)
-* [fluvio-cloud](https://github.com/infinyon/fluvio-cloud)
-* [flv-client-node](https://github.com/infinyon/flv-client-node)
-* [flv-client-rust](https://github.com/infinyon/flv-client-rust)
-
-and generate the website.
-
-## Test Website
+## Website Test Script
 
 The following script copies the content from project into Fluvio Website (but does not check-in)
 
