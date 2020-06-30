@@ -51,7 +51,7 @@ To run the website on your local machine:
     http://localhost:1313/
     ```
 
-Hugo watches for changes and automatically updates website.
+Hugo watches for file changes and automatically updates website.
 
 
 ## Website Publisher
