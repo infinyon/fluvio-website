@@ -21,7 +21,9 @@ Hugo watches for file changes and automatically updates website.
 
 ## Website Organization 
 
-Fluvio website is an **umbrella project** that mixes internal documentation with content form other Fluvio projects. The documentation is stored in `content` directory and it is organized as follows:
+Fluvio website is an **umbrella project** that joins _internal_ and _external_ documentation (from other Fluvio projects) to generate a **single, consolidated** website.
+
+The documentation is assimilated in the `content` directory and it is organized as follows:
 
 ```
 content/
@@ -31,7 +33,7 @@ content/
   ...
 ```
 
-While documentation for `main` and `blog` directory is generated locally, the content for `docs` is a mix of local and external content. The external content is pulled from other projects and placed in the content directory for rendering. The **origin** on the documentation as follows:
+Documentation for `main` and `blog` folders are generated locally, whereas documentation for `docs` folder is generated from a mix of local and external content. The external content is pulled from other projects and placed in the content directory for rendering. The **origin** of each sections is as follows:
 
 |           Folder              |   Type   |         Origin        |
 |-------------------------------|----------|-----------------------|
