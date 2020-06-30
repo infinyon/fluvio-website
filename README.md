@@ -28,7 +28,7 @@ While documentation for `main` and `blog` directory is generated locally, the co
 | content/docs/node-api         | external | [flv-client-node](https://github.com/infinyon/flv-client-node)  |
 | content/docs/rust-api         | external | [flv-client-rust](https://github.com/infinyon/flv-client-rust)  |
 
-
+Clone the content from the **origin** project into of **fluvio-website** to test rendering. There is a script available for this purpose at [scripts/README.MD](./scripts/README.MD).
 
 ## Website Generator
 
