@@ -33,7 +33,7 @@ content/
   ...
 ```
 
-Documentation for `main` and `blog` folders are generated locally, whereas documentation for `docs` folder is generated from a mix of local and external content. The external content is pulled from other projects and placed in the content directory for rendering. The **origin** of each sections is as follows:
+Documentation for `main` and `blog` folders are generated locally, whereas documentation for `docs` folder is generated from a mix of local and external content. The external content is pulled from **origin** projects and placed in the content directory for rendering. The **origin** of each sections is as follows:
 
 |           Folder              |   Type   |         Origin        |
 |-------------------------------|----------|-----------------------|
