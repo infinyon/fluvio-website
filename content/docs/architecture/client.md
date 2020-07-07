@@ -10,7 +10,7 @@ Fluvio client is responsible for all communication with a Fluvio cluster. The cl
 {{< image src="architecture/fluvio-client.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
 
 
-All communication between the clients and the servers is encrypted in <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a> for maximum privacy and security.
+All communications between the clients and the servers are encrypted in <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a> for maximum privacy and security.
 
 ## Native Language Bindings
 
@@ -18,7 +18,7 @@ Fluvio client library is written in Rust and it is designed to be natively embed
 
 ### Node Binding
 
-The first language binding implementation is for `Node.js`. Node binding allows web developer to add real-time data streaming to their applications with only a few lines of code.
+The first language binding implementation is for `Node.js`. Node binding allows web developers to add real-time data streaming to applications in a matter of minutes. No servers to configure, no databases to maintain, just connect your Web App to a [Fluvio Cloud](/docs/getting-started), and you have the <ins>first building block</ins> to turn your App into a **real-time distributed app**.
 
 * API Reference
     * [Node API Reference](/docs/node-api)
