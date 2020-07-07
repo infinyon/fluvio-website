@@ -209,6 +209,10 @@ Second Term
 
 > Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text.
 
+### Underscore
+
+This is an <ins>underscored block of</ins> text.
+
 ### Bullet Lists
 
 * Item 1
