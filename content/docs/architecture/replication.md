@@ -2,7 +2,7 @@
 title: Replication Assignment
 menu: Replication
 toc: true
-weight: 50
+weight: 30
 ---
 
 Fluvio **real-time replication architecture** improves **data availability** without sacrificing performance. A **balanced distribution** of replicas can concurrently serves a large number of **producers** and **consumers**.

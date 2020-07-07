@@ -2,7 +2,7 @@
 title: Kubernetes Integration
 menu: Kubernetes
 toc: true
-weight: 100
+weight: 60
 ---
 
 Fluvio uses 

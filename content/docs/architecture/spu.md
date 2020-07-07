@@ -2,7 +2,7 @@
 title: Streaming Processing Unit (SPU) Architecture
 menu: SPU
 toc: true
-weight: 30
+weight: 20
 ---
 
 **Streaming Processing Unit (SPU)** is responsible for processing data streams in real-time. The SPUs is designed for **horizontal scale**, where SPUs are gradually added to the cluster to accommodate higher data throughput. Each SPU **manages replicas** which represent the lowest unit of a data stream. Replicas are copies of data streams that are evenly distributed across SPUs. 

@@ -2,7 +2,7 @@
 title: Streaming Controller (SC) Architecture
 menu: SC
 toc: true
-weight: 20
+weight: 10
 ---
 
 **Streaming Controller (SC)** is the central coordinator and the **authoritative** entity of the cluster. It manages configuration changes, provisions SPUs, performs replica assignment, coordinates communication with external clients, and sends periodic reconciliation updates.

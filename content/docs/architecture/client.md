@@ -1,7 +1,7 @@
 ---
 title: Client Library
 toc: true
-weight: 110
+weight: 50
 ---
 
 Fluvio client is responsible for all communication with a Fluvio cluster. The client uses a home grown communication protocol that was optimized for maximum performance, scalability, and low latency. Future versions will provide adaptors to standard protocols, such as: HTTP, WebSocket, gRPC, etc.
@@ -101,9 +101,9 @@ For detailed schema definition and object life cycles, checkout the [Reference G
 
 #### Object Outputs
 
-Each configuration object can outputted in different data formats, such as _json_, or _yaml_. Additional data formats are available and can be exposed if required.
+Each configuration object can converted to different data formats, such as _json_, or _yaml_. Additional data formats are available and can be exposed if required.
 
-Filters can be applied when fetching a configuration object, such as: `list spus name`, `list partition name`, etc.
+Configuration objects may be fetch using filters such as `object name`. 
 
 
 ### Producer API
@@ -146,10 +146,10 @@ Records are retrieved in _binary format_ and it is up to the Application develop
 
 #### Consumer Behavior
 
-Consumers are also multi-threaded which allows them to read records from multiple data streams simultaneously. Each connection can specify different retrieval properties:
+Consumers are also multi-threaded which allows consumers to read records from multiple data streams simultaneously. Each connection can specify different retrieval properties:
 
-* **Delivery** - retrieve records based on their replication status
-    * COMMITTED: fetch records only after they have been replicated and committed by all `Live Replicas`.
+* **Retrieval Strategy** - retrieve records based on their replication status
+    * COMMITTED: fetch records only after they are committed by all `Live Replicas`.
     * IMMEDIATE: fetch records as soon as they are received by the `Replica Leader`.
 * **Max Bytes** - batch records up to a maximum number of bytes
     * Default buffer size is 1Mb.
@@ -157,25 +157,36 @@ Consumers are also multi-threaded which allows them to read records from multipl
 
 ### Fault Tolerance
 
-The client is designed to survive SPU failures.  Data streams are replicated across multiple SPUs. When a connection is established, the client looks-up the SPU that hosts the replica leader. This SPU will services all replica producers and consumers. If the SPU goes offline, one of the followers becomes the leader and the new SPU services the consumers/producers. The client **automatically switches over** to the new SPU.
+Fluvio client is designed to survive SPU failures. All data streams should be replicated acros multiple SPUs To prevent data loss. 
+When a data stream is created, one of the SPUs is elected as leader and the others become followers. Fluvio clients look-up the SPU leaders to produce or consume records.
 
+{{< image src="architecture/prod-cons-before-failover.svg" alt="Producer/Consumer" justify="center" width="475" type="scaled-75">}}
+
+ If the SPU leader becomes unreachable, an election is triggered and one of the SPU followers becomes the leader. The client detects the SPU leader failure and **automatically switch over** to the new leader.
+
+{{< image src="architecture/prod-cons-after-failover.svg" alt="Producer/Consumer Failover" justify="center" width="475" type="scaled-75">}}
+
+For addition information on the election algorithm, checkout [Election Design](../election).
+
+
+## Client Profiles
+
+Client library utilizes profiles to hide the complexity associated with the connection configuration parameters and simplify the API. Furthermore, profiles allows the client library to manage multiple Fluvio cluster from the same client instance. Simply switch the profile and all subsequent operations are applied to another cluster. Switch back and the operations are applied to the original cluster.
+
+For additional information on Profile management, checkout [Fluvio Profiles](/docs/cli/profiles) section.
 
 ## Client Workflow
 
-Client library provides provides profiles that hides the complexity of the connection configuration (target cluster, TLS configuration, etc.)
+All client operations follow a similar pattern.
 
+1. Create a profile (one time operation).
+2. Connect to cluster, using the profile created above.
+3. Use [Admin API](#admin-api) to configure or retrieve objects.
+4. Produce or Consume records:
+    * Use [Producer API](#producer-api) to send records to a data stream.
+    * Use [Consumer API](#consumer-api) to retrieve records from a data stream.
 
-The client library has language bindings and a CLI. 
-
-
-Client and full multi-threaded that can produce or consume concurrently to and from different topics.
-
-
-Workflow
-* use profile to connect to cluster
-* use Admin API to retrieve objects
-* use consumer or producer to exchange data stream
-
+Fluvio Client library is multi-threaded and it can simultaneously connect to _multiple clusters_, and concurrently _produce and consume_ one or more data streams.
 
 
 #### Related Topics
