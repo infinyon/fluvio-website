@@ -162,7 +162,7 @@ When a data stream is created, one of the SPUs is elected as leader and the othe
 
 {{< image src="architecture/prod-cons-before-failover.svg" alt="Producer/Consumer" justify="center" width="475" type="scaled-75">}}
 
- If the SPU leader becomes unreachable, an election is triggered and one of the SPU followers becomes the leader. The client detects the SPU leader failure and **automatically switch over** to the new leader.
+ If the SPU leader becomes unreachable, an election is triggered and one of the SPU followers becomes the leader. The client detects the SPU leader failure and **automatically switches over** to the new leader.
 
 {{< image src="architecture/prod-cons-after-failover.svg" alt="Producer/Consumer Failover" justify="center" width="475" type="scaled-75">}}
 
