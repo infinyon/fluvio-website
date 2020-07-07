@@ -208,7 +208,7 @@ Records in replica are send to consumer using zero copy mechanism.  This avoid n
 
 #### Related Topics
 -------------------
-* [SC Architecture](../SC)
+* [SC Architecture](../sc)
 * [Replication](../replication)
 * [Kubernetes Integration](../k8-integration)
 * [Deployment Models](../deployments)

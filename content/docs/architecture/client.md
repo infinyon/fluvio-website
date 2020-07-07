@@ -18,7 +18,7 @@ Fluvio client library is written in Rust and it is designed to be natively embed
 
 ### Node Binding
 
-The first language binding implementation is for `Node.js`. Node binding allows web developers to add real-time data streaming to applications in a matter of minutes. No servers to configure, no databases to maintain, just connect your Web App to a [Fluvio Cloud](/docs/getting-started), and you have the <ins>first building block</ins> on the path to a **real-time distributed App**.
+The first language binding implementation is for `Node.js`. Node binding allows web developers to add real-time data streaming to applications in a matter of minutes. No servers to configure, no databases to maintain, just connect your Web App to [Fluvio Cloud](/docs/getting-started), and you have the <ins>first building block</ins> on the path to a **real-time distributed App**.
 
 * API Reference
     * [Node API Reference](/docs/node-api)
@@ -191,7 +191,7 @@ Fluvio Client library is multi-threaded and it can simultaneously connect to _mu
 
 #### Related Topics
 -------------------
-* [SC Architecture](../SC)
+* [SC Architecture](../sc)
 * [SPU Architecture](../spu)
 * [Replication](../replication)
 * [Kubernetes Integration](../k8-integration)

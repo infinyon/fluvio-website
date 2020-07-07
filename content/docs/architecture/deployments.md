@@ -9,7 +9,7 @@ Fluvio architecture is designed to cover various deployment models from cloud to
 
 #### Related Topics
 -------------------
-* [SC Architecture](../SC)
+* [SC Architecture](../sc)
 * [SPU Architecture](../spu)
 * [Replication](../replication)
 * [Kubernetes Integration](../k8-integration)
