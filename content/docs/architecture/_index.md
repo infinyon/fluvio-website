@@ -51,7 +51,7 @@ For a deep dive in the SC design, checkout [SC Architecture](sc) section.
 
 {{< image src="architecture/spus.svg" alt="SPU produce/consume & replication" justify="center" width="330" type="scaled-60">}}
 
-SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout [Replication Design](replication).
+SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, checkout [Replication Assignment](replication).
 
 Each SPU performs **leader** and **follower** duties **on multiple data streams** in parallel. For optimal performance, Fluvio utilizing all available **CPU cores**. 
 For a deep dive in the SPU design, checkout the [SPU Architecture](spu) section.
@@ -69,7 +69,7 @@ SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for *
 
 {{< image src="architecture/topic-partition.svg" alt="Topic/Partitions" justify="center" width="650" type="scaled-90">}}
 
-For additional information on partitions and replica assignments, checkout [Replication Design](replication).
+For additional information on partitions and replica assignments, checkout [Replication Assignment](replication).
 
 
 ### Data Persistence

@@ -137,7 +137,7 @@ A topic with *6 partitions* and a *replication factor of 3* on a new cluster gen
 
 {{< image src="architecture/partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
 
-The algorithm that computes partition/replica distribution is described in the [Replication Design](../replication) section. 
+The algorithm that computes partition/replica distribution is described in the [Replication Assignment](../replication) section. 
 
 Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topics CLI](/docs/cli/topics) section.
 
@@ -177,11 +177,11 @@ In this example, **4: [1, 2, 0]** defines:
 
 ### Partitions
 
-**Partition** are system managed configuration objects. When a new topic is provisioned, the **SC** performs the following operations:
+**Partition** are configuration objects managed by the system. When a new topic is created, the **SC** performs [replication assignment](../replication) to generate the partitions:
 
-1. **generates a partition map** and store in the topic status,
-2. **creates a partition object** for each row in the partition map,
-3. **assigns each partition** to the SPU leader.
+1. **generate a partition map** and store in the topic status,
+2. **create a partition object** for each row in the partition map,
+3. **assign each partition** to the SPU leader.
 
 Topics and partitions are linked through a **parent-child** relationship. If a topic is deleted, all child partitions are automatically removed.
 

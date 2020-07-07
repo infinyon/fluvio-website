@@ -1,8 +1,8 @@
 ---
 title: Simple Chat App - Node
-title: Simple Chat - Node
+menu: Simple Chat - Node
 weight: 10
 ---
 
-... Chat App
+flv-simple-chat-demo-node
 

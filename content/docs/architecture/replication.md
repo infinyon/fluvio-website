@@ -1,5 +1,5 @@
 ---
-title: Replication Design
+title: Replication Assignment
 menu: Replication
 toc: true
 weight: 50
