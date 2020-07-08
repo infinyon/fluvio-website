@@ -1,15 +1,14 @@
 ---
-title: Election
+title: Replica Election
+menu: Election
 toc: true
 weight: 40
 ---
 
-## Replica Election
-
-**Replica election** algorithm designates one of the SPUs as group leader and the others as followers. The leader is responsible for data propagation and producer/consumer communication. The followers are responsible for saving the data received from the leader. If the leader goes offline, an election ensues and one of the followers become the new leader. Then [clients are automatically redirected](../client) to the new elected leader and operation resumes.
+Fluvio uses a **replica election algorithm** to elect SPU leaders and designates SPU followers for all data streams. When a topic is created, the [replica assignment](../replication-assignment) algorithm generates a replica-map with groups of SPUs assigned to each data stream. These SPU groups are collectively responsible for storing identical replicas of data in their local store to minimize the probability of data loss if one or more SPUs become incapacitated.
 
 
-## Election Algorithm
+## Replica Election Algorithm
 
 SC detects SPU goes offline and it triggers an SPU election.
 
