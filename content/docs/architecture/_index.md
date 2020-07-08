@@ -34,7 +34,7 @@ Fluvio architecture is centered around **real time streaming** where the platfor
 SCs and SPUs are **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. 
 
  
-### Streaming Controller (SC)
+## Streaming Controller (SC)
 
 Fluvio is designed to address a variety of **deployment scenarios** from public clouds to private data centers, edge networks and IOT devices. **SC** maintains the **topology map** of the **SPUs** and serves as the first point of contact for producers and consumers.
 
@@ -45,7 +45,7 @@ The **SC** handles **topology map dynamically** to simplify complex tasks such a
 For a deep dive in the SC design, checkout [SC Architecture](sc) section.
 
 
-### Streaming Processing Unit (SPU)
+## Streaming Processing Unit (SPU)
 
 **Streaming Processing Units (SPUs)** are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
 
@@ -56,7 +56,7 @@ SPUs are also responsible for **data replication**. Data streams that are create
 Each SPU performs **leader** and **follower** duties **on multiple data streams** in parallel. For optimal performance, Fluvio utilizing all available **CPU cores**. 
 For a deep dive in the SPU design, checkout the [SPU Architecture](spu) section.
 
-### Topic/Partitions
+## Topic/Partitions
 
 **Topics** define groups of partitions. **Partitions** split the data into independent slices to allow producers and consumers to write and read messages in parallel. Each partition can be **replicated** across multiple SPUs. A **topic name** and **partition index** pair uniquely identifies a **partition**, which is also known as a **data stream**.
 
@@ -72,7 +72,7 @@ SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for *
 For additional information on partitions and replica assignments, checkout [Replication Assignment](replication).
 
 
-### Data Persistence
+## Data Persistence
 
 SPU leaders **save** all data stream messages received from producers on **local storage**. Based on platform availability, SPUs use **zero-copy IO** to transfer data from disk to network. Messages on local storage are **immutable**, and **ordered**. Fluvio guarantees **in-order writes** for all messages received on the same **replica**.
 
@@ -82,11 +82,11 @@ Spu persistence was designed as **single-writer, multi-reader** with **zero-copy
 
 Fluvio adds messages local storage until the **retention period** is met. The retention periods should be set to cover **up to 80%** of the disk size. If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system may be compromised.
 
-### Streaming APIs
+## APIs
 
 Fluvio architecture places heavy emphasis on clean **user-friendly APIs**. There are two types of APIs, **external** and **internal**. The APIs use **TLS** to ensure secure communication. 
 
-#### External APIs
+### External APIs
 
 **External APIs** are used by the **Fluvio CLI** and a growing number of programming language interfaces, such as  **Node** and **Rust**. There are two categories of APIs, control plane APIs and data plane APIs. **Control Plane APIs** manage the life cycle of the cluster objects such as SPUs, topics, and replicas.  **Data Plane APIs** handle data access for producers and consumers.
 
@@ -97,7 +97,7 @@ API reference guides for programming languages are available at:
 * [Node API](/docs/node-api) 
 * [Rust API](/docs/rust-api)
 
-#### Internal APIs
+### Internal APIs
 
 **Internal APIs** are used by the **SC** communicate with the **SPUS** and the **SPUs** to communicate with their peers to elect leaders and exchange replica information. 
 

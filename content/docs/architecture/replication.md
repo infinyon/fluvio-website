@@ -5,7 +5,7 @@ toc: true
 weight: 30
 ---
 
-Fluvio **real-time replication architecture** improves **data availability** without sacrificing performance. A **balanced distribution** of replicas can concurrently serves a large number of **producers** and **consumers**.
+Fluvio **real-time replication architecture** improves data availability without sacrificing performance. **Replication assignment** is triggered by topic creation and it is responsible for a **balanced distribution** of replicas across the **SPUs** in a Fluvio cluster.
 
 #### Topics
 
@@ -24,23 +24,22 @@ Replicas have 2 roles, leader and follower:
 * SPU-1 serves the **Replica leader**. 
 * SPU-2 and SPU-3 serve **Replica followers**.
 
-## Replication Assignment
+#### Replication Assignment
 
 Fluvio replication assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment](#manual-replica-assignment) instead.
 
 
-### Replica Assignment Algorithm
+## Computed Replica Assignment (CRA)
 
-**CRA** uses Fluvio's replica assignment algorithm to generate a **replica map**. The algorithm takes into account the following elements:
+Fluvio uses computed replica assignment algorithm to generate a **replica map** anytime a new topic is created. The algorithm takes into account the following parameters and configuration objects:
 
 * a list of SPUs 
-* rack name for each SPU
 * the number of partitions
 * the replication factor
 * ignore rack assignment flag
 
 
-##### Algorithm
+#### Algorithm
 
 The algorithm uses a **round-robin**, **gap-enabled** distribution assignment. 
 
@@ -105,13 +104,13 @@ For **balanced distribution** the algorithm **chains multiple calls sequentially
 In this example, if the last replica assignment completed at index 8, the next run starts at index 9 and partition 0 is assigned replica: [4, 1, 2].
 
 
-### Advanced Computed Replica Assignment (CRA) - rack enabled
+## Computed Replica Assignment with Rack Enabled
 
-**CRA with rack enabled** can be used if **all SPUs** in the cluster have **rack** defined.
+**SPUs** may be assigned rack labels to distribute replicas across racks. **CRA with rack enabled** algorithm will fail unless  **all SPUs** in the cluster have **rack** defined.
 
-Racks are used to earmark SPUs with a locations such as a server rack, or a cloud availability zone. The algorithm ensures partitions are distributed **across racks**. To achieve a  **balanced distribution**, you must have the same number of SPUs for each rack.
+Rack label earmark SPUs with a locations such as a physical rack name, or a cloud availability zone. The algorithm ensures partitions are distributed **across racks**. To achieve a  **balanced distribution**, you must have the same number of SPUs for each rack.
 
-##### Algorithm
+#### Algorithm
 
 The algorithm is designed to work with SPUs in **any rack assignment**. If the rack assignment is unbalanced, the algorithm fills gaps with a round-robin allocation in the SPU matrix.
 
@@ -121,7 +120,7 @@ The algorithm has the following 3 stages:
 * Stage 2: Convert SPU matrix to an SPU sequence
 * Stage 3: Generate replica map
 
-###### Example 1 - Balanced Rack Distribution
+##### Example 1 - Balanced Rack Distribution
 
 On a cluster with **12** SPUs evenly distributed across **4** racks, a topic created with:
 
@@ -169,7 +168,7 @@ Partition |   Replicas           rack-a  rack-b  rack-c  rack-d
 
 Replicas are evenly distributed across racks and SPUs.
 
-###### Example 2 - Unbalanced Rack Distribution
+##### Example 2 - Unbalanced Rack Distribution
 
 On a cluster with **6** SPUs unevenly distributed across **3** racks: 
 
@@ -214,7 +213,7 @@ Partition |   Replicas          rack-c  rack-b  rack-a
 
 Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs handle more replicas. If a power failure occurs on a large rack, leader redistribution may overwhelm the SPUs on the smaller racks.
 
-### Manual Replica Assignment
+## Manual Replica Assignment
 
 **MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status](../sc#topic-status"). In fact, the **replica map** defined as defined in the file is assigned to this field.
 
