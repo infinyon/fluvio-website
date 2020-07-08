@@ -4,6 +4,11 @@ toc: true
 weight: 40
 ---
 
+## Replica Election
+
+**Replica election** algorithm designates one of the SPUs as group leader and the others as followers. The leader is responsible for data propagation and producer/consumer communication. The followers are responsible for saving the data received from the leader. If the leader goes offline, an election ensues and one of the followers become the new leader. Then [clients are automatically redirected](../client) to the new elected leader and operation resumes.
+
+
 ## Election Algorithm
 
 SC detects SPU goes offline and it triggers an SPU election.

@@ -110,6 +110,9 @@ For additional details about **Internal APIs** checkout Fluvio development guide
 ----------------
 * [SC Architecture](sc)
 * [SPU Architecture](spu)
-* [Replication](replication)
+* [Replication Assignment](replication)
+* [Replica Election](election)
+* [Client Library](client)
 * [Kubernetes Integration](k8-integration)
 * [Deployment Models](deployments)
+* [References](references)

@@ -28,11 +28,11 @@ The **SPU** is a high performance streaming processing unit that works in unisom
 * send data to Consumers
 * send copies of the data to peer SPUs
 
-The following diagram describes the **SPU architecture**
+The following diagram describes **SPU** object relationships and workflows:
 
 {{< image src="architecture/spu-workflow.svg" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
 
-1. Leader Controller
+1. Leader Controller (LC)
     * receives SPU and Partition specs from SC Dispatcher
     * creates local storage for Replicas
     * syncs Replica info with Followers
@@ -41,7 +41,7 @@ The following diagram describes the **SPU architecture**
     * sends LRS status to SC Updater
     * receives message from Producers
     * sends messages to Consumers
-2. Follower Controller
+2. Follower Controller (FC)
     * receives Partition specs from SC Dispatcher
     * creates local storage for Replicas
     * syncs Replica info with Leader
@@ -123,13 +123,13 @@ The **FC** is terminated when the last Follower Spec is removed. Each **FC** is 
 *  Adds records to Replica from **Leader SPU**.
 
 
-## Election
+## Replica Election
 
-Topics are created with a _replication factor_ that defines the number of data copies saved for each data stream. For example, a topic with a replication factor of 3 will generate 3 copies of data, one per SPU. 
+Topics are created with a _replication factor_ which defines the number of data copies saved for each data stream. For example, a topic with a replication factor of 3 will generate 3 copies of data, one per SPU. 
 
-[Replication assignment](../replication-assignment) algorithm designates groups of SPUs to handle data replication of each data stream. [Election algorithm](../election) ensures one SPU in the group becomes the leader and the others become followers. The leader is responsible for all producer/consumer communication. If the leader goes offline, one of the followers is elected as the new leader. The [clients are automatically redirected](../client) to the newly elected leader and operation resumes.
+[Replication assignment](../replication-assignment) algorithm designates groups of SPUs to store identical copies (_replicas_) of the data for each data stream. [Election algorithm](../election#election-algorithm) assigns one of the SPUs as group leader and the others as followers. The leader is responsible for data propagation and producer/consumer communication. The followers are responsible for saving _identical replicas_ of data received from the leader. If the leader goes offline, an `election ensues` and one of the followers become the new leader. After the election is completed, [clients are automatically reconnect](../client) to the new leader and operation resumes.
 
-The election algorithm and failover scenarios are described in detail in the [Election section](../election).
+Election algorithm and failover scenarios are described in detail in the [Replica Election](../election) section.
 
 
 ## Replica Storage
