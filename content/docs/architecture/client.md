@@ -149,7 +149,7 @@ Configuration objects may be fetch using filters such as `object name`.
 
 Consumers are also multi-threaded which allows each consumer to read records from multiple data streams simultaneously. Each connection can specify different retrieval properties:
 
-* **Read Strategy** - retrieve records based on their committed state across _replicas_:
+* **Consistency Model** - retrieve records based on their committed state across _replicas_:
     * COMMITTED: fetch only the records that have been replicated `n` times (where `n` defined by _min-live-replicas_)
     * UNCOMMITTED: fetch records that have been stored by _replica leader_. When using UNCOMMITTED read strategy, it is possible to loose records that have already been seen by the consumers. Hence, it should only be used when sporadic message loss is acceptable.
 * **Max Bytes** - the maximum number of bytes sent in single message.

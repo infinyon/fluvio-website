@@ -4,25 +4,27 @@ toc: true
 weight: 40
 ---
 
-* Replica Set => List of SPUs assigned to a replica.
-* Replica Assignment => Membership list
-* Election => Role in the membership list.
+**Replicas** are responsible for the distribution of data streams across SPUs. **Replica Sets** are the SPUs assigned to each data stream. Each replica set is responsible for storing identical replicas of records in their local store. 
+
+While [Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set, [Replica Election](#replica-election-algorithm) _coordinates_ the roles of the SPUs within the replica set. 
+
+SPUs are powerful multi-threaded servers that can process a large number of leaders and followers at the same time.
+
+{{< image src="architecture/election-leader-follower.svg" alt="Leader/Follower Distribution" justify="center" width="820" type="scaled-98">}}
 
 
-While [replica assignment](../replica-assignment) designates groups of SPUs to data streams, **replica election** coordinates all membership changes. Each group of SPUs are collectively responsible for storing identical replicas of data in their local store. One of the SPUs is elected as Leader and others are designed as followers.
+
+
+## Replica Election Algorithm
 
 Each `Leader` of a data stream is responsible for the following tasks:
 * ingest data from consumers
 * send data to consumers
 * forward incremental data changes changes to followers
 
-An SPU can be leader and follower for different data streams.
-
 {{< image src="architecture/election-overview.svg" alt="Election Overview" justify="center" width="820" type="scaled-98">}}
 
 When an SPUs is incapacitated a **replica election** gets triggered and the a new leader is elected. 
-
-## Replica Election Algorithm
 
 SC detects SPU goes offline and it triggers an SPU election.
 

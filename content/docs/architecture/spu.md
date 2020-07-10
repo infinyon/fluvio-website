@@ -127,20 +127,34 @@ The **FC** is terminated when the last Follower Spec is removed. Each **FC** is 
 
 Topics are created with a _replication factor_ which defines the number of data copies saved for each data stream. For example, a topic with a replication factor of 3 will generate 3 copies of data, one per SPU. 
 
-[Replica assignment](../replica-assignment) algorithm designates groups of SPUs to store identical copies (_replicas_) of the data for each data stream. [Election algorithm](../replica-election#election-algorithm) assigns one of the SPUs as group leader and the others as followers. The leader is responsible for data propagation and producer/consumer communication. The followers are responsible for saving _identical replicas_ of data received from the leader. If the leader goes offline, an `election ensues` and one of the followers become the new leader. After the election is completed, [clients are automatically reconnect](../client) to the new leader and operation resumes.
+[Replica assignment](../replica-assignment) algorithm designates sets of SPUs to store identical copies (_replicas_) of the data for each data stream. [Election algorithm](../replica-election#election-algorithm) assigns one SPU as leader and the others as followers. The leader is responsible for data propagation and the communication with producers and consumers. The followers are responsible with replicating data received from the leader. If the leader goes offline, an `election ensues` and one of the followers becomes the new leader. After the election is completed, [clients automatically reconnect](../client) and operation resumes.
 
-Election algorithm and failover scenarios are described in detail in the [Replica Election](../election) section.
+Election algorithm and failover scenarios are described in detail in the [Replica Election](../replica-election) section.
 
 
 ## Replica Storage
 
-Replica is stored in an append only file.  The files are split into smaller files (segment) if size exceed limit.  This make it easy to implement retention policy. By default, files are stored in "/tmp/fluvio/spu-<spu_id>".  
+Each replica writes records in a local file on the SPU. 
+
+New records are appended to files and become immutable. 
+
+Records are indexed by offset and time. Each records consists of an arbitrary binary key/value key.
+
+Records are organized in segments of a predefined maximum size. Segments can be purged based on a retention policy. For configuration parameters, checkout [Reference Section](../reference#configuration-options).
 
 To allow faster access to records in replica, index files are maintained.  Index file is memory mapped to b-tree structure to allow fast access.   Index files are re-built from records as necessary.
 
-## Zero Copy
+Records IO is optimized for each platform designed for high-throughput async IO. There are two factors that determine system performance:
 
-Records in replica are send to consumer using zero copy mechanism.  This avoid need to copy records in memory.
+* Consistency Model - COMMITTED/UNCOMMITTED
+* Flushing Policy - by default records are flushed based on the minimum number of bytes or after a certain amount of time elapsed.
+
+### Zero Copy
+
+Records in replica are send to consumer using zero copy mechanism. Zero copy mechanism avoids the need to copy records in memory and increases performance.
+
+
+Records can be batched together to improve performance.
 
 
 #### Related Topics

@@ -50,3 +50,15 @@ Custom vs Managed
 
 * ....
 
+## Configuration Options
+
+* Storage defaults
+
+
+## Definitions
+
+* Replica Set => List of SPUs assigned to a replica.
+    * The SPUs responsible a data stream are called **Replica Sets**
+    
+* Replica Assignment => Membership list
+* Election => Role in the membership list.

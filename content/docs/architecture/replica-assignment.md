@@ -4,6 +4,11 @@ toc: true
 weight: 30
 ---
 
+* Replica Set => List of SPUs assigned to a replica.
+* Replica Assignment => Membership list
+* Election => Role in the membership list.
+
+
 Fluvio **real-time replication architecture** improves data availability without sacrificing performance. **Replica assignment** is triggered by topic creation and it is responsible for a **balanced distribution** of replicas across the **SPUs** in a Fluvio cluster.
 
 #### Topics
@@ -23,9 +28,9 @@ Replicas have 2 roles, leader and follower:
 * SPU-1 serves the **Replica leader**. 
 * SPU-2 and SPU-3 serve **Replica followers**.
 
-#### Replica Assignment
+#### Replica Assignment Algorithm
 
-Fluvio replication assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment](#manual-replica-assignment) instead.
+Fluvio replica assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment](#manual-replica-assignment) instead.
 
 
 ## Computed Replica Assignment (CRA)
