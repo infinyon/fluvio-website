@@ -17,7 +17,4 @@ Fluvio uses
 
 #### Related Topics
 -------------------
-* [SC Architecture](../sc)
-* [SPU Architecture](../spu)
-* [Replication](../replication)
 * [Deployment Models](../deployments)

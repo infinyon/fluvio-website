@@ -1,12 +1,26 @@
 ---
 title: Replica Election
-menu: Election
 toc: true
 weight: 40
 ---
 
-Fluvio uses a **replica election algorithm** to elect SPU leaders and designates SPU followers for all data streams. When a topic is created, the [replica assignment](../replication-assignment) algorithm generates a replica-map with groups of SPUs assigned to each data stream. These SPU groups are collectively responsible for storing identical replicas of data in their local store to minimize the probability of data loss if one or more SPUs become incapacitated.
+* Replica Set => List of SPUs assigned to a replica.
+* Replica Assignment => Membership list
+* Election => Role in the membership list.
 
+
+While [replica assignment](../replica-assignment) designates groups of SPUs to data streams, **replica election** coordinates all membership changes. Each group of SPUs are collectively responsible for storing identical replicas of data in their local store. One of the SPUs is elected as Leader and others are designed as followers.
+
+Each `Leader` of a data stream is responsible for the following tasks:
+* ingest data from consumers
+* send data to consumers
+* forward incremental data changes changes to followers
+
+An SPU can be leader and follower for different data streams.
+
+{{< image src="architecture/election-overview.svg" alt="Election Overview" justify="center" width="820" type="scaled-98">}}
+
+When an SPUs is incapacitated a **replica election** gets triggered and the a new leader is elected. 
 
 ## Replica Election Algorithm
 
@@ -79,3 +93,11 @@ If a new leader is elected, the follower will connect to the new leader and re-s
 
 Live replicas are the set of replicas that in-sync with the leader. If a follower falls behind the leader with more than x number of messages (identified by a pre-configured gap), the follower will be marked inelligeable for leadership election. Once the follower catches-up below the pre-defined gap, it is moved back to live replica group and becomes elligeble for election.
 
+
+#### Related Topics
+-------------------
+* [SC Architecture](../sc)
+* [SPU Architecture](../spu)
+* [Replica Assignment](replica-assignment)
+* [Client Library](../client)
+* [References](../references)

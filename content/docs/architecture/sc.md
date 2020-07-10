@@ -137,7 +137,7 @@ A topic with *6 partitions* and a *replication factor of 3* on a new cluster gen
 
 {{< image src="architecture/partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
 
-The algorithm that computes partition/replica distribution is described in the [Replication Assignment](../replication) section. 
+The algorithm that computes partition/replica distribution is described in the [Replica Assignment](../replica-assignment) section. 
 
 Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topics CLI](/docs/cli/topics) section.
 
@@ -177,7 +177,7 @@ In this example, **4: [1, 2, 0]** defines:
 
 ### Partitions
 
-**Partition** are configuration objects managed by the system. When a new topic is created, the **SC** performs [replication assignment](../replication) to generate the partitions:
+**Partition** are configuration objects managed by the system. When a new topic is created, the **SC** performs [replica assignment](../replica-assignment) to generate the partitions:
 
 1. **generate a partition map** and store in the topic status,
 2. **create a partition object** for each row in the partition map,
@@ -388,6 +388,7 @@ When the SPU come back online it initiates a new connection as described in the 
 #### Related Topics
 -------------------
 * [SPU Architecture](../spu)
-* [Replication](../replication)
-* [Kubernetes Integration](../k8-integration)
-* [Deployment Models](../deployments)
+* [Replica Assignment](../replica-assignment)
+* [Replica Election](../replica-election)
+* [Client Library](../client)
+* [References](../references)

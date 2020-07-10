@@ -1,11 +1,10 @@
 ---
-title: Replication Assignment
-menu: Replication
+title: Replica Assignment
 toc: true
 weight: 30
 ---
 
-Fluvio **real-time replication architecture** improves data availability without sacrificing performance. **Replication assignment** is triggered by topic creation and it is responsible for a **balanced distribution** of replicas across the **SPUs** in a Fluvio cluster.
+Fluvio **real-time replication architecture** improves data availability without sacrificing performance. **Replica assignment** is triggered by topic creation and it is responsible for a **balanced distribution** of replicas across the **SPUs** in a Fluvio cluster.
 
 #### Topics
 
@@ -15,7 +14,7 @@ Fluvio's uses **[Topics](../sc#topics)** to define **data distribution** criteri
 $ fluvio topic create --topic topic-a --partitions 1 --replication 3
 ```
 
-Replication parameter specifies the number of unique copies:
+Replica parameter specifies the number of unique copies:
 
 {{< image src="architecture/leader-followers.svg" alt="Leader, Followers" justify="center" width="520" type="scaled-90">}}
 
@@ -24,7 +23,7 @@ Replicas have 2 roles, leader and follower:
 * SPU-1 serves the **Replica leader**. 
 * SPU-2 and SPU-3 serve **Replica followers**.
 
-#### Replication Assignment
+#### Replica Assignment
 
 Fluvio replication assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment](#manual-replica-assignment) instead.
 
@@ -261,5 +260,6 @@ For additional information on how to check the result of a replica assignment fi
 -------------------
 * [SC Architecture](../sc)
 * [SPU Architecture](../spu)
-* [Kubernetes Integration](../k8-integration)
-* [Deployment Models](../deployments)
+* [Replica Election](../replica-election)
+* [Client Library](../client)
+* [References](../references)

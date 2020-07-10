@@ -127,7 +127,7 @@ The **FC** is terminated when the last Follower Spec is removed. Each **FC** is 
 
 Topics are created with a _replication factor_ which defines the number of data copies saved for each data stream. For example, a topic with a replication factor of 3 will generate 3 copies of data, one per SPU. 
 
-[Replication assignment](../replication-assignment) algorithm designates groups of SPUs to store identical copies (_replicas_) of the data for each data stream. [Election algorithm](../election#election-algorithm) assigns one of the SPUs as group leader and the others as followers. The leader is responsible for data propagation and producer/consumer communication. The followers are responsible for saving _identical replicas_ of data received from the leader. If the leader goes offline, an `election ensues` and one of the followers become the new leader. After the election is completed, [clients are automatically reconnect](../client) to the new leader and operation resumes.
+[Replica assignment](../replica-assignment) algorithm designates groups of SPUs to store identical copies (_replicas_) of the data for each data stream. [Election algorithm](../replica-election#election-algorithm) assigns one of the SPUs as group leader and the others as followers. The leader is responsible for data propagation and producer/consumer communication. The followers are responsible for saving _identical replicas_ of data received from the leader. If the leader goes offline, an `election ensues` and one of the followers become the new leader. After the election is completed, [clients are automatically reconnect](../client) to the new leader and operation resumes.
 
 Election algorithm and failover scenarios are described in detail in the [Replica Election](../election) section.
 
@@ -146,6 +146,7 @@ Records in replica are send to consumer using zero copy mechanism.  This avoid n
 #### Related Topics
 -------------------
 * [SC Architecture](../sc)
-* [Replication](../replication)
-* [Kubernetes Integration](../k8-integration)
-* [Deployment Models](../deployments)
+* [Replica Assignment](../replica-assignment)
+* [Replica Election](../replica-election)
+* [Client Library](../client)
+* [References](../references)
