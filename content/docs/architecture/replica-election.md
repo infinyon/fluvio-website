@@ -4,9 +4,7 @@ toc: true
 weight: 40
 ---
 
-**Replicas** are responsible for the distribution of data streams across SPUs. **Replica Sets** are the SPUs assigned to each data stream. Each replica set is responsible for storing identical replicas of records in their local store. 
-
-[Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set and [Replica Election](#replica-election-algorithm) _coordinates_ their roles. The election algorithm ensures all replica sets have one leader and one or more followers. SPUs have a powerful <ins>multi-threaded implementation</ins> that can process a large number of leaders and followers at the same time.
+[Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set and [Replica Election](#replica-election-algorithm) _coordinates_ their roles. The election algorithm manages replica sets in an attempt to designate one active leader at all times. SPUs have a powerful <ins>multi-threaded implementation</ins> that can process a large number of leaders and followers at the same time.
 
 If an SPU becomes incapacitated, the election algorithm identifies all impacted replica sets and triggers a re-election. The following section describes the algorithm utilized by each replica set as it elects a new leader. 
 
@@ -18,11 +16,11 @@ The `Leader` and `Followers` of a **Replica Sets** have different responsibiliti
 {{< image src="architecture/election-leader-followers-brief.svg" alt="Leader/Follower" justify="center" width="520" type="scaled-90">}}
 
 `Leader` responsibilities:
-* listen for connections from followers
 * ingest data from producers
-* store producer data in the local store
+* store the data in the local store
 * send data to consumers
 * forward incremental data changes to followers
+* keeps live replica sets (**LRS**) updated
 
 `Followers` responsibilities:
 * establish connection to the leader (and run periodic health-checks)
@@ -46,7 +44,7 @@ Replica election covers two core cases:
 When an SPU goes offline, the SC identifies all impacted `Replica Sets` and triggers an election:
 
 * set `Replica Set` status to _Election_
-* choose <ins>leader candidate</ins> from _follower_ membership list based on smallest lag behind the previous leader:
+* choose <ins>leader candidate</ins> from the _followers_ in **LRS** based on smallest lag behind the previous leader:
 
     * <ins>leader candidate</ins> found:
         * set `Replica Set` status to _CandidateFound_
@@ -54,7 +52,7 @@ When an SPU goes offline, the SC identifies all impacted `Replica Sets` and trig
         * start _wait-for-response_ timer
 
 
-    * no eligible <ins>leader candidate</ins> left:
+    * no eligible <ins>leader candidate</ins> available:
         * set `Replica Set` status to _Offline_        
 
 ###### Follower SPUs receive `Leader Candidate` Notification
@@ -83,8 +81,9 @@ The SC perform the follower operations:
 ###### SC 'wait-for-response' timer fired
 
 The SC chooses the next `Leader Candidate` from the **LRS** list and the process repeats.
+
 If no eligible <ins>leader candidate</ins> left:
-        * set `Replica Set` status to _Offline_
+* set `Replica Set` status to _Offline_
 
 
 ###### SPUs receive new `LRS`
