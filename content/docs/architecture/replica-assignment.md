@@ -21,7 +21,7 @@ $ fluvio topic create --topic topic-a --partitions 1 --replication 3
 
 Replica parameter specifies the number of unique copies:
 
-{{< image src="architecture/leader-followers.svg" alt="Leader, Followers" justify="center" width="520" type="scaled-90">}}
+{{< image src="architecture/assignment-leader-followers.svg" alt="Leader, Followers" justify="center" width="560" type="scaled-95">}}
 
 Replicas have 2 roles, leader and follower:
 

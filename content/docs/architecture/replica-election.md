@@ -6,94 +6,152 @@ weight: 40
 
 **Replicas** are responsible for the distribution of data streams across SPUs. **Replica Sets** are the SPUs assigned to each data stream. Each replica set is responsible for storing identical replicas of records in their local store. 
 
-While [Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set, [Replica Election](#replica-election-algorithm) _coordinates_ the roles of the SPUs within the replica set. 
+[Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set and [Replica Election](#replica-election-algorithm) _coordinates_ their roles. The election algorithm ensures all replica sets have one leader and one or more followers. SPUs have a powerful <ins>multi-threaded implementation</ins> that can process a large number of leaders and followers at the same time.
 
-SPUs are powerful multi-threaded servers that can process a large number of leaders and followers at the same time.
-
-{{< image src="architecture/election-leader-follower.svg" alt="Leader/Follower Distribution" justify="center" width="820" type="scaled-98">}}
+If an SPU becomes incapacitated, the election algorithm identifies all impacted replica sets and triggers a re-election. The following section describes the algorithm utilized by each replica set as it elects a new leader. 
 
 
+## Roles and Responsibilities
 
+The `Leader` and `Followers` of a **Replica Sets** have different responsibilities.
+
+{{< image src="architecture/election-leader-followers-brief.svg" alt="Leader/Follower" justify="center" width="520" type="scaled-90">}}
+
+`Leader` responsibilities:
+* listen for connections from followers
+* ingest data from producers
+* store producer data in the local store
+* send data to consumers
+* forward incremental data changes to followers
+
+`Followers` responsibilities:
+* establish connection to the leader (and run periodic health-checks)
+* receive data changes from the leader
+* store data in the local store
+
+All followers are in hot-standby and ready to take-over as leader.
 
 ## Replica Election Algorithm
 
-Each `Leader` of a data stream is responsible for the following tasks:
-* ingest data from consumers
-* send data to consumers
-* forward incremental data changes changes to followers
+Each data stream has a **Live Replica Set (LRS)** that describes the SPUs actively replicating data records in their local data store. **LRS status** can be viewed in `show partitions` CLI command.
 
 {{< image src="architecture/election-overview.svg" alt="Election Overview" justify="center" width="820" type="scaled-98">}}
 
-When an SPUs is incapacitated a **replica election** gets triggered and the a new leader is elected. 
+Replica election covers two core cases:
+* SPU `goes offline`
+* SPU that was previously part of the cluster `comes back online`
 
-SC detects SPU goes offline and it triggers an SPU election.
+### SPU goes Offline
 
-1. if an SPU goes offline  - for all replicas where SPU was a leader, the SC triggers election
-    1. Replica status is set to "Election"
-    2. SC looks-up an SPU leader candidate (has to be alive and has smallest lag behind the leader - done by a scoring algorithm)
-        * if SPU candidate is found, set Replica state to "CandidateFound"
-        * if no eligible SPU is found, set Replica state to "Offline"
-    3. SC notifies all SPUs of replica status changes
-    4. Each SPU receives replicas eligible for promotion from the SC.
-        * SPU tries to promote these follower replicas to leader replicas.
-        * If successful, it notifies the SC that Replica promotion succeeded.
-        * SC set replica status to "Online" and all SPUs get notified.
-    5. SPU followers get notification of the new Replica leader.
-        * Follower replicas are now listening for messages from the new leader.
+When an SPU goes offline, the SC identifies all impacted `Replica Sets` and triggers an election:
 
-* 2. if an SPU comes online - for all Replicas that in state "Offline", the SC triggers election
-    1. SC identifies if SPU can be a leader candidate (has to be alive and has smallest lag behind the leader - done by a scoring algorithm)
-        * if SPU candidate is found, set Replica state to "CandidateFound"
-    2. SC notifies all SPUs of replica status changes
-    3. Each SPU receives replicas eligible for promotion from the SC.
-        * SPU tries to promote these follower replicas to leader replicas.
-        * If successful, it notifies the SC that Replica promotion succeeded.
-        * SC set replica status to "Online" and all SPUs get notified.
-    4. SPU followers get notification of the new Replica leader.
-        * Follower replicas are now listening for messages from the new leader.
+* set `Replica Set` status to _Election_
+* choose <ins>leader candidate</ins> from _follower_ membership list based on smallest lag behind the previous leader:
+
+    * <ins>leader candidate</ins> found:
+        * set `Replica Set` status to _CandidateFound_
+        * notifies all follower SPUs
+        * start _wait-for-response_ timer
+
+
+    * no eligible <ins>leader candidate</ins> left:
+        * set `Replica Set` status to _Offline_        
+
+###### Follower SPUs receive `Leader Candidate` Notification
+
+All SPUs in the Replica Set receive proposed `leader candidate` and perform the following operations:
+
+*  SPU that matches `leader candidate` tries to promote follower replica to leader replica:
+
+    * `follower` to `leader` promotion successful
+        * SPU notifies the SC
+    
+    * `follower` to `leader` promotion failed
+        * no notification is sent
+
+* Other SPUs ignore the message
+
+
+###### SC receives `Promotion Successful` from `Leader Candidate` SPU
+
+The SC perform the follower operations:
+* set `Replica Set` status to _Online_
+* update **LRS**
+* notifies all follower SPUs in the **LRS** list
+
+
+###### SC 'wait-for-response' timer fired
+
+The SC chooses the next `Leader Candidate` from the **LRS** list and the process repeats.
+If no eligible <ins>leader candidate</ins> left:
+        * set `Replica Set` status to _Offline_
+
+
+###### SPUs receive new `LRS`
+
+All SPU followers update their *LRS*, point to the new leader, and are ready to receive data stream messages.
+
+
+
+### SPU comes back Online
+
+When an known SPU comes back Online, the SC identifies all impacted `Replica Sets` and triggers a refresh.
+For all Replica Sets with status _Offline_, the SC performs the following operations:
+
+* set `Replica Set` status to _Election_
+* choose <ins>leader candidate</ins> from _follower_ membership list based on smallest lag behind the previous leader:
+
+    * <ins>leader candidate</ins> found:
+        * set `Replica Set` status to _CandidateFound_
+        * notifies all follower SPUs (see above)
+        * start _wait-for-response_ timer
+
+
+    * no eligible <ins>leader candidate</ins> left:
+        * set `Replica Set` status to _Offline_  
+
+The algorithm repeats the same steps as in the "SPU goes Offline" section.
 
 
 ## Leader/Follower Synchronization
 
-Each SPUs maintains a large number of Leader and Follower Replicas in simultaneously.
-
-Each Leader Replica has one Leader Controller and each group of Follower Replicas of the same leader has one Follower Controller. Rust async framework allows Fluvio to scale to virtually unlimited number of Replica Controllers.
+Each SPUs has a _Leader Controller_ that manages leader replicas, and a _Follower Controller_  that manages follower replicas. SPU utilizes Rust **async framework** to run a virtually unlimited number of leader and follower operations in parallel. 
 
 ### Communication Channels
 
-Only follower initiate communication to the leader. All follower SPUs for a replica set uses a single TCP channel to the leader SPU and form 
+SPUs are multiplexing the TCP channel to communicate with each other. When an SPU comes online, it initializes the leader and follower Controllers. Each follower in the SPU **Replica Sets** generates a bi-directional TCP connection to the leader SPU. Once a connection is established, all subsequent SPU-pair exchanges will utilize the same channel.
 
-* follower always initiates connection to leader
-* if there is a communication issue, follower reconnects
-* given 2 SPUs there is maximum of 2 possible leader/follower channel (one per direction)
-* all replica communication between two SPUs share the same channel.
+Given a pair of SPUs there is maximum of two possible connections (<ins>one per direction</ins>):
+* SPU-1 follower -> SPU2 leader
+* SPU-2 follower -> SPU-1 leader
 
-Each pair of SPUs share a communication channel 
+ If the connection is lost, the follower re-initiates connection to the leaders. Leaders must wait for the connection to be established to communicate with followers.
 
 ### Synchronization Algorithm
 
-LEO - last offset of the physical record written to disk for the replica
-HW - high watermark is the last committed offset for the replica (leader & followers)
+Synchronization algorithm uses the following variables to track data synchronization in a **Replica Set**:
 
-* when a follower connects to the leader
-    * follower sends the leader its LEO and HW
-* the leader receives LEO and HW form all follower replicas
-    * it updates its internal HW
-    * the leader identifies the smallest LEO from all followers (and meet the min-in-sync-replica), the leader updates it HW (high watermark)
-* the leader send followers the new HW (high watermark) 
-    * if the followers LEO is less than the HW (when followers fall behind), the leaders sends followers the delta from LEO to the HW to catch-up.
-* the follower receives the new records and HW
-    * it writes the new records to the disk
-    * it updates its own HW
-    * sends new LEO to the leader
+* **LEO** - Log End Offset - offset of the last record written on the physical disk by <ins>a replica</ins>.
+* **HW** - High Watermark - offset of the last record committed by <ins>all replicas</ins> (leader & followers).
 
-The entire Replica set will eventually converge.
+###### Leader/Follower Synchronization
 
-If the follower goes temporarily offline or in the event of a network failure, the follower will attempt to re-establish connection to the leader and synchronize its data store.
+Replica <ins>leaders</ins> are responsible for receiving data records from producers and feed them to consumers. In addition, leaders are responsible for the data synchronization with the followers. Replica <ins>followers</ins> receive data records from the <ins>leader</ins> and reply with their last known `LEO` and `HW`.
 
-If a new leader is elected, the follower will connect to the new leader and re-synchronize it data store.
+A replica <ins>leader</ins> receives the `LEO` and `HW` form all follower replicas, and performs the following operations:
 
-Live replicas are the set of replicas that in-sync with the leader. If a follower falls behind the leader with more than x number of messages (identified by a pre-configured gap), the follower will be marked inelligeable for leadership election. Once the follower catches-up below the pre-defined gap, it is moved back to live replica group and becomes elligeble for election.
+* computes the smallest `LEO` received and updates its internal `HW`
+* send followers the new `HW`
+    
+###### Lagging Followers
+
+If a follower `LEO` is less than the `HW`, the follower has fallen behind. The leaders helps the follower catch-up by sending all missing records from `LEO` offset to the `HW` offset. If the follower falls behind for a prolonged period of time or it exceeds a maximum number of records, the leader may decide to temporarily remove the follower from the **LRS** set. Followers removed from **LRS** list are ineligible for election but they continue receiving records. If the follower catches-up with the leader it is moved back to **LRS** set and it becomes eligible for election.
+
+The election algorithm is designed to recover from failure cases and bring **Replica Set** back in sync.
+
+###### Follower Failure
+
+If the follower goes temporarily offline or in the event of a network failure, the follower will attempt to re-establish connection to the leader and synchronize its data store. If a new leader is elected, the follower will connect to the new leader and re-synchronize it data store.
 
 
 #### Related Topics
