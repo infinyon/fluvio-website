@@ -88,8 +88,10 @@ If no eligible <ins>leader candidate</ins> left:
 
 ###### SPUs receive new `LRS`
 
-All SPU followers update their *LRS*, point to the new leader, and are ready to receive data stream messages.
-
+All SPU followers update their *LRS*:
+* reconnect to new leader
+* synchronize internal checkpoints with new leader (as described below).
+* wait for changes from new leader
 
 
 ### SPU comes back Online
@@ -114,17 +116,22 @@ The algorithm repeats the same steps as in the "SPU goes Offline" section.
 
 ## Leader/Follower Synchronization
 
-Each SPUs has a _Leader Controller_ that manages leader replicas, and a _Follower Controller_  that manages follower replicas. SPU utilizes Rust **async framework** to run a virtually unlimited number of leader and follower operations in parallel. 
+Each SPU has a _Leader Controller_ that manages leader replicas, and a _Follower Controller_  that manages follower replicas. SPU utilizes Rust **async framework** to run a virtually unlimited number of leader and follower operations simultaneously. 
 
 ### Communication Channels
 
-SPUs are multiplexing the TCP channel to communicate with each other. When an SPU comes online, it initializes the leader and follower Controllers. Each follower in the SPU **Replica Sets** generates a bi-directional TCP connection to the leader SPU. Once a connection is established, all subsequent SPU-pair exchanges will utilize the same channel.
+Each **Replica Set** has a communication channel where for the leader and followers exchange replica information. It is the responsibility of the followers to establish a connection to the leader. Once a connection between two SPUs is created, it is shared by all replica sets.
 
-Given a pair of SPUs there is maximum of two possible connections (<ins>one per direction</ins>):
-* SPU-1 follower -> SPU2 leader
-* SPU-2 follower -> SPU-1 leader
+For example, three replica sets **a**, **b**, and **c** are distributed across `SPU-1`, `SPU-2`, and `SPU-3`: 
 
- If the connection is lost, the follower re-initiates connection to the leaders. Leaders must wait for the connection to be established to communicate with followers.
+{{< image src="architecture/election-connection.svg" alt="Election Overview" justify="center" width="360" type="scaled-75">}}
+
+The first follower (**b**, or **c**) from `SPU-1` that tries to communicate with its leader in `SPU-2` generates a TCP connection. Then, all subsequent communication from `SPU-1` to `SPU-2`, irrespective of the replica set, will reuse the same connection.
+
+Hence, each SPU pair will have **at most 2** connections. For example:
+* `SPU-1` <=> `SPU-2`
+    * `SPU-1` followers => `SPU-2` leaders
+    * `SPU-2` followers =>  `SPU-1` leaders
 
 ### Synchronization Algorithm
 
