@@ -193,6 +193,6 @@ By default only COMMITTED messages are sent to consumers.
 -------------------
 * [SC Architecture](../sc)
 * [SPU Architecture](../spu)
-* [Replica Assignment](replica-assignment)
+* [Replica Assignment](../replica-assignment)
 * [Client Library](../client)
 * [References](../references)
