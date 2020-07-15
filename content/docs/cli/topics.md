@@ -397,8 +397,8 @@ $ fluvio topic list --kf 0.0.0.0:9092
 
 #### Related Topics
 -------------------
-* [Produce CLI](../produce)
-* [Consume CLI](../consume)
-* [SPUs CLI](../spus)
-* [Custom SPU CLI](../custom-spus)
-* [SPU-Groups CLI](../spu-groups)
+* [Produce CLI](../produce/)
+* [Consume CLI](../consume/)
+* [SPUs CLI](../spus/)
+* [Custom SPU CLI](../custom-spus/)
+* [SPU-Groups CLI](../spu-groups/)

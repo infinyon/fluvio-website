@@ -106,8 +106,8 @@ three
 
 #### Related Topics
 -------------------
-* [Produce CLI](../produce)
-* [SPUs CLI](../spus)
-* [Custom SPU CLI](../custom-spus)
-* [SPU-Groups CLI](../spu-groups)
-* [Topics CLI](../topics)
+* [Produce CLI](../produce/)
+* [SPUs CLI](../spus/)
+* [Custom SPU CLI](../custom-spus/)
+* [SPU-Groups CLI](../spu-groups/)
+* [Topics CLI](../topics/)

@@ -141,10 +141,10 @@ For additional information, checkout [Fluvio Profiles](./profiles) section.
 
 #### Related Topics
 -------------------
-* [Fluvio Profiles](./profiles)
-* [Produce CLI](./produce)
-* [Consume CLI](./consume)
-* [SPUs CLI](./spus)
-* [Custom SPU CLI](./custom-spus)
-* [SPU-Groups CLI](./spu-groups)
-* [Topics CLI](./topics)
+* [Fluvio Profiles](./profiles/)
+* [Produce CLI](./produce/)
+* [Consume CLI](./consume/)
+* [SPUs CLI](./spus/)
+* [Custom SPU CLI](./custom-spus/)
+* [SPU-Groups CLI](./spu-groups/)
+* [Topics CLI](./topics/)

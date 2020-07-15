@@ -122,43 +122,72 @@ Each SPU has a _Leader Controller_ that manages leader replicas, and a _Follower
 
 Each **Replica Set** has a communication channel where for the leader and followers exchange replica information. It is the responsibility of the followers to establish a connection to the leader. Once a connection between two SPUs is created, it is shared by all replica sets.
 
-For example, three replica sets **a**, **b**, and **c** are distributed across `SPU-1`, `SPU-2`, and `SPU-3`: 
+For example, three replica sets **a**, **b**, and **c** that are distributed across `SPU-1`, `SPU-2`, and `SPU-3`: 
 
-{{< image src="architecture/election-connection.svg" alt="Election Overview" justify="center" width="360" type="scaled-75">}}
+{{< image src="architecture/election-connection.svg" alt="Election Overview" justify="center" width="400" type="scaled-75">}}
 
 The first follower (**b**, or **c**) from `SPU-1` that tries to communicate with its leader in `SPU-2` generates a TCP connection. Then, all subsequent communication from `SPU-1` to `SPU-2`, irrespective of the replica set, will reuse the same connection.
 
-Hence, each SPU pair will have **at most 2** connections. For example:
+Hence, each SPU pair will have at most 2 connections. For example:
 * `SPU-1` <=> `SPU-2`
     * `SPU-1` followers => `SPU-2` leaders
-    * `SPU-2` followers =>  `SPU-1` leaders
+    * `SPU-2` followers => `SPU-1` leaders
 
 ### Synchronization Algorithm
 
-Synchronization algorithm uses the following variables to track data synchronization in a **Replica Set**:
+ Replicas use **offsets** to indicate the position of a record in a data stream. Offsets starts at `zero` and are incremented by one anytime a new record is appended.
 
-* **LEO** - Log End Offset - offset of the last record written on the physical disk by <ins>a replica</ins>.
-* **HW** - High Watermark - offset of the last record committed by <ins>all replicas</ins> (leader & followers).
+ **Log End Offset** (LEO) represents the offset of last record in the local store of a replica. A records is considered **committed** only when replicated by all live replicas. **Live Replica Sets (LRS)** is the set of active replicas in the membership list. **High Watermark** (HW) is the last offset of the record committed by the **LRS**. 
+ 
+ **Synchronization algorithm** collects the **LEOs**, computes the **HW**, and manages the **(LRS)**. 
+
+{{< image src="architecture/election-sync-overview.svg" alt="Election Overview" justify="center" width="480" type="scaled-80">}}
+
+In this example:
+* LRS = 3
+* HW = 2
+* LEO (Leader = 4, Follower-1 = 3, Follower-2 = 2)
+
+If Follower-2 goes offline: LRS = 2 and HW = 3.
 
 ###### Leader/Follower Synchronization
 
-Replica <ins>leaders</ins> are responsible for receiving data records from producers and feed them to consumers. In addition, leaders are responsible for the data synchronization with the followers. Replica <ins>followers</ins> receive data records from the <ins>leader</ins> and reply with their last known `LEO` and `HW`.
+All replica <ins>followers</ins> send their replica status, `LEO` and `HW`, to their <ins>leader</ins>. The leader: 
 
-A replica <ins>leader</ins> receives the `LEO` and `HW` form all follower replicas, and performs the following operations:
+* uses `LEO` to compute the missing records and send to <ins>follower</ins>
+* computes the 'new' `HW` (from min replica `LEOs`).
+* sends `HW`, `LEO`, and `LRS` to <ins>all followers</ins>
 
-* computes the smallest `LEO` received and updates its internal `HW`
-* send followers the new `HW`
-    
-###### Lagging Followers
+Replica <ins>followers</ins> receive the data records, `LEO`, and `HW` from the <ins>leader</ins> and perform the following operations:
 
-If a follower `LEO` is less than the `HW`, the follower has fallen behind. The leaders helps the follower catch-up by sending all missing records from `LEO` offset to the `HW` offset. If the follower falls behind for a prolonged period of time or it exceeds a maximum number of records, the leader may decide to temporarily remove the follower from the **LRS** set. Followers removed from **LRS** list are ineligible for election but they continue receiving records. If the follower catches-up with the leader it is moved back to **LRS** set and it becomes eligible for election.
+* append records to local stores
+* update local `LEO` and `HW`
+* send updated status to <ins>leader</ins>
 
-The election algorithm is designed to recover from failure cases and bring **Replica Set** back in sync.
+And the cycle repeats.
 
-###### Follower Failure
 
-If the follower goes temporarily offline or in the event of a network failure, the follower will attempt to re-establish connection to the leader and synchronize its data store. If a new leader is elected, the follower will connect to the new leader and re-synchronize it data store.
+###### Lagging Follower
 
+If the <ins>leader</ins> detects any of <ins>follower's</ins> `HW` is less than the **LRS** `HW` by a maximum number of records, the leader removes the follower from the **LRS**. 
+
+Followers removed from the **LRS** are ineligible for election but continue to receive records. If follower catches up with the leader it is added back to **LRS** and once again becomes eligible for election.
+
+
+###### Leader Failure
+
+If a <ins>leader</ins> goes offline, an [election is triggered](#replica-election-algorithm) and one of the <ins>followers</ins> takes over as <ins>leader</ins>. The rest of the followers connect to the <ins> new leader</ins> and synchronize their data store. 
+
+When the failed leader rejoins the replica set, it detects the new leader and turns itself into a follower. The replica set continue under the new leadership until a new election is triggered.
+
+
+### Consumer Consistency Model
+
+Replica <ins>leaders</ins> receive data records from producers and sends them to consumers. 
+
+Consumers can choose to receive either COMMITTED or UNCOMMITTED records. The second method is discouraged as it cannot deterministically survive various failure scenarios. 
+
+By default only COMMITTED messages are sent to consumers.
 
 #### Related Topics
 -------------------

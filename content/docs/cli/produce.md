@@ -114,8 +114,8 @@ Ok!
 
 #### Related Topics
 -------------------
-* [Consume CLI](../consume)
-* [SPUs CLI](../spus)
-* [Custom SPU CLI](../custom-spus)
-* [SPU-Groups CLI](../spu-groups)
-* [Topics CLI](../topics)
+* [Consume CLI](../consume/)
+* [SPUs CLI](../spus/)
+* [Custom SPU CLI](../custom-spus/)
+* [SPU-Groups CLI](../spu-groups/)
+* [Topics CLI](../topics/)

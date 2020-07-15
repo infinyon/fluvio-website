@@ -213,8 +213,8 @@ ID   NAME            STATUS  TYPE    RACK  PUBLIC              PRIVATE
 
 #### Related Topics
 -------------------
-* [Produce CLI](../produce)
-* [Consume CLI](../consume)
-* [SPUs CLI](../spus)
-* [SPU-Groups CLI](../spu-groups)
-* [Topics CLI](../topics)
+* [Produce CLI](../produce/)
+* [Consume CLI](../consume/)
+* [SPUs CLI](../spus/)
+* [SPU-Groups CLI](../spu-groups/)
+* [Topics CLI](../topics/)

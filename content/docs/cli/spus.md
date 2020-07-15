@@ -177,8 +177,8 @@ produces:
 
 #### Related Topics
 -------------------
-* [Produce CLI](../produce)
-* [Consume CLI](../consume)
-* [Custom SPU CLI](../custom-spus)
-* [SPU-Groups CLI](../spu-groups)
-* [Topics CLI](../topics)
+* [Produce CLI](../produce/)
+* [Consume CLI](../consume/)
+* [Custom SPU CLI](../custom-spus/)
+* [SPU-Groups CLI](../spu-groups/)
+* [Topics CLI](../topics/)

@@ -160,8 +160,8 @@ $ fluvio spu list --sc `SC`:9003 | grep my-group
 
 #### Related Topics
 -------------------
-* [Produce CLI](../produce)
-* [Consume CLI](../consume)
-* [SPUs CLI](../spus)
-* [Custom SPU CLI](../custom-spus)
-* [Topics CLI](../topics)
+* [Produce CLI](../produce/)
+* [Consume CLI](../consume/)
+* [SPUs CLI](../spus/)
+* [Custom SPU CLI](../custom-spus/)
+* [Topics CLI](../topics/)
