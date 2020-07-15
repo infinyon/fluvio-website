@@ -16,16 +16,16 @@ The `Leader` and `Followers` of a **Replica Sets** have different responsibiliti
 {{< image src="architecture/election-leader-followers-brief.svg" alt="Leader/Follower" justify="center" width="520" type="scaled-90">}}
 
 `Leader` responsibilities:
-* ingest data from producers
-* store the data in the local store
-* send data to consumers
-* forward incremental data changes to followers
+* ingests data from producers
+* stores the data in the local store
+* sends data to consumers
+* forwards incremental data changes to followers
 * keeps live replica sets (**LRS**) updated
 
 `Followers` responsibilities:
-* establish connection to the leader (and run periodic health-checks)
-* receive data changes from the leader
-* store data in the local store
+* establishes connection to the leader (and run periodic health-checks)
+* receives data changes from the leader
+* stores data in the local store
 
 All followers are in hot-standby and ready to take-over as leader.
 
