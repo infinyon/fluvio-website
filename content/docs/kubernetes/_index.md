@@ -1,11 +1,11 @@
 ---
-title: Kubernetes Integration
-menu: Kubernetes
-toc: true
-weight: 60
+title: Kubernetes Overview
+folder: Kubernetes
+menu: Overview
+weight: 110
 ---
 
-Fluvio is designed to run natively in K8 environments.
+Fluvio was designed to work natively with Kubernetes. You can deploy Fluvio to Kubernetes using the Helm chart. This section documents the integration steps between Fluvio and Kubernetes.
 
 ## K8 Integration Architecture
 
@@ -39,13 +39,3 @@ Name of Docker Image file available ... in Dockerhub
 ## Environment Variables 
 
 Explain the environment variables
-
-
-
-
-
-
-#### Related Topics
--------------------
-* [K8 Installation](https://github.com/infinyon/fluvio/blob/master/doc/INSTALL.md)
-* [Deployment Models](../deployments)
