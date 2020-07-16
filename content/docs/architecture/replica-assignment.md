@@ -14,7 +14,11 @@ Fluvio's uses **[Topics](../sc#topics)** to define **data replication**. Topic *
 $ fluvio topic create --topic topic-a --partitions 2 --replication 3
 ```
 
-Each replica is then assigned to different SPUs, where they store a copy of the data:
+In the following example, we assume the Fluvio cluster has 3 SPUs.
+
+-> **Note**: Replication factor must be a number less than or equal to the number of SPUs.
+
+Replicas are distributed across all available SPUs:
 
 {{< image src="architecture/assignment-leader-followers.svg" alt="Leader, Followers" justify="center" width="640" type="scaled-95">}}
 
@@ -26,7 +30,6 @@ Replicas have 2 roles, leader and followers. In the diagram above, there are 2 p
 * topic-a/1
     * **leader** on SPU-2
     * **followers** on SPU-1 and SPU-3
-
 
 
 #### Replica Assignment Algorithm
