@@ -4,29 +4,30 @@ toc: true
 weight: 30
 ---
 
-* Replica Set => List of SPUs assigned to a replica.
-* Replica Assignment => Membership list
-* Election => Role in the membership list.
-
-
-Fluvio **real-time replication architecture** improves data availability without sacrificing performance. **Replica assignment** is triggered by topic creation and it is responsible for a **balanced distribution** of replicas across the **SPUs** in a Fluvio cluster.
+**Replica assignment** algorithm is triggered by topic creation and it is responsible for a building a **balanced distribution** of replicas across the SPUs in a Fluvio cluster. **Replicas** from different SPUs are grouped in **replica sets**, where each replica saves a copy of a data stream. For additional information on replica sets, checkout [replica election](../replica-election).
 
 #### Topics
 
-Fluvio's uses **[Topics](../sc#topics)** to define **data distribution** criteria, such as slicing and replication.  **Topic partitions** create data slices that are managed independently by different SPUs. **Topic replication** defines the number of copies for each slice.
+Fluvio's uses **[Topics](../sc#topics)** to define **data replication**. Topic **partitions** express data slices and **replication factor** states the number of copies for each data slice. 
 
 ```bash
-$ fluvio topic create --topic topic-a --partitions 1 --replication 3
+$ fluvio topic create --topic topic-a --partitions 2 --replication 3
 ```
 
-Replica parameter specifies the number of unique copies:
+Each replica is then assigned to different SPUs, where they store a copy of the data:
 
-{{< image src="architecture/assignment-leader-followers.svg" alt="Leader, Followers" justify="center" width="560" type="scaled-95">}}
+{{< image src="architecture/assignment-leader-followers.svg" alt="Leader, Followers" justify="center" width="640" type="scaled-95">}}
 
-Replicas have 2 roles, leader and follower:
+Replicas have 2 roles, leader and followers. In the diagram above, there are 2 partition with 3 replicas each:
 
-* SPU-1 serves the **Replica leader**. 
-* SPU-2 and SPU-3 serve **Replica followers**.
+* topic-a/0
+    * **leader** on SPU-1
+    * **followers** on SPU-2 and SPU-3
+* topic-a/1
+    * **leader** on SPU-2
+    * **followers** on SPU-1 and SPU-3
+
+
 
 #### Replica Assignment Algorithm
 
