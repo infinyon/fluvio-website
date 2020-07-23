@@ -20,42 +20,54 @@ pygmentsUseClasses=true
     url = "/docs/"
     weight = 100
 
+  [[menu.main]]
+    identifier = "rust"
+    name = "Rust API"
+    url = "https://docs.rs/flv-client/"
+    weight = 110
+
+  [[menu.main]]
+    identifier = "node"
+    name = "Node API"
+    url = "https://docs.rs/flv-client/"
+    weight = 120
+
   [[not-used.main]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"
-    weight = 110
+    weight = 130
 
-  [[menu.main]]
+  [[not-used.main]]
     identifier = "faq"
     name = "FAQ"
     url = "/faq/"
-    weight = 120
+    weight = 140
 
   [[menu.main]]
     identifier = "github"
     name = "github"
     url = "https://github.com/infinyon/fluvio"
     pre = "fab fa-github"
-    weight = 130
+    weight = 150
 
   [[menu.main]]
     identifier = "twitter"
     name = "twitter"
     url = "https://twitter.com/infinyon"
     pre = "fab fa-twitter"
-    weight = 140
+    weight = 160
 
   [[menu.main]]
     identifier = "signup"
     name = "SignUp"
     url = "http://app.fluvio.io/signup"
     post = "-rev"
-    weight = 150
+    weight = 170
 
   [[notused.menu.main]]
     identifier = "contact"
     name = "contact"
     url = "/contact"
     pre = "fas fa-envelope"
-    weight = 160    
+    weight = 180    

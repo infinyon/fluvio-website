@@ -1,9 +1,9 @@
 ---
-title: Demo Apps
-folder: Demo Apps
+title: Rust Examples
+folder: Rust Examples
 menu: Overview
 description: Various use cases for Fluvio Streaming Platform
-weight: 200
+weight: 130
 ---
 
 Fluvio is a highly distributed real-time data streaming platform....

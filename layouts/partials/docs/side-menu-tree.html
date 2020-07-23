@@ -35,7 +35,12 @@
 	{{- if eq .page .selected }}
 		{{- $selected = " selected" -}}
 	{{- end -}}
-	<div class="card card-page {{ $selected }}"><a href="{{ .page.RelPermalink }}">{{ $menu }}</a></div>
+	{{- $linkTo := .page.RelPermalink -}}	
+	{{- if isset .page.Params "link" }}
+		<div class="card card-page {{ $selected }}"><a href="{{ .page.Params.link }}" target="_blank">{{ $menu }}</a></div>
+	{{- else }}
+		<div class="card card-page {{ $selected }}"><a href="{{ .page.RelPermalink }}">{{ $menu }}</a></div>
+	{{- end -}}
 {{- end -}}
 
 {{- define "section-header-card" -}}
