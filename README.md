@@ -19,41 +19,6 @@ The website is generated using [Hugo Framework](https://gohugo.io/). To run the 
 Hugo watches for file changes and automatically updates website.
 
 
-## Website Organization 
-
-Fluvio website is an **umbrella project** that joins _internal_ and _external_ documentation (from other Fluvio projects) to generate a **single, consolidated** website.
-
-The documentation is assimilated in the `content` directory and it is organized as follows:
-
-```
-content/
-  main
-  blog
-  docs
-  ...
-```
-
-Documentation for `main` and `blog` folders are generated locally, whereas documentation for `docs` folder is generated from a mix of local and external content. The external content is pulled from **origin** projects and placed in the content directory for rendering. The **origin** of each sections is as follows:
-
-|           Folder              |   Type   |         Origin        |
-|-------------------------------|----------|-----------------------|
-| content/main                  | local    | [fluvio-website](https://github.com/infinyon/fluvio-website) |
-| content/blog                  | local    | [fluvio-website](https://github.com/infinyon/fluvio-website) |
-| content/docs/architecture     | local    | [fluvio-website](https://github.com/infinyon/fluvio-website) |
-| content/docs/cli              | external | [fluvio](https://github.com/infinyon/fluvio) |
-| content/docs/fluvio-cloud     | external | [fluvio-cloud](https://github.com/infinyon/fluvio-cloud) |
-| content/docs/getting-started  | local    | [fluvio-website](https://github.com/infinyon/fluvio-website)  |
-| content/docs/node-api         | external | [flv-client-node](https://github.com/infinyon/flv-client-node)  |
-| content/docs/rust-api         | external | [flv-client-rust](https://github.com/infinyon/flv-client-rust)  |
-| content/docs/demo-apps/simple-chat-demo-node         | external | [flv-simple-chat-node](https://github.com/infinyon/flv-simple-chat-demo-node)  |
-| content/docs/demo-apps/cdc-demo-node         | external | [flv-cdc-demo-node](https://github.com/infinyon/flv-cdc-demo-node)  |
-| content/docs/demo-apps/cdc-demo-rust         | external | [flv-cdc-demo-rust](https://github.com/infinyon/flv-cdc-demo-rust)  |
-
-Use `test-repo.sh` script to clone documentation from an **origin** project into **fluvio-website**.  This script should be used to check the rendering of your project documentation without impacting **fluvio.io**.  For additional information, checkout [scripts/README.MD](./scripts/README.MD).
-
--> **Note**: Do not make direct changes to content in **external** folders. The content in these folders are overwritten from **origin** when the website is published.
-
-
 ## Public Website
 
 The website is published on [Netlify](https://www.netlify.com/). Netlify monitors branch `stable` and updates the website when new changes are detected.
