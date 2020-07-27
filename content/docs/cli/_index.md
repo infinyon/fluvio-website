@@ -21,8 +21,12 @@ Copy binary to your bin path and make it executable.
 To check CLI version, run:
 
 ```bash
-$ fluvio --version
- fluvio 0.3.0
+$ fluvio version
+
+Fluvio version : 0.6.0
+Git Commit     : e467b7039b38d4400cdda5dfe9fdd0c2559c2f12
+OS Details     : Darwin 19.5.0 x86_64
+Rustc Version  : 1.46.0-nightly (daecab3 2020-07-10)
 ```
 
 ## CLI Overview
@@ -36,10 +40,10 @@ fluvio module operation [FLAGS] [OPTIONS]
 Depending on context, _options_ can be mandatory or optional. Mandatory options are shown in the CLI usage line. For example, in _fluvio topic create_ :
 
 ```bash
-fluvio topic create --partitions <integer> --replication <integer> --topic <string>
+fluvio topic create [FLAGS] [OPTIONS] <topic-name>
 ```
 
-* **options**: &dash;&dash;topic,  &dash;&dash;partitions, and  &dash;&dash;replication, are mandatory.
+* **options**: &dash;&dash;topic-name is mandatory.
 
 ### Modules
 
@@ -52,33 +56,36 @@ Fluvio Command Line Interface
 fluvio <SUBCOMMAND>
 
 FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+    -h, --help    Prints help information
 
 SUBCOMMANDS:
-    consume       Read messages from a topic/partition
-    produce       Write log records to a topic/partition
-    spu           SPU Operations
-    spu-group     SPU Group Operations
-    custom-spu    Custom SPU Operations
+    consume       Reads messages from a topic/partition
+    produce       Writes messages to a topic/partition
+    spu           SPU operations
+    spu-group     SPU group operations
+    custom-spu    Custom SPU operations
     topic         Topic operations
-    advanced      Advanced operations
+    partition     Partition operations
+    profile       Profile operations
+    cluster       Cluster operations
+    run           Run cluster component
+    version       Prints the current fluvio version information
     help          Prints this message or the help of the given subcommand(s)
 ```
 
 Top level fluvio CLI is organized by modules:
 
 * spu
-* spu-group
-* custom-spu
 * topic
+* partitions
+* ...
 
 However, there are a few exceptions:
 
-* consume/produce
-* advanced
+* consume
+* produce
 
-"Consume/Produce" are kept at top level as they frequently used operations and we chose convenience over convention. "Advanced" is an aggregate of system-wide operations that don't belong to any particular module.
+"Consume/Produce" are kept at top level as they frequently used operations and we chose convenience over convention.
 
 ### Operations
 
@@ -94,10 +101,10 @@ FLAGS:
     -h, --help    Prints help information
 
 SUBCOMMANDS:
-    create      Create a topic
-    delete      Delete a topic
-    describe    Show details of a topic
-    list        Show all topics
+    create      Creates a topic
+    delete      Deletes a topic
+    describe    Shows details of a topic
+    list        Shows all topics
     help        Prints this message or the help of the given subcommand(s)
 ```
 
@@ -105,7 +112,7 @@ Other modules, such as **spu** have different options, hence different capabilit
 
 ### Options / Flags
 
-**Options** are module attributes, such as: -t, &dash;&dash;topic, followed by modifiers, whereas **flags** are attributes without value.
+**Options** are module attributes, such as: **-p**, **&dash;&dash;partitions**, followed by modifiers, whereas **flags** are attributes without value.
 
 Mandatory options are shown in the syntax definition. All other flags and options are optional.
 
@@ -113,24 +120,31 @@ Mandatory options are shown in the syntax definition. All other flags and option
 $ fluvio topic create --help
 Create a topic
 
-fluvio topic create [FLAGS] [OPTIONS] --partitions <integer> --replication <integer> --topic <string>
+fluvio topic create [FLAGS] [OPTIONS] <topic-name>
 
 FLAGS:
     -i, --ignore-rack-assignment    Ignore racks while computing replica assignment
-    -v, --validate-only             Validates configuration, does not provision
+    -d, --dry-run                   Validates configuration, does not provision
+        --tls                       Enable TLS
+        --enable-client-cert        TLS: use client cert
     -h, --help                      Prints help information
 
 OPTIONS:
-    -t, --topic <string>                    Topic name
-    -p, --partitions <integer>              Number of partitions
-    -r, --replication <integer>             Replication factor per partition
+    -p, --partitions <partitions>           Number of partitions [default: 1]
+    -r, --replication <integer>             Replication factor per partition [default: 1]
     -f, --replica-assignment <file.json>    Replica assignment file
-    -c, --sc <host:port>                    Address of Streaming Controller
-    -k, --kf <host:port>                    Address of Kafka Controller
-    -P, --profile <profile>                 Profile name
+    -c, --cluster <host:port>               Address of cluster
+        --domain <domain>                   Required if client cert is used
+        --client-cert <client-cert>         Path to TLS client certificate
+        --client-key <client-key>           Path to TLS client private key
+        --ca-cert <ca-cert>                 Path to TLS ca cert, required when client cert is enabled
+    -P, --profile <profile>                 
+
+ARGS:
+    <topic-name>    Topic name
 ```
 
-A small subset of the options, &dash;&dash;kf, &dash;&dash;sc, and &dash;&dash;profile, are applied to every command. The purpose of these options is to help the CLI identify the location of the services where to send the command.
+A small subset of the options , &dash;&dash;sc, and &dash;&dash;profile, are applied to every command. The purpose of these options is to help the CLI identify the location of the services where to send the command.
 
 ### Fluvio Clusters
 
