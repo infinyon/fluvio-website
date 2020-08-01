@@ -54,9 +54,9 @@ pygmentsUseClasses=true
     weight = 160
 
   [[menu.main]]
-    identifier = "signup"
-    name = "SignUp"
-    url = "http://app.fluvio.io/signup"
+    identifier = "login"
+    name = "Login"
+    url = "http://app.fluvio.io/login"
     post = "-rev"
     weight = 170
 

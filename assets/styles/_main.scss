@@ -8,7 +8,7 @@
 
   .label {
     font-family: $font-headers;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     margin-top: 15px;
   }
 
@@ -21,7 +21,7 @@
     }
 
     .active {
-      color: $col-gray-dark6;
+      color: $col-blog-selected;
       //text-decoration: underline;
     }
   }
