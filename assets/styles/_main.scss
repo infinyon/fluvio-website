@@ -7,23 +7,28 @@
   padding-bottom: 10px;
 
   .label {
+    font-family: $font-headers;
+    font-size: 1.4rem;
     margin-top: 15px;
   }
 
   ul {
-    margin-top: -45px;
+    margin-top: -42px;
 
     a {
+      font-size: 1rem;
       color: $col-gray-light3;
     }
 
     .active {
       color: $col-gray-dark6;
+      //text-decoration: underline;
     }
   }
 
   .highlight {
     pre {
+      font-size: 0.8rem;
       margin-top:-7px;
       margin-bottom: 0;
     }
