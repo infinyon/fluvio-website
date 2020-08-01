@@ -1,0 +1,36 @@
+.main-code {
+  min-height: 340px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: .5em;
+  text-align: left;
+  padding-bottom: 10px;
+
+  .label {
+    margin-top: 15px;
+  }
+
+  ul {
+    margin-top: -45px;
+
+    a {
+      color: $col-gray-light3;
+    }
+
+    .active {
+      color: $col-gray-dark6;
+    }
+  }
+
+  .highlight {
+    pre {
+      margin-top:-7px;
+      margin-bottom: 0;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    margin-top:-20px;
+    margin-left: 25px;
+  }
+}
