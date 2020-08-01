@@ -32,17 +32,12 @@ pygmentsUseClasses=true
     url = "https://docs.rs/flv-client/"
     weight = 120
 
-  [[not-used.main]]
+  [[menu.main]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"
+    pre = "fab fa-blogger-b"
     weight = 130
-
-  [[not-used.main]]
-    identifier = "faq"
-    name = "FAQ"
-    url = "/faq/"
-    weight = 140
 
   [[menu.main]]
     identifier = "github"
@@ -52,10 +47,10 @@ pygmentsUseClasses=true
     weight = 150
 
   [[menu.main]]
-    identifier = "twitter"
-    name = "twitter"
-    url = "https://twitter.com/infinyon"
-    pre = "fab fa-twitter"
+    identifier = "chat"
+    name = "chat"
+    url = "https://discordapp.com/invite/bBG2dTz"
+    pre = "fab fa-discord"
     weight = 160
 
   [[menu.main]]
@@ -65,6 +60,12 @@ pygmentsUseClasses=true
     post = "-rev"
     weight = 170
 
+  [[not-used.main]]
+    identifier = "faq"
+    name = "FAQ"
+    url = "/faq/"
+    weight = 140
+    
   [[notused.menu.main]]
     identifier = "contact"
     name = "contact"

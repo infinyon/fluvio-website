@@ -233,6 +233,10 @@ footer {
 .navbar-custom .navbar-text,
 .navbar-custom .navbar-nav .nav-link {
   color: $col-top-menu;
+  line-height: 1.6em;
+  .fab {
+    font-size: 1.4em;
+  }
 }
 
 .navbar-custom .navbar-nav .nav-link-rev {
