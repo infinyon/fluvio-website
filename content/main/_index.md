@@ -1,6 +1,6 @@
 ---
 title: Main Page
 button:
-    label: Sign up for Cloud
+    label: Sign up for Fluvio Cloud
     link: http://app.fluvio.io/signup
 ---
