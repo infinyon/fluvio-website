@@ -59,6 +59,7 @@ CQRS means "Command-query responsibility segregation". We segregate the responsi
 
 ### Projections
 
+... In progress
 You can change a projection, you can only create a new projects.
 
 
@@ -95,24 +96,16 @@ CEP has since become an enabling technology in many systems that are used to tak
 
 _<a href="http://cidrdb.org/cidr2005/papers/P12.pdf" target="_blank">Data on the Outside versus Data on the Inside by Pat Helland</a>_
 
-...
+... In progress
 
-### Data Driven
-
-Your are data-driven when the progress in an activity is compelled by data. Businesses asystematically and methodically use data instead of motions, external pressure, or instinct to power decisions.
-
-
-
-
-### Event Storming
-
-...
 
 ### Microservices
 
-...
+... In progress
 
 ### CDC - Change Data Capture
+
+... In progress
 
 Change Data Capture (CDC), a term found in databases, is a set of software design patterns used to determine and track the data that has changed so that action can be taken using the changed data.
 
