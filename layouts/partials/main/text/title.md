@@ -1,1 +1,1 @@
-Development Platform for <br />Data Driven Apps <br />
+Development Platform for <br />Data Streaming Apps <br />

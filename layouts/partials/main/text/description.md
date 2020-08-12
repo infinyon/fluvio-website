@@ -1,14 +1,14 @@
-Expectations for Apps with **data driven capabilities** - that react to their environment in real-time - is at an all-time high.
+Next generation collaboration tools, distributed Apps, data pipelines, ML streams, IOT aggregators need a powerful infrastructure to **data in real-time**.
 
-Next generation collaboration tools, real-time Apps, data pipelines, ML streams, IOT aggregators need a powerful infrastructure for **data-in-motion**.
+Fluvio is a real-time data streaming platform **built for developers**.  The platform is optimized for speed, scale, security, resiliency and **ease of use**. 
 
-Fluvio **real-time streaming platform** gives developers a highly resilient data-in-motion layer optimized for speed, scale, security and resiliency. 
-
-Deploy <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a> or sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> to try our next generation streaming platform for data-in-motion.
+Deploy <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a> or sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> to build your first data streaming App.
 
 
 
 <!-- 
+
+Expectations for Apps that deliver **data in real-time** is at an all-time high.
 
 The need for data driven collaborative tools - with emphasis on real-time decision making - is at an all-time high.
 
