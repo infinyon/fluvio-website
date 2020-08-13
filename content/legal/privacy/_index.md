@@ -5,7 +5,7 @@ toc: true
 <i>Updated: August 12, 2020</i>
 
 ### Overview
-This Privacy Policy (“Privacy Policy”, “Policy”) explains how InfinyOn, Inc. (InfinyOn, “we”, “us” or “our”) collects, uses, shares, processes and protects personal information (“Personal Information”) relating to individuals (“you”, or “your”), who may use our websites or services, or when you otherwise interact with us. “You” may be a visitor to one of our websites, a user (“User”) of one or more of our services, a partner, a collaborator, or a customer (“Customer”).
+This Privacy Policy (“Privacy Policy”, “Policy”) explains how InfinyOn, Inc. ("InfinyOn", “we”, “us” or “our”) collects, uses, shares, processes and protects personal information (“Personal Information”) relating to individuals (“you”, or “your”), who may use our websites or services, or when you otherwise interact with us. “You” may be a visitor to one of our websites, a user (“User”) of one or more of our services, a partner, a collaborator, or a customer (“Customer”).
 
 This Privacy Policy also describes your choices regarding use, access and correction of personal information collected about you through our Services. Please read this Privacy Policy carefully and ensure that you understand it before you start to use our Services.
 
@@ -65,7 +65,7 @@ Information we collect:
 
 * Name
 * Email
-* Company Name
+* Company Name (optional)
 * Job Title (optional)
 * Phone number (optional)
 
@@ -85,13 +85,13 @@ Information we collect:
 
 * Name
 * Email
-* Username
-* Phone Number (optional / required if using 2-factor authentication)
+* Company Name (optional)
+* Job Title (optional)
+* Phone Number (optional)
 
 Purpose of this information is to: 
 
 * Identity verification
-* 2-Factor Authentication
 * Assess the usage of our product
 * Gauge interest in products, services, or marketing material
 
@@ -133,7 +133,7 @@ For example, we may use your Personal Information to:
 * Communicate with you about promotions, upcoming events, and other news about products and services
 * Protect the products and websites, and investigate and deter against fraudulent, unauthorized, or illegal activity
 
-InfinyOn will only share and disclose Personal Information in accordance to applicable laws and legal process. We Will not sell your Personal Information for any purpose.
+InfinyOn will only share and disclose Personal Information in accordance to applicable laws and legal process. We will not sell your Personal Information for any purpose.
 
 
 ### We Keep your Information Safe
