@@ -1,6 +1,6 @@
 ---
-title: "Event Dispatcher"
+title: "Collaboration App"
 weight: 30
 image: "z.png"
-summary: "Monitoring, Security, Audits, ..."
+summary: "App Coders: <br/> Chat App, ..."
 ---

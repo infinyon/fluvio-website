@@ -1,4 +1,4 @@
 ---
-title: Contact
+title: SignUp
 weight: 0
 ---

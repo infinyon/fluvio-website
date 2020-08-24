@@ -54,9 +54,9 @@ pygmentsUseClasses=true
     weight = 160
 
   [[menu.main]]
-    identifier = "login"
-    name = "Login"
-    url = "http://app.fluvio.io/login"
+    identifier = "signup"
+    name = "Sign Up"
+    url = "/signup"
     post = "-rev"
     weight = 170
 
@@ -66,9 +66,3 @@ pygmentsUseClasses=true
     url = "/faq/"
     weight = 140
     
-  [[notused.menu.main]]
-    identifier = "contact"
-    name = "contact"
-    url = "/contact"
-    pre = "fas fa-envelope"
-    weight = 180    

@@ -87,6 +87,10 @@ In general, reading data is 90% more frequent than writing. CQRS enables readers
 ... In progress
 You can change a projection, you can only create a new projects.
 
+### Materialized Views
+
+... In progress
+Compacted topic (where only the most recent value is shown). It represents the latest events without the history. Also referred to as in memory images.
 
 ### Aggregates
 

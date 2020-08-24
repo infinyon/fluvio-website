@@ -12,10 +12,17 @@
         {{- partial "main/description.html" . -}}
       </div>
       <div class="col-lg-7">
-          <div class="mlc5 mt-4">
-            {{- partial "main/code-samples.html" . -}}
+        <div class="right-side">
+          {{- partial "main/code-samples.html" . -}}
+          <div class="signup-button">
+            <a class="btn btn-primary" href="{{ $page.Params.button.link }}">
+              {{ $page.Params.button.label }}
+            </a>
           </div>
-        <a class="btn btn-primary mt-3 mlc5" href="{{ $page.Params.button.link }}">{{ $page.Params.button.label }}</a>
+          <div class="signup-text">
+            Fluvio Cloud is in Private Beta
+          </div>
+        </div>
       </div>
       </div>
     </div>

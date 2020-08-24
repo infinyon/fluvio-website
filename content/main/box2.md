@@ -1,7 +1,7 @@
 ---
-title: "Real-Time Apps"
+title: "CDC - Db Capture"
 weight: 20
 image: "y-coupled.png"
-summary: "Carts, Billing, Accounts, ..."
+summary: "IT Coders:<br/>CDC, DB replication ..."
 ---
 test

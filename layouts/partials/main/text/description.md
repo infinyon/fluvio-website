@@ -1,8 +1,10 @@
-Next generation collaboration tools, distributed Apps, data pipelines, ML streams, IOT aggregators need a powerful infrastructure to **data in real-time**.
+Next generation collaboration tools, distributed Apps, data pipelines, ML streams, IOT aggregators need a powerful infrastructure to process **data in real-time**.
 
-Fluvio is a real-time data streaming platform **built for developers**.  The platform is optimized for speed, scale, security, resiliency and **ease of use**. 
+Fluvio is an **open source** data streaming platform **built for coders**.  The platform is optimized for speed, scale, security, resiliency and **ease of use**. 
 
-Deploy <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a> or sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> to build your first data streaming App.
+<ins>Release 1.x</ins> focuses on **core data streaming** use cases such as _log aggregation_, _Db capture_ and simple _collaboration Apps_. 
+
+Sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> or deploy <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a> to give it a try.
 
 
 
@@ -23,7 +25,7 @@ The need for data driven collaborative tools - with emphasis on real-time decisi
 
 =======================
 
-without data driven infrastructure and capability,  your businesses are dead in post covid world.   everything is going digital,  off touch, automated, highly customizable, massive sensor integration and ML driven algorithm.
+without data driven infrastructure   and capability,  your businesses are dead in post covid world.   everything is going digital,  off touch, automated, highly customizable, massive sensor integration and ML driven algorithm.
 
 =======================
 
