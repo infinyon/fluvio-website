@@ -24,19 +24,21 @@ pygmentsUseClasses=true
     identifier = "rust"
     name = "Rust API"
     url = "https://docs.rs/flv-client/"
+    pre = "fas fa-sm fa-external-link-alt"
     weight = 110
 
   [[menu.main]]
     identifier = "node"
     name = "Node API"
     url = "https://docs.rs/flv-client/"
+    pre = "fas fa-sm fa-external-link-alt"
     weight = 120
 
   [[menu.main]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"
-    pre = "fab fa-blogger-b"
+    pre = "fab fab-sm fa-blogger"
     weight = 130
 
   [[menu.main]]
@@ -52,17 +54,3 @@ pygmentsUseClasses=true
     url = "https://discordapp.com/invite/bBG2dTz"
     pre = "fab fa-discord"
     weight = 160
-
-  [[menu.main]]
-    identifier = "signup"
-    name = "Sign Up"
-    url = "/signup"
-    post = "-rev"
-    weight = 170
-
-  [[not-used.main]]
-    identifier = "faq"
-    name = "FAQ"
-    url = "/faq/"
-    weight = 140
-    

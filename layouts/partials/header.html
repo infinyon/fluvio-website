@@ -13,14 +13,22 @@
           {{- $active = "active" -}}
         {{- end -}}       
         <li class="navbar-item {{ $active }}" >
-          <a class="nav-link{{ .Post }}" href="{{ .URL }}">
+          <a class="nav-link" href="{{ .URL }}">
             {{ if .Pre }}
               <i class="{{ .Pre }}"></i>
             {{ end }}
             {{ .Name }}
+            {{ if .Post }}
+              <i class="{{ .Post }}"></i>
+            {{ end }}
           </a>
         </li>
       {{ end }}
+        <li class="navbar-item" >
+          <a class="nav-link-rev" href="/signup">
+            Sign Up
+          </a>
+        </li>      
     </ul>
   </div>
 </nav>
