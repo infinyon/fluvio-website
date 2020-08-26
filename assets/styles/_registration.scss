@@ -1,8 +1,9 @@
 .registration-form {
     display:flex;
     align-items:center;
+    padding-top: 15px;
+    min-height: calc(100vh - 180px);
     justify-content:center;
-    padding-top: 30px;
   }
   
 .registration-form form {
@@ -14,13 +15,13 @@
 }
 
 .registration-form form h2 {
-    margin-bottom: 5px !important;
+    margin-bottom: 0 !important;
 }
 
 .registration-form form .subheader {
     color: $col-gray-base;
     font-size: .99em;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .registration-form .item {
