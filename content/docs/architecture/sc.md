@@ -121,9 +121,7 @@ Checkout the [SPU-groups CLI](/docs/cli/spu-groups) for additional information.
 
 ### Topics
 
-**Topics** define configuration parameters for data streams. A topic may have one or more partition and a replication factor. **Partitions** split the data into independent slices that can be managed by different SPUs. **Replication factor** defines the number of copies of data across SPUs. Replication factor must be is an a integer from 1 to the total number of SPUs.
-
-**Partitions** consists of replicas, where each replica can be a leader or a follower. **Leaders** maintain the primary data set and **followers** store a copy of the data. Leaders and followers must map to independent **SPUs**.
+**Topics** define configuration parameters for data streams. A topic may have one or more partition and a replication factor. **Partitions** split the data into independent slices that can be managed by different SPUs. **Replication factor** defines the number of copies of data across SPUs.
 
 ##### Topic Spec
 
@@ -177,15 +175,11 @@ In this example, **4: [1, 2, 0]** defines:
 
 ### Partitions
 
-**Partition** are configuration objects managed by the system. When a new topic is created, the **SC** performs [replica assignment](../replica-assignment) to generate the partitions:
+When a new topic is created, the **SC** performs [replica assignment](../replica-assignment) to generate the partitions:
 
 1. **generate a partition map** and store in the topic status,
 2. **create a partition object** for each row in the partition map,
 3. **assign each partition** to the SPU leader.
-
-Topics and partitions are linked through a **parent-child** relationship. If a topic is deleted, all child partitions are automatically removed.
-
-{{< image src="architecture/topic-2-partitions.svg" alt="Topic 2 Assignment" justify="center" width="680" type="scaled-90">}}
 
 **SC** is responsible for the configuration in the **Partition Spec** and the **SPU** leader is responsible for the **Partition Status**.
 
@@ -388,6 +382,7 @@ When the SPU come back online it initiates a new connection as described in the 
 #### Related Topics
 -------------------
 * [SPU Architecture](../spu)
+* [Topic/Partitions](../topics-partitions)
 * [Replica Assignment](../replica-assignment)
 * [Replica Election](../replica-election)
 * [Client Library](../client)

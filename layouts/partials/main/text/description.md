@@ -2,7 +2,7 @@ Next generation collaboration tools, distributed Apps, data pipelines, ML stream
 
 Fluvio is an **open source** data streaming platform **built for coders**.  The platform is optimized for speed, scale, security, resiliency and **ease of use**. 
 
-<ins>Release 1.x</ins> focuses on **core data streaming** use cases such as _log aggregation_, _Db capture_ and simple _collaboration Apps_. 
+<ins>Release 1.x</ins> focuses on **core data streaming** use cases such as _Log aggregation_, _Db capture (CDC)_, and simple _Collaboration Apps_. 
 
 Sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> or deploy <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a> to give it a try.
 

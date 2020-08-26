@@ -1,43 +1,20 @@
 ---
 title: Replica Assignment
 toc: true
-weight: 30
+weight: 40
 ---
 
-**Replica assignment** algorithm is triggered by topic creation and it is responsible for a building a **balanced distribution** of replicas across the SPUs in a Fluvio cluster. **Replicas** from different SPUs are grouped in **replica sets**, where each replica saves a copy of a data stream. For additional information on replica sets, checkout [replica election](../replica-election).
+**Replica assignment** algorithm is triggered by topic creation and it is responsible for a building a **balanced distribution** of replicas across the SPUs in a Fluvio cluster. **Replicas** from different SPUs are grouped in **replica sets**, where each replica saves a copy of a data stream. Each replica set has a leader and one or more followers that are distributed across available SPUs.
 
-#### Topics
-
-Fluvio's uses **[Topics](../sc#topics)** to define **data replication**. Topic **partitions** express data slices and **replication factor** states the number of copies for each data slice. 
-
-```bash
-$ fluvio topic create --topic topic-a --partitions 2 --replication 3
-```
-
-In the following example, we assume the Fluvio cluster has 3 SPUs.
-
--> **Note**: Replication factor must be a number less than or equal to the number of SPUs.
-
-Replicas are distributed across all available SPUs:
-
-{{< image src="architecture/assignment-leader-followers.svg" alt="Leader, Followers" justify="center" width="640" type="scaled-95">}}
-
-Replicas have 2 roles, leader and followers. In the diagram above, there are 2 partition with 3 replicas each:
-
-* topic-a/0
-    * **leader** on SPU-1
-    * **followers** on SPU-2 and SPU-3
-* topic-a/1
-    * **leader** on SPU-2
-    * **followers** on SPU-1 and SPU-3
+For additional information on replica sets, checkout [replica election](../replica-election).
 
 
-#### Replica Assignment Algorithm
+## Replica Assignment Algorithm
 
 Fluvio replica assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment](#manual-replica-assignment) instead.
 
 
-## Computed Replica Assignment (CRA)
+### Computed Replica Assignment (CRA)
 
 Fluvio uses computed replica assignment algorithm to generate a **replica map** anytime a new topic is created. The algorithm takes into account the following parameters and configuration objects:
 
@@ -112,7 +89,7 @@ For **balanced distribution** the algorithm **chains multiple calls sequentially
 In this example, if the last replica assignment completed at index 8, the next run starts at index 9 and partition 0 is assigned replica: [4, 1, 2].
 
 
-## Computed Replica Assignment with Rack Enabled
+### Computed Replica Assignment with Rack Enabled
 
 **SPUs** may be assigned rack labels to distribute replicas across racks. **CRA with rack enabled** algorithm will fail unless  **all SPUs** in the cluster have **rack** defined.
 
@@ -221,7 +198,7 @@ Partition |   Replicas          rack-c  rack-b  rack-a
 
 Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs handle more replicas. If a power failure occurs on a large rack, leader redistribution may overwhelm the SPUs on the smaller racks.
 
-## Manual Replica Assignment
+### Manual Replica Assignment
 
 **MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status](../sc#topic-status"). In fact, the **replica map** defined as defined in the file is assigned to this field.
 
@@ -269,6 +246,7 @@ For additional information on how to check the result of a replica assignment fi
 -------------------
 * [SC Architecture](../sc)
 * [SPU Architecture](../spu)
+* [Topic/Partitions](../topics-partitions)
 * [Replica Election](../replica-election)
 * [Client Library](../client)
 * [References](../references)

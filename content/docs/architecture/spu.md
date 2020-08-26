@@ -160,6 +160,7 @@ Records can be batched together to improve performance.
 #### Related Topics
 -------------------
 * [SC Architecture](../sc)
+* [Topic/Partitions](../topics-partitions)
 * [Replica Assignment](../replica-assignment)
 * [Replica Election](../replica-election)
 * [Client Library](../client)

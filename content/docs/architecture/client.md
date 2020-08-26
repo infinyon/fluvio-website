@@ -1,7 +1,7 @@
 ---
 title: Client Library
 toc: true
-weight: 50
+weight: 60
 ---
 
 Fluvio client is responsible for all communication with a Fluvio cluster. The client uses a home grown communication protocol that was optimized for maximum performance, scalability, and low latency. Future versions will provide adaptors to standard protocols, such as: HTTP, WebSocket, gRPC, etc.
@@ -195,6 +195,7 @@ Fluvio Client library is multi-threaded and it can simultaneously connect to _mu
 -------------------
 * [SC Architecture](../sc)
 * [SPU Architecture](../spu)
+* [Topic/Partitions](../topics-partitions)
 * [Replica Assignment](../replica-assignment)
 * [Replica Election](../replica-election)
 * [References](../references)

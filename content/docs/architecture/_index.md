@@ -110,6 +110,7 @@ For additional details about **Internal APIs** checkout Fluvio development guide
 ----------------
 * [SC Architecture](sc)
 * [SPU Architecture](spu)
+* [Topic/Partitions](topics-partitions)
 * [Replica Assignment](replica-assignment)
 * [Replica Election](replica-election)
 * [Client Library](client)

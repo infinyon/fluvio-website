@@ -1,7 +1,7 @@
 ---
 title: Replica Election
 toc: true
-weight: 40
+weight: 50
 ---
 
 [Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set and [Replica Election](#replica-election-algorithm) _coordinates_ their roles. The election algorithm manages replica sets in an attempt to designate one active leader at all times. SPUs have a powerful <ins>multi-threaded engine</ins> that can process a large number of leaders and followers at the same time.
@@ -193,6 +193,7 @@ By default only COMMITTED messages are sent to consumers.
 -------------------
 * [SC Architecture](../sc)
 * [SPU Architecture](../spu)
+* [Topic/Partitions](../topics-partitions)
 * [Replica Assignment](../replica-assignment)
 * [Client Library](../client)
 * [References](../references)
