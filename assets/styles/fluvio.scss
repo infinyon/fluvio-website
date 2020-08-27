@@ -65,7 +65,7 @@ h3:after {
 }
 
 .font-footer {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: white;
 }
 
@@ -207,6 +207,15 @@ footer {
   h1, h6 {
     color: $col-footer;
   }
+
+  .left-side {
+    margin-top: 5px;
+  }
+
+  .center-side {
+    text-align: center;
+  }
+
 }
 
 // --------------
@@ -632,6 +641,11 @@ footer {
     margin-left:0;
   }
 
+  footer {
+    .left-side {
+      text-align: center;
+    }
+  }
 }
 
 // --------------

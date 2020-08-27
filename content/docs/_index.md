@@ -43,7 +43,7 @@ Fluvio data streaming is designed for _speed_, _scale_, _security_ and _resilien
 
 #### Speed
 
-Fluvio is written in **Rust**, a programming language designed for _code safety_ and _performance_.  For instance, a [benchmark](https://medium.com/@dexterdarwich/comparison-between-java-go-and-rust-fdb21bd5fb7c) comparison between Rust and Java revealed the following differences:
+Fluvio is written in **Rust**, a programming language designed for _code safety_ and _performance_.  For instance, a <a href="https://medium.com/@dexterdarwich/comparison-between-java-go-and-rust-fdb21bd5fb7c" target="_blank">benchmark</a> comparison between Rust and Java revealed the following differences:
 
 * **Latency**:  Rust is ~ 30x lower than Java (on a Fibonnaci test)
 * **Memory**: Rust uses ~25x less memory than Java 
