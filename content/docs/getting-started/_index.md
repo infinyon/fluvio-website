@@ -7,11 +7,12 @@ weight: 10
 ---
 
 The quickest way to **real-time data** is with [Fluvio Cloud](/docs/fluvio-cloud). 
-Each cloud account receives a dedicated `Fluvio` installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU), and managed by the  <a href="https://infinyon.com" target="_blank">InfinyOn</a> team. 
+
+Each cloud account receives a dedicated `Fluvio` installation provisioned with 1 [Streaming Controller](/docs/architecture/sc) (SC) and 3 [Streaming Processing Units](/docs/architecture/spu) (SPUs), which are managed by the <a href="https://infinyon.com" target="_blank">InfinyOn</a> team. 
 
 {{< image src="getting-started/quick-start.svg" alt="Fluvio - Cloud Streaming" justify="center" width="500">}}
 
-One data cloud installation can process all your real-time data streaming needs: from any number of producers, to any number of consumers, in any data formats, to any geo-location, and more. 
+One Fluvio Cloud installation can process all your real-time data streaming needs: from any number of producers, to any number of consumers, in any data formats, to any geo-location. 
 
 #### Three Steps to Data Streaming
 
@@ -22,17 +23,17 @@ One data cloud installation can process all your real-time data streaming needs:
 
 ## Create a Fluvio Cloud account
 
-Each Fluvio Cloud installation is assigned a unique _security profile_. Profiles ensure only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Dashboard** to download and install the security profile associated with your environment.
+Each Fluvio Cloud installation is assigned a unique _security profile_. Profiles ensure that only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Dashboard** to download and install the security profile associated with your environment.
 
 1. <a href="https://app.fluvio.io/signup" target="_blank">SignUp</a> for a new account.
         
-    * Submit `New Account` form.
+    * Submit the `New Account` form.
     * Check your email for the verification message.
 
 2. Validate your email account.
         
     * Click the `Confirm Email` button.
-    * _Congratulation_ page confirms your account is enabled.
+    * The _Congratulation_ page confirms your account is enabled.
 
 3. Click `Login` to access your **Cloud Dashboard** 
 
@@ -40,7 +41,7 @@ Each Fluvio Cloud installation is assigned a unique _security profile_. Profiles
 
 4. Download your _Security Profile_
 
-    * Your security profile is published in your <a href="http://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a>
+    * Your security profile is available in your <a href="http://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a>
 
 -> All Fluvio clients (CLI, Node API, Rust API) require a **security profile** to access a Fluvio cluster. 
 
@@ -88,13 +89,13 @@ ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE
 2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
 ```
 
-**Fluvio CLI** connects to **Fluvio Cloud SC**, which in turn queries the **SPUs** for status information. Checkout the [Architecture](/docs/architecture) section for additional information.
+**Fluvio CLI** connects to **Fluvio Cloud SC**, which in turn queries the **SPUs** for status information. Check out the [Architecture](/docs/architecture) section for additional information.
 
 **Congratulations!** You have successfully deployed your **Fluvio Cloud** environment!
 
 ## Create a topic and stream "Hello World"
 
-Next, we use the CLI to create a topic, produce, and consume your first message.
+Next, we'll use the CLI to create a topic, produce, and consume your first message.
 
 #### Create a Topic
 
@@ -105,7 +106,7 @@ $ fluvio topic create --topic my-topic --partitions 1 --replication 2
 topic 'my-topic' created successfully
 ```
 
-Ensure topic has been provisioned by displaying its details.
+Ensure that the topic has been provisioned by displaying its details.
 
 ```bash
 $ fluvio topic describe --topic my-topic
@@ -125,7 +126,7 @@ $ fluvio topic describe --topic my-topic
 
 #### Produce "Hello World" on my-topic
 
-Produce "Hello word" message to _my-topic_ and partition _0_:
+Produce a "Hello world" message to _my-topic_ and partition _0_:
 
 ```bash
 $ fluvio produce -t my-topic -p 0
