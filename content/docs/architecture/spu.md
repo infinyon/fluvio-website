@@ -164,4 +164,3 @@ Records can be batched together to improve performance.
 * [Replica Assignment](../replica-assignment)
 * [Replica Election](../replica-election)
 * [Client Library](../client)
-* [References](../references)

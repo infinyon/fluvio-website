@@ -34,7 +34,7 @@ pygmentsUseClasses=true
     pre = "fas fa-sm fa-external-link-alt"
     weight = 120
 
-  [[menu.main]]
+  [[hidden.menu.main]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"

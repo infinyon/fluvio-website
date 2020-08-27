@@ -114,4 +114,3 @@ For additional details about **Internal APIs** checkout Fluvio development guide
 * [Replica Assignment](replica-assignment)
 * [Replica Election](replica-election)
 * [Client Library](client)
-* [References](references)

@@ -46,4 +46,3 @@ If a topic is deleted, all child partitions are automatically removed.
 * [SPU Architecture](../spu)
 * [Replica Election](../replica-election)
 * [Client Library](../client)
-* [References](../references)

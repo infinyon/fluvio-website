@@ -198,4 +198,3 @@ Fluvio Client library is multi-threaded and it can simultaneously connect to _mu
 * [Topic/Partitions](../topics-partitions)
 * [Replica Assignment](../replica-assignment)
 * [Replica Election](../replica-election)
-* [References](../references)

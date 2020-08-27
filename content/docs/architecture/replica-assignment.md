@@ -249,4 +249,3 @@ For additional information on how to check the result of a replica assignment fi
 * [Topic/Partitions](../topics-partitions)
 * [Replica Election](../replica-election)
 * [Client Library](../client)
-* [References](../references)

@@ -386,4 +386,3 @@ When the SPU come back online it initiates a new connection as described in the 
 * [Replica Assignment](../replica-assignment)
 * [Replica Election](../replica-election)
 * [Client Library](../client)
-* [References](../references)

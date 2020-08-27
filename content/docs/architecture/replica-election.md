@@ -196,4 +196,3 @@ By default only COMMITTED messages are sent to consumers.
 * [Topic/Partitions](../topics-partitions)
 * [Replica Assignment](../replica-assignment)
 * [Client Library](../client)
-* [References](../references)

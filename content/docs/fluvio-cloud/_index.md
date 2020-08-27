@@ -1,16 +1,21 @@
 ---
-title: Fluvio Cloud (Public Alpha)
+title: Fluvio Cloud (Private Beta)
 folder: Fluvio Cloud
-menu: Fluvio Platform
+menu: Overview
 weight: 100
 ---
 
-Fluvio Cloud is currently in alpha and we are working diligently to fix any issues that may arise. For support, please notify us in <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a>.
+Fluvio Cloud is a fully managed <a href="Github https://github.com/infinyon/fluvio/" target="_blank">Fluvio Open Source</a> provisioned and maintained by InfinyOn team. Fluvio Cloud is currently in private Beta and we gradually on-boarding users. Use the [Sing Up](/signup/) form if you'd like to participate in our Beta program.
+
+Fluvio team is actively engaged on fixing any issues in the shortest possible time. We use:
+
+* <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> - for chat
+* <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a> - for tracking issues
 
 
 ## Fluvio Cloud
 
-Fluvio Cloud is a **Data Streaming as a Service (DSaaS)** platform manged by InfinyOn team. Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
+ Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
 
 {{< image src="fluvio-cloud/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 
