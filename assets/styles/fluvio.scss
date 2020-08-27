@@ -624,7 +624,7 @@ footer {
 
     .nav-link {
       padding: 5px;
-      margin: 5px 5px 10px 5px;
+      margin: 10px 5px 10px 5px;
     }
 
     .nav-link-rev {
@@ -635,6 +635,11 @@ footer {
       border-bottom: none;
       background-color: $col-top-menu-collaped-sel;
     }  
+  }
+
+  .signup-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .mlc5 {
@@ -729,7 +734,7 @@ code {
   transform: rotate(45deg);
 }
 
-.archor {
+.anchor {
   color: $col-gray-light2;
   font-size: .9rem;
   margin-left: .2em;
