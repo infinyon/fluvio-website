@@ -7,7 +7,7 @@ Fluvio is a high-performance open source data streaming platform built for devel
 
 {{< image src="architecture/cloud-native.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 
-Fluvio can be installed on your **personal computer**, in a **private data center**, or on a **public cloud**. Virtually anywhere <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> is available.
+Fluvio can be installed on your personal computer, in a private data center, or on a public cloud. Virtually anywhere <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> is available.
 
 
 ## Core Capabilities
@@ -35,7 +35,7 @@ and more.
 
 Fluvio data streaming is designed for **horizontal scale**. Multiple data streams can concurrently ingest and replicate data for durability. Data is processed sequentially on a record-by-record basis in the order it was received, and it is stored in immutable streams. A user-configurable retention period controls the length of time the data is retained. The **retention period** can be anywhere from hours to years.
 
-Fluvio **producers** can write to one or more data streams and **consumers** can read from any number of streams.
+Fluvio producers can write to one or more data streams and consumers can read from any number of streams.
 
 Fluvio data streaming is designed for _speed_, _scale_, _security_ and _resiliency_.
 
@@ -110,7 +110,7 @@ Built-in **cluster management** capabilities normalize and simplify all infrastr
 
 Fluvio is designed **for developers**. The _built-in installer_ helps you get up and running quickly. The _profile-based configuration_ allows you to switch between different Fluvio installations with ease. _Native language_ support gives you the flexibility to pick your programming language of choice, where the data streaming APIs are mapped to native libraries. Fluvio's **developer-first** approach eliminates complexity and minimizes the learning curve required to bootstrap and run a data streaming environment.
 
-Fluvio uses **declarative configurations** instead of imperative commands to manage system resources such as topics and partitions. The declarative configuration approach lets the platform provision resources dynamically as they become available and self-heal from failures. Existing data streaming platforms return errors and leave all remediation tasks to the operator to resolve. When using Fluvio, operators give you the confidence to **configure and walk away**. You can trust that the platform will recover from errors and operate at optimal performance.
+Fluvio uses **declarative configurations** instead of imperative commands to manage system resources such as topics and partitions. The declarative configuration approach lets the platform provision resources dynamically as they become available and self-heal from failures. Existing data streaming platforms return errors and leave all remediation tasks to the operator to resolve. When using Fluvio, operators give you the confidence to configure and walk away. You can trust that the platform will recover from errors and operate at optimal performance.
 
 ## Key Features
 
