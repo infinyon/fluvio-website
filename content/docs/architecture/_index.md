@@ -60,7 +60,13 @@ For a deep dive into the SPU design, check out the [SPU Architecture](spu) secti
 
 ## Topic/Partitions
 
-**Topics** define groups of partitions. **Partitions** split the data into independent slices to allow producers and consumers to write and read messages in parallel. Each partition can be **replicated** across multiple SPUs. A **topic name** and **partition index** pair uniquely identifies a **partition**, which is also known as a **data stream**.
+A Topic in a streaming platform is like a Table in a database. Suppose you're building an online chat service.
+You may have a "Chatroom" topic that streams events such as "Sent Message" and "Viewed Message", as well as other
+related events. You can think of a Topic as a category of events that are related under your domain.
+
+Now suppose that your chat service becomes a wild success and you have thousands of users. In order to keep up
+with the increased traffic, you can divide your topic into multiple Partitions. This allows the events in your
+topic to be distributed between multiple SPUs in parallel, increasing your traffic capacity by just changing a setting.
 
 For example, a configuration with the 2 topics generates the replication map in the diagram:
 
