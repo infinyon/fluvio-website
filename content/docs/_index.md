@@ -3,7 +3,7 @@ title: Introduction to Fluvio
 toc: true
 ---
 
-Fluvio is a high-performance open source data streaming platform built for developers. Whether you're looking to add data streaming capabilities to your application, need to aggregate logs for your infrastructure, or are seeking a Change Data Capture (CDC) solution, Fluvio is the data streaming platform for you. Ease of use and native language APIs remove many barriers of adoption.
+Fluvio is a high-performance data streaming platform built for developers. Whether you're looking to add data streaming capabilities to your application, need to aggregate logs for your infrastructure, or are seeking a Change Data Capture (CDC) solution, Fluvio is the data streaming platform for you. Ease of use and native language APIs remove many barriers of adoption.
 
 {{< image src="architecture/cloud-native.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
 

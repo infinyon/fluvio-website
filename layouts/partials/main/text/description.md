@@ -1,14 +1,21 @@
-Next generation collaboration tools, distributed Apps, data pipelines, ML streams, IOT aggregators need a powerful infrastructure to process **data in real-time**.
+Fluvio is an open source data streaming platform _built for developers_.  
 
-Fluvio is an **open source** data streaming platform **built for coders**.  The platform is optimized for speed, scale, security, resiliency and **ease of use**. 
+With language-native bindings for <a href="https://www.rust-lang.org/" target="_blank">Rust</a> and <a href="https://nodejs.org/" target="_blank">Node</a>, you can add real-time data streaming support to distributed Apps in matter of minutes. You could also roll out your own log aggregation, DB replication, change data capture (CDC), or IOT middle layer.
 
-<ins>Release 1.x</ins> focuses on **core data streaming** use cases such as _Log aggregation_, _Db capture (CDC)_, and simple _Collaboration Apps_. 
+For a preview of Fluvio's data streaming capabilities, sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> or download and install <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a>.
 
-Sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> or deploy <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a> to give it a try.
+**Note**: Fluvio is currently in Aplha and APIs are subject to change.
 
 
 
 <!-- 
+Next generation collaboration tools, distributed Apps, data pipelines, ML streams, IOT aggregators need a powerful infrastructure to process **data in real-time**.
+
+Fluvio is an **open source** data streaming platform **built for developers**.  Whether you're looking to add data streaming capabilities to your application, need to aggregate logs for your infrastructure, or are seeking a Change Data Capture (CDC) solution, Fluvio is the data streaming platform for you.
+
+<ins>Alpha-1</ins> focuses on **core data streaming** use cases such as _Log aggregation_, _Db capture (CDC)_, and simple _Collaboration Apps_. 
+
+=================
 
 Expectations for Apps that deliver **data in real-time** is at an all-time high.
 
