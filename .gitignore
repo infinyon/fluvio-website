@@ -17,3 +17,6 @@ $RECYCLE.BIN/
 
 ## Scripts
 .tmp
+
+# JetBrains
+.idea/
