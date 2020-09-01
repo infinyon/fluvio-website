@@ -2,7 +2,7 @@ Fluvio is an open source data streaming platform _built for developers_.
 
 With language-native bindings for <a href="https://www.rust-lang.org/" target="_blank">Rust</a> and <a href="https://nodejs.org/" target="_blank">Node</a>, you can add real-time data streaming support to distributed Apps in matter of minutes. You could also roll out your own log aggregation, DB replication, change data capture (CDC), or IOT middle layer.
 
-For a preview of Fluvio's data streaming capabilities, sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> or download and install <a href="https://app.fluvio.io" target="_blank">Fluvio Open Source</a>.
+For a preview of Fluvio's data streaming capabilities, sign-up for <a href="https://app.fluvio.io/signup" target="_blank">Fluvio Cloud</a> or download and install <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a>.
 
 **Note**: Fluvio is currently in Aplha and APIs are subject to change.
 

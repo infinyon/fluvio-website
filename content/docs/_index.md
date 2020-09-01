@@ -12,7 +12,7 @@ Fluvio can be installed on your personal computer, in a private data center, or 
 
 ## Core Capabilities
 
-Fluvio was designed to offer three core capabilities:  
+The key tenets of this architecture are as follows
 
 * [data streaming](#data-streaming)
 * [language native APIs](#language-native-apis)
