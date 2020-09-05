@@ -9,7 +9,7 @@ The website is generated using [Hugo Framework](https://gohugo.io/). To run the 
 1. [Install Hugo](https://gohugo.io/getting-started/installing/)
 2. Run Hugo
     ```
-    hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender
+   ./hugo-start.sh
     ```
 3. Website is rendered at
     ```
@@ -19,6 +19,9 @@ The website is generated using [Hugo Framework](https://gohugo.io/). To run the 
 Hugo watches for file changes and automatically updates website.
 
 
-## Public Website
+## Public/Nightly Websites
 
-The website is published on [Netlify](https://www.netlify.com/). Netlify monitors branch `stable` and updates the website when new changes are detected.
+[Netlify](https://www.netlify.com/) watches the following branches and automatically updates websites:
+
+* `stable` updates [fluvio.io](https://fluvio.io)
+* `master` updates [nightly.fluvio.io](https://nightly.fluvio.io)
