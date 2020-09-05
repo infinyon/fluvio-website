@@ -52,7 +52,7 @@ Fluvio is written in **Rust**, a programming language designed for _code safety_
 | **CPU Utilization**      |         73%            |         24%            | **~3x**              |
 | **Program Size**         |         27 Mb          |         3.7 Mb         | **~8x**              |
 
-These values are derived from a simple web server implementation can be significantly higher in large programs where there are many libraries/dependencies.
+These values are derived from a simple web server implementation and can be significantly higher in large programs with many libraries and dependencies.
 
 Fluvio also takes advantage of other Rust capabilities, such as: 
 
