@@ -90,8 +90,8 @@ For additional information, check out the [Replica Election](/docs/architecture/
 
 Fluvio is designed to integrate natively with most programming languages.  The following native interfaces are listed in order of priority:
 
-* **Rust**
-* **Node.js**
+* Rust &#10004;
+* Node.js &#10004;
 * Swift/Objective-C - *coming soon*
 * Python - *coming soon*
 * Go - *coming soon*
