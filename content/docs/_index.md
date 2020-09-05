@@ -42,15 +42,19 @@ Fluvio data streaming is designed for _speed_, _scale_, _security_ and _resilien
 
 #### Speed
 
-Fluvio is written in **Rust**, a programming language designed for _code safety_ and _performance_.  For instance, a <a href="https://medium.com/@dexterdarwich/comparison-between-java-go-and-rust-fdb21bd5fb7c" target="_blank">benchmark</a> comparison between Rust and Java revealed that Rust outperforms Java in many areas:
+Fluvio is written in **Rust**, a programming language designed for _code safety_ and _performance_.  For instance, a <a href="https://medium.com/@dexterdarwich/comparison-between-java-go-and-rust-fdb21bd5fb7c" target="_blank">benchmark</a> comparison between Rust and Java on a simple web server implementation revealed that Rust outperforms Java in many areas:
 
-* **Latency**:  Rust is ~ 30x lower than Java (on a Fibonnaci test)
-* **Memory**: Rust uses ~25x less memory than Java 
-    * **Idle Memory Usage**: Rust uses ~450% less memory than Java
-* **CPU**: Rust uses ~3x less CPU than Java 
-* **Program Size**: Rust compiles to ~10% smaller image size than Java
+|   Parameters             |         Java           |           Rust         |      Improvement     |
+|--------------------------|:----------------------:|:----------------------:|:--------------------:|
+| **Latency** (Fibinacci)  |         1,900 ms       |         57.71 ms       | **~30x**             |
+| **Memory**               |         1,498 ms       |         16.94 ms       | **~25x**             |
+| **Idle Memory**          |         162 Mb         |         0.36 Mb          | **~450x**            |
+| **CPU Utilization**      |         73%            |         24%            | **~3x**              |
+| **Program Size**         |         27 Mb          |         3.7 Mb         | **~8x**              |
 
-Fluvio takes full advantage of Rust's core capabilities: 
+These values are derived from a simple web server implementation can be significantly higher in large programs where there are many libraries/dependencies.
+
+Fluvio also takes advantage of other Rust capabilities, such as: 
 
 * _async runtime_ for concurrent processing 
 * _all available cores_ for optimal CPU utilization
