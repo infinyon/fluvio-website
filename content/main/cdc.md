@@ -1,6 +1,7 @@
 ---
-title: "CDC - Db Capture"
+title: "DB Capture (CDC)"
 weight: 30
 image: "main/cdc.svg"
-summary: "Capture and distribute database changes in real-time."
+link: "/docs/rust-examples"
+summary: "Distribute events and replicate databases in real-time."
 ---

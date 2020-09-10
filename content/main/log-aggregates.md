@@ -2,5 +2,6 @@
 title: "Log Aggregation"
 weight: 10
 image: "main/log-aggregator.svg"
-summary: "Aggregate logs from Apps, sensors, robots, drones, etc."
+link: "/docs/rust-examples"
+summary: "Aggregate logs from Apps, sensors, robots, drones, ..."
 ---
