@@ -1,4 +1,4 @@
-Fluvio is an open source data streaming platform _built for developers_.  
+Fluvio is a high performance, low latency data streaming platform built for developers.
 
 With language-native bindings for <a href="https://www.rust-lang.org/" target="_blank">Rust</a> and <a href="https://nodejs.org/" target="_blank">Node</a>, you can add real-time data streaming support to distributed Apps in matter of minutes. You could also roll out your own log aggregation, DB replication, change data capture (CDC), or IOT middle layer.
 

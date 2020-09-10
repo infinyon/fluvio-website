@@ -39,7 +39,9 @@
               <a href="{{ .RelPermalink | relURL}}">{{ .Title | markdownify}}</a>
             </div>
 
-            <img src="/img/{{.Params.image}}" class="mx-auto d-block" height="150" width="275">
+            <a href="{{ .RelPermalink | relURL}}">
+              <img src="/img/{{.Params.image}}" class="mx-auto d-block" height="150" width="275">
+            </a>
 
             <article class="box-content" style="width: 260px">
               <p>{{ .Summary }}</p>
