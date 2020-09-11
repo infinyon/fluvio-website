@@ -103,7 +103,7 @@ The APIs can be used to manage and operate all areas of the systems:
 * consumer
 * producers
 
-Fluvio supports **polyglot** environments where Apps written in various programming languages can be enhanced to support real-time data streaming capabilities.
+Fluvio supports **polyglot** environments where App modules written in different programming languages use native interfaces to access data streams. 
 
 
 ### Ease of Use
