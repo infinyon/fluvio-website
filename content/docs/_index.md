@@ -5,7 +5,7 @@ toc: true
 
 Fluvio is a high-performance data streaming platform built for developers. Whether you're looking to add data streaming capabilities to your application, need to aggregate logs for your infrastructure, or are seeking a Change Data Capture (CDC) solution, Fluvio is the data streaming platform for you. Ease of use and native language APIs remove many barriers of adoption.
 
-{{< image src="architecture/cloud-native.svg" alt="Fluvio Cloud" justify="center" width="560" type="scaled-90">}}
+{{< image src="architecture/fluvio-overview.svg" alt="Fluvio Cloud" justify="center" width="820" type="scaled-98">}}
 
 Fluvio can be installed on your personal computer, in a private data center, or on a public cloud. Virtually anywhere <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> is available.
 
@@ -118,7 +118,7 @@ Fluvio uses **declarative configurations** instead of imperative commands to man
 
 ## Key Features
 
-The Key features of Fluvio are:
+Key features are centered around performance and ease of use:
 
 * **Ultra Low Latency**: Fluvio takes advantage of Rust's async runtime to improve system performance and achieve low latency. It utilizes all available cores and interacts directly with hardware I/O. Unlike other streaming platforms where garbage collection adds unpredictable latency, Fluvio latency is constant and predictable. 
 
