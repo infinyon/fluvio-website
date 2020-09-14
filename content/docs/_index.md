@@ -95,6 +95,7 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 * Swift/Objective-C - *coming soon*
 * Python - *coming soon*
 * Go - *coming soon*
+* Java - *coming soon*
 
 The APIs can be used to manage and operate all areas of the systems:
 
