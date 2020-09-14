@@ -56,9 +56,9 @@ These values are derived from a simple web server implementation and can be sign
 
 Fluvio also takes advantage of other Rust capabilities, such as: 
 
-* _async runtime_ for concurrent processing 
-* _all available cores_ for optimal CPU utilization
-* _zero-copy_ for fast I/O wherever possible
+* <a href="https://rust-lang.github.io/async-book/01_getting_started/02_why_async.html" target="_blank">Asynchronous Code</a> lets us scale our workloads effortlessly
+* <a href="https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html" target="_blank">Fearless Concurrency</a> helps us leverage the CPU's full power
+* **Zero-copy** for fast I/O wherever possible
 
 While other data streaming platforms use polling to consume messages, Fluvio uses *async processing* for significantly lower latency.
 
@@ -67,9 +67,9 @@ While other data streaming platforms use polling to consume messages, Fluvio use
 
 Fluvio is designed for **horizontal scale**, with multiple Streaming Processing Units being gradually dispatched to handle an increasing number of concurrent data streams.
 
-Fluvio uses **partitioning** to divide data into smaller sub-streams for availability, fault tolerance and manageability. Each partition is an independent data streaming unit that can scale independently. Partitions are distributed evenly across _Streaming Processing Units (SPUs)_ to ensure a balanced system. This architecture choice, enables Fluvio clients to write-to or read-from multiple partitions simultaneously.
+Fluvio uses **partitioning** to divide data into smaller sub-streams for availability, fault tolerance and manageability. Each partition is an independent data streaming unit that can scale independently. Partitions are distributed evenly across Streaming Processing Units (SPUs) to ensure a balanced system. This architecture choice enables Fluvio clients to write-to or read-from multiple partitions simultaneously.
 
-For additional information, check out the [Partition/Partition](/docs/architecture/topics-partitions/) section in the [Architecture](/docs/architecture) document.
+For additional information, check out the [Topic/Partition](/docs/architecture/topics-partitions/) section in the [Architecture](/docs/architecture) document.
 
 
 #### Security
@@ -81,7 +81,7 @@ Fluvio is designed with **security** and **privacy** in mind. Fluvio producers, 
 
 Fluvio is designed for **fault tolerance** and **high availability**. Data streams are replicated for durability and can survive multiple points of failure. Failures may range from crash of a host machine to network outages, and more. Fluvio ensures that data streams remain available with minimal interruption for subsequent processing.
 
-All system components have **self-healing** recovery mechanisms and **automatic failover** to increase resiliency and simplify usability. Fluvio has built-in **eventual consistency** to allow recovering _SPUs_ update their internal state and rejoin the cluster as fully functional units.
+All system components have self-healing recovery mechanisms and automatic failover to increase resiliency and simplify usability. Fluvio has built-in eventual consistency to allow recovering SPUs to update their internal state and rejoin the cluster as fully functional units.
 
 For additional information, check out the [Replica Election](/docs/architecture/replica-election/) section in the [Architecture](/docs/architecture) document.
 
@@ -103,18 +103,18 @@ The APIs can be used to manage and operate all areas of the systems:
 * consumer
 * producers
 
-Fluvio supports **polyglot** environments where App modules written in different programming languages use native interfaces to access data streams. 
+Fluvio supports polyglot environments where App modules written in different programming languages use native interfaces to access data streams. 
 
 
 ### Ease of Use
 
-Fluvio is designed for **operational efficiency** and **ease of use**.  
+Fluvio is designed for **operational efficiency** and **ease of use**.
 
-Built-in **cluster management** capabilities normalize and simplify all infrastructure operations. The platform can be installed just as easily on a laptop, a data center, or a public cloud. Integrated Kubernetes capabilities make Fluvio easy to install in any modern Enterprise environment.
+Built-in cluster management capabilities normalize and simplify all infrastructure operations. The platform can be installed just as easily on a laptop, a data center, or a public cloud. Integrated Kubernetes capabilities make Fluvio easy to install in any modern Enterprise environment.
 
-Fluvio is designed **for developers**. The _built-in installer_ helps you get up and running quickly. The _profile-based configuration_ allows you to switch between different Fluvio installations with ease. _Native language_ support gives you the flexibility to pick your programming language of choice, where the data streaming APIs are mapped to native libraries. Fluvio's **developer-first** approach eliminates complexity and minimizes the learning curve required to bootstrap and run a data streaming environment.
+Fluvio is designed for developers. The built-in installer helps you get up and running quickly. The profile-based configuration allows you to switch between different Fluvio installations with ease. Native language support gives you the flexibility to pick your programming language of choice, where the data streaming APIs are mapped to native libraries. Fluvio's developer-first approach eliminates complexity and minimizes the learning curve required to bootstrap and run a data streaming environment.
 
-Fluvio uses **declarative configurations** instead of imperative commands to manage system resources such as topics and partitions. The declarative configuration approach lets the platform provision resources dynamically as they become available and self-heal from failures. Existing data streaming platforms return errors and leave all remediation tasks to the operator to resolve. When using Fluvio, operators give you the confidence to configure and walk away. You can trust that the platform will recover from errors and operate at optimal performance.
+Fluvio uses declarative configurations instead of imperative commands to manage system resources such as topics and partitions. The declarative configuration approach lets the platform provision resources dynamically as they become available and self-heal from failures. Existing data streaming platforms return errors and leave all remediation tasks to the operator to resolve. When using Fluvio, operators give you the confidence to configure and walk away. You can trust that the platform will recover from errors and operate at optimal performance.
 
 ## Key Features
 
