@@ -69,7 +69,7 @@ Fluvio is designed for **horizontal scale**, with multiple Streaming Processing 
 
 Fluvio uses **partitioning** to divide data into smaller sub-streams for availability, fault tolerance and manageability. Each partition is an independent data streaming unit that can scale independently. Partitions are distributed evenly across Streaming Processing Units (SPUs) to ensure a balanced system. This architecture choice enables Fluvio clients to write-to or read-from multiple partitions simultaneously.
 
-For additional information, check out the [Topcic/Partition](/docs/architecture/topics-partitions/) section in the [Architecture](/docs/architecture) document.
+For additional information, check out the [Topic/Partition](/docs/architecture/topics-partitions/) section in the [Architecture](/docs/architecture) document.
 
 
 #### Security
