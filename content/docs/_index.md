@@ -56,8 +56,8 @@ These values are derived from a simple web server implementation and can be sign
 
 Fluvio also takes advantage of other Rust capabilities, such as: 
 
-* <a href="https://rust-lang.github.io/async-book/01_getting_started/02_why_async.html" target="_blank">Asynchronous Code</a> lets us scale our workloads effortlessly
-* <a href="https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html" target="_blank">Fearless Concurrency</a> helps us leverage the CPU's full power
+* <a href="https://rust-lang.github.io/async-book/01_getting_started/02_why_async.html" target="_blank">Asynchronous Code</a> to scale out workloads effortlessly
+* <a href="https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html" target="_blank">Fearless Concurrency</a> to leverage the CPU's full power
 * **Zero-copy** for fast I/O wherever possible
 
 While other data streaming platforms use polling to consume messages, Fluvio uses *async processing* for significantly lower latency.
