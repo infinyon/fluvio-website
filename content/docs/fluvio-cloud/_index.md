@@ -1,11 +1,11 @@
 ---
-title: Fluvio Cloud (Private Beta)
+title: Fluvio Cloud
 folder: Fluvio Cloud
 menu: Overview
 weight: 100
 ---
 
-Fluvio Cloud is a fully managed <a href="Github https://github.com/infinyon/fluvio/" target="_blank">Fluvio Open Source</a> provisioned and maintained by InfinyOn team. Fluvio Cloud is currently in private Beta and we gradually on-boarding users. Use the [Sing Up](/signup/) form if you'd like to participate in our Beta program.
+Fluvio Cloud is a fully managed <a href="Github https://github.com/infinyon/fluvio/" target="_blank">Fluvio Open Source</a> provisioned and maintained by InfinyOn team. Fluvio Cloud is currently in private trial and we gradually on-boarding users. Use the [Sing Up](/signup/) form if you'd like to participate in our Beta program.
 
 Fluvio team is actively engaged on fixing any issues in the shortest possible time. We use:
 
