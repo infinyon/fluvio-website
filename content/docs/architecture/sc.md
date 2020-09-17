@@ -38,6 +38,9 @@ spec:
   spuId: 100
   spuType: "Custom"
   rack: "Zone1"
+  storage:
+    size: 2Gi
+    logDir: "/tmp/mylog"
   publicEndpoint:
     port: 9005
     ingress:
@@ -103,9 +106,18 @@ spec:
   minId: 11
   template:
     storage:
-        size: 20Gi
+        size: 2Gi
+        logDir: "/tmp/mylog"
+    publicEndpoint:
+        port: 9005
+        ingress:
+        - hostname: localhost
+        encryption: TLS
+    privateEndpoint: 
+        port: 9006
+        host: localhost
+        encryption: TLS        
 ```
-
 
 ##### SPU-group Status
 

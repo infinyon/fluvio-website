@@ -1,6 +1,6 @@
 Fluvio is a high performance, low latency data streaming platform built for developers.
 
-Roll out your own log aggregation, DB replication, change data capture (CDC), or IOT middle layer in a matter of minutes. 
+Roll out your own log aggregation, DB replication, IOT middle layer, or an event driven infrastructure in a matter of minutes. 
 Use our expressive <a href="https://www.rust-lang.org/" target="_blank">Rust</a> or <a href="https://nodejs.org/" target="_blank">Node</a> APIs to create producers/consumers and start rapid experimentation with real-time data.
 
 Sign-up for <a href="/signup">Fluvio Cloud</a> or download and install <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> and you are ready to go.
