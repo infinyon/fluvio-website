@@ -3,6 +3,7 @@
     <ul class="nav justify-content-end" id="producer-tab" role="tablist">
         <li class="nav-item"><a class="nav-link active" id="node-producer-tab" data-toggle="pill" href="#node-producer" role="tab">Node</a></li>
         <li class="nav-item"><a class="nav-link" id="rust-producer-tab" data-toggle="pill" href="#rust-producer" role="tab">Rust</a></li>
+        <li class="nav-item"><a class="nav-link" id="swift-producer-tab" data-toggle="pill" href="#swift-producer" role="tab">Swift</a></li>
     </ul>
     <div class="tab-content" id="producer-tabContent">
         <div class="tab-pane show active" id="node-producer" role="tabpanel">
@@ -11,12 +12,16 @@
         <div class="tab-pane" id="rust-producer" role="tabpanel">
             {{ partial "main/code/rust-producer.md" | markdownify }}
         </div>
+        <div class="tab-pane" id="swift-producer" role="tabpanel">
+            {{ partial "main/code/swift-producer.md" | markdownify }}
+        </div>
     </div>
 
     <div class="label">Consumer</div>
     <ul class="nav justify-content-end" id="producer-tab" role="tablist">
         <li class="nav-item"><a class="nav-link active" id="node-consumer-tab" data-toggle="pill" href="#node-consumer" role="tab">Node</a></li>
         <li class="nav-item"><a class="nav-link" id="rust-consumer-tab" data-toggle="pill" href="#rust-consumer" role="tab">Rust</a></li>
+        <li class="nav-item"><a class="nav-link" id="swift-consumer-tab" data-toggle="pill" href="#swift-consumer" role="tab">Swift</a></li>
     </ul>
     <div class="tab-content" id="consumer-tabContent">
         <div class="tab-pane show active" id="node-consumer" role="tabpanel">
@@ -25,5 +30,8 @@
         <div class="tab-pane" id="rust-consumer" role="tabpanel">
             {{ partial "main/code/rust-consumer.md" | markdownify }}
         </div>
+        <div class="tab-pane" id="swift-consumer" role="tabpanel">
+            {{ partial "main/code/swift-consumer.md" | markdownify }}
+        </div>        
     </div>
 </div>    

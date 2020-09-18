@@ -1,12 +1,17 @@
-Fluvio is a high performance, low latency data streaming platform built for developers.
+Fluvio is a high performance, low latency data streaming platform built for real-time Apps that can run on Mobile, Edge, Cloud, and your Data Center.
 
 Roll out your own log aggregation, DB replication, IOT middle layer, or an event driven infrastructure in a matter of minutes. 
-Use our expressive <a href="https://www.rust-lang.org/" target="_blank">Rust</a> or <a href="https://nodejs.org/" target="_blank">Node</a> APIs to create producers/consumers and start rapid experimentation with real-time data.
+Use our expressive <a href="https://nodejs.org/" target="_blank">Node</a>, <a href="https://www.rust-lang.org/" target="_blank">Rust</a> or <a href="https://developer.apple.com/swift/" target="_blank">Swift</a> APIs to create producers/consumers and start rapid experimentation with real-time data.
 
-Sign-up for <a href="/signup">Fluvio Cloud</a> or download and install <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> and you are ready to go.
+Sign-up for <a href="/signup">Fluvio Cloud</a> or download and install <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> and build your first data streaming App.
 
 
 <!-- 
+
+Fluvio is a high performance, low latency data streaming platform built for developers.
+
+================
+
 Roll out your own log aggregation, DB replication, change data capture (CDC), or IOT middle layer in matter of minutes. 
 Our language-native bindings for <a href="https://www.rust-lang.org/" target="_blank">Rust</a> and <a href="https://nodejs.org/" target="_blank">Node</a>, you can add real-time data streaming in matter of minutes.
 
