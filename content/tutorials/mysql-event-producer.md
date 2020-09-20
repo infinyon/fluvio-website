@@ -4,7 +4,7 @@ desc: Build a change data capture (CDC) App that converts MySQL operations into 
 languages:
   - Node
   - Rust
-difficulty: medium
+difficulty: high
 weight: 100
 ---
 
