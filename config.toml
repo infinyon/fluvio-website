@@ -21,10 +21,22 @@ pygmentsUseClasses=true
     weight = 100
 
   [[menu.main]]
+    identifier = "tutorials"
+    name = "Tutorials"
+    url = "/tutorials/"
+    weight = 101
+
+  [[menu.main]]
+    identifier = "apis"
+    name = "APIs"
+    weight = 102
+    
+  [[menu.main]]
     identifier = "rust"
     name = "Rust API"
     url = "https://docs.rs/flv-client/"
     pre = "fas fa-sm fa-external-link-alt"
+    parent = "apis"
     weight = 110
 
   [[menu.main]]
@@ -32,9 +44,10 @@ pygmentsUseClasses=true
     name = "Node API"
     url = "https://docs.rs/flv-client/"
     pre = "fas fa-sm fa-external-link-alt"
+    parent = "apis"
     weight = 120
 
-  [[hidden.menu.main]]
+  [[menu.main.hidden]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"

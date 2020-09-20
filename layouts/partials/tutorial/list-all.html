@@ -1,0 +1,44 @@
+<div class="container tiles">
+  
+  <div class="header">
+    <div class="row"><h1>{{ .page.Title }}</h1></div>
+    <div class="row"><div class="subheader">{{ .page.Params.desc }}</div></div>
+  </div>
+
+  <div class="row">
+    {{- range (where site.RegularPages.ByWeight "Type" "tutorials" ) -}}
+      {{- $hidden := .Params.hidden | default false -}}
+
+      {{ if ne $hidden true }}
+        <div class="col-md-6 col-lg-4 box">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <div class="title">
+                <a href="#">{{ .Title}}</a>
+              </div>
+              <div class="desc">
+                {{ .Params.desc}}
+              </div>
+            </div>
+            
+            <div class="lang">
+              {{- partial "tutorial/print-languages" . -}}
+            </div>
+
+            <div class="card-footer">
+              <div class="link">
+                <a href="#"><i class="fas fa-arrow-right"></i> Expand</a>
+              </div>
+              <div class="difficulty">
+                {{- partial "tutorial/print-difficulty" . -}}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+
+</div>

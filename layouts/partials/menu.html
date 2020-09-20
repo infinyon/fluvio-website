@@ -1,0 +1,67 @@
+{{- $currentPage := . -}}
+<nav class="navbar navbar-expand-md navbar-custom">
+  <a class="navbar-brand" id="logo" href="{{ "/" | relURL}}"><img src="/img/common/fluvio-white.png" width="90" ></img></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      {{ range .Site.Menus.main }}
+        {{- if .HasChildren }}          
+          <li class="navbar-item dropdown"> 
+            <a href="{{ .URL }}" class="nav-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> 
+              <span class="nav-label">{{ .Name }}</span> <i class="fas fa-caret-down"></i>
+            </a>           
+            <ul class="navbar-dropdown dropdown-menu">
+                {{ range .Children }}
+                  {{- $target := "_self" -}}
+                  {{- if hasPrefix .URL "http" }}
+                    {{- $target = "_blank" -}}
+                  {{- end -}}                   
+                  <li class="navbar-item">
+                    <a class="nav-link" href="{{ .URL }}" target="{{ $target }}">
+                      {{ if .Pre }}
+                        <i class="{{ .Pre }}"></i>
+                      {{ end }}
+                      {{ .Name }}
+                      {{ if .Post }}
+                        <i class="{{ .Post }}"></i>
+                      {{ end }}
+                    </a>                  
+                  </li>
+                {{ end }}
+            </ul>
+          </li>
+        {{- else -}}
+          {{- $active := "" -}}
+          {{- if eq $currentPage.Section (.Name | lower) -}}
+            {{- $active = "active" -}}
+          {{- end -}}
+          {{- $target := "_self" -}}
+          {{- if hasPrefix .URL "http" }}
+            {{- $target = "_blank" -}}
+          {{- end -}}        
+          <li class="navbar-item {{ $active }}" >
+            <a class="nav-link" href="{{ .URL }}" target="{{ $target }}">
+              {{ if .Pre }}
+                <i class="{{ .Pre }}"></i>
+              {{ end }}
+              {{ .Name }}
+              {{ if .Post }}
+                <i class="{{ .Post }}"></i>
+              {{ end }}
+            </a>                  
+          </li>        
+        {{- end -}}
+      {{- end -}}
+      <li class="navbar-item" >
+        <div class = "signup-button">
+        <a class="nav-link-rev" href="/signup">
+          Sign Up
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</nav>

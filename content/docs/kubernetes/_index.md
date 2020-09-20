@@ -2,7 +2,7 @@
 title: Kubernetes Overview
 folder: Kubernetes
 menu: Overview
-weight: 110
+weight: 140
 ---
 
 Fluvio was designed to work natively with Kubernetes. You can deploy Fluvio to Kubernetes using the Helm chart. This section documents the integration steps between Fluvio and Kubernetes.

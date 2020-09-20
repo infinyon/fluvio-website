@@ -1,0 +1,85 @@
+.tiles {
+    max-width:1000px;
+
+    .header {
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+
+    .box {
+      padding: 15px 10px;
+    }
+
+    .subheader {
+        margin-top: -5px;
+        font-size: 1.2em;
+    } 
+
+    .card {
+      margin: .4rem auto;
+      width: 18.6rem;
+      background: white !important;
+      min-height: 280px;
+    }
+
+    .card-body {
+        padding: 17px;
+    }
+
+    .card-footer {
+        min-height: 50px;
+        padding: 10px 20px;
+    }
+
+    .title {
+      font-family: $font-paragraph;
+      font-size: 1.1em;
+      font-weight: 700; 
+      min-height: 70px;
+    }
+
+    .title a {
+        color: $col-blue-dark2;
+        text-decoration: none;
+    }
+    
+    .desc {
+        font-family: $font-paragraph;
+        color: $col-gray-dark1;
+        font-size: .9em;  
+    }
+
+    .lang {
+        font-family: $font-paragraph;
+        color: $col-gray-light2;
+        font-size: .9em; 
+        margin: 5px 20px 10px;
+    }
+  
+    .link {
+        font-size: .9em;
+        padding-top: 5px;
+        float: left;
+    }
+     
+    .link i {
+        color: $col-blue-light2;
+    }
+
+    .link a {
+        color: $col-blue-base;
+        text-decoration: none;
+    }
+
+    .difficulty {
+        float: right;
+    }
+
+  }
+  
+  @media (max-width: 992px ) {
+    .tiles {
+        max-width:660px;
+    }
+  }
+  

@@ -2,7 +2,7 @@
 title: Build a data streaming App in Node
 menu: Build a Node App
 toc: true
-weight: 20
+weight: 40
 ---
 
 In this guide we’ll provide instructions on how to set up a <a href="https://nodejs.org" target="_blank">Node.js</a> environment and build a simple data streaming App.

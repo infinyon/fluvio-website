@@ -1,0 +1,11 @@
+{{- if isset .Params "languages" -}}
+  {{- if in .Params.languages "Rust" }}
+    <img src="/img/tiles/rust.svg" style=" opacity: 0.65" height="30" data-toggle="tooltip" title="Rust" />
+  {{ end -}}
+  {{- if in .Params.languages "Node" }}
+    <img src="/img/tiles/njs.svg" style=" opacity: 0.7" height="30" data-toggle="tooltip" title="Node.Js" />
+  {{ end -}}
+  {{- if in .Params.languages "Swift"}}
+    <img src="/img/tiles/swift.svg" style=" opacity: 0.55" height="30" data-toggle="tooltip" title="Swift"/> 
+  {{ end -}}
+{{- end -}}
