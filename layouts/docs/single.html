@@ -8,7 +8,9 @@
       <div class="col-md main-area">
         {{- block "content" . }}{{- end }}
       </div>
-      {{ partial "docs/table-of-contents" . }}
+      <div class="doc-toc">
+        {{ partial "docs/table-of-contents" . }}
+      </div>
     </div>     
   </div>
 {{ end }}

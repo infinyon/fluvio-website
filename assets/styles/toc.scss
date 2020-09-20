@@ -25,7 +25,14 @@
 }
 
 @media (max-width: 1200px ) {
-  .toc-area {
+  .doc-toc {
+    display: none;
+    width: 0;
+  }
+}
+
+@media (max-width: 1000px ) {
+  .tutorial-toc {
     display: none;
     width: 0;
   }

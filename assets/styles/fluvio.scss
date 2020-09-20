@@ -531,6 +531,17 @@ footer {
 }
 
 // --------------
+// Tutorials
+// --------------
+
+.tutorial-area {
+  min-width: 300px;
+  padding: .5em 1em .5em .5em;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+// --------------
 // Screen Sizes
 // --------------
 @media (max-width: 1200px ) { //992px
@@ -572,6 +583,11 @@ footer {
   .blog .menu { 
     margin-top: 30px;
     margin-left: 5px;
+  }
+
+  .tutorial-area {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .signup-button {

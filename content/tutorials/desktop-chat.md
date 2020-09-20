@@ -1,10 +1,17 @@
 ---
-title: Build a desktop chat App using event streams
-desc: Simple Chat App
+title: Build a chat App using event streams
+desc: Build a fully functional chat App with real-time notifications, and online/offline status indicator using Fluvio durable data streams.
 languages:
   - Node
+toc: true
 difficulty: medium
 weight: 10
 ---
 
 TODO: Add step by step instructions on how to install and run desktop Chat App.
+
+## Section
+...
+
+### Sub-section
+...

@@ -1,8 +1,16 @@
 {{ define "main" }}
-Main
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md tutorial-area">
+        {{- block "content" . }}{{- end }}
+      </div>
+      <div class="tutorial-toc">
+        {{ partial "docs/table-of-contents" . }}
+      </div>
+    </div>     
+  </div>
 {{ end }}
 
 {{ define "content" }}
-  {{/* partial "blog/blog_post" (dict "page" .) */}}
-  Content
+  {{ partial "docs/page-content" (dict "page" .) }}
 {{ end }}

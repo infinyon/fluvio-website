@@ -10,12 +10,13 @@
       {{- $hidden := .Params.hidden | default false -}}
 
       {{ if ne $hidden true }}
+        {{- $linkTo := .RelPermalink -}}	
         <div class="col-md-6 col-lg-4 box">
           <div class="card h-100">
 
             <div class="card-body">
               <div class="title">
-                <a href="#">{{ .Title}}</a>
+                <a href="{{ $linkTo }}">{{ .Title}}</a>
               </div>
               <div class="desc">
                 {{ .Params.desc}}
@@ -28,7 +29,7 @@
 
             <div class="card-footer">
               <div class="link">
-                <a href="#"><i class="fas fa-arrow-right"></i> Expand</a>
+                <a href="{{ $linkTo }}"><i class="fas fa-arrow-right"></i> Expand</a>
               </div>
               <div class="difficulty">
                 {{- partial "tutorial/print-difficulty" . -}}
