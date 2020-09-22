@@ -95,7 +95,6 @@ class TagsFilter {
 
             // check if "show" class should be applied
             if (visibility === this.FILTERS.length) {
-                console.log("Yes");
                 if (!this.filterItems[i].classList.contains(this.showItemClass)) {
                     this.selectedItemCount++;
                     this.addClassIfMissing(this.filterItems[i], this.showItemClass);

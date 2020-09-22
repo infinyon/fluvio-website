@@ -38,38 +38,14 @@
 
 <div class="tf-wrapper">
   <div class="tf-buttons-container flex-grow">
-
-  <p id="selectedItemCount"></p>
-
-    <p>Authors</p>
-
-    {{ range $scratch.Get "authors" }}
-      <button xx class="auth-button" id="auth-{{ . | replaceRE "[.]" "_" | urlize }}" onclick="htf.checkFilter('{{ . | replaceRE "[.]" "_" | urlize }}', 'auth-')">
-        {{ . }} <span id="sauth-{{ . | replaceRE "[.]" "_" | urlize }}"> -count-</span> | <span id="cauth-{{ . | replaceRE "[.]" "_" | urlize }}"> -count-</span>
-        <i class="fas fa-users"></i>
-      </button>
-    {{ end }}
-    {{ if gt ( $scratch.Get "noAuthors") 0 }}
-    <button xx class="auth-button" id="auth-no-author" onclick="htf.checkFilter('no-author', 'auth-')">
-      No Author <span id="sauth-no-author"> -count-</span> | <span id="cauth-no-author"> -count-</span>
-    </button>
-    {{ end }}
     
-    <p>Tags</p>
-
     {{ range $tags }}
       {{ if .Term }}
-        <button xx class="tag-button" id="tag-{{ .Term | replaceRE "[.]" "_" | urlize }}" onclick="htf.checkFilter('{{ .Term | replaceRE "[.]" "_" | urlize }}', 'tag-')">
+        <button type="button" class="btn btn-outline-primary tag-button" id="tag-{{ .Term | replaceRE "[.]" "_" | urlize }}" onclick="htf.checkFilter('{{ .Term | replaceRE "[.]" "_" | urlize }}', 'tag-')">
+          <i class="fas fa-check"></i>
           <span>{{.Term | humanize | title }}</span>
-          <span id="stags-{{ .Term | urlize }}"> -count-</span> | <span id="ctags-{{ .Term | urlize }}"> -count-</span>
-          <i class="fas fa-users"></i>
         </button>
       {{ end }}
-    {{ end }}
-    {{ if gt ( $scratch.Get "untagged") 0 }}
-    <button xx class="tag-button" id="tag-tfuntagged" onclick="htf.checkFilter('tfuntagged', 'tag-')">
-      Untagged <span id="stags-tfuntagged"> -count-</span> | <span id="ctags-tfuntagged"> -count-</span>
-    </button>
     {{ end }}
     
   </div>
@@ -134,22 +110,13 @@
         attrName: 'data-tags',
         selectedPrefix: 'stags-',
         countPrefix: 'ctags-'
-      },
-      {
-        name: 'authors',
-        prefix: 'auth-',
-        buttonClass: 'auth-button',
-        attrName: 'data-authors',
-        selectedPrefix: 'sauth-',
-        countPrefix: 'cauth-'
-        
       }
     ],
     showItemClass: "show-item",
     filterItemClass: "tf-filter-item",
     activeButtonClass: "active",
     counterSelector: "selectedItemCount",
-    populateCount: true,
+    populateCount: false,
     setDisabledButtonClass: "disable-button"
   } 
   var htf = new TagsFilter(htfConfig);

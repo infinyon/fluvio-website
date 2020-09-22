@@ -4,7 +4,9 @@
 }
 
 button.active {
-    background-color: #ddd;    
+    i {
+        display: inline;
+    }   
 }
 
 button.disable-button {
@@ -19,3 +21,13 @@ button.disable-button {
     display: block;  
 }
 
+.tag-button {
+    margin: 5px;
+    padding-right: 15px;
+    padding-left: 10px;
+    box-shadow: none !important;
+
+    i {
+        display: none;
+    }  
+}
