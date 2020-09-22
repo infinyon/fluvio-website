@@ -1,38 +1,118 @@
-<div class="container tiles">
+{{/* Local context scratch */}}
+{{- $scratch := newScratch -}}
+
+{{/* Collect authors */}}
+{{- $scratch.Set "authors" ( slice ) -}}
+{{- $scratch.Set "noAuthors" 0 -}}
+
+{{- $pages := where site.RegularPages.ByWeight "Type" "tutorials" -}}
+{{- range $pages -}}
+  {{- with .Params.githubAuthors -}}
+    {{- range . -}}
+        {{- if ( not ( in ($scratch.Get "authors") . ) ) -}}
+            {{- $scratch.Add "authors" . -}}
+        {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $scratch.Add "noAuthors" 1 -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Process tags */}}
+{{- $scratch.Set "untagged" 0 -}}
+{{- $tags := site.Taxonomies.tags.ByCount -}}
+
+{{- range $pages -}}
+  {{- with .Params.tags -}}
+  {{- else -}}
+    {{- $scratch.Add "untagged" 1 -}}
+  {{- end -}}
+{{- end -}}
+
+<div  class="container tiles">
   
   <div class="header">
     <div class="row"><h1>{{ .page.Title }}</h1></div>
     <div class="row"><div class="subheader">{{ .page.Params.desc }}</div></div>
   </div>
 
+<div class="tf-wrapper">
+  <div class="tf-buttons-container flex-grow">
+
+  <p id="selectedItemCount"></p>
+
+    <p>Authors</p>
+
+    {{ range $scratch.Get "authors" }}
+      <button xx class="auth-button" id="auth-{{ . | replaceRE "[.]" "_" | urlize }}" onclick="htf.checkFilter('{{ . | replaceRE "[.]" "_" | urlize }}', 'auth-')">
+        {{ . }} <span id="sauth-{{ . | replaceRE "[.]" "_" | urlize }}"> -count-</span> | <span id="cauth-{{ . | replaceRE "[.]" "_" | urlize }}"> -count-</span>
+        <i class="fas fa-users"></i>
+      </button>
+    {{ end }}
+    {{ if gt ( $scratch.Get "noAuthors") 0 }}
+    <button xx class="auth-button" id="auth-no-author" onclick="htf.checkFilter('no-author', 'auth-')">
+      No Author <span id="sauth-no-author"> -count-</span> | <span id="cauth-no-author"> -count-</span>
+    </button>
+    {{ end }}
+    
+    <p>Tags</p>
+
+    {{ range $tags }}
+      {{ if .Term }}
+        <button xx class="tag-button" id="tag-{{ .Term | replaceRE "[.]" "_" | urlize }}" onclick="htf.checkFilter('{{ .Term | replaceRE "[.]" "_" | urlize }}', 'tag-')">
+          <span>{{.Term | humanize | title }}</span>
+          <span id="stags-{{ .Term | urlize }}"> -count-</span> | <span id="ctags-{{ .Term | urlize }}"> -count-</span>
+          <i class="fas fa-users"></i>
+        </button>
+      {{ end }}
+    {{ end }}
+    {{ if gt ( $scratch.Get "untagged") 0 }}
+    <button xx class="tag-button" id="tag-tfuntagged" onclick="htf.checkFilter('tfuntagged', 'tag-')">
+      Untagged <span id="stags-tfuntagged"> -count-</span> | <span id="ctags-tfuntagged"> -count-</span>
+    </button>
+    {{ end }}
+    
+  </div>
+</div>
+
   <div class="row">
-    {{- range (where site.RegularPages.ByWeight "Type" "tutorials" ) -}}
+    {{- range $pages -}}
       {{- $hidden := .Params.hidden | default false -}}
 
       {{ if ne $hidden true }}
         {{- $linkTo := .RelPermalink -}}	
-        <div class="col-md-6 col-lg-4 box">
+        <div class="col-md-6 col-lg-4 box tf-filter-item" 
+          data-tags="{{ with .Params.tags }}{{ range . }}{{ . | replaceRE "[.]" "_" | urlize }} {{ end }}{{ else }} tfuntagged{{ end }}"
+          data-authors="{{ with .Params.githubAuthors }}{{ range . }}{{ . | replaceRE "[.]" "_" | urlize }} {{end}}{{else}}no-author{{end}}"
+        >        
           <div class="card h-100">
 
             <div class="card-body">
               <div class="title">
                 <a href="{{ $linkTo }}">{{ .Title}}</a>
               </div>
+
+              <div class="lang">
+                {{- partial "tutorial/print-languages" . -}}
+              </div>
+
               <div class="desc">
                 {{ .Params.desc}}
               </div>
             </div>
-            
-            <div class="lang">
-              {{- partial "tutorial/print-languages" . -}}
+
+            <div>
+              <div class="authors">
+                {{- partial "tutorial/print-authors" . -}}
+              </div>
             </div>
 
             <div class="card-footer">
-              <div class="link">
-                <a href="{{ $linkTo }}"><i class="fas fa-arrow-right"></i> Expand</a>
-              </div>
               <div class="difficulty">
                 {{- partial "tutorial/print-difficulty" . -}}
+              </div>
+              <div class="link">
+                <a href="{{ $linkTo }}"><i class="fas fa-arrow-right"></i> Expand</a>
               </div>
             </div>
 
@@ -43,3 +123,34 @@
   </div>
 
 </div>
+
+<script>
+  var htfConfig = {
+    filters: [
+      {
+        name: 'tags',
+        prefix: 'tag-',
+        buttonClass: 'tag-button',
+        attrName: 'data-tags',
+        selectedPrefix: 'stags-',
+        countPrefix: 'ctags-'
+      },
+      {
+        name: 'authors',
+        prefix: 'auth-',
+        buttonClass: 'auth-button',
+        attrName: 'data-authors',
+        selectedPrefix: 'sauth-',
+        countPrefix: 'cauth-'
+        
+      }
+    ],
+    showItemClass: "show-item",
+    filterItemClass: "tf-filter-item",
+    activeButtonClass: "active",
+    counterSelector: "selectedItemCount",
+    populateCount: true,
+    setDisabledButtonClass: "disable-button"
+  } 
+  var htf = new TagsFilter(htfConfig);
+</script>

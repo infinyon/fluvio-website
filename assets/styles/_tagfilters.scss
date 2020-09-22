@@ -1,0 +1,21 @@
+
+.tf-filter-item {
+    display: none;
+}
+
+button.active {
+    background-color: #ddd;    
+}
+
+button.disable-button {
+    border-style: dashed;
+
+    i {
+        display: none;
+    }
+}
+
+.show-item {
+    display: block;  
+}
+

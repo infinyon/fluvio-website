@@ -19,28 +19,27 @@
       margin: .4rem auto;
       width: 18.6rem;
       background: white !important;
-      min-height: 280px;
+      // min-height: 280px;
     }
 
     .card-body {
-        padding: 17px;
+      padding: 15px;
+      padding-bottom: 0px;
     }
 
     .card-footer {
-        min-height: 50px;
-        padding: 10px 20px;
+      padding: 12px 20px;
     }
 
     .title {
       font-family: $font-paragraph;
       font-size: 1.1em;
       font-weight: 700; 
-      min-height: 70px;
     }
 
     .title a {
-        color: $col-blue-dark2;
-        text-decoration: none;
+      color: $col-blue-dark2;
+      text-decoration: none;
     }
     
     .desc {
@@ -53,24 +52,37 @@
         font-family: $font-paragraph;
         color: $col-gray-light2;
         font-size: .9em; 
-        margin: 5px 20px 10px;
+        margin: 15px 0 15px 15px;
+
+        img {
+            padding-right: 5px;
+        }
     }
   
-    .link {
-        font-size: .9em;
-        padding-top: 5px;
+    .authors {
+        margin: 10px 30px 15px;
         float: left;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .link {
+        font-size: 1.0em;
+        float: left;
+        line-height: 2em;
+
+        i {
+          color: $col-blue-light2;
+        }   
+        
+        a {
+          color: $col-blue-base;
+          text-decoration: none;
+      }
     }
      
-    .link i {
-        color: $col-blue-light2;
-    }
-
-    .link a {
-        color: $col-blue-base;
-        text-decoration: none;
-    }
-
     .difficulty {
         float: right;
     }

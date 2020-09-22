@@ -1,4 +1,4 @@
 {{- $difficulty := .Params.difficulty | default "" -}}
 {{- if ne $difficulty "" -}}
-  <img src="/img/tiles/difficulty/{{$difficulty}}.svg" height="28" style=" opacity: 0.8; margin: 0; padding:0;" data-toggle="tooltip" title="Difficulty: {{$difficulty}}">
+  <img src="/img/tiles/difficulty/{{$difficulty}}-mono.svg" height="25" style="opacity: 0.5;" data-toggle="tooltip" title="Difficulty: {{$difficulty}}">
 {{- end -}} 
