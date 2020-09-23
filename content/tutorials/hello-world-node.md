@@ -16,6 +16,8 @@ weight: 10
 
 In this guide we’ll provide instructions on how to set up a <a href="https://nodejs.org" target="_blank">Node.js</a> environment and build a simple data streaming App.
 
+{{< tabs >}}
+
 {{< idea >}}
 
 **Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start](/docs/getting-started/) at:
@@ -24,6 +26,10 @@ In this guide we’ll provide instructions on how to set up a <a href="https://n
 * [Add a topic](/docs/getting-started/#create-a-topic-and-stream-hello-world)
 
 {{< /idea >}}
+
+{{< content >}}
+## ttttt
+{{< /content >}}
 
 ## Setup a Node Environment
 
