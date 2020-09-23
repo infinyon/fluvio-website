@@ -4,8 +4,8 @@ desc: Build a change data capture (CDC) App that converts MySQL operations into 
 tags:
   - Rust
   - Node
-  - Swift
 difficulty: high
+hidden: true
 weight: 300
 ---
 

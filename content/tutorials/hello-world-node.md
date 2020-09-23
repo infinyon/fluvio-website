@@ -1,10 +1,14 @@
 ---
-title: '"Hello World" - Build your First Fluvio'
-desc: Build a Node App
+title: '"Hello World" - Build your first Fluvio App'
+desc: This is a tutorial will guild you through Fluvio installation and a step-by-step on how to create a simple data streaming App.
 tags:
+  - Rust
   - Node
+  - Swift
 githubAuthors:
-  - ajhunyady  
+  - ajhunyady
+  - nicholastmosher
+  - sehz
 toc: true
 difficulty: low
 weight: 10

@@ -9,6 +9,7 @@ toc: true
 difficulty: low
 toc: true
 weight: 20
+hidden: true
 ---
 
 In this guide we’ll provide instructions on how to set up a <a href="https://www.rust-lang.org" target="_blank">Rust</a> environment and build a simple data streaming App.
