@@ -31,3 +31,8 @@ button.disable-button {
         display: none;
     }  
 }
+
+.tag-button:hover {
+    color: #fff;
+    background-color: rgba(0, 123, 255, 0.6);
+}

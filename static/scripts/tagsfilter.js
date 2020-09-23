@@ -1,7 +1,16 @@
+/**
+ * @name 'Hugo Tags Filter'
+ * @version 1.2.2
+ * @license MIT  
+ * @author PointyFar 
+ * 
+ * Modified extensively to cover "exclusive selection"
+ * 
+ */
 class TagsFilter {
 
     /*
-     * Initialize all parsmeters
+     * Initialize all parameters
      */
     constructor(config) {
         var defaultFilters = [
