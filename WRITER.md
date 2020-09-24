@@ -4,9 +4,13 @@ Fluvio Website was written in Hugo. Checkout [Hugo Documentation](https://gohugo
 
 ## Formatting and Short Codes
 
-The following document has a list of formatting and short code samples: [https://fluvio.io/docs/samples](https://fluvio.io/docs/samples). 
+The following document has a list of formatting and short code samples: 
 
-The content for the page is generated from the following markdown: [https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md](https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md).
+* [https://fluvio.io/docs/samples](https://fluvio.io/docs/samples). 
+
+The content for the page is generated from the following markdown: 
+
+* [https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md](https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md).
 
 
 ## Tutorial Section
