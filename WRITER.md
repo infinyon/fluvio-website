@@ -1,15 +1,15 @@
 # Documentation for Writers
 
-Fluvio Website was written in Hugo. Checkout [Hugo Documentation](https://gohugo.io/documentation/) for directory layout and other introductory information. This document describes the conventions used in various sections.
+Fluvio Website was written in Hugo. Checkout [Hugo Documentation](https://gohugo.io/documentation/) for the directory layout and other introductory information. This document describes the formatting and the customizations created for Fluvio website.
 
-## Formatting and ShortCodes
+## Formatting and Short Codes
 
-The following document has a list of formatting samples: [(https://fluvio.io/docs/samples](https://fluvio.io/docs/samples). The page that generated the content can be viewed in github at: [https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md](https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md).
+The following document has a list of formatting and short code samples: [(https://fluvio.io/docs/samples](https://fluvio.io/docs/samples). The content for the page is generated from the following markdown: [https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md](https://github.com/infinyon/fluvio-website/blob/stable/content/docs/samples.md).
 
 
 ## Tutorial Section
 
-Tutorial section uses tiles for listing and tags for filtering. The tags are driven the `front matter`. Each tag will be automatically listed in the filtering criteria.
+Tutorial is a custom-built section that uses tiles for listing and tags for filtering. The tags are driven the `front matter`, where tag is automatically generated for filtering criteria.
 
 For example, _hello-world.md_ file has 3 tags:
 
@@ -74,3 +74,15 @@ The `short code` is a script that generates the the language buttons. In general
 ```
 
 If there is only one programming language, the short code may be omitted.
+
+**NOTE**: Each programming language has a corresponding icon that must be added to the following directory:
+
+```
+<project>/static/img/tiles/
+```
+
+and mapped in the following `partial`:
+
+```
+layouts/partials/tutorial/print-languages.html
+```
