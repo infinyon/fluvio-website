@@ -1,14 +1,6 @@
 ---
-title: 'Build "Hello World" App in Rust'
-menu: Build a Rust App
-tags:
-  - Rust
-githubAuthors:
-  - nicholastmosher
+title: '"Hello World" - in Rust'
 toc: true
-difficulty: low
-toc: true
-weight: 20
 hidden: true
 ---
 

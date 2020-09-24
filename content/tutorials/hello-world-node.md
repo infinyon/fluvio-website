@@ -1,22 +1,10 @@
 ---
-title: '"Hello World" - Build your first Fluvio App'
-desc: This is a tutorial will guild you through Fluvio installation and a step-by-step on how to create a simple data streaming App.
-tags:
-  - Rust
-  - Node
-  - Swift
-githubAuthors:
-  - ajhunyady
-  - nicholastmosher
-  - sehz
+title: '"Hello World" - in Node.js'
 toc: true
-difficulty: low
-weight: 10
+hidden: true
 ---
 
 In this guide we’ll provide instructions on how to set up a <a href="https://nodejs.org" target="_blank">Node.js</a> environment and build a simple data streaming App.
-
-{{< tabs >}}
 
 {{< idea >}}
 
@@ -26,10 +14,6 @@ In this guide we’ll provide instructions on how to set up a <a href="https://n
 * [Add a topic](/docs/getting-started/#create-a-topic-and-stream-hello-world)
 
 {{< /idea >}}
-
-{{< content >}}
-## ttttt
-{{< /content >}}
 
 ## Setup a Node Environment
 
