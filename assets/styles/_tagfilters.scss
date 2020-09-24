@@ -32,7 +32,23 @@ button.disable-button {
     }  
 }
 
-.tag-button:hover {
+.lang-button {
+    margin: 5px;
+    margin-top: -20px;
+    padding: 5px 15px;
+}
+
+.lang-button.Disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    background-color: rgba(0, 123, 255, 1.0);    
+}
+
+.tag-button:hover, 
+.lang-button:hover {
     color: #fff;
     background-color: rgba(0, 123, 255, 0.6);
 }

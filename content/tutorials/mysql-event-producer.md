@@ -1,13 +1,12 @@
 ---
 title: Convert MySQL table changes into events streams
 desc: Build a change-data-capture (CDC) App that captures MySQL operations as events and dispatches them through a Fluvio data stream
+group: mysql-evt-prod
 tags:
-  - Node
-  - Rust
+  - node
+  - rust
 githubAuthors:
   - ajhunyady  
 difficulty: high
 weight: 200
 ---
-
-TODO:  Add step by step instructions on how to install and run MySQL CDC (Node).

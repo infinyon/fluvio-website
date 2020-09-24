@@ -1,7 +1,12 @@
 ---
 title: '"Hello World" - in Swift'
-toc: true
 hidden: true
+group: hello-world
+tag: swift
+weight: 30
+toc: true
 ---
 
-TBD
+{{< lang-selector >}}
+
+TODO:  Add step by step instructions for "Hello World" app in Swift

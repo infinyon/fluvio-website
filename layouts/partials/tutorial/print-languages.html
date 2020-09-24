@@ -1,11 +1,11 @@
 {{- if isset .Params "tags" -}}
-  {{- if in .Params.tags "Rust" }}
+  {{- if in .Params.tags "rust" }}
     <img src="/img/tiles/rust.svg" style=" opacity: 0.65" height="34" data-toggle="tooltip" title="Rust" />
   {{ end -}}
-  {{- if in .Params.tags "Node" }}
+  {{- if in .Params.tags "node" }}
     <img src="/img/tiles/njs.svg" style=" opacity: 0.7" height="34" data-toggle="tooltip" title="Node.Js" />
   {{ end -}}
-  {{- if in .Params.tags "Swift"}}
+  {{- if in .Params.tags "swift"}}
     <img src="/img/tiles/swift.svg" style=" opacity: 0.65" height="32" data-toggle="tooltip" title="Swift"/> 
   {{ end -}}
 {{- end -}}

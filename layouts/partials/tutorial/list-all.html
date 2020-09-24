@@ -5,7 +5,7 @@
 {{- $scratch.Set "authors" ( slice ) -}}
 {{- $scratch.Set "noAuthors" 0 -}}
 
-{{- $pages := where site.RegularPages.ByWeight "Type" "tutorials" -}}
+{{- $pages := where site.RegularPages.ByWeight "Type"  .page.Section -}}
 {{- range $pages -}}
   {{- with .Params.githubAuthors -}}
     {{- range . -}}
@@ -56,12 +56,12 @@
       {{- $hidden := .Params.hidden | default false -}}
 
       {{/* Process linkTo */}}
-      {{- $linkTo :=  .Params.linkToDefault | default "" -}}
-      {{- if eq $linkTo "" -}}
-          {{- if .Params.tags -}}
-          {{$firstTag := index (.Params.tags) 0}}
-            {{- if ne $firstTag nil -}}
-              {{- $linkTo = (print .File.BaseFileName "-" ($firstTag | lower)) -}}
+      {{- $linkTo := "" -}}
+      {{- if .Page.Params.group -}}
+          {{- $groupPages := where site.RegularPages.ByWeight "Params.group" .Page.Params.group -}}
+          {{- range $groupPages -}}
+            {{- if and .Params.tag (eq $linkTo "") -}}
+              {{- $linkTo = .File.BaseFileName -}}
             {{- end -}}
           {{- end -}}
       {{- end -}}

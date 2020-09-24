@@ -1,8 +1,13 @@
 ---
 title: '"Hello World" - in Node.js'
-toc: true
 hidden: true
+group: hello-world
+tag: node
+weight: 10
+toc: true
 ---
+
+{{< lang-selector >}}
 
 In this guide we’ll provide instructions on how to set up a <a href="https://nodejs.org" target="_blank">Node.js</a> environment and build a simple data streaming App.
 

@@ -1,8 +1,13 @@
 ---
 title: '"Hello World" - in Rust'
-toc: true
 hidden: true
+group: hello-world
+tag: rust
+weight: 20
+toc: true
 ---
+
+{{< lang-selector >}}
 
 In this guide we’ll provide instructions on how to set up a <a href="https://www.rust-lang.org" target="_blank">Rust</a> environment and build a simple data streaming App.
 
