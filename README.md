@@ -16,6 +16,8 @@ The website is generated using [Hugo Framework](https://gohugo.io/). To run the 
     http://localhost:1313/
     ```
 
+4. Checkout [WRITERS.md](./WRITERS.md) for formatting and Fluvio customizations.
+
 Hugo watches for file changes and automatically updates website.
 
 
