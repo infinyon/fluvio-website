@@ -84,11 +84,11 @@ If there is only one programming language, the short code may be omitted.
 **NOTE**: Each programming language has a corresponding icon that must be added to the following directory:
 
 ```
-<project>/static/img/tiles/
+./static/img/tiles/
 ```
 
 and mapped in the following `partial`:
 
 ```
-layouts/partials/tutorial/print-languages.html
+./layouts/partials/tutorial/print-languages.html
 ```
