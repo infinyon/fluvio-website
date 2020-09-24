@@ -149,7 +149,8 @@ To consume multiple messages, use _-C, --continuous_ CLI flag.
 
 **Congratulations!** You have successfully streamed your first message!
 
-#### Next Steps
+#### Tutorials
 ----------------
-* [Build a Node App](build-node-app)
-* [Build a Rust App](build-rust-app)
+* ["Hello World" in Node.js](/tutorials/hello-world-node/)
+* ["Hello World" in Rust](/tutorials/hello-world-rust/)
+* ["Hello World" in Swift](/tutorials/hello-world-swift/)

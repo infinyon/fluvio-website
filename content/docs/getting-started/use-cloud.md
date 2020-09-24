@@ -1,6 +1,6 @@
 ---
-title: Sign Up for Fluvio Cloud
-menu: Use Fluvio Cloud
+title: Sign-up for Fluvio Cloud
+menu: Setup Fluvio Cloud
 toc: true
 weight: 20
 ---
