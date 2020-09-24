@@ -47,7 +47,7 @@ The `front matter` parameters for the **root** file are defined as follows:
 Each tile must have at least two files joined by the `group` name:
 
 * **root file**: a file with no content such as `hello-world.md` that controls the tile content and defines the group label.
-* **programming languages files**: files such as `hello-world-node.md`, `hello-world-rust.md`, etc. - one file per tag. The file name does as the content is joined by the group label.
+* **programming language files**: one or more files such as `hello-world-node.md`, `hello-world-rust.md`, etc. - one file per tag. The file name does as the content is joined by the group label.
 
 Each `programming language file` is controlled by `front matter` and an optional `short code`. 
 
