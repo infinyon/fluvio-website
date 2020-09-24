@@ -1,5 +1,5 @@
 ---
-title: '"Hello World" - in Rust'
+title: '"Hello World" in Rust'
 hidden: true
 group: hello-world
 tag: rust

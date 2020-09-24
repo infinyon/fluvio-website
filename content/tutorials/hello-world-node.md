@@ -1,5 +1,5 @@
 ---
-title: '"Hello World" - in Node.js'
+title: '"Hello World" in Node.js'
 hidden: true
 group: hello-world
 tag: node

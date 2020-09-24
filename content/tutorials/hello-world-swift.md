@@ -1,5 +1,5 @@
 ---
-title: '"Hello World" - in Swift'
+title: '"Hello World" in Swift'
 hidden: true
 group: hello-world
 tag: swift
