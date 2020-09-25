@@ -20,7 +20,7 @@ Each guide has language-specific adaptations for each programming language.
 Each tile on the page represents a specific guide, and the icons on the tile represent
 the language adaptations that are available for that particular guide.
 
-![Tutorial page screenshot](./github/assets/tutorial-panels.png)
+![Tutorial page screenshot](./.github/assets/tutorial-panels.png)
 
 Each guide has a root file that describes the language-specific tutorials available. For
 example, we have a "Hello world" guide described by the [`hello-world.md`] root file.
