@@ -15,9 +15,25 @@ The content for the page is generated from the following markdown:
 
 ## Tutorial Section
 
-Tutorial is a custom-built section that uses tiles for listing and tags for filtering. The tags are driven by the `front matter`, where each tag is parsed and automatically added to the filtering criteria at the top of the section.
+The Tutorials page displays a variety of guides that are used to teach users about Fluvio.
+Each guide has language-specific adaptations for each programming language.
+Each tile on the page represents a specific guide, and the icons on the tile represent
+the language adaptations that are available for that particular guide.
 
-For example, _hello-world.md_ file has 3 tags:
+![Tutorial page screenshot](./github/assets/tutorial-panels.png)
+
+Each guide has a root file that describes the language-specific tutorials available. For
+example, we have a "Hello world" guide described by the [`hello-world.md`] root file.
+This root file just contains information describing all of the tutorials for this guide.
+This is used to tell Hugo how to render the tiles and icons on the tutorials main page.
+
+Two important fields are `group` and `tags`. The group field is used to organize several
+language-specific tutorials into a single guide group. The tags field is used to indicate
+which langage adaptations are available and which icons to show on the tile.
+
+For example, [`hello-world.md`] has 3 tags:
+
+[`hello-world.md`]: ./content/tutorials/hello-world.md
 
 ```
 ---
@@ -51,7 +67,9 @@ Each tile must have at least two files joined by the `group` name:
 
 Each `programming language file` is managed through the `front matter` and the optional `short code` defined below. 
 
-For example, _hello-world-node.md_ has the following `front matter`:
+For example, [`hello-world-node.md`] has the following `front matter`:
+
+[`hello-world-node.md`]: ./content/tutorials/hello-world-node.md
 
 ```
 ---
