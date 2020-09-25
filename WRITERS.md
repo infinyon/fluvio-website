@@ -15,7 +15,7 @@ The content for the page is generated from the following markdown:
 
 ## Tutorial Section
 
-Tutorial is a custom-built section that uses tiles for listing and tags for filtering. The tags are driven the `front matter`, where each tag is automatically added to the filtering criteria at the top of the section.
+Tutorial is a custom-built section that uses tiles for listing and tags for filtering. The tags are driven by the `front matter`, where each tag is parsed and automatically added to the filtering criteria at the top of the section.
 
 For example, _hello-world.md_ file has 3 tags:
 
