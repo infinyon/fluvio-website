@@ -6,151 +6,142 @@ toc: true
 weight: 10
 ---
 
-The quickest way to **real-time data** is with [Fluvio Cloud](/docs/fluvio-cloud). 
+Welcome! Thanks for your interest in Fluvio, the high-performance, low-latency
+streaming platform for real-time applications. In this guide, we're going to
+walk through the setup process for getting started with Fluvio. There are two
+main steps:
 
-Each cloud account receives a dedicated `Fluvio` installation provisioned with 1 [Streaming Controller](/docs/architecture/sc) (SC) and 3 [Streaming Processing Units](/docs/architecture/spu) (SPUs), which are managed by the <a href="https://infinyon.com" target="_blank">InfinyOn</a> team. 
+- Installing the Fluvio CLI tool
+- Getting access to a Fluvio cluster
 
-{{< image src="getting-started/quick-start.svg" alt="Fluvio - Cloud Streaming" justify="center" width="500">}}
+There are two main ways to get access to a Fluvio cluster. The quickest way is
+by creating a [free Fluvio Cloud account], but we'll also cover how to install
+your own Fluvio cluster locally if you prefer that type of setup.
 
-One Fluvio Cloud installation can process all your real-time data streaming needs: from any number of producers, to any number of consumers, in any data formats, to any geo-location. 
+## Installing the Fluvio CLI
 
-#### Three Steps to Data Streaming
+The Fluvio CLI (or _command-line interface_) is an all-in-one tool for setting
+up, managing, and interacting with Fluvio. You can download the CLI from our
+[github releases] page. You'll need to open the archive, then move the `fluvio`
+executable into a directory in your `PATH`.
 
-1. [Create a Fluvio Cloud account](#create-a-fluvio-cloud-account)
-2. [Download and configure the CLI](#download-and-configure-the-cli)
-3. [Create topic and stream "Hello World"](#create-a-topic-and-stream-hello-world)
-
-
-## Create a Fluvio Cloud account
-
-Each Fluvio Cloud installation is assigned a unique _security profile_. Profiles ensure that only authorized clients are permitted to communicate with a specific cloud installation. Login to your **Fluvio Cloud Dashboard** to download and install the security profile associated with your environment.
-
-1. <a href="https://app.fluvio.io/signup" target="_blank">SignUp</a> for a new account.
-        
-    * Submit the `New Account` form.
-    * Check your email for the verification message.
-
-2. Validate your email account.
-        
-    * Click the `Confirm Email` button.
-    * The _Congratulation_ page confirms your account is enabled.
-
-3. Click `Login` to access your **Cloud Dashboard** 
-
-    * _Installation is ready_ email confirms your environment is ready. It may take a few minutes.
-
-4. Download your _Security Profile_
-
-    * Your security profile is available in your <a href="http://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a>
-
--> All Fluvio clients (CLI, Node API, Rust API) require a **security profile** to access a Fluvio cluster. 
-
-
-## Download and configure the CLI
-
-Fluvio Command Line Interface binaries are available for macOS and Linux versions:
-
-1. Download binaries for your environment from [github](https://github.com/infinyon/fluvio/releases).  
-2. Copy binary to your bin path and make it executable.
-
-#### Check your installation
-
-```bash
-$ fluvio --help
-Fluvio Command Line Interface
-
-fluvio <SUBCOMMAND>
-
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-SUBCOMMANDS:
-    consume       Read messages from a topic/partition
-    produce       Write messages to a topic/partition
-    spu           SPU Operations
-    spu-group     SPU Group Operations
-    custom-spu    Custom SPU Operations
-    topic         Topic operations
-    advanced      Advanced operations
-    help          Prints this message or the help of the given subcommand(s)
+```shell script
+$ sudo mv fluvio /usr/local/bin/
 ```
 
+{{< idea >}}
 
-#### Check connection to Fluvio Cloud
+**Note**: Run the `fluvio version` command to make sure it worked, but keep in
+mind that you'll probably see different versions than what's shown here.
 
-Use the following CLI command to verify the **security profile** is installed correctly in your home directory:
-
-```bash
-$ fluvio spu list
-ID  NAME      STATUS  TYPE     RACK  PUBLIC               PRIVATE 
-0  group3-0  online  managed   -    10.105.174.231:9005  flv-spg-group3-0.flv-spg-group3:9006 
-1  group3-1  online  managed   -    10.105.169.200:9005  flv-spg-group3-1.flv-spg-group3:9006 
-2  group3-2  online  managed   -    10.101.143.60:9005   flv-spg-group3-2.flv-spg-group3:9006 
+```shell script
+$ fluvio version
+Fluvio version : 0.6.0
+Git Commit     : 3ff1ee52a31f51c2a3dc7d8fe3996d694fdd585d
+OS Details     : Darwin 19.6.0 x86_64
+Rustc Version  : 1.46.0 (04488af 2020-08-24)
 ```
 
-**Fluvio CLI** connects to **Fluvio Cloud SC**, which in turn queries the **SPUs** for status information. Check out the [Architecture](/docs/architecture) section for additional information.
+{{< /idea >}}
 
-**Congratulations!** You have successfully deployed your **Fluvio Cloud** environment!
+[github releases]: https://github.com/infinyon/fluvio/releases
 
-## Create a topic and stream "Hello World"
+# Getting access to a Fluvio cluster
 
-Next, we'll use the CLI to create a topic, produce, and consume your first message.
+The easiest way to get started with a Fluvio cluster is by creating a
+[free Fluvio Cloud account] since we take care of setting up all the moving parts.
+If you go the Fluvio Cloud route, you can skip the rest of this page and continue on
+to the [Hello Fluvio] example.
 
-#### Create a Topic
+[free Fluvio Cloud account]: https://fluvio.io/signup
 
-Create a topic with 1 partition and a replication factor of 2.
+## Installing a Fluvio cluster
 
-```bash
-$ fluvio topic create --topic my-topic --partitions 1 --replication 2 
-topic 'my-topic' created successfully
+Fluvio is built to run on [Kubernetes], an open-source system that automates the
+deployment of containerized apps. If you haven't heard of Kubernetes or containers,
+just think of them as tools that help run applications on many computers at once.
+To get started with Fluvio locally, we'll need to install a version of Kubernetes 
+called Minikube which is meant for testing out Kubernetes apps locally.
+
+If you've worked with Kubernetes before and you already have `kubectl` and
+`minikube` set up, feel free to scroll down to [installing fluvio on minikube].
+
+[installing fluvio on minikube]: #installing-fluvio-on-minikube
+
+### Installing Minikube
+
+Head on over to the [Minikube installation page] and follow the instructions to
+download and install `minikube`.
+
+[Kubernetes]: https://kubernetes.io/
+[Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
+
+{{< caution >}}
+
+**Note**: If you've never used a container technology like Docker before,
+you might run into trouble at the `minikube start` step that looks like this
+
+```shell script
+$ minikube start
+😄  minikube v1.13.1 on Ubuntu 20.04
+👎  Unable to pick a default driver. Here is what was considered, in preference order:
+    ▪ docker: Not installed: exec: "docker": executable file not found in $PATH
+    ▪ kvm2: Not installed: exec: "virsh": executable file not found in $PATH
+    ▪ none: Not installed: exec: "docker": executable file not found in $PATH
+    ▪ podman: Not installed: exec: "podman": executable file not found in $PATH
+    ▪ virtualbox: Not installed: unable to find VBoxManage in $PATH
+    ▪ vmware: Not installed: exec: "docker-machine-driver-vmware": executable file not found in $PATH
+
+❌  Exiting due to DRV_NOT_DETECTED: No possible driver was detected. Try specifying --driver, or see https://minikube.sigs.k8s.io/docs/start/
 ```
 
-Ensure that the topic has been provisioned by displaying its details.
+If you run into this, try [installing docker] as described on the [minikube drivers]
+page, then try again using `minikube start --driver=docker`
 
-```bash
-$ fluvio topic describe --topic my-topic
- Name                    :  my-topic
- Type                    :  computed 
- Partition Count         :  1 
- Replication Factor      :  2 
- Ignore Rack Assignment  :  - 
- Status                  :  provisioned 
- Reason                  :  - 
- Partition Map               
- -----------------           
-     ID      LEADER      REPLICAS         LIVE-REPLICAS 
-      0        0         [0, 1]           [0, 1] 
+[installing docker]: https://hub.docker.com/search?q=&type=edition&offering=community&sort=updated_at&order=desc
+[minikube drivers]: https://minikube.sigs.k8s.io/docs/drivers/docker/
+
+{{< /caution >}}
+
+Once you're done, you should be able to run the following command to
+check that minikube is installed correctly.
+
+-> **Note**: The version that you see may be different from the one shown here
+
+```shell script
+$ minikube version
+minikube version: v1.13.0
+commit: eeb05350f8ba6ff3a12791fcce350c131cb2ff44
 ```
 
+### Installing Kubectl
 
-#### Produce "Hello World" on my-topic
+Minikube is nothing more than just a _mini_ Kubernetes. That means that we need to get
+the Kubernetes tool `kubectl` in order to configure and interact with our mini cluster
+just like you would with a regular cluster. Head on over to the [installing kubectl]
+page to get that installed. Once you're done, you should be able to run the following
+command to check that it's installed correctly.
 
-Produce a "Hello world" message to _my-topic_ and partition _0_:
+[installing kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
-```bash
-$ fluvio produce -t my-topic -p 0
-Hello World!
-Ok!
+-> Remember, the versions you see may not match the versions shown here
+
+```shell script
+$ kubectl version --short
+Client Version: v1.19.1
+Server Version: v1.19.0
 ```
 
-To produce multiple messages, use _-C, --continuous_ CLI flag.
+{{<idea>}}
 
-#### Consume from my-topic
+**Note**: Minikube can download the right version of `kubectl` for you, but you have to
+access it by running `minikube kubectl -- <args>` rather than the typical `kubectl <args>`.
+If you don't want to install another tool feel free to use it this way, but just remember
+if we say to run something like `kubectl get pods`, you'll want to run
+`minikube kubectl -- get pods`
 
-Consume messages from beginning on _my-topic_ and partition _0_:
+{{</idea>}}
 
-```bash
-$ fluvio consume -t my-topic -p 0 -g
-Hello World!
-```
+### Installing Fluvio on Minikube
 
-To consume multiple messages, use _-C, --continuous_ CLI flag.
-
-**Congratulations!** You have successfully streamed your first message!
-
-#### Tutorials
-----------------
-* ["Hello World" in Node.js](/tutorials/hello-world-node/)
-* ["Hello World" in Rust](/tutorials/hello-world-rust/)
-* ["Hello World" in Swift](/tutorials/hello-world-swift/)
+TODO
