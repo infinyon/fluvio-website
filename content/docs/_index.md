@@ -3,7 +3,7 @@ title: Introduction to Fluvio
 toc: true
 ---
 
-Fluvio is a high-performance data streaming platform built for developers. Whether you're looking to add data streaming capabilities to your application, need to aggregate logs for your infrastructure, or are seeking a Change Data Capture (CDC) solution, Fluvio is the data streaming platform for you. Our focus on ease of use and native language APIs removes many barriers of adoption.
+Fluvio is a high-performance data streaming platform for collaborative apps. Whether you are looking to enhance your app with a custom chat channel, receive real-time events from your legacy database, communicate with other services in real-time, or stitch together a log aggregator for your mobile or IOT devices, Fluvio is the data streaming platform for you. Our focus on speed, scale, multi-platform support, native language APIs, and ease of use removes many barriers of adoption.
 
 {{< image src="architecture/fluvio-overview.svg" alt="Fluvio Cloud" justify="center" width="820" type="scaled-98">}}
 
@@ -58,7 +58,7 @@ Fluvio also takes advantage of other Rust capabilities, such as:
 
 * <a href="https://rust-lang.github.io/async-book/01_getting_started/02_why_async.html" target="_blank">Asynchronous Code</a> to scale out workloads effortlessly
 * <a href="https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html" target="_blank">Fearless Concurrency</a> to leverage the CPU's full power
-* **Zero-copy** for fast I/O wherever possible
+* <a href="https://en.wikipedia.org/wiki/Zero-copy" target="_blank">Zero-copy</a> for fast I/O wherever possible
 
 While other data streaming platforms use polling to consume messages, Fluvio uses *async processing* for significantly lower latency.
 
@@ -139,6 +139,4 @@ Key features are centered around performance and ease of use:
 #### Next Steps
 ----------------
 * [Getting Started](getting-started)
-* [Fluvio Cloud](fluvio-cloud)
-* [Rust Examples](rust-examples)
-* [Node Examples](node-examples)
+* [Tutorials](/tutorials)
