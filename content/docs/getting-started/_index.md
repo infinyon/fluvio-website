@@ -46,7 +46,7 @@ Rustc Version  : 1.46.0 (04488af 2020-08-24)
 
 [github releases]: https://github.com/infinyon/fluvio/releases
 
-# Getting access to a Fluvio cluster
+## Getting access to a Fluvio cluster
 
 The easiest way to get started with a Fluvio cluster is by creating a
 [free Fluvio Cloud account] since we take care of setting up all the moving parts.
@@ -55,7 +55,7 @@ to the [Hello Fluvio] example.
 
 [free Fluvio Cloud account]: https://fluvio.io/signup
 
-## Installing a Fluvio cluster
+### Prerequisites
 
 Fluvio is built to run on [Kubernetes], an open-source system that automates the
 deployment of containerized apps. If you haven't heard of Kubernetes or containers,
@@ -63,7 +63,7 @@ just think of them as tools that help run applications on many computers at once
 To get started with Fluvio locally, we'll need to install a version of Kubernetes 
 called Minikube which is meant for testing out Kubernetes apps locally.
 
-If you've worked with Kubernetes before and you already have `kubectl` and
+If you've worked with Kubernetes before and you already have `kubectl`, `helm`, and
 `minikube` set up, feel free to scroll down to [installing fluvio on minikube].
 
 [installing fluvio on minikube]: #installing-fluvio-on-minikube
@@ -141,6 +141,17 @@ if we say to run something like `kubectl get pods`, you'll want to run
 `minikube kubectl -- get pods`
 
 {{</idea>}}
+
+### Installing Helm
+
+Helm is a package manager that makes it easy to install apps for Kubernetes. Fluvio is
+packaged as a "Helm chart" (the name for a package in Helm), and the Fluvio CLI can
+install that chart for you by calling the `helm` executable with all the right options.
+In order to do this, you need to have `helm` installed.
+
+You can install `helm` from the [helm releases page]
+
+[helm releases page]: https://github.com/helm/helm/releases
 
 ### Installing Fluvio on Minikube
 
