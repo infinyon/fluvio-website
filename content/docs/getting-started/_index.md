@@ -25,7 +25,7 @@ up, managing, and interacting with Fluvio. You can download the CLI from our
 [github releases] page. You'll need to open the archive, then move the `fluvio`
 executable into a directory in your `PATH`.
 
-```shell script
+```shell
 $ sudo mv fluvio /usr/local/bin/
 ```
 
@@ -34,7 +34,7 @@ $ sudo mv fluvio /usr/local/bin/
 **Note**: Run the `fluvio version` command to make sure it worked, but keep in
 mind that you'll probably see different versions than what's shown here.
 
-```shell script
+```shell
 $ fluvio version
 Fluvio version : 0.6.0
 Git Commit     : 3ff1ee52a31f51c2a3dc7d8fe3996d694fdd585d
@@ -81,7 +81,7 @@ download and install `minikube`.
 **Note**: If you've never used a container technology like Docker before,
 you might run into trouble at the `minikube start` step that looks like this
 
-```shell script
+```shell
 $ minikube start
 😄  minikube v1.13.1 on Ubuntu 20.04
 👎  Unable to pick a default driver. Here is what was considered, in preference order:
@@ -108,7 +108,7 @@ check that minikube is installed correctly.
 
 -> **Note**: The version that you see may be different from the one shown here
 
-```shell script
+```shell
 $ minikube version
 minikube version: v1.13.0
 commit: eeb05350f8ba6ff3a12791fcce350c131cb2ff44
@@ -126,7 +126,7 @@ command to check that it's installed correctly.
 
 -> Remember, the versions you see may not match the versions shown here
 
-```shell script
+```shell
 $ kubectl version --short
 Client Version: v1.19.1
 Server Version: v1.19.0
@@ -149,7 +149,15 @@ packaged as a "Helm chart" (the name for a package in Helm), and the Fluvio CLI 
 install that chart for you by calling the `helm` executable with all the right options.
 In order to do this, you need to have `helm` installed.
 
-You can install `helm` from the [helm releases page]
+You can install `helm` from the [helm releases page]. Once it's installed, make sure it
+works by printing the version.
+
+-> Once again, the version you see might not be the same!
+
+```shell
+$ helm version --short
+v3.3.1+g249e521
+```
 
 [helm releases page]: https://github.com/helm/helm/releases
 
