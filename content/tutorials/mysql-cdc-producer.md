@@ -1,5 +1,5 @@
 ---
-title: Convert MySQL table changes into events streams
+title: 'MySQL CDC [Part 1]: Producing table updates as Fluvio events'
 desc: Build a change-data-capture (CDC) App that captures MySQL operations as events and dispatches them through a Fluvio data stream
 group: mysql-evt-prod
 tags:
