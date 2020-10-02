@@ -156,6 +156,14 @@ root      54623 0.0 0.1 5058892 37432 s003 S  12:45PM 0:00.44 minikube tunnel
 
 [this troubleshooting section]: ../fluvio-local-faq#minikube-tunnel-minikube-tunnel-does-not-appear
 
+Now we have to configure some minikube settings so that Fluvio can communicate with the
+applications running inside. This command will prompt you for `sudo` because we need to
+add an entry for minikube to your `/etc/hosts` file.
+
+```bash
+$ fluvio cluster set-minikube-context
+```
+
 Kubernetes apps often come in two halves - a so-called "system" chart, and an "app" chart.
 We need to install the system chart first. To do that, run the following:
 
