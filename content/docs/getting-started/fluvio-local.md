@@ -156,39 +156,6 @@ root      54623 0.0 0.1 5058892 37432 s003 S  12:45PM 0:00.44 minikube tunnel
 
 [this troubleshooting section]: ../fluvio-local-faq#minikube-tunnel-minikube-tunnel-does-not-appear
 
-{{<idea>}}
-
-For the next section, it can be helpful to have some visibility into what Kubernetes is
-doing during the installation. Try opening a new terminal window on the side and running
-this command:
-
-```bash
-$ watch kubectl get all --all-namespaces
-NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
-kube-system   pod/coredns-f9fd979d6-rdz2p            1/1     Running   0          16h
-kube-system   pod/etcd-minikube                      1/1     Running   0          16h
-kube-system   pod/kube-apiserver-minikube            1/1     Running   0          16h
-kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          16h
-kube-system   pod/kube-proxy-lp4kd                   1/1     Running   0          16h
-kube-system   pod/kube-scheduler-minikube            1/1     Running   0          16h
-kube-system   pod/storage-provisioner                1/1     Running   0          16h
-
-NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
-default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  16h
-kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   16h
-
-NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
-kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   16hNAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
-kube-system   deployment.apps/coredns   1/1     1            1           16h
-
-NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
-kube-system   replicaset.apps/coredns-f9fd979d6   1         1         1       16h
-```
-
-This will refresh every 2 seconds, showing you the pods and services running in Kubernetes
-
-{{</idea>}}
-
 Kubernetes apps often come in two halves - a so-called "system" chart, and an "app" chart.
 We need to install the system chart first. To do that, run the following:
 
@@ -232,27 +199,6 @@ waiting for sc service up come up: 1
 waiting for spu to be provisioned
 1 spus provisioned
 ```
-
-{{<idea>}}
-
-If you have the watch window open with `watch kubectl get all --all-namespaces`, you
-should now be able to see Fluvio's pods and services running!
-
-```bash
-NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
-default       pod/flv-sc                             1/1     Running   0          4m59s
-default       pod/flv-spg-main-0                     1/1     Running   0          4m52s
-...
-
-NAMESPACE     NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                  AGE
-default       service/flv-sc-internal   ClusterIP      10.102.107.247   <none>          9004/TCP                 4m59s
-default       service/flv-sc-public     LoadBalancer   10.110.110.66    10.110.110.66   9003:31763/TCP           4m59s
-default       service/flv-spg-main      ClusterIP      None             <none>          9005/TCP,9006/TCP        4m52s
-default       service/flv-spu-main-0    LoadBalancer   10.108.48.176    10.108.48.176   9005:31135/TCP           4m52s
-...
-```
-
-{{</idea>}}
 
 You can check that everything worked by listing the topics on the cluster:
 
