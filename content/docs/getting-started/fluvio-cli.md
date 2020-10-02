@@ -29,3 +29,9 @@ Rustc Version  : 1.46.0 (04488af 2020-08-24)
 ```
 
 -> Keep in mind that you'll probably see different versions than what's shown here.
+
+
+#### Next Steps
+----------------
+* [Create a free Fluvio Cloud account](../fluvio-cloud)
+* [Install Fluvio locally](../fluvio-local)
