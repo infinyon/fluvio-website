@@ -13,7 +13,7 @@ called Minikube which is meant for testing out Kubernetes apps locally.
 
 [Kubernetes]: https://kubernetes.io/
 
-Prerequisite Steps:
+#### Prerequisite Steps
 
 1) [Install Docker](#installing-docker)
 2) [Install Minikube](#installing-minikube)
