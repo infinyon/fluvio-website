@@ -120,7 +120,7 @@ Now that we've got all of our tools installed, let's actually get Fluvio up and 
 If you run into any problems along the way, make sure to check out our [troubleshooting]
 page to find a fix.
 
-[troubleshooting]: fluvio-local-faq.md
+[troubleshooting]: ../fluvio-local-faq
 
 First, we have to open up a "minikube tunnel", which allows programs on our local machine
 to connect to programs running in minikube. This is how Fluvio commands communicate with
@@ -130,20 +130,16 @@ the local Fluvio cluster in minikube. To do this, we need to run the following c
 $ sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &
 ```
 
-{{<caution>}}
-Sometimes this doesn't work. If you're unable to make progress, or you can't see
-`minikube tunnel` running after searching with `ps aux | grep tunnel`, then try opening
-a new terminal window and running this:
+You can verify that this is working by checking your running processes for it:
 
 ```bash
-$ sudo minikube tunnel
+$ ps aux | grep "minikube tunnel"
+root      54623 0.0 0.1 5058892 37432 s003 S  12:45PM 0:00.44 minikube tunnel
 ```
 
-The `nohup` version of the command is preferable if it works for you, because it doesn't
-keep your terminal busy. If you use the non-`nohup` version, you'll need to continue working
-on a different terminal.
+~> Sometimes the tunnel may not appear. See [this troubleshooting section] for help.
 
-{{</caution>}}
+[this troubleshooting section]: ../fluvio-local-faq#minikube-tunnel-minikube-tunnel-does-not-appear
 
 {{<idea>}}
 

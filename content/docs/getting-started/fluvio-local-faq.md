@@ -327,3 +327,58 @@ Cluster "flvkube" set.
 Context "flvkube" created.
 Switched to context "flvkube".
 ```
+
+### `minikube tunnel`: Minikube tunnel does not appear
+
+On some systems, when you run the command
+
+```bash
+$ sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &
+```
+
+It seems to stop running immediately. You can tell this has happened when you search
+for "minikube tunnel" in your active processes and don't find anything:
+
+```bash
+$ ps aux | grep "minikube tunnel"
+user    642727  0.0  0.0   9036   664 pts/0    R+   15:53   0:00 grep --color=auto minikube tunnel
+```
+
+In that case, rather than trying to run minikube tunnel in the background (which is what
+nohup was for), we can just run it in the foreground. Minikube tunnel will cause your terminal
+to hang, but that's okay. Just open a separate terminal window that can be dedicated to the tunnel.
+Then run:
+
+```bash
+$ sudo minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out
+```
+
+### `fluvio cluster install`: repository name (fluvio) already exists
+
+Sometimes if you make it partway through an install and encounter an error, you'll need
+to run the uninstaller to reset to a fresh state. You need to do that if you encounter
+the following error:
+
+```bash
+$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest --sys
+Error: repository name (fluvio) already exists, please specify a different name
+Exited with status code: 1
+The application panicked (crashed).
+Message: internal error: entered unreachable code
+Location: .../.cargo/registry/src/github.com-1ecc6299db9ec823/flv-util-0.5.2/src/cmd.rs:92
+
+Backtrace omitted.
+Run with RUST_BACKTRACE=1 environment variable to display it.
+Run with RUST_BACKTRACE=full to include source snippets.
+```
+
+- **Fix**: To reset before making a fresh install, just run the following:
+
+```bash
+$ fluvio cluster uninstall
+removing fluvio installation
+removing kubernetes cluster
+release "fluvio" uninstalled
+```
+
+Then try re-running the install command again
