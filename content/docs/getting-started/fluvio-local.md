@@ -44,9 +44,15 @@ $ docker run hello-world
 ## Installing Minikube
 
 Head on over to the [Minikube installation page] and follow the instructions to
-download and install `minikube`.
+download and install `minikube`. However, the command you need to run to start
+minikube will depend on your OS:
 
 [Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
+
+- If you're using Linux, use `start minikube --driver=docker`
+- If you're using Mac, use `start minikube --driver=hyperkit`
+
+-> On Mac, `hyperkit` is provided by Docker Desktop, so you still need to install docker
 
 {{< caution >}}
 
