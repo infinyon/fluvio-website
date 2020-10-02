@@ -244,7 +244,10 @@ Hello, Fluvio
 ```
 
 Way to go! You're well on your way to writing real-time distributed apps
-with Fluvio! Next, [check out our Tutorials page] to see real-world examples
+with Fluvio! Next, check out our [Tutorials page](/tutorials) to see real-world examples
 of Fluvio in action.
 
-[check out our Tutorials page]: /tutorials
+#### Related Topics
+----------------
+* ["Hello World" in Node.js](/tutorials/hello-world-node/)
+* ["Hello World" in Rust](/tutorials/hello-world-rust/)
