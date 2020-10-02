@@ -17,5 +17,5 @@ main steps:
     - [Install Fluvio locally]
 
 [Install the Fluvio CLI tool]: ./fluvio-cli
-[Create a free Fluvio Cloud account]: https://fluvio.io/signup
+[Create a free Fluvio Cloud account]: ./fluvio-cloud
 [Install Fluvio locally]: ./fluvio-local

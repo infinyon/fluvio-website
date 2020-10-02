@@ -243,17 +243,43 @@ default       service/flv-spu-main-0    LoadBalancer   10.108.48.176    10.108.4
 
 {{</idea>}}
 
-You can check that everything worked by listing the Topics on the cluster:
+You can check that everything worked by listing the topics on the cluster:
 
 ```bash
 $ fluvio topic list
 No topics found
 ```
 
-## Ready to go!
+## Hello, Fluvio!
 
 Congratulations, you've successfully installed Fluvio on your local machine! 
-Head on over to our [Hello World] tutorial to learn how to start producing
-and consuming messages!
+Let's use the Fluvio CLI to play with some basic functionality.
 
-[Hello World]: ../../tutorials/hello-world-node.md
+The first thing we need to do is create a Fluvio topic. A Topic is like a
+category where related events live together. We can create a new topic with
+the following command:
+
+```bash
+$ fluvio topic create greetings
+topic "greetings" created
+```
+
+Now that we have a topic, we can produce some messages! Use the following
+command to send a message to the `greetings` topic:
+
+```bash
+$ echo "Hello, Fluvio" | fluvio produce greetings
+```
+
+Finally, we can consume messages back from the topic
+
+```bash
+$ fluvio consume greetings -B -d
+Hello, Fluvio
+```
+
+Way to go! You're well on your way to writing real-time distributed apps
+with Fluvio! Next, [check out our Tutorials page] to see real-world examples
+of Fluvio in action.
+
+[check out our Tutorials page]: /tutorials
