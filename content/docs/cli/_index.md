@@ -3,6 +3,7 @@ title: Command Line Interface (CLI)
 folder: CLI 
 menu: Overview
 toc: true
+hidden: true
 weight: 30
 ---
 

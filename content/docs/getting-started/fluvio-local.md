@@ -11,43 +11,48 @@ just think of them as tools that help run applications on many computers at once
 To get started with Fluvio locally, we'll need to install a version of Kubernetes 
 called Minikube which is meant for testing out Kubernetes apps locally.
 
-If you've worked with Kubernetes before and you already have `kubectl`, `helm`, and
-`minikube` set up, feel free to scroll down to [installing fluvio on minikube].
+[Kubernetes]: https://kubernetes.io/
 
-[installing fluvio on minikube]: #installing-fluvio-on-minikube
+Prerequisite Steps:
+
+1) [Install Docker](#installing-docker)
+2) [Install Minikube](#installing-minikube)
+3) [Install Kubectl](#installing-kubectl)
+4) [Install Helm](#installing-helm)
+
+If you already have `docker`, `kubectl`, `helm`, and `minikube` set up, feel free
+to scroll down to the [installing fluvio] section.
+
+[installing fluvio]: #installing-fluvio
+
+## Installing Docker
+
+Docker is a container engine that Minikube can use to run Kubernetes apps. Go to
+the [Docker downloads page] and choose the edition built for your OS. Follow all
+of the installation steps, then verify that you're able to run `docker` without
+using sudo:
+
+```bash
+$ docker run hello-world
+```
+
+~> **Note**: On Linux, make sure you run the [post-install steps] or this won't work without sudo
+
+[Docker downloads page]: https://hub.docker.com/search?q=&type=edition&offering=community&sort=updated_at&order=desc
+[post-install steps]: https://docs.docker.com/engine/install/linux-postinstall/
 
 ## Installing Minikube
 
 Head on over to the [Minikube installation page] and follow the instructions to
 download and install `minikube`.
 
-[Kubernetes]: https://kubernetes.io/
 [Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
 
 {{< caution >}}
 
-**Note**: If you've never used a container technology like Docker before,
-you might run into trouble at the `minikube start` step that looks like this
+**Note**: If you see an error with `❌  Exiting due to DRV_NOT_DETECTED`, [make sure you installed docker correctly]
 
-```shell
-$ minikube start
-😄  minikube v1.13.1 on Ubuntu 20.04
-👎  Unable to pick a default driver. Here is what was considered, in preference order:
-    ▪ docker: Not installed: exec: "docker": executable file not found in $PATH
-    ▪ kvm2: Not installed: exec: "virsh": executable file not found in $PATH
-    ▪ none: Not installed: exec: "docker": executable file not found in $PATH
-    ▪ podman: Not installed: exec: "podman": executable file not found in $PATH
-    ▪ virtualbox: Not installed: unable to find VBoxManage in $PATH
-    ▪ vmware: Not installed: exec: "docker-machine-driver-vmware": executable file not found in $PATH
-
-❌  Exiting due to DRV_NOT_DETECTED: No possible driver was detected. Try specifying --driver, or see https://minikube.sigs.k8s.io/docs/start/
-```
-
-If you run into this, try [installing docker] as described on the [minikube drivers]
-page, then try again using `minikube start --driver=docker`
-
-[installing docker]: https://hub.docker.com/search?q=&type=edition&offering=community&sort=updated_at&order=desc
-[minikube drivers]: https://minikube.sigs.k8s.io/docs/drivers/docker/
+[make sure you installed docker correctly]: ../fluvio-local-faq#minikube-start-unable-to-pick-a-default-driver
 
 {{< /caution >}}
 
@@ -56,7 +61,7 @@ check that minikube is installed correctly.
 
 -> **Note**: The version that you see may be different from the one shown here
 
-```shell
+```bash
 $ minikube version
 minikube version: v1.13.0
 commit: eeb05350f8ba6ff3a12791fcce350c131cb2ff44
@@ -74,7 +79,7 @@ command to check that it's installed correctly.
 
 -> Remember, the versions you see may not match the versions shown here
 
-```shell
+```bash
 $ kubectl version --short
 Client Version: v1.19.1
 Server Version: v1.19.0
@@ -102,14 +107,14 @@ works by printing the version.
 
 -> Once again, the version you see might not be the same!
 
-```shell
+```bash
 $ helm version --short
 v3.3.1+g249e521
 ```
 
 [helm releases page]: https://github.com/helm/helm/releases
 
-## Installing Fluvio on Minikube
+## Installing Fluvio
 
 Now that we've got all of our tools installed, let's actually get Fluvio up and running!
 If you run into any problems along the way, make sure to check out our [troubleshooting]
@@ -121,7 +126,7 @@ First, we have to open up a "minikube tunnel", which allows programs on our loca
 to connect to programs running in minikube. This is how Fluvio commands communicate with
 the local Fluvio cluster in minikube. To do this, we need to run the following command:
 
-```
+```bash
 $ sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &
 ```
 
@@ -130,8 +135,8 @@ Sometimes this doesn't work. If you're unable to make progress, or you can't see
 `minikube tunnel` running after searching with `ps aux | grep tunnel`, then try opening
 a new terminal window and running this:
 
-```
-sudo minikube tunnel
+```bash
+$ sudo minikube tunnel
 ```
 
 The `nohup` version of the command is preferable if it works for you, because it doesn't
@@ -146,7 +151,7 @@ For the next section, it can be helpful to have some visibility into what Kubern
 doing during the installation. Try opening a new terminal window on the side and running
 this command:
 
-```
+```bash
 $ watch kubectl get all --all-namespaces
 NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
 kube-system   pod/coredns-f9fd979d6-rdz2p            1/1     Running   0          16h
@@ -176,7 +181,7 @@ This will refresh every 2 seconds, showing you the pods and services running in 
 Kubernetes apps often come in two halves - a so-called "system" chart, and an "app" chart.
 We need to install the system chart first. To do that, run the following:
 
-```shell
+```bash
 $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest --sys
 "fluvio" has been added to your repositories
 Hang tight while we grab the latest from your chart repositories...
@@ -193,7 +198,7 @@ fluvio sys chart has been installed
 
 Now, we can install the "app" chart:
 
-```shell
+```bash
 $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
@@ -222,7 +227,7 @@ waiting for spu to be provisioned
 If you have the watch window open with `watch kubectl get all --all-namespaces`, you
 should now be able to see Fluvio's pods and services running!
 
-```
+```bash
 NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
 default       pod/flv-sc                             1/1     Running   0          4m59s
 default       pod/flv-spg-main-0                     1/1     Running   0          4m52s
@@ -240,7 +245,7 @@ default       service/flv-spu-main-0    LoadBalancer   10.108.48.176    10.108.4
 
 You can check that everything worked by listing the Topics on the cluster:
 
-```
+```bash
 $ fluvio topic list
 No topics found
 ```

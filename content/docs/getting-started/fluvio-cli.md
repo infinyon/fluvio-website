@@ -1,6 +1,6 @@
 ---
 title: Installing the Fluvio CLI
-menu: Fluvio CLI
+menu: Install Fluvio CLI
 toc: true
 weight: 20
 ---

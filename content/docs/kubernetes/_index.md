@@ -2,6 +2,7 @@
 title: Kubernetes Overview
 folder: Kubernetes
 menu: Overview
+hidden: true
 weight: 140
 ---
 

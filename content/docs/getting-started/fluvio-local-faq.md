@@ -21,12 +21,53 @@ it out, please feel free to [open an issue] or to drop by
 Let's try to get you unstuck. Here are some known installation problems and
 how to fix them. We're working to shrink this list over time :)
 
+### `minikube start`: Unable to pick a default driver
+
+If you've never used a container technology like Docker before, you might run
+into trouble at the `minikube start` step that looks like this
+
+```bash
+$ minikube start
+😄  minikube v1.13.1 on Ubuntu 20.04
+👎  Unable to pick a default driver. Here is what was considered, in preference order:
+    ▪ docker: Not installed: exec: "docker": executable file not found in $PATH
+    ▪ kvm2: Not installed: exec: "virsh": executable file not found in $PATH
+    ▪ none: Not installed: exec: "docker": executable file not found in $PATH
+    ▪ podman: Not installed: exec: "podman": executable file not found in $PATH
+    ▪ virtualbox: Not installed: unable to find VBoxManage in $PATH
+    ▪ vmware: Not installed: exec: "docker-machine-driver-vmware": executable file not found in $PATH
+
+❌  Exiting due to DRV_NOT_DETECTED: No possible driver was detected. Try specifying --driver, or see https://minikube.sigs.k8s.io/docs/start/
+```
+
+Make sure that you've [installed docker correctly] on your system. If everything
+is set up right, you should be able to run `docker run hello-world` without sudo.
+If you're using Linux, make sure you've followed all of the [post-install steps].
+
+Specifically, make sure you've added your user to the `docker` group:
+
+```bash
+$ sudo usermod -aG docker $USER
+```
+
+```bash
+$ groups
+... docker ...
+```
+
+Once you show up in the `docker` group, try logging out and logging back into your system.
+
+Once you've done that, try again using `minikube start --driver=docker`.
+
+[installed docker correctly]: https://hub.docker.com/search?q=&type=edition&offering=community&sort=updated_at&order=desc
+[post-install steps]: https://docs.docker.com/engine/install/linux-postinstall/
+
 ### `fluvio cluster install`: Fluvio system chart is not installed
 
 If you see an error like the one below, it's likely that you forgot to run
 the install command with the `--sys` option first.
 
-```
+```bash
 $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
 Error: 
    0: Fluvio cluster error
@@ -40,7 +81,7 @@ Run with RUST_BACKTRACE=full to include source snippets.
 - **Fix**: Run the following command to install the system chart
 (note the `--sys` flag at the end)
 
-```
+```bash
 $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest --sys
 ```
 
@@ -49,7 +90,7 @@ $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest --s
 If you see an error like the one below, something went wrong when Fluvio tried to
 integrate with Minikube.
 
-```
+```bash
 $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
 Error: 
    0: Fluvio cluster error
@@ -64,7 +105,7 @@ Run with RUST_BACKTRACE=full to include source snippets.
 because Fluvio needs to add an entry to a special file called `/etc/hosts` in order
 to connect to Minikube. Run the following command:
 
-```
+```bash
 $ fluvio cluster set-minikube-context
 ```
 
@@ -72,7 +113,7 @@ $ fluvio cluster set-minikube-context
 
 Sometimes when running the install command, you might run into a loop like this:
 
-```
+```bash
 $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
@@ -103,7 +144,7 @@ This means that the minikube tunnel isn't running. This can sometimes happen if 
 run `minikube tunnel` using `nohup`. If you check your processes for minikube tunnel,
 you probably won't see anything:
 
-```
+```bash
 $ ps aux | grep "minikube tunnel"
 fluvio    510051  0.0  0.0   9036   728 pts/0    R+   10:26   0:00 grep --color=auto minikube tunnel
 ```
@@ -111,7 +152,7 @@ fluvio    510051  0.0  0.0   9036   728 pts/0    R+   10:26   0:00 grep --color=
 - **Fix**: You need to run `minikube tunnel` again. Try it this time without using `nohup`.
 Open a new terminal window and run the following:
 
-```
+```bash
 $ sudo minikube tunnel
 ```
 
@@ -119,7 +160,7 @@ $ sudo minikube tunnel
 
 Sometimes when running the install command, you might run into a loop like this:
 
-```
+```bash
 fluvio@fluvio:~/fluvio$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
@@ -152,7 +193,7 @@ This means that Fluvio's [Streaming Controller (sc)] is online, but failed to la
 cluster, then re-install it with the same install command you tried before. To uninstall
 Fluvio, run the following:
 
-```
+```bash
 $ fluvio cluster uninstall
 fluvio@fluvio:~/fluvio$ fluvio cluster uninstall
 removing fluvio installation
@@ -180,7 +221,7 @@ persistentvolumeclaim "data-flv-spg-main-0" deleted
 
 Then, when you go to re-install it, a successful install will look like this:
 
-```
+```bash
 $ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
@@ -210,7 +251,7 @@ waiting for spu to be provisioned
 On some systems, running the `set-minikube-context` command doesn't work correctly yet.
 When you run it, you might see an error like the following:
 
-```
+```bash
 $ fluvio cluster set-minikube-context
 Error: 
    0: Kubernetes config error
@@ -227,7 +268,7 @@ we need to do this is to set a hostname that points to minikube's IP address. Th
 like a road sign that tells programs where minikube lives. The first thing we need to do
 is make sure we can actually see minikube's address.
 
-```
+```bash
 $ minikube ip
 172.17.0.3
 ```
@@ -237,7 +278,7 @@ $ minikube ip
 The next thing we'll want to do is make a backup of the hosts file so that we can restore
 it if something goes wrong.
 
-```
+```bash
 $ cp /etc/hosts ~/Desktop/
 ```
 
@@ -246,7 +287,7 @@ $ cp /etc/hosts ~/Desktop/
 Then, we want to add a line to the end of `/etc/hosts` that says `172.17.0.3 minikubeCA`.
 We can do that with the following command:
 
-```
+```bash
 $ echo "$(minikube ip) minikubeCA" | sudo tee -a /etc/hosts
 ```
 
@@ -256,7 +297,7 @@ Just so you understand what's going on here, here's what that line does:
 the output into the string. After this step runs, the shell will continue executing the rest
 of the command like this:
 
-```
+```bash
 $ echo "172.17.0.3 minikubeCA" | sudo tee -a /etc/hosts
 ```
 
@@ -269,7 +310,7 @@ the file instead of appending to it! But don't worry, you made a backup :)
 To make sure everything worked correctly, let's take a look at the `/etc/hosts` file. You
 should see something similar to this:
 
-```
+```bash
 $ cat /etc/hosts
 127.0.0.1	localhost
 127.0.1.1	your-hostname
@@ -280,7 +321,7 @@ $ cat /etc/hosts
 If everything worked correctly, you should now be able to run `set-minikube-context`
 successfully:
 
-```
+```bash
 $ fluvio cluster set-minikube-context
 Cluster "flvkube" set.
 Context "flvkube" created.
