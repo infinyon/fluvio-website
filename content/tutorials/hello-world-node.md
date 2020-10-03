@@ -100,7 +100,7 @@ Check to make sure the `@fluvio/client` module is added to package.json.
   "types": "./dist/index.d.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc ./src/index.ts --outDir ./dist",
+    "build": "npx tsc ./src/index.ts --outDir ./dist --declaration --declarationMap",
     "producer": "node ./bin/index.js -- producer",
     "consumer": "node ./bin/index.js -- consumer"
   },
@@ -236,7 +236,6 @@ export default class StreamingApp {
 
 ```TypeScript
   // send a message from the command line to the producer
-  // Wait for the consumer to listen for the message;
   // Paste Inside StreamingApp {} class
   private async sendMessage(partition?: number) {
     console.log(
@@ -253,6 +252,7 @@ export default class StreamingApp {
 
 ```TypeScript
   // Paste Inside StreamingApp {} class
+  // Wait for the consumer to listen for the message;
   private async listen() {
     console.log("Started Fluvio Consumer");
     // Setup a streaming consumer for Fluvio;
@@ -308,7 +308,6 @@ import Fluvio, {
 } from "@fluvio/client";
 
 // Use Node.js `readline` module to read from command line;
-// Ensure
 import { createInterface, Interface } from "readline";
 
 // Create a StreamingApp Class to encapsulate our logic;
@@ -375,7 +374,6 @@ export default class StreamingApp {
   }
 
   // send a message from the command line to the producer
-  // Wait for the consumer to listen for the message;
   private async sendMessage(partition?: number) {
     console.log(
       "Started Fluvio Producer\n\nStart Typing Your Message in the Terminal\n\n>"
@@ -385,6 +383,7 @@ export default class StreamingApp {
     });
   }
 
+  // Wait for the consumer to listen for the message;
   private async listen() {
     console.log("Started Fluvio Consumer");
     await this.consumer?.stream(
@@ -481,9 +480,15 @@ Started Fluvio Consumer
 Hello, World! 🎉
 ```
 
+*Congratulations!*
+
+You've now completed the Fluvio "Hello, World!" tutorial. 
+
+Head over to the Fluvio Node documentation to learn more about the library and available options.
+
 # Read the `@fluvio/client` Docs
 
-Checkout [Node API](/docs/node-api/reference) for additional information.
+Checkout [Node API](/docs/node-api/reference) reference guide for additional usage information and documentation.
 
 #### Related Topics
 -------------------
