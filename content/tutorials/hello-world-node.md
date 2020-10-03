@@ -7,7 +7,7 @@ weight: 10
 toc: true
 ---
 {{< lang-selector >}}
-{{< idea >}}
+{{< caution >}}
 ## Prerequisites
 Examples in this section require an access to an existing Fluvio cluster and Node.js version 13 or above installed on your machine.
 <br />
@@ -36,7 +36,7 @@ Node.js installation varies depending on your operating system.
 | MacOS                  | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **macOS**.  |
 | Windows                | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **Windows**. |
 | Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of <a href="https://nodejs.org/en/download/package-manager" target="_blank">supported packages</a>.  |
-{{< /idea >}}
+{{< /caution >}}
 
 ## Writing the Application
 
