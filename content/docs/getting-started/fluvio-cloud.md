@@ -1,6 +1,6 @@
 ---
-title: Get started with Fluvio Cloud
-menu: Setup Fluvio Cloud
+title: Create a Fluvio Cloud Account (free)
+menu: Use Fluvio Cloud
 toc: true
 weight: 30
 ---
