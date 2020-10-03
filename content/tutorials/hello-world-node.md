@@ -49,7 +49,7 @@ Run the following script to setup your project for development:
 ```bash
 mkdir fluvio-demo && cd fluvio-demo && npm init -y && \
 npm install typescript ts-node @types/node -D && \
-npm install ../fluvio-client-node -S && \
+npm install @fluvio/client -S && \
 touch producer.ts consumer.ts
 ```
 
