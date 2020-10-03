@@ -40,6 +40,8 @@ Node.js installation varies depending on your operating system.
 
 ## Writing the Application
 
+The following sections will setup your project and walk through writing the application files.
+
 ### Installing Project Dependencies
 
 Run the following script to setup your project for development:
