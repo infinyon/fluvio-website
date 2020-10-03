@@ -1,7 +1,7 @@
 ---
-title: Sign-up for Fluvio Cloud
+title: Get started with Fluvio Cloud
 menu: Setup Fluvio Cloud
 toc: true
-weight: 20
+weight: 30
 ---
 TODO: Step by step instructions to sign up for Fluvio Cloud.
