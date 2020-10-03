@@ -6,11 +6,8 @@ tag: node
 weight: 10
 toc: true
 ---
-
 {{< lang-selector >}}
-
 {{< idea >}}
-
 ## Prerequisites
 Examples in this section require an access to an existing Fluvio cluster and Node.js version 13 or above installed on your machine.
 <br />
@@ -39,11 +36,7 @@ Node.js installation varies depending on your operating system.
 | MacOS                  | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **macOS**.  |
 | Windows                | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **Windows**. |
 | Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of <a href="https://nodejs.org/en/download/package-manager" target="_blank">supported packages</a>.  |
-
-
-
 {{< /idea >}}
-
 
 ## Writing the Application
 
@@ -77,7 +70,6 @@ Your working directory should now contain the following files:
 Write the following code in your `producer.ts` file.
 
 {{< idea >}}
-
 **This code performs the following actions:**
 
 - _Import `@fluvio/client` and Node.js' `readline` modules;_
@@ -86,7 +78,6 @@ Write the following code in your `producer.ts` file.
 - _Create a new topic producer for `my-topic`;_
 - _Listen for input typed into the terminal;_
 - _Send typed input to the fluvio cluster;_
-
 {{< /idea >}}
 
 ```TypeScript
@@ -126,7 +117,6 @@ const rl = createInterface({
 Write the following code in your `consumer.ts` file.
 
 {{< idea >}}
-
 **This code performs the following actions:**
 
 - _Import `@fluvio/client` module;_
@@ -134,7 +124,6 @@ Write the following code in your `consumer.ts` file.
 - _Create a connection to a local Fluvio Cluster;_
 - _Create a new topic consumer for `my-topic`;_
 - _Listen for events sent by a topic producer;_
-
 {{< /idea >}}
 
 
