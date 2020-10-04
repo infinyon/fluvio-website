@@ -22,9 +22,8 @@ The first language binding implementation is for `Node.js`. The Node bindings al
 * API Reference
     * [Node API Reference](/docs/node-api)
 
-* Demo Apps
-    * [Simple Chat](/docs/demo-apps/simple-chat-demo-node/) 
-    * [CDC Producer](/docs/demo-apps/cdc-producer-node/) 
+* Tutorials
+    * [Hello, World!](/tutorials/hello-world-node/) 
 
 For additional details on Node binding implementation, checkout <a href="https://github.com/infinyon/node-bindgen" target="_blank">node-bindgen</a> library.
 
