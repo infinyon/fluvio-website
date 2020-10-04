@@ -164,46 +164,29 @@ add an entry for minikube to your `/etc/hosts` file.
 $ fluvio cluster set-minikube-context
 ```
 
-Kubernetes apps often come in two halves - a so-called "system" chart, and an "app" chart.
-We need to install the system chart first. To do that, run the following:
+Once we've got that set up, we can run our main installation command:
 
 ```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest --sys
-"fluvio" has been added to your repositories
+$ fluvio cluster install
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
 Update Complete. ⎈Happy Helming!⎈
 NAME: fluvio-sys
-LAST DEPLOYED: Fri Oct  2 09:30:44 2020
+LAST DEPLOYED: Sun Oct  4 02:16:16 2020
 NAMESPACE: default
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
-fluvio sys chart has been installed
-```
-
-Now, we can install the "app" chart:
-
-```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
 Update Complete. ⎈Happy Helming!⎈
 NAME: fluvio
-LAST DEPLOYED: Fri Oct  2 10:20:52 2020
+LAST DEPLOYED: Sun Oct  4 02:16:18 2020
 NAMESPACE: default
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
-waiting for sc service up come up: 0
-waiting for sc service up come up: 1
-0 of 1 spu ready
-0 of 1 spu ready
-0 of 1 spu ready
-0 of 1 spu ready
-0 of 1 spu ready
-0 of 1 spu ready
 waiting for spu to be provisioned
 1 spus provisioned
 ```

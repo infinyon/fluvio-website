@@ -68,7 +68,7 @@ If you see an error like the one below, it's likely that you forgot to run
 the install command with the `--sys` option first.
 
 ```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
+$ fluvio cluster install
 Error: 
    0: Fluvio cluster error
    1: An unknown error occurred: Fluvio system chart is not installed, please install fluvio-sys first
@@ -82,7 +82,7 @@ Run with RUST_BACKTRACE=full to include source snippets.
 (note the `--sys` flag at the end)
 
 ```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest --sys
+$ fluvio cluster install
 ```
 
 ### `fluvio cluster install`: Cluster in kube context cannot use IP address
@@ -91,7 +91,7 @@ If you see an error like the one below, something went wrong when Fluvio tried t
 integrate with Minikube.
 
 ```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
+$ fluvio cluster install
 Error: 
    0: Fluvio cluster error
    1: An unknown error occurred: Cluster in kube context cannot use IP address, please use minikube context: 172.17.0.3
@@ -114,7 +114,7 @@ $ fluvio cluster set-minikube-context
 Sometimes when running the install command, you might run into a loop like this:
 
 ```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
+$ fluvio cluster install
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
@@ -161,7 +161,7 @@ $ sudo minikube tunnel
 Sometimes when running the install command, you might run into a loop like this:
 
 ```bash
-fluvio@fluvio:~/fluvio$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
+fluvio@fluvio:~/fluvio$ fluvio cluster install
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
@@ -222,7 +222,7 @@ persistentvolumeclaim "data-flv-spg-main-0" deleted
 Then, when you go to re-install it, a successful install will look like this:
 
 ```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest
+$ fluvio cluster install
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
@@ -360,7 +360,7 @@ to run the uninstaller to reset to a fresh state. You need to do that if you enc
 the following error:
 
 ```bash
-$ fluvio cluster install --chart-version=0.6.0-latest --image-version=latest --sys
+$ fluvio cluster install
 Error: repository name (fluvio) already exists, please specify a different name
 Exited with status code: 1
 The application panicked (crashed).
