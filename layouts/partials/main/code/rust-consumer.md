@@ -1,12 +1,15 @@
 ```rust
-let fetch = FetchOffset::Earliest;
-let opt = FetchLogOption::default();
+let consumer = fluvio::consumer("greetings", 0).await?;
+let mut stream = consumer.stream(Offset::beginning()).await?;
 
-let mut conn = fluvio_client.connect().await?;
-let mut replica = conn.get_replica("my-topic", 0).await?;
-let mut stream = replica.get_stream(fetch, opt)?;
-
-while let Some(msg) = stream.consume()?.await {
-    println!("{}", msg);
+while let Ok(event) = stream.next().await {
+    for batch in event.partition.records.batches {
+        for record in batch.records {
+            if let Some(record) = record.value.inner_value() {
+                let string = String::from_utf8(record).unwrap();
+                println!("Got record: {}", string);
+            }
+        }
+    }
 }
 ```
