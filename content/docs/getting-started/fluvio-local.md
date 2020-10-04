@@ -15,10 +15,11 @@ called Minikube which is meant for testing out Kubernetes apps locally.
 
 #### Prerequisite Steps
 
-1) [Install Docker](#installing-docker)
-2) [Install Minikube](#installing-minikube)
-3) [Install Kubectl](#installing-kubectl)
-4) [Install Helm](#installing-helm)
+1) [Install Fluvio CLI](../fluvio-cli)
+2) [Install Docker](#installing-docker)
+3) [Install Minikube](#installing-minikube)
+4) [Install Kubectl](#installing-kubectl)
+5) [Install Helm](#installing-helm)
 
 If you already have `docker`, `kubectl`, `helm`, and `minikube` set up, feel free
 to scroll down to the [installing fluvio] section.
