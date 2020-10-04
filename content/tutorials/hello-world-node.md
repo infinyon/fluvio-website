@@ -20,7 +20,7 @@ Step-by-step instructions to install a cluster are available in the [Getting Sta
 ### Create a Topic using the Fluvio CLI
 
 ```bash
-fluvio topic create -c 127.0.0.1:9003 -p 1 -r 1 my-topic
+fluvio topic create -p 1 -r 1 my-topic
 ```
 
 ### Check Node.js
@@ -87,10 +87,7 @@ import Fluvio from "@fluvio/client";
 import { createInterface } from "readline";
 
 // Create Fluvio Client Instance
-const fluvio = new Fluvio({
-  host: "127.0.0.1",
-  port: 9003,
-});
+const fluvio = new Fluvio();
 
 // Create Readline Instance
 const rl = createInterface({
@@ -133,10 +130,7 @@ Write the following code in your `consumer.ts` file.
 import Fluvio, { OffsetFrom } from "@fluvio/client";
 
 // Create Fluvio Client Instance
-const fluvio = new Fluvio({
-  host: "127.0.0.1",
-  port: 9003,
-});
+const fluvio = new Fluvio();
 
 (async () => {
   // Connect the fluvio cluster;
