@@ -13,7 +13,7 @@ called Minikube which is meant for testing out Kubernetes apps locally.
 
 [Kubernetes]: https://kubernetes.io/
 
-#### Prerequisite Steps
+## Prerequisite Steps
 
 1) [Install Fluvio CLI](../fluvio-cli)
 2) [Install Docker](#installing-docker)
@@ -26,7 +26,7 @@ to scroll down to the [installing fluvio] section.
 
 [installing fluvio]: #installing-fluvio
 
-## Installing Docker
+### Installing Docker
 
 Docker is a container engine that Minikube can use to run Kubernetes apps. Go to
 the [Docker downloads page] and choose the edition built for your OS. Follow all
@@ -42,7 +42,7 @@ $ docker run hello-world
 [Docker downloads page]: https://hub.docker.com/search?q=&type=edition&offering=community&sort=updated_at&order=desc
 [post-install steps]: https://docs.docker.com/engine/install/linux-postinstall/
 
-## Installing Minikube
+### Installing Minikube
 
 Head on over to the [Minikube installation page] and follow the instructions to
 download and install `minikube`. However, the command you need to run to start
@@ -83,7 +83,7 @@ minikube version: v1.13.0
 commit: eeb05350f8ba6ff3a12791fcce350c131cb2ff44
 ```
 
-## Installing Kubectl
+### Installing Kubectl
 
 Minikube is nothing more than just a _mini_ Kubernetes. That means that we need to get
 the Kubernetes tool `kubectl` in order to configure and interact with our mini cluster
@@ -111,7 +111,7 @@ if we say to run something like `kubectl get pods`, you'll want to run
 
 {{</idea>}}
 
-## Installing Helm
+### Installing Helm
 
 Helm is a package manager that makes it easy to install apps for Kubernetes. Fluvio is
 packaged as a "Helm chart" (the name for a package in Helm), and the Fluvio CLI can
