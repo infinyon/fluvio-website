@@ -68,7 +68,7 @@ $ fluvio topic create greetings
 topic "greetings" created
 ```
 
-Now that we hvae a topic, we can produce some messages! Use the following command
+Now that we have a topic, we can produce some messages! Use the following command
 to send a message to the `greetings` topic:
 
 ```bash
