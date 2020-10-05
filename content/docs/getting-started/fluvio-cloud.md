@@ -21,7 +21,7 @@ profile.
 
 Head on over to the [Fluvio Cloud signup page] to create an account.
 
-[Fluvio Cloud signup page]: https://cloud-demo.fluvio.io/signup
+[Fluvio Cloud signup page]: https://cloud.fluvio.io/signup
 
 ![Fluvio Cloud signup](/img/getting-started/cloud-signup.png)
 
@@ -41,7 +41,7 @@ messages to your Fluvio cluster. To log in with the CLI, you'll need to run the
 prompted.
 
 ```bash
-$ fluvio profile sync cloud --remote=https://cloud-demo.fluvio.io
+$ fluvio profile sync cloud --remote=https://cloud.fluvio.io
 Fluvio Cloud email: batman@justiceleague.com
 Password:
 ```
