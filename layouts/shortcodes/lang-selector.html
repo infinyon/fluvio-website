@@ -1,21 +1,22 @@
 <br />
-{{- if .Page.Params.group -}}
-    {{- $groupPages := where site.RegularPages.ByWeight "Params.group" .Page.Params.group -}}
-    {{- range $groupPages -}}
-        {{- if .Params.tag -}}
-            {{- $linkTo := ""}}
-            {{- $disabled := "" }}
-            {{- if ne $.Page.Params.tag .Params.tag -}}
-                {{- $linkTo = (print "/" .Page.Section "/" .File.BaseFileName) -}}
-            {{- else -}}
-                {{- $disabled = " Disabled" -}}
-            {{- end -}}
-          <a role="button" class="btn btn-outline-primary lang-button{{ $disabled }}" id="{{ .Params.tag }}" href="{{ $linkTo }}">
-            {{- if eq $linkTo "" -}}
-            <i class="fas fa-check"></i>
-            {{- end }}
-            <span>{{.Params.tag | humanize | title }}</span>
-          </a>        
-        {{- end -}}
+{{ $section := .Page.Section }}
+{{ $page := .Page.File.ContentBaseName }}
+{{ $tag := index (split .Page.Dir "/") 1 }}
+{{ $rootPagePath := print $section "/" $page }}
+{{ $rootPage := .Site.GetPage $rootPagePath }}
+
+{{- range $rootPage.Params.tags -}}
+    {{- $linkTo := ""}} 
+    {{- $active := "" -}}
+    {{- if eq . $tag -}} 
+        {{- $active = "active" -}}
+    {{- else -}}
+        {{- $linkTo = (print "/" $section "/" . "/" $page) -}}
     {{- end -}}
+    <a role="button" class="btn btn-outline-primary lang-button {{$active}}" id="{{ . }}" href="{{ $linkTo }}">
+    {{- if eq $linkTo "" -}}
+        <i class="fas fa-check"></i>
+    {{- end }}
+    <span>{{. | humanize | title }}</span>
+    </a>  
 {{- end -}}

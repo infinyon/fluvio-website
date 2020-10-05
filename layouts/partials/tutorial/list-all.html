@@ -19,16 +19,6 @@
   {{- end -}}
 {{- end -}}
 
-{{/* Process tags */}}
-{{- $scratch.Set "untagged" 0 -}}
-
-{{- range $pages -}}
-  {{- with .Params.tags -}}
-  {{- else -}}
-    {{- $scratch.Add "untagged" 1 -}}
-  {{- end -}}
-{{- end -}}
-
 <div  class="container tiles">
   
   <div class="header">

@@ -23,13 +23,12 @@ the language adaptations that are available for that particular guide.
 ![Tutorial page screenshot](./.github/assets/tutorial-panels.png)
 
 Each guide has a root file that describes the language-specific tutorials available. For
-example, we have a "Hello world" guide described by the [`hello-world.md`] root file.
+example, we have a "Hello world" guide described by the [`/tutorial/hello-world.md`] file.
 This root file just contains information describing all of the tutorials for this guide.
 This is used to tell Hugo how to render the tiles and icons on the tutorials main page.
 
-Two important fields are `group` and `tags`. The group field is used to organize several
-language-specific tutorials into a single guide group. The tags field is used to indicate
-which langage adaptations are available and which icons to show on the tile.
+The most imporatnt ield is`tags`. The tags field is used to indicate
+which language adaptations are available and which icons to show on the tile.
 
 For example, [`hello-world.md`] has 3 tags:
 
@@ -39,7 +38,6 @@ For example, [`hello-world.md`] has 3 tags:
 ---
 title: '"Hello World" ...'
 desc: ...
-group: hello-world
 tags:
   - node
   - rust
@@ -54,16 +52,15 @@ The `front matter` parameters for the **root** file are defined as follows:
 
 * **title**: header of the tile
 * **desc**: description of the tile
-* **group**: label that links all programming language related files to this tile
-* **tags**: programming language supported by this tile - each programming language must have a separate labeled with the same group name
+* **tags**: programming language supported by this tile - each programming language must have a separate file with the same name in the "/<tag>" directory.
 * **githubAuthors**: github usernames of the authors this tile displayed as github avatars
 * **difficulty**: [low, medium, high] controls the difficulty icon of the tile
 * **weight**: controls the tile position in the list
 
-Each tile must have at least two files joined by the `group` name:
+Each tile must have at least two files with the same name:
 
-* **root file**: a file with no content such as `hello-world.md` that controls the tile content and defines the group label.
-* **programming language files**: one or more files such as `hello-world-node.md`, `hello-world-rust.md`, etc. - one file per tag. The file name does not matter as the content is joined by the group label.
+* **root file**: a file with no content such as `/tutorial/hello-world.md` that controls the tile content and the tags.
+* **programming language files**: one or more files such as `/node/hello-world.md`, `/rust/hello-world.md`, etc. - one file per tag. All files must have hte same name.
 
 Each `programming language file` is managed through the `front matter` and the optional `short code` defined below. 
 
@@ -74,9 +71,6 @@ For example, [`hello-world-node.md`] has the following `front matter`:
 ```
 ---
 title: '"Hello World" ...'
-hidden: true
-group: hello-world
-tag: node
 weight: 10
 toc: true
 ---
@@ -85,9 +79,6 @@ toc: true
 The `front matter` parameters for the **programming language** file are defined as follows:
 
 * **title**: header of the file
-* **hidden**: all programming language files **must be hidden** otherwise they are displayed as tiles
-* **group**: the label that links all programming language to the root file
-* **tag**: the programming language associated to this file
 * **weight**: the order in which this file should be displayed in the `short-code` described below
 * **toc**: if true, the TOC is automatically computed and displayed
 
