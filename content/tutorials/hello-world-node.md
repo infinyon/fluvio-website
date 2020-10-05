@@ -11,13 +11,8 @@ toc: true
 In this tutorial, you will learn how to create a topic, build a producer/consumer in Typescript, and sends a "Hello, World! 🎉" message.
 
 ## Prerequisites
-Examples in this section require an access to an existing Fluvio cluster and Node.js version 13 or above installed on your machine.
+Examples in this section require an access to an existing Fluvio cluster and Node.js **v12.11.0** or above installed on your machine.
 <br />
-
-### Install Fluvio CLI & Cluster
-Step-by-step instructions to install a cluster are available in the [Getting Started](/docs/getting-started/) guide. 
-
-* [Install Fluvio Locally](/docs/getting-started/fluvio-local/)
 
 ### Create a Topic using the Fluvio CLI
 
@@ -27,7 +22,7 @@ fluvio topic create -p 1 -r 1 my-topic
 
 ### Check Node.js
 
-A Fluvio environment for Node requires Node.js **version 13** or above.
+A Fluvio environment for Node requires Node.js **v12.11.0** or above.
 
 #### Install Node.js
 
