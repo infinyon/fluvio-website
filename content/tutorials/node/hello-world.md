@@ -1,8 +1,5 @@
 ---
 title: '"Hello, World! 🎉" in Node.js + TypeScript'
-hidden: true
-group: hello-world
-tag: node
 weight: 10
 toc: true
 ---

@@ -1,5 +1,6 @@
 {{/* Local context scratch */}}
 {{- $scratch := newScratch -}}
+{{- $filterBy := .filterBy -}}
 
 {{/* Collect authors */}}
 {{- $scratch.Set "authors" ( slice ) -}}
@@ -20,7 +21,6 @@
 
 {{/* Process tags */}}
 {{- $scratch.Set "untagged" 0 -}}
-{{- $tags := site.Taxonomies.tags.ByCount -}}
 
 {{- range $pages -}}
   {{- with .Params.tags -}}
@@ -36,44 +36,25 @@
     <div class="row"><div class="subheader">{{ .page.Params.desc }}</div></div>
   </div>
 
-  <div class="tf-wrapper">
-    <div class="tf-buttons-container flex-grow">
-      
-      {{ range $tags }}
-        {{ if .Term }}
-          <button type="button" class="btn btn-outline-primary tag-button" id="tag-{{ .Term | replaceRE "[.]" "_" | urlize }}" onclick="htf.checkFilter('{{ .Term | replaceRE "[.]" "_" | urlize }}', 'tag-')">
-            <i class="fas fa-check"></i>
-            <span>{{.Term | humanize | title }}</span>
-          </button>
-        {{ end }}
-      {{ end }}
-      
-    </div>
+  <div class="flex-grow">
+    {{- partial "tutorial/print-tag-buttons" (dict "filterBy" $filterBy "section" .page.Section "pagePath" (path.Dir .page.File)) -}}
   </div>
 
   <div class="row">
     {{- range $pages -}}
-      {{- $hidden := .Params.hidden | default false -}}
+      {{- $notHidden := ne (.Params.hidden | default false) true -}}
+      {{- $hasTags := isset .Params "tags" }}
+      {{- $showByFilter := (or (eq $filterBy "") (in .Params.tags $filterBy)) -}}
 
-      {{/* Process linkTo */}}
-      {{- $linkTo := "" -}}
-      {{- if .Page.Params.group -}}
-          {{- $groupPages := where site.RegularPages.ByWeight "Params.group" .Page.Params.group -}}
-          {{- range $groupPages -}}
-            {{- if and .Params.tag (eq $linkTo "") -}}
-              {{- $linkTo = .File.BaseFileName -}}
-            {{- end -}}
-          {{- end -}}
-      {{- end -}}
-      {{- if eq $linkTo "" -}}
-        {{- $linkTo = .RelPermalink -}}	
-      {{- end -}}
+      {{- if and $notHidden $hasTags $showByFilter -}}
+        {{/* Process linkTo */}}
+        {{- $linkTo := .File.BaseFileName -}}
+        {{- if eq $filterBy "" -}}
+          {{- $firstTag := index .Params.tags 0 }}
+          {{ $linkTo = print $firstTag "/" $linkTo }}
+        {{- end -}}
 
-      {{ if ne $hidden true }}
-        <div class="col-md-6 col-lg-4 box tf-filter-item" 
-          data-tags="{{ with .Params.tags }}{{ range . }}{{ . | replaceRE "[.]" "_" | urlize }} {{ end }}{{ else }} tfuntagged{{ end }}"
-          data-authors="{{ with .Params.githubAuthors }}{{ range . }}{{ . | replaceRE "[.]" "_" | urlize }} {{end}}{{else}}no-author{{end}}"
-        >        
+        <div class="col-md-6 col-lg-4 box">
           <div class="card h-100">
 
             <div class="card-body">
@@ -112,25 +93,3 @@
   </div>
 
 </div>
-
-<script>
-  var htfConfig = {
-    filters: [
-      {
-        name: 'tags',
-        prefix: 'tag-',
-        buttonClass: 'tag-button',
-        attrName: 'data-tags',
-        selectedPrefix: 'stags-',
-        countPrefix: 'ctags-'
-      }
-    ],
-    showItemClass: "show-item",
-    filterItemClass: "tf-filter-item",
-    activeButtonClass: "active",
-    counterSelector: "selectedItemCount",
-    populateCount: false,
-    setDisabledButtonClass: "disable-button"
-  } 
-  var htf = new TagsFilter(htfConfig);
-</script>

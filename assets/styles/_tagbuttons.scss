@@ -1,26 +1,4 @@
 
-.tf-filter-item {
-    display: none;
-}
-
-button.active {
-    i {
-        display: inline;
-    }   
-}
-
-button.disable-button {
-    border-style: dashed;
-
-    i {
-        display: none;
-    }
-}
-
-.show-item {
-    display: block;  
-}
-
 .tag-button {
     margin: 5px;
     padding-right: 15px;
@@ -30,6 +8,12 @@ button.disable-button {
     i {
         display: none;
     }  
+}
+
+.tag-button.active {
+    i {
+        display: inline;
+    }   
 }
 
 .lang-button {
