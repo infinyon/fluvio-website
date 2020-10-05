@@ -23,17 +23,17 @@ Head on over to the [Fluvio Cloud signup page] to create an account.
 
 [Fluvio Cloud signup page]: https://cloud.fluvio.io/signup
 
-![Fluvio Cloud signup](/img/getting-started/cloud-signup.png)
+{{< image src="getting-started/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400" type="scaled-75" >}}
 
 After filling out the form, you'll be greeted with a success message telling
 you to verify your email. You'll need to complete this step in order to
 continue.
 
-![Fluvio Cloud verification](/img/getting-started/cloud-verification.png)
+{{< image src="getting-started/cloud-verification.png" alt="Fluvio Cloud verification" justify="center" width="600" type="scaled-90" >}}
 
 You should get a confirmation that your account is ready to use
 
-![Fluvio Cloud confirmation](/img/getting-started/cloud-confirmation.png)
+{{< image src="getting-started/cloud-confirmation.png" alt="Fluvio Cloud confirmation" justify="center" width="600" type="scaled-90" >}}
 
 At this point, we can log in via the Fluvio CLI and start sending and receiving
 messages to your Fluvio cluster. To log in with the CLI, you'll need to run the
