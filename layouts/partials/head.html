@@ -35,8 +35,6 @@
    
 {{- end }}
 
-<script src="/scripts/tagsfilter.js"></script>
-
 {{ range .AlternativeOutputFormats -}}
   {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.Suffix .Permalink $.Site.Title | safeHTML }}
 {{ end -}}

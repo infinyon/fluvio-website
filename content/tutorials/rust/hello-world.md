@@ -1,8 +1,5 @@
 ---
 title: '"Hello, World!" in Rust'
-hidden: true
-group: hello-world
-tag: rust
 weight: 20
 toc: true
 ---

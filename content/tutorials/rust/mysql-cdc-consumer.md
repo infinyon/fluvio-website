@@ -1,8 +1,5 @@
 ---
 title: Replicate MySQL tables through event streams
-hidden: true
-group: mysql-replication
-tag: rust
 weight: 10
 toc: true
 ---
