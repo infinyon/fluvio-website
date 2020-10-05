@@ -10,7 +10,7 @@ up, managing, and interacting with Fluvio. You can download the CLI from our
 [github releases] page. You'll need to open the archive, then move the `fluvio`
 executable into a directory in your `PATH`.
 
-~> Please note that we currently only support Linux and MacOS
+-> Please note that we currently only support Linux and MacOS
 
 [github releases]: https://github.com/infinyon/fluvio/releases
 

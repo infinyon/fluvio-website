@@ -218,6 +218,7 @@ command to send a message to the `greetings` topic:
 
 ```bash
 $ echo "Hello, Fluvio" | fluvio produce greetings
+Ok!
 ```
 
 Finally, we can consume messages back from the topic
@@ -231,7 +232,10 @@ Way to go! You're well on your way to writing real-time distributed apps
 with Fluvio! Next, check out our [Tutorials page](/tutorials) to see real-world examples
 of Fluvio in action.
 
+[Tutorials page]: /tutorials
+
 #### Related Topics
 ----------------
-* ["Hello World" in Node.js](/tutorials/hello-world-node/)
-* ["Hello World" in Rust](/tutorials/hello-world-rust/)
+
+- ["Hello World" in Node.js](/tutorials/hello-world-node/)
+- ["Hello World" in Rust](/tutorials/hello-world-rust/)
