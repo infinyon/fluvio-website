@@ -14,6 +14,8 @@ In this tutorial, you will learn how to create a topic, build a producer/consume
 Examples in this section require an access to an existing Fluvio cluster and Node.js **v12.11.0** or above installed on your machine.
 <br />
 
+See [Getting Started](/docs/getting-started/) guide for installing a Fluvio cluster.
+
 ### Create a Topic using the Fluvio CLI
 
 ```bash
