@@ -23,7 +23,7 @@ Head on over to the [Fluvio Cloud signup page] to create an account.
 
 [Fluvio Cloud signup page]: https://cloud.fluvio.io/signup
 
-{{< image src="getting-started/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400" type="scaled-90" >}}
+{{< image src="getting-started/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400" type="scaled-75" >}}
 
 After filling out the form, you'll be greeted with a success message telling
 you to verify your email. You'll need to complete this step in order to
