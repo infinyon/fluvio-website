@@ -237,5 +237,5 @@ of Fluvio in action.
 #### Related Topics
 ----------------
 
-- ["Hello World" in Node.js](/tutorials/hello-world-node/)
-- ["Hello World" in Rust](/tutorials/hello-world-rust/)
+- ["Hello World" in Node.js](/tutorials/node/hello-world/)
+- ["Hello World" in Rust](/tutorials/rust/hello-world/)
