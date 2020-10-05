@@ -13,13 +13,20 @@ called Minikube which is meant for testing out Kubernetes apps locally.
 
 [Kubernetes]: https://kubernetes.io/
 
-## Prerequisite Steps
+## Prerequisites
 
-1) [Install Fluvio CLI](../fluvio-cli)
-2) [Install Docker](#installing-docker)
-3) [Install Minikube](#installing-minikube)
-4) [Install Kubectl](#installing-kubectl)
-5) [Install Helm](#installing-helm)
+Before getting started, make sure you have the [Fluvio CLI] installed, as
+we'll be using that to connect to your account and download your connection
+profile.
+
+[Fluvio CLI]: ../fluvio-cli
+
+## Required Packages
+
+1) [Install Docker](#installing-docker)
+2) [Install Minikube](#installing-minikube)
+3) [Install Kubectl](#installing-kubectl)
+4) [Install Helm](#installing-helm)
 
 If you already have `docker`, `kubectl`, `helm`, and `minikube` set up, feel free
 to scroll down to the [installing fluvio] section.
