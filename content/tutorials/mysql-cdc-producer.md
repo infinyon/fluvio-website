@@ -6,5 +6,6 @@ tags:
 githubAuthors:
   - ajhunyady  
 difficulty: high
+hidden: true
 weight: 200
 ---

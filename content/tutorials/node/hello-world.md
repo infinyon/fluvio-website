@@ -197,4 +197,4 @@ Head over to the Fluvio Node documentation to learn more about the library and a
 
 ## Read the `@fluvio/client` Docs
 
-Checkout <a href="https://www.npmjs.com/package/@fluvio/client" target="_blank">Node API</a> reference guide for additional usage information and documentation.
+Checkout <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API</a> reference guide for additional usage information and documentation.

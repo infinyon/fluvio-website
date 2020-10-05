@@ -42,7 +42,7 @@ pygmentsUseClasses=true
   [[menu.main]]
     identifier = "node"
     name = "Node API"
-    url = "https://docs.rs/flv-client/"
+    url = "https://infinyon.github.io/fluvio-client-node/"
     pre = "fas fa-sm fa-external-link-alt"
     parent = "apis"
     weight = 120

@@ -7,7 +7,6 @@ tags:
 githubAuthors:
   - ryanmtate
   - nicholastmosher
-  - sehz
 difficulty: low
 weight: 10
 ---
