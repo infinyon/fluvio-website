@@ -4,7 +4,6 @@ desc: This tutorial will guide you through the Fluvio installation, followed by 
 tags:
   - node
   - rust
-  - swift
 githubAuthors:
   - ryanmtate
   - nicholastmosher
