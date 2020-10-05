@@ -1,8 +1,5 @@
 ---
 title: Build a chat App using event streams
-hidden: true
-group: simple-chat
-tag: node
 weight: 10
 toc: true
 ---
