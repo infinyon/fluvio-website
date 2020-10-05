@@ -4,7 +4,9 @@ weight: 10
 toc: true
 ---
 {{< lang-selector >}}
-{{< caution >}}
+
+In this tutorial, you will learn how to create a topic, build a producer/consumer in Typescript, and sends a "Hello, World! 🎉" message.
+
 ## Prerequisites
 Examples in this section require an access to an existing Fluvio cluster and Node.js version 13 or above installed on your machine.
 <br />
@@ -12,7 +14,7 @@ Examples in this section require an access to an existing Fluvio cluster and Nod
 ### Install Fluvio CLI & Cluster
 Step-by-step instructions to install a cluster are available in the [Getting Started](/docs/getting-started/) guide. 
 
-* [Create a local Fluvio cluster](/docs/getting-started/install-local/)
+* [Install Fluvio Locally](/docs/getting-started/fluvio-local/)
 
 ### Create a Topic using the Fluvio CLI
 
@@ -33,7 +35,6 @@ Node.js installation varies depending on your operating system.
 | MacOS                  | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **macOS**.  |
 | Windows                | Use the official installer from <a href="https://nodejs.org" target="_blank">Node.js</a> to install on **Windows**. |
 | Linux                  | Use the instructions provided by your **Linux** package manager. <br/> Node.js maintains a list of <a href="https://nodejs.org/en/download/package-manager" target="_blank">supported packages</a>.  |
-{{< /caution >}}
 
 ## Writing the Application
 
@@ -68,8 +69,8 @@ Your working directory should now contain the following files:
 
 Write the following code in your `producer.ts` file.
 
-{{< idea >}}
-**This code performs the following actions:**
+
+##### This code performs the following actions:
 
 - _Import `@fluvio/client` and Node.js' `readline` modules;_
 - _Create a new Fluvio Client Instance;_
@@ -77,7 +78,7 @@ Write the following code in your `producer.ts` file.
 - _Create a new topic producer for `my-topic`;_
 - _Listen for input typed into the terminal;_
 - _Send typed input to the fluvio cluster;_
-{{< /idea >}}
+
 
 ```TypeScript
 import Fluvio from "@fluvio/client";
@@ -112,15 +113,13 @@ const rl = createInterface({
 
 Write the following code in your `consumer.ts` file.
 
-{{< idea >}}
-**This code performs the following actions:**
+##### This code performs the following actions:
 
 - _Import `@fluvio/client` module;_
 - _Create a new Fluvio Client Instance;_
 - _Create a connection to a local Fluvio Cluster;_
 - _Create a new topic consumer for `my-topic`;_
 - _Listen for events sent by a topic producer;_
-{{< /idea >}}
 
 
 ```TypeScript
@@ -199,11 +198,6 @@ You've now completed the Fluvio "Hello, World! 🎉" tutorial.
 
 Head over to the Fluvio Node documentation to learn more about the library and available options.
 
-# Read the `@fluvio/client` Docs
+## Read the `@fluvio/client` Docs
 
-Checkout [Node API](/docs/node-api/reference) reference guide for additional usage information and documentation.
-
-#### Related Topics
--------------------
-* [Topics CLI](/docs/cli/topics)
-* [Node API](/docs/node-api)
+Checkout <a href="https://www.npmjs.com/package/@fluvio/client" target="_blank">Node API</a> reference guide for additional usage information and documentation.
