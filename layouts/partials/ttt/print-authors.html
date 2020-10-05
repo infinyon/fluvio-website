@@ -1,7 +1,0 @@
-{{- with .Params.githubAuthors -}}
-  {{ range . }}
-      <img src="https://avatars.githubusercontent.com/{{.}}" width="40" data-toggle="tooltip" title="github.com/{{.}}"/>
-  {{end}}
-{{else}}
-  <img src="https://avatars.githubusercontent.com/infinyon" width="40" data-toggle="tooltip" title="github.com/infinyon"/>
-{{end}}
