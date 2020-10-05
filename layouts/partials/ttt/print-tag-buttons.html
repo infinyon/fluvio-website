@@ -1,0 +1,19 @@
+{{- $tags := site.Taxonomies.tags.ByCount -}}
+{{- $section := .section }}
+{{- $pagePath := .pagePath }}
+
+{{- range $tags -}}
+  {{ if .Term }}
+    {{- $active := "" -}}
+    {{- $link := print $section "/" .Term }}
+    {{- if eq $link $pagePath -}}
+      {{- $link = $section }}
+      {{- $active = "active" -}}
+    {{- end -}}
+
+    <a role="button" class="btn btn-outline-primary tag-button {{ $active }}" id="tag-{{ .Term }}" href="/{{ $link }}">
+      <i class="fas fa-check"></i>
+      <span>{{.Term | humanize | title }}</span>
+    </a>
+  {{ end }}
+{{- end -}}

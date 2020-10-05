@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{- $baseSection := path.Base .CurrentSection.Dir -}}
+  {{- $filterBy := $baseSection -}}
+  {{- if eq $baseSection .Section -}}
+    {{ $filterBy = "" }}
+  {{- end -}}
+
+  {{ partial "ttt/list-all" (dict "page" . "filterBy" $filterBy) }}
+{{ end }}
