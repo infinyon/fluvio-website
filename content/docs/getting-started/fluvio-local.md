@@ -53,13 +53,13 @@ minikube will depend on your OS:
 - If you're using Linux, use
 
 ```bash
-start minikube --driver=docker
+minikube start --driver=docker
 ```
 
 - If you're using Mac, use
 
 ```bash
-start minikube --driver=hyperkit
+minikube start --driver=hyperkit
 ```
 
 -> On Mac, `hyperkit` is provided by Docker Desktop, so you still need to install docker
