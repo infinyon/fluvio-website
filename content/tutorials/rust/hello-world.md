@@ -311,4 +311,4 @@ bye
 ^C
 ```
 
-The APIs are customizable. Checkout <a href="https://docs.rs/flv-client/" target="_blank">Rust API</a>  for additional information.
+The APIs are customizable. Checkout <a href="https://docs.rs/fluvio/" target="_blank">Rust API</a>  for additional information.
