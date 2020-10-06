@@ -1,7 +1,7 @@
 Fluvio is a high performance, low latency data streaming platform built for real-time Apps that can run on Mobile, Edge, Cloud, and your Data Center.
 
 Roll out your own log aggregation, DB replication, IOT middle layer, or an event driven infrastructure in a matter of minutes. 
-Use our expressive <a href="https://nodejs.org/" target="_blank">Node</a>, <a href="https://www.rust-lang.org/" target="_blank">Rust</a> or <a href="https://developer.apple.com/swift/" target="_blank">Swift</a> APIs to create producers/consumers and start rapid experimentation with real-time data.
+Use our expressive <a href="https://nodejs.org/" target="_blank">Node</a> or <a href="https://www.rust-lang.org/" target="_blank">Rust</a> APIs to create producers/consumers and start rapid experimentation with real-time data.
 
 Sign-up for <a href="/signup">Fluvio Cloud</a> or download and install <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> and build your first data streaming App.
 
@@ -9,6 +9,14 @@ Sign-up for <a href="/signup">Fluvio Cloud</a> or download and install <a href="
 <!-- 
 
 Fluvio is a high performance, low latency data streaming platform built for developers.
+
+================
+Fluvio is a high performance, low latency data streaming platform built for real-time Apps that can run on Mobile, Edge, Cloud, and your Data Center.
+
+Roll out your own log aggregation, DB replication, IOT middle layer, or an event driven infrastructure in a matter of minutes. 
+Use our expressive <a href="https://nodejs.org/" target="_blank">Node</a>, <a href="https://www.rust-lang.org/" target="_blank">Rust</a> or <a href="https://developer.apple.com/swift/" target="_blank">Swift</a> APIs to create producers/consumers and start rapid experimentation with real-time data.
+
+Sign-up for <a href="/signup">Fluvio Cloud</a> or download and install <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> and build your first data streaming App.
 
 ================
 
