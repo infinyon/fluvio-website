@@ -9,6 +9,14 @@ Fluvio Cloud is the fastest and easiest way to get started with Fluvio.
 We'll walk you through the steps of creating a free account and connecting
 to it with a Fluvio client.
 
+# `Before you Begin`
+
+{{<idea>}}
+Fluvio Cloud is currently in private trial and we gradually on-boarding users.
+
+[Sing Up here](/signup/) if you'd like to participate in our Beta program.
+{{</idea>}}
+
 ## Prerequisites
 
 Before getting started, make sure you have the [Fluvio CLI] installed, as
