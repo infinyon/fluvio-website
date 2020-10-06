@@ -57,19 +57,27 @@ minikube will depend on your OS:
 
 [Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
 
-- If you're using Linux, use
+{{< tabs tabTotal="2" tabID="1" tabName1="Mac" tabName2="Linux">}}
 
-```bash
-minikube start --driver=docker
-```
+{{< tab tabNum="1" >}}
 
-- If you're using Mac, use
+In your Linux terminal:
 
 ```bash
 minikube start --driver=hyperkit
 ```
-
 -> On Mac, `hyperkit` is provided by Docker Desktop, so you still need to install docker
+
+{{< /tab >}}
+
+{{< tab tabNum="2" >}}
+```bash
+minikube start --driver=docker
+```
+{{< /tab >}}
+
+{{< /tabs >}}
+
 
 {{< caution >}}
 
