@@ -6,40 +6,21 @@ toc: true
 
 {{< lang-selector >}}
 
-In this guide we’ll provide instructions on how to set up a <a href="https://www.rust-lang.org" target="_blank">Rust</a> environment and build a simple data streaming App.
+In this guide we’ll provide instructions on how to set up a
+<a href="https://www.rust-lang.org" target="_blank">Rust</a>
+environment and build a simple data streaming App.
 
-{{< idea >}}
+## Prerequisites
 
-**Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Getting Started](/docs/getting-started) at:
+Before starting on this tutorial, you'll need to have completed the following
 
-* [Create a cluster on Fluvio Cloud](/docs/getting-started/#create-a-fluvio-cloud-account)
-* [Add a topic](/docs/getting-started/#create-a-topic-and-stream-hello-world)
+- Install the [Rust programming language]
+- Have the Fluvio CLI installed and have access to a Fluvio cluster. See our [getting started] guide.
+- Have a Fluvio topic named "hello-fluvio"
+  - You can create this with the command `fluvio topic create hello-fluvio`
 
-{{< /idea >}}
-
-## Setup a Rust Environment
-
-Rust language utilizes an installer to download and provision Rust on your local system. Refer to <a href="https://rustup.rs" target="_blank">rustup</a> documentation to instructions.
-
-##### Install Rust toolchain
-
-Fluvio compiler uses the nightly toolchain. To install, run:
-
-```bash
-$ rustup toolchain install nightly
- ...
-nightly-x86_64-apple-darwin installed - rustc 1.44.0-nightly (f509b26a7 2020-03-18)
-```
-
-Make nightly toolchain default:
-
-```bash
-$ rustup default nightly
-info: using existing install for 'nightly-x86_64-apple-darwin'
-info: default toolchain set to 'nightly-x86_64-apple-darwin'
-
-nightly-x86_64-apple-darwin unchanged - rustc 1.44.0-nightly (f509b26a7 2020-03-18)
-```
+[Rust programming language]: https://rustup.rs
+[getting started]: /docs/getting-started
 
 ## Build a simple data streaming App
 
