@@ -61,7 +61,7 @@ minikube will depend on your OS:
 
 {{< tab tabNum="1" >}}
 
-In your Linux terminal:
+In your Mac terminal:
 
 ```bash
 minikube start --driver=hyperkit
@@ -71,6 +71,9 @@ minikube start --driver=hyperkit
 {{< /tab >}}
 
 {{< tab tabNum="2" >}}
+
+In your Linux terminal:
+
 ```bash
 minikube start --driver=docker
 ```
