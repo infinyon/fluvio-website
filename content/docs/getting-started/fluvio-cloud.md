@@ -12,7 +12,7 @@ to it with a Fluvio client.
 # `Before you Begin`
 
 {{<idea>}}
-Fluvio Cloud is currently in private trial and we gradually on-boarding users.
+Fluvio Cloud is currently in private trial and we are gradually on-boarding users.
 
 [Sing Up here](/signup/) if you'd like to participate in our Beta program.
 {{</idea>}}
