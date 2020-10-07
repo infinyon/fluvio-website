@@ -1,5 +1,5 @@
 ---
-title: '"Hello, World!" in Rust'
+title: '"Hello, World! 🎉" in Rust'
 weight: 20
 toc: true
 ---
@@ -18,11 +18,19 @@ Before starting on this tutorial, you'll need to have completed the following
 
 - Install the [Rust programming language]
 - Have the Fluvio CLI installed and have access to a Fluvio cluster. See our [getting started] guide.
-- Have a Fluvio topic named "hello-fluvio"
-  - You can create this with the command `fluvio topic create hello-fluvio`
 
 [Rust programming language]: https://rustup.rs
 [getting started]: /docs/getting-started
+
+### Create a Topic using the Fluvio CLI
+
+In Fluvio, we send all of our messages to something called a Topic, which
+is like a category for related messages. For this tutorial, we'll create
+a topic called `hello-fluvio` using the following command:
+
+```bash
+$ fluvio topic create hello-fluvio
+```
 
 ## Creating a new Cargo project
 
