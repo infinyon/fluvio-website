@@ -8,10 +8,13 @@ toc: true
 In this tutorial, you will learn how to create a topic, build a producer/consumer in Typescript, and sends a "Hello, World! 🎉" message.
 
 ## Prerequisites
-Examples in this section require an access to an existing Fluvio cluster and Node.js **v12.11.0** or above installed on your machine.
-<br />
 
-See [Getting Started](/docs/getting-started/) guide for getting access to a Fluvio cluster.
+Before starting on this tutorial, you'll need to have completed the following
+
+- Install [Node.js](#check-nodejs) (**v12.11.0** or above) 
+- Have the Fluvio CLI installed and have access to a Fluvio cluster. See our [getting started] guide.
+
+[getting started]: /docs/getting-started
 
 ### Create a Topic using the Fluvio CLI
 
@@ -20,7 +23,7 @@ is like a category for related messages. For this tutorial, we'll create
 a topic called `hello-fluvio` using the following command:
 
 ```bash
-fluvio topic create hello-fluvio
+$ fluvio topic create hello-fluvio
 ```
 
 ### Check Node.js
@@ -46,7 +49,7 @@ The following sections will setup your project and walk through writing the appl
 Run the following script to setup your project for development:
 
 ```bash
-mkdir fluvio-demo && cd fluvio-demo && npm init -y && \
+$ mkdir fluvio-demo && cd fluvio-demo && npm init -y && \
 npm install typescript ts-node @types/node -D && \
 npm install @fluvio/client -S && \
 touch producer.ts consumer.ts
@@ -55,6 +58,7 @@ touch producer.ts consumer.ts
 Your working directory should now contain the following files:
 
 ```bash
+$ tree -L 1
 .
 ├── consumer.ts
 ├── node_modules
