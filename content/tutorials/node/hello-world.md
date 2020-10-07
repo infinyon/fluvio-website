@@ -15,8 +15,12 @@ See [Getting Started](/docs/getting-started/) guide for getting access to a Fluv
 
 ### Create a Topic using the Fluvio CLI
 
+In Fluvio, we send all of our messages to something called a Topic, which
+is like a category for related messages. For this tutorial, we'll create
+a topic called `hello-fluvio` using the following command:
+
 ```bash
-fluvio topic create -p 1 -r 1 my-topic
+fluvio topic create hello-fluvio
 ```
 
 ### Check Node.js
@@ -72,7 +76,7 @@ Write the following code in your `producer.ts` file.
 - _Import `@fluvio/client` and Node.js' `readline` modules;_
 - _Create a new Fluvio Client Instance;_
 - _Create a connection to a local Fluvio Cluster;_
-- _Create a new topic producer for `my-topic`;_
+- _Create a new topic producer for `hello-fluvio`;_
 - _Listen for input typed into the terminal;_
 - _Send typed input to the fluvio cluster;_
 
@@ -95,7 +99,7 @@ const rl = createInterface({
   await fluvio.connect();
 
   // Create a topic producer;
-  const producer = await fluvio.topicProducer("my-topic");
+  const producer = await fluvio.topicProducer("hello-fluvio");
   const partition = 0;
   console.log("Fluvio Producer created, waiting for input:\n\n>")
   // Relay terminal input to fluvio topic producer;
@@ -115,7 +119,7 @@ Write the following code in your `consumer.ts` file.
 - _Import `@fluvio/client` module;_
 - _Create a new Fluvio Client Instance;_
 - _Create a connection to a local Fluvio Cluster;_
-- _Create a new topic consumer for `my-topic`;_
+- _Create a new topic consumer for `hello-fluvio`;_
 - _Listen for events sent by a topic producer;_
 
 
@@ -132,7 +136,7 @@ const fluvio = new Fluvio();
   const partition = 0;
 
   //   Create Topic Consumer
-  const consumer = await fluvio.partitionConsumer("my-topic", partition);
+  const consumer = await fluvio.partitionConsumer("hello-fluvio", partition);
   console.log("Fluvio Consumer created, listening for events:\n\n")
   await consumer.stream(
     {
