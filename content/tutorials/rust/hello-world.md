@@ -27,8 +27,7 @@ Before starting on this tutorial, you'll need to have completed the following
 ## Creating a new Cargo project
 
 We'll be using Rust's package manager [Cargo] to set up our project. Cargo
-is helpful because it manages compiling our code as well as downloading
-dependencies that we need.
+is helpful because it manages compiling our code and dependencies.
 
 [Cargo]: https://doc.rust-lang.org/book/ch01-03-hello-cargo.html
 
@@ -42,7 +41,7 @@ $ cargo new --bin hello-fluvio
 One of the first things we need to do is add our dependencies. We're going to need
 the `fluvio` crate as well as `async-std` because the Fluvio client is async.
 In your project folder, edit your `Cargo.toml` and add lines under your `[dependencies]`
-section to import `fluvio` and `async-std`. It should look something like this when you're done
+section to import `fluvio` and `async-std`. It should look something like this:
 
 ```bash
 $ cd hello-fluvio
@@ -59,8 +58,8 @@ async-std = "1.0.0"
 ```
 
 Now let's head on over to the `src/main.rs` file. This is where your `main` function
-lives. Since we'll be using async code, let's set up a helper function for `main` to
-call that will handle all of our async needs.
+lives. Since we'll be using async code, let's set up a helper function called `run`
+that will handle our async needs.
 
 ```rust
 use fluvio::FluvioError;
