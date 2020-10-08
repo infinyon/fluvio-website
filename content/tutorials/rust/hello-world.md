@@ -100,7 +100,8 @@ directory
 $ cargo run
 ```
 
-In your consumer window, you should see a message with `Hello, world!` appear! Ignore the warnings, they'll be fixed shortly.
+In your consumer window, you should see a message with `Hello, world!` appear!
+Ignore the warnings, we'll fix those soon.
 
 We'll start out by writing our producer code, which will send messages
 to our Topic.
@@ -187,7 +188,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
-    let _ = match &*args_slice {
+    let result = match &*args_slice {
         [_, "produce"] => {
             block_on(produce("Hello, Fluvio!"))
         },
@@ -206,7 +207,8 @@ fn main() {
 }
 ```
 
-Now we can run `cargo run -- produce` to send messages, or `cargo run -- consume` to read them back. Let's try out our consumer code now:
+Now we can run `cargo run -- produce` to send messages, or `cargo run -- consume`
+to read them back. Let's try out our consumer code now:
 
 ```bash
 $ cargo run -- consume
@@ -235,7 +237,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
-    let _ = match &*args_slice {
+    let result = match &*args_slice {
         [_, "produce"] => {
             block_on(produce("Hello, Fluvio!"))
         },
@@ -251,6 +253,10 @@ fn main() {
             return;
         },
     };
+
+    if let Err(err) = result {
+        println!("Got error: {}", err);
+    }
 }
 ```
 
