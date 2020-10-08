@@ -1,4 +1,4 @@
-Data streaming platform<br /> for connected Apps.<br />
+Data streaming platform for connected Apps.<br />
 
 <!-- 
 Build data streaming Apps<br /> that run anywhere.<br />
