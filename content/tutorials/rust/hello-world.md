@@ -100,7 +100,8 @@ directory
 $ cargo run
 ```
 
-In your consumer window, you should see a message with `Hello, world!` appear! Ignore the warnings, they'll be fixed shortly.
+In your consumer window, you should see a message with `Hello, world!` appear!
+Ignore the warnings, we'll fix those soon.
 
 We'll start out by writing our producer code, which will send messages
 to our Topic.
@@ -206,7 +207,8 @@ fn main() {
 }
 ```
 
-Now we can run `cargo run -- produce` to send messages, or `cargo run -- consume` to read them back. Let's try out our consumer code now:
+Now we can run `cargo run -- produce` to send messages, or `cargo run -- consume`
+to read them back. Let's try out our consumer code now:
 
 ```bash
 $ cargo run -- consume
@@ -254,7 +256,11 @@ fn main() {
 
     if let Err(err) = result {
         println!("Got error: {}", err);
+<<<<<<< HEAD
     }    
+=======
+    }
+>>>>>>> 58616f72615d95275645d81e642996efb09f4bd1
 }
 ```
 
