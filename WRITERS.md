@@ -71,7 +71,6 @@ For example, [`hello-world-node.md`] has the following `front matter`:
 ```
 ---
 title: '"Hello World" ...'
-weight: 10
 toc: true
 ---
 ```
@@ -79,7 +78,6 @@ toc: true
 The `front matter` parameters for the **programming language** file are defined as follows:
 
 * **title**: header of the file
-* **weight**: the order in which this file should be displayed in the `short-code` described below
 * **toc**: if true, the TOC is automatically computed and displayed
 
 The `short code` is a script that generates the language selection buttons. In general the language selector short code should be placed right below the front matter:
