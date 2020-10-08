@@ -256,11 +256,7 @@ fn main() {
 
     if let Err(err) = result {
         println!("Got error: {}", err);
-<<<<<<< HEAD
     }    
-=======
-    }
->>>>>>> 58616f72615d95275645d81e642996efb09f4bd1
 }
 ```
 
