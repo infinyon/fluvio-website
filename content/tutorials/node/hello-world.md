@@ -1,6 +1,5 @@
 ---
 title: '"Hello, World! 🎉" in Node.js + TypeScript'
-weight: 10
 toc: true
 ---
 {{< lang-selector >}}
