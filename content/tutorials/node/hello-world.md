@@ -197,7 +197,7 @@ Fluvio Consumer created, listening for events:
 Received message: Hello, World! 🎉
 ```
 
-*Congratulations!*
+## Congratulations!
 
 You've now completed the Fluvio "Hello, World! 🎉" tutorial. 
 
