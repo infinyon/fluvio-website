@@ -187,7 +187,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
-    let _ = match &*args_slice {
+    let result = match &*args_slice {
         [_, "produce"] => {
             block_on(produce("Hello, Fluvio!"))
         },
@@ -235,7 +235,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
-    let _ = match &*args_slice {
+    let result = match &*args_slice {
         [_, "produce"] => {
             block_on(produce("Hello, Fluvio!"))
         },
@@ -251,6 +251,10 @@ fn main() {
             return;
         },
     };
+
+    if let Err(err) = result {
+        println!("Got error: {}", err);
+    }    
 }
 ```
 
