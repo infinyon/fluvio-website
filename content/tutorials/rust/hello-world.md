@@ -65,6 +65,8 @@ fluvio = "0.1.0"
 async-std = "1.0.0"
 ```
 
+### Create Producer/Consumer
+
 Now let's head on over to the `src/main.rs` file. This is where your `main` function
 lives. Our "Hello World" will be composed of two halves: a producer function, and a
 consumer function. Let's add those right next to our `main` function:
@@ -90,6 +92,15 @@ Fluvio client library is built with asynchronous code. If you're curious about h
 code in Rust works, [check out the Async Rust book]!
 
 [check out the Async Rust book]: https://rust-lang.github.io/async-book/01_getting_started/02_why_async.html
+
+Run the following command from within your project
+directory
+
+```bash
+$ cargo run
+```
+
+In your consumer window, you should see a message with `Hello, world!` appear! Ignore the warnings, they'll be fixed shortly.
 
 We'll start out by writing our producer code, which will send messages
 to our Topic.
@@ -123,7 +134,7 @@ In one terminal window, run the following command to print out events in the "he
 topic
 
 ```bash
-$ fluvio consume -B
+$ fluvio consume hello-fluvio -B
 ```
 
 Then in another terminal window, run the following command from within your project
@@ -155,6 +166,7 @@ async fn consume() -> Result<(), FluvioError> {
             }
         }
     }
+    Ok(())
 }
 ```
 
@@ -175,7 +187,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
-    let result = match &*args_slice {
+    match &*args_slice {
         [_, "produce"] => {
             block_on(produce("Hello, Fluvio!"))
         },
@@ -194,10 +206,9 @@ fn main() {
 }
 ```
 
-Now we can run `cargo run -- produce` to send messages, or `cargo run -- consume`
-to read them back. Let's try out our consumer code now:
+Now we can run `cargo run -- produce` to send messages, or `cargo run -- consume` to read them back. Let's try out our consumer code now:
 
-``bash
+```bash
 $ cargo run -- consume
 Hello, Fluvio!
 ```
@@ -246,7 +257,7 @@ fn main() {
 Now you can send whatever messages you like! Let's try it out
 
 ```bash
-$ cargo run -- produce Greetings, Fluvio!
+$ cargo run -- produce Hello, World! 🎉
 ```
 
 And in your consumer window, you should see it appear!
@@ -254,7 +265,7 @@ And in your consumer window, you should see it appear!
 ```bash
 $ cargo run -- consume
 Hello, Fluvio!
-Greetings, Fluvio!
+Hello, World! 🎉
 ```
 
 ## Congratulations!
