@@ -1,6 +1,6 @@
 ```TypeScript
 const fluvio = await Fluvio.connect();
-const consumer = await fluvio.partitionConsumer('my-topic', 0);
+const consumer = await fluvio.partitionConsumer('greetings', 0);
 await consumer.stream({ 
     index: 0, 
     from: OffsetFrom.Beginning 
