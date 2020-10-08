@@ -235,7 +235,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
-    let result = match &*args_slice {
+    let _ = match &*args_slice {
         [_, "produce"] => {
             block_on(produce("Hello, Fluvio!"))
         },
