@@ -1,6 +1,5 @@
 ---
-title: Replicate MySQL tables through event streams
-weight: 10
+title: Replicate MySQL tables through event streams (Rust)
 toc: true
 ---
 

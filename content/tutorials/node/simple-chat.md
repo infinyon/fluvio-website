@@ -1,6 +1,5 @@
 ---
 title: Build a chat App using event streams
-weight: 10
 toc: true
 ---
 

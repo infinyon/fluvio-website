@@ -1,6 +1,5 @@
 ---
 title: '"Hello, World! 🎉" in Rust'
-weight: 20
 toc: true
 ---
 

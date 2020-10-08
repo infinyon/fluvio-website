@@ -5,5 +5,5 @@ tags:
   - rust
 difficulty: high
 hidden: true
-weight: 410
+weight: 300
 ---
