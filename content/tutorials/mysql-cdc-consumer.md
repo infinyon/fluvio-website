@@ -4,6 +4,5 @@ desc: Build a MYSQL database replication with unlimited number of replicas. Use 
 tags:
   - rust
 difficulty: high
-hidden: true
 weight: 300
 ---
