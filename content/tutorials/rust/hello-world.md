@@ -271,8 +271,8 @@ Hello, World! 🎉
 
 ## Congratulations!
 
-You've now completed the Fluvio "Hello, World! 🎉" tutorial! If you want to learn
-more about writing Fluvio applications in Rust, be sure to check out the
-[Fluvio Rust API on docs.rs].
+You've now completed the Fluvio "Hello, World! 🎉" tutorial! 
+
+Checkout [Fluvio Rust API on docs.rs] to learn more about writing your own Fluvio applications in Rust.
 
 [Fluvio Rust API on docs.rs]: https://docs.rs/fluvio
