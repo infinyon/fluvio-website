@@ -37,13 +37,11 @@ This demo consists of a WebSocket proxy server relaying messages from a React cl
 `@fluvio/client` is currently not supported in the browser, therefore the WebSocket server is required to proxy the client events. An example of this proxy service can be viewed at [`./chat-server/src/fluvio-lib/dataStream/index.ts`](https://github.com/infinyon/fluvio-demo-apps-node/blob/master/chat-app/chat-server/src/fluvio-lib/dataStreams/index.ts#L26).
 
 Read the [API docs](https://infinyon.github.io/fluvio-client-node/) for more information.
-<hr/>
 <br/>
 
 ## Building the Demo App
 
 From the `chat-app` directory, run `npm run build`. This will run the `./build.sh` script, which will install the build dependencies and build the client and server applications.
-<hr/>
 <br/>
 
 ## Running the Demo App
@@ -113,9 +111,42 @@ npx: installed 78 in 3.108s
 
 
 ```
-<hr/>
 <br/>
+
+## Using the Application
+
+With the client and server applications running, you can now visit the client application and test the chap application.
+
+### Registering a Chat User
+
+When you visit the client application, you need to register a new user. Click the [`Register User`](http://localhost:5051/registerUser) button
+to create a new chat user.
+
+{{< image src="tutorials/chat-app/login.png" alt="Login" justify="center" width="420" type="scaled-75">}}
+
+Once clicked, create a new username and password.
+
+{{< image src="tutorials/chat-app/register.png" alt="register" justify="center" width="420" type="scaled-75">}}
+
+After the user has been created, enter the username and password details in the [`login`](http://localhost:5051/login) form.
+
+{{< image src="tutorials/chat-app/login.png" alt="Login" justify="center" width="420" type="scaled-75">}}
+
+Once logged in, you are now able to send a message in the chat room.
+
+{{< image src="tutorials/chat-app/chat.png" alt="chat" justify="center" width="75%" type="scaled-75">}}
+
+### Adding More Users
+
+To add more users to the application, open the application in another browser window or use chrome's incognito mode. This will create a fresh local storage for testing the application.
+
+Follow the same steps as above in the newly opened browser window, but this time change your username.
+
+Once you have added more users to the chat window, you can test sending messages between the users by typing in each of the browser windows.
+
 
 ## Conclusion
 
-With the client and server applications running, you can now visit the client application and test the chap application.
+Congratulations! You've completed the chat-app example and now have an example for using `@fluvio/client` in an application.
+
+Read the [API docs](https://infinyon.github.io/fluvio-client-node/) for more information on how to use `@fluvio/client` for your project.
