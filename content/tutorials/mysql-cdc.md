@@ -4,8 +4,8 @@ desc: Build a change-data-capture (CDC) App that captures MySQL operations as ev
 tags:
   - rust
 githubAuthors:
-  - ajhunyady
   - nicholastmosher
+  - ajhunyady
 difficulty: high
 weight: 200
 ---
