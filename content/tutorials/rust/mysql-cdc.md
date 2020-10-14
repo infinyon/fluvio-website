@@ -25,6 +25,7 @@ messages to the binlog of the follower database. This program will be called the
 To get the most out of this tutorial, be sure to clone our [CDC demo repo] and follow
 along with the setup and commands.
 
+[Rust MySQL Binlog]: https://github.com/EasyPost/rust-mysql-binlog
 [CDC demo repo]: https://github.com/infinyon/fluvio-demo-apps-rust
 
 ## Requirements
