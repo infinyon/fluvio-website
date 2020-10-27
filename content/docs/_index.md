@@ -33,7 +33,7 @@ Data streaming is data that is **generated continuously** by any number of sourc
 
 and more.
 
-Fluvio data streaming is designed for **horizontal scale**. Multiple data streams can concurrently ingest and replicate data for durability. Data is processed sequentially on a record-by-record basis in the order it was received, and it is stored in immutable streams. A user-configurable retention period controls the length of time the data is retained. The **retention period** can be anywhere from hours to years.
+Fluvio data streaming is designed for **horizontal scale**. Multiple data streams can concurrently ingest and replicate data for resiliency. Data is processed sequentially on a record-by-record basis in the order it was received, and it is stored in immutable streams. A user-configurable retention period controls the length of time the data is retained. The **retention period** can be anywhere from hours to years.
 
 Fluvio producers can write to one or more data streams and consumers can read from any number of streams.
 
@@ -79,7 +79,7 @@ Fluvio is designed with **security** and **privacy** in mind. Fluvio producers, 
 
 #### Resiliency
 
-Fluvio is designed for **fault tolerance** and **high availability**. Data streams are replicated for durability and can survive multiple points of failure. Failures may range from crash of a host machine to network outages, and more. Fluvio ensures that data streams remain available with minimal interruption for subsequent processing.
+Fluvio is designed for **fault tolerance** and **high availability**. Data streams are replicated and can survive multiple points of failure. Failures may range from crash of a host machine to network outages, and more. Fluvio ensures that data streams remain available with minimal interruption for subsequent processing.
 
 All system components have self-healing recovery mechanisms and automatic failover to increase resiliency and simplify usability. Fluvio has built-in eventual consistency to allow recovering SPUs to update their internal state and rejoin the cluster as fully functional units.
 
@@ -125,7 +125,7 @@ Key features are centered around performance and ease of use:
 
 * **Low Memory Footprint**: Fluvio can be deployed in as little as 100Mb of memory. The deployment is highly optimized machine code and it does not require an intermediary virtual machine. Fluvio can be run on devices such as the Raspberry Pi and are suitable for IOT devices running at the edge.
 
-* **Built-in Durability**: Fluvio uses long-lived immutable storage to persist data streams. Each data stream is copied to multiple servers and retained for hours or years. Fluvio clients have built-in failure detection and switch-over mechanisms to minimize downtime. Fluvio's durability mechanism allows clients to come and go without concerns over data loss.
+* **Built-in Retention**: Fluvio uses long-lived immutable storage to persist data streams. Each data stream is copied to multiple servers and retained for hours or years. Fluvio clients have built-in failure detection and switch-over mechanisms to minimize downtime. Fluvio's retention mechanism allows clients to come and go without concerns over data loss.
 
 * **Guaranteed Message Ordering**: Fluvio guarantees partition-level message ordering. Messages are stored and forwarded to consumers in the order they are received from the producers. Order guarantee is a critical requirement in many stateful systems.
 

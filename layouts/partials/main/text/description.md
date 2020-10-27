@@ -1,4 +1,4 @@
-Fluvio is a high performance, low latency data streaming platform built for real-time Apps that can run on Mobile, Edge, Cloud, and your Data Center.
+Fluvio is a high performance, low latency data streaming platform for real-time Apps.
 
 Roll out your own log aggregation, DB replication, IOT middle layer, or an event driven infrastructure in a matter of minutes. 
 Use our expressive <a href="https://nodejs.org/" target="_blank">Node</a> or <a href="https://www.rust-lang.org/" target="_blank">Rust</a> APIs to create producers/consumers and start rapid experimentation with real-time data.

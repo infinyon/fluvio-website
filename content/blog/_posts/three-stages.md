@@ -1,6 +1,7 @@
 ---
 title: The Three Stages - from Monolith to Microservices
 menu: The Three Stages
+hidden: true
 weight: 20
 ---
 
