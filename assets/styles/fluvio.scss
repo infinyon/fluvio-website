@@ -480,6 +480,12 @@ footer {
   padding-top:10px;
 }
 
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 // --------------
 // TOC
 // --------------
@@ -546,6 +552,8 @@ footer {
 // Screen Sizes
 // --------------
 @media (max-width: 1200px ) { //992px
+  img {width: 98%;}
+
   .mlc5 {
     padding-top: 1em;
     margin-left: 2em;

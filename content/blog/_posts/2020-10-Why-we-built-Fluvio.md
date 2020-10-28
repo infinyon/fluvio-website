@@ -7,6 +7,8 @@ slug: about-fluvio
 url: /blog/2020/10/Why-we-built-Fluvio
 ---
 
+![Fluvio](/blog/images/fluvio-social.jpg)
+
 There is a growing need for collaboration apps where businesses communicate with customers and employees in real-time. This new class of apps accelerates decisions, improves customer experience, and opens new revenue opportunities.
 
 We found that developers are struggling to build real-time collaboration apps that connect users with business context. Business context is derived from data that is often fragmented and owned by different teams in an organization. Real time data is a way of bringing data to users as fast as possible. Collaboration is about users working together towards a common goal. A real-time collaboration app makes data available to users at the time of communication to accelerate the speed of decisions.
