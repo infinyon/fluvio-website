@@ -1,0 +1,5 @@
+{{- $description := "Real-time data streaming platform" -}}
+{{- if .page.Param "description" -}}
+    {{- $description = .page.Param "description" -}}
+{{- end }}
+<meta name="description" content="{{ $description }}" />

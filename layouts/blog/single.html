@@ -1,9 +1,5 @@
 {{ define "head-meta" }}
-    {{- $description := "Real-time data streaming platform" -}}
-    {{- if .Param "description" -}}
-        {{- $description = .Param "description" -}}
-    {{- end }}
-<meta name="description" content="{{ $description }}" />
+  {{- partial "page-head-meta.html" (dict "page" .) -}}
 {{- end }}
 
 {{ define "main" }}
