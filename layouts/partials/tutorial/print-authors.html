@@ -1,7 +1,7 @@
 {{- with .Params.githubAuthors -}}
   {{ range . }}
-      <a href ="https://github.com/{{.}}" target="_blank"><img src="https://avatars.githubusercontent.com/{{.}}" width="40" data-toggle="tooltip" title="github.com/{{.}}"/></a>
+      <a href ="https://github.com/{{.}}" target="_blank"><img src="https://avatars.githubusercontent.com/{{.}}" width="40" data-toggle="tooltip" title="github.com/{{.}}" style="display:inline"/></a>
   {{end}}
 {{else}}
-  <a href ="https://github.com/infinyon" target="_blank"><img src="https://avatars.githubusercontent.com/infinyon" width="40" data-toggle="tooltip" title="github.com/infinyon"/></a>
+  <a href ="https://github.com/infinyon" target="_blank"><img src="https://avatars.githubusercontent.com/infinyon" width="40" data-toggle="tooltip" title="github.com/infinyon" style="display:inline"/></a>
 {{end}}

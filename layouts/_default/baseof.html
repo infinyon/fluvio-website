@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
-  {{- partial "head.html" . -}}
+  <head>
+    <title>{{ .Title }}</title>
+    {{- partial "head-meta.html" . }}
+    {{- block "head-meta" . -}}{{- end }}
+    {{- partial "head-link.html" . }}
+    {{- partial "head-script.html" . }}
+  </head>
   <body class="d-flex flex-column">
     {{- partial "menu.html" . -}}
     <div id="content">

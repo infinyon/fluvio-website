@@ -2,6 +2,7 @@
 title: Why we built Fluvio
 author: 
     name: "The Fluvio Team"
+description: Fluvio, a real-time data streaming platform for connected apps
 date: 2020-10-27
 slug: about-fluvio
 url: /blog/2020/10/Why-we-built-Fluvio

@@ -1,3 +1,17 @@
+{{ define "head-meta" }}
+    {{- $description := .Site.Params.description -}}
+    {{- $found_page := false -}}
+    {{- range where .Pages ".Params.hidden" "ne" true -}}
+        {{- if ne $found_page true -}}
+          {{- $found_page = true -}}
+          {{- if .Param "description" }}
+              {{- $description = .Param "description" -}}
+          {{- end }}
+<meta name="description" content="{{ $description }}" />
+        {{- end -}}
+    {{- end -}}
+{{ end }}
+
 {{ define "main" }}
   <div class="container-fluid blog">
     <div class="row">
