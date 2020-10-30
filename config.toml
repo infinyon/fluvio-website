@@ -48,7 +48,7 @@ pygmentsUseClasses=true
     parent = "apis"
     weight = 120
 
-  [[menu.main]]
+  [[menu.main.hidden]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"
