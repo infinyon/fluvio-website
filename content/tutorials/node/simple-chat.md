@@ -34,6 +34,9 @@ All commands will be run from the `chat-app` directory in this repository.
 
 This demo consists of a WebSocket proxy server relaying messages from a React client web application to the `@fluvio/client`, sending `user` and `chat` topic events to the Fluvio cluster.
 
+{{< image src="tutorials/chat-app/simple-chat.svg" alt="register" justify="center" width="780" type="scaled-98">}}
+
+
 `@fluvio/client` is currently not supported in the browser, therefore the WebSocket server is required to proxy the client events. An example of this proxy service can be viewed at [`./chat-server/src/fluvio-lib/dataStream/index.ts`](https://github.com/infinyon/fluvio-demo-apps-node/blob/master/chat-app/chat-server/src/fluvio-lib/dataStreams/index.ts#L26).
 
 Read the [API docs](https://infinyon.github.io/fluvio-client-node/) for more information.
