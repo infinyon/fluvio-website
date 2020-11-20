@@ -60,7 +60,8 @@ Now imagine the same scenario at a modern car dealership:
 
 This type of transformation from legacy business to modern business can be highly disruptive and many businesses may see it as an impossible undertaking. We believe proper planning and the right technology can make this transition possible for any organization. With Fluvio, the transition can be as painless as possible.
 
-## Introducing Fluvio, a Data Platform for Collaboration
+## Introducing Fluvio
+###### A Data Platform for Real-Time Collaboration
 
 Fluvio is a high performance distributed platform that coordinates all real-time data exchanges in an organization. It deploys in minutes, operates hands-free, and covers a broad range of use cases. The platform is suitable for services such as: 
 
