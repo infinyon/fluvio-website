@@ -430,6 +430,13 @@ footer {
     }
   }
 
+  img {
+    display: block;
+    max-width: 1000px;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .menu { 
     max-width: 240px;
@@ -478,14 +485,6 @@ footer {
 
 .blog-nav {
   padding-top:10px;
-}
-
-.blog img {
-  display: block;
-  max-width: 1200px;
-  width: 98%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 // --------------
