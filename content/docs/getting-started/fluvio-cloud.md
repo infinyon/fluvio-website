@@ -45,11 +45,11 @@ You should get a confirmation that your account is ready to use
 
 At this point, we can log in via the Fluvio CLI and start sending and receiving
 messages to your Fluvio cluster. To log in with the CLI, you'll need to run the
-`fluvio profile cloud sync` command, then type in your email and password when
+`fluvio cloud login` command, then type in your email and password when
 prompted.
 
 ```bash
-$ fluvio profile sync cloud --remote=https://cloud.fluvio.io
+$ fluvio cloud login
 Fluvio Cloud email: batman@justiceleague.com
 Password:
 ```
