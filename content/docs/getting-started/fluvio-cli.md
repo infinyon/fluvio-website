@@ -20,7 +20,7 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 If everything works successfully, you should see output similar to this:
 
-```
+```bash
 fluvio: ⏳ Downloading Fluvio 0.6.0-alpha.5 for x86_64-apple-darwin...
 fluvio: ⬇️ Downloaded Fluvio, installing...
 fluvio: ✅ Successfully installed ~/.fluvio/bin/fluvio
