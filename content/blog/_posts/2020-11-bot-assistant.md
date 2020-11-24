@@ -99,6 +99,10 @@ touch css/assistant.css
 Copy the following code in `css/assistant.css`
 
 ```css
+body {
+	background: #f6f6f6;
+}
+
 .assistant {
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	position:fixed;
@@ -106,10 +110,7 @@ Copy the following code in `css/assistant.css`
 	right:25px;
 }
 
-/* 
- * Assistant - Button 
- */
-
+/* Assistant - Button */
  .assistant button {
 	width: 45px;
 	height: 45px;
@@ -131,10 +132,7 @@ Copy the following code in `css/assistant.css`
     outline: none;
 }
 
-/* 
- * Assistant - Chat Box
- */
-
+/* Assistant - Chat Dialog */
 .assistant .chat{
 	display: none;
 	width:360px;
@@ -190,8 +188,6 @@ Copy the following code in `css/assistant.css`
 	font-size:12px;
 	padding: 10px 10px 5px 5px;
 }
-
-/* footer  */
 
 .assistant .footer {
 	background:white;
@@ -332,7 +328,7 @@ curl http://fluvio.io/blog/images/bot-assistant/download/bot.svg > img/assistant
 curl http://fluvio.io/blog/images/bot-assistant/download/close.svg > img/assistant/close.svg
 ```
 
-If everything worked as expect you should have the following files:
+If everything worked as expect you should have the following hierarchy:
 
 ```bash
 tree
@@ -789,7 +785,7 @@ window.onload = () => {
 }
 ```
 
-You may vew the consolidated `assistant.js` file in <a href="https://gist.github.com/ajhunyady/9449ad8c29f1d6131a9a2d860f33bc7b" target="_blank">gist</a>.
+Checkout the consolidate `assistant.js` file in <a href="https://gist.github.com/ajhunyady/9449ad8c29f1d6131a9a2d860f33bc7b" target="_blank">gist</a>.
 
 
 ### Test websocket Communication
