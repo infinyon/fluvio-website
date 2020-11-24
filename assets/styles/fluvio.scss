@@ -6,6 +6,7 @@
 @import 'table';
 @import 'various';
 @import 'toc';
+@import 'blog';
 @import 'highlight';
 @import 'registration';
 @import 'tagbuttons';
@@ -391,103 +392,6 @@ footer {
 }
 
 // --------------
-// Blog
-// --------------
-
-.blog {
-  margin: .5em;
-  
-  .content { 
-    padding-left: 10px;
-  }
-
-  .inner {
-    margin: 1.5em .5em;
-  }
-
-  .author-area {
-    background: none repeat scroll 0 0 #f8f8f8;
-    border: 1px solid #efefef;
-    content: "";
-    display: block;
-    position: relative;
-    padding: 5px 10px;
-
-    i {
-      font-size: 1em;
-    }
-    
-    .by, .date {
-      font-size: .9em;
-      font-family: $font-blog;
-    }
-
-    .author {
-      color: #555555;
-      font-size: 1.05em;
-      font-family: $font-blog-author;
-      text-transform: uppercase;
-    }
-  }
-
-  img {
-    display: block;
-    max-width: 1000px;
-    width: 98%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .menu { 
-    max-width: 240px;
-    margin-right: 25px;
-    padding:5px;
-  }
-
-  .menu .h4 { 
-    border-bottom: 1px solid $col-blog-header-line;
-    padding-bottom: 4px;
-    margin-bottom: 10px;
-  }
-
-  .menu .h4 a { 
-    color: $col-blog-header;
-  }
-
-  .menu a:hover { 
-    text-decoration: none;
-  }
-
-  .menu ul { 
-    margin-left:-20px;
-  }
-
-  .menu ul li { 
-    list-style: none;
-  }
-  
-  .menu .item a { 
-    font-size: 15px;
-    font-family: $font-blog;
-    font-weight: 400;
-    color: $col-blog;
-    line-height: 1.84em;
-  }
-
-  .menu .item a:hover { 
-    text-decoration: underline;
-  }
-
-  .menu .item.selected a { 
-    color: $col-blog-selected;
-  }
-}
-
-.blog-nav {
-  padding-top:10px;
-}
-
-// --------------
 // TOC
 // --------------
 .sticky-top {
@@ -583,15 +487,6 @@ footer {
   img#scaled-75 {width: 75%;}
   img#scaled-60 {width: 60%;}
   img#scaled-50 {width: 50%;}
-
-  .blog .content { 
-    padding-right: 30px;
-  }
-  
-  .blog .menu { 
-    margin-top: 30px;
-    margin-left: 5px;
-  }
 
   .tutorial-area {
     margin-left: 5px;
