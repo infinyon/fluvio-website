@@ -5,10 +5,10 @@ author:
 description: Fluvio, a real-time data streaming platform for connected apps
 date: 2020-11-20
 slug: about-fluvio
-url: /blog/2020/11/Why-we-built-Fluvio
+url: /blog/2020/11/why-we-built-fluvio
 ---
 
-![Fluvio](/blog/images/fluvio-social.jpg)
+![Fluvio](/blog/images/why-fluvio/fluvio-social.jpg)
 
 As more of our work moves online, there is a growing need for collaboration apps where businesses communicate with customers and employees in real-time. These new collaboration apps will accelerate decisions, improve customer experience, and open new revenue opportunities.
 
@@ -34,7 +34,7 @@ Let’s take a look at an example of how a real-time collaboration app could dra
 
 The typical method of dealing with transactions at a car dealership involves many inefficient manual processes and antiquated communication methods. Long delays, part shortages, insufficient loaners are common annoyances that erode customer confidence and impact the success of the business.
 
-<img src="/blog/images/dealership-legacy.svg"
+<img src="/blog/images/why-fluvio/dealership-legacy.svg"
      alt="Dealership Example"
      style="justify: center; max-width: 700px" />
 
