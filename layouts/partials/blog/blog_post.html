@@ -1,3 +1,6 @@
+{{- $content := .page.Content -}}
+{{- $content := partial "augment/idea-symbol.html" $content -}}
+{{- $content := partial "augment/caution-symbol.html" $content -}}
 {{- $org := "" -}}
 {{- if (.page.Param "author.org") -}}
     {{ $org = print " (" (.page.Param "author.org")  ")" }}
@@ -12,5 +15,5 @@
 </div>
 
 <div class="blog-content">
-{{ .page.Content }}
+{{ $content }}
 </div>

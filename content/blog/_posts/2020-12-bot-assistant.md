@@ -1,34 +1,34 @@
 ---
-title: Build a Custom Bot Assistant
+title: Build a Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
 description: Leverage real-time data streaming to build your custom robot assistant 
-date: 2020-11-23
+date: 2020-12-01
 slug: bot-assistant
-url: /blog/2020/11/bot-assistant
+url: /blog/2020/12/bot-assistant
 ---
 
 Robot assistants are nothing new, they have been around for a while with many full featured products available for use. While these products fit most use cases, there are time when you want to roll out your own.
 
-A custom bot assistant gives you full control over and workflows and the services for your customer interactions. When used in conjunction with a data streaming product such as Fluvio, you gain persistence, resiliency, and scalability.
+A custom robot assistant gives you full control over and workflows and the services for your customer interactions. When used in conjunction with a data streaming product such as Fluvio, you gain persistence, resiliency, and scalability.
 
 <img src="/blog/images/bot-assistant/bot-assistant.png"
      alt="Bot Assistant Example"
-     style="justify: center; max-width: 320px" />
+     style="justify: center; max-width: 350px" />
 
 The project is also available for download in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant" target="_blank">github</a>.
 
 #### Overview 
 
-This blog will describe how to build a bot assistant one step at a time. In summary:
+This blog will describe how to build a robot assistant, called `Bot Assistant` one step at a time. In summary:
 
 * [Step 1: Add frontend client](#step-1-add-frontend-client)
 * [Step 2: Add backend server](#step-2-add-backend-server)
 * [Step 3: Add WebSocket communication](#step-3-add-websocket-communication)
 * [Step 4: Add session cookies](#step-4-add-session-cookies)
 * [Step 5: Add state machine](#step-5-add-state-machine)
-* [Step 6: Add workflow manager](#step-6-add-workflow-manager)
-* Data streaming and Persistency
+* [Step 6: Add workflow controller](#step-6-add-workflow-controller)
+* [Step 7: Add data streaming and persistency](#step-7-add-data-streaming-and-persistency)
 
 The implementation uses the following software components:
 
@@ -262,9 +262,7 @@ window.onload = () => {
                 "contenteditable": "false"
             }),
             footer = createElement("div", { "class": "footer" }, user_msg),
-            aDialog = createElement("div", { "class": "chat" },
-                [header, body, footer]);
-
+            aDialog = createElement("div", { "class": "chat" }, [header, body, footer]);
 
         // Attach event listeners
         aButton.addEventListener('click', onOpenDialog, false);
@@ -485,7 +483,6 @@ const startServer = async () => {
             `started bot assistant server at http://localhost:${PORT}...`
         );
     });
-
 };
 
 // Start Server
@@ -614,26 +611,33 @@ Let's review the code in the `WsServer` class:
 * `onConnection` is where all connection related changes are handled
     * Anytime a **ping** message is received, the server responds with a **pong** message.
 
-The WsServer is then called inside `src/bot-server.ts`. The following code goes in the file header:
+The WsServer is then called inside `src/bot-server.ts`. Let's add WebSocket API inside `startServer` block:
 
-```ts
+{{< highlight typescript "hl_lines=3 12" >}}
+import http from "http";
 import express from "express";
-import WebSocket from "./ws_server";
-...
+import WebSocket from "./ws-server";
 
-```
+const PORT = 9998;
 
-Next we need to call WebSocket API inside `startServer` block:
-
-```ts
+// Provision Bot Assistant Server
 const startServer = async () => {
-    ...
+    const app = express();
     const Server = http.createServer(app);
 
     WebSocket.init(Server);
-    ...
-}
-```
+
+    // Start server
+    Server.listen(PORT, () => {
+        console.log(
+            `started bot assistant server at http://localhost:${PORT}...`
+        );
+    });
+};
+
+// Start Server
+startServer();
+{{< /highlight >}}
 
 Note that `ts-watch` has updated the code. Next, we'll add websocket to the client.
 
@@ -647,10 +651,54 @@ WebSocket library is available in most modern web browser, which allows us to ho
 
 Open open `scripts/assistant.js` and add a function to publish client logs to a textarea called `debugOutput`:
 
-```javascript
+{{< highlight javascript "hl_lines=47-55" >}}
 window.onload = () => {
-    ...
 
+    // Create and attach Bot Assistant HTML elements
+    function loadAssistant() {
+        // Add assistant button
+        var note = createElement("img", { "src": `img/assistant/note.svg` }),
+            aButton = createElement("button", {}, note);
+
+        // Append assistant dialog
+        var bot = createElement("img", { "src": `img/assistant/bot.svg`, "class": "bot" }),
+            title = createElement("span", {}, "Bot Assistant"),
+            aDialogClose = createElement("img", { "src": `img/assistant/close.svg`, "class": "close" }),
+            header = createElement("div", { "class": "header" }, [bot, title, aDialogClose]),
+            msg_body = createElement("div", { "class": "msg-body" }),
+            inner_body = createElement("div", { "class": "inner-body" }, msg_body),
+            body = createElement("div", { "class": "body-wrapper" }, inner_body),
+            user_msg = createElement("div", {
+                "id": "user-msg",
+                "class": "textareaElement",
+                "placeholder": "Type here",
+                "contenteditable": "false"
+            }),
+            footer = createElement("div", { "class": "footer" }, user_msg),
+            aDialog = createElement("div", { "class": "chat" }, [header, body, footer]);
+
+        // Attach event listeners
+        aButton.addEventListener('click', onOpenDialog, false);
+        aDialogClose.addEventListener('click', onCloseDialog, false);
+
+        // Add to document
+        document.querySelector(".assistant").appendChild(aButton);
+        document.querySelector(".assistant").appendChild(aDialog);
+    }
+
+    // On open assistant dialog callback
+    function onOpenDialog() {
+        document.querySelector(".assistant button").style.display = "none";
+        document.querySelector(".assistant .chat").style.display = "block";
+    }
+
+    // On close assistant dialog callback
+    function onCloseDialog() {
+        document.querySelector(".assistant .chat").style.display = "none";
+        document.querySelector(".assistant button").style.display = "block";
+    }
+
+    // Log output in the "debugOutput" textarea (if available) and the console
     function logOutput(value) {
         var debugOutput = document.getElementById("debugOutput");
         if (debugOutput) {
@@ -659,25 +707,65 @@ window.onload = () => {
         }
         console.log(value);
     }
-}
-```
 
-Next, open `index.html` and add `debugOutput*` textarea:
+    // Create element utility function
+    function createElement(element, attribute, inner) {
+        if (typeof (element) === "undefined") { return false; }
+        if (typeof (inner) === "undefined") { inner = ""; }
 
-```html
-<body>
-    ...
-    <!-- debugging area - begin -->
-    <textarea id="debugOutput" rows="20" cols="60" readonly></textarea>
-    <!-- debugging area - end -->
-</body>
-```
+        var el = document.createElement(element);
+        if (typeof (attribute) === 'object') {
+            for (var key in attribute) {
+                el.setAttribute(key, attribute[key]);
+            }
+        }
+        if (!Array.isArray(inner)) {
+            inner = [inner];
+        }
+        for (var k = 0; k < inner.length; k++) {
+            if (inner[k].tagName) {
+                el.appendChild(inner[k]);
+            } else {
+                el.innerHTML = inner[k];
+            }
+        }
+        return el;
+    }
+
+    // Call main function
+    loadAssistant();
+};
+{{< /highlight >}}
+
+Next, open `index.html` and add `debugOutput` textarea:
+
+{{< highlight html "hl_lines=15-17" >}}
+<!DOCTYPE HTML>
+<html>
+   <head> 
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" type="text/css" href="css/assistant.css"/>
+      <script type = "text/javascript" src="scripts/assistant.js"></script>
+   </head>
+
+   <body>
+        <div class="assistant"></div>
+
+        <!-- debugging area - begin -->
+        <textarea id="debugOutput" rows="20" cols="60" readonly></textarea>
+        <!-- debugging area - end -->
+   </body>
+</html>
+{{< /highlight >}}
 
 Anytime the code calls `logOutput`, it will be display in the textarea (as well as as in the console).
 
 ##### Update assistant.js file
 
-Now, are read to update the code. Open `scripts/assistant.js` and make the following updates.
+Now, are ready to update the code. Open `scripts/assistant.js` and make the following updates.
 Add a variable `webSocket` to cache the websocket instance.
 
 ```javascript
@@ -717,7 +805,7 @@ window.onload = () => {
 
             webSocket.onmessage = function (messageEvent) {
                 var wsMsg = messageEvent.data;
-                logOutput(`< ${wsMsg}`);
+                logOutput(`<== ${wsMsg}\n`);
             };
 
         } catch (exception) {
@@ -731,12 +819,13 @@ window.onload = () => {
 
 Let's temporarily hook-up the connection to `onOpenDialog` to test the WS connection:
 
-```javascript
+{{< highlight javascript "hl_lines=4" >}}
 function onOpenDialog() {
-    ...
+    document.querySelector(".assistant button").style.display = "none";
+    document.querySelector(".assistant .chat").style.display = "block";
     openWSConnection();
 }
-```
+{{< /highlight >}}
 
 Next, we  need to enable chat editor and link `onEditorKeys` to capture user input.
 
@@ -773,7 +862,7 @@ window.onload = () => {
 
 Finally, we need to hook-up enabling routine, after `loadAssistant`:
 
-```javascript
+{{< highlight javascript "hl_lines=5-6" >}}
 window.onload = () => {
     ....
     loadAssistant();
@@ -781,9 +870,9 @@ window.onload = () => {
     // TODO: Remove after testing
     enableChatEditor();
 }
-```
+{{< /highlight >}}
 
-Checkout the consolidate `assistant.js` file in <a href="https://gist.github.com/ajhunyady/9449ad8c29f1d6131a9a2d860f33bc7b" target="_blank">gist</a>.
+<center> Consolidate <i>assistant.js</i> file published in <a href="https://gist.github.com/ajhunyady/9449ad8c29f1d6131a9a2d860f33bc7b" target="_blank">gist</a></center>
 
 
 ### Test WebSocket Communication
@@ -805,7 +894,7 @@ Bot assistant must support multiple conversations in parallel. The `bot-server` 
 
 First, we'll add session cookie support `ws-server.ts` file. 
 
-{{< highlight typescript "hl_lines=3-5 12-15 25-34 37-38 41 56-69" >}}
+{{< highlight typescript "hl_lines=3 5 21-24 34-43  46-47 50 65-79" >}}
 import WS from "ws";
 import http from "http";
 import crypto from 'crypto';
@@ -813,7 +902,16 @@ import crypto from 'crypto';
 const COOKIE_NAME = "Fluvio-Bot-Assistant"
 
 class WsServer {
-    ...
+    private _wss: WS.Server;
+
+    constructor() {
+        this._wss = new WS.Server({ clientTracking: false, noServer: true });
+    }
+
+    public init(server: http.Server) {
+        this.onUpgrade(server);
+        this.onConnection();
+    }
 
     private onUpgrade(server: http.Server) {
         server.on("upgrade", function (request, socket, head) {
@@ -842,7 +940,7 @@ class WsServer {
         });
 
         this._wss.on("connection", function (ws, req) {
-            const session = parseSessionFromCookie(req.headers.cookie);
+            const session = req.headers.session;
             console.log(`session opened - ${session}`);
 
             ws.on("close", function () {
@@ -861,6 +959,7 @@ class WsServer {
     }
 }
 
+// Parse session from cookie
 function parseSessionFromCookie(cookie?: string) {
     if (cookie) {
         const cookiePair = cookie.split(/; */).map((c: string) => {
@@ -875,9 +974,12 @@ function parseSessionFromCookie(cookie?: string) {
         }
     }
 }
-{{< /highlight >}}
 
-<center><b>ws-server.ts</b> published in <a href="https://gist.github.com/ajhunyady/2e1fe181bec8dbc47d5e36dd96fc044f" target="_blank">gist</a></center>
+const wsSingleton = new WsServer();
+Object.freeze(wsSingleton);
+
+export default wsSingleton;
+{{< /highlight >}}
 
 We generate a cookie called **Fluvio-Bot-Assistant** and utilize WebSocket to send it to the client.
 
@@ -985,7 +1087,7 @@ Click on Bot Assistant icon to generate a new connection.
 
 Open the cookies in browser settings and notice a `Fluvio-Bot-Assistant` cookie. If you delete the cookie and refresh the page, a new session id is generated.
 
-Congratulations, you have successfully added session cookies to Bot Assistant. Next, we'll build the state machine that drives the user interaction. 
+Congratulations, you have successfully added session cookies to Bot Assistant.
 
 
 ## Step 5: Add state machine
@@ -994,7 +1096,7 @@ While there are many ways to drive a robot assistant, this project uses a custom
 
 <img src="/blog/images/bot-assistant/state-machine.svg"
      alt="State Machine"
-     style="justify: center; max-width: 800px;" />
+     style="justify: center; max-width: 600px;" />
 
 The state machine definition is expressed in a JSON file described in the next section.
 
@@ -1160,8 +1262,6 @@ Copy following state machine in the JSON file:
 }
 ```
 
-<center><b>state-machine.json</b> published in <a href="https://gist.github.com/ajhunyady/ac6612a4f2653e5ab58b5c6e96782039" target="_blank">gist</a></center>
-
 The state machine asks the user for his or her favorite programming language. It shows 3 options:
 * Rust
 * Go
@@ -1290,14 +1390,13 @@ export function loadStateMachine(filePath: string) {
 ```
 
 The code defines the state machine structures, reads the JSON file, and provisions an internal state machine object.
-To test the code, we'll temporarily attach the state machine parser to `bot-server.ts`:
+To test the code, we'll attach the state machine parser to `bot-server.ts`:
 
-{{< highlight typescript "hl_lines=4-5 23-26" >}}
+{{< highlight typescript "hl_lines=4 22-25 28-35" >}}
 import http from "http";
 import express from "express";
-import WebSocket from "./ws_server";
-import Path from "path"
-import { StateMachine, loadStateMachine } from "./state_machine";
+import WebSocket from "./ws-server";
+import { StateMachine, loadStateMachine } from "./state-machine";
 
 const PORT = 9998;
 
@@ -1316,10 +1415,19 @@ const startServer = async () => {
     });
 
     // Initialize State Machine
-    let filePath = Path.join(__dirname, "..", "..", "bot-server", "state-machine.json")
+    let filePath = getFileName();
     const stateMachine: StateMachine = loadStateMachine(filePath);
     console.log(stateMachine);
 };
+
+// read state machine file from command line
+function getFileName() {
+    if (process.argv.length != 3) {
+        console.log("Usage: node bot-server.js <state-machine.json>");
+        process.exit(1);
+    }
+    return process.argv[2];
+}
 
 // Start Server
 startServer();
@@ -1340,7 +1448,762 @@ Map(9) {
 }
 ```
 
-Congratulations, your state machine parser is up and running. Next is the workflow manager.
+Congratulations, your state machine parser is up and running.
 
 
-## Step 6: Add workflow manager
+## Step 6: Add workflow controller
+
+Workflow controller is the mediator between the client and the state machine. The controller receives a client message, computes the next state, and generates a reply message.
+
+<img src="/blog/images/bot-assistant/workflow-controller.svg"
+     alt="Workflow Controller"
+     style="justify: center; max-width: 800px;" />
+
+The controller requires code changes to other `bot-server` components:
+* `messages.ts` to include header information
+* `bot-server.ts` to initialize workflow controller
+* `ws-server.ts` to invoke workflow controller of new client messages.
+
+We also need to update the client `assistant.js` to handle the Bot Assistant workflow.
+
+### Update `messages.ts` file
+
+Aside from data structures for state machine, the message exchanged with the client also needs header information. 
+
+Let's append `messages.ts` file as follows: 
+
+``` typescript
+export type TimeStamp = string;
+
+/* Message Header */
+export interface Message {
+    payload?: Payload;
+    timestamp: TimeStamp;
+}
+
+export type Payload =
+    | Request
+    | Response;
+
+export interface Request {
+    kind: "Request",
+    message: RequestMessage,
+}
+
+export interface Response {
+    kind: "Response",
+    message: ResponseMessage,
+}
+
+/* Request Messages */
+export type RequestMessage =
+    | BotText
+    | ChoiceRequest
+    | StartChatSession
+    | EndChatSession;
+
+/* Response Messages */
+export type ResponseMessage =
+    | ChoiceResponse
+    | UserText
+
+...
+
+/* Append header to a request message */
+export function buildRequest(message: RequestMessage) {
+    return <Message>{
+        payload: <Request>{
+            kind: "Request",
+            message: message
+        },
+        timestamp: getDateTime(),
+    };
+};
+
+/* Generate timestamp */
+function getDateTime() {
+    return new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, -1);
+}
+```
+
+<center>Consolidated <i>messages.ts</i> file published in <a href="https://gist.github.com/ajhunyady/1f380b29d72381648b1e25bbc7867901" target="_blank">gist</a>.</center>
+
+### Add `workflow-controller.ts` file
+
+The workflow controller is the central coordinator between the client and the state machine. 
+
+Let's add the file:
+
+```bash
+touch src/workflow-controller.ts
+```
+
+Copy the following content in the `src/workflow-controller.ts` file:
+
+```ts
+import WS from "ws";
+import { Message, ResponseMessage, ChoiceResponse, UserText, buildRequest } from "./messages";
+import { StateMachine, State } from "./state-machine";
+
+class WorkflowController {
+    private static _stateMachine: StateMachine;
+    private static _initState: string;
+
+    init(stateMachine: StateMachine) {
+        WorkflowController._stateMachine = stateMachine;
+        WorkflowController._initState = stateMachine.keys().next().value;
+    }
+
+    processNewConnection(ws: WS) {
+        const nextStates = WMS.getInit();
+        nextStates.forEach(state => {
+            if (state.sendRequest) {
+                const request = buildRequest(state.sendRequest);
+                const message = JSON.stringify(request);
+                ws.send(message);
+            }
+        })
+    }
+
+    processClientMessage(ws: WS, msgObj: string) {
+        const message: Message = JSON.parse(msgObj);
+
+        if (message.payload) {
+            if (message.payload.kind == 'Response') {
+                const nextStates = WMS.getNext(message.payload.message);
+                nextStates.forEach(state => {
+                    if (state.sendRequest) {
+                        const request = buildRequest(state.sendRequest);
+                        const message = JSON.stringify(request);
+                        ws.send(message);
+                    }
+                })
+            }
+        }
+    }
+
+    private getInit() {
+        return this.processNext(WorkflowController._initState);
+    }
+
+    private getNext(response: ResponseMessage) {
+        var state: string = this.getState(response);
+
+        return this.processNext(state);
+    }
+
+    private getState(response: ResponseMessage) {
+        switch (response.kind) {
+            case "ChoiceResponse": {
+                return this.getChoiceResponseState(response);
+            }
+            case "UserText": {
+                return this.getUserTextState(response);
+            }
+        }
+    }
+
+    private processNext(startState: string) {
+        var nextStates: State[] = [];
+
+        var state = WorkflowController._stateMachine.get(startState);
+        while (state) {
+            nextStates.push(state);
+
+            const next = state.next || "";
+            state = WorkflowController._stateMachine.get(next);
+            if (next.length > 0 && !state) {
+                console.error(`Error: Cannot find next state: ${next}`);
+            }
+        }
+
+        return nextStates;
+    }
+
+    private getChoiceResponseState(choiceResponse: ChoiceResponse) {
+        for (let [key, state] of WorkflowController._stateMachine.entries()) {
+            if (state.matchResponse &&
+                state.matchResponse.kind == choiceResponse.kind &&
+                state.matchResponse.groupId == choiceResponse.groupId &&
+                state.matchResponse.itemId == choiceResponse.itemId) {
+                return key;
+            }
+        }
+
+        console.error(`Error: cannot find choice ${JSON.stringify(choiceResponse)}`);
+        return WorkflowController._initState;
+    }
+
+    private getUserTextState(userText: UserText) {
+        for (let [key, state] of WorkflowController._stateMachine.entries()) {
+            if (state.matchResponse &&
+                state.matchResponse.kind == "UserText" &&
+                state.matchResponse.sessionId == userText.sessionId) {
+                return key;
+            }
+        }
+
+        console.error(`Error: cannot find user session ${JSON.stringify(userText)}`);
+        return WorkflowController._initState;
+    }
+}
+
+// Workflow Manager Singleton
+const WCS = new WorkflowController();
+Object.freeze(WCS);
+
+export default WCS;
+```
+
+In summary, Workflow controller has the following public functions:
+* `init` - loads the state machine and saves initial state
+* `processNewConnection` - called from new connections to run state machine from initial state.
+* `processNewConnection` - called from new messages to run state machine based on the client response.
+
+The other APIs help the controller identify the response type and traverse the state machine to generate subsequent requests.
+
+
+### Update `bot-server.ts` file
+
+We need to hook-up workflow controller in the `bot-server.ts` file. Let's update the file:
+
+{{< highlight typescript "hl_lines=5 26" >}}
+import http from "http";
+import express from "express";
+import WebSocket from "./ws-server";
+import { StateMachine, loadStateMachine } from "./state-machine";
+import WorkflowController from "./workflow-controller";
+
+const PORT = 9998;
+
+// Provision Bot Assistant Server
+const startServer = async () => {
+    const app = express();
+    const Server = http.createServer(app);
+
+    WebSocket.init(Server);
+
+    // Start server
+    Server.listen(PORT, () => {
+        console.log(
+            `started bot assistant server at http://localhost:${PORT}...`
+        );
+    });
+
+    // Initialize State Machine
+    let filePath = getFileName();
+    const stateMachine: StateMachine = loadStateMachine(filePath);
+    WorkflowController.init(stateMachine);
+};
+
+// read state machine file from command line
+function getFileName() {
+    if (process.argv.length != 3) {
+        console.log("Usage: node bot-server.js <state-machine.json>");
+        process.exit(1);
+    }
+    return process.argv[2];
+}
+
+// Start Server
+startServer();
+{{< /highlight >}}
+
+Just two changes: import `WorkflowController` and initialize.
+
+
+### Update `ws-server.ts` file
+
+Next, we hook-up workflow controller in the websocket server. Let's update the file:
+
+{{< highlight typescript "hl_lines=4 50 58" >}}
+import WS from "ws";
+import http from "http";
+import crypto from 'crypto';
+import WorkflowController from './workflow-controller';
+
+const COOKIE_NAME = "Fluvio-Bot-Assistant"
+
+class WsServer {
+    private _wss: WS.Server;
+
+    constructor() {
+        this._wss = new WS.Server({ clientTracking: false, noServer: true });
+    }
+
+    public init(server: http.Server) {
+        this.onUpgrade(server);
+        this.onConnection();
+    }
+
+    private onUpgrade(server: http.Server) {
+        server.on("upgrade", function (request, socket, head) {
+            const session = parseSessionFromCookie(request.headers.cookie);
+            if (session) {
+                request.headers.session = session;
+            }
+
+            wsSingleton._wss.handleUpgrade(request, socket, head, function (ws: WS) {
+                wsSingleton._wss.emit("connection", ws, request);
+            });
+        });
+    }
+
+    private onConnection() {
+
+        this._wss.on("headers", function (headers: Array<string>, req) {
+            const session = parseSessionFromCookie(req.headers.cookie);
+
+            if (!session) {
+                let session = crypto.randomBytes(20).toString("hex");
+                req.headers.session = session;
+
+                headers.push("Set-Cookie: " + COOKIE_NAME + "=" + session);
+            }
+        });
+
+        this._wss.on("connection", function (ws, req) {
+            const session = req.headers.session;
+            console.log(`session opened - ${session}`);
+
+            WorkflowController.processNewConnection(ws);
+
+            ws.on("close", function () {
+                console.log(`session closed - ${session}`);
+            });
+
+            ws.on("message", (msgObj: string) => {
+                console.log(`< ${msgObj}`);
+                WorkflowController.processClientMessage(ws, msgObj);
+            });
+
+        });
+    }
+}
+
+// Parse session from cookie
+function parseSessionFromCookie(cookie?: string) {
+    if (cookie) {
+        const cookiePair = cookie.split(/; */).map((c: string) => {
+            const [key, v] = c.split('=', 2);
+            return [key, decodeURIComponent(v)];
+        }).find(res =>
+            (res[0] == COOKIE_NAME)
+        );
+
+        if (Array.isArray(cookiePair) && cookiePair.length > 1) {
+            return cookiePair[1];
+        }
+    }
+}
+
+const wsSingleton = new WsServer();
+Object.freeze(wsSingleton);
+
+export default wsSingleton;
+{{< /highlight >}}
+
+Just a couple of changes: import `WorkflowController` and attach to connection callback in two places: _on.connection_ and _on.message_.
+
+
+#### Test workflow controller initialization
+
+With the backend server updated, we are ready to test the initial step of the workflow. To test message, we'll need to update the frontend. 
+
+The backend server code has been automatically updated by `ts-watch`, hence our code should be up to date.
+Let's open the web browser to `http://localhost:9999/`, then click on "Bot Assistant` button. 
+
+The client initiates a new connection and the workflow controller responds with the following messages:
+
+<img src="/blog/images/bot-assistant/client-workflow-init.svg"
+     alt="Client Workflow Initial Message"
+     style="justify: center; max-width: 700px" />
+
+Congratulations, `Workflow Controller` is up and running, let's update the client to navigate the entire state machine.
+
+### Update client `assistant.js`
+
+Our initial assistant implementation was focused on simple navigation capabilities. Next, we need to add support for the workflow protocol. 
+
+Create a function called `onMessageFromServer` that parses and dispatches the messages.
+
+```javascript
+window.onload = () => {
+    var webSocket = null;
+    var sessionId = "";
+    ....
+
+    /* On messages received from Websocket */
+    function onMessageFromServer(value) {
+        const msg = JSON.parse(value);
+        const payload = msg.payload;
+
+        if (!payload || !payload.kind || !payload.message) {
+            console.error(`Error: Invalid message ${JSON.stringify(payload)}`);
+            return;
+        }
+
+        const message = payload.message;
+        switch (message.kind) {
+            case "BotText":
+                showBotText(message.content);
+                break;
+            case "UserText":
+                showUserText(message.content);
+                break;
+            case "ChoiceRequest":
+                showBotText(message.question);
+                showChoiceButtons(message.groupId, message.choices);
+                break;
+            case "ChoiceResponse":
+                choicesToButton(message.groupId, message.content);
+                break;
+            case "StartChatSession":
+                sessionId = message.sessionId;
+                enableChatEditor(message.chatPrompt, message.chatText);
+                break;
+            case "EndChatSession":
+                disableChatEditor();
+                break;
+        };
+    }
+
+    function showBotText(content) {
+        if (content.length > 0) {
+            removeDuplicateAvatar("bot");
+
+            var img = createElement("img", { "src": `img/assistant/bot.svg` }),
+                avatar = createElement("div", { "class": "avatar", "id": "bot" }, img),
+                msg = createElement("div", { "class": "msg" }, content),
+                msgLeft = createElement("div", { "class": "msg-left" }, [msg, avatar]);
+
+            document.querySelector(".msg-body").appendChild(msgLeft);
+            scrollToBottom(".inner-body");
+        }
+    }
+
+    function showUserText(content) {
+        if (content.length > 0) {
+            var msg = createElement("div", { "class": "msg" }, content),
+                msgLeft = createElement("div", { "class": "msg-right" }, msg);
+
+            document.querySelector(".msg-body").appendChild(msgLeft);
+            scrollToBottom(".inner-body");
+        }
+    }
+
+    function showChoiceButtons(groupId, choices) {
+        if (choices.length > 0) {
+            var buttons = [];
+
+            choices.forEach(choice => {
+                var button = createElement("div", { "class": "button" }, choice.content);
+                button.addEventListener('click', function () {
+                    pickChoice(groupId, choice.itemId, choice.content);
+                }, false);
+
+                buttons.push(createElement("div", { "class": "btn" }, button));
+            });
+
+            var msgLeft = createElement("div", { "class": "msg-left", "id": groupId }, buttons);
+
+            document.querySelector(".msg-body").appendChild(msgLeft);
+            scrollToBottom(".inner-body");
+        }
+    }
+
+    function pickChoice(groupId, itemId, content) {
+        choicesToButton(groupId, content);
+
+        sendWsMessage({
+            kind: "ChoiceResponse",
+            groupId: groupId,
+            itemId: itemId,
+            content: content,
+        });
+    }
+
+    function choicesToButton(groupId, content) {
+        document.getElementById(groupId).remove();
+
+        var button = createElement("div", { "class": "button selected" }, content),
+            btn = createElement("div", { "class": "btn" }, button),
+            msgRight = createElement("div", { "class": "msg-right" }, btn);
+
+        document.querySelector(".msg-body").appendChild(msgRight);
+        scrollToBottom(".inner-body");
+    }
+
+    function removeDuplicateAvatar(id) {
+        var messages = document.querySelector('.msg-body').children;
+        if (messages.length > 0) {
+            var lastMessage = messages[messages.length - 1];
+            if (lastMessage.getAttribute("class") === 'msg-left') {
+                if (lastMessage.lastChild.id == id) {
+                    lastMessage.removeChild(lastMessage.lastChild);
+                }
+            }
+        }
+    }
+
+    // Make editor section editable
+    function enableChatEditor(chatPrompt, chatText) {
+        if (chatText) {
+            showBotText(chatText);
+        }
+
+        var chatBox = document.getElementById("user-msg");
+        chatBox.setAttribute("contenteditable", true);
+        chatBox.setAttribute("placeholder", chatPrompt || "Type question here ...");
+
+        chatBox.addEventListener("keydown", onEditorKeys, false);
+    }
+
+    function disableChatEditor() {
+        var chatBox = document.getElementById("user-msg");
+        chatBox.addEventListener("keydown", {}, false);
+
+        chatBox.setAttribute("contenteditable", false);
+        chatBox.setAttribute("placeholder", "Choose an Option");
+    }
+
+    /* scroll chat view to last message */
+    function scrollToBottom(tag) {
+        var div = document.querySelector(tag);
+        div.scrollTop = div.scrollHeight - div.clientHeight;
+    }
+
+
+    // Callback on chat editor user input (key press)
+    function onEditorKeys(e) {
+        var chatBox = document.getElementById("user-msg");
+
+        if (e.code == 'Enter' && chatBox.textContent.length > 0) {
+            e.preventDefault();
+
+            const content = chatBox.textContent;
+            sendWsMessage({
+                kind: "UserText",
+                sessionId: sessionId,
+                content: content,
+            });
+            showUserText(content);
+
+            chatBox.innerHTML = '';
+        }
+    }
+
+    /* Send a message on WebSocket */
+    function sendWsMessage(msg) {
+        if (webSocket.readyState != WebSocket.OPEN) {
+            logOutput("WebSocket is not connected: " + webSocket.readyState);
+            return;
+        }
+
+        const message = {
+            payload: {
+                kind: "Response",
+                message: msg
+            },
+            timestamp: getUnixTime()
+        };
+
+        const msgObj = JSON.stringify(message)
+        logOutput(`==> ${msgObj}`);
+
+        webSocket.send(msgObj);
+    }
+
+    function getUnixTime() {
+        return (new Date(new Date().toString().split('GMT')[0] + ' UTC').toISOString().split('.')[0]) + "." + new Date().getMilliseconds()
+    }
+
+    ...
+};
+```
+
+Other changes are as follows:
+* `onEditorKeys` - creates a UserText response type
+* `sendWsMessage` - wraps responses in message header
+* `enableChatEditor` - takes additional parameters: chatPrompt and chatText
+* Remove `enableChatEditor` that was temporarily added.
+
+
+Next, let's hook-up the function to Ws connection:
+
+{{< highlight javascript "hl_lines=12" >}}
+window.onload = () => {
+    ...
+
+    // Open WebSocket connection
+    function openWSConnection() {
+        try {
+            ...
+
+            webSocket.onmessage = function (messageEvent) {
+                var wsMsg = messageEvent.data;
+                logOutput(`<== ${wsMsg}`);
+                onMessageFromServer(wsMsg);
+            };
+
+        } catch (exception) {
+            logOutput(`error: ${JSON.stringify(exception)}`);
+        }
+    }
+    ...
+}
+{{< /highlight >}}
+
+<center>Consolidated <i>assistant.js</i> file published in <a href="https://gist.github.com/ajhunyady/44b613f006eab31cc3e9fb9f964ac5b9" target="_blank">gist</a>.</center>
+
+
+### Update `assistant.css`
+
+Next we'll update `assistant.css` file for styling. In addition, the javascript file updated above, looks-up editor content based on css class names.
+
+Open `css/assistant.css` file and append the following fields right before `footer`:
+
+```css
+...
+
+.assistant .msg-left{
+	margin-bottom:7px;
+	word-break: break-all;
+}
+
+.assistant .msg-left .avatar {
+	width: 50px;
+	margin-top: -40px;
+}
+
+.assistant .msg-left .operator {
+	margin-top: -40px;
+	padding: 1px;
+	font-size:1.6em;
+	width:35px;
+	height:35px;
+	line-height:1.8em;
+	text-align:center;
+	border-radius:50%;
+	background:plum;
+	color:white;
+}
+
+.assistant .msg-left img {
+	width:35px;
+	height:35px;
+	border-radius:50%;
+	background:#bbb;
+	border: 1px solid #eee;
+}
+
+.assistant .msg-left .msg {
+	background:#f2f2f2;
+	padding:10px;
+	min-height:15px;
+	margin: 3px;
+	border: 1px solid #ddd;
+	border-radius:7px;
+	margin-left: 44px;
+	margin-right: 30px;
+}
+
+.assistant .msg-left .button {
+	margin: -2px 30px 7px 50px;
+}
+
+.assistant .msg-right {
+	position: relative;
+	right: 0px;
+	margin: 3px;
+	margin-bottom:10px;
+}
+
+.assistant .msg-right .msg {
+	background:#d4e7fa;
+	padding:10px;
+	min-height:15px;
+	margin-left: 80px;
+	border-radius:7px;
+	word-break: break-all;
+}
+
+.assistant .msg-right .button {
+	float: right;
+}
+
+/* button  */
+
+.assistant .btn {
+	display: inline-block;
+	margin: 2px;
+	width: 100%;
+}
+
+.assistant .button {
+	width: max-content;
+	border-radius:15px;
+	padding: 10px;
+	transition-duration: 0.2s;
+	background-color: white;
+	color: #006687;
+	border: 1px solid #008CBA;
+}
+
+.assistant .button.selected {
+	background-color: #008CBA;
+	color: white;
+}
+  
+.assistant .button:hover {
+	cursor: pointer;
+	background-color: #008CBA;
+	color: white;
+}
+
+/* footer  */
+...
+```
+
+<center> Consolidate <i>assistant.css</i> file published in <a href="https://gist.github.com/ajhunyady/ecca29e6a6e8b8fa2a8ec36c2e277c70" target="_blank">gist</a></center>
+
+
+#### Test end-to-end workflow
+
+Let's refresh the web browser to `http://localhost:9999/`, then click on "Bot Assistant` button. 
+Click on the choices and see the bot assistant traverse through our state machine:
+
+<img src="/blog/images/bot-assistant/workflow-end-to-end.svg"
+     alt="Workflow end-to-end"
+     style="justify: center; max-width: 700px" />
+
+Congratulations, `Workflow Controller` is fully functional.
+
+
+## Step 7: Add data streaming and persistency
+
+Bot Assistant works well but it is still limited its usefulness. When the website is refreshed all previous messages are lost.
+
+To remediate this issue we use [Fluvio](https://fluvio.io), a high throughput data streaming platform that scales horizontally to handle a large number of message exchanges persistently. 
+
+Fluvio also enables us to divide our monolith into a microservice style architecture, where we create two independent services:
+* Proxy Service
+* Bot Service
+
+<img src="/blog/images/bot-assistant/architecture.svg"
+     alt="Bot Assistant Architecture"
+     style="justify: center; max-width: 740px" />
+
+There benefits to this architecture:
+
+* **scale** the proxy and workflow independently of each other. 
+
+* **handoff** a conversation to a human operator. We can do that by adding an `operator service` independently that interacts directly with the client through the data stream.
+
+* **augment** with analytics, machine learning, or other business logic services.
+
+-> **Prerequisites:** This section assumes you have access to a Fluvio cluster. Step-by-step instructions on setting-up Fluvio are available in [Quick Start](/docs/getting-started/quick-start).
+
+To integrate Fluvio data streaming we'll need to 
