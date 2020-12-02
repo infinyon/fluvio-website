@@ -1,8 +1,8 @@
 ---
-title: Build a Custom Robot Assistant
+title: Build Your Own Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
-description: Leverage real-time data streaming to build your custom robot assistant 
+description: Leverage real-time data streaming to build your own custom robot assistant.
 date: 2020-12-01
 slug: bot-assistant
 url: /blog/2020/12/bot-assistant
@@ -2204,6 +2204,161 @@ There benefits to this architecture:
 
 * **augment** with analytics, machine learning, or other business logic services.
 
--> **Prerequisites:** This section assumes you have access to a Fluvio cluster. Step-by-step instructions on setting-up Fluvio are available in [Quick Start](/docs/getting-started/quick-start).
+-> **Prerequisites:** This section assumes you have access to a Fluvio cluster. Step-by-step instructions on setting-up Fluvio are available in [Quick Start](/docs/getting-started/fluvio-cloud/).
 
-To integrate Fluvio data streaming we'll need to 
+To integrate Fluvio data streaming we'll make the following code changes:
+* [Add service directories](#add-service-directories)
+* [Add Fluvio data streaming](#add-fluvio-data-streaming)
+
+
+### Add service directories
+
+As shown in the diagram above, we'll divide the bot server code into separate services: `proxy-service` and `workflow-service`.
+
+After division we'll end up with the following file layout in `bot-server/src` directory:
+
+```bash
+tree
+.
+├── bot-server.ts
+├── messages.ts
+├── proxy-service
+│   └── ws-server.ts
+└── workflow-service
+    ├── state-machine.ts
+    └── workflow-controller.ts
+```
+
+Shared files (_bot-server.ts_ and _messages.ts_) are left at the top level, others are divided along service boundaries. 
+
+-> Make sure all **import** statements impacted by file movement are updated and the code continues to compile and run as before.
+
+### Add Fluvio data streaming
+
+Fluvio has a node native library <a href="https://www.npmjs.com/package/@fluvio/client">@fluvio/client</a> in **npm**. Let's install in `bot-server` directory:
+
+```bash
+npm install @fluvio/client
+...
+added 2 packages from 1 contributor and audited 93 packages in 4.846s
+found 0 vulnerabilities
+```
+
+In current form, _proxy_ and _workflow_ services are running in the same binary. After the Fluvio integration, they will be completely decoupled and can be moved to different machines virtually anywhere in the world. To that effect, let's add a fluvio API file to each service.
+
+#### Add fluvio.ts to proxy-service
+
+Create `fluvio.ts` file inside proxy-service:
+
+```bash
+cd ./proxy-service
+touch fluvio.ts
+```
+
+Copy the following code into the file:
+
+```typescript
+import Fluvio, { Offset, OffsetFrom } from '@fluvio/client';
+import { dataStreamingEvents } from './data_streams';
+
+/* Data Streaming Event Emitter */
+class DataStreamingEvents extends EventEmitter {
+    readonly FLUVIO_MESSAGE = 'Fluvio';
+}
+export const dataStreamingEvents = new DataStreamingEvents();
+
+/* Find a topic*/
+export async function findTopic(topicName: string) {
+    const fluvio = new Fluvio();
+
+    await fluvio.connect();
+    const admin = await fluvio.admin();
+    const topic = await admin.findTopic(topicName);
+
+    return (topic != null);
+}
+
+/* Create a topic */
+export async function createTopic(topicName: string) {
+    const fluvio = new Fluvio();
+
+    await fluvio.connect();
+    const admin = await fluvio.admin();
+    await admin.createTopic(topicName);
+}
+
+/* Create topic if does not exist */
+export async function createTopicIfNotFound(topicName: string) {
+    if (!await findTopic(topicName)) {
+        await createTopic(topicName);
+        await sleep(2000);
+        console.log(`proxy: topic '${topicName}' created`);
+    }
+}
+
+/* Produce - produce a message */
+export async function produceMessage(topicName: string, msg: string) {
+    const fluvio = new Fluvio();
+
+    await fluvio.connect();
+    const producer = await fluvio.topicProducer(topicName);
+    producer.sendRecord(msg, 0);
+}
+
+/* Consumer Stream - Continuous fetch records from stream. */
+export async function startConsumerStream(topicName: string) {
+    const fluvio = new Fluvio();
+
+    await fluvio.connect();
+
+    const consumer = await fluvio.partitionConsumer(topicName, 0)
+    const offset: Offset = new Offset({ from: OffsetFrom.End, index: 0 })
+
+    console.log('proxy: listening for events ... ');
+
+    consumer.stream(offset, (record: string) => {
+        dataStreamingEvents.emit(
+            dataStreamingEvents.FLUVIO_MESSAGE,
+            record
+        );
+    })
+}
+
+/* Consumer Fetch - Fetch all messages from offset 0 */
+export async function fetchMessages(topicName: string) {
+    const fluvio = new Fluvio();
+
+    await fluvio.connect();
+
+    const consumer = await fluvio.partitionConsumer(topicName, 0)
+    const offset: Offset = new Offset()
+
+    const fetched = await consumer.fetch(offset);
+    if (fetched) {
+        fetched.records.batches.forEach(batch => {
+            batch.records.forEach(record => {
+                dataStreamingEvents.emit(
+                    dataStreamingEvents.FLUVIO_MESSAGE,
+                    record.value
+                );
+            });
+        });
+    }
+
+    console.log(`proxy: fetched ${fetched.highWatermark} messages`);
+}
+
+export async function sleep(ms: number) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms)
+    })
+}
+```
+
+The file provides convenience functions to search and create topics, as well as produce and consume messages. Messages can be consumed continuously or fetched from a specific offset. Messages received from the topic are emitted in FLUVIO_MESSAGE.
+
+Next we'll add a data streaming file to proxy fluvio messages between the client and the workflow service.
+
+#### Add data-streams.ts to proxy-service
+
+

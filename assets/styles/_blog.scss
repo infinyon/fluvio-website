@@ -2,11 +2,11 @@
   margin: .5em;
   
   .content { 
-    padding-left: 10px;
+    min-width: 300px;
   }
 
   .blog-content {
-    margin: 1.5em .5em;
+    margin: 1.5em .5em 1.5 0;
 
     /* code section */
     .highlight pre {
@@ -61,9 +61,10 @@
   }
 
   .menu { 
-    max-width: 240px;
-    margin-right: 25px;
-    padding:5px;
+    -ms-flex: 0 0 3OOpx;
+    flex: 0 0 300px;
+    margin-right: 10px;
+    margin-top: 10px;
   }
 
   .menu .h4 { 
@@ -113,14 +114,13 @@
 // Screen Sizes
 // --------------
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
 
   .blog .content { 
     padding-right: 30px;
   }
   
   .blog .menu { 
-    margin-top: 30px;
-    margin-left: 5px;
+    display: none;
   }
 }

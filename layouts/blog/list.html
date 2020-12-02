@@ -10,14 +10,14 @@
 
 {{ define "main" }}
   <div class="container-fluid blog">
-    <div class="row">
-      <div class="col-md content ">
+    <div class="row flex-nowrap">
+      <div class="col content">
         {{- block "content" . }}{{- end }}
       </div>
       <div class="col menu">
-        {{ partial "blog/recent-posts-title.html" . }}
-        {{ partial "blog/recent-posts.html" . }}
-      </div>              
+          {{ partial "blog/recent-posts-title.html" . }}
+          {{ partial "blog/recent-posts.html" . }}
+      </div>      
     </div>
   </div>
 {{ end }}
