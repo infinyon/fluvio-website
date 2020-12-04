@@ -255,17 +255,17 @@ window.onload = () => {
         var bot = createElement("img", { "src": `img/assistant/bot.svg`, "class": "bot" }),
             title = createElement("span", {}, "Bot Assistant"),
             aDialogClose = createElement("img", { "src": `img/assistant/close.svg`, "class": "close" }),
-            header = createElement("div", { "class": "header" }, [bot, title, close]),
-            msg_body = createElement("div", { "class": "msg-body" }),
-            inner_body = createElement("div", { "class": "inner-body" }, msg_body),
-            body = createElement("div", { "class": "body-wrapper" }, inner_body),
-            user_msg = createElement("div", {
+            header = createElement("div", { "class": "header" }, [bot, title, aDialogClose]),
+            msgBody = createElement("div", { "class": "msg-body" }),
+            innerBody = createElement("div", { "class": "inner-body" }, msgBody),
+            body = createElement("div", { "class": "body-wrapper" }, innerBody),
+            userMsg = createElement("div", {
                 "id": "user-msg",
                 "class": "textareaElement",
                 "placeholder": "Type here",
                 "contenteditable": "false"
             }),
-            footer = createElement("div", { "class": "footer" }, user_msg),
+            footer = createElement("div", { "class": "footer" }, userMsg),
             aDialog = createElement("div", { "class": "chat" }, [header, body, footer]);
 
         // Attach event listeners
@@ -352,6 +352,8 @@ tree
     └── assistant.js
 ```
 
+The source code for **Step 1** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step1/bot-client" target="_blank">github</a>.
+
 ### Test Bot Client
 
 To test the code we've written so far, open `assistant/index.html` in your Web browser. You should see an empty page the an icon at the bottom on the screen. Click on the icon to open the dialog box, the `X` in the dialog header to close it.
@@ -365,12 +367,21 @@ Congratulations, `Bot Client` is up and running, let's setup the server next.
 
 ## Step 2: Add backend server
 
-We need a backend server that can process multiple clients in different stages of the workflow in parallel. 
+With the frontend in place, we turn our attention to the backend. The backend server needs to handle multiple client connections simultaneously. Each client is an independent entity in an arbitrary state of the workflow. 
 
-Our environment uses `Typescript` and `Node.js`, so let's setup the environment first.
+Our project uses `Typescript` and `Node.js` which requires that we setup the environment first.
 
+### Bot server environment
 
-#### Typescript
+Create a directory `bot-server` in parallel with `bot-client`:
+
+```bash
+cd ..
+mkdir bot-server
+cd bot-server
+```
+
+#### Add Typescript
 
 Next, create a typescript configuration file:
 
@@ -407,16 +418,6 @@ Copy the following content in `tsconfig.json` file:
   ],
 }
 ```
-
-### Bot server environment
-
-Create a directory `bot-server` in parallel with `bot-client`:
-
-```bash
-mkdir bot-server
-cd bot-server
-```
-
 #### Add Node.js server
 
 Initialize a new node package (this example uses Node v13.5.0), and install a few services:
@@ -499,14 +500,16 @@ The code provisions a web server on port 9998.
 Let's sanity check `bot-server` the file hierarchy:
 
 ```bash
-tree
+tree -I 'node_modules|dist'
 .
+├── package-lock.json
 ├── package.json
 ├── src
-│   └── bot-server.ts
+│   └── bot-server.ts
 └── tsconfig.json
 ```
 
+The source code for **Step 2** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step2" target="_blank">github</a>.
 
 ### Test Bot Server
 
@@ -525,7 +528,7 @@ Congratulations, `Bot Server` is up and running.
 
 ## Step 3: Add WebSocket communication
 
-WebSocket (WS) protocol is natively integrated in most common web browsers and is also readily available in Node.js/Typescript. Hence, we'll use WS to create a simple Ping/Pong the client/server communication exchange.
+WebSocket (WS) protocol is natively integrated in most common web browsers and is also readily available in Node.js/Typescript. Let's use WS to create a simple Ping/Pong the client/server communication exchange to test communication. In the next sections, we'll expand on this to implement the bot assistant protocol.
 
 <img src="/blog/images/bot-assistant/ping-pong.svg"
      alt="WebSocket Ping/Pong"
@@ -533,11 +536,11 @@ WebSocket (WS) protocol is natively integrated in most common web browsers and i
 
 ### Add WebSocket to `bot-server`
 
-First, we'll install websocket package, then we'll create a simple echo server to respond to ping requests.
+Websocket package in node is called `ws` and it is available for download through **npm**. We'll use `ws` to create a simple echo server that responds to client ping requests.
 
 #### Install WebSocket
 
-Install `ws` package as follows:
+Inside `bot-server` directory, install `ws` package and the typescript definition file:
 
 ```bash
 npm install ws && \
@@ -546,23 +549,23 @@ npm install -D @types/ws
 
 #### Implement WebSocket echo server
 
-WebSocket negotiation should be handled separately from the rest of the system. In the `bot-server` directory let's create a new file for that purpose:
+Our WebSocket negotiation is a proxy that intermediates the communication from clients to the server business logic. We'll create a new file called `ws-proxy` in the `bot-server` directory:
 
 ```bash
-touch src/ws-server.ts
+touch src/ws-proxy.ts
 ```
 
-Copy the following content in the `src/ws-server.ts` file:
+Copy the following content in the `src/ws-proxy.ts` file:
 
 ```ts
 import WS from "ws";
 import http from "http";
 
-class WsServer {
-    private _wss: WS.Server;
+export class WsProxy {
+    private static _wss: WS.Server;
 
     constructor() {
-        this._wss = new WS.Server({ clientTracking: false, noServer: true });
+        WsProxy._wss = new WS.Server({ clientTracking: false, noServer: true });
     }
 
     public init(server: http.Server) {
@@ -572,65 +575,59 @@ class WsServer {
 
     private onUpgrade(server: http.Server) {
         server.on("upgrade", function (request, socket, head) {
-
-            wsSingleton._wss.handleUpgrade(request, socket, head, function (ws: WS) {
-                wsSingleton._wss.emit("connection", ws, request);
+            WsProxy._wss.handleUpgrade(request, socket, head, function (ws: WS) {
+                WsProxy._wss.emit("connection", ws, request);
             });
         });
     }
 
     private onConnection() {
-        this._wss.on("connection", function (ws, req) {
+        WsProxy._wss.on("connection", function (ws, req) {
             console.log("session opened");
 
             ws.on("close", function () {
                 console.log("session closed");
             });
 
-            ws.on("message", (msgObj: string) => {
-                console.log(`< ${msgObj}`);
-                if (msgObj == "ping") {
+            ws.on("message", (clientMsg: string) => {
+                console.log(`<== ${clientMsg}`);
+
+                if (clientMsg == "ping") {
                     ws.send("pong");
-                    console.log("> pong");
+                    console.log("==> pong");
                 }
             });
-
         });
     }
-
 }
-
-const wsSingleton = new WsServer();
-Object.freeze(wsSingleton);
-
-export default wsSingleton;
 ```
 
-We a singleton class to handle all websocket communication. 
+We created a class `WsProxy` to handle websocket communication. Let's review the code:
 
-Let's review the code in the `WsServer` class:
-* A websocket server is saved in a static variable when the class is instantiated.
-* Two callbacks `onUpgrade` and `onConnection` are registered during initialization.
-* WebSocket protocol invokes `onUpgrade` when a new client is connected. 
-    * It emits an `onConnection` event.
-* `onConnection` is where all connection related changes are handled
-    * Anytime a **ping** message is received, the server responds with a **pong** message.
+* **constructor**: provisions a `WS` and saves it in a static variable.
+* **init**: adds two callbacks `onUpgrade` and `onConnection` to handle WebSocket protocol.
+    * `onUpgrade` is invoked when a new client is connected. By convention this function emits an **onConnection** event.
+    * `onConnection` is called when connection related events, such as: **connection**, **message**, and **close**.
 
-The WsServer is then called inside `src/bot-server.ts`. Let's add WebSocket API inside `startServer` block:
+The behavior of the server is quite simple: it accepts new client connections, checks against **ping** and responds with **pong**.
 
-{{< highlight typescript "hl_lines=3 12" >}}
+Next, we need to instantiate the WsProxy inside `src/bot-server.ts`:
+
+{{< highlight typescript "hl_lines=3 12-14" >}}
 import http from "http";
 import express from "express";
-import WebSocket from "./ws-server";
+import { WsProxy } from "./ws-proxy";
 
 const PORT = 9998;
 
-// Provision Bot Assistant Server
+// Provision Bot Assistant server
 const startServer = async () => {
     const app = express();
     const Server = http.createServer(app);
 
-    WebSocket.init(Server);
+    // Attach websocket to server
+    const wsProxy = new WsProxy();
+    wsProxy.init(Server);
 
     // Start server
     Server.listen(PORT, () => {
@@ -644,17 +641,40 @@ const startServer = async () => {
 startServer();
 {{< /highlight >}}
 
-Note that `ts-watch` has updated the code. Next, we'll add websocket to the client.
+Note that `ts-watch` refreshed the code for us. Next, we'll add websocket to the client.
 
 
-#### Add WebSocket to`bot-client`
+#### Add WebSocket to `bot-client`
 
-WebSocket library is available in most modern web browser, which allows us to hook it up with javascript. In the `bot-client` directory let's add some troubleshooting.
-
+WebSocket library is available in most modern web browser, which allows us to hook it up with javascript with easy. Before we do that, we'll add a troubleshooting window to help us track message exchanges between the client and the server. 
 
 ##### Add troubleshooting 
 
-Open open `scripts/assistant.js` and add a function to publish client logs to a textarea called `debugOutput`:
+Open `bot-client/index.html` file and add a `debugOutput` textarea:
+
+{{< highlight html "hl_lines=15-17" >}}
+<!DOCTYPE HTML>
+<html>
+   <head> 
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" type="text/css" href="css/assistant.css"/>
+      <script type = "text/javascript" src="scripts/assistant.js"></script>
+   </head>
+
+   <body>
+        <div class="assistant"></div>
+
+        <!-- debugging area - begin -->
+        <textarea id="debugOutput" rows="20" cols="60" readonly></textarea>
+        <!-- debugging area - end -->
+   </body>
+</html>
+{{< /highlight >}}
+
+The code adds a textarea with id `debugOutput`. Let's update javascript assistant `bot-client/scripts/assistant.js` to publish to this text area:
 
 {{< highlight javascript "hl_lines=47-55" >}}
 window.onload = () => {
@@ -670,16 +690,16 @@ window.onload = () => {
             title = createElement("span", {}, "Bot Assistant"),
             aDialogClose = createElement("img", { "src": `img/assistant/close.svg`, "class": "close" }),
             header = createElement("div", { "class": "header" }, [bot, title, aDialogClose]),
-            msg_body = createElement("div", { "class": "msg-body" }),
-            inner_body = createElement("div", { "class": "inner-body" }, msg_body),
-            body = createElement("div", { "class": "body-wrapper" }, inner_body),
-            user_msg = createElement("div", {
+            msgBody = createElement("div", { "class": "msg-body" }),
+            innerBody = createElement("div", { "class": "inner-body" }, msgBody),
+            body = createElement("div", { "class": "body-wrapper" }, innerBody),
+            userMsg = createElement("div", {
                 "id": "user-msg",
                 "class": "textareaElement",
                 "placeholder": "Type here",
                 "contenteditable": "false"
             }),
-            footer = createElement("div", { "class": "footer" }, user_msg),
+            footer = createElement("div", { "class": "footer" }, userMsg),
             aDialog = createElement("div", { "class": "chat" }, [header, body, footer]);
 
         // Attach event listeners
@@ -701,6 +721,155 @@ window.onload = () => {
     function onCloseDialog() {
         document.querySelector(".assistant .chat").style.display = "none";
         document.querySelector(".assistant button").style.display = "block";
+    }
+
+    // Log output in the "debugOutput" textarea (if available) and the console
+    function logOutput(value) {
+        var debugOutput = document.getElementById("debugOutput");
+        if (debugOutput) {
+            debugOutput.value += value + "\n\n";
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+        }
+        console.log(value);
+    }
+
+    // Create element utility function
+    function createElement(element, attribute, inner) {
+        if (typeof (element) === "undefined") { return false; }
+        if (typeof (inner) === "undefined") { inner = ""; }
+
+        var el = document.createElement(element);
+        if (typeof (attribute) === 'object') {
+            for (var key in attribute) {
+                el.setAttribute(key, attribute[key]);
+            }
+        }
+        if (!Array.isArray(inner)) {
+            inner = [inner];
+        }
+        for (var k = 0; k < inner.length; k++) {
+            if (inner[k].tagName) {
+                el.appendChild(inner[k]);
+            } else {
+                el.innerHTML = inner[k];
+            }
+        }
+        return el;
+    }
+
+    // Call main function
+    loadAssistant();
+};
+{{< /highlight >}}
+
+Anytime the code calls `logOutput`, the messages is displayed in the textarea as well as the web browser console. If the textarea component is removed, the program will continue writing messages to the web browser console.
+
+##### Update assistant.js file
+
+We are ready to add websocket functionality to the `bot-client/scripts/assistant.js` file:
+
+{{< highlight javascript "hl_lines=2 40 49-79 81-87 89-102 141-142" >}}
+window.onload = () => {
+    var webSocket = null;
+
+    // Create and attach Bot Assistant HTML elements
+    function loadAssistant() {
+        // Add assistant button
+        var note = createElement("img", { "src": `img/assistant/note.svg` }),
+            aButton = createElement("button", {}, note);
+
+        // Append assistant dialog
+        var bot = createElement("img", { "src": `img/assistant/bot.svg`, "class": "bot" }),
+            title = createElement("span", {}, "Bot Assistant"),
+            aDialogClose = createElement("img", { "src": `img/assistant/close.svg`, "class": "close" }),
+            header = createElement("div", { "class": "header" }, [bot, title, aDialogClose]),
+            msgBody = createElement("div", { "class": "msg-body" }),
+            innerBody = createElement("div", { "class": "inner-body" }, msgBody),
+            body = createElement("div", { "class": "body-wrapper" }, innerBody),
+            userMsg = createElement("div", {
+                "id": "user-msg",
+                "class": "textareaElement",
+                "placeholder": "Type here",
+                "contenteditable": "false"
+            }),
+            footer = createElement("div", { "class": "footer" }, userMsg),
+            aDialog = createElement("div", { "class": "chat" }, [header, body, footer]);
+
+        // Attach event listeners
+        aButton.addEventListener('click', onOpenDialog, false);
+        aDialogClose.addEventListener('click', onCloseDialog, false);
+
+        // Add to document
+        document.querySelector(".assistant").appendChild(aButton);
+        document.querySelector(".assistant").appendChild(aDialog);
+    }
+
+    // On open assistant dialog callback
+    function onOpenDialog() {
+        document.querySelector(".assistant button").style.display = "none";
+        document.querySelector(".assistant .chat").style.display = "block";
+        openWSConnection();
+    }
+
+    // On close assistant dialog callback
+    function onCloseDialog() {
+        document.querySelector(".assistant .chat").style.display = "none";
+        document.querySelector(".assistant button").style.display = "block";
+    }
+
+    // Open WebSocket connection
+    function openWSConnection() {
+        try {
+            if (webSocket != null) {
+                return; // already connected
+            }
+
+            logOutput("Connecting to: ws://localhost:9998/");
+            webSocket = new WebSocket("ws://localhost:9998/");
+
+            webSocket.onopen = function (openEvent) {
+                logOutput("Connected!");
+            };
+
+            webSocket.onclose = function (closeEvent) {
+                logOutput("Disconnected!");
+            };
+
+            webSocket.onerror = function (errorEvent) {
+                logOutput(`Error: ${JSON.stringify(errorEvent)}`);
+            };
+
+            webSocket.onmessage = function (messageEvent) {
+                var serverMsg = messageEvent.data;
+                logOutput(`<== ${serverMsg}\n`);
+            };
+
+        } catch (exception) {
+            logOutput(`error: ${JSON.stringify(exception)}`);
+        }
+    }
+
+    // Make editor section editable
+    function enableChatEditor() {
+        var chatBox = document.getElementById("user-msg");
+        chatBox.setAttribute("contenteditable", true);
+
+        chatBox.addEventListener("keydown", onEditorKeys, false);
+    }
+
+    // Callback on chat editor user input (key press)
+    function onEditorKeys(e) {
+        var chatBox = document.getElementById("user-msg");
+
+        if (e.code == 'Enter' && chatBox.textContent.length > 0) {
+            e.preventDefault();
+
+            const content = chatBox.textContent;
+            webSocket.send(content);
+
+            logOutput(`==> ${content}`);
+            chatBox.innerHTML = '';
+        }
     }
 
     // Log output in the "debugOutput" textarea (if available) and the console
@@ -739,157 +908,33 @@ window.onload = () => {
 
     // Call main function
     loadAssistant();
-};
-{{< /highlight >}}
-
-Next, open `index.html` and add `debugOutput` textarea:
-
-{{< highlight html "hl_lines=15-17" >}}
-<!DOCTYPE HTML>
-<html>
-   <head> 
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      <link rel="stylesheet" type="text/css" href="css/assistant.css"/>
-      <script type = "text/javascript" src="scripts/assistant.js"></script>
-   </head>
-
-   <body>
-        <div class="assistant"></div>
-
-        <!-- debugging area - begin -->
-        <textarea id="debugOutput" rows="20" cols="60" readonly></textarea>
-        <!-- debugging area - end -->
-   </body>
-</html>
-{{< /highlight >}}
-
-Anytime the code calls `logOutput`, it will be display in the textarea (as well as as in the console).
-
-##### Update assistant.js file
-
-Now, are ready to update the code. Open `scripts/assistant.js` and make the following updates.
-Add a variable `webSocket` to cache the websocket instance.
-
-```javascript
-window.onload = () => {
-    var webSocket = null;
-    ...
-}
-```
-
-Next, let add `onWsConnection` to connect to the websocket connection management events:
-
-```javascript
-window.onload = () => {
-    ...
-
-   // Open WebSocket connection
-    function openWSConnection() {
-        try {
-            if (webSocket != null) {
-                return; // already connected
-            }
-
-            logOutput("Connecting to: ws://localhost:9998/");
-            webSocket = new WebSocket("ws://localhost:9998/");
-
-            webSocket.onopen = function (openEvent) {
-                logOutput("Connected!");
-            };
-
-            webSocket.onclose = function (closeEvent) {
-                logOutput("Disconnected!");
-            };
-
-            webSocket.onerror = function (errorEvent) {
-                logOutput(`Error: ${JSON.stringify(errorEvent)}`);
-            };
-
-            webSocket.onmessage = function (messageEvent) {
-                var wsMsg = messageEvent.data;
-                logOutput(`<== ${wsMsg}\n`);
-            };
-
-        } catch (exception) {
-            logOutput(`error: ${JSON.stringify(exception)}`);
-        }
-    }
-
-    ...
-}
-```
-
-Let's temporarily hook-up the connection to `onOpenDialog` to test the WS connection:
-
-{{< highlight javascript "hl_lines=4" >}}
-function onOpenDialog() {
-    document.querySelector(".assistant button").style.display = "none";
-    document.querySelector(".assistant .chat").style.display = "block";
-    openWSConnection();
-}
-{{< /highlight >}}
-
-Next, we  need to enable chat editor and link `onEditorKeys` to capture user input.
-
-```javascript
-window.onload = () => {
-    ...
-
-    // Make editor section editable
-    function enableChatEditor() {
-        var chatBox = document.getElementById("user-msg");
-        chatBox.setAttribute("contenteditable", true);
-
-        chatBox.addEventListener("keydown", onEditorKeys, false);
-    }
-
-    // Callback on chat editor user input (key press)
-    function onEditorKeys(e) {
-        var chatBox = document.getElementById("user-msg");
-
-        if (e.code == 'Enter' && chatBox.textContent.length > 0) {
-            e.preventDefault();
-
-            const content = chatBox.textContent;
-            webSocket.send(content);
-
-            logOutput(`> ${content}`);
-            chatBox.innerHTML = '';
-        }
-    }
-
-    ...
-}
-```
-
-Finally, we need to hook-up enabling routine, after `loadAssistant`:
-
-{{< highlight javascript "hl_lines=5-6" >}}
-window.onload = () => {
-    ....
-    loadAssistant();
 
     // TODO: Remove after testing
     enableChatEditor();
-}
+};
 {{< /highlight >}}
 
-<center> Consolidate <i>assistant.js</i> file published in <a href="https://gist.github.com/ajhunyady/9449ad8c29f1d6131a9a2d860f33bc7b" target="_blank">gist</a></center>
+The changes are across different areas of the file. Let's review:
+* **webSocket** variable to cache the websocket instance.
+* **onWSOpenConnection** API to create connection and handle callbacks.
+    * hooked-up in **onOpenDialog** to open the connection when the dialog is opened.
+* **enableChatEditor** to allow user input.
+    * temporarily hooked-up at the end of the file.
+* **onEditorKeys** to capture user input and send message on websocket on _enter_ key.
 
+The source code for **Step 3** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step3" target="_blank">github</a>.
 
 ### Test WebSocket Communication
 
 We are leveraging Bot Assistant editor window to test our websocket communication. Ensure the [bot-server is up and running](#test-bot-server) and refresh `index.html` in the web browser.
 
-Type `ping` in the editor window, and the server responds with `pong`.
+Type **ping** in the editor window, and the server should respond with **pong**.
 
 <img src="/blog/images/bot-assistant/ping-pong-test.svg"
      alt="Ping/Pong WebSocket Connection Example"
      style="justify: center; max-width: 800px" />
 
+Congratulations, websocket communication is up and running.
 
 ## Step 4: Add session cookies
 
