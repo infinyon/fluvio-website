@@ -328,10 +328,10 @@ The script uses several images to enhance the visualization. Let's load the imag
 
 ```bash
 mkdir -p img/assistant
-curl http://fluvio.io/blog/images/bot-assistant/download/note.svg > img/assistant/note.svg
-curl http://fluvio.io/blog/images/bot-assistant/download/bot.svg > img/assistant/bot.svg
-curl http://fluvio.io/blog/images/bot-assistant/download/redo.svg > img/assistant/redo.svg
-curl http://fluvio.io/blog/images/bot-assistant/download/close.svg > img/assistant/close.svg
+curl -L http://fluvio.io/blog/images/bot-assistant/download/note.svg --output img/assistant/note.svg
+curl -L http://fluvio.io/blog/images/bot-assistant/download/bot.svg --output img/assistant/bot.svg
+curl -L http://fluvio.io/blog/images/bot-assistant/download/redo.svg --output img/assistant/redo.svg
+curl -L http://fluvio.io/blog/images/bot-assistant/download/close.svg --output img/assistant/close.svg
 ```
 
 You should end up with the following file hierarchy:
