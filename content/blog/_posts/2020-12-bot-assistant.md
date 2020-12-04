@@ -12,9 +12,9 @@ Robot assistants are nothing new, they have been around for a while with many fu
 
 A custom robot assistant gives you full control over and workflows and the services for your customer interactions. When used in conjunction with a data streaming product such as Fluvio, you gain persistence, resiliency, and scalability.
 
-<img src="/blog/images/bot-assistant/bot-assistant.png"
+<img src="/blog/images/bot-assistant/bot-assistant.svg"
      alt="Bot Assistant Example"
-     style="justify: center; max-width: 350px" />
+     style="justify: center; max-width: 380px" />
 
 The project is also available for download in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant" target="_blank">github</a>.
 
@@ -84,9 +84,13 @@ Copy the following code in `index.html` file:
 </html>
 ```
 
-The index file references a stylesheet `css/assistant.css` and a script `scripts/assistant.js`. The stylesheet and the scripts assume a `div` with class `assistant`.
+In the header we are referencing two files:
+* `css/assistant.css` - styles file
+* `scripts/assistant.js` - script file to change the DOM.
 
-Let's add the files next:
+In the body, we have a `div` with class named `assistant`. The script file looks this `div` to provision the Bot assistant.
+
+Let's add the stylesheet and the script files next:
 
 ```bash
 mkdir css; mkdir scripts
@@ -103,10 +107,6 @@ touch css/assistant.css
 Copy the following code in `css/assistant.css`
 
 ```css
-body {
-	background: #f6f6f6;
-}
-
 .assistant {
 	font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
 	position:fixed;
@@ -115,6 +115,7 @@ body {
 }
 
 /* Assistant - Button */
+
  .assistant button {
 	width: 45px;
 	height: 45px;
@@ -136,7 +137,8 @@ body {
     outline: none;
 }
 
-/* Assistant - Chat Dialog */
+/* Assistant - Chat Box */
+
 .assistant .chat{
 	display: none;
 	width:360px;
@@ -193,6 +195,8 @@ body {
 	padding: 10px 10px 5px 5px;
 }
 
+/* Footer  */
+
 .assistant .footer {
 	background:white;
 	bottom: 0;
@@ -225,12 +229,12 @@ body {
 }
 ```
 
-In summary the stylesheet has two core sections, *Assistant - Button* and *Assistant - Chat Box*.
+In summary the stylesheet has three sections, *Assistant - Button* and *Assistant - Chat Box*.
 The *Chat Box* has three subsections: a header with the bot icon, title and a close icon, the body area, and the footer. The footer has an editor for user input that is currently `read-only`.
 
 #### Assistant script
 
-Next, let's add the script that creates HTML components and manages the interaction with the dialog box:
+Next, let's add the script that creates DOM elements for the user interaction.
 
 ```bash
 touch scripts/assistant.js
@@ -251,7 +255,7 @@ window.onload = () => {
         var bot = createElement("img", { "src": `img/assistant/bot.svg`, "class": "bot" }),
             title = createElement("span", {}, "Bot Assistant"),
             aDialogClose = createElement("img", { "src": `img/assistant/close.svg`, "class": "close" }),
-            header = createElement("div", { "class": "header" }, [bot, title, aDialogClose]),
+            header = createElement("div", { "class": "header" }, [bot, title, close]),
             msg_body = createElement("div", { "class": "msg-body" }),
             inner_body = createElement("div", { "class": "inner-body" }, msg_body),
             body = createElement("div", { "class": "body-wrapper" }, inner_body),
@@ -314,12 +318,11 @@ window.onload = () => {
 };
 ```
 
-The script is invoked by <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event" target="_blank">window.onload</a> event. Let's review the functions in reverse chronological order:
-
-* **createElement** - a utility function that makes it easy to create DOM elements.
-* **onCloseDialog** - operations to be performed when close dialog icon is clicked.
-* **onOpenDialog** - operations to be performed when assistant button is clicked.
+The script is invoked during <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event" target="_blank">window.onload</a> event. The functions are as follows:
 * **loadAssistant** - function to create button and editor, attach open/close listeners and append to DOM.
+* **onOpenDialog** - callback invoked when assistant button is clicked.
+* **onCloseDialog** - callback invoked when close dialog icon is clicked.
+* **createElement** - a utility function that makes it easy to create DOM elements.
 
 The script uses several images to enhance the visualization. Let's load the image from the github project:
 
@@ -327,21 +330,23 @@ The script uses several images to enhance the visualization. Let's load the imag
 mkdir -p img/assistant
 curl http://fluvio.io/blog/images/bot-assistant/download/note.svg > img/assistant/note.svg
 curl http://fluvio.io/blog/images/bot-assistant/download/bot.svg > img/assistant/bot.svg
+curl http://fluvio.io/blog/images/bot-assistant/download/redo.svg > img/assistant/redo.svg
 curl http://fluvio.io/blog/images/bot-assistant/download/close.svg > img/assistant/close.svg
 ```
 
-If everything worked as expect you should have the following hierarchy:
+You should end up with the following file hierarchy:
 
 ```bash
 tree
 .
 ├── css
-│   └── assistant.css
+│   └── assistant.css
 ├── img
-│   └── assistant
-│       ├── bot.svg
-│       ├── close.svg
-│       └── note.svg
+│   └── assistant
+│       ├── bot.svg
+│       ├── close.svg
+│       ├── note.svg
+│       └── redo.svg
 ├── index.html
 └── scripts
     └── assistant.js
@@ -2186,32 +2191,32 @@ Congratulations, `Workflow Controller` is fully functional.
 
 Bot Assistant works well but it is still limited its usefulness. When the website is refreshed all previous messages are lost.
 
-To remediate this issue we use [Fluvio](https://fluvio.io), a high throughput data streaming platform that scales horizontally to handle a large number of message exchanges persistently. 
-
-Fluvio also enables us to divide our monolith into a microservice style architecture, where we create two independent services:
-* Proxy Service
-* Bot Service
+We use [Fluvio](https://fluvio.io) to remediate this issue. Fluvio is a high throughput, low latency data streaming platform that scales horizontally to handle persistency for a large number of concurrent messages. 
+ 
+We deploy Fluvio between connection proxy and workflow controller which also enables us to divide our monolith into microservices. We divide the code into two independent services:
+* Proxy Service - responsible for client connections
+* Workflow Service - responsible for workflow management
 
 <img src="/blog/images/bot-assistant/architecture.svg"
      alt="Bot Assistant Architecture"
      style="justify: center; max-width: 740px" />
 
-There benefits to this architecture:
+The new architecture give us additional flexibility for:
 
 * **scale** the proxy and workflow independently of each other. 
 
 * **handoff** a conversation to a human operator. We can do that by adding an `operator service` independently that interacts directly with the client through the data stream.
 
-* **augment** with analytics, machine learning, or other business logic services.
+* **add-on services** such as: analytics, machine learning, or connectors to other products.
 
 -> **Prerequisites:** This section assumes you have access to a Fluvio cluster. Step-by-step instructions on setting-up Fluvio are available in [Quick Start](/docs/getting-started/fluvio-cloud/).
 
 To integrate Fluvio data streaming we'll make the following code changes:
-* [Add service directories](#add-service-directories)
+* [Restructure code in services](#restructure-code-in-services)
 * [Add Fluvio data streaming](#add-fluvio-data-streaming)
 
 
-### Add service directories
+### Restructure code in services
 
 As shown in the diagram above, we'll divide the bot server code into separate services: `proxy-service` and `workflow-service`.
 
@@ -2231,7 +2236,7 @@ tree
 
 Shared files (_bot-server.ts_ and _messages.ts_) are left at the top level, others are divided along service boundaries. 
 
--> Make sure all **import** statements impacted by file movement are updated and the code continues to compile and run as before.
+-> Make sure all **import** statements impacted by file movement are updated and the code continues to compile and run the same as before.
 
 ### Add Fluvio data streaming
 
@@ -2359,6 +2364,18 @@ The file provides convenience functions to search and create topics, as well as 
 
 Next we'll add a data streaming file to proxy fluvio messages between the client and the workflow service.
 
-#### Add data-streams.ts to proxy-service
+#### Add data-streaming.ts to proxy-service
+
+Data streaming file is the facilitator for all fluvio interactions. It creates the topic, and intermediates all message exchanges between the websocket and Fluvio.
 
 
+Create `fluvio.ts` file inside proxy-service:
+
+```bash
+cd ./proxy-service
+touch data-streaming.ts
+```
+
+Copy the following code into the file:
+
+```typescript
