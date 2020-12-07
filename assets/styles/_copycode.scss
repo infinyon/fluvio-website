@@ -33,3 +33,12 @@
 .copy-code-button:focus {
     outline: 0;
 }
+
+// --------------
+// Screen Sizes
+// --------------
+@media (max-width: 992px) {
+  .copy-code-button {
+    margin: 12px 40px 0 1px;    
+  }
+}

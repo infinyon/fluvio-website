@@ -3,7 +3,7 @@ title: Build Your Own Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
 description: Leverage real-time data streaming to build your own custom robot assistant.
-date: 2020-12-01
+date: 2020-12-04
 slug: bot-assistant
 url: /blog/2020/12/bot-assistant
 ---
@@ -24,7 +24,7 @@ This blog will describe how to build a robot assistant, called `Bot Assistant` o
 
 * [Step 1: Add frontend client](#step-1-add-frontend-client)
 * [Step 2: Add backend server](#step-2-add-backend-server)
-* [Step 3: Add WebSocket communication](#step-3-add-websocket-communication)
+* [Step 3: Add websocket communication](#step-3-add-websocket-communication)
 * [Step 4: Add session cookies](#step-4-add-session-cookies)
 * [Step 5: Add state machine](#step-5-add-state-machine)
 * [Step 6: Add workflow controller](#step-6-add-workflow-controller)
@@ -185,7 +185,7 @@ Copy the following code in `css/assistant.css`
 
 .assistant .inner-body{
 	min-height: 250px;
-	max-height: calc(100vh - 120px);
+	max-height: calc(100vh - 300px);
 	overflow: auto;
 	overflow-x: hidden;
 }
@@ -354,7 +354,7 @@ tree
 
 The source code for **Step 1** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step1/bot-client" target="_blank">github</a>.
 
-### Test Bot Client
+### Test Bot client
 
 To test the code we've written so far, open `assistant/index.html` in your Web browser. You should see an empty page the an icon at the bottom on the screen. Click on the icon to open the dialog box, the `X` in the dialog header to close it.
 
@@ -511,7 +511,7 @@ tree -I 'node_modules|dist'
 
 The source code for **Step 2** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step2" target="_blank">github</a>.
 
-### Test Bot Server
+### Test Bot server
 
 Let's compile to ensure everything the server is up and running:
 
@@ -526,7 +526,7 @@ started bot assistant server at http://localhost:9998...
 Congratulations, `Bot Server` is up and running.
 
 
-## Step 3: Add WebSocket communication
+## Step 3: Add websocket communication
 
 WebSocket (WS) protocol is natively integrated in most common web browsers and is also readily available in Node.js/Typescript. Let's use WS to create a simple Ping/Pong the client/server communication exchange to test communication. In the next sections, we'll expand on this to implement the bot assistant protocol.
 
@@ -534,11 +534,11 @@ WebSocket (WS) protocol is natively integrated in most common web browsers and i
      alt="WebSocket Ping/Pong"
      style="justify: center; max-width: 440px" />
 
-### Add WebSocket to `bot-server`
+### Add websocket to `bot-server`
 
 Websocket package in node is called `ws` and it is available for download through **npm**. We'll use `ws` to create a simple echo server that responds to client ping requests.
 
-#### Install WebSocket
+#### Install websocket
 
 Inside `bot-server` directory, install `ws` package and the typescript definition file:
 
@@ -547,7 +547,7 @@ npm install ws && \
 npm install -D @types/ws
 ```
 
-#### Implement WebSocket echo server
+#### Implement websocket echo server
 
 Our WebSocket negotiation is a proxy that intermediates the communication from clients to the server business logic. We'll create a new file called `ws-proxy` in the `bot-server` directory:
 
@@ -644,7 +644,7 @@ startServer();
 Note that `ts-watch` refreshed the code for us. Next, we'll add websocket to the client.
 
 
-#### Add WebSocket to `bot-client`
+#### Add websocket to `bot-client`
 
 WebSocket library is available in most modern web browser, which allows us to hook it up with javascript with easy. Before we do that, we'll add a troubleshooting window to help us track message exchanges between the client and the server. 
 
@@ -924,7 +924,7 @@ The changes are across different areas of the file. Let's review:
 
 The source code for **Step 3** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step3" target="_blank">github</a>.
 
-### Test WebSocket Communication
+### Test websocket Communication
 
 We are leveraging Bot Assistant editor window to test our websocket communication. Ensure the [bot-server is up and running](#test-bot-server) and refresh `index.html` in the web browser.
 
@@ -938,24 +938,24 @@ Congratulations, websocket communication is up and running.
 
 ## Step 4: Add session cookies
 
-Bot assistant must support multiple conversations in parallel. The `bot-server` will generate a unique session id for each new conversation. The session id is saved as a `cookie` in the client Web Browser.
+Bot assistant needs to support multiple conversations in parallel. To accomplish this, `bot-server` will generate a unique session id for each new conversation. The session id is saved in a `cookie` in the client Web Browser.
 
 ### Add session cookie to `bot-server`
 
-First, we'll add session cookie support `ws-server.ts` file. 
+The server needs to ability to generate an push a session cookie to the client. Let's update `ws-proxy.ts` file. 
 
-{{< highlight typescript "hl_lines=3 5 21-24 34-43  46-47 50 65-79" >}}
+{{< highlight typescript "hl_lines=3 5 21-24 34-43  46-47 50 64-78" >}}
 import WS from "ws";
 import http from "http";
 import crypto from 'crypto';
 
 const COOKIE_NAME = "Fluvio-Bot-Assistant"
 
-class WsServer {
-    private _wss: WS.Server;
+export class WsProxy {
+    private static _wss: WS.Server;
 
     constructor() {
-        this._wss = new WS.Server({ clientTracking: false, noServer: true });
+        WsProxy._wss = new WS.Server({ clientTracking: false, noServer: true });
     }
 
     public init(server: http.Server) {
@@ -965,21 +965,21 @@ class WsServer {
 
     private onUpgrade(server: http.Server) {
         server.on("upgrade", function (request, socket, head) {
-            const session = parseSessionFromCookie(request.headers.cookie);
+            const session = WsProxy.parseSessionFromCookie(request.headers.cookie);
             if (session) {
                 request.headers.session = session;
             }
 
-            wsSingleton._wss.handleUpgrade(request, socket, head, function (ws: WS) {
-                wsSingleton._wss.emit("connection", ws, request);
+            WsProxy._wss.handleUpgrade(request, socket, head, function (ws: WS) {
+                WsProxy._wss.emit("connection", ws, request);
             });
         });
     }
 
     private onConnection() {
 
-        this._wss.on("headers", function (headers: Array<string>, req) {
-            const session = parseSessionFromCookie(req.headers.cookie);
+        WsProxy._wss.on("headers", function (headers: Array<string>, req) {
+            const session = WsProxy.parseSessionFromCookie(req.headers.cookie);
 
             if (!session) {
                 let session = crypto.randomBytes(20).toString("hex");
@@ -989,7 +989,7 @@ class WsServer {
             }
         });
 
-        this._wss.on("connection", function (ws, req) {
+        WsProxy._wss.on("connection", function (ws, req) {
             const session = req.headers.session;
             console.log(`session opened - ${session}`);
 
@@ -997,39 +997,33 @@ class WsServer {
                 console.log(`session closed - ${session}`);
             });
 
-            ws.on("message", (msgObj: string) => {
-                console.log(`< ${msgObj}`);
-                if (msgObj == "ping") {
+            ws.on("message", (clientMsg: string) => {
+                console.log(`<== ${clientMsg}`);
+
+                if (clientMsg == "ping") {
                     ws.send("pong");
-                    console.log("> pong");
+                    console.log("==> pong");
                 }
             });
-
         });
     }
-}
 
-// Parse session from cookie
-function parseSessionFromCookie(cookie?: string) {
-    if (cookie) {
-        const cookiePair = cookie.split(/; */).map((c: string) => {
-            const [key, v] = c.split('=', 2);
-            return [key, decodeURIComponent(v)];
-        }).find(res =>
-            (res[0] == COOKIE_NAME)
-        );
+    // Parse session from cookie
+    private static parseSessionFromCookie(cookie?: string) {
+        if (cookie) {
+            const cookiePair = cookie.split(/; */).map((c: string) => {
+                const [key, v] = c.split('=', 2);
+                return [key, decodeURIComponent(v)];
+            }).find(res =>
+                (res[0] == COOKIE_NAME)
+            );
 
-        if (Array.isArray(cookiePair) && cookiePair.length > 1) {
-            return cookiePair[1];
+            if (Array.isArray(cookiePair) && cookiePair.length > 1) {
+                return cookiePair[1];
+            }
         }
     }
-}
-
-const wsSingleton = new WsServer();
-Object.freeze(wsSingleton);
-
-export default wsSingleton;
-{{< /highlight >}}
+}{{< /highlight >}}
 
 We generate a cookie called **Fluvio-Bot-Assistant** and utilize WebSocket to send it to the client.
 
@@ -1039,13 +1033,15 @@ WebSocket connection setup hast two steps:
 
 In `headers` callback, we check the HTTP headers for the session cookie. If not found, we'll generate a new session id and append the HTTP header. WebSocket will take care of the rest. In `connection` callback, we read the session id from `request.headers.session`.
 
+Finally, we built `parseSessionFromCookie` API to grab the session id from the cookie header.
+
 ### Add web server support to `bot-client`
 
-In the web client cookies are handled by the HTTP protocol implemented by Web servers. Our `bot-client` is just a file, hence we to service it from a Node server.
+Web clients handle cookies through the HTTP protocol implemented by Web servers. Our `bot-client` is just a file, hence it lacks cookie support. We need to start a web server to server `assistant.js`.
 
 #### Add node.js to `bot-client`
 
-Let's generate a new node project inside `bot-client` directory:
+For consistency, we'll use *node.js* and *express* for the web server functionality in the client. Let's generate a new node project inside `bot-client` directory:
 
 ```bash
 cd ../bot-client
@@ -1087,7 +1083,7 @@ Next, we need to to add a file that manages the server configurations.
 
 #### Add `client.js` file
 
-Let's add `client.js` at the root of the `bot-client` directory:
+We'll add `client.js` in the root `bot-client` directory. The file will provision and instantiate a web server.
 
 ```bash
 touch client.js
@@ -1115,8 +1111,9 @@ app.listen(PORT, () => {
 });
 ```
 
-We added routes for our existing directories and provisioned the web client to run on port 9999. 
+The file provisions a web server on port 9999 and configures the routes for _scripts_, _styles_, and _images_ used by `assistant.js`. Then, it starts the web server which reads the default route and invokes `index.html`.
 
+The source code for **Step 4** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step4" target="_blank">github</a>.
 ### Test Session Cookies
 
 To test the code, let's start the web client.
@@ -1128,8 +1125,7 @@ npm run start:client
 listening http://localhost:9999
 ```
 
-Assuming `bot-server` web server is also running, open a web browser and load `localhost:9999`.
-Click on Bot Assistant icon to generate a new connection.
+Assuming `bot-server` web server is also running, open a web browser and load `localhost:9999`. Click on Bot Assistant icon to generate a new connection. Then refresh the page to update cookie.
 
 <img src="/blog/images/bot-assistant/client-cookies.svg"
      alt="Client Cookies"
@@ -1142,13 +1138,13 @@ Congratulations, you have successfully added session cookies to Bot Assistant.
 
 ## Step 5: Add state machine
 
-While there are many ways to drive a robot assistant, this project uses a custom state machine. You may think of a state machine as a guided tour, where the bot sends the client a series of choices. Upon response the bot looks-up the reply and moves to the next state. Then the loop repeats until the end state is reached.
+While there are many ways to drive a robot assistant, this project uses custom state machines. You may think of a state machine as a guided tour, where the bot sends the client a series of choices. Upon response, the bot looks-up the reply and in the state machine and iterates to the next state. Then the loop repeats until the end state is reached.
 
 <img src="/blog/images/bot-assistant/state-machine.svg"
      alt="State Machine"
      style="justify: center; max-width: 600px;" />
 
-The state machine definition is expressed in a JSON file described in the next section.
+The state machine definition is expressed in a JSON file that is described in detail in the next section.
 
 ### State machine definition
 
@@ -1156,7 +1152,7 @@ The state machine is composed of states, where the states can be:
 * sendRequest
 * matchResponse
 
-The bot uses `sendRequest` to generate messages for the client and `matchResponse` to compare the client response with the state where it should resume.
+The bot uses `sendRequest` to generate and send a message to the client, then it waits for the response. When the response arrives, the bot looks-up the `matchResponse` state to identify where it should resume. Each request/response pair has a unique identifier. The identifier is used to keep context during the client/server message exchange. Whereas the state machine has the overall end-to-end context.
 
 Bot assistant generates one of the following `sendRequest` messages:
 
@@ -1172,23 +1168,31 @@ The Client replies with one of the following `mathResponse` messages:
 
 #### State transitions
 
-Each State has a field called `next` that informs bot of a state transition. Workflow manager receives the starting state from the client `Response` and traverses all states linked by the next field. When an empty `next` field is encountered, a `Request` is generated and sent to client.
+The state transition have two types of flows:
+* internal flows - driven by one or more _internal states_.
+* external flows - driven by an _external state_. An external state tells the engine to generate a requests and wait for the response before resuming.
+
+Internal states are states that have a `next` field. Whereas external states have a `sessionId` or `groupId` instead of the `next` field. Internal states can be chained, whereas external states cannot as they trigger a message exchange.
+
+State transitions are triggered by a new connection or a client response. If it begins at an _internal state_, the engine collects the state information and moves to the next state until it encounters an _external state_. At that time, it generates a client request and waits for the response to resume.
 
 <img src="/blog/images/bot-assistant/state-transitions.svg"
      alt="State Transitions"
      style="justify: center; max-width: 800px;" />
 
-The client displays the choices and asks the user to make a selection. Upon selection, the client generates a `Response` and replies to the bot assistant.
+The client displays the request choices and asks the user to make a selection. Upon selection, the client generates a response and replies to the bot assistant.
 
-Next, we'll create a custom state machine in JSON format.
-
+Now that we have the state machine and the state transition definitions, let's create a custom state machine.
 
 ### Create state machine JSON file
 
-Bot assistant defines custom state machines in JSON. Let's add a custom state machine in the `bot-server` directory.
+Bot assistant defines custom state machines in JSON. We'll change the bot-server to accept the state machine in a command line parameter which allows the state machine file to reside anywhere in you local machine. 
+
+For the purpose of this exercise, we'll add the custom state machine in the `bot-server` directory.
 
 
 ```bash
+cd ../bot-server
 touch state-machine.json
 ```
 
@@ -1207,7 +1211,7 @@ Copy following state machine in the JSON file:
         "sendRequest": {
             "kind": "ChoiceRequest",
             "groupId": "lang",
-            "question": "What's your favorite programming language?",
+            "question": "What programming language do you use in your hobby projects?",
             "choices": [
                 {
                     "itemId": "rust",
@@ -1220,7 +1224,7 @@ Copy following state machine in the JSON file:
                 {
                     "itemId": "other",
                     "content": "Other"
-                }                
+                }
             ]
         }
     },
@@ -1230,7 +1234,7 @@ Copy following state machine in the JSON file:
             "groupId": "lang",
             "itemId": "rust"
         },
-        "next": "tryAgainChoices"
+        "next": "anyOtherChoices"
     },
     "langChoiceGo": {
         "matchResponse": {
@@ -1238,7 +1242,7 @@ Copy following state machine in the JSON file:
             "groupId": "lang",
             "itemId": "go"
         },
-        "next": "tryAgainChoices"
+        "next": "anyOtherChoices"
     },
     "langChoiceOther": {
         "matchResponse": {
@@ -1268,13 +1272,13 @@ Copy following state machine in the JSON file:
             "kind": "EndChatSession",
             "sessionId": "langPreference"
         },
-        "next": "tryAgainChoices"
+        "next": "anyOtherChoices"
     },
-    "tryAgainChoices": {
+    "anyOtherChoices": {
         "sendRequest": {
             "kind": "ChoiceRequest",
-            "groupId": "again",
-            "question": "Try again?",
+            "groupId": "others",
+            "question": "Any other?",
             "choices": [
                 {
                     "itemId": "yes",
@@ -1283,32 +1287,32 @@ Copy following state machine in the JSON file:
                 {
                     "itemId": "no",
                     "content": "No"
-                }                
+                }
             ]
         }
     },
-    "tryAgainYes": {
+    "anyOtherYes": {
         "matchResponse": {
             "kind": "ChoiceResponse",
-            "groupId": "again",
+            "groupId": "others",
             "itemId": "yes"
         },
         "next": "langChoices"
     },
-    "tryAgainNo": {
+    "anyOtherNo": {
         "matchResponse": {
             "kind": "ChoiceResponse",
-            "groupId": "again",
+            "groupId": "others",
             "itemId": "no"
         },
         "next": "done"
-    },     
+    },
     "done": {
         "sendRequest": {
             "kind": "BotText",
             "content": "Great, thanks!"
         }
-    }  
+    }
 }
 ```
 
@@ -1317,26 +1321,28 @@ The state machine asks the user for his or her favorite programming language. It
 * Go
 * Other
 
-If the user chooses `Rust` or `Go`, it sends a request choice `Try Again`. For `Other`, it runs a sequence of states:
+If the user chooses `Rust` or `Go`, it sends the choice request `Try Again`. For `Other`, it runs a sequence of states:
 * **sendRequest** to open an interactive session,
 * **matchResponse** to captures the user response,
 * **sendRequest** to close interactive the session
 * **sendRequest** choice to try again.
 
-This basic state machine show two different interaction models, a choice and a user input.
+This basic state machine show two different interaction models: a choice request/response or a user interaction. When the client receives a choice request, it presents the user with a series of choices. The user clicks on one of the choices and the client generates a response. For an interactive session, the client is asked to open an interactive session for the user to type his answer. After the server receives the response, it sends the client another request to close the interactive session. It is the responsibility of the server to manage access to the user editor.
 
 ### Load state machine
 
-We create two files to load the state machine into Bot Assistant:
+The state machine is managing the flow of information between the server and the clients. Implicitly, the information layer is describing the protocol format.
+
+Our approach is to define two files to address both concerns:
 1. `messages.ts` - defines the message types
-2. `state-machine.ts` - augments messages with state interface and loads the JSON file.
+2. `state-machine.ts` - defines the state machine workflow using messages as payload.
 
 #### Create `messages.ts` file
 
-Create `messages.ts` file inside `bot-server/src` directory:
+Let's add `messages.ts` file inside `bot-server/src` directory:
 
 ```bash
-touch messages.ts
+touch src/messages.ts
 ```
 
 Copy the following message definitions:
@@ -1397,15 +1403,15 @@ export interface EndChatSession {
 }
 ```
 
-RequestMessage and ResponseMessage are unions of different message types.
+RequestMessage and ResponseMessage are defined as unions of different message types. The actual definition is described in the previous section.
 
-
+Next we'll crate the state machine.
 #### Create `state-machine.ts` file
 
-Create `state-machine.ts` file inside `bot-server/src` directory:
+The state machine defines the state workflow. Create `state-machine.ts` file inside `bot-server/src` directory:
 
 ```bash
-touch state-machine.ts
+touch src/state-machine.ts
 ```
 
 Copy the following code in the state-machine file:
@@ -1440,22 +1446,29 @@ export function loadStateMachine(filePath: string) {
 ```
 
 The code defines the state machine structures, reads the JSON file, and provisions an internal state machine object.
-To test the code, we'll attach the state machine parser to `bot-server.ts`:
 
-{{< highlight typescript "hl_lines=4 22-25 28-35" >}}
+#### Initialize state machine
+
+The state machine is initialize in the `bot-server.ts`. Bot assistant can run with any state machine file, so it makes sense to load json files from the command line.
+
+Let's change the code to read a json file and load its content into the state machine:
+
+{{< highlight typescript "hl_lines=4 24-27 30-37" >}}
 import http from "http";
 import express from "express";
-import WebSocket from "./ws-server";
+import { WsProxy } from "./ws-proxy";
 import { StateMachine, loadStateMachine } from "./state-machine";
 
 const PORT = 9998;
 
-// Provision Bot Assistant Server
+// Provision Bot Assistant server
 const startServer = async () => {
     const app = express();
     const Server = http.createServer(app);
 
-    WebSocket.init(Server);
+    // Attach websocket to server
+    const wsProxy = new WsProxy();
+    wsProxy.init(Server);
 
     // Start server
     Server.listen(PORT, () => {
@@ -1464,7 +1477,7 @@ const startServer = async () => {
         );
     });
 
-    // Initialize State Machine
+    // Initialize state machine
     let filePath = getFileName();
     const stateMachine: StateMachine = loadStateMachine(filePath);
     console.log(stateMachine);
@@ -1483,11 +1496,21 @@ function getFileName() {
 startServer();
 {{< /highlight >}}
 
-Finally, let's test the code:
+The program retrieves the file name, from the command line, creates a state machine variable and displays the result in the console.
+
+The source code for **Step 5** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step5" target="_blank">github</a>.
+
+### Test state machine initialization
+
+To test the state machine, we need to restart the server with a command line parameter. Mpm uses environment variables, which we'll define at the command line using PARAMS definition:
 
 ```bash
-npm run start:server
+PARAMS=state-machine.json npm run start:server
+```
 
+The code should read the state machine and display it at the command line:
+
+```bash
 12:11:29 PM - Found 0 errors. Watching for file changes.
 Map(9) {
   'greetings' => {
@@ -1503,30 +1526,33 @@ Congratulations, your state machine parser is up and running.
 
 ## Step 6: Add workflow controller
 
-Workflow controller is the mediator between the client and the state machine. The controller receives a client message, computes the next state, and generates a reply message.
+Workflow controller is the mediator between the websocket proxy and the state machine. The controller receives messages from the client, computes the next state, generates a reply, and sends a response.
 
 <img src="/blog/images/bot-assistant/workflow-controller.svg"
      alt="Workflow Controller"
      style="justify: center; max-width: 800px;" />
 
-The controller requires code changes to other `bot-server` components:
-* `messages.ts` to include header information
-* `bot-server.ts` to initialize workflow controller
-* `ws-server.ts` to invoke workflow controller of new client messages.
+To implement the controller functionality we need to make the following code changes to `bot-server`:
+* **messages.ts**: to include message header for client/server communication.
+* **ws-proxy.ts**: to produce events on client messages.
+* **workflow-controller.ts**: to add new file to coordinate message flow.
+* **bot-server.ts**: to initialize workflow controller.
 
-We also need to update the client `assistant.js` to handle the Bot Assistant workflow.
+We also need to update `assistant.js` file in `bot-client` to display server requests and forward user responses.
 
 ### Update `messages.ts` file
 
-Aside from data structures for state machine, the message exchanged with the client also needs header information. 
+When the state machine messages are sent between the client and the server, they need header information.
 
-Let's append `messages.ts` file as follows: 
+Let's append `messages.ts` file with the following changes:
 
-``` typescript
+{{< highlight typescript "hl_lines=1-2 4-9 11-13 15-18 20-23 79-85 87-94 96-103 105-108 110-115" >}}
 export type TimeStamp = string;
+export type SID = string;
 
 /* Message Header */
 export interface Message {
+    sid: SID;
     payload?: Payload;
     timestamp: TimeStamp;
 }
@@ -1557,18 +1583,78 @@ export type ResponseMessage =
     | ChoiceResponse
     | UserText
 
-...
+export interface BotText {
+    kind: "BotText",
+    content: string
+}
 
-/* Append header to a request message */
-export function buildRequest(message: RequestMessage) {
+export interface ChoiceRequest {
+    kind: "ChoiceRequest",
+    question: string,
+    groupId: string,
+    choices: Array<Choice>,
+}
+
+export interface Choice {
+    itemId: string,
+    content: string
+}
+
+export interface UserText {
+    kind: "UserText",
+    sessionId: string,
+    content?: string,
+}
+
+export interface ChoiceResponse {
+    kind: "ChoiceResponse",
+    groupId: string,
+    itemId: string,
+    content?: string,
+}
+
+export interface StartChatSession {
+    kind: "StartChatSession",
+    sessionId: string,
+    chatPrompt?: string,
+    chatText?: string,
+}
+
+export interface EndChatSession {
+    kind: "EndChatSession",
+    sessionId: string,
+}
+
+/* Build an initialization message */
+export function buildInitMessage(sid: SID) {
     return <Message>{
-        payload: <Request>{
-            kind: "Request",
-            message: message
-        },
+        sid: sid,
         timestamp: getDateTime(),
     };
 };
+
+/* Append header to a request message */
+export function buildRequest(sid: SID, message: RequestMessage) {
+    return <Message>{
+        sid: sid,
+        payload: <Request>{ kind: "Request", message: message },
+        timestamp: getDateTime(),
+    };
+};
+
+/* Append header to a response message */
+export function buildResponse(sid: SID, message: ResponseMessage) {
+    return <Message>{
+        sid: sid,
+        payload: <Response>{ kind: "Response", message: message },
+        timestamp: getDateTime(),
+    };
+};
+
+/* Returns true if Request message, false otherwise */
+export function isRequest(payload?: Payload) {
+    return (payload) ? (payload.kind == "Request") : false;
+}
 
 /* Generate timestamp */
 function getDateTime() {
@@ -1576,13 +1662,148 @@ function getDateTime() {
         .toISOString()
         .slice(0, -1);
 }
-```
+{{< /highlight >}}
 
-<center>Consolidated <i>messages.ts</i> file published in <a href="https://gist.github.com/ajhunyady/1f380b29d72381648b1e25bbc7867901" target="_blank">gist</a>.</center>
+At the top of the file, we added a message header for the session id, payload type and timestamp. At the bottom, we implemented a series of helper APIs: 
+* **buildInitMessage**: creates a message without a payload that indicates a new connection.
+* **buildRequest**: creates a message of `Request` kind.
+* **buildResponse**: creates a message of `Response` kind.
+* **isRequest**: checks if the message is of `Request` kind.
+* **getDateTime**: generates a timestamp.
+
+### Update `ws-proxy.ts` file
+
+The websocket will communicate with the state machine through a workflow controller that we'll create in the next section. In the meantime, we need to create a message exchange mechanism between websocket and other components. We'll use node's events facility to publish events for connection requests and client messages. 
+
+Let's update `src/ws-proxy.ts` file:
+
+{{< highlight typescript "hl_lines=4-5 11 15 50-56 61 67 72-81 100-110" >}}
+import WS from "ws";
+import http from "http";
+import crypto from 'crypto';
+import { SID } from './messages';
+import { EventEmitter } from "events";
+
+const COOKIE_NAME = "Fluvio-Bot-Assistant"
+
+export class WsProxy {
+    private static _wss: WS.Server;
+    private static _sessions: Map<SID, WS>;
+
+    constructor() {
+        WsProxy._wss = new WS.Server({ clientTracking: false, noServer: true });
+        WsProxy._sessions = new Map();
+    }
+
+    public init(server: http.Server) {
+        this.onUpgrade(server);
+        this.onConnection();
+    }
+
+    private onUpgrade(server: http.Server) {
+        server.on("upgrade", function (request, socket, head) {
+            const session = WsProxy.parseSessionFromCookie(request.headers.cookie);
+            if (session) {
+                request.headers.session = session;
+            }
+
+            WsProxy._wss.handleUpgrade(request, socket, head, function (ws: WS) {
+                WsProxy._wss.emit("connection", ws, request);
+            });
+        });
+    }
+
+    private onConnection() {
+
+        WsProxy._wss.on("headers", function (headers: Array<string>, req) {
+            const session = WsProxy.parseSessionFromCookie(req.headers.cookie);
+
+            if (!session) {
+                let session = crypto.randomBytes(20).toString("hex");
+                req.headers.session = session;
+
+                headers.push("Set-Cookie: " + COOKIE_NAME + "=" + session);
+            }
+        });
+
+        WsProxy._wss.on("connection", function (ws, req) {
+            const session_hdr = req.headers.session;
+            const session = ((Array.isArray(session_hdr)) ? session_hdr[0] : session_hdr) || "";
+            console.log(`session opened - ${session}`);
+
+            WsProxy._sessions.set(session, ws);
+
+            wsProxyEvents.emit(wsProxyEvents.CONNECTION, session);
+
+            ws.on("close", function () {
+                console.log(`session closed - ${session}`);
+
+                WsProxy._sessions.delete(session);
+            });
+
+            ws.on("message", (clientMsg: string) => {
+                console.log(`<== ${clientMsg}`);
+
+                wsProxyEvents.emit(wsProxyEvents.MESSAGE, session, clientMsg);
+            });
+        });
+    }
+
+    // Send message to client
+    public sendMessage(session: string, clientMsg: string) {
+        const ws = WsProxy._sessions.get(session);
+        if (!ws) {
+            return;
+        }
+
+        console.log(`==> ${clientMsg}`);
+        ws.send(clientMsg);
+    }
+
+    // Parse session from cookie
+    private static parseSessionFromCookie(cookie?: string) {
+        if (cookie) {
+            const cookiePair = cookie.split(/; */).map((c: string) => {
+                const [key, v] = c.split('=', 2);
+                return [key, decodeURIComponent(v)];
+            }).find(res =>
+                (res[0] == COOKIE_NAME)
+            );
+
+            if (Array.isArray(cookiePair) && cookiePair.length > 1) {
+                return cookiePair[1];
+            }
+        }
+    }
+}
+
+/* WebSocket Proxy Event Emitter */
+class WsProxyEvents extends EventEmitter {
+    readonly CONNECTION = 'WebSocket-Connection';
+    readonly MESSAGE = 'WebSocket-Message';
+
+    private static _instance = new WsProxyEvents();
+    static get instance() {
+        return this._instance;
+    }
+}
+export const wsProxyEvents = WsProxyEvents.instance;
+{{< /highlight >}}
+
+The code changes are as follows:
+* **sessions** variable to cache the session id with the websocket connection. The session id becomes the identifier of the client for return messages.
+    * **session.set** to append a session on new connections.
+    * **session.delete** to remove the session on closed connections.
+* **emit** to dispatch a message on new connections and client responses.
+* **sendMessage** to look-up the session and send a message to the client.
+
+We also extended `EventEmitter` to create a customer **WsProxyEvent** to emit the following types:
+* **CONNECTION** - for new connections.
+* **MESSAGE** - for client messages.
 
 ### Add `workflow-controller.ts` file
 
-The workflow controller is the central coordinator between the client and the state machine. 
+The workflow controller is the coordinator between the client and the state machine. It listens for websocket messages, invokes the state machine to produce the next message, and calls the websocket to inform the client.
 
 Let's add the file:
 
@@ -1593,45 +1814,53 @@ touch src/workflow-controller.ts
 Copy the following content in the `src/workflow-controller.ts` file:
 
 ```ts
-import WS from "ws";
-import { Message, ResponseMessage, ChoiceResponse, UserText, buildRequest } from "./messages";
+import {
+    SID,
+    ResponseMessage,
+    ChoiceResponse,
+    UserText,
+    buildRequest,
+} from "./messages";
 import { StateMachine, State } from "./state-machine";
+import { WsProxy, wsProxyEvents } from "./ws-proxy";
 
-class WorkflowController {
+export class WorkflowController {
     private static _stateMachine: StateMachine;
     private static _initState: string;
+    private _wsProxy: WsProxy;
 
-    init(stateMachine: StateMachine) {
+    init(stateMachine: StateMachine, wsProxy: WsProxy) {
+        this._wsProxy = wsProxy;
+
+        this.listenForEvents();
+
         WorkflowController._stateMachine = stateMachine;
         WorkflowController._initState = stateMachine.keys().next().value;
     }
 
-    processNewConnection(ws: WS) {
-        const nextStates = WMS.getInit();
+    processNewConnection(sid: SID) {
+        const nextStates = this.getInit();
+
         nextStates.forEach(state => {
             if (state.sendRequest) {
-                const request = buildRequest(state.sendRequest);
-                const message = JSON.stringify(request);
-                ws.send(message);
+                const request = buildRequest(sid, state.sendRequest);
+                const message = JSON.stringify(request.payload?.message);
+                this._wsProxy.sendMessage(sid, message);
             }
         })
     }
 
-    processClientMessage(ws: WS, msgObj: string) {
-        const message: Message = JSON.parse(msgObj);
+    processClientMessage(sid: SID, clientMsg: string) {
+        const message: ResponseMessage = JSON.parse(clientMsg);
 
-        if (message.payload) {
-            if (message.payload.kind == 'Response') {
-                const nextStates = WMS.getNext(message.payload.message);
-                nextStates.forEach(state => {
-                    if (state.sendRequest) {
-                        const request = buildRequest(state.sendRequest);
-                        const message = JSON.stringify(request);
-                        ws.send(message);
-                    }
-                })
+        const nextStates = this.getNext(message);
+        nextStates.forEach(state => {
+            if (state.sendRequest) {
+                const request = buildRequest(sid, state.sendRequest);
+                const message = JSON.stringify(request.payload?.message);
+                this._wsProxy.sendMessage(sid, message);
             }
-        }
+        });
     }
 
     private getInit() {
@@ -1698,42 +1927,53 @@ class WorkflowController {
         console.error(`Error: cannot find user session ${JSON.stringify(userText)}`);
         return WorkflowController._initState;
     }
+
+    private listenForEvents() {
+        wsProxyEvents.on(
+            wsProxyEvents.CONNECTION,
+            (sid: SID) => {
+                this.processNewConnection(sid);
+            }
+        );
+
+        wsProxyEvents.on(
+            wsProxyEvents.MESSAGE,
+            async (sid: SID, clientMsg: string) => {
+                this.processClientMessage(sid, clientMsg);
+            }
+        );
+    }
 }
-
-// Workflow Manager Singleton
-const WCS = new WorkflowController();
-Object.freeze(WCS);
-
-export default WCS;
 ```
 
-In summary, Workflow controller has the following public functions:
-* `init` - loads the state machine and saves initial state
-* `processNewConnection` - called from new connections to run state machine from initial state.
-* `processNewConnection` - called from new messages to run state machine based on the client response.
+The workflow controller has the following public functions:
+* **init** caches an instance of the `WsProxy`, initializes the state machine, and registers a listener for websocket messages.
+* **processNewConnection** reads the state machine from the first state and produces a request.
+* **processClientMessage** parses the client response, looks-up the resume state and produces the next request.
 
-The other APIs help the controller identify the response type and traverse the state machine to generate subsequent requests.
-
+The private APIs help the controller identify the response type and traverse the state machine to generate subsequent requests.
 
 ### Update `bot-server.ts` file
 
 We need to hook-up workflow controller in the `bot-server.ts` file. Let's update the file:
 
-{{< highlight typescript "hl_lines=5 26" >}}
+{{< highlight typescript "hl_lines=5 28-29" >}}
 import http from "http";
 import express from "express";
-import WebSocket from "./ws-server";
+import { WsProxy } from "./ws-proxy";
 import { StateMachine, loadStateMachine } from "./state-machine";
-import WorkflowController from "./workflow-controller";
+import { WorkflowController } from "./workflow-controller";
 
 const PORT = 9998;
 
-// Provision Bot Assistant Server
+// Provision Bot Assistant server
 const startServer = async () => {
     const app = express();
     const Server = http.createServer(app);
 
-    WebSocket.init(Server);
+    // Attach websocket to server
+    const wsProxy = new WsProxy();
+    wsProxy.init(Server);
 
     // Start server
     Server.listen(PORT, () => {
@@ -1742,10 +1982,11 @@ const startServer = async () => {
         );
     });
 
-    // Initialize State Machine
+    // Initialize state machine
     let filePath = getFileName();
     const stateMachine: StateMachine = loadStateMachine(filePath);
-    WorkflowController.init(stateMachine);
+    const workflowController = new WorkflowController();
+    workflowController.init(stateMachine, wsProxy);
 };
 
 // read state machine file from command line
@@ -1761,108 +2002,13 @@ function getFileName() {
 startServer();
 {{< /highlight >}}
 
-Just two changes: import `WorkflowController` and initialize.
-
-
-### Update `ws-server.ts` file
-
-Next, we hook-up workflow controller in the websocket server. Let's update the file:
-
-{{< highlight typescript "hl_lines=4 50 58" >}}
-import WS from "ws";
-import http from "http";
-import crypto from 'crypto';
-import WorkflowController from './workflow-controller';
-
-const COOKIE_NAME = "Fluvio-Bot-Assistant"
-
-class WsServer {
-    private _wss: WS.Server;
-
-    constructor() {
-        this._wss = new WS.Server({ clientTracking: false, noServer: true });
-    }
-
-    public init(server: http.Server) {
-        this.onUpgrade(server);
-        this.onConnection();
-    }
-
-    private onUpgrade(server: http.Server) {
-        server.on("upgrade", function (request, socket, head) {
-            const session = parseSessionFromCookie(request.headers.cookie);
-            if (session) {
-                request.headers.session = session;
-            }
-
-            wsSingleton._wss.handleUpgrade(request, socket, head, function (ws: WS) {
-                wsSingleton._wss.emit("connection", ws, request);
-            });
-        });
-    }
-
-    private onConnection() {
-
-        this._wss.on("headers", function (headers: Array<string>, req) {
-            const session = parseSessionFromCookie(req.headers.cookie);
-
-            if (!session) {
-                let session = crypto.randomBytes(20).toString("hex");
-                req.headers.session = session;
-
-                headers.push("Set-Cookie: " + COOKIE_NAME + "=" + session);
-            }
-        });
-
-        this._wss.on("connection", function (ws, req) {
-            const session = req.headers.session;
-            console.log(`session opened - ${session}`);
-
-            WorkflowController.processNewConnection(ws);
-
-            ws.on("close", function () {
-                console.log(`session closed - ${session}`);
-            });
-
-            ws.on("message", (msgObj: string) => {
-                console.log(`< ${msgObj}`);
-                WorkflowController.processClientMessage(ws, msgObj);
-            });
-
-        });
-    }
-}
-
-// Parse session from cookie
-function parseSessionFromCookie(cookie?: string) {
-    if (cookie) {
-        const cookiePair = cookie.split(/; */).map((c: string) => {
-            const [key, v] = c.split('=', 2);
-            return [key, decodeURIComponent(v)];
-        }).find(res =>
-            (res[0] == COOKIE_NAME)
-        );
-
-        if (Array.isArray(cookiePair) && cookiePair.length > 1) {
-            return cookiePair[1];
-        }
-    }
-}
-
-const wsSingleton = new WsServer();
-Object.freeze(wsSingleton);
-
-export default wsSingleton;
-{{< /highlight >}}
-
-Just a couple of changes: import `WorkflowController` and attach to connection callback in two places: _on.connection_ and _on.message_.
+The code creates a `workflowController` variable and calls its `init` function.
 
 
 #### Test workflow controller initialization
 
-With the backend server updated, we are ready to test the initial step of the workflow. To test message, we'll need to update the frontend. 
+We are ready to test the initial step of the workflow. The code has been automatically updated by `ts-watch` and should be ready to run.
 
-The backend server code has been automatically updated by `ts-watch`, hence our code should be up to date.
 Let's open the web browser to `http://localhost:9999/`, then click on "Bot Assistant` button. 
 
 The client initiates a new connection and the workflow controller responds with the following messages:
@@ -1871,31 +2017,99 @@ The client initiates a new connection and the workflow controller responds with 
      alt="Client Workflow Initial Message"
      style="justify: center; max-width: 700px" />
 
-Congratulations, `Workflow Controller` is up and running, let's update the client to navigate the entire state machine.
+Congratulations, `Workflow Controller` is up and running. Next we'll update the client to participate in the state machine negotiation.
 
 ### Update client `assistant.js`
 
 Our initial assistant implementation was focused on simple navigation capabilities. Next, we need to add support for the workflow protocol. 
 
-Create a function called `onMessageFromServer` that parses and dispatches the messages.
+Let's update the code in `bot_client/scripts/assistant.js`:
 
-```javascript
+{{< highlight javascript "hl_lines=74 82-107 109-120 122-135 137-146 148-167 169-179 181-191 193-204 207-210 214 219-226 228-232 242-247" >}}
 window.onload = () => {
     var webSocket = null;
-    var sessionId = "";
-    ....
 
-    /* On messages received from Websocket */
-    function onMessageFromServer(value) {
-        const msg = JSON.parse(value);
-        const payload = msg.payload;
+    // Create and attach Bot Assistant HTML elements
+    function loadAssistant() {
+        // Add assistant button
+        var note = createElement("img", { "src": `img/assistant/note.svg` }),
+            aButton = createElement("button", {}, note);
 
-        if (!payload || !payload.kind || !payload.message) {
-            console.error(`Error: Invalid message ${JSON.stringify(payload)}`);
-            return;
+        // Append assistant dialog
+        var bot = createElement("img", { "src": `img/assistant/bot.svg`, "class": "bot" }),
+            title = createElement("span", {}, "Bot Assistant"),
+            aDialogClose = createElement("img", { "src": `img/assistant/close.svg`, "class": "close" }),
+            header = createElement("div", { "class": "header" }, [bot, title, aDialogClose]),
+            msgBody = createElement("div", { "class": "msg-body" }),
+            innerBody = createElement("div", { "class": "inner-body" }, msgBody),
+            body = createElement("div", { "class": "body-wrapper" }, innerBody),
+            userMsg = createElement("div", {
+                "id": "user-msg",
+                "class": "textareaElement",
+                "placeholder": "Type here",
+                "contenteditable": "false"
+            }),
+            footer = createElement("div", { "class": "footer" }, userMsg),
+            aDialog = createElement("div", { "class": "chat" }, [header, body, footer]);
+
+        // Attach event listeners
+        aButton.addEventListener('click', onOpenDialog, false);
+        aDialogClose.addEventListener('click', onCloseDialog, false);
+
+        // Add to document
+        document.querySelector(".assistant").appendChild(aButton);
+        document.querySelector(".assistant").appendChild(aDialog);
+    }
+
+    // On open assistant dialog callback
+    function onOpenDialog() {
+        document.querySelector(".assistant button").style.display = "none";
+        document.querySelector(".assistant .chat").style.display = "block";
+        openWSConnection();
+    }
+
+    // On close assistant dialog callback
+    function onCloseDialog() {
+        document.querySelector(".assistant .chat").style.display = "none";
+        document.querySelector(".assistant button").style.display = "block";
+    }
+
+    // Open WebSocket connection
+    function openWSConnection() {
+        try {
+            if (webSocket != null) {
+                return; // already connected
+            }
+
+            logOutput("Connecting to: ws://localhost:9998/");
+            webSocket = new WebSocket("ws://localhost:9998/");
+
+            webSocket.onopen = function (openEvent) {
+                logOutput("Connected!");
+            };
+
+            webSocket.onclose = function (closeEvent) {
+                logOutput("Disconnected!");
+            };
+
+            webSocket.onerror = function (errorEvent) {
+                logOutput(`Error: ${JSON.stringify(errorEvent)}`);
+            };
+
+            webSocket.onmessage = function (messageEvent) {
+                var serverMsg = messageEvent.data;
+                logOutput(`<== ${serverMsg}`);
+                onMessageFromServer(serverMsg);
+            };
+
+        } catch (exception) {
+            logOutput(`error: ${JSON.stringify(exception)}`);
         }
+    }
 
-        const message = payload.message;
+    // On messages received from Websocket
+    function onMessageFromServer(value) {
+        const message = JSON.parse(value);
         switch (message.kind) {
             case "BotText":
                 showBotText(message.content);
@@ -1920,6 +2134,20 @@ window.onload = () => {
         };
     }
 
+    // Send a message on WebSocket
+    function sendWsMessage(message) {
+        if (webSocket.readyState != WebSocket.OPEN) {
+            logOutput("WebSocket is not connected: " + webSocket.readyState);
+            return;
+        }
+
+        const msgObj = JSON.stringify(message)
+        logOutput(`==> ${msgObj}`);
+
+        webSocket.send(msgObj);
+    }
+
+    // Show text from bot assistant
     function showBotText(content) {
         if (content.length > 0) {
             removeDuplicateAvatar("bot");
@@ -1934,6 +2162,7 @@ window.onload = () => {
         }
     }
 
+    // Show text from user interactive session
     function showUserText(content) {
         if (content.length > 0) {
             var msg = createElement("div", { "class": "msg" }, content),
@@ -1944,6 +2173,7 @@ window.onload = () => {
         }
     }
 
+    // Show choices
     function showChoiceButtons(groupId, choices) {
         if (choices.length > 0) {
             var buttons = [];
@@ -1964,6 +2194,7 @@ window.onload = () => {
         }
     }
 
+    // Callback invoked on user selection
     function pickChoice(groupId, itemId, content) {
         choicesToButton(groupId, content);
 
@@ -1975,6 +2206,7 @@ window.onload = () => {
         });
     }
 
+    // Swap choices with a button representing the selection
     function choicesToButton(groupId, content) {
         document.getElementById(groupId).remove();
 
@@ -1986,6 +2218,7 @@ window.onload = () => {
         scrollToBottom(".inner-body");
     }
 
+    // On multiple bot messages, ensure avatar is only displayed on last entry
     function removeDuplicateAvatar(id) {
         var messages = document.querySelector('.msg-body').children;
         if (messages.length > 0) {
@@ -2011,6 +2244,7 @@ window.onload = () => {
         chatBox.addEventListener("keydown", onEditorKeys, false);
     }
 
+    // Disable interactive chat
     function disableChatEditor() {
         var chatBox = document.getElementById("user-msg");
         chatBox.addEventListener("keydown", {}, false);
@@ -2019,12 +2253,11 @@ window.onload = () => {
         chatBox.setAttribute("placeholder", "Choose an Option");
     }
 
-    /* scroll chat view to last message */
+    // Scroll to last messages
     function scrollToBottom(tag) {
         var div = document.querySelector(tag);
         div.scrollTop = div.scrollHeight - div.clientHeight;
     }
-
 
     // Callback on chat editor user input (key press)
     function onEditorKeys(e) {
@@ -2045,78 +2278,157 @@ window.onload = () => {
         }
     }
 
-    /* Send a message on WebSocket */
-    function sendWsMessage(msg) {
-        if (webSocket.readyState != WebSocket.OPEN) {
-            logOutput("WebSocket is not connected: " + webSocket.readyState);
-            return;
+    // Log output in the "debugOutput" textarea (if available) and the console
+    function logOutput(value) {
+        var debugOutput = document.getElementById("debugOutput");
+        if (debugOutput) {
+            debugOutput.value += value + "\n\n";
+            debugOutput.scrollTop = debugOutput.scrollHeight;
         }
-
-        const message = {
-            payload: {
-                kind: "Response",
-                message: msg
-            },
-            timestamp: getUnixTime()
-        };
-
-        const msgObj = JSON.stringify(message)
-        logOutput(`==> ${msgObj}`);
-
-        webSocket.send(msgObj);
+        console.log(value);
     }
 
-    function getUnixTime() {
-        return (new Date(new Date().toString().split('GMT')[0] + ' UTC').toISOString().split('.')[0]) + "." + new Date().getMilliseconds()
+    // Create element utility function
+    function createElement(element, attribute, inner) {
+        if (typeof (element) === "undefined") { return false; }
+        if (typeof (inner) === "undefined") { inner = ""; }
+
+        var el = document.createElement(element);
+        if (typeof (attribute) === 'object') {
+            for (var key in attribute) {
+                el.setAttribute(key, attribute[key]);
+            }
+        }
+        if (!Array.isArray(inner)) {
+            inner = [inner];
+        }
+        for (var k = 0; k < inner.length; k++) {
+            if (inner[k].tagName) {
+                el.appendChild(inner[k]);
+            } else {
+                el.innerHTML = inner[k];
+            }
+        }
+        return el;
     }
 
-    ...
+    // Call main function
+    loadAssistant();
 };
-```
-
-Other changes are as follows:
-* `onEditorKeys` - creates a UserText response type
-* `sendWsMessage` - wraps responses in message header
-* `enableChatEditor` - takes additional parameters: chatPrompt and chatText
-* Remove `enableChatEditor` that was temporarily added.
-
-
-Next, let's hook-up the function to Ws connection:
-
-{{< highlight javascript "hl_lines=12" >}}
-window.onload = () => {
-    ...
-
-    // Open WebSocket connection
-    function openWSConnection() {
-        try {
-            ...
-
-            webSocket.onmessage = function (messageEvent) {
-                var wsMsg = messageEvent.data;
-                logOutput(`<== ${wsMsg}`);
-                onMessageFromServer(wsMsg);
-            };
-
-        } catch (exception) {
-            logOutput(`error: ${JSON.stringify(exception)}`);
-        }
-    }
-    ...
-}
 {{< /highlight >}}
 
-<center>Consolidated <i>assistant.js</i> file published in <a href="https://gist.github.com/ajhunyady/44b613f006eab31cc3e9fb9f964ac5b9" target="_blank">gist</a>.</center>
+The code implements Bot assistant protocol and the user interactions choice buttons and custom messages. Let's review the changes:
+
+* `onMessageFromServer` - parses messages from the server and processes them based on their kind:
+    * `BotText` - shows bot text in the chat box.
+    * `UserText` - shows user text in the chat box.
+    * `ChoiceRequest` - displays the choices in  the chat box.
+    * `ChoiceResponse` - swaps choices with a button based on user selection.
+    * `StarChatSession` - enables chat editor
+    * `EndChatSession` - disables chat editor
+* `wsSendMessage` - send a message to the server
+* `removeDuplicateAvatar` - ensures Bot avatar is only displayed in the last entry
+* `scrollToBottom` - makes the last entry in the chat box visible.
+
+All other APIs are supporting functions to implement the workflow.
+
+Next, let's hook-up the function to Ws connection:
 
 
 ### Update `assistant.css`
 
-Next we'll update `assistant.css` file for styling. In addition, the javascript file updated above, looks-up editor content based on css class names.
+Assistant file manipulates DOM objects based on class names. Let's update `assistant.css` to add classes for the bot and user messages.
 
-Open `css/assistant.css` file and append the following fields right before `footer`:
+Open `bot-client/css/assistant.css` file and and update as follows:
 
-```css
-...
+{{< highlight css "hl_lines=89-92 94-97 99-110 112-118 120-129 131-133 135-140 142-149 151-153 155 157-161 163-171 173-176 178-182" >}}
+.assistant {
+	font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+	position:fixed;
+	bottom:20px;
+	right:25px;
+}
+
+/* Assistant - Button */
+
+ .assistant button {
+	width: 45px;
+	height: 45px;
+	background:#008CBA;
+	border-radius:5px;
+	cursor:pointer;
+	border: none;
+    outline: none;
+}
+
+.assistant button img {
+	padding-top:5px;
+	width: 25px;
+	height: 25px;
+}
+
+.assistant button:focus {
+    border: none;
+    outline: none;
+}
+
+/* Assistant - Chat Box */
+
+.assistant .chat{
+	display: none;
+	width:360px;
+	background:white;
+	border-radius:5px 5px 0px 0px;
+	border: 1px solid gray;
+}
+
+.assistant .header{	
+	background: #008CBA;
+	color:white;
+	padding:8px;
+	font-weight:bold;
+	border-radius:5px 5px 0px 0px;
+	line-height: 32px;
+}
+
+.assistant .header span{	
+	padding-left:0;
+	font-size: 11pt;
+}
+
+.assistant .header img {
+	width:18px;
+	height:35px;
+	margin-right: 10px;
+	float:right;
+}
+
+.assistant .header img.bot {
+	width:35px;
+	height:35px;
+	border-radius:50%;
+	background:#bbb;
+	float:left;	
+}
+
+.assistant .header .close{
+	float:right;
+	cursor:pointer;
+	width: 28px;
+	margin-right: 0;
+}
+
+.assistant .inner-body{
+	min-height: 250px;
+	max-height: calc(100vh - 300px);
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.assistant .msg-body {
+	font-size:12px;
+	padding: 10px 10px 5px 5px;
+}
 
 .assistant .msg-left{
 	margin-bottom:7px;
@@ -2214,11 +2526,40 @@ Open `css/assistant.css` file and append the following fields right before `foot
 }
 
 /* footer  */
-...
-```
 
-<center> Consolidate <i>assistant.css</i> file published in <a href="https://gist.github.com/ajhunyady/ecca29e6a6e8b8fa2a8ec36c2e277c70" target="_blank">gist</a></center>
+.assistant .footer {
+	background:white;
+	bottom: 0;
+	padding-bottom: 10px;
+	width: 100%;
+}
 
+.assistant .footer .textareaElement {
+	padding: 15px 10px 0 10px;
+	border-top: 1px solid #ccc;
+	min-height: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-size: 11pt;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333;
+}
+
+.assistant .footer .textareaElement:focus {
+	outline: none;
+}
+
+.assistant .footer [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: #aaa; 
+}
+
+.assistant .footer [placeholder]:empty:focus::before {
+    content: "";
+}
+{{< /highlight >}}
+
+The source code for **Step 6** is available in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/step6" target="_blank">github</a>.
 
 #### Test end-to-end workflow
 
