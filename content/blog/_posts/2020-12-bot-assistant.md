@@ -64,7 +64,7 @@ Bot assistant code is loaded dynamically through javascript. Let's create the ht
 touch index.html
 ```
 
-Copy the following code in `index.html` file:
+Paste the following code in `index.html` file:
 
 ```html
 <!DOCTYPE HTML>
@@ -104,7 +104,7 @@ First let's add the stylesheet:
 touch css/assistant.css
 ```
 
-Copy the following code in `css/assistant.css`
+Paste the following code in `css/assistant.css`
 
 ```css
 .assistant {
@@ -240,7 +240,7 @@ Next, let's add the script that creates DOM elements for the user interaction.
 touch scripts/assistant.js
 ```
 
-Copy the following code in `scripts/assistant.js`
+Paste the following code in `scripts/assistant.js`
 
 ```javascript
 window.onload = () => {
@@ -262,7 +262,7 @@ window.onload = () => {
             userMsg = createElement("div", {
                 "id": "user-msg",
                 "class": "textareaElement",
-                "placeholder": "Type here",
+                "placeholder": "Choose an option",
                 "contenteditable": "false"
             }),
             footer = createElement("div", { "class": "footer" }, userMsg),
@@ -389,7 +389,7 @@ Next, create a typescript configuration file:
 touch tsconfig.json
 ```
 
-Copy the following content in `tsconfig.json` file:
+Paste the following content in `tsconfig.json` file:
 
 ```json
 {
@@ -470,7 +470,8 @@ touch src/bot-server.ts
 ```
 
 We'll start by provisioning an `express` server to ensure the environment is in working order.
-Copy the following content in `src\bot-server.ts` file:
+
+Paste the following content in `src\bot-server.ts` file:
 
 ```ts
 import http from "http";
@@ -555,7 +556,7 @@ Our WebSocket negotiation is a proxy that intermediates the communication from c
 touch src/ws-proxy.ts
 ```
 
-Copy the following content in the `src/ws-proxy.ts` file:
+Paste the following content in the `src/ws-proxy.ts` file:
 
 ```ts
 import WS from "ws";
@@ -696,7 +697,7 @@ window.onload = () => {
             userMsg = createElement("div", {
                 "id": "user-msg",
                 "class": "textareaElement",
-                "placeholder": "Type here",
+                "placeholder": "Choose an option",
                 "contenteditable": "false"
             }),
             footer = createElement("div", { "class": "footer" }, userMsg),
@@ -789,7 +790,7 @@ window.onload = () => {
             userMsg = createElement("div", {
                 "id": "user-msg",
                 "class": "textareaElement",
-                "placeholder": "Type here",
+                "placeholder": "Choose an option",
                 "contenteditable": "false"
             }),
             footer = createElement("div", { "class": "footer" }, userMsg),
@@ -944,7 +945,7 @@ Bot assistant needs to support multiple conversations in parallel. To accomplish
 
 The server needs to ability to generate an push a session cookie to the client. Let's update `ws-proxy.ts` file. 
 
-{{< highlight typescript "hl_lines=3 5 21-24 34-43  46-47 50 64-78" >}}
+{{< highlight typescript "hl_lines=3 5 21-24 34-43 46-47 50 64-78" >}}
 import WS from "ws";
 import http from "http";
 import crypto from 'crypto';
@@ -1089,7 +1090,7 @@ We'll add `client.js` in the root `bot-client` directory. The file will provisio
 touch client.js
 ```
 
-Copy the following content in `client.js` file:
+Paste the following content in `client.js` file:
 
 ```ts
 const express = require('express');
@@ -1345,7 +1346,7 @@ Let's add `messages.ts` file inside `bot-server/src` directory:
 touch src/messages.ts
 ```
 
-Copy the following message definitions:
+Paste the following message definitions:
 
 ```typescript
 /* Request Messages */
@@ -1414,7 +1415,7 @@ The state machine defines the state workflow. Create `state-machine.ts` file ins
 touch src/state-machine.ts
 ```
 
-Copy the following code in the state-machine file:
+Paste the following code in the state-machine file:
 
 ```typescript
 import Fs from "fs";
@@ -1677,12 +1678,12 @@ The websocket will communicate with the state machine through a workflow control
 
 Let's update `src/ws-proxy.ts` file:
 
-{{< highlight typescript "hl_lines=4-5 11 15 50-56 61 67 72-81 100-110" >}}
+{{< highlight typescript "hl_lines=1 5 11 15 50-56 61 67 72-81 100-110" >}}
+import { EventEmitter } from "events";
 import WS from "ws";
 import http from "http";
 import crypto from 'crypto';
 import { SID } from './messages';
-import { EventEmitter } from "events";
 
 const COOKIE_NAME = "Fluvio-Bot-Assistant"
 
@@ -1811,7 +1812,7 @@ Let's add the file:
 touch src/workflow-controller.ts
 ```
 
-Copy the following content in the `src/workflow-controller.ts` file:
+Paste the following content in the `src/workflow-controller.ts` file:
 
 ```ts
 import {
@@ -2046,7 +2047,7 @@ window.onload = () => {
             userMsg = createElement("div", {
                 "id": "user-msg",
                 "class": "textareaElement",
-                "placeholder": "Type here",
+                "placeholder": "Choose an option",
                 "contenteditable": "false"
             }),
             footer = createElement("div", { "class": "footer" }, userMsg),
@@ -2250,7 +2251,7 @@ window.onload = () => {
         chatBox.addEventListener("keydown", {}, false);
 
         chatBox.setAttribute("contenteditable", false);
-        chatBox.setAttribute("placeholder", "Choose an Option");
+        chatBox.setAttribute("placeholder", "Choose an option");
     }
 
     // Scroll to last messages
@@ -2507,7 +2508,7 @@ Open `bot-client/css/assistant.css` file and and update as follows:
 .assistant .button {
 	width: max-content;
 	border-radius:15px;
-	padding: 10px;
+	padding: 10px 15px;
 	transition-duration: 0.2s;
 	background-color: white;
 	color: #006687;
@@ -2585,7 +2586,7 @@ We deploy Fluvio between connection proxy and workflow controller which also ena
 
 <img src="/blog/images/bot-assistant/architecture.svg"
      alt="Bot Assistant Architecture"
-     style="justify: center; max-width: 740px" />
+     style="justify: center; max-width: 780px" />
 
 The new architecture give us additional flexibility for:
 
@@ -2598,15 +2599,27 @@ The new architecture give us additional flexibility for:
 -> **Prerequisites:** This section assumes you have access to a Fluvio cluster. Step-by-step instructions on setting-up Fluvio are available in [Quick Start](/docs/getting-started/fluvio-cloud/).
 
 To integrate Fluvio data streaming we'll make the following code changes:
-* [Restructure code in services](#restructure-code-in-services)
-* [Add Fluvio data streaming](#add-fluvio-data-streaming)
+1. [Restructure code along service lines](#restructure-code-along-service-lines)
+2. [Install fluvio-lib package](#install-fluvio-lib-package)
+3. [Add fluvio-lib to proxy-service](#add-fluvio-libts-to-proxy-service)
+4. [Add streaming-controller to proxy-service](#add-streaming-controllerts-to-proxy-service)
+5. [Add fluvio-lib to workflow-service](#add-fluvio-libts-to-workflow-service)
+6. [Integrate fluvio with workflow-controller](#integrate-fluvio-with-workflow-controller)
+7. [Update bot-server initialization](#update-bot-serverts-initialization)
+8. [Add session handling to bot-client](#add-session-handling-to-bot-client)
 
-
-### Restructure code in services
+### Restructure code along service lines
 
 As shown in the diagram above, we'll divide the bot server code into separate services: `proxy-service` and `workflow-service`.
 
-After division we'll end up with the following file layout in `bot-server/src` directory:
+```bash
+cd ../bot-server/src
+mkdir {proxy-service,workflow-service}
+mv ws-proxy.ts proxy-service/
+mv {workflow-controller.ts,state-machine.ts} workflow-service/
+```
+
+After movement we'll end up with the following file layout in `bot-server/src` directory:
 
 ```bash
 tree
@@ -2614,17 +2627,17 @@ tree
 ├── bot-server.ts
 ├── messages.ts
 ├── proxy-service
-│   └── ws-server.ts
+│   └── ws-proxy.ts
 └── workflow-service
     ├── state-machine.ts
     └── workflow-controller.ts
 ```
 
-Shared files (_bot-server.ts_ and _messages.ts_) are left at the top level, others are divided along service boundaries. 
+Shared files, _bot-server.ts_ and _messages.ts_, are left at the top level, others are divided along service boundaries. 
 
 -> Make sure all **import** statements impacted by file movement are updated and the code continues to compile and run the same as before.
 
-### Add Fluvio data streaming
+### Install `fluvio-lib` package
 
 Fluvio has a node native library <a href="https://www.npmjs.com/package/@fluvio/client">@fluvio/client</a> in **npm**. Let's install in `bot-server` directory:
 
@@ -2635,133 +2648,1124 @@ added 2 packages from 1 contributor and audited 93 packages in 4.846s
 found 0 vulnerabilities
 ```
 
-In current form, _proxy_ and _workflow_ services are running in the same binary. After the Fluvio integration, they will be completely decoupled and can be moved to different machines virtually anywhere in the world. To that effect, let's add a fluvio API file to each service.
+In the current implementation, `workflow-controller` accesses APIs in proxy service directory, which breaks modularity. After the Fluvio integration, we can decouple such interdependencies, which enables us to run each services in its own binary. Fluvio allows the two services to run independently on servers anywhere in the world.
 
-#### Add fluvio.ts to proxy-service
+Next we'll add a fluvio library file to each of the two services.
+
+### Add `fluvio-lib.ts` to proxy-service
+
+We implement a Fluvio class to handles data streaming requirements for the proxy service. The class intermediates incoming topic messages through an emitter called FLUVIO_MESSAGE.
+
+Let's create `fluvio-lib.ts` file inside proxy-service:
+
+```bash
+touch ./src/proxy-service/fluvio-lib.ts
+```
+
+Paste the following code in `./src/proxy-service/fluvio-lib.ts` file:
+
+```typescript
+import { EventEmitter } from "events";
+import Fluvio, { Offset, OffsetFrom } from '@fluvio/client';
+
+// Fluvio Library
+export class FluvioLib {
+    private _fluvio: Fluvio;
+    private _topicName: string;
+
+    public async init(topicName: string) {
+        this._topicName = topicName;
+        this._fluvio = new Fluvio();
+
+        await this._fluvio.connect();
+        await this.createTopicIfNotFound(topicName);
+    }
+
+    public async produceMessage(msg: string) {
+        const producer = await this._fluvio.topicProducer(this._topicName);
+        producer.sendRecord(msg, 0);
+    }
+
+    public async fetchMessages() {
+        this._fluvio = new Fluvio();
+        await this._fluvio.connect();
+
+        const consumer = await this._fluvio.partitionConsumer(this._topicName, 0)
+        const offset: Offset = new Offset()
+
+        const fetched = await consumer.fetch(offset);
+        if (fetched) {
+            fetched.records.batches.forEach(batch => {
+                batch.records.forEach(record => {
+                    fluvioEvents.emit(
+                        fluvioEvents.FLUVIO_MESSAGE,
+                        record.value
+                    );
+                });
+            });
+        }
+
+        console.log(`proxy: fetched ${fetched.highWatermark} messages`);
+    }
+
+    public async startConsumerStream() {
+        const consumer = await this._fluvio.partitionConsumer(this._topicName, 0);
+        const offset: Offset = new Offset({ from: OffsetFrom.End, index: 0 })
+
+        console.log('proxy: listening for events ... ');
+
+        consumer.stream(offset, (record: string) => {
+            fluvioEvents.emit(
+                fluvioEvents.FLUVIO_MESSAGE,
+                record
+            );
+        })
+    }
+
+    private async createTopicIfNotFound(topicName: string) {
+        const admin = await this._fluvio.admin();
+        const topic = await admin.findTopic(topicName);
+
+        if (!topic) {
+            await admin.createTopic(topicName);
+            console.log(`topic: '${topicName}' created`);
+            await this.sleep(2000);
+        }
+    }
+
+    private async sleep(ms: number) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms)
+        })
+    }
+}
+
+/* Fluvio Event Emitter */
+class FluvioEvents extends EventEmitter {
+    readonly FLUVIO_MESSAGE = 'Fluvio-Message';
+
+    private static _instance = new FluvioEvents();
+    static get instance() {
+        return this._instance;
+    }
+}
+export const fluvioEvents = FluvioEvents.instance;
+```
+
+Let's review the class routines:
+* **init** establishes a new connection to fluvio and creates the topic.
+* **produceMessage** send a message to fluvio.
+* **fetchMessages** reads all messages in the topic and emits them in FLUVIO_MESSAGE
+* **startConsumerStream** opens a stream and emits all messages on FLUVIO_MESSAGE
+* **createTopicIfNoFound** searches for the topic and it creates one if it does not exist.
+* **sleep** pauses the flow for a number of milliseconds.
+
+We also extended EventEmitter to emit fluvio messages.
+
+Next we'll add a streaming controller to intermediate messages between Fluvio and the websocket.
+
+#### Add `streaming-controller.ts` to proxy-service
+
+Streaming controller is the coordinator of the fluvio data streaming messages. It creates the topic, caches messages, and intermediates all exchanges between the websocket and Fluvio.
 
 Create `fluvio.ts` file inside proxy-service:
 
 ```bash
-cd ./proxy-service
-touch fluvio.ts
+touch ./src/proxy-service/streaming-controller.ts
 ```
 
-Copy the following code into the file:
+Paste the following code into the file:
 
 ```typescript
+import { WsProxy, wsProxyEvents } from "./ws-proxy";
+import { FluvioLib, fluvioEvents } from "./fluvio-lib";
+import { Message, SID, buildInitMessage, buildResponse, isRequest } from "../messages";
+
+type Messages = Array<Message>;
+
+export class StreamingController {
+    private _dataStreams: Map<SID, Messages>;
+    private _fluvio: FluvioLib;
+    private _wsProxy: WsProxy;
+
+    constructor() {
+        this._dataStreams = new Map();
+        this._fluvio = new FluvioLib();
+    }
+
+    public async init(topicName: string, wsProxy: WsProxy) {
+        this._wsProxy = wsProxy;
+
+        this.listenForEvents();
+
+        await this._fluvio.init(topicName);
+        console.log("after topic add");
+        await this._fluvio.fetchMessages();
+        console.log("after fetch");
+        await this._fluvio.startConsumerStream();
+
+        this.show();
+    }
+
+    public async messageFromClient(sid: SID, clientMsg: string) {
+        const response = JSON.parse(clientMsg);
+        const message = buildResponse(sid, response);
+
+        await this._fluvio.produceMessage(JSON.stringify(message));
+    }
+
+    public sendToClient(message: Message) {
+        if (message.payload) {
+            const clientMessage = message.payload.message;
+            this._wsProxy.sendMessage(message.sid, JSON.stringify(clientMessage));
+        }
+    }
+
+    private append(message: Message) {
+        const sid = message.sid;
+        var messages = this._dataStreams.get(sid);
+        if (!messages) {
+            messages = new Array();
+        }
+        messages.push(message);
+        this._dataStreams.set(sid, messages);
+    }
+
+    private show() {
+        let table = new Map();
+        for (let [key, value] of this._dataStreams) {
+            table.set(key, value.length);
+        }
+        console.table(table, ["SID", "Messages"]);
+    }
+
+    private listenForEvents() {
+
+        fluvioEvents.on(
+            fluvioEvents.FLUVIO_MESSAGE,
+            (msgObj: string) => {
+                const message: Message = JSON.parse(msgObj);
+                this.append(message);
+                if (isRequest(message.payload)) {
+                    this.sendToClient(message);
+                }
+            }
+        );
+
+        wsProxyEvents.on(
+            wsProxyEvents.CONNECTION,
+            async (sid: SID) => {
+                const messages = this._dataStreams.get(sid);
+                if (messages) {
+                    messages.forEach(message => {
+                        this.sendToClient(message);
+                    });
+                } else {
+                    const message = buildInitMessage(sid);
+                    await this._fluvio.produceMessage(JSON.stringify(message));
+                }
+            }
+        );
+
+        wsProxyEvents.on(
+            wsProxyEvents.MESSAGE,
+            async (sid: SID, clientMsg: string) => {
+                const response = JSON.parse(clientMsg);
+                const message = buildResponse(sid, response);
+
+                await this._fluvio.produceMessage(JSON.stringify(message));
+            }
+        );
+    }
+}
+```
+
+Aside from coordination, streaming controller also builds a memory map of the message exchanges anchored by a session id. The memory map accelerates the playback of messages in the event of a connection reset.
+
+Let's review the streaming controller routines:
+* **init** connects with fluvio, fetches all messages to build a memory map, starts the consumer, and initializes event listeners.
+* **messageFromClient** appends messages with headers and writes them to the fluvio topic.
+* **sendToClient** strips message headers and sends the payload to websocket proxy.
+* **append** adds a messages to the memory map
+* **show** dumps the memory map to the screen
+* **listenForEvents** proxies the messages on behalf of both event emitters:
+    * fluvioEvents.FLUVIO_MESSAGE
+    * wsProxyEvents.CONNECTION
+    * wsProxyEvents.MESSAGE
+
+Congratulations! Proxy service code changes are done. Let's update workflow service next.
+
+### Add `fluvio-lib.ts` to workflow-service
+
+The `fluvio-lib.ts` file in the workflow service is similar to `fluvio-lib.ts` the proxy service. The reason for a separate files is to keep the services decoupled.
+
+Let's create `fluvio-lib.ts` file inside proxy-service:
+
+```bash
+touch ./src/workflow-service/fluvio-lib.ts
+```
+
+Paste the following code in `./src/workflow-service/fluvio-lib.ts` file:
+
+```typescript
+import { EventEmitter } from "events";
 import Fluvio, { Offset, OffsetFrom } from '@fluvio/client';
-import { dataStreamingEvents } from './data_streams';
 
-/* Data Streaming Event Emitter */
-class DataStreamingEvents extends EventEmitter {
-    readonly FLUVIO_MESSAGE = 'Fluvio';
-}
-export const dataStreamingEvents = new DataStreamingEvents();
+// Fluvio Library
+export class FluvioLib {
+    private _fluvio: Fluvio;
+    private _topicName: string;
 
-/* Find a topic*/
-export async function findTopic(topicName: string) {
-    const fluvio = new Fluvio();
+    public async init(topicName: string) {
+        this._topicName = topicName;
+        this._fluvio = new Fluvio();
 
-    await fluvio.connect();
-    const admin = await fluvio.admin();
-    const topic = await admin.findTopic(topicName);
+        await this._fluvio.connect();
+    }
 
-    return (topic != null);
-}
+    public async produceMessage(msg: string) {
+        const producer = await this._fluvio.topicProducer(this._topicName);
+        producer.sendRecord(msg, 0);
+    }
 
-/* Create a topic */
-export async function createTopic(topicName: string) {
-    const fluvio = new Fluvio();
+    public async startConsumerStream() {
+        const consumer = await this._fluvio.partitionConsumer(this._topicName, 0);
+        const offset: Offset = new Offset({ from: OffsetFrom.End, index: 0 })
 
-    await fluvio.connect();
-    const admin = await fluvio.admin();
-    await admin.createTopic(topicName);
-}
+        console.log('workflow: listening for events ... ');
 
-/* Create topic if does not exist */
-export async function createTopicIfNotFound(topicName: string) {
-    if (!await findTopic(topicName)) {
-        await createTopic(topicName);
-        await sleep(2000);
-        console.log(`proxy: topic '${topicName}' created`);
+        consumer.stream(offset, (record: string) => {
+            fluvioEvents.emit(
+                fluvioEvents.FLUVIO_MESSAGE,
+                record
+            );
+        })
     }
 }
 
-/* Produce - produce a message */
-export async function produceMessage(topicName: string, msg: string) {
-    const fluvio = new Fluvio();
+/* Fluvio Event Emitter */
+class FluvioEvents extends EventEmitter {
+    readonly FLUVIO_MESSAGE = 'Fluvio-Message';
 
-    await fluvio.connect();
-    const producer = await fluvio.topicProducer(topicName);
-    producer.sendRecord(msg, 0);
+    private static _instance = new FluvioEvents();
+    static get instance() {
+        return this._instance;
+    }
 }
+export const fluvioEvents = FluvioEvents.instance;
+```
 
-/* Consumer Stream - Continuous fetch records from stream. */
-export async function startConsumerStream(topicName: string) {
-    const fluvio = new Fluvio();
+Workflow controller has fewer requirements on Fluvio and the file implements fewer routines: **produceMessage** and **startConsumerStream**. The APIs are reviewed in the [previous section](#add-fluvio-libts-to-proxy-service).
 
-    await fluvio.connect();
+Next, we'll update workflow controller to exchange messages with fluvio instead of directly with the websocket proxy.
 
-    const consumer = await fluvio.partitionConsumer(topicName, 0)
-    const offset: Offset = new Offset({ from: OffsetFrom.End, index: 0 })
+### Integrate fluvio with workflow-controller
 
-    console.log('proxy: listening for events ... ');
+When workflow controller communicates with fluvio instead of the websocket proxy, it becomes an independent service. A handful of code changes will turn our workflow implementation into a powerful microservice that can be moved, scaled and upgraded independently. 
 
-    consumer.stream(offset, (record: string) => {
-        dataStreamingEvents.emit(
-            dataStreamingEvents.FLUVIO_MESSAGE,
-            record
+Paste the following code changes in the `./src/workflow-service/workflow-controller.ts` file:
+{{< highlight typescript "hl_lines=7 10 17-19 21 24-25 31-34 36-39 106-114 117-131" >}}
+import {
+    SID,
+    ResponseMessage,
+    ChoiceResponse,
+    UserText,
+    buildRequest,
+    isRequest,
+} from "../messages";
+import { StateMachine, State } from "./state-machine";
+import { FluvioLib, fluvioEvents } from "./fluvio-lib";
+
+export class WorkflowController {
+    private static _stateMachine: StateMachine;
+    private static _initState: string;
+    private _fluvio: FluvioLib;
+
+    constructor() {
+        this._fluvio = new FluvioLib();
+    }
+
+    init(stateMachine: StateMachine, wsProxy: WsProxy) {
+        this.listenForEvents();
+
+        await this._fluvio.init(topicName);
+        await this._fluvio.startConsumerStream();
+
+        WorkflowController._stateMachine = stateMachine;
+        WorkflowController._initState = stateMachine.keys().next().value;
+    }
+
+    async processNewConnection(sid: SID) {
+        const nextStates = this.getInit();
+        await this.sendMessages(sid, nextStates);
+    }
+
+    async processClientMessage(sid: SID, response: ResponseMessage) {
+        const nextStates = this.getNext(response);
+        await this.sendMessages(sid, nextStates);
+    }
+
+    private getInit() {
+        return this.processNext(WorkflowController._initState);
+    }
+
+    private getNext(response: ResponseMessage) {
+        var state: string = this.getState(response);
+
+        return this.processNext(state);
+    }
+
+    private getState(response: ResponseMessage) {
+        switch (response.kind) {
+            case "ChoiceResponse": {
+                return this.getChoiceResponseState(response);
+            }
+            case "UserText": {
+                return this.getUserTextState(response);
+            }
+        }
+    }
+
+    private processNext(startState: string) {
+        var nextStates: State[] = [];
+
+        var state = WorkflowController._stateMachine.get(startState);
+        while (state) {
+            nextStates.push(state);
+
+            const next = state.next || "";
+            state = WorkflowController._stateMachine.get(next);
+            if (next.length > 0 && !state) {
+                console.error(`Error: Cannot find next state: ${next}`);
+            }
+        }
+
+        return nextStates;
+    }
+
+    private getChoiceResponseState(choiceResponse: ChoiceResponse) {
+        for (let [key, state] of WorkflowController._stateMachine.entries()) {
+            if (state.matchResponse &&
+                state.matchResponse.kind == choiceResponse.kind &&
+                state.matchResponse.groupId == choiceResponse.groupId &&
+                state.matchResponse.itemId == choiceResponse.itemId) {
+                return key;
+            }
+        }
+
+        console.error(`Error: cannot find choice ${JSON.stringify(choiceResponse)}`);
+        return WorkflowController._initState;
+    }
+
+    private getUserTextState(userText: UserText) {
+        for (let [key, state] of WorkflowController._stateMachine.entries()) {
+            if (state.matchResponse &&
+                state.matchResponse.kind == "UserText" &&
+                state.matchResponse.sessionId == userText.sessionId) {
+                return key;
+            }
+        }
+
+        console.error(`Error: cannot find user session ${JSON.stringify(userText)}`);
+        return WorkflowController._initState;
+    }
+
+    private async sendMessages(sid: SID, nextStates: State[]) {
+        for (let idx = 0; idx < nextStates.length; idx++) {
+            const state = nextStates[idx];
+            if (state.sendRequest) {
+                const message = buildRequest(sid, state.sendRequest);
+                await this._fluvio.produceMessage(JSON.stringify(message));
+            }
+        }
+    }
+
+    private listenForEvents() {
+        fluvioEvents.on(
+            fluvioEvents.FLUVIO_MESSAGE,
+            async (msgObj: string) => {
+                const message = JSON.parse(msgObj);
+                if (!isRequest(message.payload)) {
+                    const sid = message.sid;
+
+                    if (message.payload) {
+                        await this.processClientMessage(sid, message.payload.message);
+                    } else {
+                        await this.processNewConnection(sid);
+                    }
+                }
+            }
         );
-    })
+    }
+}
+{{< /highlight >}}
+
+Let's review the code changes:
+* **import**: replaces WsProxy it FluvioLib.
+* **constructor**: declares a Fluvio object.
+* **init**: initializes Fluvio object to connect to a topic.
+* **sendMessage**: appends request headers and sends the message to Fluvio.
+* **listenForEvents** replaces the WsProxyEvents listener with the fluvioEvents listener. 
+
+Finally, **processNewConnection** and **processClientMessage** are updated to use _sendMessage_ API.
+
+Changes in the workflow controller initialization impacts bot-server initialization. Let's update that next.
+
+### Update `bot-server.ts` initialization
+
+test
+
+{{< highlight typescript "hl_lines=6 9 27-29 35" >}}
+import http from "http";
+import express from "express";
+import { WsProxy } from "./ws-proxy";
+import { StateMachine, loadStateMachine } from "./state-machine";
+import { WorkflowController } from "./workflow-controller";
+import { StreamingController } from "./proxy-service/streaming-controller";
+
+const PORT = 9998;
+const DATA_STREAM_TOPIC = "bot-assist-messages";
+
+// Provision Bot Assistant server
+const startServer = async () => {
+    const app = express();
+    const Server = http.createServer(app);
+
+    // Attach websocket to server
+    const wsProxy = new WsProxy();
+    wsProxy.init(Server);
+
+    // Start server
+    Server.listen(PORT, () => {
+        console.log(
+            `started bot assistant server at http://localhost:${PORT}...`
+        );
+    });
+
+    // Initialize streaming controller
+    const streamingController = new StreamingController();
+    await streamingController.init(DATA_STREAM_TOPIC, wsProxy);
+
+    // Initialize state machine
+    let filePath = getFileName();
+    const stateMachine: StateMachine = loadStateMachine(filePath);
+    const workflowController = new WorkflowController();
+    await workflowController.init(DATA_STREAM_TOPIC, stateMachine);
+};
+
+// read state machine file from command line
+function getFileName() {
+    if (process.argv.length != 3) {
+        console.log("Usage: node bot-server.js <state-machine.json>");
+        process.exit(1);
+    }
+    return process.argv[2];
 }
 
-/* Consumer Fetch - Fetch all messages from offset 0 */
-export async function fetchMessages(topicName: string) {
-    const fluvio = new Fluvio();
+// Start Server
+startServer();
+{{< /highlight >}}
 
-    await fluvio.connect();
+Congratulations! Bot server changes are now completed. Let's put the finishing touches on the bot client.
 
-    const consumer = await fluvio.partitionConsumer(topicName, 0)
-    const offset: Offset = new Offset()
+### Add session handling to bot-client
 
-    const fetched = await consumer.fetch(offset);
-    if (fetched) {
-        fetched.records.batches.forEach(batch => {
-            batch.records.forEach(record => {
-                dataStreamingEvents.emit(
-                    dataStreamingEvents.FLUVIO_MESSAGE,
-                    record.value
-                );
+Session handling has two parts:
+* copy reconnecting-socket.js
+* assistant.js
+* assistant.css
+
+reconnecting-socket.js
+
+```bash
+cd ../bot-client
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/scripts/reconnecting-socket.js --output scripts/reconnecting-socket.js
+```
+
+assistant.js
+
+{{< highlight javascript "hl_lines=3 5-6 15-16 20-21 37 57-64 74 77-78 83 102-108 262-273 294-301" >}}
+window.onload = () => {
+    var webSocket = null;
+    var sessionId = "";
+
+    // Load reconnecting socket to DOM
+    loadScript("scripts/reconnecting-socket.js");
+
+    // Create and attach Bot Assistant HTML elements
+    function loadAssistant() {
+        // Add assistant button
+        var note = createElement("img", { "src": `img/assistant/note.svg` }),
+            aButton = createElement("button", {}, note);
+
+        // Append assistant dialog
+        var status = createElement("div", { "id": "bot-status", "class": "status off" }),
+            overlay = createElement("div", { "class": "overlay" }, status),        
+            bot = createElement("img", { "src": `img/assistant/bot.svg`, "class": "bot" }),
+            title = createElement("span", {}, "Bot Assistant"),
+            aDialogClose = createElement("img", { "src": `img/assistant/close.svg`, "class": "close" }),
+            aDialogReset = createElement("img", { "src": `img/assistant/redo.svg` }),
+            header = createElement("div", { "class": "header" }, [bot, overlay, title, aDialogClose, aDialogReset]),
+            msgBody = createElement("div", { "class": "msg-body" }),
+            innerBody = createElement("div", { "class": "inner-body" }, msgBody),
+            body = createElement("div", { "class": "body-wrapper" }, innerBody),
+            userMsg = createElement("div", {
+                "id": "user-msg",
+                "class": "textareaElement",
+                "placeholder": "Choose an option",
+                "contenteditable": "false"
+            }),
+            footer = createElement("div", { "class": "footer" }, userMsg),
+            aDialog = createElement("div", { "class": "chat" }, [header, body, footer]);
+
+        // Attach event listeners
+        aButton.addEventListener('click', onOpenDialog, false);
+        aDialogClose.addEventListener('click', onCloseDialog, false);
+        aDialogReset.addEventListener('click', onResetSession, false);
+
+        // Add to document
+        document.querySelector(".assistant").appendChild(aButton);
+        document.querySelector(".assistant").appendChild(aDialog);
+    }
+
+    // On open assistant dialog callback
+    function onOpenDialog() {
+        document.querySelector(".assistant button").style.display = "none";
+        document.querySelector(".assistant .chat").style.display = "block";
+        openWSConnection();
+    }
+
+    // On close assistant dialog callback
+    function onCloseDialog() {
+        document.querySelector(".assistant .chat").style.display = "none";
+        document.querySelector(".assistant button").style.display = "block";
+    }
+
+    // Clear the cookie and restart connection to create a new session.
+    function onResetSession() {
+        document.cookie = "Fluvio-Bot-Assistant=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+        closeWsConnection();
+        clearMessages();
+        openWSConnection();
+    }
+
+    // Open WebSocket connection
+    function openWSConnection() {
+        try {
+            if (webSocket != null) {
+                return; // already connected
+            }
+
+            logOutput("Connecting to: ws://localhost:9998/");
+            webSocket = new ReconnectingWebSocket("ws://localhost:9998/");
+
+            webSocket.onopen = function (openEvent) {
+                clearMessages();
+                document.getElementById("bot-status").setAttribute("class", "status on");                
+                logOutput("Connected!");
+            };
+
+            webSocket.onclose = function (closeEvent) {
+                document.getElementById("bot-status").setAttribute("class", "status off");
+                logOutput("Disconnected!");
+            };
+
+            webSocket.onerror = function (errorEvent) {
+                logOutput(`Error: ${JSON.stringify(errorEvent)}`);
+            };
+
+            webSocket.onmessage = function (messageEvent) {
+                var serverMsg = messageEvent.data;
+                logOutput(`<== ${serverMsg}`);
+                onMessageFromServer(serverMsg);
+            };
+
+        } catch (exception) {
+            logOutput(`error: ${JSON.stringify(exception)}`);
+        }
+    }
+
+    // Close WS Connection
+    function closeWsConnection() {
+        if (webSocket.open) {
+            webSocket.close();
+            webSocket = null;
+        }
+    }
+
+    // On messages received from Websocket
+    function onMessageFromServer(value) {
+        const message = JSON.parse(value);
+        switch (message.kind) {
+            case "BotText":
+                showBotText(message.content);
+                break;
+            case "UserText":
+                showUserText(message.content);
+                break;
+            case "ChoiceRequest":
+                showBotText(message.question);
+                showChoiceButtons(message.groupId, message.choices);
+                break;
+            case "ChoiceResponse":
+                choicesToButton(message.groupId, message.content);
+                break;
+            case "StartChatSession":
+                sessionId = message.sessionId;
+                enableChatEditor(message.chatPrompt, message.chatText);
+                break;
+            case "EndChatSession":
+                disableChatEditor();
+                break;
+        };
+    }
+
+    // Send a message on WebSocket
+    function sendWsMessage(message) {
+        if (webSocket.readyState != WebSocket.OPEN) {
+            logOutput("WebSocket is not connected: " + webSocket.readyState);
+            return;
+        }
+
+        const msgObj = JSON.stringify(message)
+        logOutput(`==> ${msgObj}`);
+
+        webSocket.send(msgObj);
+    }
+
+    // Show text from bot assistant
+    function showBotText(content) {
+        if (content.length > 0) {
+            removeDuplicateAvatar("bot");
+
+            var img = createElement("img", { "src": `img/assistant/bot.svg` }),
+                avatar = createElement("div", { "class": "avatar", "id": "bot" }, img),
+                msg = createElement("div", { "class": "msg" }, content),
+                msgLeft = createElement("div", { "class": "msg-left" }, [msg, avatar]);
+
+            document.querySelector(".msg-body").appendChild(msgLeft);
+            scrollToBottom(".inner-body");
+        }
+    }
+
+    // Show text from user interactive session
+    function showUserText(content) {
+        if (content.length > 0) {
+            var msg = createElement("div", { "class": "msg" }, content),
+                msgLeft = createElement("div", { "class": "msg-right" }, msg);
+
+            document.querySelector(".msg-body").appendChild(msgLeft);
+            scrollToBottom(".inner-body");
+        }
+    }
+
+    // Show choices
+    function showChoiceButtons(groupId, choices) {
+        if (choices.length > 0) {
+            var buttons = [];
+
+            choices.forEach(choice => {
+                var button = createElement("div", { "class": "button" }, choice.content);
+                button.addEventListener('click', function () {
+                    pickChoice(groupId, choice.itemId, choice.content);
+                }, false);
+
+                buttons.push(createElement("div", { "class": "btn" }, button));
             });
+
+            var msgLeft = createElement("div", { "class": "msg-left", "id": groupId }, buttons);
+
+            document.querySelector(".msg-body").appendChild(msgLeft);
+            scrollToBottom(".inner-body");
+        }
+    }
+
+    // Callback invoked on user selection
+    function pickChoice(groupId, itemId, content) {
+        choicesToButton(groupId, content);
+
+        sendWsMessage({
+            kind: "ChoiceResponse",
+            groupId: groupId,
+            itemId: itemId,
+            content: content,
         });
     }
 
-    console.log(`proxy: fetched ${fetched.highWatermark} messages`);
+    // Swap choices with a button representing the selection
+    function choicesToButton(groupId, content) {
+        document.getElementById(groupId).remove();
+
+        var button = createElement("div", { "class": "button selected" }, content),
+            btn = createElement("div", { "class": "btn" }, button),
+            msgRight = createElement("div", { "class": "msg-right" }, btn);
+
+        document.querySelector(".msg-body").appendChild(msgRight);
+        scrollToBottom(".inner-body");
+    }
+
+    // On multiple bot messages, ensure avatar is only displayed on last entry
+    function removeDuplicateAvatar(id) {
+        var messages = document.querySelector('.msg-body').children;
+        if (messages.length > 0) {
+            var lastMessage = messages[messages.length - 1];
+            if (lastMessage.getAttribute("class") === 'msg-left') {
+                if (lastMessage.lastChild.id == id) {
+                    lastMessage.removeChild(lastMessage.lastChild);
+                }
+            }
+        }
+    }
+
+    // Make editor section editable
+    function enableChatEditor(chatPrompt, chatText) {
+        if (chatText) {
+            showBotText(chatText);
+        }
+
+        var chatBox = document.getElementById("user-msg");
+        chatBox.setAttribute("contenteditable", true);
+        chatBox.setAttribute("placeholder", chatPrompt || "Type question here ...");
+
+        chatBox.addEventListener("keydown", onEditorKeys, false);
+    }
+
+    // Disable interactive chat
+    function disableChatEditor() {
+        var chatBox = document.getElementById("user-msg");
+        chatBox.addEventListener("keydown", {}, false);
+
+        chatBox.setAttribute("contenteditable", false);
+        chatBox.setAttribute("placeholder", "Choose an option");
+    }
+
+    // Scroll to last messages
+    function scrollToBottom(tag) {
+        var div = document.querySelector(tag);
+        div.scrollTop = div.scrollHeight - div.clientHeight;
+    }
+
+    // Clear messages in both editors
+    function clearMessages() {
+        var parent = document.querySelector('.msg-body');
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+
+        var debugOutput = document.getElementById("debugOutput");
+        if (debugOutput) {
+            debugOutput.value = "";
+        }
+    }
+
+    // Callback on chat editor user input (key press)
+    function onEditorKeys(e) {
+        var chatBox = document.getElementById("user-msg");
+
+        if (e.code == 'Enter' && chatBox.textContent.length > 0) {
+            e.preventDefault();
+
+            const content = chatBox.textContent;
+            sendWsMessage({
+                kind: "UserText",
+                sessionId: sessionId,
+                content: content,
+            });
+            showUserText(content);
+
+            chatBox.innerHTML = '';
+        }
+    }
+
+    //  Load external javascript file to DOM
+    function loadScript(fileName) {
+        var js_script = document.createElement('script');
+        js_script.type = "text/javascript";
+        js_script.src = fileName;
+        js_script.async = false;
+        document.getElementsByTagName('head')[0].appendChild(js_script);
+    }
+
+    // Log output in the "debugOutput" textarea (if available) and the console
+    function logOutput(value) {
+        var debugOutput = document.getElementById("debugOutput");
+        if (debugOutput) {
+            debugOutput.value += value + "\n\n";
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+        }
+        console.log(value);
+    }
+
+    // Create element utility function
+    function createElement(element, attribute, inner) {
+        if (typeof (element) === "undefined") { return false; }
+        if (typeof (inner) === "undefined") { inner = ""; }
+
+        var el = document.createElement(element);
+        if (typeof (attribute) === 'object') {
+            for (var key in attribute) {
+                el.setAttribute(key, attribute[key]);
+            }
+        }
+        if (!Array.isArray(inner)) {
+            inner = [inner];
+        }
+        for (var k = 0; k < inner.length; k++) {
+            if (inner[k].tagName) {
+                el.appendChild(inner[k]);
+            } else {
+                el.innerHTML = inner[k];
+            }
+        }
+        return el;
+    }
+
+    // Call main function
+    loadAssistant();
+};
+{{< /highlight >}}
+
+assistant.css
+
+{{< highlight css "hl_lines=70-78 80-84 86-88 90-92" >}}
+.assistant {
+	font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+	position:fixed;
+	bottom:20px;
+	right:25px;
 }
 
-export async function sleep(ms: number) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, ms)
-    })
+/* Assistant - Button */
+
+ .assistant button {
+	width: 45px;
+	height: 45px;
+	background:#008CBA;
+	border-radius:5px;
+	cursor:pointer;
+	border: none;
+    outline: none;
 }
-```
 
-The file provides convenience functions to search and create topics, as well as produce and consume messages. Messages can be consumed continuously or fetched from a specific offset. Messages received from the topic are emitted in FLUVIO_MESSAGE.
+.assistant button img {
+	padding-top:5px;
+	width: 25px;
+	height: 25px;
+}
 
-Next we'll add a data streaming file to proxy fluvio messages between the client and the workflow service.
+.assistant button:focus {
+    border: none;
+    outline: none;
+}
 
-#### Add data-streaming.ts to proxy-service
+/* Assistant - Chat Box */
 
-Data streaming file is the facilitator for all fluvio interactions. It creates the topic, and intermediates all message exchanges between the websocket and Fluvio.
+.assistant .chat{
+	display: none;
+	width:360px;
+	background:white;
+	border-radius:5px 5px 0px 0px;
+	border: 1px solid gray;
+}
 
+.assistant .header{	
+	background: #008CBA;
+	color:white;
+	padding:8px;
+	font-weight:bold;
+	border-radius:5px 5px 0px 0px;
+	line-height: 32px;
+}
 
-Create `fluvio.ts` file inside proxy-service:
+.assistant .header span{	
+	padding-left:0;
+	font-size: 11pt;
+}
 
-```bash
-cd ./proxy-service
-touch data-streaming.ts
-```
+.assistant .header img {
+	width:18px;
+	height:35px;
+	margin-right: 10px;
+	float:right;
+}
 
-Copy the following code into the file:
+.assistant .header img.bot {
+	width:35px;
+	height:35px;
+	border-radius:50%;
+	background:#bbb;
+	float:left;	
+}
 
-```typescript
+.assistant .header .overlay {
+	background-color: #f6f6f6;
+	padding: 1px;
+	position: absolute;
+	top: 32px;
+	left: 33px;
+	border-radius: 12px;
+	z-index: 1;
+}
+
+.assistant .header .status{
+	width: 12px;
+	height: 12px;
+	border-radius: 12px;
+}
+
+.assistant .header .status.off{
+	background-color: #FF3B28;
+}
+
+.assistant .header .status.on{
+	background-color: greenyellow;
+}
+
+.assistant .header .close{
+	float:right;
+	cursor:pointer;
+	width: 28px;
+	margin-right: 0;
+}
+
+.assistant .inner-body{
+	min-height: 250px;
+	max-height: calc(100vh - 300px);
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.assistant .msg-body {
+	font-size:12px;
+	padding: 10px 10px 5px 5px;
+}
+
+.assistant .msg-left{
+	margin-bottom:7px;
+	word-break: break-all;
+}
+
+.assistant .msg-left .avatar {
+	width: 50px;
+	margin-top: -40px;
+}
+
+.assistant .msg-left .operator {
+	margin-top: -40px;
+	padding: 1px;
+	font-size:1.6em;
+	width:35px;
+	height:35px;
+	line-height:1.8em;
+	text-align:center;
+	border-radius:50%;
+	background:plum;
+	color:white;
+}
+
+.assistant .msg-left img {
+	width:35px;
+	height:35px;
+	border-radius:50%;
+	background:#bbb;
+	border: 1px solid #eee;
+}
+
+.assistant .msg-left .msg {
+	background:#f2f2f2;
+	padding:10px;
+	min-height:15px;
+	margin: 3px;
+	border: 1px solid #ddd;
+	border-radius:7px;
+	margin-left: 44px;
+	margin-right: 30px;
+}
+
+.assistant .msg-left .button {
+	margin: -2px 30px 7px 50px;
+}
+
+.assistant .msg-right {
+	position: relative;
+	right: 0px;
+	margin: 3px;
+	margin-bottom:10px;
+}
+
+.assistant .msg-right .msg {
+	background:#d4e7fa;
+	padding:10px;
+	min-height:15px;
+	margin-left: 80px;
+	border-radius:7px;
+	word-break: break-all;
+}
+
+.assistant .msg-right .button {
+	float: right;
+}
+
+/* button  */
+
+.assistant .btn {
+	display: inline-block;
+	margin: 2px;
+	width: 100%;
+}
+
+.assistant .button {
+	width: max-content;
+	border-radius:15px;
+	padding: 10px 15px;
+	transition-duration: 0.2s;
+	background-color: white;
+	color: #006687;
+	border: 1px solid #008CBA;
+}
+
+.assistant .button.selected {
+	background-color: #008CBA;
+	color: white;
+}
+  
+.assistant .button:hover {
+	cursor: pointer;
+	background-color: #008CBA;
+	color: white;
+}
+
+/* footer  */
+
+.assistant .footer {
+	background:white;
+	bottom: 0;
+	padding-bottom: 10px;
+	width: 100%;
+}
+
+.assistant .footer .textareaElement {
+	padding: 15px 10px 0 10px;
+	border-top: 1px solid #ccc;
+	min-height: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-size: 11pt;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333;
+}
+
+.assistant .footer .textareaElement:focus {
+	outline: none;
+}
+
+.assistant .footer [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: #aaa; 
+}
+
+.assistant .footer [placeholder]:empty:focus::before {
+    content: "";
+}
+{{< /highlight >}}
