@@ -3795,7 +3795,7 @@ The project is available for download in <a href="https://github.com/infinyon/fl
 
 ## Conclusion
 
-While building a robot assistant may have seemed like an overwhelming undertaking, this blog shows that it is possible to build and end-to-end solution in just a few hours. 
+While building a robot assistant may have seemed like an overwhelming undertaking, this blog shows that it is possible to build an end-to-end solution in just a few hours. 
 
 The blog also shows the value of a persistent data streaming platform such as Fluvio. The platform allows the bot assistant to scale to a large number of client instance with just a few lines of code.
 
