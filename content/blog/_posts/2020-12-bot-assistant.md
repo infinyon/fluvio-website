@@ -328,10 +328,10 @@ The script uses several images to enhance the visualization. Let's load the imag
 
 ```bash
 mkdir -p img/assistant
-curl -L http://fluvio.io/blog/images/bot-assistant/download/note.svg --output img/assistant/note.svg
-curl -L http://fluvio.io/blog/images/bot-assistant/download/bot.svg --output img/assistant/bot.svg
-curl -L http://fluvio.io/blog/images/bot-assistant/download/redo.svg --output img/assistant/redo.svg
-curl -L http://fluvio.io/blog/images/bot-assistant/download/close.svg --output img/assistant/close.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/note.svg --output img/assistant/note.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/bot.svg --output img/assistant/bot.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/redo.svg --output img/assistant/redo.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/close.svg --output img/assistant/close.svg
 ```
 
 You should end up with the following file hierarchy:
@@ -3789,9 +3789,9 @@ Paste the following code changes in the `./css/assistant.css` file:
 }
 {{< /highlight >}}
 
-Congratulations! You have powered through this lengthy tutorial on how to create your own custom robot assistant.
+Congratulations! You have powered through this lengthy tutorial and created your own custom robot assistant.
 
-The project is available for download in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant" target="_blank">github</a>.
+The project is also available for download in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant" target="_blank">github</a>.
 
 ## Conclusion
 
