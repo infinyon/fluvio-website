@@ -3,7 +3,7 @@ title: Build Your Own Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
 description: Leverage real-time data streaming to build your own custom robot assistant.
-date: 2020-12-04
+date: 2020-12-08
 slug: bot-assistant
 url: /blog/2020/12/bot-assistant
 ---
@@ -3801,4 +3801,4 @@ The blog also shows the value of a persistent data streaming platform such as Fl
 
 This project is just scratching the surface on what a bot assistant can do. The improvement range from live operator assistance to machine learning responses, backend service integrations, and much more.
 
-You can reach us on <a href="https://github.com/infinyon" target="_blank">github</a> or on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">discord</a>. We look forward to hearing from you.
+You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">discord</a>. We look forward to hearing from you.
