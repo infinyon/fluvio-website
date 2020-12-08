@@ -2964,6 +2964,7 @@ Next, we'll update workflow controller to exchange messages with fluvio instead 
 When workflow controller communicates with fluvio instead of the websocket proxy, it becomes an independent service. A handful of code changes will turn our workflow implementation into a powerful microservice that can be moved, scaled and upgraded independently. 
 
 Paste the following code changes in the `./src/workflow-service/workflow-controller.ts` file:
+
 {{< highlight typescript "hl_lines=7 10 17-19 21 24-25 31-34 36-39 106-114 117-131" >}}
 import {
     SID,
@@ -3109,11 +3110,15 @@ Let's review the code changes:
 
 Finally, **processNewConnection** and **processClientMessage** are updated to use _sendMessage_ API.
 
-Changes in the workflow controller initialization impacts bot-server initialization. Let's update that next.
+Changes in the workflow controller initialization impacts bot-server initialization. Let's update bot-server next.
 
 ### Update `bot-server.ts` initialization
 
-test
+Changes to the bot-server are two fold: 
+* add **streamingController** - initialize with topic name and the wsProxy instance.
+* update **workflowController** - replace wsProxy with topic name.
+
+Update the highlighted lines in the `./src/bot-server.ts` file:
 
 {{< highlight typescript "hl_lines=6 9 27-29 35" >}}
 import http from "http";
@@ -3166,23 +3171,26 @@ function getFileName() {
 startServer();
 {{< /highlight >}}
 
-Congratulations! Bot server changes are now completed. Let's put the finishing touches on the bot client.
+Congratulations! The bot server changes are now completed. Let's put the finishing touches on the bot client.
 
 ### Add session handling to bot-client
 
-Session handling has two parts:
-* copy reconnecting-socket.js
-* assistant.js
-* assistant.css
+The bot client implementation works well, but if a network connection occurs or the web proxy resets, the client stops working. In addition, the client lack the ability to restart the workflow.
 
-reconnecting-socket.js
+<a href="https://github.com/joewalnes" target="_blank">Joe Walnes</a> has written a great utility called <a href="https://github.com/joewalnes/reconnecting-websocket" target="_blank">reconnecting-socket.js</a> that we'll be leveraging in our project.
+
+Let's copy the file in the `bot-client/scripts` directory:
 
 ```bash
 cd ../bot-client
 curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/scripts/reconnecting-socket.js --output scripts/reconnecting-socket.js
 ```
 
-assistant.js
+#### Update `assistant.js`
+
+We'll update assistant file to use _reconnecting-websocket.js_. In addition, we'll add a new button to remove the browser cookie and restart the workflow.
+
+Paste the following code changes in the `./scripts/assistant.js` file:
 
 {{< highlight javascript "hl_lines=3 5-6 15-16 20-21 37 57-64 74 77-78 83 102-108 262-273 294-301" >}}
 window.onload = () => {
@@ -3526,7 +3534,18 @@ window.onload = () => {
 };
 {{< /highlight >}}
 
-assistant.css
+In summary, the code changes are as follows:
+* add a routine to load `reconnecting-websocket.js` into the DOM.
+* add connection status indicator - (on - green, off - red).
+* add a refresh button to reset workflow.
+
+We'll also need to update the stylesheet to add status indicator.
+
+#### Update `assistant.css`
+
+Update the stylesheet to add status overlay and color indicator.
+
+Paste the following code changes in the `./css/assistant.css` file:
 
 {{< highlight css "hl_lines=70-78 80-84 86-88 90-92" >}}
 .assistant {
@@ -3769,3 +3788,17 @@ assistant.css
     content: "";
 }
 {{< /highlight >}}
+
+Congratulations! You have powered through this lengthy tutorial on how to create your own custom robot assistant.
+
+The project is available for download in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant" target="_blank">github</a>.
+
+## Conclusion
+
+Building a robot assistant may have seemed like an overwhelming undertaking, this blog shows that it is possible to build one in just a few hours. 
+
+The blog also shows the value of a persistent data streaming platform such as Fluvio. The platform allows the bot assistant to scale to a large number of client instance with just a few lines of code.
+
+This project is just scratching the surface on what a bot assistant can do. The improvement range from live operator assistance to machine learning responses, backend service integrations, and much more.
+
+You can reach us on <a href="https://github.com/infinyon" target="_blank">github</a> or on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">discord</a>. We look forward to hearing from you.
