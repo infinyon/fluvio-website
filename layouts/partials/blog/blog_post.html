@@ -1,6 +1,7 @@
 {{- $content := .page.Content -}}
 {{- $content := partial "augment/idea-symbol.html" $content -}}
 {{- $content := partial "augment/caution-symbol.html" $content -}}
+{{- $content := partial "augment/headline-hash.html" $content -}}
 {{- $org := "" -}}
 {{- if (.page.Param "author.org") -}}
     {{ $org = print " (" (.page.Param "author.org")  ")" }}
