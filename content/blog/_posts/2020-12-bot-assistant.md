@@ -10,7 +10,7 @@ url: /blog/2020/12/bot-assistant
 
 Robot assistants are nothing new, they have been around for a while with many full featured products available for use. While these products fit most use cases, there are time when you want to roll out your own.
 
-A custom robot assistant gives you full control over and workflows and the services for your customer interactions. When used in conjunction with a data streaming product such as Fluvio, you gain persistence, resiliency, and scalability.
+A custom robot assistant gives you full control over the workflows for your customer interactions. When used in conjunction with a data streaming product such as Fluvio, you gain persistence, resiliency, and scalability.
 
 <img src="/blog/images/bot-assistant/bot-assistant.svg"
      alt="Bot Assistant Example"
