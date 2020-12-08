@@ -2,7 +2,7 @@
 title: Build Your Own Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
-description: Leverage real-time data streaming to build your own custom robot assistant.
+description: Leverage fluvio real-time data streaming to build your own custom robot assistant.
 date: 2020-12-08
 slug: bot-assistant
 url: /blog/2020/12/bot-assistant
