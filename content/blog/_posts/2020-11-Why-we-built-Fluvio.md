@@ -6,6 +6,10 @@ description: Fluvio, a real-time data streaming platform for connected apps
 date: 2020-11-20
 slug: about-fluvio
 url: /blog/2020/11/why-we-built-fluvio
+social: 
+    image: blog/images/why-fluvio/fluvio-social.jpg
+    width: 997
+    height: 247
 ---
 
 ![Fluvio](/blog/images/why-fluvio/fluvio-social.jpg)
