@@ -6,7 +6,7 @@ description: Leverage fluvio data streaming to build a custom robot assistant th
 date: 2020-12-08
 slug: bot-assistant
 url: /blog/2020/12/bot-assistant
-social: 
+social:
     image: blog/images/bot-assistant/bot-social.jpg
     width: 997
     height: 247
