@@ -1,6 +1,4 @@
-.blog {
-  margin: .5em;
-  
+.blog {  
   .content { 
     min-width: 300px;
   }
@@ -114,6 +112,12 @@
 // --------------
 // Screen Sizes
 // --------------
+@media (min-width: 1200px) {
+  .blog {
+    max-width: 1200px;
+    margin: .5em auto;     
+  }
+}
 
 @media (max-width: 992px) {
 

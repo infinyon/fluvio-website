@@ -9,15 +9,17 @@
 {{ end }}
 
 {{ define "main" }}
-  <div class="container-fluid blog">
-    <div class="row flex-nowrap">
-      <div class="col content">
-        {{- block "content" . }}{{- end }}
+  <div class="blog">
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <div class="col content">
+          {{- block "content" . }}{{- end }}
+        </div>
+        <div class="col menu">
+            {{ partial "blog/recent-posts-title.html" . }}
+            {{ partial "blog/recent-posts.html" . }}
+        </div>      
       </div>
-      <div class="col menu">
-          {{ partial "blog/recent-posts-title.html" . }}
-          {{ partial "blog/recent-posts.html" . }}
-      </div>      
     </div>
   </div>
 {{ end }}
