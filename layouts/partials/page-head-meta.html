@@ -15,6 +15,6 @@
 {{- if .page.Param "twitter" -}}
     {{- $img := print .page.Site.BaseURL (.page.Param "twitter.image") }}
 <meta name="twitter:site" content="@fluvio_io">
+<meta name="twitter:card" content="{{ .page.Param "twitter.card" }}" />
 <meta name="twitter:image:src" content="{{ $img }}" />
-<meta name="twitter:image:card" content="{{ .page.Param "twitter.card" }}" />
 {{- end }}
