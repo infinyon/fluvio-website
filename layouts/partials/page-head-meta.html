@@ -1,3 +1,7 @@
+{{- $title := "Fluvio data streaming" -}}
+{{- if .page.Param "title" -}}
+    {{- $title = .page.Param "title" -}}
+{{- end }}
 {{- $description := "Real-time data streaming platform" -}}
 {{- if .page.Param "description" -}}
     {{- $description = .page.Param "description" -}}
@@ -10,5 +14,6 @@
 {{- end }}
 <meta property="og:type" content="article" />
 <meta property="og:description" content="{{ $description }}" />
+<meta property="og:title" content="{{ $title }}" />
 <meta name="twitter:site" content="@fluvio_io" />
 <meta name="twitter:card" content="summary_large_image" />
