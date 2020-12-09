@@ -16,5 +16,8 @@
 </div>
 
 <div class="blog-content">
+{{ if .page.Param "social" -}}
+    <img src="/{{ (.page.Param "social.image") }}" />
+{{- end }}
 {{ $content }}
 </div>

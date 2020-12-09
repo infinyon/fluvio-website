@@ -10,9 +10,10 @@ social:
     image: blog/images/why-fluvio/fluvio-social.jpg
     width: 997
     height: 247
+twitter:
+    image: blog/images/why-fluvio/fluvio-social.jpg
+    card: summary    
 ---
-
-![Fluvio](/blog/images/why-fluvio/fluvio-social.jpg)
 
 As more of our work moves online, there is a growing need for collaboration apps where businesses communicate with customers and employees in real-time. These new collaboration apps will accelerate decisions, improve customer experience, and open new revenue opportunities.
 
