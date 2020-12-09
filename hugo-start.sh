@@ -1,2 +1,2 @@
 #!/bin/bash
-hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender
+hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender --baseURL http://localhost

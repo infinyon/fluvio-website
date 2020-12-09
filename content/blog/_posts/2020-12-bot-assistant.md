@@ -6,6 +6,7 @@ description: Leverage fluvio real-time data streaming to build your own custom r
 date: 2020-12-08
 slug: bot-assistant
 url: /blog/2020/12/bot-assistant
+social: /blog/images/bot-assistant/bot-social.jpg
 ---
 
 ![Bot Assistant](/blog/images/bot-assistant/bot-social.jpg)
