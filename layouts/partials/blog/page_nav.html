@@ -1,9 +1,10 @@
 <div class="container-fluid blog-nav">
+  <div class="row"><div class="col line"></div></div>
   <div class="row">
-    <div class="col">
+    <div class="col no-padding">
       {{- template "next_page" (dict "next_page" .page.NextInSection) -}}
     </div>
-    <div class="col text-right">
+    <div class="col no-padding text-right">
       {{- template "prev_page" (dict "prev_page" .page.PrevInSection) -}}
     </div>
   </div>
@@ -15,9 +16,7 @@
       {{ if eq $hidden true }}
         {{- template "prev_page" (dict "prev_page" .prev_page.PrevInSection) -}}
       {{ else }}
-        <div class="pagerButton">
-          <p><a class=" button" href="{{ .prev_page.RelPermalink }}">{{ .prev_page.Title }}<i class="fa fa-arrow-right ml-1"></i></a></hp>
-        </div>
+        <a class="button next-prev" href="{{ .prev_page.RelPermalink }}">{{ .prev_page.Title }}<i class="fa fa-arrow-right ml-2"></i></a>
       {{ end }}
   {{ end }}
 {{- end -}}
@@ -28,9 +27,7 @@
       {{ if eq $hidden true }}
         {{- template "next_page" (dict "next_page" .next_page.NextInSection) -}}
       {{ else }}
-        <div class="pagerButton">
-          <p><a class=" button" href="{{ .next_page.RelPermalink }}"><i class="fa fa-arrow-left mr-1"></i>{{ .next_page.Title }}</a></p>
-        </div>
+        <a class="button next-prev" href="{{ .next_page.RelPermalink }}"><i class="fa fa-arrow-left mr-2"></i>{{ .next_page.Title }}</a>
       {{ end }}
   {{ end }}
 {{- end -}}

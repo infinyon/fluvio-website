@@ -454,6 +454,23 @@ footer {
   margin-right: 20px;
 }
 
+.no-padding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.next-prev {
+  font-size: 1.1em;
+}
+
+.line {
+  background: none repeat scroll 0 0 $col-blue-light3;
+  content: "";
+  display: block;
+  bottom: 12px;
+  height: 1px;
+}
+
 // --------------
 // Screen Sizes
 // --------------

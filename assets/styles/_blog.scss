@@ -4,7 +4,7 @@
   }
 
   .blog-content {
-    margin: 1.5em 0;
+    margin: .5em 0 2.5em 0;
 
     /* code section */
     .highlight pre {
@@ -51,10 +51,8 @@
 
   img {
     display: block;
-    padding: 10px;
-    margin-top: -10px;
-    max-width: 1000px;
-    width: 98%;
+    width: 100%;
+    padding: 10px 0;
     margin-left: auto;
     margin-right: auto;
   }
