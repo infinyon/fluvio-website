@@ -16,8 +16,8 @@
 </div>
 
 <div class="blog-content">
-{{- $hide := (.page.Param "social.hide") | default false -}}
-{{ if and (.page.Param "social") (not $hide)  -}}
+{{- $hidden := (.page.Param "social.hidden") | default false -}}
+{{ if and (.page.Param "social") (not $hidden)  -}}
     <img src="/{{ (.page.Param "social.image") }}" />
 {{- end }}
 {{ $content }}
