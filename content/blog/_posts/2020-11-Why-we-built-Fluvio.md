@@ -7,11 +7,11 @@ date: 2020-11-20
 slug: about-fluvio
 url: /blog/2020/11/why-we-built-fluvio
 social: 
-    image: blog/images/why-fluvio/fluvio-social.jpg
+    image: blog/images/why-fluvio/why-fluvio-social.jpg
     width: 997
     height: 247
 twitter:
-    image: blog/images/why-fluvio/fluvio-social.jpg
+    image: blog/images/why-fluvio/why-fluvio-twitter.jpg
     card: summary    
 ---
 
