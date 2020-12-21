@@ -52,11 +52,59 @@ fluvio help                       Print help for Fluvio or a subcommand
 The `fluvio consume` command is a way to read the contents of messages in a Fluvio Topic
 from a command-line environment. This can be useful if you are developing an application
 with Fluvio and want real-time visibility into what is streaming through your topics.
-It can also be handy for writing shell scripts that can read and react to messages in a topic.
+It can also be handy for writing shell scripts that can read and react to messages in a
+topic.
+
+If your topic has more than one partition, the `consume` command will only read from one
+of those partitions, defaulting to the first one (index zero). You can specify which
+partition you want to read messages from using the `-p` option.
 
 Arguments:
 
+```
+fluvio-consume 0.4.0
+Read messages from a topic/partition
 
+USAGE:
+    fluvio consume [FLAGS] [OPTIONS] <string>
+
+FLAGS:
+    -B, --from-beginning        Start reading from beginning
+    -d, --disable-continuous    disable continuous processing of messages
+    -s, --suppress-unknown      Suppress items items that have an unknown output
+                                type
+    -h, --help                  Prints help information
+
+OPTIONS:
+    -p, --partition <integer>    Partition id [default: 0]
+    -o, --offset <integer>
+            Offsets can be positive or negative. (Syntax for negative offset:
+            --offset="-1")
+    -b, --maxbytes <integer>     Maximum number of bytes to be retrieved
+    -O, --output <type>
+            Output [default: dynamic]  [possible values: dynamic, text, binary,
+            json, raw]
+
+ARGS:
+    <string>    Topic name
+```
+
+Example usage:
+
+Let's say you want to read all the messages that have ever been produced for a particular
+topic and partition, then stop when they have all been consumed. If our topic is named
+"my-topic", and we want to consume from partition 1, we can run:
+
+```
+fluvio consume my-topic -B -d -p 1 
+```
+
+If you would like the consumer to continue running and print new messages as they arrive,
+simply remove the `-d` flag:
+
+```
+fluvio consume my-topic -B -p 1
+```
 
 #### Next Steps
 ----------------
