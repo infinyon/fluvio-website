@@ -203,8 +203,32 @@ ARGS:
 Example usage:
 
 ```
-$ fluvio topic create greetings
+$ fluvio topic create greeting
 topic "greeting" created
+```
+
+### `fluvio topic delete`
+
+This command deletes an existing Fluvio topic and all data associated with it.
+This data may not be recovered, so use this with care.
+
+```
+Delete a Topic with the given name
+
+fluvio topic delete <name>
+
+FLAGS:
+    -h, --help    Prints help information
+
+ARGS:
+    <name>    The name of the Topic to delete
+```
+
+Example usage:
+
+```
+$ fluvio topic delete greeting
+topic "greeting" deleted
 ```
 
 #### Next Steps
