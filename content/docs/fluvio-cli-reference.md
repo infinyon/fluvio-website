@@ -1,8 +1,8 @@
 ---
-title: Fluvio CLI reference
-menu: Fluvio CLI reference
+title: Fluvio CLI Reference
+menu: CLI Reference
 toc: true
-weight: 50
+weight: 300
 ---
 
 This page is the detailed reference for all the commands in the Fluvio CLI.
