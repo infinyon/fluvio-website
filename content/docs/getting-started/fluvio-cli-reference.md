@@ -15,12 +15,12 @@ use certain commands and show some examples.
 Here is a list of all Fluvio commands that are available by default:
 
 ```
-fluvio consume                    Read messages from a topic/partition
-fluvio produce                    Write messages to a topic/partition
 fluvio topic create               Create a topic with the given name
 fluvio topic delete               Delete a topic with the given name
 fluvio topic describe             Print detailed information about a Topic
 fluvio topic list                 List all of the Topics in the cluster
+fluvio produce                    Write messages to a topic/partition
+fluvio consume                    Read messages from a topic/partition
 fluvio partition list             List all of the Partitions in the cluster
 fluvio profile current            Print the name of the current context
 fluvio profile delete             Delete the named profile
@@ -47,63 +47,67 @@ fluvio version                    Print Fluvio version information
 fluvio help                       Print help for Fluvio or a subcommand
 ```
 
-### `fluvio consume`
+### `fluvio topic create`
 
-The `fluvio consume` command is a way to read the contents of messages in a Fluvio topic
-from a command-line environment. This can be useful if you are developing an application
-with Fluvio and want real-time visibility into what is streaming through your topics.
-It can also be handy for writing shell scripts that can read and react to messages in a
-topic.
-
-If your topic has more than one partition, the `consume` command will only read from one
-of those partitions, defaulting to the first one (index zero). You can specify which
-partition you want to read messages from using the `-p` option.
-
-Arguments:
+This command is used to create new Fluvio topics. A Fluvio topic is a stream where
+you send related messages. Different topics have unique names and store their data
+independently. They may also be divided into multiple partitions, which can
+increase the message throughput of the topic.
 
 ```
-fluvio-consume 0.4.0
-Read messages from a topic/partition
+Create a Topic with the given name
 
-USAGE:
-    fluvio consume [FLAGS] [OPTIONS] <string>
+fluvio topic create [FLAGS] [OPTIONS] <name>
 
 FLAGS:
-    -B, --from-beginning        Start reading from beginning
-    -d, --disable-continuous    disable continuous processing of messages
-    -s, --suppress-unknown      Suppress items items that have an unknown output
-                                type
-    -h, --help                  Prints help information
+    -i, --ignore-rack-assignment
+            Ignore racks while computing replica assignment
+
+    -d, --dry-run                   Validates configuration, does not provision
+    -h, --help                      Prints help information
 
 OPTIONS:
-    -p, --partition <integer>    Partition id [default: 0]
-    -o, --offset <integer>
-            Offsets can be positive or negative. (Syntax for negative offset:
-            --offset="-1")
-    -b, --maxbytes <integer>     Maximum number of bytes to be retrieved
-    -O, --output <type>
-            Output [default: dynamic]  [possible values: dynamic, text, binary,
-            json, raw]
+    -p, --partitions <partitions>
+            The number of Partitions to give the Topic [default: 1]
+
+    -r, --replication <integer>
+            The number of full replicas of the Topic to keep [default: 1]
+
+    -f, --replica-assignment <file.json>    Replica assignment file
 
 ARGS:
-    <string>    Topic name
+    <name>    The name of the Topic to create
 ```
 
 Example usage:
 
-Let's say you want to read all the messages that have ever been produced for a particular
-topic and partition, then stop when they have all been consumed. If our topic is named
-"my-topic", and we want to consume from partition 1, we can run:
-
 ```
-fluvio consume my-topic -B -d -p 1 
+$ fluvio topic create greeting
+topic "greeting" created
 ```
 
-If you would like the consumer to continue running and print new messages as they arrive,
-simply remove the `-d` flag:
+### `fluvio topic delete`
+
+This command deletes an existing Fluvio topic and all data associated with it.
+This data may not be recovered, so use this with care.
 
 ```
-fluvio consume my-topic -B -p 1
+Delete a Topic with the given name
+
+fluvio topic delete <name>
+
+FLAGS:
+    -h, --help    Prints help information
+
+ARGS:
+    <name>    The name of the Topic to delete
+```
+
+Example usage:
+
+```
+$ fluvio topic delete greeting
+topic "greeting" deleted
 ```
 
 ### `fluvio produce`
@@ -168,67 +172,63 @@ $ fluvio consume my-topic -B -d
 {"user":"Alice","message":"Hello, Bob!"}
 ```
 
-### `fluvio topic create`
+### `fluvio consume`
 
-This command is used to create new Fluvio topics. A Fluvio topic is a stream where
-you send related messages. Different topics have unique names and store their data
-independently. They may also be divided into multiple partitions, which can
-increase the message throughput of the topic.
+The `fluvio consume` command is a way to read the contents of messages in a Fluvio topic
+from a command-line environment. This can be useful if you are developing an application
+with Fluvio and want real-time visibility into what is streaming through your topics.
+It can also be handy for writing shell scripts that can read and react to messages in a
+topic.
+
+If your topic has more than one partition, the `consume` command will only read from one
+of those partitions, defaulting to the first one (index zero). You can specify which
+partition you want to read messages from using the `-p` option.
+
+Arguments:
 
 ```
-Create a Topic with the given name
+fluvio-consume 0.4.0
+Read messages from a topic/partition
 
-fluvio topic create [FLAGS] [OPTIONS] <name>
+USAGE:
+    fluvio consume [FLAGS] [OPTIONS] <string>
 
 FLAGS:
-    -i, --ignore-rack-assignment
-            Ignore racks while computing replica assignment
-
-    -d, --dry-run                   Validates configuration, does not provision
-    -h, --help                      Prints help information
+    -B, --from-beginning        Start reading from beginning
+    -d, --disable-continuous    disable continuous processing of messages
+    -s, --suppress-unknown      Suppress items items that have an unknown output
+                                type
+    -h, --help                  Prints help information
 
 OPTIONS:
-    -p, --partitions <partitions>
-            The number of Partitions to give the Topic [default: 1]
-
-    -r, --replication <integer>
-            The number of full replicas of the Topic to keep [default: 1]
-
-    -f, --replica-assignment <file.json>    Replica assignment file
+    -p, --partition <integer>    Partition id [default: 0]
+    -o, --offset <integer>
+            Offsets can be positive or negative. (Syntax for negative offset:
+            --offset="-1")
+    -b, --maxbytes <integer>     Maximum number of bytes to be retrieved
+    -O, --output <type>
+            Output [default: dynamic]  [possible values: dynamic, text, binary,
+            json, raw]
 
 ARGS:
-    <name>    The name of the Topic to create
+    <string>    Topic name
 ```
 
 Example usage:
 
-```
-$ fluvio topic create greeting
-topic "greeting" created
-```
-
-### `fluvio topic delete`
-
-This command deletes an existing Fluvio topic and all data associated with it.
-This data may not be recovered, so use this with care.
+Let's say you want to read all the messages that have ever been produced for a particular
+topic and partition, then stop when they have all been consumed. If our topic is named
+"my-topic", and we want to consume from partition 1, we can run:
 
 ```
-Delete a Topic with the given name
-
-fluvio topic delete <name>
-
-FLAGS:
-    -h, --help    Prints help information
-
-ARGS:
-    <name>    The name of the Topic to delete
+fluvio consume my-topic -B -d -p 1 
 ```
 
-Example usage:
+If you would like the consumer to continue running and print new messages as they arrive,
+simply remove the `-d` flag:
 
 ```
-$ fluvio topic delete greeting
-topic "greeting" deleted
+fluvio consume my-topic -B -p 1
 ```
 
 #### Next Steps
