@@ -18,9 +18,9 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio topic list]               | List all of the Topics in the cluster                              |
 | [fluvio topic describe]           | Print detailed information about a Topic                           |
 | [fluvio topic delete]             | Delete a topic with the given name                                 |
+| [fluvio partition list]           | List all of the Partitions in the cluster                          |
 | [fluvio produce]                  | Write messages to a topic/partition                                |
 | [fluvio consume]                  | Read messages from a topic/partition                               |
-| [fluvio partition list]           | List all of the Partitions in the cluster                          |
 | [fluvio profile current]          | Print the name of the current context                              |
 | [fluvio profile delete]           | Delete the named profile                                           |
 | [fluvio profile delete-cluster]   | Delete the named cluster                                           |
@@ -48,9 +48,9 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio topic list]: #fluvio-topic-list
 [fluvio topic describe]: #fluvio-topic-describe
 [fluvio topic delete]: #fluvio-topic-delete
+[fluvio partition list]: #fluvio-partition-list
 [fluvio produce]: #fluvio-produce
 [fluvio consume]: #fluvio-consume
-[fluvio partition list]: #fluvio-partition-list
 [fluvio profile current]: #fluvio-profile-current
 [fluvio profile delete]: #fluvio-profile-delete
 [fluvio profile delete-cluster]: #fluvio-profile-delete-cluster
@@ -198,6 +198,33 @@ $ fluvio topic delete greeting
 topic "greeting" deleted
 ```
 
+## `fluvio partition list`
+
+Prints basic information about each partition in the cluster, such as
+which topic it belongs to, which SPU is leading the partition, and the
+various offsets the partition keeps track of.
+
+```
+List all of the Partitions in this cluster
+
+fluvio partition list [OPTIONS]
+
+FLAGS:
+    -h, --help    Prints help information
+
+OPTIONS:
+    -O, --output <type>    Output [default: table]  [possible values: table,
+                           yaml, json]
+```
+
+Example usage:
+
+```
+$ fluvio partition list
+ TOPIC     PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS 
+ greeting  0          5001    []        Online      1   1    0    [] 
+```
+
 ## `fluvio produce`
 
 The `fluvio produce` command is a way to send messages to a particular topic and partition.
@@ -318,37 +345,6 @@ simply remove the `-d` flag:
 ```
 fluvio consume my-topic -B -p 1
 ```
-
-## `fluvio partition list`
-
-Prints basic information about each partition in the cluster, such as
-which topic it belongs to, which SPU is leading the partition, and the
-various offsets the partition keeps track of.
-
-```
-List all of the Partitions in this cluster
-
-fluvio partition list [OPTIONS]
-
-FLAGS:
-    -h, --help    Prints help information
-
-OPTIONS:
-    -O, --output <type>    Output [default: table]  [possible values: table,
-                           yaml, json]
-```
-
-Example usage:
-
-```
-$ fluvio partition list
- TOPIC     PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS 
- greeting  0          5001    []        Online      1   1    0    [] 
-```
-
-## `fluvio partition list`
-
-TODO
 
 ## `fluvio profile current`
 
