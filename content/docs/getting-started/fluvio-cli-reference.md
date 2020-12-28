@@ -30,12 +30,6 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio cluster start]            | Install a Fluvio cluster, locally or on Minikube                   |
 | [fluvio cluster delete]           | Uninstall a Fluvio cluster from the local machine or Minikube      |
 | [fluvio cluster releases list]    | Show a list of Fluvio release versions                             |
-| [fluvio cluster spu register]     | Register a new custom SPU with the cluster                         |
-| [fluvio cluster spu unregister]   | Unregister a custom SPU from the cluster                           |
-| [fluvio cluster spu list]         | List all SPUs known by this cluster (managed AND custom)           |
-| [fluvio cluster spg create]       | Create a new managed SPU Group                                     |
-| [fluvio cluster spg delete]       | Delete a managed SPU Group                                         |
-| [fluvio cluster spg list]         | List all SPU Groups                                                |
 | [fluvio cluster run sc]           | Run a new Streaming Controller (SC)                                |
 | [fluvio cluster run spu]          | Run a new Streaming Processing Unit (SPU)                          |
 | [fluvio install]                  | Install Fluvio plugins                                             |
@@ -58,12 +52,6 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio cluster start]: #fluvio-cluster-start
 [fluvio cluster delete]: #fluvio-cluster-delete
 [fluvio cluster releases list]: #fluvio-cluster-releases-list
-[fluvio cluster spu register]: #fluvio-cluster-spu-register
-[fluvio cluster spu list]: #fluvio-cluster-spu-list
-[fluvio cluster spu unregister]: #fluvio-cluster-spu-unregister
-[fluvio cluster spg create]: #fluvio-cluster-spg-create
-[fluvio cluster spg list]: #fluvio-cluster-spg-list
-[fluvio cluster spg delete]: #fluvio-cluster-spg-delete
 [fluvio cluster run sc]: #fluvio-cluster-run-sc
 [fluvio cluster run spu]: #fluvio-cluster-run-spu
 [fluvio install]: #fluvio-install
@@ -724,30 +712,6 @@ VERSION
 0.6.0-alpha.7-latest
 ...
 ```
-
-## `fluvio cluster spu register`
-
-TODO
-
-## `fluvio cluster spu list`
-
-TODO
-
-## `fluvio cluster spu unregister`
-
-TODO
-
-## `fluvio cluster spg create`
-
-TODO
-
-## `fluvio cluster spg list`
-
-TODO
-
-## `fluvio cluster spg delete`
-
-TODO
 
 ## `fluvio cluster run sc`
 
