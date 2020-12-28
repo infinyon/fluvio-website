@@ -25,8 +25,6 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio profile delete]           | Delete the named profile                                           |
 | [fluvio profile delete-cluster]   | Delete the named cluster                                           |
 | [fluvio profile switch]           | Switch to the named profile                                        |
-| [fluvio profile sync k8]          | Sync a profile from a Kubernetes cluster                           |
-| [fluvio profile sync local]       | Sync a profile from a local cluster                                |
 | [fluvio profile view]             | Display the entire configuration                                   |
 | [fluvio cluster check]            | Check that all the requirements for cluster installation are met   |
 | [fluvio cluster start]            | Install a Fluvio cluster, locally or on Minikube                   |
@@ -55,8 +53,6 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio profile delete]: #fluvio-profile-delete
 [fluvio profile delete-cluster]: #fluvio-profile-delete-cluster
 [fluvio profile switch]: #fluvio-profile-switch
-[fluvio profile sync k8]: #fluvio-profile-sync-k8
-[fluvio profile sync local]: #fluvio-profile-sync-local
 [fluvio profile view]: #fluvio-profile-view
 [fluvio cluster check]: #fluvio-cluster-check
 [fluvio cluster start]: #fluvio-cluster-start
@@ -465,14 +461,6 @@ Example usage:
 ```
 $ fluvio profile switch fluvio-cloud
 ```
-
-## `fluvio profile sync k8`
-
-TODO
-
-## `fluvio profile sync local`
-
-TODO
 
 ## `fluvio profile view`
 
