@@ -751,7 +751,56 @@ TODO
 
 ## `fluvio cluster run sc`
 
-TODO
+Directly invokes a Streaming Controller from the command line. This is a low-level
+command and is not typically what you want to be using. If you want to run Fluvio
+locally, check out the [fluvio cluster start] command and read about the `--local`
+flag.
+
+A Streaming Controller hosts a public server for interacting with clients, and a
+private server for interacting with SPUs and other cluster components. Most of
+the CLI options for the SC involve configuring these servers. See the
+[SC Architecture] for more details.
+
+[SC Architecture]: /docs/architecture/sc/
+
+```
+fluvio-cluster-run-sc 0.2.0
+Run a new Streaming Controller (SC)
+
+USAGE:
+    fluvio cluster run sc [FLAGS] [OPTIONS]
+
+FLAGS:
+        --tls                   enable tls
+        --enable-client-cert    TLS: enable client cert
+    -h, --help                  Prints help information
+
+OPTIONS:
+        --bind-public <bind-public>
+            Address for external service
+
+        --bind-private <bind-private>
+            Address for internal service
+
+    -n, --namespace <namespace>                               
+        --server-cert <server-cert>
+            TLS: path to server certificate
+
+        --server-key <server-key>
+            TLS: path to server private key
+
+        --ca-cert <ca-cert>
+            TLS: path to ca cert, required when client cert is enabled
+
+        --bind-non-tls-public <bind-non-tls-public>
+            TLS: address of non tls public service, required
+
+        --authorization-scopes <authorization scopes path>
+             [env: X509_AUTH_SCOPES=]
+
+        --authorization-policy <authorization policy path>
+             [env: AUTH_POLICY=]
+```
 
 ## `fluvio cluster run spu`
 
