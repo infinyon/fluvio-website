@@ -669,7 +669,40 @@ Performing pre-flight checks
 
 ## `fluvio cluster delete`
 
-TODO
+Deletes a Fluvio cluster and all data associated with it. Be careful, this
+cannot be undone.
+
+```
+fluvio-cluster-delete 0.4.2
+Delete a Fluvio cluster from the local machine or Minikube
+
+USAGE:
+    fluvio cluster delete [FLAGS] [OPTIONS]
+
+FLAGS:
+        --no-wait    don't wait for clean up
+        --local      Remove local spu/sc(custom) fluvio installation
+        --sys        Remove fluvio system chart
+    -h, --help       Prints help information
+
+OPTIONS:
+        --namespace <namespace>     [default: default]
+        --name <name>               [default: fluvio]
+```
+
+Example usage:
+
+To uninstall Fluvio from Kubernetes (e.g. Minikube):
+
+```
+$ fluvio cluster delete
+```
+
+To uninstall Fluvio from your local machine:
+
+```
+$ fluvio cluster delete --local
+```
 
 ## `fluvio cluster releases list`
 
