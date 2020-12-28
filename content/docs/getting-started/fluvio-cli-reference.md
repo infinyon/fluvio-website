@@ -442,7 +442,29 @@ Cluster local deleted
 
 ## `fluvio profile switch`
 
-TODO
+This switches the "current" profile. After switching current profiles, all
+subsequent Fluvio CLI commands that interact with a cluster will target the
+cluster of the new "current" profile.
+
+```
+fluvio-profile-switch 0.4.0
+Switch to the named profile
+
+USAGE:
+    fluvio profile switch <profile name>
+
+FLAGS:
+    -h, --help    Prints help information
+
+ARGS:
+    <profile name>    
+```
+
+Example usage:
+
+```
+$ fluvio profile switch fluvio-cloud
+```
 
 ## `fluvio profile sync k8`
 
