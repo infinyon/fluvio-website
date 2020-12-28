@@ -10,8 +10,6 @@ Most of the information given here can also be found in the help menu for
 Fluvio, `fluvio help`, but here we will also explain when you may want to
 use certain commands and show some examples.
 
-## Command Table-of-Contents
-
 Here is a list of all Fluvio commands that are available by default:
 
 | Command                           | Description                                                        |
@@ -30,9 +28,9 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio profile sync k8]          | Sync a profile from a Kubernetes cluster                           |
 | [fluvio profile sync local]       | Sync a profile from a local cluster                                |
 | [fluvio profile view]             | Display the entire configuration                                   |
+| [fluvio cluster check]            | Check that all the requirements for cluster installation are met   |
 | [fluvio cluster start]            | Install a Fluvio cluster, locally or on Minikube                   |
 | [fluvio cluster delete]           | Uninstall a Fluvio cluster from the local machine or Minikube      |
-| [fluvio cluster check]            | Check that all the requirements for cluster installation are met   |
 | [fluvio cluster releases list]    | Show a list of Fluvio release versions                             |
 | [fluvio cluster spu register]     | Register a new custom SPU with the cluster                         |
 | [fluvio cluster spu unregister]   | Unregister a custom SPU from the cluster                           |
@@ -60,9 +58,9 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio profile sync k8]: #fluvio-profile-sync-k8
 [fluvio profile sync local]: #fluvio-profile-sync-local
 [fluvio profile view]: #fluvio-profile-view
+[fluvio cluster check]: #fluvio-cluster-check
 [fluvio cluster start]: #fluvio-cluster-start
 [fluvio cluster delete]: #fluvio-cluster-delete
-[fluvio cluster check]: #fluvio-cluster-check
 [fluvio cluster releases list]: #fluvio-cluster-releases-list
 [fluvio cluster spu register]: #fluvio-cluster-spu-register
 [fluvio cluster spu list]: #fluvio-cluster-spu-list
@@ -76,7 +74,7 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio update]: #fluvio-update
 [fluvio version]: #fluvio-version
 
-### `fluvio topic create`
+## `fluvio topic create`
 
 This command is used to create new Fluvio topics. A Fluvio topic is a stream where
 you send related messages. Different topics have unique names and store their data
@@ -115,7 +113,7 @@ $ fluvio topic create greeting
 topic "greeting" created
 ```
 
-### `fluvio topic list`
+## `fluvio topic list`
 
 This command shows you all the existing topics in your cluster, as well as some basic
 information about them, including how many partitions a topic has and how many times it
@@ -142,7 +140,7 @@ $ fluvio topic list
  greeting  computed      1          1                   resolution::provisioned   
 ```
 
-### `fluvio topic describe`
+## `fluvio topic describe`
 
 This command prints more detailed information about a specific topic.
 
@@ -176,7 +174,7 @@ $ fluvio topic describe greeting
  -----------------           
 ```
 
-### `fluvio topic delete`
+## `fluvio topic delete`
 
 This command deletes an existing Fluvio topic and all data associated with it.
 This data may not be recovered, so use this with care.
@@ -200,7 +198,7 @@ $ fluvio topic delete greeting
 topic "greeting" deleted
 ```
 
-### `fluvio produce`
+## `fluvio produce`
 
 The `fluvio produce` command is a way to send messages to a particular topic and partition.
 This can be useful for testing your applications by manually sending specific messages.
@@ -262,7 +260,7 @@ $ fluvio consume my-topic -B -d
 {"user":"Alice","message":"Hello, Bob!"}
 ```
 
-### `fluvio consume`
+## `fluvio consume`
 
 The `fluvio consume` command is a way to read the contents of messages in a Fluvio topic
 from a command-line environment. This can be useful if you are developing an application
@@ -321,7 +319,7 @@ simply remove the `-d` flag:
 fluvio consume my-topic -B -p 1
 ```
 
-### `fluvio partition list`
+## `fluvio partition list`
 
 Prints basic information about each partition in the cluster, such as
 which topic it belongs to, which SPU is leading the partition, and the
@@ -347,6 +345,98 @@ $ fluvio partition list
  TOPIC     PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS 
  greeting  0          5001    []        Online      1   1    0    [] 
 ```
+
+## `fluvio partition list`
+
+TODO
+
+## `fluvio profile current`
+
+TODO
+
+## `fluvio profile delete`
+
+TODO
+
+## `fluvio profile delete-cluster`
+
+TODO
+
+## `fluvio profile switch`
+
+TODO
+
+## `fluvio profile sync k8`
+
+TODO
+
+## `fluvio profile sync local`
+
+TODO
+
+## `fluvio profile view`
+
+TODO
+
+## `fluvio cluster check`
+
+TODO
+
+## `fluvio cluster start`
+
+TODO
+
+## `fluvio cluster delete`
+
+TODO
+
+## `fluvio cluster releases list`
+
+TODO
+
+## `fluvio cluster spu register`
+
+TODO
+
+## `fluvio cluster spu list`
+
+TODO
+
+## `fluvio cluster spu unregister`
+
+TODO
+
+## `fluvio cluster spg create`
+
+TODO
+
+## `fluvio cluster spg list`
+
+TODO
+
+## `fluvio cluster spg delete`
+
+TODO
+
+## `fluvio cluster run sc`
+
+TODO
+
+## `fluvio cluster run spu`
+
+TODO
+
+## `fluvio install`
+
+TODO
+
+## `fluvio update`
+
+TODO
+
+## `fluvio version`
+
+TODO
 
 #### Next Steps
 ----------------
