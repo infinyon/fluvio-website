@@ -917,7 +917,23 @@ $ fluvio update
 
 ## `fluvio version`
 
-TODO
+This command prints out the version of the Fluvio CLI that you're running, as
+well as some other useful information about how it was built. For example, it
+includes the version of the Rust compiler used to build it as well as the exact
+git commit of the Fluvio source code that was built. This is useful information
+to include if you ever need to file a bug report so that the developers know
+exactly what code needs fixing or if a fix is already available.
+
+Example usage:
+
+```
+$ fluvio version
+Fluvio CLI      : 0.6.0-beta.1
+Fluvio Platform : 0.6.0-beta.1
+Git Commit      : 68acd75c8d8c1a03ffa7512be5eb71fa6f79caa1
+OS Details      : Darwin 19.6.0 x86_64
+Rustc Version   : 1.48.0 (7eac88a 2020-11-16)
+```
 
 #### Next Steps
 ----------------
