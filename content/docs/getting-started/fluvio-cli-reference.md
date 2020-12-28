@@ -378,9 +378,9 @@ local
 
 ## `fluvio profile delete`
 
-Deletes a profile from your Fluvio configuration. This will not delete a cluster
-(for that, see [fluvio cluster delete]), but it will cause the Fluvio CLI to no
-longer be able to interact with that cluster.
+Deletes a profile from your Fluvio configuration (`~/.fluvio/config`). This will
+not delete a cluster (for that, see [fluvio cluster delete]), but it will cause
+the Fluvio CLI to no longer be able to interact with that cluster.
 
 ```
 fluvio-profile-delete 0.4.0
@@ -414,7 +414,31 @@ warning: this removed your current profile, use 'fluvio profile switch' to selec
 
 ## `fluvio profile delete-cluster`
 
-TODO
+Deletes cluster connection information from your Fluvio configuration. This will not delete
+a cluster itself (for that see [fluvio cluster delete]), but it will cause the Fluvio CLI to
+no longer be able to connect to that cluster.
+
+```
+fluvio-profile-delete-cluster 0.4.0
+Delete the named cluster
+
+USAGE:
+    fluvio profile delete-cluster [FLAGS] <cluster name>
+
+FLAGS:
+    -f, --force    Deletes a cluster even if its active
+    -h, --help     Prints help information
+
+ARGS:
+    <cluster name>    The name of a cluster connection to delete
+```
+
+Example usage:
+
+```
+$ fluvio profile delete-cluster local
+Cluster local deleted
+```
 
 ## `fluvio profile switch`
 
