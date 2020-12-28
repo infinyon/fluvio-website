@@ -2,7 +2,7 @@
 title: Troubleshoot Fluvio Installation
 menu: Troubleshooting
 toc: true
-weight: 40
+weight: 60
 ---
 
 Fluvio is a very young project, so we're still ironing out all the wrinkles
