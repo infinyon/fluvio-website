@@ -35,10 +35,10 @@ h5, h6 {
   font-weight: bold;
   color: $col-headers;
 }
-h2 { line-height: 2.5em }
-h3 { line-height: 2.3em }
-h3 { line-height: 2.1em }
-h4, h5 { line-height: 2.0em }
+h2 { line-height: 2.5em; padding-top: 20px;}
+h3 { line-height: 2.3em; padding-top: 18px; }
+h3 { line-height: 2.1em; padding-top: 15px; }
+h4, h5 { line-height: 2.0em; padding-top: 12px; }
 h6 { line-height: 1.9em }
 h2:after, h3:after {
   background: none repeat scroll 0 0 $col-blue-light3;
