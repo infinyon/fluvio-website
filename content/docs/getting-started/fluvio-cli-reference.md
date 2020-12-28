@@ -113,6 +113,40 @@ $ fluvio topic list
  greeting  computed      1          1                   resolution::provisioned   
 ```
 
+### `fluvio topic describe`
+
+This command prints more detailed information about a specific topic.
+
+```
+Print detailed information about a Topic
+
+fluvio topic describe [OPTIONS] <name>
+
+FLAGS:
+    -h, --help    Prints help information
+
+OPTIONS:
+    -O, --output <type>    Output [default: table]  [possible values: table,
+                           yaml, json]
+
+ARGS:
+    <name>    The name of the Topic to describe
+```
+
+Example usage:
+
+```
+$ fluvio topic describe greeting
+ Name                    :  greeting 
+ Type                    :  computed 
+ Partition Count         :  1 
+ Replication Factor      :  1 
+ Ignore Rack Assignment  :  false 
+ Status                  :  provisioned 
+ Reason                  :   
+ -----------------           
+```
+
 ### `fluvio topic delete`
 
 This command deletes an existing Fluvio topic and all data associated with it.
