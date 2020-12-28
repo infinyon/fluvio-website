@@ -16,9 +16,9 @@ Here is a list of all Fluvio commands that are available by default:
 
 ```
 fluvio topic create               Create a topic with the given name
-fluvio topic delete               Delete a topic with the given name
-fluvio topic describe             Print detailed information about a Topic
 fluvio topic list                 List all of the Topics in the cluster
+fluvio topic describe             Print detailed information about a Topic
+fluvio topic delete               Delete a topic with the given name
 fluvio produce                    Write messages to a topic/partition
 fluvio consume                    Read messages from a topic/partition
 fluvio partition list             List all of the Partitions in the cluster
@@ -84,6 +84,33 @@ Example usage:
 ```
 $ fluvio topic create greeting
 topic "greeting" created
+```
+
+### `fluvio topic list`
+
+This command shows you all the existing topics in your cluster, as well as some basic
+information about them, including how many partitions a topic has and how many times it
+is replicated.
+
+```
+List all of the Topics in the cluster
+
+fluvio topic list [OPTIONS]
+
+FLAGS:
+    -h, --help    Prints help information
+
+OPTIONS:
+    -O, --output <type>    Output [default: table]  [possible values: table,
+                           yaml, json]
+```
+
+Example usage:
+
+```
+$ fluvio topic list
+ NAME      TYPE      PARTITIONS  REPLICAS  IGNORE-RACK  STATUS                   REASON 
+ greeting  computed      1          1                   resolution::provisioned   
 ```
 
 ### `fluvio topic delete`
