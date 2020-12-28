@@ -16,10 +16,8 @@
                     {{- range seq $next_heading }}
                         <ul class="text-muted toc-h{{ . }}"> 
                     {{- end -}}
-                    {{- $base := ($.Page.File.LogicalName) -}}
                     {{- $anchorId := index (split (index (findRE "id=\"(.+)\"" $header 1) 0) "\"") 1 -}}
-                    {{- $href := delimit (slice $base $anchorId) "#" | string }}
-                    <a href="{{ relref $.Page $href }}">
+                    <a href="#{{ $anchorId }}">
                         <li>{{ $header | plainify | htmlUnescape }}</li>
                     </a>
                     <!-- close list -->
