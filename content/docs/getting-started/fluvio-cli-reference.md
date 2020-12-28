@@ -902,7 +902,18 @@ $ fluvio install fluvio/fluvio-cloud
 
 ## `fluvio update`
 
-TODO
+This command performs a self-update for the Fluvio CLI. It takes no arguments,
+and just simply downloads the latest version of `fluvio` and overwrites itself.
+
+Example usage:
+
+```
+$ fluvio update
+🎣 Fetching latest version for fluvio/fluvio...
+⏳ Downloading Fluvio CLI with latest version: fluvio/fluvio:0.6.0-beta.1...
+🔑 Downloaded and verified package file
+✅ Successfully installed ~/.fluvio/bin/fluvio
+```
 
 ## `fluvio version`
 
