@@ -168,6 +168,45 @@ $ fluvio consume my-topic -B -d
 {"user":"Alice","message":"Hello, Bob!"}
 ```
 
+### `fluvio topic create`
+
+This command is used to create new Fluvio topics. A Fluvio topic is a stream where
+you send related messages. Different topics have unique names and store their data
+independently. They may also be divided into multiple partitions, which can
+increase the message throughput of the topic.
+
+```
+Create a Topic with the given name
+
+fluvio topic create [FLAGS] [OPTIONS] <name>
+
+FLAGS:
+    -i, --ignore-rack-assignment
+            Ignore racks while computing replica assignment
+
+    -d, --dry-run                   Validates configuration, does not provision
+    -h, --help                      Prints help information
+
+OPTIONS:
+    -p, --partitions <partitions>
+            The number of Partitions to give the Topic [default: 1]
+
+    -r, --replication <integer>
+            The number of full replicas of the Topic to keep [default: 1]
+
+    -f, --replica-assignment <file.json>    Replica assignment file
+
+ARGS:
+    <name>    The name of the Topic to create
+```
+
+Example usage:
+
+```
+$ fluvio topic create greetings
+topic "greeting" created
+```
+
 #### Next Steps
 ----------------
 
