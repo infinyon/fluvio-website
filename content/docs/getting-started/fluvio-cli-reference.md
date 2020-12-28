@@ -552,7 +552,120 @@ next: run `fluvio cluster start`
 
 ## `fluvio cluster start`
 
-TODO
+This command is used to start your own Fluvio cluster, with all the
+machinery needed to receive, process, and serve streaming messages.
+
+There are two main variations of this command. The default variation
+is invoked simply by `fluvio cluster start`. This will install Fluvio
+to a Kubernetes cluster, typically Minikube. The other variation is
+`fluvio cluster start --local`, which will start the cluster components
+as plain processes on your local machine.
+
+```
+fluvio-cluster-start 0.4.2
+Start a Fluvio cluster, locally or on Minikube
+
+USAGE:
+    fluvio cluster start [FLAGS] [OPTIONS]
+
+FLAGS:
+        --develop                  use local image
+        --skip-profile-creation    
+        --sys                      installing sys
+        --local                    install local spu/sc(custom)
+        --tls                      Whether to use TLS
+        --skip-checks
+            Whether to skip pre-install checks, defaults to false
+
+        --setup
+            Tries to setup necessary environment for cluster startup
+
+    -h, --help                     Prints help information
+
+OPTIONS:
+        --chart-version <chart-version>
+            k8: use specific chart version [default: 0.6.0-beta.1]
+
+        --image-version <image-version>
+            k8: use specific image version
+
+        --registry <registry>
+            k8: use custom docker registry
+
+        --namespace <namespace>
+            k8 [default: default]
+
+        --group-name <group-name>
+            k8 [default: main]
+
+        --install-name <install-name>
+            helm chart installation name [default: fluvio]
+
+        --chart-location <chart-location>
+            Local path to a helm chart to install
+
+        --cloud <cloud>
+            k8 [default: minikube]
+
+        --spu <spu>
+            number of SPU [default: 1]
+
+        --rust-log <rust-log>
+            RUST_LOG options
+
+        --log-dir <log-dir>
+            log dir [default: /usr/local/var/log/fluvio]
+
+        --domain <domain>                                        TLS: domain
+        --ca-cert <ca-cert>                                      TLS: ca cert
+        --client-cert <client-cert>
+            TLS: client cert
+
+        --client-key <client-key>                                TLS: client key
+        --server-cert <server-cert>
+            TLS: path to server certificate
+
+        --server-key <server-key>
+            TLS: path to server private key
+
+        --authorization-config-map <authorization-config-map>    
+```
+
+Example usage:
+
+To start a cluster on Minikube:
+
+```
+$ fluvio cluster start
+"fluvio" has been added to your repositories
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "jaegertracing" chart repository
+...Successfully got an update from the "prometheus-community" chart repository
+...Successfully got an update from the "fluvio" chart repository
+Update Complete. ⎈Happy Helming!⎈
+NAME: fluvio
+LAST DEPLOYED: Mon Dec 28 13:12:27 2020
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+✅ ok: Kubernetes config is loadable
+✅ ok: Supported helm version is installed
+✅ ok: Fluvio system charts are installed
+✅ ok: Previous fluvio installation not found
+✅ ok: Load balancer is up
+```
+
+To start a cluster locally (as processes on your machine):
+
+```
+$ fluvio cluster start --local
+Performing pre-flight checks
+✅ ok: Supported helm version is installed
+✅ ok: Supported kubernetes version is installed
+✅ ok: Kubernetes config is loadable
+✅ ok: Fluvio system charts are installed
+```
 
 ## `fluvio cluster delete`
 
