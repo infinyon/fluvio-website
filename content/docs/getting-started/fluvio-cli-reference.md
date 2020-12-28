@@ -49,7 +49,7 @@ fluvio help                       Print help for Fluvio or a subcommand
 
 ### `fluvio consume`
 
-The `fluvio consume` command is a way to read the contents of messages in a Fluvio Topic
+The `fluvio consume` command is a way to read the contents of messages in a Fluvio topic
 from a command-line environment. This can be useful if you are developing an application
 with Fluvio and want real-time visibility into what is streaming through your topics.
 It can also be handy for writing shell scripts that can read and react to messages in a
@@ -104,6 +104,68 @@ simply remove the `-d` flag:
 
 ```
 fluvio consume my-topic -B -p 1
+```
+
+### `fluvio produce`
+
+The `fluvio produce` command is a way to send messages to a particular topic and partition.
+This can be useful for testing your applications by manually sending specific messages.
+
+```
+fluvio-produce 0.4.0
+Write messages to a topic/partition
+
+By default, this reads a single line from stdin to use as the message. If you
+run this with no file options, the command will hang until you type a line in
+the terminal. Alternatively, you can pipe a message into the command like this:
+
+$ echo "Hello, world" | fluvio produce greetings
+
+USAGE:
+    fluvio produce [FLAGS] [OPTIONS] <topic>
+
+FLAGS:
+    -C, --continuous    Send messages in an infinite loop
+    -h, --help          Prints help information
+
+OPTIONS:
+    -p, --partition <integer>
+            The ID of the Partition to produce to [default: 0]
+
+    -l, --record-per-line <filename>
+            Send each line of the file as its own Record
+
+    -r, --record-file <filename>...     Send an entire file as a single Record
+
+ARGS:
+    <topic>    The name of the Topic to produce to
+```
+
+By default, the `fluvio produce` command will read a single line from `stdin` and send it
+as the payload of the message. However, you can also specify files to read messages from.
+With the `--record-per-line` flag, you can send many messages from a single file, or with
+the `--record-file` flag you can send the entire contents of a file (including newlines)
+as a single record.
+
+Example usage:
+
+```
+$ cat records.txt
+{"user":"Bob","message":"Hello, Alice!"}
+{"user":"Alice","message":"Hello, Bob!"}
+
+$ fluvio produce my-topic --record-per-line records.txt
+{"user":"Bob","message":"Hello, Alice!"}
+{"user":"Alice","message":"Hello, Bob!"}
+Ok!
+```
+
+You can then confirm that the records were sent by reading them back with `fluvio consume`:
+
+```
+$ fluvio consume my-topic -B -d
+{"user":"Bob","message":"Hello, Alice!"}
+{"user":"Alice","message":"Hello, Bob!"}
 ```
 
 #### Next Steps
