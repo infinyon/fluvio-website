@@ -517,7 +517,38 @@ Config {
 
 ## `fluvio cluster check`
 
-TODO
+The cluster commands are used to install your own Fluvio cluster. This command
+is used to check whether you have all the required dependencies set up on your
+system and whether they are running correctly.
+
+```
+fluvio-cluster-check 0.4.2
+Check that all requirements for cluster startup are met
+
+USAGE:
+    fluvio cluster check
+
+FLAGS:
+    -h, --help    Prints help information
+```
+
+Example usage:
+
+```
+$ fluvio cluster check
+Running pre-startup checks...
+✅ ok: Kubernetes config is loadable
+✅ ok: Supported kubernetes version is installed
+✅ ok: Supported helm version is installed
+✅ ok: Fluvio system charts are installed
+✅ ok: Can create service
+✅ ok: Can create customresourcedefinitions
+✅ ok: Can create secret
+✅ ok: Load balancer is up
+All checks passed!
+You may proceed with cluster startup
+next: run `fluvio cluster start`
+```
 
 ## `fluvio cluster start`
 
