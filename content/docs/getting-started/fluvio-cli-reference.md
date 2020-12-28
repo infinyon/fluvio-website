@@ -476,7 +476,44 @@ TODO
 
 ## `fluvio profile view`
 
-TODO
+This prints the entire Fluvio configuration (from `~/.fluvio/config`).
+
+```
+fluvio-profile-view 0.4.0
+Display the entire Fluvio configuration
+
+USAGE:
+    fluvio profile view
+
+FLAGS:
+    -h, --help    Prints help information
+```
+
+Example usage:
+
+```
+$ fluvio profile view
+Config {
+    version: "2.0",
+    current_profile: Some(
+        "minikube",
+    ),
+    profile: {
+        "minikube": Profile {
+            cluster: "minikube",
+            topic: None,
+            partition: None,
+        },
+    },
+    cluster: {
+        "minikube": FluvioConfig {
+            addr: "10.111.134.218:9003",
+            tls: Disabled,
+        },
+    },
+    client_id: None,
+}
+```
 
 ## `fluvio cluster check`
 
