@@ -348,7 +348,33 @@ fluvio consume my-topic -B -p 1
 
 ## `fluvio profile current`
 
-TODO
+Prints out the name of the active Fluvio profile. Profiles are used to communicate with
+different Fluvio clusters. For example, let's say you have an application that uses
+Fluvio Cloud, but you have a local Fluvio cluster installed that you use for development.
+Each of those clusters would be represented by a profile, and whichever profile is "current"
+is the one that the Fluvio CLI will interact with.
+
+For example, if your Fluvio Cloud profile is called "cloud", and your local profile is called
+"local", then if your current profile is "local", then `fluvio topic create greeting` will
+create a "greeting" topic on your local cluster.
+
+```
+fluvio-profile-current 0.4.0
+Print the name of the current context
+
+USAGE:
+fluvio profile current
+
+FLAGS:
+-h, --help    Prints help information
+```
+
+Example usage:
+
+```
+$ fluvio profile current
+local
+```
 
 ## `fluvio profile delete`
 
