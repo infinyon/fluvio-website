@@ -694,7 +694,36 @@ $ fluvio cluster delete --local
 
 ## `fluvio cluster releases list`
 
-TODO
+Prints all the published versions of Fluvio that are candidates to
+install on Kubernetes with `fluvio cluster start`.
+
+The Fluvio cluster components are distributed as Helm charts which allow
+them to be installed easily on Kubernetes. This prints all the releases
+that are available.
+
+```
+fluvio-cluster-releases-list 0.4.2
+Show a list of Fluvio release versions
+
+USAGE:
+    fluvio cluster releases list
+
+FLAGS:
+    -h, --help    Prints help information
+```
+
+Example usage:
+
+```
+$ fluvio cluster releases list
+VERSION
+0.6.0-latest
+0.6.0-beta.1-latest
+0.6.0-beta.1
+0.6.0-alpha.8-latest
+0.6.0-alpha.7-latest
+...
+```
 
 ## `fluvio cluster spu register`
 
