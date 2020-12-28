@@ -14,38 +14,67 @@ use certain commands and show some examples.
 
 Here is a list of all Fluvio commands that are available by default:
 
-```
-fluvio topic create               Create a topic with the given name
-fluvio topic list                 List all of the Topics in the cluster
-fluvio topic describe             Print detailed information about a Topic
-fluvio topic delete               Delete a topic with the given name
-fluvio produce                    Write messages to a topic/partition
-fluvio consume                    Read messages from a topic/partition
-fluvio partition list             List all of the Partitions in the cluster
-fluvio profile current            Print the name of the current context
-fluvio profile delete             Delete the named profile
-fluvio profile delete-cluster     Delete the named cluster
-fluvio profile switch             Switch to the named profile
-fluvio profile sync k8            Sync a profile from a Kubernetes cluster
-fluvio profile sync local         Sync a profile from a local cluster
-fluvio profile view               Display the entire configuration
-fluvio cluster install            Install a Fluvio cluster, locally or on Minikube
-fluvio cluster uninstall          Uninstall a Fluvio cluster from the local machine or Minikube
-fluvio cluster check              Check that all the requirements for cluster installation are met
-fluvio cluster releases list      Show a list of Fluvio release versions
-fluvio cluster spu register       Register a new custom SPU with the cluster
-fluvio cluster spu unregister     Unregister a custom SPU from the cluster
-fluvio cluster spu list           List all SPUs known by this cluster (managed AND custom)
-fluvio cluster spg create         Create a new managed SPU Group
-fluvio cluster spg delete         Delete a managed SPU Group
-fluvio cluster spg list           List all SPU Groups
-fluvio cluster run sc             Run a new Streaming Controller (SC)
-fluvio cluster run spu            Run a new Streaming Processing Unit (SPU)
-fluvio install                    Install Fluvio plugins
-fluvio update                     Update the Fluvio CLI
-fluvio version                    Print Fluvio version information
-fluvio help                       Print help for Fluvio or a subcommand
-```
+| Command                           | Description                                                        |
+|-----------------------------------|--------------------------------------------------------------------|
+| [fluvio topic create]             | Create a topic with the given name                                 |
+| [fluvio topic list]               | List all of the Topics in the cluster                              |
+| [fluvio topic describe]           | Print detailed information about a Topic                           |
+| [fluvio topic delete]             | Delete a topic with the given name                                 |
+| [fluvio produce]                  | Write messages to a topic/partition                                |
+| [fluvio consume]                  | Read messages from a topic/partition                               |
+| [fluvio partition list]           | List all of the Partitions in the cluster                          |
+| [fluvio profile current]          | Print the name of the current context                              |
+| [fluvio profile delete]           | Delete the named profile                                           |
+| [fluvio profile delete-cluster]   | Delete the named cluster                                           |
+| [fluvio profile switch]           | Switch to the named profile                                        |
+| [fluvio profile sync k8]          | Sync a profile from a Kubernetes cluster                           |
+| [fluvio profile sync local]       | Sync a profile from a local cluster                                |
+| [fluvio profile view]             | Display the entire configuration                                   |
+| [fluvio cluster start]            | Install a Fluvio cluster, locally or on Minikube                   |
+| [fluvio cluster delete]           | Uninstall a Fluvio cluster from the local machine or Minikube      |
+| [fluvio cluster check]            | Check that all the requirements for cluster installation are met   |
+| [fluvio cluster releases list]    | Show a list of Fluvio release versions                             |
+| [fluvio cluster spu register]     | Register a new custom SPU with the cluster                         |
+| [fluvio cluster spu unregister]   | Unregister a custom SPU from the cluster                           |
+| [fluvio cluster spu list]         | List all SPUs known by this cluster (managed AND custom)           |
+| [fluvio cluster spg create]       | Create a new managed SPU Group                                     |
+| [fluvio cluster spg delete]       | Delete a managed SPU Group                                         |
+| [fluvio cluster spg list]         | List all SPU Groups                                                |
+| [fluvio cluster run sc]           | Run a new Streaming Controller (SC)                                |
+| [fluvio cluster run spu]          | Run a new Streaming Processing Unit (SPU)                          |
+| [fluvio install]                  | Install Fluvio plugins                                             |
+| [fluvio update]                   | Update the Fluvio CLI                                              |
+| [fluvio version]                  | Print Fluvio version information                                   |
+
+[fluvio topic create]: #fluvio-topic-create
+[fluvio topic list]: #fluvio-topic-list
+[fluvio topic describe]: #fluvio-topic-describe
+[fluvio topic delete]: #fluvio-topic-delete
+[fluvio produce]: #fluvio-produce
+[fluvio consume]: #fluvio-consume
+[fluvio partition list]: #fluvio-partition-list
+[fluvio profile current]: #fluvio-profile-current
+[fluvio profile delete]: #fluvio-profile-delete
+[fluvio profile delete-cluster]: #fluvio-profile-delete-cluster
+[fluvio profile switch]: #fluvio-profile-switch
+[fluvio profile sync k8]: #fluvio-profile-sync-k8
+[fluvio profile sync local]: #fluvio-profile-sync-local
+[fluvio profile view]: #fluvio-profile-view
+[fluvio cluster start]: #fluvio-cluster-start
+[fluvio cluster delete]: #fluvio-cluster-delete
+[fluvio cluster check]: #fluvio-cluster-check
+[fluvio cluster releases list]: #fluvio-cluster-releases-list
+[fluvio cluster spu register]: #fluvio-cluster-spu-register
+[fluvio cluster spu list]: #fluvio-cluster-spu-list
+[fluvio cluster spu unregister]: #fluvio-cluster-spu-unregister
+[fluvio cluster spg create]: #fluvio-cluster-spg-create
+[fluvio cluster spg list]: #fluvio-cluster-spg-list
+[fluvio cluster spg delete]: #fluvio-cluster-spg-delete
+[fluvio cluster run sc]: #fluvio-cluster-run-sc
+[fluvio cluster run spu]: #fluvio-cluster-run-spu
+[fluvio install]: #fluvio-install
+[fluvio update]: #fluvio-update
+[fluvio version]: #fluvio-version
 
 ### `fluvio topic create`
 
