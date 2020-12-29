@@ -1,11 +1,11 @@
 ---
-title: Websocket Boilerplate for Data Streaming Apps
+title: Websocket Glue for Data Streaming Apps
 author: 
     name: "The Fluvio Team"
-description: Step-by-step tutorial on how to create a session aware websocket boilerplate for data streaming applications.
+description: Step-by-step tutorial on how to create a session aware websocket glue for data streaming applications.
 date: 2020-12-26
-slug: websocket-boilerplate-for-streaming-apps
-url: /blog/2020/12/websocket-boilerplate-for-streaming-apps
+slug: websocket-glue-for-streaming-apps
+url: /blog/2020/12/websocket-glue-for-streaming-apps
 ---
 
 Modern applications need to interact with their users in real-time which require real time data streaming support. While we had Fluvio to handle data streaming, we needed a websocket connection proxy to bridge the data streaming with web applications.
@@ -18,9 +18,9 @@ This websocket connection layer should have the following properties:
 * handle session management for server initiated connections
 * scale to a large number of concurrent sessions
 
-Since we couldn't find such boilerplate we ended up building it ourselves. We used this solution in both of our data streaming apps: Chat App and Bot Assistant.
+Since we couldn't find such code we ended up building it ourselves. We used this solution in both of our data streaming apps: Chat App and Bot Assistant.
 
-If you want to jump right into it, you can download it in github. The rest of this article takes you through a step-by-step on how we've built the boilerplate one component at a time.
+If you want to jump right into it, you can download it in github. The rest of this article takes you through a step-by-step on how we've built this solution one component at a time.
 
 ##### Overview
 
@@ -56,10 +56,10 @@ The backend websocket server uses `Node.js` and `Typescript`. First we setup the
 
 ### Add Node.js server
 
-Let's create a directory `websocket-boilerplate`:
+Let's create a directory `websocket-glue`:
 
 ```bash
-mkdir websocket-boilerplate && cd websocket-boilerplate
+mkdir websocket-glue && cd websocket-glue
 ```
 
 Initialize node (this example uses Node v13.5.0):
@@ -70,7 +70,7 @@ npm init --yes
 
 ```bash
 {
-  "name": "websocket-boilerplate",
+  "name": "websocket-glue",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -172,7 +172,7 @@ Updated `package.json` configuration file to run `server.ts` file:
 
 {{< highlight json "hl_lines=5 7-8" >}}
 {
-  "name": "websocket-boilerplate",
+  "name": "websocket-glue",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -661,7 +661,7 @@ Open the web browser and refresh `http://localhost:9998/` to load the latest jav
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
-Congratulations, you have a basic websocket boilerplate is ready for use.
+Congratulations, you have a basic websocket glue is ready for use.
 
 
 ## Step 4: Add session support
@@ -1051,4 +1051,4 @@ The `notify` message is printed to the output every 3 seconds:
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
-Congratulations, your session aware websocket boilerplate is ready for use.
+Congratulations, your session aware websocket glue is ready for use.
