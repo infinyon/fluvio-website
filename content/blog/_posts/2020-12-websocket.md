@@ -20,7 +20,7 @@ This websocket connection layer should have the following properties:
 
 Since we couldn't find such code we ended up building it ourselves. We used this solution in both of our data streaming apps: Chat App and Bot Assistant.
 
-If you want to jump right into it, you can download it in github. The rest of this article takes you through a step-by-step on how we've built this solution one component at a time.
+If you want to jump right into it, you can download it from <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/websocket-glue" target="_blank">github</a>. The rest of this article takes you through a step-by-step on how we've built this solution one component at a time.
 
 ##### Overview
 
@@ -68,6 +68,8 @@ Initialize node (this example uses Node v13.5.0):
 npm init --yes
 ```
 
+It generates the following `package.json` file:
+
 ```bash
 {
   "name": "websocket-glue",
@@ -94,7 +96,7 @@ npm install -D tsc-watch @types/node @types/express
 * **ts-node**: package for using TypeScript with Node.js. For example: `ts-node app.ts`.
 * **tsc-watch**: a development tool to restart the server on code changes.
 * **express**: web application framework for routing, cookies, and more.
-* **@types/node***: typescript library for `Node.js`.
+* **@types/node**: typescript library for `Node.js`.
 * **@types/express**: typescript library `express` application server.
 
 
@@ -312,7 +314,7 @@ startServer();
 
 ### Test frontend client
 
-Open a web browser and navigate to `ws://localhost:9998/`.
+Open a web browser and navigate to `http://localhost:9998/`.
 
 <img src="/blog/images/websocket/frontend.svg"
      alt="WebSocket Frontend"
