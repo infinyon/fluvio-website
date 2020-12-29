@@ -1031,7 +1031,8 @@ export class WsProxy {
             }
         }
     }
-}{{< /highlight >}}
+}
+{{< /highlight >}}
 
 We generate a cookie called **Fluvio-Bot-Assistant** and utilize WebSocket to send it to the client.
 

@@ -8,7 +8,19 @@ slug: websocket-boilerplate-for-streaming-apps
 url: /blog/2020/12/websocket-boilerplate-for-streaming-apps
 ---
 
-Modern applications need to interact with their users in real-time. Here at Fluvio, we built several real-time data streaming samples apps, such as Bot Assistant and Chat App, and we found ourselves looking for a websocket boilerplate. We couldn't find one that suited our purpose and we ended up building it ourselves. 
+Modern applications need to interact with their users in real-time which require real time data streaming support. While we had Fluvio to handle data streaming, we needed a websocket connection proxy to bridge the data streaming with web applications.
+
+This websocket connection layer should have the following properties:
+
+* establish long-lived websocket connections
+* work natively in javascript for easy integration with front end clients
+* handle cookies for session identification
+* handle session management for server initiated connections
+* scale to a large number of concurrent sessions
+
+Since we couldn't find such boilerplate we ended up building it ourselves. We used this solution in both of our data streaming apps: Chat App and Bot Assistant.
+
+If you want to jump right into it, you can download it in github. The rest of this article takes you through a step-by-step on how we've built the boilerplate one component at a time.
 
 ##### Overview
 
@@ -23,16 +35,16 @@ This blog is written in a set-by-step tutorial format:
 * [Step 1: Add backend server](#step-1-add-backend-server)
 * [Step 2: Add frontend client](#step-2-add-frontend-client)
 * [Step 3: Add websocket communication](#step-3-add-websocket-communication)
-* [Step 4: Add multi-session support](#step-4-add-multi-session-support)
+* [Step 4: Add session support](#step-4-add-session-support)
 
-The project is also available for download in github.
+Checkout the next tutorial if you are interested in adding the Fluvio real-time data streaming layer.
 
 ##### Architecture
 
-The goals is to create a simple client/server application that we can use as boilerplate for any number of real-time data streaming apps. 
+The goals is to create a session aware client/server websocket mechanism that we can leveraged by any real-time data streaming apps. 
 
-<img src="/blog/images/websocket/ping-pong.svg"
-     alt="WebSocket Ping/Pong"
+<img src="/blog/images/websocket/architecture.svg"
+     alt="WebSocket Architecture"
      style="justify: center; max-width: 440px" />
 
 Let's get started.
@@ -333,7 +345,7 @@ npm install -D @types/ws
 
 #### Add incoming proxy
 
-Our websocket implementation is a proxy server that intermediates the communication between clients and the server business logic. As both, the the clients and the server, can initiate requests, we'll create two separate files **proxy-in** and **proxy-out**. This separation gives us better division of responsibility between incoming and outgoing requests. 
+Our websocket implementation is a proxy server that intermediates the communication between clients and the server business logic. As the solution allows the clients or the server to initiate requests, we'll create two separate files **proxy-in** and **proxy-out**. This separation gives us better division of responsibility between incoming and outgoing requests. We'll come back to this in [Step 4](#step-4-add-session-support).
 
 Incoming proxy is responsible for the websocket negotiation and message handling for incoming requests. Let's add the file:
 
@@ -649,36 +661,394 @@ Open the web browser and refresh `http://localhost:9998/` to load the latest jav
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
-Congratulations, your websocket boilerplate is ready for use.
+Congratulations, you have a basic websocket boilerplate is ready for use.
 
 
-## Step 4: Add multi-session support
+## Step 4: Add session support
 
-<br/><br/><br/><br/><br/>
+A websocket servers must be able to support multiple conversations in parallel, where each conversation is uniquely identified by a session id. The preferred method to managed these conversations is through <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank">HTTP cookies</a>.
 
+Once a websocket session is established both, the client and the server can leverage it to initiate requests. Client initiated requests are straight forward as the session information is passed through header cookies. Server initiated requests are bit more involved as they require a session management layer. 
 
-#### Implement outgoing proxy
+In this section covers both aspects:
+* [Add session cookies for client requests](#add-session-cookies-for-client-requests)
+* [Add session management for server requests](#add-session-management-for-server-requests)
 
-Outgoing proxy is responsible for the outgoing message, which is just a simple API.
+### Add session cookies for client requests
+
+Web servers push cookies to clients through HTTP headers. After receipt, the clients attaches the cookies to each subsequent message it sends the server. Messages exchanged using the same cookie are also known as sessions.
+
+Let's updates `src/proxy-in.ts` websocket server to generate and push session cookies: 
+
+{{< highlight typescript "hl_lines=3-5 21-24 33-41 44-45 47 50 54 67-81" >}}
+import WS from "ws";
+import http from "http";
+import crypto from 'crypto';
+
+const COOKIE_NAME = "CookieName"
+
+export class WsProxyIn {
+    private static wss: WS.Server;
+
+    constructor() {
+        WsProxyIn.wss = new WS.Server({ clientTracking: false, noServer: true });
+    }
+
+    public init(server: http.Server) {
+        this.onUpgrade(server);
+        this.onConnection();
+    }
+
+    private onUpgrade(server: http.Server) {
+        server.on("upgrade", function (request, socket, head) {
+            const session = WsProxyIn.parseCookie(COOKIE_NAME, request.headers.cookie);
+            if (session) {
+                request.headers.session = session;
+            }
+
+            WsProxyIn.wss.handleUpgrade(request, socket, head, function (ws: WS) {
+                WsProxyIn.wss.emit("connection", ws, request);
+            });
+        });
+    }
+
+    private onConnection() {
+        WsProxyIn.wss.on("headers", (headers: Array<string>, req) => {
+            const session = WsProxyIn.parseCookie(COOKIE_NAME, req.headers.cookie);
+            if (!session) {
+                let session = crypto.randomBytes(20).toString("hex");
+                req.headers.session = session;
+
+                headers.push("Set-Cookie: " + COOKIE_NAME + "=" + session);
+            }
+        });
+
+        WsProxyIn.wss.on("connection", function (ws, req) {
+            const session_hdr = req.headers.session;
+            const sid = ((Array.isArray(session_hdr)) ? session_hdr[0] : session_hdr) || ""; 
+
+            console.log(`session opened: ${sid}`);
+
+            ws.on("close", function () {
+                console.log(`session closed: ${sid}`);
+            });
+
+            ws.on("message", (clientMsg: string) => {
+                console.log(`<== ${clientMsg} from ${sid}`);
+
+                var response = "ok";
+                if (clientMsg == "ping") {
+                    response = "pong";
+                }
+
+                ws.send(response);
+                console.log("==> ", response);
+            });
+        });
+    }
+
+    private static parseCookie(cookieName: string, cookie_hdr?: string) {
+        if (cookie_hdr) {
+            const cookiePair = cookie_hdr.split(/; */).map((c: string) => {
+                const [key, v] = c.split('=', 2);
+                return [key, decodeURIComponent(v)];
+            }).find(res =>
+                (res[0] == cookieName)
+            );
+
+            if (Array.isArray(cookiePair) && cookiePair.length > 1) {
+                return cookiePair[1];
+            }
+        }
+        return undefined;
+    }    
+}
+{{< /highlight >}}
+
+The code generates and assigns a session id to a cookie with arbitrary name. Then, it utilizes WebSocket headers to send it to the client.
+
+The webSocket connection setup in two steps:
+1. `headers` request
+2. `connection` request. 
+
+In the `headers` request, the code checks the HTTP headers for the session cookie. If not found, it generates a new session id and appends the result to the HTTP header. WebSocket will take care of the rest. In `connection` callback, the code reads the session id from `request.headers.session`.
+
+Finally, `parseSessionFromCookie` reads the session id from the cookie header and returns the the caller.
+
+### Test session cookies
+
+Open the web browser and refresh `http://localhost:9998/`. Then, open browser cookies and look for an entry called `CookieName`. The cookie stores the session id.
+
+<img src="/blog/images/websocket/webcookies.svg"
+     alt="WebSocket Frontend"
+     style="justify: center; max-width: 580px" />
+
+If you open a 2nd browser in `Incognito Mode` a new cookie is assigned.
+
+At the terminal the web server logs new connection with the cookie information.
 
 ```bash
-touch src/proxy-in.ts
+started websocket server at ws://localhost:9998...
+session opened: 8771b27ee1c8af52e8473c2d8f8e3d932a654155
+<== hello from 8771b27ee1c8af52e8473c2d8f8e3d932a654155
+==>  ok
+session opened: 3cd4c1fd800f8adb0b1ca5a5a8cce80ce0335788
+<== ping from 3cd4c1fd800f8adb0b1ca5a5a8cce80ce0335788
+==>  pong
+session closed: 3cd4c1fd800f8adb0b1ca5a5a8cce80ce0335788
+session closed: 8771b27ee1c8af52e8473c2d8f8e3d932a654155
+```
+Congratulations, you have implemented session cookies using websocket.
+
+### Add session management for server requests
+
+Session management is an intermediate file that caches the session id with the websocket connection object. These cached connections allows server modules to send messages to any of the clients based on their session identifier.
+
+#### Add session management file
+
+Let's add the session management to a file called `proxy-out`:
+
+```bash
+touch src/proxy-out.ts
 ```
 
 Paste the following content in the `src/proxy-out.ts` file:
 
 ```ts
 import WS from "ws";
+type SID = string;
 
 export class WsProxyOut {
+    private sessions: Map<SID, WS>;
 
-    public sendMessage(ws: WS, message: string) {
+    constructor() {
+        this.sessions = new Map();
+    }
+
+    public addSession(sid: SID, ws: WS) {
+        this.sessions.set(sid, ws);
+    }
+
+    public getSession(sid: SID) {
+        this.sessions.get(sid);
+    }
+
+    public closeSession(sid: SID) {
+        const ws = this.sessions.get(sid);
+        if (ws) {
+            ws.close();
+        }
+        this.sessions.delete(sid);
+    }
+
+    public sendMessage(sid: SID, message: string) {
         const ws = this.sessions.get(sid);
         if (ws) {
             ws.send(message);
         }
     }
 
-}
+    public broadcastMessage(message: string) {
+        for (let ws of this.sessions.values()) {
+            ws.send(message);
+        }
+    }
 
+    public show() {
+        console.log("Sessions");
+        console.table(this.sessions);
+    }    
+}
 ```
+
+WsProxyOut class saves session ids (SID) together with the Websocket connection in a Map object. Any module with a reference to this object can send messages to one or all clients.
+
+#### Integrated session management
+
+Sessions are generated inside incoming proxy file, hence the integration is done there. However, the sessions must be shareable with any number of server modules and it needs to be a top level object.
+
+Let's update `src/proxy-in.ts`:
+
+{{< highlight typescript "hl_lines=4 10 12 14 50 54 66" >}}
+import WS from "ws";
+import http from "http";
+import crypto from 'crypto';
+import { WsProxyOut } from "./proxy-out";
+
+const COOKIE_NAME = "CookieName"
+
+export class WsProxyIn {
+    private static wss: WS.Server;
+    private static proxyOut: WsProxyOut
+
+    constructor(proxyOut: WsProxyOut) {
+        WsProxyIn.wss = new WS.Server({ clientTracking: false, noServer: true });
+        WsProxyIn.proxyOut = proxyOut;
+    }
+
+    public init(server: http.Server) {
+        this.onUpgrade(server);
+        this.onConnection();
+    }
+
+    private onUpgrade(server: http.Server) {
+        server.on("upgrade", function (request, socket, head) {
+            const session = WsProxyIn.parseCookie(COOKIE_NAME, request.headers.cookie);
+            if (session) {
+                request.headers.session = session;
+            }
+
+            WsProxyIn.wss.handleUpgrade(request, socket, head, function (ws: WS) {
+                WsProxyIn.wss.emit("connection", ws, request);
+            });
+        });
+    }
+
+    private onConnection() {
+        WsProxyIn.wss.on("headers", (headers: Array<string>, req) => {
+            const session = WsProxyIn.parseCookie(COOKIE_NAME, req.headers.cookie);
+            if (!session) {
+                let session = crypto.randomBytes(20).toString("hex");
+                req.headers.session = session;
+
+                headers.push("Set-Cookie: " + COOKIE_NAME + "=" + session);
+            }
+        });
+
+        WsProxyIn.wss.on("connection", function (ws, req) {
+            const session_hdr = req.headers.session;
+            const sid = ((Array.isArray(session_hdr)) ? session_hdr[0] : session_hdr) || "";
+
+            WsProxyIn.proxyOut.addSession(sid, ws);
+            console.log(`session opened: ${sid}`);
+
+            ws.on("close", function () {
+                WsProxyIn.proxyOut.closeSession(sid);
+                console.log(`session closed: ${sid}`);
+            });
+
+            ws.on("message", (clientMsg: string) => {
+                console.log(`<== ${clientMsg} from ${sid}`);
+
+                var response = "ok";
+                if (clientMsg == "ping") {
+                    response = "pong";
+                }
+
+                WsProxyIn.proxyOut.sendMessage(sid, response);
+                console.log("==> ", response);
+            });
+        });
+    }
+
+    private static parseCookie(cookieName: string, cookie_hdr?: string) {
+        if (cookie_hdr) {
+            const cookiePair = cookie_hdr.split(/; */).map((c: string) => {
+                const [key, v] = c.split('=', 2);
+                return [key, decodeURIComponent(v)];
+            }).find(res =>
+                (res[0] == cookieName)
+            );
+
+            if (Array.isArray(cookiePair) && cookiePair.length > 1) {
+                return cookiePair[1];
+            }
+        }
+        return undefined;
+    }
+}
+{{< /highlight >}}
+
+The code adds a private static variable `proxyOut` which stores a pointer to the session management object. When the connection status changes, `proxyOut` is notified to update its internal cache. 
+
+OnMessage API was also changed to use `proxyOut` for sending messages using the session id.
+
+Next, we need to update `src\server.ts` to crate the session manager object an pass it to the incoming proxy:
+
+{{< highlight typescript "hl_lines=5 13-14" >}}
+import http from "http";
+import express from "express";
+import path from "path";
+import { WsProxyIn } from "./proxy-in";
+import { WsProxyOut } from "./proxy-out";
+
+const PORT = 9998;
+
+const startServer = async () => {
+    const app = express();
+    const Server = http.createServer(app);
+    const publicPath = path.join(__dirname, '..', 'public');
+    const proxyOut = new WsProxyOut();
+    const wsProxyIn = new WsProxyIn(proxyOut);
+
+    wsProxyIn.init(Server);
+
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(publicPath, 'index.html'));
+    });
+    app.use("/scripts", express.static(path.join(publicPath, 'scripts')));
+
+    Server.listen(PORT, () => {
+        console.log(
+            `started websocket server at ws://localhost:${PORT}...`
+        );
+    });
+};
+
+startServer();
+{{< /highlight >}}
+
+The code create a new `WsProxyOut` object and passes it to `WsProxyIn`.
+
+### Test server initiated requests
+
+To test server initiated requests, we'll add a simple timeout that triggers every 3 seconds and broadcasts a notification to all clients.
+
+We'll temporarily add a trigger to `src\server.ts`:
+
+{{< highlight typescript "hl_lines=18-21" >}}
+import http from "http";
+import express from "express";
+import path from "path";
+import { WsProxyIn } from "./proxy-in";
+import { WsProxyOut } from "./proxy-out";
+
+const PORT = 9998;
+
+const startServer = async () => {
+    const app = express();
+    const Server = http.createServer(app);
+    const publicPath = path.join(__dirname, '..', 'public');
+    const proxyOut = new WsProxyOut();
+    const wsProxyIn = new WsProxyIn(proxyOut);
+
+    wsProxyIn.init(Server);
+
+    // test broadcast
+    setInterval(() => {
+        proxyOut.broadcastMessage("notify");
+    }, 3000);
+
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(publicPath, 'index.html'));
+    });
+    app.use("/scripts", express.static(path.join(publicPath, 'scripts')));
+
+    Server.listen(PORT, () => {
+        console.log(
+            `started websocket server at ws://localhost:${PORT}...`
+        );
+    });
+};
+
+startServer();
+{{< /highlight >}}
+
+Navigate to your browser pointing at `http://localhost:9998/` and connect.
+The `notify` message is printed to the output every 3 seconds:
+
+<img src="/blog/images/websocket/websocket-notify.svg"
+     alt="WebSocket Frontend"
+     style="justify: center; max-width: 540px" />
+
+Congratulations, your session aware websocket boilerplate is ready for use.
