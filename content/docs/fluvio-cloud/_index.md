@@ -34,7 +34,7 @@ There are currently three interfaces to stream real-time data to Fluvio Cloud:
 
 All clients require a [Profile](/docs/cli/profiles) to stream data to and from a Fluvio cluster. The profile contains the authorization and access information the client uses to register and communicate with a cluster. All data between clients and Fluvio Cloud is **encrypted** in <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a>.
 
-The profile is generated during cluster setup and it is available for download in your <a href="https://app.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a> account.
+The profile is generated during cluster setup and it is available for download in your <a href="https://cloud.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a> account.
 
 
 ### Restrictions
