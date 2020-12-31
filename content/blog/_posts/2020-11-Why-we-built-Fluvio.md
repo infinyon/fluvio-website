@@ -1,5 +1,6 @@
 ---
 title: Why we built Fluvio
+hidden: true
 author: 
     name: "The Fluvio Team"
 description: Fluvio, a real-time data streaming platform for connected apps

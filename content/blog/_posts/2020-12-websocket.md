@@ -37,7 +37,7 @@ This blog is written in a set-by-step tutorial format:
 * [Step 3: Add websocket communication](#step-3-add-websocket-communication)
 * [Step 4: Add session support](#step-4-add-session-support)
 
-Checkout the next tutorial if you are interested in adding the Fluvio real-time data streaming layer.
+This blog is part of a series of tutorials that shows the power of combining the [Websocket glue](#) with <a href="https://github.com/infinyon/fluvio">Fluvio</a> to build full featured data streaming apps.
 
 ##### Architecture
 
@@ -1054,3 +1054,14 @@ The `notify` message is printed to the output every 3 seconds:
      style="justify: center; max-width: 540px" />
 
 Congratulations, your session aware websocket glue is ready for use.
+
+
+## Conclusion
+
+Websocket is a good choice for streaming real-time data between web server clients and backend servers. The blog shows that 220 lines of code is all you need to build your own real-time applications on websocket.
+
+This websocket glue is used in the following sample applications:
+* [Build your own custom Bot Assistant](/blog/2020/12/bot-assistant/)
+* [Build a persistent Chat App without a database](/blog/2020/12/persistent-chat-app)
+
+You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">discord</a>. We look forward to hearing from you.
