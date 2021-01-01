@@ -53,16 +53,23 @@ From the `chat-app` directory, run `npm run build`. This will run the `./build.s
 
 ### **Run the Server**
 
-Open a new terminal window, navigate to the `chat-server` directory and start the application:
+Open a new terminal window, navigate to the `chat-server` directory, setup the fluvio topics and start the application:
 
 ```bash
-cd chat-server && npm run start
+cd chat-server && npm run setup && npm run start
 ```
 
 On a freshly installed cluster with no prior events, you should see the following message if the server successfully started.
 
 
 ```bash
+> chat-server@1.0.0 setup /home/simlay/projects/infinyon/fluvio-demo-apps-node/chat-app/chat-server
+> sh ./setup.sh
+
+topic "chat-app-users" created
+topic "chat-app-messages" created
+topic "chat-app-sessions" created
+
 > chat-server@1.0.0 start /Users/ryantate/Projects/InfinyOn/fluvio-demo-apps-node/chat-app/chat-server
 > npx ts-node ./src/chat-server.ts
 
@@ -86,7 +93,7 @@ Chat server is running at http://localhost:5050...
 Open a new terminal window, navigate to the `chat-client` directory and start the application:
 
 ```bash
-cd chat-client && npm run start
+cd chat-client && npm run start:dev
 ```
 
 If everything was installed and built successfully, you should see the following message when starting the application.
@@ -122,16 +129,12 @@ With the client and server applications running, you can now visit the client ap
 
 ### Registering a Chat User
 
-When you visit the client application, you need to register a new user. Click the [`Register User`](http://localhost:5051/registerUser) button
-to create a new chat user.
-
-{{< image src="tutorials/chat-app/login.png" alt="Login" justify="center" width="420" type="scaled-75">}}
-
-Once clicked, create a new username and password.
+When you visit the client application, you need to register a new user. Click the [`Register`](http://localhost:5051/register) button
+to create a new chat user. In a full application, you'd also have a password but this is just a tutorial.
 
 {{< image src="tutorials/chat-app/register.png" alt="register" justify="center" width="420" type="scaled-75">}}
 
-After the user has been created, enter the username and password details in the [`login`](http://localhost:5051/login) form.
+After the user has been created, enter the username in the [`login`](http://localhost:5051/login) form.
 
 {{< image src="tutorials/chat-app/login.png" alt="Login" justify="center" width="420" type="scaled-75">}}
 
