@@ -3,7 +3,7 @@ title: Websocket Glue for Data Streaming Apps
 author: 
     name: "The Fluvio Team"
 description: Step-by-step tutorial on how to create a session aware websocket glue for data streaming applications.
-date: 2020-12-26
+date: 2020-12-03
 slug: websocket-glue-for-streaming-apps
 url: /blog/2020/12/websocket-glue-for-streaming-apps
 ---
