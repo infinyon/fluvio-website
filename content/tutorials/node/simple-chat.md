@@ -114,7 +114,7 @@ Open the web browser at `http://localhost:5051/` and we are ready to use the App
 
 ## Using the Application
 
-With the client and server applications running, you can now visit the client website and test the chap application.
+With the client and server applications running, you can now visit the client website and test the chat application.
 
 ### Registering a Chat User
 
