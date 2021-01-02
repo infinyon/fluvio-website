@@ -43,7 +43,7 @@ This blog is part of a series of tutorials that shows the power of combining the
 
 The goals is to create a session aware client/server websocket mechanism that we can leveraged by any real-time data streaming apps. 
 
-<img src="/blog/images/websocket/architecture.svg"
+<img src="/blog/images/websocket-glue/architecture.svg"
      alt="WebSocket Architecture"
      style="justify: center; max-width: 440px" />
 
@@ -316,7 +316,7 @@ startServer();
 
 Open a web browser and navigate to `http://localhost:9998/`.
 
-<img src="/blog/images/websocket/frontend.svg"
+<img src="/blog/images/websocket-glue/frontend.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
@@ -659,7 +659,7 @@ Open the web browser and refresh `http://localhost:9998/` to load the latest jav
     * server should respond with 'ok'.
 * click `Disconnect` to release websocket connection.
 
-<img src="/blog/images/websocket/websocket.svg"
+<img src="/blog/images/websocket-glue/websocket.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
@@ -781,7 +781,7 @@ Finally, `parseSessionFromCookie` reads the session id from the cookie header an
 
 Open the web browser and refresh `http://localhost:9998/`. Then, open browser cookies and look for an entry called `CookieName`. The cookie stores the session id.
 
-<img src="/blog/images/websocket/webcookies.svg"
+<img src="/blog/images/websocket-glue/webcookies.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 580px" />
 
@@ -1049,7 +1049,7 @@ startServer();
 Navigate to your browser pointing at `http://localhost:9998/` and connect.
 The `notify` message is printed to the output every 3 seconds:
 
-<img src="/blog/images/websocket/websocket-notify.svg"
+<img src="/blog/images/websocket-glue/websocket-notify.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
