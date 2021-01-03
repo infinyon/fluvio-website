@@ -212,7 +212,7 @@ Returns all messages in the messages topic:
 ```json
 {"sid":"5d4973b4bf39e182020174daecca1459","message":{"user":"charlie","message":"Hey guys","timestamp":"2021-01-01T11:04:16.792"}}
 {"sid":"c41e59f83f713fdcf25affabf458a594","message":{"user":"alice","message":"What's going on charlie?","timestamp":"2021-01-01T11:04:40.161"}}
-{"sid":"c41e59f83f713fdcf25affabf458a594","message":{"user":"alice","message":"Not much. Just pretty excited about using fluvio!","timestamp":"2021-01-01T11:05:15.755"}}
+{"sid":"c41e59f83f713fdcf25affabf458a594","message":{"user":"charlie","message":"Not much. Just pretty excited about using fluvio!","timestamp":"2021-01-01T11:05:15.755"}}
 ```
 
 Each messages has a user name, a messages and the timestamp when it was created.
