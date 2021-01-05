@@ -175,39 +175,10 @@ root      54623 0.0 0.1 5058892 37432 s003 S  12:45PM 0:00.44 minikube tunnel
 
 [this troubleshooting section]: ../fluvio-local-faq#minikube-tunnel-minikube-tunnel-does-not-appear
 
-Now we have to configure some minikube settings so that Fluvio can communicate with the
-applications running inside. This command will prompt you for `sudo` because we need to
-add an entry for minikube to your `/etc/hosts` file.
+Once we have the minikube tunnel running, we can run the startup command.
 
 ```bash
-$ fluvio cluster set-minikube-context
-```
-
-Once we've got that set up, we can run our main installation command:
-
-```bash
-$ fluvio cluster install
-Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "fluvio" chart repository
-Update Complete. ⎈Happy Helming!⎈
-NAME: fluvio-sys
-LAST DEPLOYED: Sun Oct  4 02:16:16 2020
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-"fluvio" already exists with the same configuration, skipping
-Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "fluvio" chart repository
-Update Complete. ⎈Happy Helming!⎈
-NAME: fluvio
-LAST DEPLOYED: Sun Oct  4 02:16:18 2020
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-waiting for spu to be provisioned
-1 spus provisioned
+$ fluvio cluster start
 ```
 
 You can check that everything worked by listing the topics on the cluster:
