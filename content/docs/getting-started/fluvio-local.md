@@ -173,7 +173,7 @@ need to open a new terminal window to continue the setup process.
 Once we have the minikube tunnel running, we can run the startup command.
 
 ```bash
-$ f❯ fluvio cluster start
+$ fluvio cluster start
 Fluvio system chart not installed. Attempting to install
 "fluvio" has been added to your repositories
 Hang tight while we grab the latest from your chart repositories...
