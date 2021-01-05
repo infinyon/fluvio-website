@@ -64,7 +64,7 @@ minikube will depend on your OS:
 In your Mac terminal:
 
 ```bash
-minikube start --driver=hyperkit
+minikube start --driver=hyperkit --kubernetes-version=1.19.6
 ```
 -> On Mac, `hyperkit` is provided by Docker Desktop, so you still need to install docker
 
@@ -116,7 +116,7 @@ command to check that it's installed correctly.
 ```bash
 $ kubectl version --short
 Client Version: v1.20.1
-Server Version: v1.20.0
+Server Version: v1.19.6
 ```
 
 {{<idea>}}
@@ -161,19 +161,12 @@ to connect to programs running in minikube. This is how Fluvio commands communic
 the local Fluvio cluster in minikube. To do this, we need to run the following command:
 
 ```bash
-$ sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &
+$ minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out
 ```
 
-You can verify that this is working by checking your running processes for it:
-
-```bash
-$ ps aux | grep "minikube tunnel"
-root      54623 0.0 0.1 5058892 37432 s003 S  12:45PM 0:00.44 minikube tunnel
-```
-
-~> Sometimes the tunnel may not appear. See [this troubleshooting section] for help.
-
-[this troubleshooting section]: ../fluvio-local-faq#minikube-tunnel-minikube-tunnel-does-not-appear
+This command does not return, the tunnel process stays open and therefore the terminal
+may seem to hang. This is expected, it means everything is working properly. You will
+need to open a new terminal window to continue the setup process.
 
 Once we have the minikube tunnel running, we can run the startup command.
 
