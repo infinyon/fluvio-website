@@ -66,6 +66,7 @@ In your Mac terminal:
 ```bash
 minikube start --driver=hyperkit --kubernetes-version=1.19.6
 ```
+
 -> On Mac, `hyperkit` is provided by Docker Desktop, so you still need to install docker
 
 {{< /tab >}}
@@ -75,8 +76,9 @@ minikube start --driver=hyperkit --kubernetes-version=1.19.6
 In your Linux terminal:
 
 ```bash
-minikube start --driver=docker
+minikube start --driver=docker --kubernetes-version=1.19.6
 ```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -171,7 +173,33 @@ need to open a new terminal window to continue the setup process.
 Once we have the minikube tunnel running, we can run the startup command.
 
 ```bash
-$ fluvio cluster start
+$ f❯ fluvio cluster start
+Fluvio system chart not installed. Attempting to install
+"fluvio" has been added to your repositories
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "fluvio" chart repository
+Update Complete. ⎈Happy Helming!⎈
+NAME: fluvio-sys
+LAST DEPLOYED: Tue Jan  5 12:25:17 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+"fluvio" already exists with the same configuration, skipping
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "fluvio" chart repository
+Update Complete. ⎈Happy Helming!⎈
+NAME: fluvio
+LAST DEPLOYED: Tue Jan  5 12:25:23 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+✅ ok: Kubernetes config is loadable
+✅ ok: Supported helm version is installed
+✅ ok: Fixed: Missing Fluvio system charts.
+✅ ok: Previous fluvio installation not found
+✅ ok: Load balancer is up
 ```
 
 You can check that everything worked by listing the topics on the cluster:
