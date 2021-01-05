@@ -97,8 +97,8 @@ check that minikube is installed correctly.
 
 ```bash
 $ minikube version
-minikube version: v1.13.0
-commit: eeb05350f8ba6ff3a12791fcce350c131cb2ff44
+minikube version: v1.16.0
+commit: 9f1e482427589ff8451c4723b6ba53bb9742fbb1
 ```
 
 ### Installing Kubectl
@@ -115,8 +115,8 @@ command to check that it's installed correctly.
 
 ```bash
 $ kubectl version --short
-Client Version: v1.19.1
-Server Version: v1.19.0
+Client Version: v1.20.1
+Server Version: v1.20.0
 ```
 
 {{<idea>}}
@@ -143,7 +143,7 @@ works by printing the version.
 
 ```bash
 $ helm version --short
-v3.3.1+g249e521
+v3.3.4+ga61ce56
 ```
 
 [helm releases page]: https://github.com/helm/helm/releases
