@@ -202,11 +202,12 @@ TEST SUITE: None
 ✅ ok: Load balancer is up
 ```
 
-You can check that everything worked by listing the topics on the cluster:
+You can check that everything worked by listing out the cluster's SPUs:
 
 ```bash
-$ fluvio topic list
-No topics found
+$ fluvio cluster spu list
+ ID  NAME    STATUS  TYPE       RACK  PUBLIC              PRIVATE
+  0  main-0  Online  "managed"   -    10.98.127.175:9005  fluvio-spg-main-0.fluvio-spg-main:9006
 ```
 
 ## Hello, Fluvio!
