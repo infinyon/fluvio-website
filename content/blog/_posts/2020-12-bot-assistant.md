@@ -1118,7 +1118,7 @@ const startServer = async () => {
     app.use("/img", express.static(path.join(publicPath, 'img')));
 
     const Server = http.createServer(app);
-    initBotAssistant(Server);
+    await initBotAssistant(Server);
 
     Server.listen(PORT, () => {
         console.log(
@@ -2249,7 +2249,7 @@ export const initBotAssistant = async (server: Server) => {
     const workflowController = new WorkflowController(stateMachine, fluvioProducer, fluvioConsumer);
 
     await sessionController.init();
-    await workflowController.init();
+    workflowController.init();
 
     wsProxyIn.init(server);
 };
