@@ -24,43 +24,36 @@
     }
   }
 
-  .author-area {
+  .subtitle {
     background: none repeat scroll 0 0 #f8f8f8;
     border: 1px solid #efefef;
     content: "";
     display: block;
     position: relative;
-    padding: 7px 10px;
-
-    i {
-      font-size: 1em;
-    }
-    
-    .by, .date {
-      font-size: .9em;
-      font-family: $font-blog;
-    }
-
-    .reading-time {
-      float: right;
-
-      span.label {
-        color: #555555;
-        font-size: 1.05em;
-        font-weight: 700;
-      }
-      span.time {
-        padding-left: 5px;
-        font-size: 1em;
-      }
-    }
+    padding: 8px;
+    color: $col-gray-light2;
 
     .author {
-      color: #555555;
+      color: $col-blog;
       font-size: 1.05em;
       font-family: $font-blog-author;
       text-transform: uppercase;
     }
+
+    i {
+      font-size: 1em;
+    }
+
+    .by, .date {
+      font-size: .9em;
+      font-family: $font-blog;
+    }
+    
+    .read-label {
+      color: #555555;
+      font-weight: 700;
+    }
+
   }
 
   img {
