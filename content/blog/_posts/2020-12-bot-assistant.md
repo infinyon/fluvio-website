@@ -24,14 +24,15 @@ In this blog post, we're going to build a **Robot Assistant**, an add-on button 
      alt="Bot Assistant Example"
      style="justify: center; max-width: 380px" />
 
-We'll build the frontend, backend, the communication channel, and the data streaming layer. Fluvio data streaming gives us the ability to react in real-time, deploy to a massive audience, intermediate services, and preserve all data exchanges. The data can be played back to rebuild the application state, test new services, perform retrospective analysis, apply machine learning, and more.
+We'll build the frontend and backend, then use Fluvio as our data streaming layer.
+Fluvio data streaming gives us the ability to react in real-time, deploy to a massive audience, and preserve all data exchanges. 
 
 The project is also available for download in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant" target="_blank">github</a>.
 
 ## Prerequisites
 
 This project is using `websocket-glue` for the client/server communication. For additional information on websocket checkout our blog:
-*  [Websocket Glue for Data Streaming Apps](blog/2020/12/websocket-glue-for-streaming-apps/)
+*  [Websocket Glue for Data Streaming Apps](/blog/2020/12/websocket-glue-for-streaming-apps/)
 
 Familiarity with the following software packages is useful but not required:  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">Javascript</a>, <a href="https://www.typescriptlang.org/docs/" target="_blank">TypeScript</a>, <a href="https://nodejs.org/">Node.js</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank">WebSocket</a>.
 
@@ -617,9 +618,10 @@ Paste the following code in the `state-machine.ts` file:
 import Fs from "fs";
 import { RequestMessage, ResponseMessage } from "../messages";
 
-type name = string;
+type Name = string;
 
-export type StateMachine = Map<name, State>;
+/* State Machine definition */
+export type StateMachine = Map<Name, State>;
 
 export interface State {
     sendRequest?: RequestMessage,
@@ -627,11 +629,12 @@ export interface State {
     next?: string,
 }
 
+/* Load state machine from JSON file */
 export function loadStateMachine(filePath: string) {
     const jsonFile = Fs.readFileSync(filePath);
     const jsonObject = JSON.parse(jsonFile.toString());
 
-    var state_machine: StateMachine = new Map<string, State>();
+    const state_machine: StateMachine = new Map();
     for (var value in jsonObject) {
         state_machine.set(value, jsonObject[value])
     }
