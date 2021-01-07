@@ -13,6 +13,8 @@
     <span class="ml-1">|</span>
     <i class="fa fa-calendar-day pr-1 pl-1"></i>
     <span class="date">{{ .page.Date.Format site.Params.blog_time_format }} </span>
+    <i class="fa fa-stopwatch pr-1 pl-1"></i>
+    <div class="reading-time"><span class="label">Reading time</span>:<span class="time">{{ math.Round (div (countwords $content) 220.0) }} minutes<span></div>
 </div>
 
 <div class="blog-content">

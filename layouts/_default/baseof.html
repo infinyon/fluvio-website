@@ -6,6 +6,7 @@
     {{- block "head-meta" . -}}{{- end }}
     {{- partial "head-link.html" . }}
     {{- partial "head-script.html" . }}
+    {{- block "head-script" . -}}{{- end }}
   </head>
   <body class="d-flex flex-column">
     {{- partial "menu.html" . -}}
