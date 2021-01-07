@@ -41,7 +41,7 @@
     }
 
     i {
-      font-size: 1em;
+      font-size: 1.05em;
     }
 
     .by, .date {
@@ -52,8 +52,12 @@
     .read-label {
       color: #555555;
       font-weight: 700;
+      font-size: .9em;
     }
 
+    .time {
+      font-size: .9em;
+    }
   }
 
   img {

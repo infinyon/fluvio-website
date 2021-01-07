@@ -12,12 +12,14 @@
         <div>
             <span class="by">by</span> 
             <span class="author">{{ .page.Param "author.name"}}</span>{{ $org }} 
-            <span class="ml-1">|</span>
+        </div>
+        <div class="col-md-auto">
+            <span class="mr-1">|</span>
             <i class="fa fa-calendar-day pr-1 pl-1"></i>
             <span class="date">{{ .page.Date.Format site.Params.blog_time_format }} </span>
         </div>
-        <div class="col-sm-auto"></div>
-        <div class="ml-auto mr-3">
+        <div class="col-md">
+            <span class="mr-1">|</span>
             <span class="read-label">Reading time</span>:
             <span class="time">{{ math.Round (div (countwords $content) 220.0) }} minutes<span>
         </div>
