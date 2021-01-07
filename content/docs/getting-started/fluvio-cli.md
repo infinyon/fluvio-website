@@ -21,14 +21,13 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 If everything works successfully, you should see output similar to this:
 
 ```bash
-fluvio: ⏳ Downloading Fluvio 0.6.0-alpha.5 for x86_64-apple-darwin...
+fluvio: ⏳ Downloading Fluvio 0.6.0-rc.2 for x86_64-apple-darwin...
 fluvio: ⬇️ Downloaded Fluvio, installing...
 fluvio: ✅ Successfully installed ~/.fluvio/bin/fluvio
 fluvio: ☁️ Installing Fluvio Cloud...
 fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-cloud...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.0...
+fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.1...
 fluvio: 🔑 Downloaded and verified package file
-fluvio: ✅ Successfully installed ~/.fluvio/bin/fluvio-cloud
 fluvio: 🎉 Install complete!
 fluvio: 💡 You'll need to add '~/.fluvio/bin/' to your PATH variable
 fluvio:     You can run the following to set your PATH on shell startup:
@@ -47,15 +46,16 @@ commands:
 
 ```bash
 $ fluvio version
-Fluvio version : 0.6.0-alpha.5
-Git Commit     : 42b975df60ca230732b123dbee74b6ca92195f7a
-OS Details     : Darwin 19.6.0 x86_64
-Rustc Version  : 1.47.0 (18bf6b4 2020-10-07)
+Fluvio CLI      : 0.6.0-rc.2
+Fluvio Platform : 0.6.0-rc.2
+Git Commit      : 2aebf3b5d8f224238ccefded2f460a7f47b885fc
+OS Details      : Darwin 19.6.0 x86_64
+Rustc Version   : 1.48.0 (7eac88a 2020-11-16)
 ```
 
 ```bash
 $ fluvio cloud
-fluvio-cloud 0.1.0
+fluvio-cloud 0.1.1
 
 USAGE:
     fluvio-cloud <SUBCOMMAND>

@@ -64,8 +64,9 @@ minikube will depend on your OS:
 In your Mac terminal:
 
 ```bash
-minikube start --driver=hyperkit
+minikube start --driver=hyperkit --kubernetes-version=1.19.6
 ```
+
 -> On Mac, `hyperkit` is provided by Docker Desktop, so you still need to install docker
 
 {{< /tab >}}
@@ -75,8 +76,9 @@ minikube start --driver=hyperkit
 In your Linux terminal:
 
 ```bash
-minikube start --driver=docker
+minikube start --driver=docker --kubernetes-version=1.19.6
 ```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -97,8 +99,8 @@ check that minikube is installed correctly.
 
 ```bash
 $ minikube version
-minikube version: v1.13.0
-commit: eeb05350f8ba6ff3a12791fcce350c131cb2ff44
+minikube version: v1.16.0
+commit: 9f1e482427589ff8451c4723b6ba53bb9742fbb1
 ```
 
 ### Installing Kubectl
@@ -115,8 +117,8 @@ command to check that it's installed correctly.
 
 ```bash
 $ kubectl version --short
-Client Version: v1.19.1
-Server Version: v1.19.0
+Client Version: v1.20.1
+Server Version: v1.19.6
 ```
 
 {{<idea>}}
@@ -143,7 +145,7 @@ works by printing the version.
 
 ```bash
 $ helm version --short
-v3.3.1+g249e521
+v3.3.4+ga61ce56
 ```
 
 [helm releases page]: https://github.com/helm/helm/releases
@@ -161,37 +163,24 @@ to connect to programs running in minikube. This is how Fluvio commands communic
 the local Fluvio cluster in minikube. To do this, we need to run the following command:
 
 ```bash
-$ sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &
+$ minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out
 ```
 
-You can verify that this is working by checking your running processes for it:
+This command does not return, the tunnel process stays open and therefore the terminal
+may seem to hang. This is expected, it means everything is working properly. You will
+need to open a new terminal window to continue the setup process.
+
+Once we have the minikube tunnel running, we can run the startup command.
 
 ```bash
-$ ps aux | grep "minikube tunnel"
-root      54623 0.0 0.1 5058892 37432 s003 S  12:45PM 0:00.44 minikube tunnel
-```
-
-~> Sometimes the tunnel may not appear. See [this troubleshooting section] for help.
-
-[this troubleshooting section]: ../fluvio-local-faq#minikube-tunnel-minikube-tunnel-does-not-appear
-
-Now we have to configure some minikube settings so that Fluvio can communicate with the
-applications running inside. This command will prompt you for `sudo` because we need to
-add an entry for minikube to your `/etc/hosts` file.
-
-```bash
-$ fluvio cluster set-minikube-context
-```
-
-Once we've got that set up, we can run our main installation command:
-
-```bash
-$ fluvio cluster install
+$ fluvio cluster start
+Fluvio system chart not installed. Attempting to install
+"fluvio" has been added to your repositories
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
 Update Complete. ⎈Happy Helming!⎈
 NAME: fluvio-sys
-LAST DEPLOYED: Sun Oct  4 02:16:16 2020
+LAST DEPLOYED: Tue Jan  5 12:25:17 2021
 NAMESPACE: default
 STATUS: deployed
 REVISION: 1
@@ -201,20 +190,24 @@ Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
 Update Complete. ⎈Happy Helming!⎈
 NAME: fluvio
-LAST DEPLOYED: Sun Oct  4 02:16:18 2020
+LAST DEPLOYED: Tue Jan  5 12:25:23 2021
 NAMESPACE: default
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
-waiting for spu to be provisioned
-1 spus provisioned
+✅ ok: Kubernetes config is loadable
+✅ ok: Supported helm version is installed
+✅ ok: Fixed: Missing Fluvio system charts.
+✅ ok: Previous fluvio installation not found
+✅ ok: Load balancer is up
 ```
 
-You can check that everything worked by listing the topics on the cluster:
+You can check that everything worked by listing out the cluster's SPUs:
 
 ```bash
-$ fluvio topic list
-No topics found
+$ fluvio cluster spu list
+ ID  NAME    STATUS  TYPE       RACK  PUBLIC              PRIVATE
+  0  main-0  Online  "managed"   -    10.98.127.175:9005  fluvio-spg-main-0.fluvio-spg-main:9006
 ```
 
 ## Hello, Fluvio!
