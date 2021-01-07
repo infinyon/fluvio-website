@@ -16,26 +16,28 @@ twitter:
     card: summary_large_image
 ---
 
-Many successful modern applications have a need to interact with their users in real-time, and this capability is quickly becoming the expected standard. However, building a real-time application from scratch is a daunting task, pulling focus away from the business problems the team is actually trying to solve. Fluvio is a real-time application development platform designed to solve this problem. 
+Many successful modern applications need to interact with their users in real-time, and this capability is quickly becoming the expected standard. However, building a real-time application from scratch is a daunting task, pulling focus away from the business problems the team is actually trying to solve. Fluvio is a real-time data streaming platform designed to make real-time application development easy. 
 
-In this blog post, we're going to set out to build a Bot Assistant which can prompt and respond to a user. By using Fluvio, we'll automatically gain the ability to react in real-time, the scalability required to deploy to a massive audience, and the durability needed to develop new features using historical user interaction data.
+In this blog post, we're going to build a **Robot Assistant**, an add-on button on the website, that interacts with users in real-time. 
 
 <img src="/blog/images/bot-assistant/bot-assistant.svg"
      alt="Bot Assistant Example"
      style="justify: center; max-width: 380px" />
 
+We'll build the frontend, backend, the communication channel, and the data streaming layer. Fluvio data streaming gives us the ability to react in real-time, deploy to a massive audience, intermediate services, and preserve all data exchanges. The data can be played back to rebuild the application state, test new services, perform retrospective analysis, apply machine learning, and more.
+
 The project is also available for download in <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant" target="_blank">github</a>.
 
 ## Prerequisites
 
-This project is using `websocket-glue` for the client/server communication and it skips the details on how to setup the websocket connection. For additional information on this topic, checkout:
+This project is using `websocket-glue` for the client/server communication. For additional information on websocket checkout our blog:
 *  [Websocket Glue for Data Streaming Apps](blog/2020/12/websocket-glue-for-streaming-apps/)
 
 Familiarity with the following software packages is useful but not required:  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">Javascript</a>, <a href="https://www.typescriptlang.org/docs/" target="_blank">TypeScript</a>, <a href="https://nodejs.org/">Node.js</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank">WebSocket</a>.
 
 ## Overview 
 
-This blog will describe how to build a robot assistant, called `Bot Assistant` one step at a time:
+This blog takes a step-by-step approach on building a robot assistant, called `Bot Assistant` from the ground up. The following outline shows the steps involved:
 
 * [Step 1: Create the project](#step-1-create-the-project)
     * [Add project directory](#add-project-directory)
@@ -64,9 +66,9 @@ This blog will describe how to build a robot assistant, called `Bot Assistant` o
 
 ## Step 1: Create the project
 
-`Bot assistant` project has a client and a server component. The client manages the frontend user interaction and the backend the state machine. The client and the server communicate with ech other through websocket.
+`Bot assistant` has a client and a server. The client runs in the web browser and controls the frontend user interaction, while the backend runs on a server and manages the websocket proxy and the state machine. The client and the server communicate with ech other through websocket.
 
-The project is created in the following order:
+Let's get started:
 * [Add project directory](#add-project-directory)
 * [Add node.js server](#add-nodejs-server)
 * [Add typescript configuration](#add-typescript-configuration)
@@ -74,14 +76,14 @@ The project is created in the following order:
 
 ### Add project directory
 
-Let's create a project directory called `bot-assistant` with two folders `public` and `src`: 
+Create a project directory called `bot-assistant` with two folders `public` and `src`: 
 
 ```bash
  mkdir -p bot-assistant/public && mkdir bot-assistant/src
  cd bot-assistant
 ```
 
-Public directory stores `client` code and `src` directory server code. Both client and server are served from the same web server.
+The `public` directory stores the client code, and the `src` directory the server code. Both, client and server, are served from the same web server that we'll setup next.
 
 ### Add node.js server
 
@@ -118,10 +120,10 @@ npm install -D tsc-watch @types/ws @types/node @types/express
 We installed the following packages:
 * **express**: to serve the client and server files.
 * **ws**: for client/server communication.
-* **@fluvio/client**: to communicate with fluvio.
+* **@fluvio/client**: node API library to communicate with fluvio.
 * **tsc-watch**: to keep track of typescript file changes.
 
-Update package.json file:
+Update package.json file as follows:
 
 {{< highlight json "hl_lines=5 7" >}}
 {
@@ -150,11 +152,13 @@ Update package.json file:
 }
 {{< /highlight >}}
 
-Change `main` to reference `bot-assistant.js` and add `start:dev` script to start typescript watcher.
+Change `main` to reference `bot-assistant.js` and `start:dev` script to start typescript watcher.
 
 #### Add typescript configuration
 
-The project is implemented in typescript, hence it requires a typescript configuration file. Add a  a typescript configuration file:
+The project is implemented in typescript which requires a typescript configuration file. 
+
+Add the `tsconfig.json` typescript configuration file:
 
 ```bash
 touch tsconfig.json
@@ -183,11 +187,13 @@ Paste the following content in `tsconfig.json` file:
 }
 ```
 
-For additional information on the typescript configuration parameters, checkout the documentation <a href="https://www.typescriptlang.org/tsconfig" target="_blank">here</a>.
+For additional information on the typescript configuration parameters, checkout the <a href="https://www.typescriptlang.org/tsconfig" target="_blank">documentation</a>.
 
 ### Add `bot-assistant.ts` server file
 
-The server is implemented in the `bot-assistant.ts` file. In the `src` directory add the `bot-assistant.ts` file:
+The `package.json` file instructs by Node.js to run `bot-assistant.js` when it initializes. In typescript, this file is compiled from `bot-assistant.ts`. This is the place where we provisions the web server, add routes for the frontend, and initialize backend services.
+
+Create the `bot-assistant.ts` file in the `src` directory:
 
 ```bash
 touch src/bot-assistant.ts
@@ -228,31 +234,30 @@ process.on("unhandledRejection", (e) => { console.log(e); process.exit(1); });
 startServer();
 ```
 
-The code starts a server on port 9998 and it add a series of routes for the public resources:
-* **/** (root) => `public/index.html`
+The code adds routes for the frontend client and starts a server on port 9998. The routes are as follows:
+
+* **/ (root)** => `public/index.html
 * **/scripts** => `public/scripts`
 * **/css** => `public/css`
 * **/img** => `public/img`
 
-The directories load the resources requested by the bot assistant client. 
-
-Next we'll implement the [backend server](#step-2-implement-backend-server) followed by the [frontend client](#step-3-implement-frontend-server).
+Next, we'll implement the [backend server](#step-2-implement-backend-server) followed by the [frontend client](#step-3-implement-frontend-server).
 
 
 ## Step 2: Implement backend server
 
 The backend server has two core services, `Proxy Service` and `Workflow Service`. 
 
-The `Proxy service` intermediates the connection between the client and the workflow service. It manages the websocket connection and converts the messages between the front-end and backed services. 
+The `Proxy service` intermediates the connection between the client and the workflows. It accepts websocket connections, forwards client messages to the workflow service, and returns the replies to the originator.
 
-The `Workflow Service` manages state transitions. It initializes the state machine from a json file and ensures that each client message is matches the the appropriate state before applying state machine logic.
+The `Workflow Service` manages state transitions. It initializes the state machine from a json file, accepts client state messages, computes the next state and returns a reply.
 
 <img src="/blog/images/bot-assistant/bot-base-architecture.svg"
      alt="Bot Assistant Base Architecture"
      style="justify: center; max-width: 800px" />
 
 
-The backend server is implemented in several steps:
+The backend server implementation has several steps:
 * [Add messages type definition file](#add-messages-type-definition-file)
 * [Add state machine](#add-state-machine)
     * [Define state machine types](#define-state-machine-types)
@@ -268,9 +273,7 @@ The backend server is implemented in several steps:
 * [Add `bot-server.ts` file](#add-bot-serverts-file)
     * [Update `bot-assistant.ts` file](#update-bot-assistantts-file)
 
-The source code for backend server changes listed above is available for download from <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/backend-server" target="_blank">github</a>.
-
-Finally, it's time to [start backend server](#start-backend-server).
+If you prefer to skip ahead, you can download the source code from <a href="https://github.com/infinyon/fluvio-demo-apps-node/tree/master/bot-assistant/_blog/backend-server" target="_blank">github</a> and resume at [start backend server](#start-backend-server).
 
 ### Add messages type definition file
 
@@ -396,21 +399,21 @@ function getDateTime() {
 ```
 
 The message definitions are as follows:
-* **Message**: top level type definition.
-* **Payload**: payload types: request or response.
-* **Request**: a choice of request messages (BotText, ChoiceRequest, StartChatSession, EndChatSession).
-* **Response**: a choice of response messages (ChoiceResponse, UserText).
-* **BotText**: is a text message sent by the Bot (text interpreted as HTML).
+* **Message**: is the top level type definition.
+* **Payload**: defines payload types: request or response.
+* **Request**: defines request messages (BotText, ChoiceRequest, StartChatSession, EndChatSession).
+* **Response**: defines response messages (ChoiceResponse, UserText).
+* **BotText**: is a text message sent by the Bot (text parsed as HTML).
 * **ChoiceRequest**: is an array of choices sent by the Bot.
-* **StartChatSession**: sent by the Bot to enable chat editor.
-* **EndChatSession**: sent by the Bot to disable chat editor.
-* **ChoiceResponse**: is the response to a ChoiceRequest
+* **StartChatSession**: is a request by the Bot to enable chat editor.
+* **EndChatSession**: is a request sent by the Bot to disable chat editor.
+* **ChoiceResponse**: is the response to a _ChoiceRequest_.
 * **UserText**: is text sent by the User.
 
 The definitions are followed by a series of helper APIs: 
 * **buildInitMessage**: creates a message without a payload that indicates a new connection.
-* **buildRequest**: creates a message of `Request` kind.
-* **buildResponse**: creates a message of `Response` kind.
+* **buildRequest**: creates a `Request` message.
+* **buildResponse**: creates a `Response` message.
 * **isRequest**: checks if the message is of `Request` kind.
 * **getDateTime**: generates a timestamp.
 
@@ -418,45 +421,47 @@ The type definition are used extensively by the `state machine` defined in the f
 
 ### Add state machine
 
-While there are many ways to drive a robot assistant, this project uses custom state machines. You may think of a state machine as a guided tour, where the bot sends the client a series of choices. Upon response, the bot looks-up the reply and in the state machine and iterates to the next state. Then the loop repeats until the end state is reached.
+While there are various technologies choices to implement a robot assistant, this project uses a state machines. We may think of a state machine as a guided tour where all traffic follows a well define path. The state machine defines the choices and the order in which they are to be sent to the client. Upon receipt, the client generates a response and returns an answer. The state machine uses the answer to identify the location to resume and generates the next choice. This request/response exchange continues until the end state is reached.
 
 #### Define state machine types
 
-The state machine definition is expressed in a JSON file, where each state can be of type `sendRequest`, or `matchResponse`, but not both. The Bot uses `sendRequest` to generate and send a message to the client, then it waits for the response. When the response arrives, the bot looks-up the `matchResponse` state to identify where it should resume. Each request/response pair has a unique identifier. The identifier is used to keep context during the client/server message exchange. Whereas the state machine has the overall end-to-end context.
+The state machine is a chain of states expressed in a JSON format. Each state can have two types: `sendRequest`, or `matchResponse`. The `sendRequest` state instructs the workflow controller to generate a message and wait for the response. When the response arrives, the controller looks-up the `matchResponse` state to identify where it should resume. Each request/response pair has a unique identifier. The identifier is a unique id that defines the context of a client/server message exchange. The final state is defined by a state without the `next` field.
 
-Bot assistant generates one of the following `sendRequest` messages:
+Workflow controller generates one of the following `sendRequest` messages:
 
-* **BotText** - sends information to the user (text or HTML format)
-* **ChoiceRequest** - sends a list of options to the user. GroupId is the unique identifier used to pair this request with the *ChoiceResponse*
-* **StartChatSession** - asks the client to enable chat editor. SessionId is the unique identifier and it used to pair it with *UserText*
-* **EndChatSession** - ask the client to disable chat session. Uses the SessionId defined in the *StartChatSession*
+* **BotText** - sends the client an information field in text or HTML format.
+* **ChoiceRequest** - sends a list of choices to the user. GroupId is the unique identifier paired with a *ChoiceResponse*.
+* **StartChatSession** - asks the client to enable chat editor. SessionId is the unique identifier paired with a *UserText*
+* **EndChatSession** - ask the client to disable chat session. Uses the SessionId paired with a *StartChatSession*
 
 The Client replies with one of the following `mathResponse` messages:
 
-* **ChoiceResponse** - one or more responses with unique itemIds for the groupId matching a *ChoiceRequest*
-* **UserText** - a text response with sessionId matching a *StartChatSession*
+* **ChoiceResponse** - send one of the choices in the *ChoiceRequest*.
+* **UserText** - sends text generated by the user.
 
 #### Define state transitions
 
-The state transition have two types of flows:
+The state transition have two flows:
 * internal flows - driven by one or more _internal states_.
 * external flows - driven by an _external state_. An external state tells the engine to generate a requests and wait for the response before resuming.
 
-Internal states are states that have a `next` field. Whereas external states have a `sessionId` or `groupId` instead of the `next` field. Internal states can be chained, whereas external states cannot as they trigger a message exchange.
+Internal states have `next` field whereas external states have a `sessionId` or `groupId` but no `next` field. Internal states are chained internally, whereas external are chained externally through a client response.
 
-State transitions are triggered by a new connection or a client response. If it begins at an _internal state_, the engine collects the state information and moves to the next state until it encounters an _external state_. At that time, it generates a client request and waits for the response to resume.
+State transitions are triggered by a new connection or a client response. If it begins at an _internal state_, the engine collects the state information and moves to the next state until it encounters an _external state_. At that time, it generates a client request and waits for the response before it can resume.
 
 <img src="/blog/images/bot-assistant/state-transitions.svg"
      alt="State Transitions"
      style="justify: center; max-width: 800px;" />
 
-The client displays the request choices and asks the user to make a selection. Upon selection, the client generates a response for the server, and the cycle repeats.
+The client displays the request choices and asks the user to make a selection. Upon selection, the client generates a response and the cycle repeats.
 
-Now that we have the state machine and the state transition definitions, let's create a custom state machine.
+Now that we have defined the state machine and the state transition, let's start the implementation.
 
 #### Create a state machine JSON file
 
-Bot assistant reads custom state definitions from JSON files. Let's create a `state-machine` directory and create a sample JSON file:
+We'll create a state machine asks the user for their favorite programming language and collect their response.
+
+Let's create `state-machine` directory and add `bot-assistant.json` file:
 
 ```bash
 mkdir state-machines && touch state-machines/bot-assistant.json
@@ -582,16 +587,15 @@ Copy following state machine definition in the JSON file:
 }
 ```
 
-The state machine asks the user for his or her favorite programming language. It shows 3 options:
-* Rust
-* Go
-* Other
+The state machine asks users for their favorite programming language and it presents them 3 options: `Rust`, `Go`, and `Other`.
 
-If the user chooses `Rust` or `Go`, it sends the choice request `Try Again`. For `Other`, it runs a sequence of states:
-* **sendRequest** to open an interactive session,
-* **matchResponse** to captures the user response,
-* **sendRequest** to close interactive the session
-* **sendRequest** choice to try again.
+If a user chooses `Rust` or `Go`, the state machine return:
+* **anyOtherChoices** - another choice with `yes` or `no` answers.
+
+For `Other`, it runs through the following states:
+* **startLangPrefSession** opens an interactive session,
+* **getLangPrefResponse** captures the user response,
+* **endLangPrefSession** ends the interaction session.
 
 This basic state machine show two different interaction models: a choice request/response or a user interaction. When the client receives a choice request, it presents the user with a series of choices. The user clicks on one of the choices and the client generates a response. For an interactive session, the client is asked to open an interactive session for the user to type his answer. After the server receives the response, it sends the client another request to close the interactive session. It is the responsibility of the server to manage access to the user editor.
 
@@ -599,13 +603,15 @@ Next, we need to load the JSON file into a memory variable.
 
 #### Add `state-machine.ts` file
 
+The state machine is part of the workflow service that we'll define in the next section.
+
 Create a `workflow-service` directory and add the `state-machine.ts` file:
 
 ```bash
 mkdir src/workflow-service && touch src/workflow-service/state-machine.ts
 ```
 
-Paste the following code in the state-machine file:
+Paste the following code in the `state-machine.ts` file:
 
 ```ts
 import Fs from "fs";
@@ -613,7 +619,6 @@ import { RequestMessage, ResponseMessage } from "../messages";
 
 type name = string;
 
-/* State Machine definition */
 export type StateMachine = Map<name, State>;
 
 export interface State {
@@ -622,7 +627,6 @@ export interface State {
     next?: string,
 }
 
-/* Load state machine from JSON file */
 export function loadStateMachine(filePath: string) {
     const jsonFile = Fs.readFileSync(filePath);
     const jsonObject = JSON.parse(jsonFile.toString());
@@ -636,7 +640,7 @@ export function loadStateMachine(filePath: string) {
 }
 ```
 
-The code defines the state machine structures, reads the JSON file, and provisions an internal state machine object.
+The code reads the JSON file, and provisions an internal state machine variable.
 
 ### Add workflow controller
 
@@ -776,18 +780,19 @@ export class WorkflowController {
 }
 ```
 
-The workflow controller code is as follows:
+The workflow controller performs the following functions:
 * **constructor**: caches a reference to the `stateMachine` and computes the initial state.
 * **init**: caches a reference to the `sessionController`. This is done out of the constructor due to the circular reference. We'll come back to this when in the `Fluvio data streaming` section.
-* **processProxyMessage**: is invoked by proxy controller (defined below) to process a new client message. If the message has payload, it asks for next request, otherwise is needs the initial request:
+    * _Note_: The code does not compile until we add the session controller in the following section.
+* **processProxyMessage**: is invoked by session controller to process a new client message. If the message has payload, it asks for next request, otherwise is needs the initial request:
     * **processNewConnection** reads the state machine from the first state and produces a request.
-*   * **processNextState** parses the client response, looks-up the resume state and produces the next request.
+*   * **processNextState** parses the client response, looks-up the resume state, and produces the next request.
 
-The other APIs help the controller identify the response type and traverse the state machine to generate subsequent requests.
+The other APIs help the controller match a response and traverse the state machine to generate subsequent requests.
 
 ### Add proxy service
 
-The proxy service has three components, incoming proxy `ProxyIn`, outgoing proxy `ProxyOut` and session controller. The incoming proxy handles the websocket protocol, outgoing proxy sends messages based on a session id, and the session controller manages all proxy centric operations. 
+The proxy service has three components, incoming proxy `ProxyIn`, outgoing proxy `ProxyOut` and the session controller. The incoming proxy handles the websocket protocol, outgoing proxy sends messages based on a session id, and the session controller the interaction between the proxy and other services. 
 
 For additional details, checkout [Websocket Glue for Data Streaming Apps](blog/2020/12/websocket-glue-for-streaming-apps/).
 
@@ -843,7 +848,7 @@ Add `proxy-in.ts` file to manage the websocket protocol:
 touch src/proxy-service/proxy-in.ts
 ```
 
-Paste the following proxy code:
+Paste the following code:
 
 ```ts
 import crypto from 'crypto';
@@ -990,6 +995,7 @@ export class SessionController {
         console.log(`${sid} <== ${clientMsg}`);
 
         const clientResponse = buildResponse(sid, JSON.parse(clientMsg));
+        this.addMessageToSession(clientResponse);
         this.workflowController.processProxyMessage(JSON.stringify(clientResponse));
     }
 
@@ -1035,9 +1041,9 @@ export class SessionController {
 }
 ```
 
-The session controller keeps a local copy of the messages exchanges anchored by the session id. When a known session re-initiates a connection, the controller plays back the messages from memory. All other requests are passed along to the workflow controller.
+The session controller keeps a local copy of the messages exchanges anchored by session id. When a known session re-initiates a connection, the controller plays back the messages from memory. All other requests are passed along to the workflow controller.
 
-We are now ready to add the `bot-server` file to initialize all server components.
+We are now ready to add the `bot-server` file and initialize all server components.
 
 ### Add `bot-server.ts` file
 
@@ -1084,7 +1090,7 @@ const getFileName = () => {
 
 Bot server file initializes all server components: incoming proxy, outgoing proxy, session controller, state machine and workflow controller.
 
-To address circular reference challenges, it initializes `sessionController` and `workflowController` separately from the constructor. We'll come back to this in the `Fluvio data streaming` section.
+To address circular reference challenges, it initializes `sessionController` and `workflowController` separately from the constructors. We'll come back to this in the [Fluvio data streaming](#step-4-add-data-streaming-and-persistency) section.
 
 #### Update `bot-assistant.ts` file
 
@@ -1127,26 +1133,26 @@ process.on("unhandledRejection", (e) => { console.log(e); process.exit(1); });
 startServer();
 {{< /highlight >}}
 
-Bot assistant needs access to the HTTP server to attach the websoket, hence `initBotAssistant` is called after the `Server` is provisioned.
+The code initializes the `bot-server` which needs access to HTTP server. Hence `initBotAssistant` is called after the `Server` is provisioned and the server is passed through the function parameter.
 
 ## Start backend server
 
-Use npm to start the server:
+Let's start the server using the `bot-assistant.json` state machine file. Npm reads command line parameter through environment variables:
 
 ```bash
-npm run start:server
+PARAMS=state-machines/bot-assistant.json npm run start:server
 ```
 
 The code should compile and run with the following console message:
 
 ```bash
-8:15:40 PM - Starting compilation in watch mode...
-8:15:42 PM - Found 0 errors. Watching for file changes.
-started bot assistant server at http://localhost:9998...
+4:35:59 PM - Starting compilation in watch mode...
+4:36:01 PM - Found 0 errors. Watching for file changes.
 ┌───────────────────┬─────┬────────┐
 │ (iteration index) │ Key │ Values │
 ├───────────────────┼─────┼────────┤
 └───────────────────┴─────┴────────┘
+started bot assistant server at http://localhost:9998...
 ```
 
 ## Step 3: Implement frontend client
@@ -1476,10 +1482,10 @@ Let's create an `img` directory and use <a href="https://curl.se/docs/" target="
 
 ```bash
 mkdir -p public/img/assistant
-curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/note.svg --output public/img/assistant/note.svg
-curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/bot.svg --output public/img/assistant/bot.svg
-curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/redo.svg --output public/img/assistant/redo.svg
-curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/img/assistant/close.svg --output public/img/assistant/close.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/public/img/assistant/note.svg --output public/img/assistant/note.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/public/img/assistant/bot.svg --output public/img/assistant/bot.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/public/img/assistant/redo.svg --output public/img/assistant/redo.svg
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/public/img/assistant/close.svg --output public/img/assistant/close.svg
 ```
 
 The script download 4 `svg` images: note, bot, redo and close.
@@ -1867,7 +1873,7 @@ The client is responsible for establishing and maintaining the connection to the
 Let's copy the file in the `public/scripts` directory:
 
 ```bash
-curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/bot-client/scripts/reconnecting-socket.js --output public/scripts/reconnecting-socket.js
+curl -L https://raw.githubusercontent.com/infinyon/fluvio-demo-apps-node/master/bot-assistant/public/scripts/reconnecting-socket.js --output public/scripts/reconnecting-socket.js
 ```
 
 Let's review the `public` directory hierarchy:
@@ -1892,10 +1898,10 @@ The frontend client is available for download in github.
 
 ### Test Bot Assistant (v1)
 
-Let's start the server using the `bot-assistant.json` state machine file. Npm reads command line parameter through environment variables:
+Ensure the server is running, otherwise run the following command:
 
 ```bash
-PARAMS=state-machine.json npm run start:server
+PARAMS=state-machines/bot-assistant.json npm run start:server
 ```
 
 In the web browser, open `http://localhost:9999/`, then click on "Bot Assistant` button.  Click on the choices and see the bot assistant traverse through our state machine:
@@ -1909,17 +1915,17 @@ Congratulations, `Bot Assistant` is up and running.
 
 ## Step 4: Add data streaming and persistency
 
-As seen in the previous section `Bot Assistant` works well but it is still limited its usefulness. When the website is refreshed messages generated during the session are lost. It also prevents us from collecting user feedback or perform any type of real-time or post-mortem analysis.
+As seen in the previous section `Bot Assistant` works well but it has limited  use. If the webserver restarts, all messages are lost and all user sessions are reset. 
 
 We use [Fluvio](https://fluvio.io) to remediate this issue. Fluvio is a high throughput, low latency data streaming platform that scales horizontally to handle persistency for a large number of concurrent messages. 
  
-We deploy Fluvio between connection proxy and workflow controller which also enables us to divide our monolith into microservices. We divide the code into two independent services, `Proxy Service` and `Workflow Service`, bridged by Fluvio:
+We deploy Fluvio between connection proxy and workflow controller which also enables us to divide our monolith into two independent services (aka. microservices): `Proxy Service` and `Workflow Service`:
 
 <img src="/blog/images/bot-assistant/architecture.svg"
      alt="Bot Assistant Architecture"
      style="justify: center; max-width: 780px" />
 
-The new architecture give us additional flexibility for:
+When servicers are bridged by Fluvio we gain additional benefits:
 
 * **scale** the proxy and workflow independently of each other. 
 
@@ -1927,7 +1933,7 @@ The new architecture give us additional flexibility for:
 
 * **add-on services** such as: analytics, machine learning, or connectors to other products.
 
-It also removes the _circular reference hack_ we implemented between `session-controller` and `workflow-controller`.
+We can also remove the _circular reference hack_ we implemented between `session-controller` and `workflow-controller`.
 
 -> **Prerequisites:** This section assumes you have access to a Fluvio cluster. If you don't have access to a cluster user [getting started guide](/docs/getting-started) to create [Fluvio Cloud](/docs/getting-started/fluvio-cloud/) account.
 
@@ -1942,7 +1948,7 @@ To integrate Fluvio data streaming we'll make the following changes:
 
 In the `session-controller.ts` file we replace references to `workflow-controller` with fluvio producers. In addition to that, the session controller can now use fluvio to look-up all transaction for a specific session.
 
-The code changes are as follows:
+Update `src/proxy-service/session-controller.ts` with the following code changes:
 
 {{< highlight typescript "hl_lines=4 11-12 16-17 22-23 26 27-29 33-35 38 48 59 63" >}}
 import WS from "ws";
@@ -2053,13 +2059,13 @@ export class SessionController {
 {{< /highlight >}}
 
 The code changes are as follows:
-* **constructor** - save fluvio `topicProducer` and `topicConsumer` in a local variable.
+* **constructor** - saves fluvio `topicProducer` and `topicConsumer` in a local variable.
 * **init**:
-    * make `async`,
-    * fetch fluvio messages and cache them in `sessionMessages` array,
-    * register `processBotMessage` callback to `fluvioConsumer`.
-* **sessionOpened** - make `async` and write a new message to the fluvio data stream.
-* **messageFromClient** - make `async` and write client message to the fluvio data stream (instead of calling workflow-controller).
+    * made `async`,
+    * to fetch fluvio messages and cache them in `sessionMessages` array,
+    * to register `processBotMessage` callback to `fluvioConsumer`.
+* **sessionOpened** - made `async` to write a new message to the fluvio data stream.
+* **messageFromClient** - made `async` to write client messages to fluvio data stream (instead of calling workflow-controller).
 
 That's it, `session-controller` can now be deployed as a stand-alone service without any dependencies on `workflow service`.
 
@@ -2067,9 +2073,9 @@ That's it, `session-controller` can now be deployed as a stand-alone service wit
 
 Similarly, in the `workflow-controller.ts` file we replace references to `session-controller` with fluvio producers.
 
-The code changes are as follows:
+Update `src/workflow-service/workflow-controller.ts` with the following code changes:
 
-{{< highlight typescript "hl_lines=11 16-17 27-28 31-35 37 39 42 45 103 108 113 123" >}}
+{{< highlight typescript "hl_lines=11 16-17 21-22 27-28 31-35 37 39 42 45 103 108 113 123" >}}
 import {
     SID,
     Message,
@@ -2091,7 +2097,7 @@ export class WorkflowController {
     constructor(
         stateMachine: StateMachine,
         fluvioProducer: TopicProducer,
-        fluvioConsumer: PartitionConsumer
+        fluvioConsumer: PartitionConsumer,
     ) {
         this.stateMachine = stateMachine;
         this.initState = stateMachine.keys().next().value;
@@ -2100,7 +2106,7 @@ export class WorkflowController {
         this.fluvioConsumer = fluvioConsumer;
     }
 
-    public async init() {
+    public init() {
         this.fluvioConsumer.stream(Offset.FromEnd(), async (sessionMsg: string) => {
             await this.processProxyMessage(sessionMsg);
         });
@@ -2200,21 +2206,21 @@ export class WorkflowController {
 {{< /highlight >}}
 
 The code changes are as follows:
-* **constructor** - save fluvio `topicProducer` and `topicConsumer` in a local variable.
-* **init** - make `async` and register `processProxyMessage` callback to `fluvioConsumer`.
-* **processNewConnection** - make `async` and add `await` to sendMessages.
-* **processNextState** - make `async` and add `await` to sendMessages.
-* **sendMessages** -  make `async` adn write client message to the fluvio data stream (instead of calling session-controller).
-* **processProxyMessage** - make `async` and `await` on `processNewConnection`.
+* **constructor** - saves fluvio `topicProducer` and `topicConsumer` in a local variable.
+* **init** - registers `processProxyMessage` to callback `fluvioConsumer`.
+* **processNewConnection** - made `async` to sendMessages.
+* **processNextState** - made `async` to sendMessages.
+* **sendMessages** -  made `async` to write client message to the fluvio data stream (instead of calling session-controller).
+* **processProxyMessage** - made `async` to `processNewConnection`.
 
 Workflow controller is now a stand-alone service decoupled from `session-controller`. The fluvio middle tier allows this services to be moved to a different machine and and be scaled-up independently. However, this improvement is beyond the scope of this blog.
 
 
 ### Add fluvio to `bot-server`
 
-The `bot-server` is responsible for the fluvio topic and the initialization of the producer and consumer. After initialization, the producer and the consumer is passed to the `session-controller` and `workflow-controller` for processing.
+The `bot-server` is responsible for the initialization of the producer and consumer. After initialization, the producer and the consumer is passed to the `session-controller` and `workflow-controller` for processing.
 
-The code changes are as follows:
+Update `src/bot-server.ts` with the following code changes:
 
 {{< highlight typescript "hl_lines=7 9 11 13-16 19 24 26-27 40-46" >}}
 import { Server } from "http";
@@ -2266,11 +2272,10 @@ const checkTopic = async (fluvio: Fluvio) => {
 {{< /highlight >}}
 
 The code changes are as follows:
-* **BOT_ASSIST_MESSAGES** - define bot assistant topic name.
-* **initBotAssistant** - make `async`.
-* **fluvio** - connect to fluvio, checkTopic, and provision `fluvioProducer` and `fluvioConsumer`.
-* **SessionController** - pass `fluvioProducer` and `fluvioConsumer` to session controller.
-* **WorkflowController** - pass `fluvioProducer` and `fluvioConsumer` to workflow controller.
+* **BOT_ASSIST_MESSAGES** - defines bot assistant topic name.
+* **fluvio** - connects to fluvio, checks topic existence, and provisions `fluvioProducer` and `fluvioConsumer`.
+* **SessionController** - passes `fluvioProducer` and `fluvioConsumer` to session controller.
+* **WorkflowController** - passes `fluvioProducer` and `fluvioConsumer` to workflow controller.
 
 Congratulations! You made all code changes for `Bot Assistant`. Next, we'll add couple of scripts to add/remove topic and we are ready for testing.
 
