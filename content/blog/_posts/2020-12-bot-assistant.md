@@ -38,7 +38,7 @@ Familiarity with the following software packages is useful but not required:  <a
 
 ## Overview 
 
-This blog takes a step-by-step approach on building a robot assistant, called `Bot Assistant` from the ground up. The following outline shows the steps involved:
+This blog takes a step-by-step approach to building a robot assistant, called `Bot Assistant`, from the ground up. The following outline shows the steps involved:
 
 * [Step 1: Create the project](#step-1-create-the-project)
     * [Add project directory](#add-project-directory)
@@ -80,11 +80,11 @@ Let's get started:
 Create a project directory called `bot-assistant` with two folders `public` and `src`: 
 
 ```bash
- mkdir -p bot-assistant/public && mkdir bot-assistant/src
- cd bot-assistant
+mkdir -p bot-assistant/{public,src}
+cd bot-assistant
 ```
 
-The `public` directory stores the client code, and the `src` directory the server code. Both, client and server, are served from the same web server that we'll setup next.
+The `public` directory stores the client code, and the `src` directory contains the server code (the "app server"). Both the client and the app server are served from the same web server that we'll set up next.
 
 ### Add node.js server
 
@@ -153,7 +153,7 @@ Update package.json file as follows:
 }
 {{< /highlight >}}
 
-Change `main` to reference `bot-assistant.js` and `start:dev` script to start typescript watcher.
+Change `main` to reference `bot-assistant.js` and `start:dev` script to start the typescript watcher.
 
 #### Add typescript configuration
 
@@ -165,7 +165,7 @@ Add the `tsconfig.json` typescript configuration file:
 touch tsconfig.json
 ```
 
-Paste the following content in `tsconfig.json` file:
+Paste the following content in the `tsconfig.json` file:
 
 ```json
 {
@@ -188,11 +188,11 @@ Paste the following content in `tsconfig.json` file:
 }
 ```
 
-For additional information on the typescript configuration parameters, checkout the <a href="https://www.typescriptlang.org/tsconfig" target="_blank">documentation</a>.
+For additional information on the typescript configuration parameters, check out the <a href="https://www.typescriptlang.org/tsconfig" target="_blank">documentation</a>.
 
 ### Add `bot-assistant.ts` server file
 
-The `package.json` file instructs by Node.js to run `bot-assistant.js` when it initializes. In typescript, this file is compiled from `bot-assistant.ts`. This is the place where we provisions the web server, add routes for the frontend, and initialize backend services.
+The `package.json` file instructs by Node.js to run `bot-assistant.js` when it initializes. In typescript, this file is compiled from `bot-assistant.ts`. This is the place where we provision the web server, add routes for the frontend, and initialize backend services.
 
 Create the `bot-assistant.ts` file in the `src` directory:
 
@@ -200,7 +200,7 @@ Create the `bot-assistant.ts` file in the `src` directory:
 touch src/bot-assistant.ts
 ```
 
-Paste the following content in `src\bot-assistant.ts` file:
+Paste the following content in the `src/bot-assistant.ts` file:
 
 ```ts
 import http from "http";
@@ -235,7 +235,7 @@ process.on("unhandledRejection", (e) => { console.log(e); process.exit(1); });
 startServer();
 ```
 
-The code adds routes for the frontend client and starts a server on port 9998. The routes are as follows:
+This code adds routes for the frontend client and starts a server on port 9998. The routes are as follows:
 
 * **/ (root)** => `public/index.html
 * **/scripts** => `public/scripts`
@@ -249,7 +249,7 @@ Next, we'll implement the [backend server](#step-2-implement-backend-server) fol
 
 The backend server has two core services, `Proxy Service` and `Workflow Service`. 
 
-The `Proxy service` intermediates the connection between the client and the workflows. It accepts websocket connections, forwards client messages to the workflow service, and returns the replies to the originator.
+The `Proxy service` handles the connection between the client and the workflows. It accepts websocket connections, forwards client messages to the workflow service, and returns the replies to the originator.
 
 The `Workflow Service` manages state transitions. It initializes the state machine from a json file, accepts client state messages, computes the next state and returns a reply.
 
@@ -278,7 +278,7 @@ If you prefer to skip ahead, you can download the source code from <a href="http
 
 ### Add messages type definition file
 
-Messages file defines the types of the messages for the client/server communication. The messages are shared by both, proxy and workflow services, and it will be a top level file.
+The messages file defines the types of the messages for the client/server communication. The messages are shared by both, proxy and workflow services, and it will be a top level file.
 
 Let's add `messages.ts` file inside `src` directory:
 
@@ -418,17 +418,17 @@ The definitions are followed by a series of helper APIs:
 * **isRequest**: checks if the message is of `Request` kind.
 * **getDateTime**: generates a timestamp.
 
-The type definition are used extensively by the `state machine` defined in the following section.
+The type definitions are used extensively by the `state machine` defined in the following section.
 
 ### Add state machine
 
-While there are various technologies choices to implement a robot assistant, this project uses a state machines. We may think of a state machine as a guided tour where all traffic follows a well define path. The state machine defines the choices and the order in which they are to be sent to the client. Upon receipt, the client generates a response and returns an answer. The state machine uses the answer to identify the location to resume and generates the next choice. This request/response exchange continues until the end state is reached.
+This project uses a state machine to implement the behavior of the robot assistant. We may think of a state machine as a guided tour where all traffic follows a well-defined path. The state machine defines the choices and the order in which they are to be sent to the client. Upon receipt, the client generates a response and returns an answer. The state machine uses the answer to identify the location to resume and generates the next choice. This request/response exchange continues until the end state is reached.
 
 #### Define state machine types
 
-The state machine is a chain of states expressed in a JSON format. Each state can have two types: `sendRequest`, or `matchResponse`. The `sendRequest` state instructs the workflow controller to generate a message and wait for the response. When the response arrives, the controller looks-up the `matchResponse` state to identify where it should resume. Each request/response pair has a unique identifier. The identifier is a unique id that defines the context of a client/server message exchange. The final state is defined by a state without the `next` field.
+The state machine is a chain of states expressed in a JSON format. Each state can have one of two types: `sendRequest`, or `matchResponse`. The `sendRequest` state instructs the workflow controller to generate a message and wait for the response. When the response arrives, the controller looks up the `matchResponse` state to identify where it should resume. Each request/response pair has a unique identifier. The identifier is a unique id that defines the context of a client/server message exchange. The final state is defined by a state without a `next` field.
 
-Workflow controller generates one of the following `sendRequest` messages:
+The workflow controller generates one of the following `sendRequest` messages:
 
 * **BotText** - sends the client an information field in text or HTML format.
 * **ChoiceRequest** - sends a list of choices to the user. GroupId is the unique identifier paired with a *ChoiceResponse*.
@@ -444,9 +444,9 @@ The Client replies with one of the following `mathResponse` messages:
 
 The state transition have two flows:
 * internal flows - driven by one or more _internal states_.
-* external flows - driven by an _external state_. An external state tells the engine to generate a requests and wait for the response before resuming.
+* external flows - driven by an _external state_. An external state tells the engine to generate a request and wait for the response before resuming.
 
-Internal states have `next` field whereas external states have a `sessionId` or `groupId` but no `next` field. Internal states are chained internally, whereas external are chained externally through a client response.
+Internal states have a `next` field whereas external states have a `sessionId` or `groupId` but no `next` field. Internal states are chained internally, whereas external are chained externally through a client response.
 
 State transitions are triggered by a new connection or a client response. If it begins at an _internal state_, the engine collects the state information and moves to the next state until it encounters an _external state_. At that time, it generates a client request and waits for the response before it can resume.
 
@@ -600,7 +600,7 @@ For `Other`, it runs through the following states:
 
 This basic state machine show two different interaction models: a choice request/response or a user interaction. When the client receives a choice request, it presents the user with a series of choices. The user clicks on one of the choices and the client generates a response. For an interactive session, the client is asked to open an interactive session for the user to type his answer. After the server receives the response, it sends the client another request to close the interactive session. It is the responsibility of the server to manage access to the user editor.
 
-Next, we need to load the JSON file into a memory variable.
+Next, we need to load the JSON file into memory.
 
 #### Add `state-machine.ts` file
 
@@ -647,7 +647,7 @@ The code reads the JSON file, and provisions an internal state machine variable.
 
 ### Add workflow controller
 
-Workflow controller is the mediator between the websocket proxy and the state machine. The controller receives messages from the client, computes the next state, generates a reply, and sends a response.
+The workflow controller is the mediator between the websocket proxy and the state machine. The controller receives messages from the client, computes the next state, generates a reply, and sends a response.
 
 #### Add `workflow-controller.ts` file
 
@@ -789,7 +789,7 @@ The workflow controller performs the following functions:
     * _Note_: The code does not compile until we add the session controller in the following section.
 * **processProxyMessage**: is invoked by session controller to process a new client message. If the message has payload, it asks for next request, otherwise is needs the initial request:
     * **processNewConnection** reads the state machine from the first state and produces a request.
-*   * **processNextState** parses the client response, looks-up the resume state, and produces the next request.
+    * **processNextState** parses the client response, looks-up the resume state, and produces the next request.
 
 The other APIs help the controller match a response and traverse the state machine to generate subsequent requests.
 
@@ -841,7 +841,9 @@ export class WsProxyOut {
 }
 ```
 
-As descried in the `websocket-glue`, proxy out keeps a mapping between session session id and the websocket session.
+As descried in the [websocket-glue blog], ProxyOut keeps a mapping between session session id and the websocket session.
+
+[websocket-glue blog]: /blog/2020/12/websocket-glue-for-streaming-apps/
 
 #### Add incoming proxy
 
@@ -933,7 +935,7 @@ export class WsProxyIn {
 }
 ```
 
-As descried in the `websocket-glue`, the code accepts websocket connections, provisions cookies (`Fluvio-Bot-Assistant`), and passes the messages to the session controller.
+As descried in the [websocket-glue blog], the code accepts websocket connections, provisions cookies (`Fluvio-Bot-Assistant`), and passes the messages to the session controller.
 
 #### Add session controller
 
@@ -1091,7 +1093,7 @@ const getFileName = () => {
 }
 ```
 
-Bot server file initializes all server components: incoming proxy, outgoing proxy, session controller, state machine and workflow controller.
+The bot server file initializes all server components: incoming proxy, outgoing proxy, session controller, state machine and workflow controller.
 
 To address circular reference challenges, it initializes `sessionController` and `workflowController` separately from the constructors. We'll come back to this in the [Fluvio data streaming](#step-4-add-data-streaming-and-persistency) section.
 
@@ -1099,7 +1101,7 @@ To address circular reference challenges, it initializes `sessionController` and
 
 The last step of the implementation integrates `initBotAssistant` into the `bot-assistant.ts` file.
 
-Update `bot-assistant.ts` file as follows:
+Update the `bot-assistant.ts` file as follows:
 
 {{< highlight ts "hl_lines=4 20" >}}
 import http from "http";
@@ -1136,11 +1138,11 @@ process.on("unhandledRejection", (e) => { console.log(e); process.exit(1); });
 startServer();
 {{< /highlight >}}
 
-The code initializes the `bot-server` which needs access to HTTP server. Hence `initBotAssistant` is called after the `Server` is provisioned and the server is passed through the function parameter.
+The code initializes the `bot-server` which needs access to HTTP server. Hence `initBotAssistant` is called after the `Server` is provisioned, and the server is passed through the function parameter.
 
 ## Start backend server
 
-Let's start the server using the `bot-assistant.json` state machine file. Npm reads command line parameter through environment variables:
+Let's start the server using the `bot-assistant.json` state machine file. Npm reads the command line parameters through environment variables:
 
 ```bash
 PARAMS=state-machines/bot-assistant.json npm run start:server
@@ -1495,9 +1497,9 @@ The script download 4 `svg` images: note, bot, redo and close.
 
 ### Add `assistant.js` script
 
-The most important components of the frontend client is the `assistant.js` script. The script creates DOM elements, handles the user interaction, and communicates with the server.
+The most important component of the frontend client is the `assistant.js` script. The script creates DOM elements, handles the user interaction, and communicates with the server.
 
-Add `assistant.js` file to the `public/scripts` directory:
+Add the `assistant.js` file to the `public/scripts` directory:
 
 ```bash
 mkdir public/scripts && touch public/scripts/assistant.js
@@ -1914,17 +1916,17 @@ Congratulations, `Bot Assistant` is up and running.
 
 ## Step 4: Add data streaming and persistency
 
-As seen in the previous section `Bot Assistant` works well but it has limited  use. If the webserver restarts, all messages are lost and all user sessions are reset. 
+As seen in the previous section, `Bot Assistant` works well, but it has some limitations. If the webserver restarts, all messages are lost and all user sessions are reset. 
 
-We use [Fluvio](https://fluvio.io) to remediate this issue. Fluvio is a high throughput, low latency data streaming platform that scales horizontally to handle persistency for a large number of concurrent messages. 
+We'll use [Fluvio](https://fluvio.io) to remediate this issue. Fluvio is a high throughput, low latency data streaming platform that scales horizontally to handle persistency for a large number of concurrent messages. 
  
-We deploy Fluvio between connection proxy and workflow controller which also enables us to divide our monolith into two independent services (aka. microservices): `Proxy Service` and `Workflow Service`:
+We can deploy Fluvio between the connection proxy and the workflow controller, which also enables us to divide our monolith into two independent services (aka. microservices): `Proxy Service` and `Workflow Service`:
 
 <img src="/blog/images/bot-assistant/architecture.svg"
      alt="Bot Assistant Architecture"
      style="justify: center; max-width: 780px" />
 
-When servicers are bridged by Fluvio we gain additional benefits:
+When services are bridged by Fluvio we gain additional benefits:
 
 * **scale** the proxy and workflow independently of each other. 
 
@@ -1932,9 +1934,9 @@ When servicers are bridged by Fluvio we gain additional benefits:
 
 * **add-on services** such as: analytics, machine learning, or connectors to other products.
 
-We can also remove the _circular reference hack_ we implemented between `session-controller` and `workflow-controller`.
+We can also remove the _circular reference_ hack we implemented between `session-controller` and `workflow-controller`.
 
--> **Prerequisites:** This section assumes you have access to a Fluvio cluster. If you don't have access to a cluster user [getting started guide](/docs/getting-started) to create [Fluvio Cloud](/docs/getting-started/fluvio-cloud/) account.
+-> **Prerequisites:** This section assumes you have access to a Fluvio cluster. If you don't have access to a cluster, check out the [getting started guide](/docs/getting-started) to create [Fluvio Cloud](/docs/getting-started/fluvio-cloud/) account.
 
 To integrate Fluvio data streaming we'll make the following changes:
 
@@ -2207,17 +2209,16 @@ export class WorkflowController {
 The code changes are as follows:
 * **constructor** - saves fluvio `topicProducer` and `topicConsumer` in a local variable.
 * **init** - registers `processProxyMessage` to callback `fluvioConsumer`.
-* **processNewConnection** - made `async` to sendMessages.
-* **processNextState** - made `async` to sendMessages.
+* **processNewConnection** - made `async` to use sendMessages.
+* **processNextState** - made `async` to use sendMessages.
 * **sendMessages** -  made `async` to write client message to the fluvio data stream (instead of calling session-controller).
 * **processProxyMessage** - made `async` to `processNewConnection`.
 
-Workflow controller is now a stand-alone service decoupled from `session-controller`. The fluvio middle tier allows this services to be moved to a different machine and and be scaled-up independently. However, this improvement is beyond the scope of this blog.
-
+The workflow controller is now a stand-alone service decoupled from `session-controller`. The Fluvio middle tier allows these services to be moved to a different machine and be scaled-up independently. However, this improvement is beyond the scope of this blog.
 
 ### Add fluvio to `bot-server`
 
-The `bot-server` is responsible for the initialization of the producer and consumer. After initialization, the producer and the consumer is passed to the `session-controller` and `workflow-controller` for processing.
+The `bot-server` is responsible for the initialization of the producer and consumer. After initialization, the producer and the consumer are passed to the `session-controller` and `workflow-controller` for processing.
 
 Update `src/bot-server.ts` with the following code changes:
 
@@ -2281,6 +2282,8 @@ Congratulations! You made all code changes for `Bot Assistant`. Next, we'll add 
 ### Add fluvio setup script
 
 Fluvio needs a setup script to perform administrative operations such as add/remove topics. Let's add a couple of files to perform these operations and link the files with npm.
+
+-> This section assumes that the [Fluvio CLI](/docs/getting-started/fluvio-cli/) is installed on your machine.
 
 Create a `tools` directory and add `setup.sh` and `cleanup.sh` files:
 
@@ -2350,15 +2353,13 @@ If the command was successful, you should see the following message:
 topic "bot-assist-messages" created
 ```
 
-This section assumes [Fluvio CLI](/docs/getting-started/fluvio-cli/) is installed on your device.
-
 Congratulations! You have completed changes in the for `Bot Assistant` project.
 
 ### Test Bot Assistant
 
 Repeat the tests in [Test Bot Assistant (v1)](#test-bot-assistant-v1) and refresh the screen. Note that the messages are refreshed as they have been persistent by Fluvio.
 
-The persistence also survives server reboots. Go ahead and reboot the server they refresh the browser screen. Note that the messages are preserved.
+The persistence also survives server reboots. Go ahead and reboot the server and refresh the browser screen. Notice how the messages are preserved.
 
 Furthermore, you can now use Fluvio or other programs with a Fluvio consumer interface to read session messages.
 
@@ -2382,10 +2383,13 @@ When you use fluvio to transfer real-time messages between services, you gain mu
 
 ## Conclusion
 
-While building a robot assistant may have seemed like an overwhelming undertaking, this blog shows that it is possible to build an end-to-end solution in just a few hours. 
+In this blog, we explored how to build a robot assistant that can interact with users in real-time. By using Fluvio, our application has a foundation that allows it to scale horizontally to meet the demands of a massive user audience. Since our backend services are stateless and decoupled, we can scale them independently to handle the particular load characteristics that we observe in production, preventing technical bottlenecks.
 
-The blog also shows the value of a persistent data streaming platform such as Fluvio. The platform allows the bot assistant to scale to a large number of client instance with just a few lines of code.
+This project also just scratches the surface of what a real-time streaming application can do. By leveraging Fluvio's persistent data streams, we can build improvements to our application by simply writing new microservices that interact with topic data. This gives us the power to develop new real-time features, as well as to analyze historical data for purposes such as Machine Learning personalization use-cases.
 
-This project is just scratching the surface on what a bot assistant can do. The improvement range from live operator assistance to machine learning responses, backend service integrations, and much more.
-
-You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">discord</a>. We look forward to hearing from you.
+<p>
+We hope you enjoyed the blog! If you have any questions or comments, or if you just want to come say hi, you can find us on our community Discord channel →
+<a href="https://discordapp.com/invite/bBG2dTz">
+<img style="height:8%;width:auto;display:inline" src="https://img.shields.io/discord/695712741381636168?color=738ADB&logo=Discord" alt="Discord">
+</a>
+</p>
