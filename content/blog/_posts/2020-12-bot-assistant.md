@@ -1561,10 +1561,6 @@ window.onload = () => {
 
     // Clear the cookie and restart connection to create a new session.
     function onResetSession() {
-        sendWsMessage({
-            kind: "ResetSession",
-        });
-
         document.cookie = "Fluvio-Bot-Assistant=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
         closeWsConnection();
