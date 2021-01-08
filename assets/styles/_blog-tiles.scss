@@ -1,15 +1,14 @@
-.tiles {
+.blog-tiles {
     max-width:1000px;
+
+    .header {
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
 
     .box {
       padding: 15px 10px;
     }
-
-    .subtitle {
-      margin-top: -10px;
-      font-size: 1.05em;
-      color: $col-gray-light2;
-    } 
 
     .subheader {
         margin-top: -5px;
@@ -30,11 +29,8 @@
     }
 
     .card-body {
-      padding: 18px 18px 0 18px;
-    }
-
-    .blog-card {
-      padding: 15px 10px 0 10px;
+      padding: 18px;
+      padding-bottom: 0px;
     }
 
     .card-footer {
@@ -43,7 +39,7 @@
 
     .title {
       font-family: $font-paragraph;
-      font-size: 1.1em;
+      font-size: 1.07 em;
       font-weight: 700; 
     }
 
@@ -52,32 +48,11 @@
       text-decoration: none;
     }
     
-    .date {
-      padding: 0 0 8px 0;
-      font-family: $font-body; 
-      color: $col-gray-light3;
-      font-size: .95em;
-      width:100%;
-      text-align:center;
-
-      i {
-        color: $col-gray-light5;
-        font-size: 1.1em;
-      };
-    }
-
     .desc {
         font-family: $font-paragraph;
         color: $col-gray-dark1;
-        font-size: .8em; 
+        font-size: .85em;  
     }
-
-    .description {
-      font-family: $font-body;
-      color: $col-gray-dark1;
-      padding-top: 10px;
-      font-size: .9em;  
-  }
 
     .lang {
         font-family: $font-paragraph;
@@ -121,7 +96,7 @@
   }
   
   @media (max-width: 992px ) {
-    .tiles {
+    .blog-tiles {
         max-width:660px;
     }
   }

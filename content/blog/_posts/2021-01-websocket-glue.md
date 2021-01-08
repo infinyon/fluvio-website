@@ -3,9 +3,17 @@ title: Websocket Glue for Data Streaming Apps
 author: 
     name: "The Fluvio Team"
 description: Step-by-step tutorial on how to create a session aware websocket glue for data streaming applications.
-date: 2020-12-03
+date: 2021-01-05
 slug: websocket-glue-for-streaming-apps
-url: /blog/2020/12/websocket-glue-for-streaming-apps
+url: /blog/2021/01/websocket-glue-for-streaming-apps
+social:
+    hidden: true
+    image: blog/images/bot-assistant/bot-social.jpg
+    width: 997
+    height: 247
+twitter:
+    image: blog/images/bot-assistant/bot-twitter.jpg
+    card: summary_large_image
 ---
 
 Modern applications need to interact with their users in real-time which require real time data streaming support. While we had Fluvio to handle data streaming, we needed a websocket connection proxy to bridge the data streaming with web applications.
@@ -1061,7 +1069,7 @@ Congratulations, your session aware websocket glue is ready for use.
 Websocket is a good choice for streaming real-time data between web server clients and backend servers. The blog shows that 220 lines of code is all you need to build your own real-time applications on websocket.
 
 This websocket glue is used in the following sample applications:
-* [Build your own custom Bot Assistant](/blog/2020/12/bot-assistant/)
-* [Build a persistent Chat App without a database](/blog/2020/12/persistent-chat-app)
+* [Build your own custom Bot Assistant](/blog/2021/01/bot-assistant/)
+* [Build a persistent Chat App without a database](/blog/2021/01/persistent-chat-app)
 
 You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">discord</a>. We look forward to hearing from you.

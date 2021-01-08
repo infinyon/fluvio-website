@@ -3,9 +3,9 @@ title: Build Your Own Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
 description: Leverage fluvio data streaming to build a custom robot assistant that can connect to any backend service in your organization.
-date: 2020-12-14
+date: 2021-01-07
 slug: bot-assistant
-url: /blog/2020/12/bot-assistant
+url: /blog/2021/01/bot-assistant
 social:
     hidden: true
     image: blog/images/bot-assistant/bot-social.jpg
@@ -32,7 +32,7 @@ The project is also available for download in <a href="https://github.com/infiny
 ## Prerequisites
 
 This project is using `websocket-glue` for the client/server communication. For additional information on websocket checkout our blog:
-*  [Websocket Glue for Data Streaming Apps](/blog/2020/12/websocket-glue-for-streaming-apps/)
+*  [Websocket Glue for Data Streaming Apps](/blog/2021/01/websocket-glue-for-streaming-apps/)
 
 Familiarity with the following software packages is useful but not required:  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">Javascript</a>, <a href="https://www.typescriptlang.org/docs/" target="_blank">TypeScript</a>, <a href="https://nodejs.org/">Node.js</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank">WebSocket</a>.
 
@@ -797,7 +797,7 @@ The other APIs help the controller match a response and traverse the state machi
 
 The proxy service has three components, incoming proxy `ProxyIn`, outgoing proxy `ProxyOut` and the session controller. The incoming proxy handles the websocket protocol, outgoing proxy sends messages based on a session id, and the session controller the interaction between the proxy and other services. 
 
-For additional details, checkout [Websocket Glue for Data Streaming Apps](blog/2020/12/websocket-glue-for-streaming-apps/).
+For additional details, checkout [Websocket Glue for Data Streaming Apps](/blog/2021/01/websocket-glue-for-streaming-apps/).
 
 #### Add outgoing proxy
 
@@ -843,7 +843,7 @@ export class WsProxyOut {
 
 As descried in the [websocket-glue blog], ProxyOut keeps a mapping between session session id and the websocket session.
 
-[websocket-glue blog]: /blog/2020/12/websocket-glue-for-streaming-apps/
+[websocket-glue blog]: /blog/2021/01/websocket-glue-for-streaming-apps/
 
 #### Add incoming proxy
 
