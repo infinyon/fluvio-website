@@ -19,7 +19,7 @@ Before getting started, make sure you have the [Fluvio CLI] installed, as
 we'll be using that to interact with your cluster and make sure everything
 is working as expected.
 
-[Fluvio CLI]: ../fluvio-cli
+[Fluvio CLI]: ../
 
 ## Required Packages
 
@@ -52,8 +52,19 @@ $ docker run hello-world
 ### Installing Minikube
 
 Head on over to the [Minikube installation page] and follow the instructions to
-download and install `minikube`. However, the command you need to run to start
-minikube will depend on your OS:
+download and install `minikube`. Make sure it is installed correctly by checking
+the version:
+
+-> **Note**: Make sure that the version you see is greater than or equal to the one below
+
+```bash
+$ minikube version
+minikube version: v1.16.0
+commit: 9f1e482427589ff8451c4723b6ba53bb9742fbb1
+```
+
+To start your minikube cluster, run the following. This will vary depending on what
+OS you use, so make sure you are following the instructions for your platform.
 
 [Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
 
@@ -91,17 +102,6 @@ minikube start --driver=docker --kubernetes-version=1.19.6
 [make sure you installed docker correctly]: ../fluvio-local-faq#minikube-start-unable-to-pick-a-default-driver
 
 {{< /caution >}}
-
-Once you're done, you should be able to run the following command to
-check that minikube is installed correctly.
-
--> **Note**: The version that you see may be different from the one shown here
-
-```bash
-$ minikube version
-minikube version: v1.16.0
-commit: 9f1e482427589ff8451c4723b6ba53bb9742fbb1
-```
 
 ### Installing Kubectl
 

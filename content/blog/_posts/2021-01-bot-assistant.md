@@ -2284,7 +2284,7 @@ Congratulations! You made all code changes for `Bot Assistant`. Next, we'll add 
 
 Fluvio needs a setup script to perform administrative operations such as add/remove topics. Let's add a couple of files to perform these operations and link the files with npm.
 
--> This section assumes that the [Fluvio CLI](/docs/getting-started/fluvio-cli/) is installed on your machine.
+-> This section assumes that the [Fluvio CLI](/docs/getting-started/) is installed on your machine.
 
 Create a `tools` directory and add `setup.sh` and `cleanup.sh` files:
 
@@ -2364,7 +2364,7 @@ The persistence also survives server reboots. Go ahead and reboot the server and
 
 Furthermore, you can now use Fluvio or other programs with a Fluvio consumer interface to read session messages.
 
-Let's read the last 5 messages with [Fluvio CLI](/docs/getting-started/fluvio-cli/):
+Let's read the last 5 messages with [Fluvio CLI](/docs/getting-started/):
 
 ```bash 
 fluvio consume bot-assist-messages --offset="-4"
