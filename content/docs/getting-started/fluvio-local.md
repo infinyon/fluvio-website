@@ -16,8 +16,8 @@ called Minikube which is meant for testing out Kubernetes apps locally.
 ## Prerequisites
 
 Before getting started, make sure you have the [Fluvio CLI] installed, as
-we'll be using that to connect to your account and download your connection
-profile.
+we'll be using that to interact with your cluster and make sure everything
+is working as expected.
 
 [Fluvio CLI]: ../fluvio-cli
 
