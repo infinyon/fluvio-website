@@ -163,12 +163,8 @@ to connect to programs running in minikube. This is how Fluvio commands communic
 the local Fluvio cluster in minikube. To do this, we need to run the following command:
 
 ```bash
-$ minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out
+$ sudo true && (sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &)
 ```
-
-This command does not return, the tunnel process stays open and therefore the terminal
-may seem to hang. This is expected, it means everything is working properly. You will
-need to open a new terminal window to continue the setup process.
 
 Once we have the minikube tunnel running, we can run the startup command.
 
