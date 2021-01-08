@@ -6,13 +6,14 @@ description: Step-by-step tutorial on how to create a session aware websocket gl
 date: 2021-01-05
 slug: websocket-glue-for-streaming-apps
 url: /blog/2021/01/websocket-glue-for-streaming-apps
+img: blog/images/websocket-glue/ws-glue-twitter.jpg
 social:
     hidden: true
-    image: blog/images/bot-assistant/bot-social.jpg
+    image: blog/images/websocket-glue/ws-glue-social.jpg
     width: 997
     height: 247
 twitter:
-    image: blog/images/bot-assistant/bot-twitter.jpg
+    image: blog/images/websocket-glue/ws-glue-twitter.jpg
     card: summary_large_image
 ---
 
