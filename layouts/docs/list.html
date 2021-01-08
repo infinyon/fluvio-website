@@ -27,9 +27,10 @@
 	{{ if $hasContent }}
 	    {{ partial "docs/page-content" (dict "page" $ ) }}
 	{{ else }}
-        {{ if ge (len .Pages) 1 }}
-            {{ $page := index .Pages 0 }}
-            {{ partial "docs/page-content" (dict "page" $page) }}
-        {{ end }}
-    {{ end }}
+      {{ if ge (len .Pages) 1 }}
+          {{ $page := index .Pages 0 }}
+          {{ partial "docs/page-content" (dict "page" $page) }}
+      {{ end }}
+  {{ end }}
+  <script src="/js/copy-code.js"></script>
 {{ end }}
