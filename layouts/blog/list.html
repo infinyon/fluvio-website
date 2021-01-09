@@ -22,13 +22,20 @@
         <div class="col-md-6 col-lg-4 box">
           <div class="card h-100">
             <div class="card-img">
-                <a href="{{.Params.url}}"><img src="/{{ (.Params.img) }}" width="298" /></a>
+                <a href="{{.Params.url}}"><img src="/{{ (.Params.img) }}" width="296" /></a>
             </div>
-            <div class="blog-card pb-2">
-              <div class="date">
-                <i class="fa fa-calendar-day pr-1 pl-1"></i>
-                {{ .Date.Format site.Params.short_time_format }}
-              </div>
+            <div class="blog-card">
+              <div class="container meta"><div class="row">
+                <div class="col meta-left">
+                {{  (upper .Params.type) | default "TECH" }}
+                </div>
+                <div class="col meta-right">
+                  <div class="date">
+                    <i class="fa fa-calendar-day pr-1 pl-1"></i>
+                    {{ .Date.Format site.Params.short_time_format }}
+                  </div>
+                </div>
+              </div></div>
               <div class="title">
                 <a href="{{.Params.url}}">{{ .Title}}</a>
               </div>

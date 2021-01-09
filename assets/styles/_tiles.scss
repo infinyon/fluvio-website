@@ -7,7 +7,7 @@
 
     .subtitle {
       margin-top: -10px;
-      font-size: 1.05em;
+      font-size: 1.15em;
       color: $col-gray-light2;
     } 
 
@@ -30,11 +30,11 @@
     }
 
     .card-body {
-      padding: 18px 18px 0 18px;
+      padding: 18px 15px 0 15px;
     }
 
     .blog-card {
-      padding: 15px 10px 0 10px;
+      padding: 15px 15px 8px;
     }
 
     .card-footer {
@@ -43,7 +43,7 @@
 
     .title {
       font-family: $font-paragraph;
-      font-size: 1.1em;
+      font-size: 1.05em;
       font-weight: 700; 
     }
 
@@ -51,15 +51,25 @@
       color: black;
       text-decoration: none;
     }
-    
-    .date {
-      padding: 0 0 8px 0;
+
+    .meta {
+      padding: 0;
+      margin: -7px 0 8px 0;
+      font-size: .98em;
       font-family: $font-body; 
       color: $col-gray-light3;
-      font-size: .95em;
-      width:100%;
-      text-align:center;
+    }
 
+    .meta-left {
+      padding:0 0 0 14px;
+    }
+    
+    .meta-right {
+      padding:0 14px;
+    }
+    
+    .date {
+      text-align: right;
       i {
         color: $col-gray-light5;
         font-size: 1.1em;
@@ -69,14 +79,14 @@
     .desc {
         font-family: $font-paragraph;
         color: $col-gray-dark1;
-        font-size: .8em; 
+        font-size: .9em; 
     }
 
     .description {
-      font-family: $font-body;
+      font-family: $font-paragraph;
       color: $col-gray-dark1;
       padding-top: 10px;
-      font-size: .9em;  
+      font-size: .95em;  
   }
 
     .lang {

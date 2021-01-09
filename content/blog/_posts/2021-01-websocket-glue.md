@@ -4,6 +4,7 @@ author:
     name: "The Fluvio Team"
 description: Create session-aware websocket glue that can be utilized by data streaming applications.
 date: 2021-01-05
+type: TECH
 slug: websocket-glue-for-streaming-apps
 url: /blog/2021/01/websocket-glue-for-streaming-apps
 img: blog/images/websocket-glue/ws-glue-twitter.jpg
