@@ -5,7 +5,7 @@ tags:
   - node
   - rust
 githubAuthors:
-  - ryanmtate
+  - simlay
   - nicholastmosher
 difficulty: low
 weight: 10
