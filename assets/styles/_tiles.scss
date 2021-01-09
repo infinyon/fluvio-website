@@ -45,19 +45,30 @@
       font-family: $font-paragraph;
       font-size: 1.05em;
       font-weight: 700; 
+      
+      a {
+        color: black;
+        text-decoration: none;
+      }
     }
 
-    .title a {
-      color: black;
-      text-decoration: none;
+    .blog-title {
+      font-family: $font-paragraph;
+      font-size: 1.05em;
+      font-weight: 700; 
+      
+      a {
+        color: black;
+        text-decoration: none;
+      }
     }
 
     .meta {
       padding: 0;
       margin: -7px 0 8px 0;
-      font-size: .98em;
+      font-size: .88em;
       font-family: $font-body; 
-      color: $col-gray-light3;
+      color:$col-blue-light3;
     }
 
     .meta-left {
@@ -71,7 +82,7 @@
     .date {
       text-align: right;
       i {
-        color: $col-gray-light5;
+        color: $col-blue-light5;
         font-size: 1.1em;
       };
     }
