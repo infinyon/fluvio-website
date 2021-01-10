@@ -25,10 +25,10 @@ Before starting on this tutorial, you'll need to have completed the following
 
 In Fluvio, we send all of our messages to something called a Topic, which
 is like a category for related messages. For this tutorial, we'll create
-a topic called `hello-fluvio` using the following command:
+a topic called `hello` using the following command:
 
 ```bash
-$ fluvio topic create hello-fluvio
+$ fluvio topic create hello
 ```
 
 ## Creating a new Cargo project
@@ -107,7 +107,7 @@ to our Topic.
 
 ```rust
 async fn produce(message: &str) -> Result<(), FluvioError> {
-    let producer = fluvio::producer("hello-fluvio").await?;
+    let producer = fluvio::producer("hello").await?;
     producer.send_record(message, 0).await?;
     Ok(())
 }
@@ -128,13 +128,13 @@ is acting as our [executor], and is part of the machinery that makes async code 
 [executor]: https://rust-lang.github.io/async-book/02_execution/04_executor.html
 
 We can now run this code and see it in action. We'll use the `fluvio` CLI to see
-the message arrive at the "hello-fluvio" topic.
+the message arrive at the "hello" topic.
 
-In one terminal window, run the following command to print out events in the "hello-fluvio"
+In one terminal window, run the following command to print out events in the "hello"
 topic
 
 ```bash
-$ fluvio consume hello-fluvio -B
+$ fluvio consume hello -B
 ```
 
 Then in another terminal window, run the following command from within your project
@@ -152,7 +152,7 @@ Now let's write some code in Rust to do the consuming for us.
 use fluvio::Offset;
 
 async fn consume() -> Result<(), FluvioError> {
-    let consumer = fluvio::consumer("hello-fluvio", 0).await?;
+    let consumer = fluvio::consumer("hello", 0).await?;
     let mut stream = consumer.stream(Offset::beginning()).await?;
 
     // Iterate over all events in the topic
@@ -167,7 +167,7 @@ async fn consume() -> Result<(), FluvioError> {
 ```
 
 This consumer opens an async [stream] and listens for new events to appear on
-the `hello-world` topic. When we run it, it will print out every message
+the `hello` topic. When we run it, it will print out every message
 ever sent to the topic because we told it to start reading from the
 `Offset::beginning()`, or the beginning of the topic.
 
