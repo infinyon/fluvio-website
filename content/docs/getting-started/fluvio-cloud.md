@@ -10,7 +10,7 @@ Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll wa
 {{<idea>}}
 Fluvio Cloud is currently in alpha and you may face **instability** and **data loss between upgrades**.
 
-Our pledge is to be actively engaged with Fluvio users and respond to issues and suggestions in the shortest possible time.
+**Our pledge** is to be actively engaged with Fluvio users and respond to issues and suggestions in the shortest possible time.
 {{</idea>}}
 
 You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> or in <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a>.
