@@ -46,6 +46,17 @@ $ fluvio profile current
 fluvio-cloud
 ```
 
+If you installed fluvio locally it will be listed alongside `fluvio-cloud`:
+
+```bash
+$ fluvio profile view
+    PROFILE       CLUSTER       ADDRESS                                                                       TLS 
+    local         local         localhost:9003                                                                Disabled 
+ *  fluvio-cloud  fluvio-cloud  a8b853d97700347018b637c0f2a4727d-2111992582.us-west-2.elb.amazonaws.com:9003  Verified 
+```
+
+-> Use **fluvio profile switch** command to switch between clusters.
+
 ## Hello, Fluvio!
 
 Congratulations, you've successfully set up Fluvio Cloud! Let's use the Fluvio CLI to play with some basic functionality.
