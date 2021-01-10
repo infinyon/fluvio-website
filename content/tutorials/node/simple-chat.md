@@ -6,8 +6,10 @@ toc: true
 
 This guide provides an example of using `@fluvio/client` to write a chat application using Node.js. 
 
+<!--
 To build the chat app one step at a time, checkout our blog:
 * [Build a Persistent Chat App without a Database](2020/12/persistent-chat-app/).
+-->
 
 ## Prerequisites
 
@@ -124,7 +126,7 @@ to create a new chat user. In a full application, you'd also have a password but
 
 {{< image src="tutorials/chat-app/register.svg" alt="register" justify="center" width="360" type="scaled-75">}}
 
-After the user has been created, enter the username in the [`login`](http://localhost:5051/login) form.
+After the user has been created, enter the username in the [`Login`](http://localhost:5051/login) dialog.
 
 {{< image src="tutorials/chat-app/login.svg" alt="Login" justify="center" width="360" type="scaled-75">}}
 
@@ -180,7 +182,7 @@ Returns all messages in the users topic:
 
 Chat App supports multiple sessions for the same user. For instance the user may login at the same time from a web server and a mobile device. User sessions capture the beginning of the session and the online/offline state.
 
-A user is marked online when it is connected on at least one device and offline when it is disconnected from all devices.
+A user is marked `online` when it is connected on at least one device and `offline` when it is disconnected from all devices.
 
 Session messages can be viewed in Fluvio:
 
@@ -215,13 +217,15 @@ Returns all messages in the messages topic:
 {"sid":"c41e59f83f713fdcf25affabf458a594","message":{"user":"charlie","message":"Not much. Just pretty excited about using fluvio!","timestamp":"2021-01-01T11:05:15.755"}}
 ```
 
-Each messages has a user name, a messages and the timestamp when it was created.
+Each messages has a user name, a messages and the timestamp.
 
 ## Conclusion
 
-Fluvio data streaming platform can turn simple prototypes into powerful a event drive application. In this example, we used Fluvio for persistence and inter service communication. When services communicate with each other in real-time, it opens the door for a new class of services beyond the capability of any database.
+Fluvio data streaming platform can turn simple prototypes into powerful event drive applications. In this example, we used Fluvio for persistence and inter service communication. When services communicate with each other in real-time, it opens the door for a new class of services beyond the capability of any database.
 
 
 For additional information, checkout the following related articles:
+<!-- 
 * [Build a Persistent Chat App without a Database](2020/12/persistent-chat-app/)
+-->
 * [Node API documentation](https://infinyon.github.io/fluvio-client-node/)
