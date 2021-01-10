@@ -26,7 +26,10 @@
     }
 
     .card-img {
-      padding: 0;
+      margin: -2px 0 0 -1px;
+      img {
+        width: 299px;
+      }
     }
 
     .card-body {
@@ -66,7 +69,7 @@
     .meta {
       padding: 0;
       margin: -7px 0 8px 0;
-      font-size: .88em;
+      font-size: .9em;
       font-family: $font-body; 
       color:$col-blue-light3;
     }
