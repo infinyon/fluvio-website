@@ -4,6 +4,7 @@ hidden: true
 author: 
     name: "The Fluvio Team"
 description: Fluvio, a real-time data streaming platform for connected apps
+type: TECH
 date: 2021-12-20
 slug: about-fluvio
 url: /blog/2021/12/why-we-built-fluvio

@@ -3,6 +3,7 @@ title: Build Your Own Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
 description: Leverage fluvio data streaming to build a custom robot assistant that can connect to any backend service in your organization.
+type: TECH
 date: 2021-01-07
 slug: bot-assistant
 url: /blog/2021/01/bot-assistant
