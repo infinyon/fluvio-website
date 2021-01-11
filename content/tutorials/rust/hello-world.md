@@ -16,10 +16,15 @@ back.
 Before starting on this tutorial, you'll need to have completed the following
 
 - Install the [Rust programming language]
-- Have the Fluvio CLI installed and have access to a Fluvio cluster. See our [getting started] guide.
+- Have the Fluvio CLI (version  `0.6.0-rc.5` or greater) installed <sup>[1]</sup>
+- Have access to a Fluvio cluster.
+  
+See our [getting started] guide for more details on getting set up.
 
 [Rust programming language]: https://rustup.rs
 [getting started]: /docs/getting-started
+
+-> [1]: If you need to, you can update the Fluvio CLI by using `fluvio update`.
 
 ### Create a Topic using the Fluvio CLI
 
@@ -60,7 +65,7 @@ authors = ["Your name <your_email@example.com>"]
 edition = "2018"
 
 [dependencies]
-fluvio = "0.1.0"
+fluvio = "0.3.4"
 async-std = "1.0.0"
 ```
 
