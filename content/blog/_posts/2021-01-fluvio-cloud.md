@@ -3,7 +3,7 @@ title: Announcing Fluvio Cloud Platform
 author: 
     name: "The Fluvio Team"
 description: Create session-aware websocket glue that can be utilized by data streaming applications.
-metadata: TECH
+metadata: NEWS
 date: 2021-01-10
 slug: announcing-fluvio-cloud-platform
 url: /blog/2021/01/announcing-fluvio-cloud-platform
