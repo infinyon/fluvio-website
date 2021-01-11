@@ -20,6 +20,17 @@ $ fluvio update
 ✅ Successfully updated /Users/you/.fluvio/bin/fluvio$ fluvio update
 ```
 
+Run the version command to check the if fluvio CLI and the platform (cluster) are in sync:
+
+```
+$ fluvio version
+Fluvio CLI      : 0.6.0-rc.5
+Fluvio Platform : 0.6.0-rc.3
+Git Commit      : 93193ab9754fb0019984c704640087ed7ba1420b
+OS Details      : Darwin 19.6.0 x86_64
+Rustc Version   : 1.48.0 (7eac88a 2020-11-16)
+```
+
 Upgrading the Fluvio cluster is slightly more involved and less polished.
 As of this writing, the only way to update your cluster is to delete it and re-start it.
 
