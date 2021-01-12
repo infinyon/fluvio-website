@@ -2,7 +2,7 @@
 title: Build Your Own Custom Robot Assistant
 author: 
     name: "The Fluvio Team"
-description: Leverage fluvio data streaming to build a custom robot assistant that can connect to any backend service in your organization.
+description: Use data streaming to build a custom robot assistant that can connect to any backend service in the organization.
 metadata: TECH
 date: 2021-01-07
 slug: bot-assistant
@@ -17,6 +17,8 @@ twitter:
     image: blog/images/bot-assistant/bot-twitter.jpg
     card: summary_large_image
 ---
+
+{{< social twitter linkedin ycombinator reddit >}}
 
 Many successful modern applications need to interact with their users in real-time, and this capability is quickly becoming the expected standard. However, building a real-time application from scratch is a daunting task, pulling focus away from the business problems the team is actually trying to solve. Fluvio is a real-time data streaming platform designed to make real-time application development easy. 
 

@@ -2,7 +2,7 @@
 title: Announcing Fluvio Cloud Platform
 author: 
     name: "The Fluvio Team"
-description: Today we are pleased to announce the Fluvio Cloud Platform, a fully managed installation of Fluvio open source.
+description: Today we are pleased to announce the Fluvio Cloud, a fully managed installation of Fluvio open source.
 metadata: NEWS
 date: 2021-01-10
 slug: announcing-fluvio-cloud-platform

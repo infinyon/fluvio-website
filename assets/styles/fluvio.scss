@@ -132,6 +132,33 @@ a#logo {
   margin-top: -5px;
 }
 
+.social {
+  padding-left: 20px;
+
+  .twitter {
+    background:#1da1f2; 
+    color: #fff;
+  }
+
+  .linkedin {
+    background:#2867b2; 
+    color: #fff;
+  }
+
+  .ycombinator {
+    background:#f26522; 
+    color: #fff;
+    min-width: 40px;
+  }
+  
+  .reddit {
+    background:#ff5700; 
+    color: #fff;
+    font-size: 20px;
+    padding:3px 8px;
+  }
+}
+
 // Content
 #content {
   flex-grow: 1;
