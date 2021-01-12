@@ -11,8 +11,6 @@ img: blog/images/bot-assistant/social/bot.jpg
 twitter-card: summary_large_image
 ---
 
-{{< social twitter linkedin ycombinator reddit >}}
-
 Many successful modern applications need to interact with their users in real-time, and this capability is quickly becoming the expected standard. However, building a real-time application from scratch is a daunting task, pulling focus away from the business problems the team is actually trying to solve. Fluvio is a real-time data streaming platform designed to make real-time application development easy. 
 
 In this blog post, we're going to build a **Robot Assistant**, an add-on button on the website, that interacts with users in real-time. 

@@ -2,10 +2,14 @@
 {{- $content := partial "augment/idea-symbol.html" $content -}}
 {{- $content := partial "augment/caution-symbol.html" $content -}}
 {{- $content := partial "augment/headline-hash.html" $content -}}
+{{- $url := absURL .page.Params.url | safeHTML -}}
+{{- $description := .page.Params.description | safeHTML -}}
+{{- $title := .page.Title | safeHTML -}}
 {{- $org := "" -}}
 {{- if (.page.Param "author.org") -}}
     {{ $org = print " (" (.page.Param "author.org")  ")" }}
 {{- end -}}
+
 <h1 class="post-title entry-title">{{ .page.Title }}</h1>
 <div class="subtitle">
     <div class="row pl-3">
@@ -26,10 +30,29 @@
     </div>
 </div>
 
+<div class="social">
+    <a class="btn twitter" type="button" role="button" title="Share on Twitter"
+        href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $title }}"
+        target="_blank">
+        <i class="fab fa-lg fa-twitter"></i>
+    </a>
+    <a class="btn linkedin" type="button" role="button" title="Share on LinkedIn"
+        href="https://www.linkedin.com/shareArticle?url={{ $url }}&title={{ $title }}&summary={{ $description }}"
+        target="_blank">
+        <i class="fab fa-lg fa-linkedin-in"></i>
+    </a>
+    <a class="btn ycombinator" type="button" role="button" title="Share on Y Combinator"
+        href="https://news.ycombinator.com/submitlink?u={{ $url }}&t={{ $title }}&text={{ $description }}"
+        target="_blank">
+        Y
+    </a>
+    <a class="btn reddit" type="button" role="button" title="Share on Reddit"
+        href="https://www.reddit.com/submit?url={{ $url }}&title={{ $title }}&text={{ $description }}"
+        target="_blank">
+        <i class="fab fa-reddit"></i>
+    </a>
+</div>
+
 <div class="blog-content">
-{{- $hidden := (.page.Param "social.hidden") | default false -}}
-{{ if and (.page.Param "social") (not $hidden)  -}}
-    <img src="/{{ (.page.Param "social.image") }}" />
-{{- end }}
 {{ $content }}
 </div>
