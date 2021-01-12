@@ -133,12 +133,18 @@ a#logo {
 }
 
 .social {
-  margin: 10px 0 10px 20px;
-  z-index: 2000;
+  margin: 10px 0 0 20px;
 
-  a {
-    height: 34px;
-    width: 45px;
+  .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding-top:1px;
+      text-align: center;
+      display: inline-block;
+      width: 40px;
+      height: 30px;
+      line-height: 2em;
   }
 
   .twitter {
@@ -154,8 +160,7 @@ a#logo {
   .ycombinator {
     background: $col-ycombinator;
     color: #fff;
-    font-size: 22px;
-    padding-top: 0;
+    i { font-family: arial; }
   }
   
   .reddit {
