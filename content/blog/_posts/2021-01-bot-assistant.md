@@ -10,7 +10,7 @@ url: /blog/2021/01/bot-assistant
 img: blog/images/bot-assistant/bot-twitter.jpg
 social:
     hidden: true
-    image: blog/images/bot-assistant/bot-social.jpg
+    image: blog/images/bot-assistant/bot-twitter.jpg
     width: 997
     height: 247
 twitter:
