@@ -17,13 +17,15 @@ Today we are pleased to announce the Fluvio Cloud, a fully managed installation 
 
 <center><a class="btn btn-primary" href="https://cloud.fluvio.io/signup" role="button">Sign Up for Fluvio Cloud</a></center>
 
-Fluvio is a high performance distributed data streaming platform for connected Apps. While installing and running fluvio is simple, managing the infrastructure is not. Fluvio Cloud is is a fully managed data streaming solution maintained by the Fluvio creators. No infrastructure required, just sign up for an account and use the product with the same CLI as Fluvio open source.
+Fluvio is a high performance distributed data streaming platform for connected Apps. While interacting with Fluvio is simple, managing the infrastructure is not. Fluvio Cloud is is a fully managed data streaming solution maintained by the Fluvio creators. No infrastructure required, just sign up for an account and use the product with the same CLI as Fluvio open source.
 
 ## Our Mission
 
 Our mission with Fluvio is to make building real-time applications easy. We believe that modern business requires real-time interaction, analysis, and adaptation. Yet, the challenge that many groups are facing is that building real-time infrastructure is a painful, expensive, and error-prone endeavor. We set out to solve this challenge by creating a general-purpose real-time application platform, backed by the fastest and safest data streaming engine possible.
 
-Today many applications are built using a three-tier paradigm, and use persistence patterns that effectively undermine the ability to perform real-time operations. These applications use classic databases and data lakes that utilize a write-first-then-query paradigm, an anti-pattern for real-time application. Real-time applications need to process data as soon as it hits your network, then write the results for safekeeping.
+Today many applications are built using persistence patterns that effectively undermine the ability to perform real-time operations. These applications use classic databases and data lakes that utilize a write-first-then-query paradigm, an anti-pattern for real-time application. Real-time applications need to process data as soon as it hits your network, then write the results for safekeeping.
+
+Integrate Batch processing as a 2nd anti-pattern ??
 
 ## Introducing Fluvio 
 
@@ -193,3 +195,8 @@ Fluvio is the first purpose-built platform for real-time collaboration. With Flu
 Join us, create an account in our [Fluvio Cloud](https://cloud.fluvio.io), check out our open source project in [Github](https://github.com/infinyon/fluvio) or connect with us in [Discord](https://discordapp.com/invite/bBG2dTz).
 
 We look forward to talking to you, see you soon.
+
+
+== Others
+
+Today many applications are built using a three-tier paradigm, and use persistence patterns that effectively undermine the ability to perform real-time operations. 
