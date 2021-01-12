@@ -133,29 +133,29 @@ a#logo {
 }
 
 .social {
-  margin: 10px 0 10px 10px;
+  margin: 10px 0 10px 20px;
 
   .twitter {
-    background:#1da1f2; 
+    background: $col-twitter;
     color: #fff;
     padding: 5px 6px 2px 6px;
   }
 
   .linkedin {
-    background:#2867b2; 
+    background: $col-linkedin;
     color: #fff;
     padding: 5px 6px 2px 6px;
   }
 
   .ycombinator {
-    background:#f26522; 
+    background: $col-ycombinator;
     color: #fff;
     padding: 2px 10px;
     font-size: 1.2em;
   }
   
   .reddit {
-    background:#ff5700; 
+    background: $col-reddit;
     color: #fff;
     padding: 0 5px;
     font-size: 1.35em;
