@@ -8,13 +8,8 @@ metadata: TECH
 date: 2021-12-20
 slug: about-fluvio
 url: /blog/2021/12/why-we-built-fluvio
-social: 
-    image: blog/images/why-fluvio/why-fluvio-social.jpg
-    width: 997
-    height: 247
-twitter:
-    image: blog/images/why-fluvio/why-fluvio-twitter.jpg
-    card: summary    
+img: blog/images/why-fluvio/social/fluvio.jpg
+twitter-card: summary 
 ---
 
 As more of our work moves online, there is a growing need for collaboration apps where businesses communicate with customers and employees in real-time. These new collaboration apps will accelerate decisions, improve customer experience, and open new revenue opportunities.

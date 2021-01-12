@@ -7,15 +7,8 @@ metadata: TECH
 date: 2021-01-07
 slug: bot-assistant
 url: /blog/2021/01/bot-assistant
-img: blog/images/bot-assistant/bot-twitter.jpg
-social:
-    hidden: true
-    image: blog/images/bot-assistant/bot-twitter.jpg
-    width: 997
-    height: 247
-twitter:
-    image: blog/images/bot-assistant/bot-twitter.jpg
-    card: summary_large_image
+img: blog/images/bot-assistant/social/bot.jpg
+twitter-card: summary_large_image
 ---
 
 {{< social twitter linkedin ycombinator reddit >}}

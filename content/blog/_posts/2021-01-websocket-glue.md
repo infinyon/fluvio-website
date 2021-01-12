@@ -7,15 +7,8 @@ metadata: TECH
 date: 2021-01-05
 slug: websocket-glue-for-streaming-apps
 url: /blog/2021/01/websocket-glue-for-streaming-apps
-img: blog/images/websocket-glue/ws-glue-twitter.jpg
-social:
-    hidden: true
-    image: blog/images/websocket-glue/ws-glue-social.jpg
-    width: 997
-    height: 247
-twitter:
-    image: blog/images/websocket-glue/ws-glue-twitter.jpg
-    card: summary_large_image
+img: blog/images/websocket-glue/social/ws-glue.jpg
+twitter-card: summary_large_image
 ---
 
 Modern applications need to interact with their users in real-time which require real time data streaming support. While we had Fluvio to handle data streaming, we needed a websocket connection proxy to bridge the data streaming with web applications.

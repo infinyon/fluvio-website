@@ -7,10 +7,8 @@ metadata: NEWS
 date: 2021-01-10
 slug: announcing-fluvio-cloud-platform
 url: /blog/2021/01/announcing-fluvio-cloud-platform
-img: blog/images/fluvio-cloud/cloud-tile.svg
-twitter:
-    image: blog/images/fluvio-cloud/cloud-twitter.jpg
-    card: summary_large_image
+img: blog/images/fluvio-cloud/social/cloud.jpg
+twitter-card: summary_large_image
 ---
 
 Today we are pleased to announce the Fluvio Cloud, a fully managed installation of Fluvio open source. Fluvio Cloud is now in alpha and you can sign up using the link below:
