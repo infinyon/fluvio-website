@@ -137,33 +137,29 @@ a#logo {
 
   a {
     height: 32px;
-    width: 35px;
+    width: 50px;
   }
 
   .twitter {
     background: $col-twitter;
     color: #fff;
-    padding: 5px 6px 2px 6px;
   }
 
   .linkedin {
     background: $col-linkedin;
     color: #fff;
-    padding: 5px 6px 2px 6px;
   }
 
   .ycombinator {
     background: $col-ycombinator;
     color: #fff;
-    padding: 2px 10px;
-    font-size: 1.2em;
+    line-height: 1.2em;
   }
   
   .reddit {
     background: $col-reddit;
     color: #fff;
-    padding: 0 5px;
-    font-size: 1.35em;
+    line-height: 1.2em;
   }
 }
 
