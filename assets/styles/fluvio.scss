@@ -135,6 +135,10 @@ a#logo {
 .social {
   margin: 10px 0 10px 20px;
 
+  a {
+    z-index: 99;
+  }
+
   .twitter {
     background: $col-twitter;
     color: #fff;
