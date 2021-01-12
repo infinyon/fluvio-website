@@ -134,10 +134,11 @@ a#logo {
 
 .social {
   margin: 10px 0 10px 20px;
+  z-index: 2000;
 
   a {
-    height: 32px;
-    width: 50px;
+    height: 34px;
+    width: 45px;
   }
 
   .twitter {
@@ -153,13 +154,13 @@ a#logo {
   .ycombinator {
     background: $col-ycombinator;
     color: #fff;
-    line-height: 1.2em;
+    font-size: 22px;
+    padding-top: 0;
   }
   
   .reddit {
     background: $col-reddit;
     color: #fff;
-    line-height: 1.2em;
   }
 }
 
