@@ -13,6 +13,11 @@ This page contains the latest release notes for updates to [Fluvio Cloud].
 
 Updates:
 
-- Added a loading spinner to the website UI for cluster installation
 - Updated Cloud documentation with the latest instructions
-- Fixed a problem with deploying Fluvio installations
+- Added a loading spinner to the website UI for cluster installation
+- Added `fluvio cloud login` command for downloading Cloud profile
+
+```
+$ fluvio cloud login --email="batman@justiceleague.com"
+Password:
+```
