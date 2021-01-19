@@ -160,6 +160,19 @@ Pillar: Data streams
     - Retrospective analysis
     - Audit reports
   - <a href="https://en.wikipedia.org/wiki/System_of_record" target="_blank">System of Record (SOR)</a>
+    
+
+    For many applications, it can be very beneficial to retain a long-term history
+    of the events that have occurred. In traditional databases, the only thing that
+    is preserved is the sum of all past events - the "current" state. In contrast,
+    Fluvio's data streams are implemented as immutable logs, meaning that we can
+    not only view the current state, but also the entire state of the system at any
+    point in time. This is incredibly powerful, as it grants us capabilities that
+    otherwise wouldn't be possible. For example, we can test new product features
+    using historical data (think ML use-cases), generate audit reports, perform
+    retrospective analysis, and even rebuild in-memory databases.
+
+
 - Resiliency (how confident do you want to be in being safe from system failure)
   - Built-in solution for replication (no need for replication service e.g. mysql)
   - Continue operating despite failures
