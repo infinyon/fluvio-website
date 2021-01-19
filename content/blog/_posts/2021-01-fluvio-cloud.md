@@ -183,6 +183,23 @@ Pillar: Data streams
   - High availability -> [Fluvio architecture](https://fluvio.io/docs/architecture)
   - Zone availability protects against data center outages
   - Fluvio supports a wide range of deployment scenarios: single cloud, multi-cloud, cloud-to-data center, and more. If Fluvio is deployed in a single availability zone, it protects against server outages. When deployed across availability zones, Fluvio protects against zone outages, and when deployed in hybrid mode it protects against data center outages. It’s up to the users to define the deployment model most suitable for their environment.
+  
+
+    Finally, a characteristic that we always need in production systems is high
+    availability. Fluvio employs a number of strategies to ensure that it is
+    resilient to many different types of failures, keeping data readily available
+    at all times. Primarily, Fluvio data streams natively support replication, meaning
+    that data is guaranteed to have live copies on at least `n` different nodes,
+    where `n` is the configured "replication factor". This means that even in the
+    case of spurious node failures, Fluvio can always provide failover so that
+    reads and writes are redirected to the available nodes. Additionally, the
+    cluster can heal itself: if a failed node comes back online, it will resynchronize
+    itself and continue running; or, if the node fails to come back online, it
+    simply gets replaced, and a new node takes its place. For additional disaster
+    protection, Fluvio can provide replication between availability zones, meaning
+    that even a complete datacenter outage will not compromise the availability of
+    Fluvio data streams.
+
 
 Pillar: Collaboration
 - Overview: what do we mean by collaboration? (live collaboration)
