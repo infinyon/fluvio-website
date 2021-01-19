@@ -21,3 +21,14 @@ Updates:
 $ fluvio cloud login --email="batman@justiceleague.com"
 Password:
 ```
+
+Known issues:
+
+- When consuming from a topic (e.g. via `fluvio consume`), after about 5
+  minutes of no activity it may silently disconnect. In this case the
+  consumer needs to be restarted.
+  
+Other notes:
+
+- Please know that after account creation, provisioning your Fluvio account
+  may take 5 to 7 minutes before you can run `fluvio cloud login`.
