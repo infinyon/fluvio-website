@@ -201,42 +201,59 @@ Pillar: Data streams
     Fluvio data streams.
 
 
-Pillar: Collaboration
-- Overview: what do we mean by collaboration? (live collaboration)
-  - User interfaces need to support live updates
-  - Backend needs to process frontend events and produce responses instantly
-  - Data streaming allows building microservices to interact with events
-- Interface
-  - Integrate with communication tools such as Slack or Teams
-  - Build a custom interface, e.g. dynamic web app
-  - Fluvio can drive either of these types of interface
-  - "Custom connectors" can attach to streams and produce events, listen for responses, etc.
-  - Sample programs:
-    - [Chat App](/tutorials/node/simple-chat/)
-    - [Bot Assistant](/tutorials/node/bot-assistant/)
-- Real-time Streaming Platform
-  - Data streams can allow independent services to work together
-  - Enables cross-service capabilities
-  - Fluvio offers multiple language clients for sending and receiving real-time messages
-  - Example multi-service flow:
-    - Services listen for relevant events on Fluvio topics
-    - When they receive an event, they perform an action
-    - Then, they generate a new event with the results of their action
-  - Dealership example services:
-    - Advisors: coordinate customer communication.
-    - Scheduling: look-up maintenance schedules and assign mechanics.
-    - Billing: charges customer credit cards and generates receipts.
-    1. When a customer arrives at the dealership, advisory service looks-up the car and publishes an event on the `advisory` topic.
-    2. Scheduling receives the event, schedules mechanics to perform the work, and generates an event on the `schedule` topic.
-    3. Billing receives the event, charges the customer credit card and sends an event with the amount paid on `billing` topic.
-- Business Logic Services
-  - Build services to read and write to real-time data streams
-  - Services can be polyglot since they only need to interact with the stream
-  - Edge components (user interface, embedded devices, third-party integrations) just interact with streams
-- Summary
-  - Fluvio supports both purpose-built and custom collaboration tools, letting users of both choose how to receive and manage events.
-  - Fluvio’s streaming platform lets independent services communicate through data streams/topics.
-  - Fluvio supports the creation of business logic services in common programming languages.
+Pillar: Composition
+- Giving services context is a matter of composing relevant raw data into something that is actionable
+
+
+
+
+// Pillar: Collaboration
+// - Overview: what do we mean by collaboration? (live collaboration)
+//   - User interfaces need to support live updates
+//   - Backend needs to process frontend events and produce responses instantly
+//   - Data streaming allows building microservices to interact with events
+//   - Enable collaboration between services by composing data
+//   - Giving services context is a matter of composing relevant raw data into something that is actionable
+//   - A key thing about collaboration with data is that the primitives need to be composable
+//   
+// 
+//     Our second pillar is all about collaboration, and in the context of real-time
+//     applications, what we mean is _live_ collaboration. Live collaboration is all
+//     about working together with as little delay and friction as possible - it should
+//     be fast and easy. There are multiple ways to 
+// 
+// 
+// - Interface
+//   - Integrate with communication tools such as Slack or Teams
+//   - Build a custom interface, e.g. dynamic web app
+//   - Fluvio can drive either of these types of interface
+//   - "Custom connectors" can attach to streams and produce events, listen for responses, etc.
+//   - Sample programs:
+//     - [Chat App](/tutorials/node/simple-chat/)
+//     - [Bot Assistant](/tutorials/node/bot-assistant/)
+// - Real-time Streaming Platform
+//   - Data streams can allow independent services to work together
+//   - Enables cross-service capabilities
+//   - Fluvio offers multiple language clients for sending and receiving real-time messages
+//   - Example multi-service flow:
+//     - Services listen for relevant events on Fluvio topics
+//     - When they receive an event, they perform an action
+//     - Then, they generate a new event with the results of their action
+//   - Dealership example services:
+//     - Advisors: coordinate customer communication.
+//     - Scheduling: look-up maintenance schedules and assign mechanics.
+//     - Billing: charges customer credit cards and generates receipts.
+//     1. When a customer arrives at the dealership, advisory service looks-up the car and publishes an event on the `advisory` topic.
+//     2. Scheduling receives the event, schedules mechanics to perform the work, and generates an event on the `schedule` topic.
+//     3. Billing receives the event, charges the customer credit card and sends an event with the amount paid on `billing` topic.
+// - Business Logic Services
+//   - Build services to read and write to real-time data streams
+//   - Services can be polyglot since they only need to interact with the stream
+//   - Edge components (user interface, embedded devices, third-party integrations) just interact with streams
+// - Summary
+//   - Fluvio supports both purpose-built and custom collaboration tools, letting users of both choose how to receive and manage events.
+//   - Fluvio’s streaming platform lets independent services communicate through data streams/topics.
+//   - Fluvio supports the creation of business logic services in common programming languages.
 
 Pillar: Ease of Use
 - Overview: Fluvio is easy to use
