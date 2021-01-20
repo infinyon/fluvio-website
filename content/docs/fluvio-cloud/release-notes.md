@@ -1,8 +1,8 @@
 ---
 title: Fluvio Cloud Release Notes
-menu: Fluvio Cloud Release Notes
+menu: Release Notes
 toc: true
-weight: 500
+weight: 200
 ---
 
 This page contains the latest release notes for updates to [Fluvio Cloud].
