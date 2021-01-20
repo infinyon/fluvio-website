@@ -2,23 +2,57 @@
 {{- $content := partial "augment/idea-symbol.html" $content -}}
 {{- $content := partial "augment/caution-symbol.html" $content -}}
 {{- $content := partial "augment/headline-hash.html" $content -}}
+{{- $url := absURL .page.Params.url | safeHTML -}}
+{{- $description := .page.Params.description | safeHTML -}}
+{{- $title := .page.Title | safeHTML -}}
 {{- $org := "" -}}
 {{- if (.page.Param "author.org") -}}
     {{ $org = print " (" (.page.Param "author.org")  ")" }}
 {{- end -}}
+
 <h1 class="post-title entry-title">{{ .page.Title }}</h1>
-<div class="author-area text-muted">
-    <span class="by">by</span> 
-    <span class="author">{{ .page.Param "author.name"}}</span>{{ $org }} 
-    <span class="ml-1">|</span>
-    <i class="fa fa-calendar-day pr-1 pl-1"></i>
-    <span class="date">{{ .page.Date.Format site.Params.blog_time_format }} </span>
+<div class="subtitle">
+    <div class="row pl-3">
+        <div>
+            <span class="by">by</span> 
+            <span class="author">{{ .page.Param "author.name"}}</span>{{ $org }} 
+        </div>
+        <div class="col-md-auto">
+            <span class="mr-1">|</span>
+            <i class="fa fa-calendar-day pr-1 pl-1"></i>
+            <span class="date">{{ .page.Date.Format site.Params.blog_time_format }} </span>
+        </div>
+        <div class="col-md">
+            <span class="mr-1">|</span>
+            <span class="read-label">Reading time</span>:
+            <span class="time">{{ math.Round (div (countwords $content) 220.0) }} minutes</span>
+        </div>
+    </div>
+</div>
+
+<div class="social">
+    <a class="button twitter" title="Share on Twitter"
+        href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $title }}"
+        target="_blank">
+        <i class="fab fa-lg fa-twitter"></i>
+    </a>
+    <a class="button linkedin" title="Share on LinkedIn"
+        href="https://www.linkedin.com/shareArticle?url={{ $url }}&title={{ $title }}&summary={{ $description }}"
+        target="_blank">
+        <i class="fab fa-lg fa-linkedin-in"></i>
+    </a>
+    <a class="button ycombinator" title="Share on Y Combinator"
+        href="https://news.ycombinator.com/submitlink?u={{ $url }}&t={{ $title }}&text={{ $description }}"
+        target="_blank">
+       <i class="fab fa-lg">Y</i>
+    </a>
+    <a class="button reddit" title="Share on Reddit"
+        href="https://www.reddit.com/submit?url={{ $url }}&title={{ $title }}&text={{ $description }}"
+        target="_blank">
+        <i class="fab fa-lg fa-reddit"></i>
+    </a>
 </div>
 
 <div class="blog-content">
-{{- $hidden := (.page.Param "social.hidden") | default false -}}
-{{ if and (.page.Param "social") (not $hidden)  -}}
-    <img src="/{{ (.page.Param "social.image") }}" />
-{{- end }}
 {{ $content }}
 </div>

@@ -28,7 +28,7 @@ into trouble at the `minikube start` step that looks like this
 
 ```bash
 $ minikube start
-😄  minikube v1.13.1 on Ubuntu 20.04
+😄  minikube v1.16.0 on Ubuntu 20.04
 👎  Unable to pick a default driver. Here is what was considered, in preference order:
     ▪ docker: Not installed: exec: "docker": executable file not found in $PATH
     ▪ kvm2: Not installed: exec: "virsh": executable file not found in $PATH
@@ -62,59 +62,12 @@ Once you've done that, try again using `minikube start --driver=docker`.
 [installed docker correctly]: https://hub.docker.com/search?q=&type=edition&offering=community&sort=updated_at&order=desc
 [post-install steps]: https://docs.docker.com/engine/install/linux-postinstall/
 
-### `fluvio cluster install`: Fluvio system chart is not installed
-
-If you see an error like the one below, it's likely that you forgot to run
-the install command with the `--sys` option first.
-
-```bash
-$ fluvio cluster install
-Error: 
-   0: Fluvio cluster error
-   1: An unknown error occurred: Fluvio system chart is not installed, please install fluvio-sys first
-
-Backtrace omitted.
-Run with RUST_BACKTRACE=1 environment variable to display it.
-Run with RUST_BACKTRACE=full to include source snippets.
-```
-
-- **Fix**: Run the following command to install the system chart
-(note the `--sys` flag at the end)
-
-```bash
-$ fluvio cluster install
-```
-
-### `fluvio cluster install`: Cluster in kube context cannot use IP address
-
-If you see an error like the one below, something went wrong when Fluvio tried to
-integrate with Minikube.
-
-```bash
-$ fluvio cluster install
-Error: 
-   0: Fluvio cluster error
-   1: An unknown error occurred: Cluster in kube context cannot use IP address, please use minikube context: 172.17.0.3
-
-Backtrace omitted.
-Run with RUST_BACKTRACE=1 environment variable to display it.
-Run with RUST_BACKTRACE=full to include source snippets.
-```
-
-- **Fix**: We have a command that should help resolve this. It will prompt for `sudo`
-because Fluvio needs to add an entry to a special file called `/etc/hosts` in order
-to connect to Minikube. Run the following command:
-
-```bash
-$ fluvio cluster set-minikube-context
-```
-
-### `fluvio cluster install`: waiting for sc service up come up
+### `fluvio cluster start`: waiting for sc service up come up
 
 Sometimes when running the install command, you might run into a loop like this:
 
 ```bash
-$ fluvio cluster install
+$ fluvio cluster start
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
@@ -189,13 +142,12 @@ waiting for sc service up come up: 2
 This means that Fluvio's [Streaming Controller (sc)] is online, but failed to launch a
 [Streaming Processing Unit (spu)].
 
-- **Fix**: We need to re-run the Fluvio installer. All we have to do is uninstall the
-cluster, then re-install it with the same install command you tried before. To uninstall
+- **Fix**: We need to re-run the Fluvio installer. All we have to do is delete the
+cluster, then re-start it with the same install command you tried before. To uninstall
 Fluvio, run the following:
 
 ```bash
-$ fluvio cluster uninstall
-fluvio@fluvio:~/fluvio$ fluvio cluster uninstall
+$ fluvio cluster delete
 removing fluvio installation
 removing kubernetes cluster
 release "fluvio" uninstalled
@@ -219,10 +171,10 @@ deleting label 'app=spu' object persistentvolumeclaims in: default
 persistentvolumeclaim "data-flv-spg-main-0" deleted
 ```
 
-Then, when you go to re-install it, a successful install will look like this:
+Then, when you go to re-start it, a successful install will look like this:
 
 ```bash
-$ fluvio cluster install
+$ fluvio cluster start
 "fluvio" already exists with the same configuration, skipping
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "fluvio" chart repository
@@ -246,121 +198,14 @@ waiting for spu to be provisioned
 1 spus provisioned
 ```
 
-### `fluvio cluster set-minikube-context`: Kubernetes config error
+### `fluvio cluster start`: repository name (fluvio) already exists
 
-On some systems, running the `set-minikube-context` command doesn't work correctly yet.
-When you run it, you might see an error like the following:
-
-```bash
-$ fluvio cluster set-minikube-context
-Error: 
-   0: Kubernetes config error
-   1: IO error: Exec format error (os error 8)
-   2: Exec format error (os error 8)
-
-Backtrace omitted.
-Run with RUST_BACKTRACE=1 environment variable to display it.
-Run with RUST_BACKTRACE=full to include source snippets.
-```
-
-In this case, you'll need to make an edit to your `/etc/hosts` file manually. The reason
-we need to do this is to set a hostname that points to minikube's IP address. Think of it
-like a road sign that tells programs where minikube lives. The first thing we need to do
-is make sure we can actually see minikube's address.
-
-```bash
-$ minikube ip
-172.17.0.3
-```
-
--> The IP address you see for minikube might be different, but that's ok!
-
-The next thing we'll want to do is make a backup of the hosts file so that we can restore
-it if something goes wrong.
-
-```bash
-$ cp /etc/hosts ~/Desktop/
-```
-
--> Now, if you want to reset things back to how they were, you can just run `sudo cp ~/Desktop/hosts /etc/hosts`
-
-Then, we want to add a line to the end of `/etc/hosts` that says `172.17.0.3 minikubeCA`.
-We can do that with the following command:
-
-```bash
-$ echo "$(minikube ip) minikubeCA" | sudo tee -a /etc/hosts
-```
-
-Just so you understand what's going on here, here's what that line does:
-
-- `$(minikube ip)`: This is running the `minikube ip` command inline, and then substituting
-the output into the string. After this step runs, the shell will continue executing the rest
-of the command like this:
-
-```bash
-$ echo "172.17.0.3 minikubeCA" | sudo tee -a /etc/hosts
-```
-
--> Here, `minikubeCA` is being used as the new hostname for minikube, and `172.17.0.3` is the address
-
-- `sudo tee -a /etc/hosts`: This is the part of the command that writes the line to the
-`/etc/hosts` file. It's important that you don't forget the `-a`, otherwise it will erase
-the file instead of appending to it! But don't worry, you made a backup :)
-
-To make sure everything worked correctly, let's take a look at the `/etc/hosts` file. You
-should see something similar to this:
-
-```bash
-$ cat /etc/hosts
-127.0.0.1	localhost
-127.0.1.1	your-hostname
-...
-172.17.0.3 minikubeCA
-```
-
-If everything worked correctly, you should now be able to run `set-minikube-context`
-successfully:
-
-```bash
-$ fluvio cluster set-minikube-context
-Cluster "flvkube" set.
-Context "flvkube" created.
-Switched to context "flvkube".
-```
-
-### `minikube tunnel`: Minikube tunnel does not appear
-
-On some systems, when you run the command
-
-```bash
-$ sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &
-```
-
-It seems to stop running immediately. You can tell this has happened when you search
-for "minikube tunnel" in your active processes and don't find anything:
-
-```bash
-$ ps aux | grep "minikube tunnel"
-user    642727  0.0  0.0   9036   664 pts/0    R+   15:53   0:00 grep --color=auto minikube tunnel
-```
-
-In that case, rather than trying to run minikube tunnel in the background (which is what
-nohup was for), we can just run it in the foreground. Minikube tunnel will cause your terminal
-to hang, but that's okay. Just open a separate terminal window that can be dedicated to the tunnel.
-Then run:
-
-```bash
-$ sudo minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out
-```
-
-### `fluvio cluster install`: repository name (fluvio) already exists
-
-Sometimes if you make it partway through an install and encounter an error, you'll need
+Sometimes if you make it partway through a startup and encounter an error, you'll need
 to run the uninstaller to reset to a fresh state. You need to do that if you encounter
 the following error:
 
 ```bash
-$ fluvio cluster install
+$ fluvio cluster start
 Error: repository name (fluvio) already exists, please specify a different name
 Exited with status code: 1
 The application panicked (crashed).
@@ -372,13 +217,13 @@ Run with RUST_BACKTRACE=1 environment variable to display it.
 Run with RUST_BACKTRACE=full to include source snippets.
 ```
 
-- **Fix**: To reset before making a fresh install, just run the following:
+- **Fix**: To reset before making a fresh startup, just run the following:
 
 ```bash
-$ fluvio cluster uninstall
+$ fluvio cluster delete
 removing fluvio installation
 removing kubernetes cluster
 release "fluvio" uninstalled
 ```
 
-Then try re-running the install command again
+Then try re-running the `fluvio cluster start` command again

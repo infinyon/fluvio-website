@@ -9,15 +9,12 @@
     {{- $description = .page.Param "description" -}}
 {{- end }}
 <meta property="og:description" content="{{ $description }}" />
-{{- if .page.Param "social" -}}
-{{- $social := print .page.Site.BaseURL (.page.Param "social.image") }}
-<meta property="og:image" content="{{ $social }}">
-<meta property="og:image:width" content="{{ .page.Param "social.width" }}">
-<meta property="og:image:height" content="{{ .page.Param "social.height" }}">
-{{- end }}
-{{- if .page.Param "twitter" -}}
-    {{- $img := print .page.Site.BaseURL (.page.Param "twitter.image") }}
+{{- if .page.Param "img" -}}
+    {{- $img := print .page.Site.BaseURL (.page.Param "img") }}
+<meta property="og:image" content="{{ $img }}">
 <meta name="twitter:site" content="@fluvio_io">
-<meta name="twitter:card" content="{{ .page.Param "twitter.card" }}" />
 <meta name="twitter:image:src" content="{{ $img }}" />
+    {{- if .page.Param "twitter-card" }}
+<meta name="twitter:card" content="{{ .page.Param "twitter-card" }}" />
+    {{- end }}
 {{- end }}

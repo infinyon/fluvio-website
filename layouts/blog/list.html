@@ -9,19 +9,50 @@
 {{ end }}
 
 {{ define "main" }}
-  <div class="blog">
-    <div class="container-fluid">
-      <div class="row flex-nowrap">
-        <div class="col content">
-          {{- block "content" . }}{{- end }}
-        </div>
-        <div class="col menu">
-            {{ partial "blog/recent-posts-title.html" . }}
-            {{ partial "blog/recent-posts.html" . }}
-        </div>      
-      </div>
+<div  class="container tiles">
+    <div class="pl-3">
+      <div class="row"><h1>{{ .Title }}</h1></div>
+      <div class="row"><div class="subtitle">{{ .Params.desc }}</div></div>
     </div>
-  </div>
+    
+    <div class="row">
+    {{ range .Pages.ByDate.Reverse }} 
+        {{- $notHidden := ne (.Params.hidden | default false) true -}}
+        {{- $img := .Params.tile }}
+        {{- if not $img -}}
+          {{- $img = .Params.img }}
+        {{- end -}}
+        {{- if $notHidden -}}
+        <div class="col-md-6 col-lg-4 box">
+          <div class="card h-100">
+            <div class="card-img">
+                <a href="{{.Params.url}}"><img src="/{{ $img }}" /></a>
+            </div>
+            <div class="blog-card">
+              <div class="container meta"><div class="row">
+                <div class="col meta-left">
+                {{  (upper .Params.metadata) | default "TECH" }}
+                </div>
+                <div class="col meta-right">
+                  <div class="date">
+                    <i class="fa fa-calendar-day pr-1 pl-1"></i>
+                    {{ .Date.Format site.Params.short_time_format }}
+                  </div>
+                </div>
+              </div></div>
+              <div class="blog-title">
+                <a href="{{.Params.url}}">{{ .Title}}</a>
+              </div>
+              <div class="description">
+                {{ .Params.description}}
+              </div>
+            </div>
+          </div>
+        </div>        
+        {{- end -}}
+    {{ end }}
+    </div>
+</div>
 {{ end }}
 
 {{ define "content" }}
@@ -33,5 +64,5 @@
           {{- $found_page = true -}}
         {{- end -}}
     {{- end -}}
-    <script src="/js/copy-code.js"></script>    
+    <script src="/js/copy-code.js"></script>
 {{ end }}

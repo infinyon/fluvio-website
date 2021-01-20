@@ -4,7 +4,7 @@ desc: Build a fully functional chat App with real-time notifications, and online
 tags:
   - node
 githubAuthors:
-  - ryanmtate
+  - simlay
   - ajhunyady
 difficulty: medium
 weight: 100

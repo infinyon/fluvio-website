@@ -2,10 +2,13 @@
 title: Websocket Glue for Data Streaming Apps
 author: 
     name: "The Fluvio Team"
-description: Step-by-step tutorial on how to create a session aware websocket glue for data streaming applications.
-date: 2020-12-26
+description: Create session-aware websocket glue that can be utilized by data streaming applications.
+metadata: TECH
+date: 2021-01-05
 slug: websocket-glue-for-streaming-apps
-url: /blog/2020/12/websocket-glue-for-streaming-apps
+url: /blog/2021/01/websocket-glue-for-streaming-apps
+img: blog/images/websocket-glue/social/ws-glue.jpg
+twitter-card: summary_large_image
 ---
 
 Modern applications need to interact with their users in real-time which require real time data streaming support. While we had Fluvio to handle data streaming, we needed a websocket connection proxy to bridge the data streaming with web applications.
@@ -37,13 +40,13 @@ This blog is written in a set-by-step tutorial format:
 * [Step 3: Add websocket communication](#step-3-add-websocket-communication)
 * [Step 4: Add session support](#step-4-add-session-support)
 
-Checkout the next tutorial if you are interested in adding the Fluvio real-time data streaming layer.
+This blog is part of a series of tutorials that shows the power of combining the [Websocket glue](#) with <a href="https://github.com/infinyon/fluvio">Fluvio</a> to build full featured data streaming apps.
 
 ##### Architecture
 
 The goals is to create a session aware client/server websocket mechanism that we can leveraged by any real-time data streaming apps. 
 
-<img src="/blog/images/websocket/architecture.svg"
+<img src="/blog/images/websocket-glue/architecture.svg"
      alt="WebSocket Architecture"
      style="justify: center; max-width: 440px" />
 
@@ -316,7 +319,7 @@ startServer();
 
 Open a web browser and navigate to `http://localhost:9998/`.
 
-<img src="/blog/images/websocket/frontend.svg"
+<img src="/blog/images/websocket-glue/frontend.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
@@ -659,7 +662,7 @@ Open the web browser and refresh `http://localhost:9998/` to load the latest jav
     * server should respond with 'ok'.
 * click `Disconnect` to release websocket connection.
 
-<img src="/blog/images/websocket/websocket.svg"
+<img src="/blog/images/websocket-glue/websocket.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
@@ -781,7 +784,7 @@ Finally, `parseSessionFromCookie` reads the session id from the cookie header an
 
 Open the web browser and refresh `http://localhost:9998/`. Then, open browser cookies and look for an entry called `CookieName`. The cookie stores the session id.
 
-<img src="/blog/images/websocket/webcookies.svg"
+<img src="/blog/images/websocket-glue/webcookies.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 580px" />
 
@@ -1049,8 +1052,19 @@ startServer();
 Navigate to your browser pointing at `http://localhost:9998/` and connect.
 The `notify` message is printed to the output every 3 seconds:
 
-<img src="/blog/images/websocket/websocket-notify.svg"
+<img src="/blog/images/websocket-glue/websocket-notify.svg"
      alt="WebSocket Frontend"
      style="justify: center; max-width: 540px" />
 
 Congratulations, your session aware websocket glue is ready for use.
+
+
+## Conclusion
+
+Websocket is a good choice for streaming real-time data between web server clients and backend servers. The blog shows that 220 lines of code is all you need to build your own real-time applications on websocket.
+
+This websocket glue is used in the following sample applications:
+* [Build your own custom Bot Assistant](/blog/2021/01/bot-assistant/)
+* [Build a persistent Chat App without a database](/blog/2021/01/persistent-chat-app)
+
+You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">discord</a>. We look forward to hearing from you.

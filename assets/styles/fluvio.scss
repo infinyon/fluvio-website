@@ -132,6 +132,41 @@ a#logo {
   margin-top: -5px;
 }
 
+.social {
+  margin: 10px 0 0 20px;
+  .button {
+      border: none;
+      color: white;
+      padding-top:1px;
+      text-align: center;
+      display: inline-block;
+      width: 40px;
+      height: 30px;
+      line-height: 2em;
+  }
+
+  .twitter {
+    background: $col-twitter;
+    color: #fff;
+  }
+
+  .linkedin {
+    background: $col-linkedin;
+    color: #fff;
+  }
+
+  .ycombinator {
+    background: $col-ycombinator;
+    color: #fff;
+    i { font-family: arial; }
+  }
+  
+  .reddit {
+    background: $col-reddit;
+    color: #fff;
+  }
+}
+
 // Content
 #content {
   flex-grow: 1;

@@ -1,72 +1,33 @@
 ---
-title: Why we built Fluvio
+title: Announcing Fluvio Cloud Platform
 author: 
     name: "The Fluvio Team"
-description: Fluvio, a real-time data streaming platform for connected apps
-date: 2020-11-20
-slug: about-fluvio
-url: /blog/2020/11/why-we-built-fluvio
-social: 
-    image: blog/images/why-fluvio/why-fluvio-social.jpg
-    width: 997
-    height: 247
-twitter:
-    image: blog/images/why-fluvio/why-fluvio-twitter.jpg
-    card: summary    
+description: Today we are pleased to announce the Fluvio Cloud, a fully managed installation of Fluvio open source.
+metadata: NEWS
+date: 2021-01-10
+slug: announcing-fluvio-cloud-platform
+url: /blog/2021/01/announcing-fluvio-cloud-platform
+img: blog/images/fluvio-cloud/social/cloud.jpg
+tile: blog/images/fluvio-cloud/social/cloud-tile.svg
+twitter-card: summary_large_image
+hidden: true
 ---
 
-As more of our work moves online, there is a growing need for collaboration apps where businesses communicate with customers and employees in real-time. These new collaboration apps will accelerate decisions, improve customer experience, and open new revenue opportunities.
+Today we are pleased to announce the Fluvio Cloud, a fully managed installation of Fluvio open source. Fluvio Cloud is now in alpha and you can sign up using the link below:
 
-In the article “<a href="https://www.mckinsey.com/business-functions/organization/our-insights/reimagining-the-post-pandemic-organization" target="_blank">Reimagining the post-pandemic organization</a>", McKinsey astutely observes that antiquated data systems are holding many companies back, forcing them to rely on manual processes to make decisions. Modern businesses must be able to collaborate with customers, partners, and employees in real-time, and do so through a variety of communication channels, organization’s boundaries, time zones, and legal jurisdictions. Making this transition requires new infrastructure that swaps out manual processes with collaboration centric real-time workflows. The proper infrastructure is needed to link human actions with systems, and to facilitate the transition from legacy systems with new technology.
+<center><a class="btn btn-primary" href="/signup" role="button">Sign Up for Fluvio Cloud</a></center>
 
-We’ve found that developers are struggling to build real-time collaboration apps that connect users with the business contexts they care about. A business context is derived from data, but this data is often fragmented and distributed by different teams across an organization. Real-time data handling is a way of bringing data to users as fast as possible. A real-time collaboration app makes data available to users at the time of communication, which accelerates the speed of decisions.
+Fluvio is a high performance distributed data streaming platform for connected Apps. While interacting with Fluvio is simple, managing the infrastructure is not. Fluvio Cloud is is a fully managed data streaming solution maintained by the Fluvio creators. No infrastructure required, just sign up for an account and use the product with the same CLI as Fluvio open source.
 
-There are already a number of vertical collaboration systems like Zoom, Slack, and Teams that function primarily as communication platforms. Yet these solutions do not account for business context. Developers focusing on creating real-time collaboration apps must either build plugins for these communication platforms or build their own real-time collaboration infrastructure. Plugin frameworks often provide inadequate access to the business context, and real-time collaboration infrastructure requires significant investments of time and expertise. Furthermore, most organizations do not have the resources to maintain and operate such a complex platform.
+## Our Mission
 
-In order to solve the problems described above, we believe there is an opportunity for a purpose-built platform for real-time collaboration. A platform that is easy to operate, requires no upfront investment and allows developers to join data, build business logic, and shorten the time required to roll-out real-time collaboration apps.
+Our mission with Fluvio is to make building real-time applications easy. We believe that modern business requires real-time interaction, analysis, and adaptation. Yet, the challenge that many groups are facing is that building real-time infrastructure is a painful, expensive, and error-prone endeavor. We set out to solve this challenge by creating a general-purpose real-time application platform, backed by the fastest and safest data streaming engine possible.
 
+Today many applications are built using persistence patterns that effectively undermine the ability to perform real-time operations. These applications use classic databases and data lakes that utilize a write-first-then-query paradigm, an anti-pattern for real-time application. Real-time applications need to process data as soon as it hits your network, then write the results for safekeeping.
 
-## Business Faces an Existential Challenge
+Integrate Batch processing as a 2nd anti-pattern ??
 
-The pandemic has fundamentally changed the way businesses operate. Not only do employees need to stay connected while working from home, but customers demand solutions with immediate feedback and minimal physical interactions. Beyond this, partners need real-time notification for deliveries, supply chain management, or other coordinated activities.
-
-Because of these challenges, it’s no longer viable to maintain antiquated tools and processes that require constant manual intervention, or to use legacy communication channels for daily business activities. The more manual interventions there are, the more unpredictable resolution time becomes. Traditional resolution times range from minutes to days. Modern organizations that use real-time connections and automated activities require predictable resolution time measuring just milliseconds to seconds. 
-
-Let’s take a look at an example of how a real-time collaboration app could dramatically improve a transaction at a car dealership.
-
-
-## A Car Dealership Example
-
-The typical method of dealing with transactions at a car dealership involves many inefficient manual processes and antiquated communication methods. Long delays, part shortages, insufficient loaners are common annoyances that erode customer confidence and impact the success of the business.
-
-<img src="/blog/images/why-fluvio/dealership-legacy.svg"
-     alt="Dealership Example"
-     style="justify: center; max-width: 700px" />
-
-Imagine taking your car to a dealership for an oil change appointment. The process might go like this:
-
-* First, the parking attendant greets you, places a number on your windshield and walks inside to inform the service advisor. 
-* A few minutes later, the service advisor walks-up and takes you to his office to check your service records. The advisor is the master coordinator, and he must call up the service department to ensure the parts are available, check the system to see if your service is covered by warranty, etc. In most cases, you’ll be promised a call later in the day. 
-* Next, you need to arrange your transportation with the vehicle loan office. There is a long line, but after waiting you find out they are out of cars, so you take an Uber instead. 
-* A few hours later, you get a call from the service advisor who informs you that the car must receive a mandatory service recall and the part is in backorder, scheduled to arrive in a couple of days. 
-
-What was supposed to be a short maintenance appointment has turned into a multi-day ordeal.
-
-These challenges are not unique to car dealerships. Yet you can see the problems afflicting businesses relying on manual processes and primitive communication channels to interact with employees, vendors, and customers. 
-
-## A Vision for a Modern Car Dealership
-
-Now imagine the same scenario at a modern car dealership:
-
-* When you arrive, a camera reads your license plate, matches your car to the VIN number, and notifies the backend platform of your arrival. 
-
-* The platform looks up your service records, warranty information, and mandatory recalls. It ensures that all parts are available, generates an invoice, checks the loaner location and sends you a welcome message. The message has the cost of service, the loaner location, and the estimated pick-up time. 
- * You step out of the car, enter the loaner, and drive off. You are in and out of the car dealership in minutes.
-
-This type of transformation from legacy business to modern business can be highly disruptive and many businesses may see it as an impossible undertaking. We believe proper planning and the right technology can make this transition possible for any organization. With Fluvio, the transition can be as painless as possible.
-
-## Introducing Fluvio
-###### A Data Platform for Real-Time Collaboration
+## Introducing Fluvio 
 
 Fluvio is a high performance distributed platform that coordinates all real-time data exchanges in an organization. It deploys in minutes, operates hands-free, and covers a broad range of use cases. The platform is suitable for services such as: 
 
@@ -87,7 +48,6 @@ The Fluvio data platform for real-time collaboration was built on these three pi
 Streaming Data is data that is generated and delivered continuously. A data stream often consists of individual messages that describe events that have occurred. A key advantage of streaming data, as opposed to having batches of data delivered periodically, is that the average time to take action on an event is much lower. Since streaming data is delivered immediately, events can be processed and acted upon immediately. Therefore, a critical prerequisite to building real-time collaborative applications is having a scalable, durable, low-latency data streaming platform. We built Fluvio to meet this need.
 
 Fluvio data streaming platform is built to optimize the following: speed, scale, retention, and resilience.
-
 
 #### Speed
 
@@ -235,3 +195,8 @@ Fluvio is the first purpose-built platform for real-time collaboration. With Flu
 Join us, create an account in our [Fluvio Cloud](https://cloud.fluvio.io), check out our open source project in [Github](https://github.com/infinyon/fluvio) or connect with us in [Discord](https://discordapp.com/invite/bBG2dTz).
 
 We look forward to talking to you, see you soon.
+
+
+== Others
+
+Today many applications are built using a three-tier paradigm, and use persistence patterns that effectively undermine the ability to perform real-time operations. 

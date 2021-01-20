@@ -24,28 +24,39 @@
     }
   }
 
-  .author-area {
+  .subtitle {
     background: none repeat scroll 0 0 #f8f8f8;
     border: 1px solid #efefef;
     content: "";
     display: block;
     position: relative;
-    padding: 5px 10px;
-
-    i {
-      font-size: 1em;
-    }
-    
-    .by, .date {
-      font-size: .9em;
-      font-family: $font-blog;
-    }
+    padding: 8px;
+    color: $col-gray-light2;
 
     .author {
-      color: #555555;
+      color: $col-blog;
       font-size: 1.05em;
       font-family: $font-blog-author;
       text-transform: uppercase;
+    }
+
+    i {
+      font-size: 1.05em;
+    }
+
+    .by, .date {
+      font-family: $font-blog;
+      font-size: .95em;
+    }
+    
+    .read-label {
+      color: #555555;
+      font-weight: 700;
+      font-size: .95em;
+    }
+
+    .time {
+      font-size: .95em;
     }
   }
 
@@ -57,48 +68,47 @@
     margin-right: auto;
   }
 
-  .menu { 
+  .recent-posts { 
     -ms-flex: 0 0 26Opx;
     flex: 0 0 260px;
     margin-right: 10px;
     margin-top: 10px;
   }
 
-  .menu .h4 { 
+  .recent-posts .h4 { 
     border-bottom: 1px solid $col-blog-header-line;
     padding-bottom: 4px;
-    margin-bottom: 10px;
   }
 
-  .menu .h4 a { 
+  .recent-posts .h4 a { 
     color: $col-blog-header;
   }
 
-  .menu a:hover { 
+  .recent-posts a:hover { 
     text-decoration: none;
   }
 
-  .menu ul { 
+  .recent-posts ul { 
     margin-left:-20px;
   }
 
-  .menu ul li { 
+  .recent-posts ul li { 
     list-style: none;
+    padding-bottom: 2px;
   }
   
-  .menu .item a { 
-    font-size: 15px;
+  .recent-posts .item a { 
+    font-size: 16px;
     font-family: $font-blog;
     font-weight: 400;
     color: $col-blog;
-    line-height: 1.84em;
   }
 
-  .menu .item a:hover { 
+  .recent-posts .item a:hover { 
     text-decoration: underline;
   }
 
-  .menu .item.selected a { 
+  .recent-posts .item.selected a { 
     color: $col-blog-selected;
   }
 }
@@ -123,7 +133,7 @@
     padding-right: 30px;
   }
   
-  .blog .menu { 
+  .blog .recent-posts { 
     display: none;
   }
 }
