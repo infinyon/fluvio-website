@@ -63,6 +63,7 @@ Introduction Draft
 Fluvio Pillars: This will shape the rest of the blog
 1. [Data Streams](#data-streams)
 2. [Collaboration](#collaboration)
+2. [Composition](#composition)
 3. [Ease of Use](#ease-of-use)
 
 Pillar: Data streams
@@ -202,9 +203,72 @@ Pillar: Data streams
 
 
 Pillar: Composition
+- Composition is about taking small pieces and combining them
 - Giving services context is a matter of composing relevant raw data into something that is actionable
+- Compose many services by simply reading from and writing to streams
+- Fluvio offers multiple language clients for sending and receiving real-time messages
+- Scale services independently of each other  
+- APIs use a different data language than persistent storage
+- APIs are request/response
+  - Each link in a request/response chain can cause a cascading failure
+  - Each service holds temporary state that can be lost during a crash
+    - Leads to unhandled requests with no recourse
 
 
+    Our second pillar is Composition, which is all about using small building blocks
+    to build more complex and useful systems. One of the necessary requirements to
+    effective composition is having a clean interface boundary. Fluvio's data streams
+    provide an elegant interface for gluing together many services,
+    providing natural durability and error recovery possibilities. To illustrate this,
+    let's first talk about some patterns used by request-based services and explore
+    some common problems.
+
+    In many microservice architectures, interfaces follow a request/response interaction
+    model, such as in an HTTP API. This gives rise to several problems that can greatly
+    increase the complexity of such systems. Firstly, APIs typically speak in a different
+    language than that of the underlying persistent storage systems. It is typical for
+    an API to exchange JSON data, then for the underlying services need to
+    translate from JSON to and from database records (for example). This introduces
+    the potential to cause an impedence mismatch for each service in the system, as
+    each new service must be responsible for correctly translating between the two
+    different data languages. Secondly, request/response systems become exponentially
+    more complex for each new service that gets involved in a request chain. For example,
+    if we have a chain of 3 services (`A` calls `B` calls `C`), there are already many
+    questions to ask about the expected behavior of the system.
+    
+    - If service `C` experiences a failure, is `B` responsible for conveying all of those
+      errors back to `A`?
+    - What happens if service `C` is down? Have `A` and `B` already committed any data to
+      their stores? Would that need to be reversed in order to keep the system consistent?
+    - What if `B` crashes before it serves its response? Has `C` committed results that
+      the client never sees? Who is responsible for retrying this request?
+      What is the expected behavior if this request has been made before?
+
+    Part of the underlying problem in each of these scenarios is that each service implicitly
+    holds some temporary state in memory while it is waiting on another service, creating
+    ample opportunity for a small blip in the system to turn into a compounding failure.
+
+    What would happen if we used Fluvio data streams to communicate between services instead?
+    Rather than sending requests and responses between each two services, we could have all of
+    our services share a persistent Fluvio data stream. Each service could produce messages to
+    the stream in order to notify the other services of an event that has taken place, and any
+    other service could listen for events that are relevant to it and react accordingly.
+
+    Essentially what we have just done is turned our family of services into an [Actor System]
+
+    [Actor System]: https://en.wikipedia.org/wiki/Actor_model
+
+
+
+
+
+
+    If you've ever worked with [Redux] or [Elm], or if you've ever used the [Actor Model], this
+    may start to sound familiar. 
+
+    [Redux]: https://redux.js.org/understanding/thinking-in-redux/three-principles
+    [Elm]: https://guide.elm-lang.org/architecture/
+    [Actor Model]: https://en.wikipedia.org/wiki/Actor_model
 
 
 // Pillar: Collaboration
