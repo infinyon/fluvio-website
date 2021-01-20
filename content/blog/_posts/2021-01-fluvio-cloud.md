@@ -218,25 +218,20 @@ Pillar: Composition
     Our second pillar is Composition, which is all about using small building blocks
     to build more complex and useful systems. One of the necessary requirements to
     effective composition is having a clean interface boundary. Fluvio's data streams
-    provide an elegant interface for gluing together many services, providing natural
-    robustness and error recovery possibilities. 
+    provide an elegant interface for gluing together many services: to communicate,
+    services simply need to produce and consume messages. This pattern causes the
+    complexity of the system to grow _linearly_ with the number of services, rather
+    than exponentially. It also provides other benefits such as the ability to
+    scale services independently of one another, increasing the flexibility of the
+    system and promoting cost-effective resource utilization.
 
-    One of the problems with request/response communication between services is that
-    each service implicitly holds some temporary state in memory as the request is
-    being processed. This means that the service is volatile: if it were to crash,
-    there would be information loss, and the request would either produce an error or
-    nothing at all. When dealing with a web of many services, this type of failure is
-    not uncommon, and it introduces exponential complexity for each service involved.
-
-    Using Fluvio's data streams can help to manage the complexity of
-    systems with many moving parts. Each service simply listens on the stream for events
-    that are relevant to it, and may produce new messages to notify other services of
-    its own actions. Like other publish/subscribe systems, this allows the complexity
-    of the system to scale _linearly_ with the number of services, not exponentially.
-    However, unlike other publish/subscribe tools, the fact that Fluvio's data streams
-    are persistent means that the entire system of microservices can store all application
-    state in streams, eliminating the need for many of the services to manage other
-    persistent stores such as SQL databases, except for use-cases such as caching.
+    Another way in which Fluivo promotes good system composition is through its
+    language-native client libraries. Fluvio is written in Rust, meaning that it can
+    be compiled to native machine code and embedded into any language runtime. This
+    means that all of our client libraries are first-class citizens of the Fluvio
+    ecosystem. Since language clients are built directly on our Rust client, that
+    means that core project updates will propagate to all of the clients with no
+    delay. No more waiting on third-party language bindings to implement protocol updates.
 
     
 // Pillar: Collaboration
