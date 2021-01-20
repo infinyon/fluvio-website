@@ -19,7 +19,7 @@ You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_bla
 
 Head on over to the [Fluvio Cloud signup page] to create an account.
 
-[Fluvio Cloud signup page]: https://cloud.fluvio.io/signup
+[Fluvio Cloud signup page]: /signup
 
 {{< image src="getting-started/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400" type="scaled-75" >}}
 

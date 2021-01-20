@@ -10,11 +10,12 @@ url: /blog/2021/01/announcing-fluvio-cloud-platform
 img: blog/images/fluvio-cloud/social/cloud.jpg
 tile: blog/images/fluvio-cloud/social/cloud-tile.svg
 twitter-card: summary_large_image
+hidden: true
 ---
 
 Today we are pleased to announce the Fluvio Cloud, a fully managed installation of Fluvio open source. Fluvio Cloud is now in alpha and you can sign up using the link below:
 
-<center><a class="btn btn-primary" href="https://cloud.fluvio.io/signup" role="button">Sign Up for Fluvio Cloud</a></center>
+<center><a class="btn btn-primary" href="/signup" role="button">Sign Up for Fluvio Cloud</a></center>
 
 Fluvio is a high performance distributed data streaming platform for connected Apps. While interacting with Fluvio is simple, managing the infrastructure is not. Fluvio Cloud is is a fully managed data streaming solution maintained by the Fluvio creators. No infrastructure required, just sign up for an account and use the product with the same CLI as Fluvio open source.
 

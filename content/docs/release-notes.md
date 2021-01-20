@@ -7,7 +7,7 @@ weight: 500
 
 This page contains the latest release notes for updates to [Fluvio Cloud].
 
-[Fluvio Cloud]: https://cloud.fluvio.io/signup
+[Fluvio Cloud]: /signup
 
 ## January 19, 2021
 

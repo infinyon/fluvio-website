@@ -1,0 +1,34 @@
+{{ define "main" }}
+<script type="text/javascript">var submitted=false;</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted)  {window.location='/';}"></iframe>
+
+<div class="registration-form">
+  <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfnCBT6Q_UnBuju-kBfq6qUULDKFOprogP2K8_yYV0BehvS6w/formResponse">
+  <h2>Fluvio Cloud - Waiting List</h2>
+  <div class="subheader">
+    Fluvio Cloud is coming. Sign up to reserve your spot.
+  </div>
+
+  <label for="name" class="font-sm">Your Name <span style="color:red">*</span></label>
+  <input name="entry.1602934558" type="text" class="form-control form-control-md item" id="name" required>        
+
+
+  <label for="email"  class="font-sm">Your Email <span style="color:red">*</span></label>
+  <input name="entry.278536991" type="email" class="form-control form-control-md item"  id="email" required>        
+
+
+  <label for="use-case"  class="font-sm">What is your Fluvio use case? <span style="color:red">*</span></label>
+  <textarea name="entry.758942408" id="use-case" class="form-control form-control-md item" required></textarea>
+
+  <center>
+  <button class="btn">  
+    <i class="fa fa-pen mr-2 white-text"></i>
+    Sign Up
+  </button>
+  </center>
+
+
+  </form>
+</div>
+
+{{ end }}    

@@ -27,7 +27,7 @@ example, we have a "Hello world" guide described by the [`/tutorial/hello-world.
 This root file just contains information describing all of the tutorials for this guide.
 This is used to tell Hugo how to render the tiles and icons on the tutorials main page.
 
-The most imporatnt ield is`tags`. The tags field is used to indicate
+The most important field is`tags`. The tags field is used to indicate
 which language adaptations are available and which icons to show on the tile.
 
 For example, [`hello-world.md`] has 3 tags:
