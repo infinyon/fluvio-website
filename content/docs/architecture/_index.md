@@ -102,8 +102,8 @@ The Fluvio architecture places heavy emphasis on clean, **user-friendly APIs**. 
 
 API reference guides for programming languages are available at: 
 
-* [Node API](/docs/node-api) 
-* [Rust API](/docs/rust-api)
+* <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API</a> 
+* <a href="https://docs.rs/fluvio/" target="_blank">Rust API</a>
 
 ### Internal APIs
 
