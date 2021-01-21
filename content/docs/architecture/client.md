@@ -20,7 +20,7 @@ The Fluvio client library is written in Rust and can be natively embedded into o
 The first language binding implementation is for `Node.js`. The Node bindings allow web developers to add real-time data streaming to applications in a matter of minutes. No servers to configure, no databases to maintain, just connect your App to [Fluvio Cloud](/docs/getting-started), and you have the <ins>first building block</ins> on the path to a **real-time distributed App**.
 
 * API Reference
-    * [Node API Reference](/docs/node-api)
+    * <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API Reference</a>
 
 * Tutorials
     * [Hello, World!](/tutorials/hello-world-node/) 
@@ -33,7 +33,7 @@ For additional details on Node binding implementation, checkout <a href="https:/
 The Rust API is native to the platform and does not require any language binding. Check out the following references to add real-time data streaming to your Rust application:
 
 * API Reference
-    * [Rust API Reference](/docs/rust-api)
+    * <a href="https://docs.rs/fluvio/" target="_blank">Rust API Reference</a>
 
 * Demo Apps
     * [CDC Producer](/docs/demo-apps/cdc-producer-rust/) 
