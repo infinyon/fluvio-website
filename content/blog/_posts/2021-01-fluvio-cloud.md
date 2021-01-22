@@ -320,8 +320,6 @@ Pillar: Ease of Use
     language clients in the future and we're always open to feedback. Feel free to join our
     [Discord chat] and let us know what language support you'd like to see.
 
-    [Discord chat]: https://discordapp.com/invite/bBG2dTz
-
 
 - Clusters
   - Fluvio Cloud takes care of setup and maintenance
@@ -339,6 +337,17 @@ Pillar: Ease of Use
       - Cluster may provision a new SPU to take its place
       - Later, the failed SPU comes online
         - Rather than blindly resuming old task, it re-syncs with system and resumes operations
+  
+
+    Our client APIs make Fluvio a great choice for developers, but how OPs friendly is it?
+    Fluvio is built to run natively on Kubernetes, employing operator patterns in order to
+    self-govern cluster components and keep the system healthy. Fluvio is configured declaratively,
+    meaning that human operators simply declare the target state of the system and the cluster
+    handles the rest. This also includes continuous state reconciliation - if a node goes down
+    or if the state of the system diverges from the target state, Fluvio will automatically take
+    action to return to the target state, meaning fewer midnight pager-duty alerts.
+
+
 - Summary
   - Fluvio clusters can be either cloud-based and automatically managed by the Fluvio team, or open-source.
   - Fluvio clients allow management of the clusters with either the Fluvio CLI or a programmatic API.
@@ -351,6 +360,18 @@ Conclusion
 - Fluvio is the first purpose-built platform for real-time applications
 - Get started using Fluvio Cloud
 - Come talk to us on Discord
+
+    
+    Thanks for reading to the end! We hope that you're as excited as we are for
+    the future of real-time applications. If you liked the blog, feel free to
+    share it around or to come let us know your thoughts! We have a community
+    [Discord chat] if you'd like to pop in. If you want to get started building
+    with Fluvio, the easiest way to begin is with a [free Fluvio Cloud account]
+    and to follow our [getting started guide]!.
+
+    [Discord chat]: https://discordapp.com/invite/bBG2dTz
+    [free Fluvio Cloud account]: https://cloud.fluvio.io/signup
+    [getting started guide]: https://www.fluvio.io/docs/getting-started/
 
 ---
 
