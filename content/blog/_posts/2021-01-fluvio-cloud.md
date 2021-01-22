@@ -107,12 +107,6 @@ Pillar: Data streams
 
 
 
-    An immediate question comes to mind: how big is a message?
-    The answer will vary depending on the nature of the application being built.
-    A general rule of thumb is that larger messages take longer to send.
-    This allows for great flexibility when considering the performance and persistence requirements
-    of different applications.
-    For one, it allows us to optimize our platform for many different use-cases.
 
 
 
@@ -287,10 +281,17 @@ Pillar: Ease of Use
   - Open source with client and cluster components
   - Cluster may be run locally or in cloud
   - Declarative configuration management and reconciliation
-- Clusters
-  - Fluvio Cloud takes care of setup and maintenance
-  - Fluvio open-source can be installed anywhere
-    - Fluvio CLI can assist in cluster installation
+  
+
+    Our last pillar is Ease of Use. We believe that by making Fluvio easy to use,
+    we will create opportunities for more people and more projects to get into the
+    world of real-time applications. The biggest way that we do this is by crafting
+    tools and APIs that are pleasant to use and which hide the complexity of the
+    underlying distributed system. Since Fluvio is open-source, we also welcome
+    feedback and ideas from the community in order to help us build the best user
+    experience possible.
+
+
 - Clients
   - Fluvio CLI:
     - cluster management: start/delete, topic creation
@@ -302,18 +303,42 @@ Pillar: Ease of Use
       - Create/delete topics, manage SPUs, etc.
     - Client APIs are used for sending/receiving messages
     - Available in Rust and Node
-- Operational Efficiency
-  - Declarative configuration allows operator to specify target state
-  - Cluster machinery will alter the system state to match the target state
-  - An example target state is "Topic A should exist and have 3 partitions"
-    - Fluvio will orchestrate SPUs to create the topic and distribute the partitions
-  - Machinery can improve in performance and reliability over time for the same specs
-  - Fluvio can reconcile cluster changes to ensure target state is still met
-  - Allows system to self-heal and recover from error, e.g. a failed node
-  - Example: One SPU loses power and disconnects from the cluster
-    - Cluster may provision a new SPU to take its place
-    - Later, the failed SPU comes online
-      - Rather than blindly resuming old task, it re-syncs with system and resumes operations
+
+
+    Fluvio's two main user interfaces are the Fluvio CLI and the programmatic client libraries.
+    The Fluvio CLI is an all-in-one tool for managing and interacting with your Fluvio
+    clusters, and lets you play with data and inspect the state of the system. From the
+    CLI, you can view your topics and partitions, produce and consume data, and even
+    stand up and tear down whole clusters. The CLI natively supports multiple profiles,
+    so you can interact with multiple clusters just by switching the active profile. This can
+    be useful when working with multiple environments such as dev/test/prod or local/cloud.
+
+    Our programmatic APIs are built to leverage the idioms of each language. Our Rust client
+    offers a fully async interface and makes use of the ecosystem's `Future` and `Stream` traits
+    to integrate smoothely with other async streaming code. In Node, we make use of `AsyncIterator`
+    in order to enable `for await` syntax for iterating over records. We will be adding more
+    language clients in the future and we're always open to feedback. Feel free to join our
+    [Discord chat] and let us know what language support you'd like to see.
+
+    [Discord chat]: https://discordapp.com/invite/bBG2dTz
+
+
+- Clusters
+  - Fluvio Cloud takes care of setup and maintenance
+  - Fluvio open-source can be installed anywhere
+    - Fluvio CLI can assist in cluster installation
+  - Operational Efficiency
+    - Declarative configuration allows operator to specify target state
+    - Cluster machinery will alter the system state to match the target state
+    - An example target state is "Topic A should exist and have 3 partitions"
+      - Fluvio will orchestrate SPUs to create the topic and distribute the partitions
+    - Machinery can improve in performance and reliability over time for the same specs
+    - Fluvio can reconcile cluster changes to ensure target state is still met
+    - Allows system to self-heal and recover from error, e.g. a failed node
+    - Example: One SPU loses power and disconnects from the cluster
+      - Cluster may provision a new SPU to take its place
+      - Later, the failed SPU comes online
+        - Rather than blindly resuming old task, it re-syncs with system and resumes operations
 - Summary
   - Fluvio clusters can be either cloud-based and automatically managed by the Fluvio team, or open-source.
   - Fluvio clients allow management of the clusters with either the Fluvio CLI or a programmatic API.
