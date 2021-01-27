@@ -19,24 +19,29 @@ Fluvio Cloud is now in alpha, and you can create a free account using the link b
 
 <center><a class="btn btn-primary" href="/signup" role="button">Sign Up for Fluvio Cloud</a></center>
 
-Fluvio is an open-source, high-performance distributed data streaming platform for real-time apps.
-Using Fluvio is simple, but like many distributed systems, operating and managing it is more difficult.
+Fluvio is an open-source, high-performance distributed data streaming platform for real-time apps, written
+in Rust. Using Fluvio is simple, but like many distributed systems, operating and managing it is more difficult.
 Fluvio Cloud provisions and manages your Fluvio cluster for you, letting you get started right away.
-Getting started is as simple as creating an account and installing the [Fluvio CLI], our all-in-one tool for working with Fluvio.
+Getting started is as simple as creating an account and installing the [Fluvio CLI], our all-in-one
+tool for working with Fluvio.
 
 [Fluvio CLI]: /docs/getting-started/
 
+# About Fluvio
+
 We believe that modern business requires real-time collaboration, analysis, and adaptation.
-Yet, the challenge that many groups are facing is that building real-time infrastructure is a painful, expensive, and error-prone endeavor. [NEEDS WORK]
-Our mission with Fluvio is to make building real-time applications easy.
+Yet, building real-time infrastructure is a painful, expensive, and error-prone endeavor.
+Our mission with Fluvio is to make it easy to build real-time applications by providing a real-time
+application development platform. Fluvio is built on three core principles that guide us in achieving
+this goal:
 
-We set out to solve these problems by creating Fluvio, a general-purpose real-time application platform,
-built on a distributed streaming engine written in Rust. Rust is a systems programming language offering
-high performance and code safety, and offers us a much lower latency floor than the JVM could.
+1) **Data is modeled as streams of events**, and streams should deliver data as fast as possible
+2) **Services should compose seamlessly** by using streams as their interface boundary
+3) **APIs and tools should be easy to use**, so that anybody can build real-time applications
 
-TODO: Transition from intro to 3 Pillars
+## Data Streams
 
-Our first pillar is to use streams as our fundamental model of data.
+Our first principle is to use streams as our fundamental model of data.
 Data streams represent a continuous flow of messages that describe events that have occurred.
 The unit of a stream is a single message (sometimes called a record), and messages
 can be as small or as large as needed to fit the needs of the application.
@@ -44,6 +49,8 @@ Fluvio's data streams are implemented as persistent logs, meaning that all messa
 to disk and have a strict ordering, indicated by each message's offset in the stream, which never changes.
 Treating data as streams in this way allows us to provide crucial advantages that are
 necessary for building production-ready real-time applications. Namely: speed, scale, retention, and resiliency.
+
+### Speed
 
 One of the primary goals of a streaming platform is to deliever messages from
 point A to point B as quickly as possible.
@@ -59,6 +66,8 @@ message delivery at a higher confidence interval.
 
 [stop-the-world]: https://en.wikipedia.org/wiki/Tracing_garbage_collection#Stop-the-world_vs._incremental_vs._concurrent
 
+### Scalability
+
 Scalability is the ability of a system to gracefully handle massive
 volumes of data. Fluvio's data streaming architecture was designed
 with this in mind from the start. In Fluvio, streaming is performed
@@ -69,14 +78,16 @@ as the system demands increase, Fluvio scales horizontally by simply
 adding more SPUs to the mix. This process is automatically coordinated
 by the Streaming Controllers (SCs), giving the system an elastic
 behavior which can cost-effectively handle spike traffic without
-needing a long-term committment to peak capacity.
+needing a long-term commitment to peak capacity.
 
-On a more micro-level, Fluvio achieves high scalability by leveraging
+On a more micro level, Fluvio achieves high scalability by leveraging
 Rust's asynchronous programming model. This makes it easy to write code
 that multitasks, efficiently performing work that is ready to be done
 without wasting time on blocking work such as IO. This means that all
 of Fluvio's components are fully utilizing the available hardware,
 getting more done at a lower cost.
+
+### Retention
 
 For many applications, it can be very beneficial to retain a long-term history
 of the events that have occurred. In traditional databases, the only thing that
@@ -87,6 +98,8 @@ point in time. This is incredibly powerful, as it grants us capabilities that
 otherwise wouldn't be possible. For example, we can test new product features
 using historical data (think ML use-cases), generate audit reports, perform
 retrospective analysis, and even rebuild in-memory databases.
+
+### Availability
 
 Finally, a characteristic that we always need in production systems is high
 availability. Fluvio employs a number of strategies to ensure that it is
@@ -103,7 +116,9 @@ protection, Fluvio can provide replication between availability zones, meaning
 that even a complete datacenter outage will not compromise the availability of
 Fluvio data streams.
 
-Our second pillar is Composition, which is all about using small building blocks
+## Composition
+
+Our second principle is about Composition, which is all about using small building blocks
 to build more complex and useful systems. One of the necessary requirements to
 effective composition is having a clean interface boundary. Fluvio's data streams
 provide an elegant interface for gluing together many services: to communicate,
@@ -113,7 +128,7 @@ than exponentially. It also provides other benefits such as the ability to
 scale services independently of one another, increasing the flexibility of the
 system and promoting cost-effective resource utilization.
 
-Another way in which Fluivo promotes good system composition is through its
+Another way in which Fluvio promotes good system composition is through its
 language-native client libraries. Fluvio is written in Rust, meaning that it can
 be compiled to native machine code and embedded into any language runtime. This
 means that all of our client libraries are first-class citizens of the Fluvio
@@ -121,7 +136,9 @@ ecosystem. Since language clients are built directly on our Rust client, that
 means that core project updates will propagate to all of the clients with no
 delay. No more waiting on third-party language bindings to implement protocol updates.
 
-Our last pillar is Ease of Use. We believe that by making Fluvio easy to use,
+## Ease of Use
+
+Our last principle is Ease of Use. We believe that by making Fluvio easy to use,
 we will create opportunities for more people and more projects to get into the
 world of real-time applications. The biggest way that we do this is by crafting
 tools and APIs that are pleasant to use and which hide the complexity of the
@@ -139,15 +156,15 @@ be useful when working with multiple environments such as dev/test/prod or local
 
 Our programmatic APIs are built to leverage the idioms of each language. Our Rust client
 offers a fully async interface and makes use of the ecosystem's `Future` and `Stream` traits
-to integrate smoothely with other async streaming code. In Node, we make use of `AsyncIterator`
+to integrate smoothly with other async streaming code. In Node, we make use of `AsyncIterator`
 in order to enable `for await` syntax for iterating over records. We will be adding more
-language clients in the future and we're always open to feedback. Feel free to join our
+language clients in the future, and we're always open to feedback. Feel free to join our
 [Discord chat] and let us know what language support you'd like to see.
 
 Our client APIs make Fluvio a great choice for developers, but how OPs friendly is it?
 Fluvio is built to run natively on Kubernetes, employing operator patterns in order to
 self-govern cluster components and keep the system healthy. Fluvio is configured declaratively,
-meaning that human operators simply declare the target state of the system and the cluster
+meaning that human operators simply declare the target state of the system, and the cluster
 handles the rest. This also includes continuous state reconciliation - if a node goes down
 or if the state of the system diverges from the target state, Fluvio will automatically take
 action to return to the target state, meaning fewer midnight pager-duty alerts.
