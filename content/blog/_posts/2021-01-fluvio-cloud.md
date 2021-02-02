@@ -46,12 +46,12 @@ The unit of a stream is a single message (sometimes called a record), and messag
 can be as small or as large as needed to fit the needs of the application.
 Fluvio's data streams are implemented as persistent logs, meaning that all messages get written
 to disk and have a strict ordering, indicated by each message's offset in the stream, which never changes.
-Treating data as streams in this way allows us to provide crucial advantages that are
-necessary for building production-ready real-time applications. Namely: speed, scale, retention, and resiliency.
+Our data streaming engine has been written with a focus on four key properties that
+make it ideal for building production-ready real-time applications: speed, scale, retention, and resiliency.
 
 ### Speed
 
-One of the primary goals of a streaming platform is to deliever messages from
+One of the primary goals of a streaming platform is to deliver messages from
 point A to point B as quickly as possible.
 Fluvio's streaming architecture is designed to maximize performance, and has a key
 advantage over other streaming platforms: it's written from the ground-up in Rust.
@@ -76,7 +76,7 @@ particular capacity of storage, processing power, and bandwidth, so
 as the system demands increase, Fluvio scales horizontally by simply
 adding more SPUs to the mix. This process is automatically coordinated
 by the Streaming Controllers (SCs), giving the system an elastic
-behavior which can cost-effectively handle spike traffic without
+behavior which can cost-effectively handle spikes in traffic without
 needing a long-term commitment to peak capacity.
 
 On a more micro level, Fluvio achieves high scalability by leveraging
