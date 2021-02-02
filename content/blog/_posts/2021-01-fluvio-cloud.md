@@ -30,9 +30,9 @@ tool for working with Fluvio.
 
 We believe that modern business requires real-time collaboration, analysis, and adaptation.
 Yet, building real-time infrastructure is a painful, expensive, and error-prone endeavor.
-Our mission with Fluvio is to make it easy to build real-time applications by providing a real-time
-application development platform. Fluvio is built on three core principles that guide us in achieving
-this goal:
+One of our goals with Fluvio is to make it easy to build real-time applications by providing a
+real-time application development platform. Fluvio is built on three core principles that guide
+us in achieving this goal:
 
 1) **Data is modeled as streams of events**, and streams should deliver data as fast as possible
 2) **Services should compose seamlessly** by using streams as their interface boundary
