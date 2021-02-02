@@ -145,6 +145,8 @@ underlying distributed system. Since Fluvio is open-source, we also welcome
 feedback and ideas from the community in order to help us build the best user
 experience possible.
 
+### Powerful CLI
+
 Fluvio's two main user interfaces are the Fluvio CLI and the programmatic client libraries.
 The Fluvio CLI is an all-in-one tool for managing and interacting with your Fluvio
 clusters, and lets you play with data and inspect the state of the system. From the
@@ -153,12 +155,16 @@ stand up and tear down whole clusters. The CLI natively supports multiple profil
 so you can interact with multiple clusters just by switching the active profile. This can
 be useful when working with multiple environments such as dev/test/prod or local/cloud.
 
+### Language Native APIs
+
 Our programmatic APIs are built to leverage the idioms of each language. Our Rust client
 offers a fully async interface and makes use of the ecosystem's `Future` and `Stream` traits
 to integrate smoothly with other async streaming code. In Node, we make use of `AsyncIterator`
 in order to enable `for await` syntax for iterating over records. We will be adding more
 language clients in the future, and we're always open to feedback. Feel free to join our
 [Discord chat] and let us know what language support you'd like to see.
+
+### Declarative Management
 
 Our client APIs make Fluvio a great choice for developers, but how OPs friendly is it?
 Fluvio is built to run natively on Kubernetes, employing operator patterns in order to
