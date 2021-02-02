@@ -20,8 +20,7 @@ Fluvio Cloud is now in alpha, and you can create a free account using the link b
 <center><a class="btn btn-primary" href="/signup" role="button">Sign Up for Fluvio Cloud</a></center>
 
 Fluvio is an open-source, high-performance distributed data streaming platform for real-time apps, written
-in Rust. Using Fluvio is simple, but like many distributed systems, operating and managing it is more difficult.
-Fluvio Cloud provisions and manages your Fluvio cluster for you, letting you get started right away.
+in Rust. Fluvio Cloud provisions and manages your Fluvio cluster for you, letting you get started right away.
 Getting started is as simple as creating an account and installing the [Fluvio CLI], our all-in-one
 tool for working with Fluvio.
 
