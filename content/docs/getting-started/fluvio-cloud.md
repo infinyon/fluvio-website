@@ -8,7 +8,7 @@ weight: 30
 Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
 
 {{<idea>}}
-Fluvio Cloud is currently in alpha and you may face **instability** and **data loss between upgrades**.
+Fluvio Cloud is currently in **alpha** - the **apis** are under active development and you may face **instability** in various **edge** situations. 
 
 **Our pledge** is to be actively engaged with Fluvio users and respond to issues and suggestions in the shortest possible time.
 {{</idea>}}
