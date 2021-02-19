@@ -119,7 +119,7 @@ The SmartStream can be applied to any of the consumers
 Apply with SmartStream filter `sf1` to `tp1` :
 
 ```bash
-fluvio consume tp1 smartstream --user-filter sf1
+fluvio consume tp1 smartstream --use-filter sf1
 ```
 
 Note, multiple consumers may retrieve messages from the same topic at the same time. In this example, the second consumer retrieves all messages.
