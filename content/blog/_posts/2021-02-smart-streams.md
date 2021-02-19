@@ -28,8 +28,8 @@ pub fn has_number(value: &[u8]) -> bool {
 ```
 
 Filters are expected to return a boolean value:
-* **true** sends to send message to consumer
-* **false** false to ignore message
+* **true** indicates that the message will continue to the consumer
+* **false** indicates that the message will not be sent
 
 Future releases will allow SmartStreams to be written in alternative programming languages such as JavaScript and Python.
 
@@ -49,11 +49,11 @@ SmartStreams can support a broad range of operations such as:
 * computations
 * and more ...
 
-Initial release will implement filtering.
+Our initial release will implement filtering.
 
 ## SmartStream Provisioning
 
-There are two types of SmartStreams, inline and stored. Inline SmartStreams are a code file read from the command line in the consumer CLI. Stored SmartStreams are binary files compiled outside of Fluvio and loaded in the SmartStream Store inside Fluvio. 
+There are two types of SmartStreams, inline and stored. Inline SmartStreams are created via the consumer CLI by specifying the file containing the SmartStream definition. Stored SmartStreams are binary files compiled outside of Fluvio and loaded in the SmartStream Store inside Fluvio. 
 
 ### Inline SmartStreams (Phase 1)
 
