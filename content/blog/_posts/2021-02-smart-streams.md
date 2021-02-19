@@ -53,7 +53,7 @@ Initial release will implement filtering.
 
 ## SmartStream Provisioning
 
-There are two types of SmartStreams, inline and stored. Inline SmartStreams are a code file read from the command line in the producer CLI. Stored SmartStreams are binary files compiled outside of Fluvio and loaded in the SmartStream Store inside Fluvio. 
+There are two types of SmartStreams, inline and stored. Inline SmartStreams are a code file read from the command line in the consumer CLI. Stored SmartStreams are binary files compiled outside of Fluvio and loaded in the SmartStream Store inside Fluvio. 
 
 ### Inline SmartStreams (Phase 1)
 
@@ -65,7 +65,7 @@ Let's assume that the filter above is stored in a file called `sf1.rs`, The foll
 fluvio consume tp1 smartstream --inline-filter sf1.rs
 ```
 
-This command loads the SmartStream, compiles the file into binary code, and loads the binary to the SPUs assigned to the topic. Any messages on topic `tp1` that match the filter are sent to the producer. All other messages are ignored. 
+This command loads the SmartStream, compiles the file into binary code, and loads the binary to the SPUs assigned to the topic. Any messages on topic `tp1` that match the filter are sent to the consumer. All other messages are ignored. 
 
 
 ### Stored SmartStreams (Phase 2)
