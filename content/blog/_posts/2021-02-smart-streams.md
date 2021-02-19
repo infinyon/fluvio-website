@@ -62,7 +62,7 @@ Inline SmartStreams are read from the consumer command line.
 Let's assume that the filter above is stored in a file called `sf1.rs`, The following ClI applies the SmartStream to the consumer:
 
 ```bash
-fluvio consume tp1 -inline-filter sf1.rs
+fluvio consume tp1 smartstream --inline-filter sf1.rs
 ```
 
 This command loads the SmartStream, compiles the file into binary code, and loads the binary to the SPUs assigned to the topic. Any messages on topic `tp1` that match the filter are sent to the producer. All other messages are ignored. 
@@ -84,7 +84,7 @@ We are using `cargo build` provided by Rust.
 
 <img src="/blog/images/smart-streams/code-2-bin.svg"
      alt="Bot Assistant Example"
-     style="justify: center; max-width: 500px" />
+     style="justify: center; max-width: 280px" />
 
 Alternatively, you may use your preferred programming language and WASM compiler to build the binary.
 
@@ -94,7 +94,7 @@ Alternatively, you may use your preferred programming language and WASM compiler
 Add the SmartStream `sf1` to fluvio store
 
 ```bash
-fluvio smart-stream add sf1 --file `sf1.bin`
+fluvio smartstream add sf1 --file sf1.bin
 ```
 
 The file is stored in Fluvio and ready for use in the consume command.
@@ -116,15 +116,18 @@ The SmartStream can be applied to any of the consumers
      alt="Bot Assistant Example"
      style="justify: center; max-width: 850px" />
 
-First consumer reads messages with filters applied:
+Apply with SmartStream filter `sf1` to `tp1` :
 
 ```bash
-fluvio consume tp1 -—with-smart-stream sf1
+fluvio consume tp1 smartstream --user-filter sf1
 ```
 
-Second consumer reads messages without applying filters:
+Note, multiple consumers may retrieve messages from the same topic at the same time. In this example, the second consumer retrieves all messages.
 
 ```bash
 fluvio consume tp1
 ```
 
+## Conclusion
+
+As the need for real-time data computation increases, SmartStream provides a powerful interface to build highly customizable data centric applications.
