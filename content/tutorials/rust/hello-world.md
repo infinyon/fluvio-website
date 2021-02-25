@@ -155,6 +155,7 @@ Now let's write some code in Rust to do the consuming for us.
 
 ```rust
 use fluvio::Offset;
+use async_std::stream::StreamExt;
 
 async fn consume() -> Result<(), FluvioError> {
     let consumer = fluvio::consumer("hello-fluvio", 0).await?;
