@@ -43,16 +43,16 @@ You'll be able to tell that everything worked if your current profile is set to 
 
 ```bash
 $ fluvio profile current
-fluvio-cloud
+cloud
 ```
 
 If you installed fluvio locally it will be listed alongside `fluvio-cloud`:
 
 ```bash
 $ fluvio profile view
-    PROFILE       CLUSTER       ADDRESS                                                                       TLS 
-    local         local         localhost:9003                                                                Disabled 
- *  fluvio-cloud  fluvio-cloud  a8b853d97700347018b637c0f2a4727d-2111992582.us-west-2.elb.amazonaws.com:9003  Verified 
+    PROFILE       CLUSTER       ADDRESS                          TLS 
+    local         local         localhost:9003                   Disabled 
+ *  cloud         cloud         router.cloud.fluvio.io:9003      Verified
 ```
 
 -> Use **fluvio profile switch** command to switch between clusters.

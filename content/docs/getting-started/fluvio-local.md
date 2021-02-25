@@ -59,8 +59,8 @@ the version:
 
 ```bash
 $ minikube version
-minikube version: v1.16.0
-commit: 9f1e482427589ff8451c4723b6ba53bb9742fbb1
+minikube version: v1.17.1
+commit: 043bdca07e54ab6e4fc0457e3064048f34133d7e
 ```
 
 To start your minikube cluster, run the following. This will vary depending on what
