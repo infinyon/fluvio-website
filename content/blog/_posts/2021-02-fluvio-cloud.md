@@ -4,13 +4,13 @@ author:
     name: "The Fluvio Team"
 description: Today we are pleased to announce Fluvio Cloud, the easiest way to get started with Fluvio.
 metadata: NEWS
-date: 2021-01-10
+date: 2021-02-25
 slug: announcing-fluvio-cloud-platform
-url: /blog/2021/01/announcing-fluvio-cloud-platform
+url: /blog/2021/02/announcing-fluvio-cloud-platform
 img: blog/images/fluvio-cloud/social/cloud.jpg
 tile: blog/images/fluvio-cloud/social/cloud-tile.svg
 twitter-card: summary_large_image
-hidden: true
+hidden: false
 ---
 
 
@@ -35,8 +35,7 @@ real-time application development platform. Fluvio is built on three core princi
 us in achieving this goal:
 
 1) **Data is modeled as streams of events**, and streams should deliver data as fast as possible
-2) **Services should compose seamlessly** by using streams as their interface boundary
-3) **APIs and tools should be easy to use**, so that anybody can build real-time applications
+2) **APIs and tools should be easy to use**, so that anybody can build real-time applications
 
 ## Data Streams
 
@@ -112,28 +111,8 @@ cluster can heal itself: if a failed node comes back online, it will resynchroni
 itself and continue running; or, if the node fails to come back online, it
 simply gets replaced, and a new node takes its place. For additional disaster
 protection, Fluvio can provide replication between availability zones, meaning
-that even a complete datacenter outage will not compromise the availability of
+that even a complete data center outage will not compromise the availability of
 Fluvio data streams.
-
-## Composition
-
-Our second principle is about Composition, which is all about using small building blocks
-to build more complex and useful systems. One of the necessary requirements to
-effective composition is having a clean interface boundary. Fluvio's data streams
-provide an elegant interface for gluing together many services: to communicate,
-services simply need to produce and consume messages. This pattern causes the
-complexity of the system to grow _linearly_ with the number of services, rather
-than exponentially. It also provides other benefits such as the ability to
-scale services independently of one another, increasing the flexibility of the
-system and promoting cost-effective resource utilization.
-
-Another way in which Fluvio promotes good system composition is through its
-language-native client libraries. Fluvio is written in Rust, meaning that it can
-be compiled to native machine code and embedded into any language runtime. This
-means that all of our client libraries are first-class citizens of the Fluvio
-ecosystem. Since language clients are built directly on our Rust client, that
-means that core project updates will propagate to all of the clients with no
-delay. No more waiting on third-party language bindings to implement protocol updates.
 
 ## Ease of Use
 
