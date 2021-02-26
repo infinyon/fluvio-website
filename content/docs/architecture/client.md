@@ -36,8 +36,7 @@ The Rust API is native to the platform and does not require any language binding
     * <a href="https://docs.rs/fluvio/" target="_blank">Rust API Reference</a>
 
 * Demo Apps
-    * [CDC Producer](/docs/demo-apps/cdc-producer-rust/) 
-    * [DB Replication](/docs/demo-apps/db-replication-rust) 
+    * [Rust Tutorials](/tutorials/rust/) 
 
 
 ### Fluvio CLI
@@ -46,7 +45,7 @@ The Fluvio ClI an application written on top of the client library. The CLI can 
 
 For additional information, checkout:
 
-* [Fluvio CLI](/docs/cli)
+* [Fluvio CLI](/docs/cli-reference/)
 
 #### Future Work
 

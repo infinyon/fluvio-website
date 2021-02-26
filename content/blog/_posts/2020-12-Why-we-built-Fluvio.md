@@ -194,13 +194,13 @@ Beyond the core components, Fluvio prioritizes operational efficiency through de
 
 ##### Fluvio Open Source
 
-[Fluvio Open Source](https://github.com/infinyon/fluvio) can be installed in private data centers, public clouds, or on personal machines. [Fluvio CLI](/docs/cli) has built-in pre-check tests and installation scripts for most common environments. To install Fluvio, first download the Fluvio CLI from Github, and then run the installer. 
+[Fluvio Open Source](https://github.com/infinyon/fluvio) can be installed in private data centers, public clouds, or on personal machines. [Fluvio CLI](/docs/cli-reference/) has built-in pre-check tests and installation scripts for most common environments. To install Fluvio, first download the Fluvio CLI from Github, and then run the installer. 
 
 #### Clients
 
 ##### Fluvio CLI
 
-[Fluvio CLI](/docs/cli) covers a broad range of operations: cluster installation, data stream provisioning, produce/consume operations, and more. Checkout the CLI Guide for a detailed list of commands.
+[Fluvio CLI](/docs/cli-reference/) covers a broad range of operations: cluster installation, data stream provisioning, produce/consume operations, and more. Checkout the CLI Guide for a detailed list of commands.
 
 Fluvio CLI has built-in multi-cluster support, where the CLI can switch from one environment to another with one command. This feature is particularly useful when testing client software against different data sets. Developers can build the code against a local data set, then switch to a cloud instance to run the code against production data
 
