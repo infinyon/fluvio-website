@@ -6,19 +6,10 @@ toc: true
 weight: 10
 ---
 
-Welcome! Thanks for your interest in Fluvio, the high-performance, low-latency
-streaming platform for real-time applications. In this guide, we're going to
-walk through the setup process for getting started with Fluvio.
-To start, we'll show you how to install the Fluvio CLI, then later we'll
-show you how to get access to a Fluvio cluster, either locally or via
-Fluvio Cloud. Note that both of these options requires you to have the
-Fluvio CLI installed.
+Welcome! Thanks for your interest in Fluvio, the high-performance, low-latency streaming platform for real-time applications. 
 
-If you already have the Fluvio CLI installed, you can skip ahead to one of
-the Fluvio cluster guides:
-
-- [Create a free Fluvio Cloud account (Recommended)]
-- [Install a Fluvio cluster locally]
+In this guide, we're going to walk through the setup process for getting started with Fluvio.
+To start, we'll show you how to install the Fluvio CLI, then later we'll show you how to get access to a Fluvio cluster, either locally or via Fluvio Cloud. Note that both of these options requires you to have the Fluvio CLI installed.
 
 ## Installing the Fluvio CLI
 
