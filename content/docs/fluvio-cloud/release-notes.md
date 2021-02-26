@@ -9,6 +9,15 @@ This page contains the latest release notes for updates to [Fluvio Cloud].
 
 [Fluvio Cloud]: /signup
 
+## February 26, 2021
+
+Updates:
+
+- New styling for signup page
+- Internal improvements that speed up cluster provisioning
+- Increased cluster stability
+- Network improvements to prevent dropped connections
+
 ## January 19, 2021
 
 Updates:

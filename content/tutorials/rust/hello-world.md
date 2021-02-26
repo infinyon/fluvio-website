@@ -16,7 +16,7 @@ back.
 Before starting on this tutorial, you'll need to have completed the following
 
 - Install the [Rust programming language]
-- Have the Fluvio CLI (version  `0.6.0-rc.5` or greater) installed <sup>[1]</sup>
+- Have the Fluvio CLI (version  `0.7.0` or greater) installed <sup>[1]</sup>
 - Have access to a Fluvio cluster.
 
 See our [getting started] guide for more details on getting set up.
@@ -66,7 +66,7 @@ edition = "2018"
 
 [dependencies]
 fluvio = "0.5.0"
-async-std = "1.0.0"
+async-std = { version = "1.0.0", features = ["attributes"] }
 ```
 
 ### Create Producer/Consumer
@@ -78,7 +78,8 @@ consumer function. Let's add those right next to our `main` function:
 ```rust
 use fluvio::FluvioError;
 
-fn main() {
+#[async_std::main]
+async fn main() {
     println!("Hello, world!");
 }
 
@@ -121,9 +122,9 @@ async fn produce(message: &str) -> Result<(), FluvioError> {
 That's it for the producer! Let's hook up some code in `main` to call it and test it out.
 
 ```rust
-use async_std::task::block_on;
-fn main() {
-    let _result = block_on(produce("Hello, Fluvio!"));
+#[async_std::main]
+async fn main() {
+    let _result = produce("Hello, Fluvio!").await;
 }
 ```
 
@@ -182,17 +183,18 @@ both the producer and the consumer at the same time, so let's set up some simple
 command-line arguments so we can choose whether to run the producer or the consumer.
 
 ```rust
-fn main() {
+#[async_std::main]
+async fn main() {
     // Collect our arguments into a slice of &str
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            block_on(produce("Hello, Fluvio!"))
+            produce("Hello, Fluvio!").await
         },
         [_, "consume"] => {
-            block_on(consume())
+            consume().await
         },
         _ => {
             println!("Usage: hello-fluvio [produce|consume]");
@@ -231,21 +233,22 @@ We can make the producer send any text that was typed after the `produce`
 command like this:
 
 ```rust
-fn main() {
+#[async_std::main]
+async fn main() {
     // Collect our arguments into a slice of &str
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            block_on(produce("Hello, Fluvio!"))
+            produce("Hello, Fluvio!").await
         },
         [_, "produce", rest @ ..] => {
             let message = rest.join(" ");
-            block_on(produce(&message))
+            produce(&message).await
         },
         [_, "consume"] => {
-            block_on(consume())
+            consume().await
         },
         _ => {
             println!("Usage: hello-fluvio [produce|consume]");
