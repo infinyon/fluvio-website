@@ -18,7 +18,7 @@ For step-by-step instruction, checkout [Getting Started with Fluvio Cloud](/docs
 
 ## Fluvio Cloud
 
- Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 3 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
+Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 1 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
 
 {{< image src="fluvio-cloud/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="360" type="scaled-90">}}
 
@@ -39,7 +39,7 @@ The profile is generated during cluster setup and it is available for download i
 
 ### Restrictions
 
-Each installation supports an aggregate of **1Gb** of data streams and **3 SPUs**.
+Each installation supports an aggregate of **1Gb** of data streams and **1 SPU**.
 
 #### Storage 
 
