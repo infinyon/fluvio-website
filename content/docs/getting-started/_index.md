@@ -16,7 +16,7 @@ To start, we'll show you how to install the Fluvio CLI, then later we'll show yo
 The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting
 up, managing, and interacting with Fluvio.
 
--> Please note that the CLI currently only support Linux and MacOS
+-> Please note that the CLI currently only support **Linux** and **MacOS**.
 
 #### Download and Install
 
