@@ -18,7 +18,7 @@ Before starting on this tutorial, you'll need to have completed the following
 - Install the [Rust programming language]
 - Have the Fluvio CLI (version  `0.6.0-rc.5` or greater) installed <sup>[1]</sup>
 - Have access to a Fluvio cluster.
-  
+
 See our [getting started] guide for more details on getting set up.
 
 [Rust programming language]: https://rustup.rs
@@ -65,7 +65,7 @@ authors = ["Your name <your_email@example.com>"]
 edition = "2018"
 
 [dependencies]
-fluvio = "0.3.4"
+fluvio = "0.5.0"
 async-std = "1.0.0"
 ```
 
@@ -155,6 +155,7 @@ Now let's write some code in Rust to do the consuming for us.
 
 ```rust
 use fluvio::Offset;
+use async_std::stream::StreamExt;
 
 async fn consume() -> Result<(), FluvioError> {
     let consumer = fluvio::consumer("hello-fluvio", 0).await?;
@@ -162,10 +163,8 @@ async fn consume() -> Result<(), FluvioError> {
 
     // Iterate over all events in the topic
     while let Some(Ok(record)) = stream.next().await {
-        if let Some(bytes) = record.try_into_bytes() {
-            let string = String::from_utf8_lossy(&bytes);
-            println!("Got record: {}", string);
-        }
+        let string = String::from_utf8_lossy(&record.as_ref());
+        println!("Got record: {}", string);
     }
     Ok(())
 }
@@ -256,7 +255,7 @@ fn main() {
 
     if let Err(err) = result {
         println!("Got error: {}", err);
-    }    
+    }
 }
 ```
 
@@ -276,7 +275,7 @@ Hello, World! 🎉
 
 ## Congratulations!
 
-You've now completed the Fluvio "Hello, World! 🎉" tutorial! 
+You've now completed the Fluvio "Hello, World! 🎉" tutorial!
 
 Checkout [Fluvio Rust API on docs.rs] to learn more about writing your own Fluvio applications in Rust.
 
