@@ -63,11 +63,11 @@ commands:
 
 ```bash
 $ fluvio version
-Fluvio CLI      : 0.6.0-rc.3
-Fluvio Platform : 0.6.0-rc.3
-Git Commit      : 2aebf3b5d8f224238ccefded2f460a7f47b885fc
-OS Details      : Darwin 19.6.0 x86_64
-Rustc Version   : 1.48.0 (7eac88a 2020-11-16)
+Fluvio CLI        : 0.7.0
+Fluvio CLI SHA256 : ba6a3f659080446d5951fb1e1906f0aebef35c83bd797515a4b734ee53acfd24
+Fluvio Platform   : 0.7.0 (minikube)
+Git Commit        : f4cf81b52dbd000cd6fc87b59927aeb73e737d8a
+OS Details        : Darwin 10.16 (kernel 20.3.0)
 ```
 
 ```bash
