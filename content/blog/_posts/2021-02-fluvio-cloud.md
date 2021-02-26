@@ -4,13 +4,13 @@ author:
     name: "The Fluvio Team"
 description: Today we are pleased to announce Fluvio Cloud, the easiest way to get started with Fluvio.
 metadata: NEWS
-date: 2021-02-25
+date: 2021-02-26
 slug: announcing-fluvio-cloud-platform
 url: /blog/2021/02/announcing-fluvio-cloud-platform
 img: blog/images/fluvio-cloud/social/cloud.jpg
 tile: blog/images/fluvio-cloud/social/cloud-tile.svg
 twitter-card: summary_large_image
-hidden: false
+hidden: true
 ---
 
 
