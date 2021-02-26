@@ -42,14 +42,14 @@ Fluvio Cloud email: batman@justiceleague.com
 Password:
 ```
 
-You'll be able to tell that everything worked if your current profile is set to `fluvio-cloud`. You can check with this command:
+You'll be able to tell that everything worked if your current profile is set to `cloud`. You can check with this command:
 
 ```bash
 $ fluvio profile current
 cloud
 ```
 
-If you installed fluvio locally it will be listed alongside `fluvio-cloud`:
+If you installed fluvio locally it will be listed alongside `cloud`:
 
 ```bash
 $ fluvio profile view
