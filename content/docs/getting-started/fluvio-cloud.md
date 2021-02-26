@@ -8,18 +8,27 @@ weight: 30
 Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
 
 {{<idea>}}
+<<<<<<< HEAD
 Fluvio Cloud is currently in **alpha** - the **apis** are under active development and you may face **instability** in various **edge** situations. 
 
 **Our pledge** is to be actively engaged with Fluvio users and respond to issues and suggestions in the shortest possible time.
+=======
+Fluvio Cloud is currently in **alpha** and is not suitable for production environments.
+>>>>>>> master
 {{</idea>}}
 
 You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> or in <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a>.
 
+## Prerequisites
+
+Before getting started, make sure you have the [Fluvio CLI] installed, as
+we'll be using that to interact with your cluster and make sure everything
+is working as expected.
+
+[Fluvio CLI]: ../
 ## Creating a Fluvio Cloud account
 
-Head on over to the [Fluvio Cloud signup page] to create an account.
-
-[Fluvio Cloud signup page]: /signup
+Head on over to the  <a href="https://cloud.fluvio.io/signup" target="_blank">Fluvio Cloud signup page</a> to create an account.
 
 {{< image src="getting-started/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400" type="scaled-75" >}}
 
@@ -39,20 +48,20 @@ Fluvio Cloud email: batman@justiceleague.com
 Password:
 ```
 
-You'll be able to tell that everything worked if your current profile is set to `fluvio-cloud`. You can check with this command:
+You'll be able to tell that everything worked if your current profile is set to `cloud`. You can check with this command:
 
 ```bash
 $ fluvio profile current
-fluvio-cloud
+cloud
 ```
 
-If you installed fluvio locally it will be listed alongside `fluvio-cloud`:
+If you installed fluvio locally it will be listed alongside `cloud`:
 
 ```bash
 $ fluvio profile view
-    PROFILE       CLUSTER       ADDRESS                                                                       TLS 
-    local         local         localhost:9003                                                                Disabled 
- *  fluvio-cloud  fluvio-cloud  a8b853d97700347018b637c0f2a4727d-2111992582.us-west-2.elb.amazonaws.com:9003  Verified 
+    PROFILE       CLUSTER       ADDRESS                          TLS 
+    local         local         localhost:9003                   Disabled 
+ *  cloud         cloud         router.cloud.fluvio.io:9003      Verified
 ```
 
 -> Use **fluvio profile switch** command to switch between clusters.

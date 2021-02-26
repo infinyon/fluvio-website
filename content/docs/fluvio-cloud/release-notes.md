@@ -9,9 +9,18 @@ This page contains the latest release notes for updates to [Fluvio Cloud].
 
 [Fluvio Cloud]: /signup
 
+## February 26, 2021
+
+###### Updates:
+
+- New styling for signup page
+- Internal improvements that speed up cluster provisioning
+- Increased cluster stability
+- Network improvements to prevent dropped connections
+
 ## January 19, 2021
 
-Updates:
+###### Updates:
 
 - Updated Cloud documentation with the latest instructions
 - Added a loading spinner to the website UI for cluster installation
@@ -22,13 +31,13 @@ $ fluvio cloud login --email="batman@justiceleague.com"
 Password:
 ```
 
-Known issues:
+###### Known issues:
 
 - When consuming from a topic (e.g. via `fluvio consume`), after about 5
   minutes of no activity it may silently disconnect. In this case the
   consumer needs to be restarted.
   
-Other notes:
+###### Other notes:
 
 - Please know that after account creation, provisioning your Fluvio account
   may take 5 to 7 minutes before you can run `fluvio cloud login`.

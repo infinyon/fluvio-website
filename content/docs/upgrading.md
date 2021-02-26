@@ -12,40 +12,42 @@ There are two major components that will occasionally need upgrading. The Fluvio
 CLI and the Fluvio cluster you're working with. Upgrading the Fluvio CLI is easy,
 it can do it for you!
 
-```
+```bash
 $ fluvio update
 🎣 Fetching latest version for fluvio/fluvio...
-⏳ Downloading Fluvio CLI with latest version: fluvio/fluvio:0.6.0-rc.5...
+⏳ Downloading Fluvio CLI with latest version: fluvio/fluvio:0.7.0...
 🔑 Downloaded and verified package file
-✅ Successfully updated /Users/you/.fluvio/bin/fluvio$ fluvio update
+✅ Successfully updated /Users/nick/.fluvio/bin/fluvio
 ```
 
 Run the version command to check the if fluvio CLI and the platform (cluster) are in sync:
 
-```
+```bash
 $ fluvio version
-Fluvio CLI      : 0.6.0-rc.5
-Fluvio Platform : 0.6.0-rc.3
-Git Commit      : 93193ab9754fb0019984c704640087ed7ba1420b
-OS Details      : Darwin 19.6.0 x86_64
-Rustc Version   : 1.48.0 (7eac88a 2020-11-16)
+Fluvio CLI        : 0.7.0
+Fluvio CLI SHA256 : ba6a3f659080446d5951fb1e1906f0aebef35c83bd797515a4b734ee53acfd24
+Fluvio Platform   : 0.7.0 (minikube)
+Git Commit        : f4cf81b52dbd000cd6fc87b59927aeb73e737d8a
+OS Details        : Darwin 10.16 (kernel 20.3.0)
 ```
 
-Upgrading the Fluvio cluster is slightly more involved and less polished.
-As of this writing, the only way to update your cluster is to delete it and re-start it.
+Upgrading the Fluvio cluster works differently depending on whether your cluster is on
+Minikube or if it is being run locally. If you are running on Minikube, just use the
+following command:
 
-~> Warning: This will cause your entire cluster's data to be wiped. We are working on a better upgrade experience.
+~> Warning: This may cause your entire cluster's data to be wiped.
 
 If you are using Fluvio on Minikube, you can upgrade your cluster with these commands:
 
-```
-$ fluvio cluster delete
-$ fluvio cluster start
+```bash
+$ fluvio cluster upgrade
 ```
 
-If you are using Fluvio locally, the upgrading process is only slightly different:
+If you are using Fluvio locally, you'll need to first delete your cluster, then re-create it.
 
-```
+~> Warning: This _will_ cause your entire cluster's data to be wiped.
+
+```bash
 $ fluvio cluster delete --local
 $ fluvio cluster start --local
 ```

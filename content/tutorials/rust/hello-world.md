@@ -16,9 +16,9 @@ back.
 Before starting on this tutorial, you'll need to have completed the following
 
 - Install the [Rust programming language]
-- Have the Fluvio CLI (version  `0.6.0-rc.5` or greater) installed <sup>[1]</sup>
+- Have the Fluvio CLI (version  `0.7.0` or greater) installed <sup>[1]</sup>
 - Have access to a Fluvio cluster.
-  
+
 See our [getting started] guide for more details on getting set up.
 
 [Rust programming language]: https://rustup.rs
@@ -65,8 +65,8 @@ authors = ["Your name <your_email@example.com>"]
 edition = "2018"
 
 [dependencies]
-fluvio = "0.3.4"
-async-std = "1.0.0"
+fluvio = "0.5.0"
+async-std = { version = "1.0.0", features = ["attributes"] }
 ```
 
 ### Create Producer/Consumer
@@ -78,7 +78,8 @@ consumer function. Let's add those right next to our `main` function:
 ```rust
 use fluvio::FluvioError;
 
-fn main() {
+#[async_std::main]
+async fn main() {
     println!("Hello, world!");
 }
 
@@ -121,9 +122,9 @@ async fn produce(message: &str) -> Result<(), FluvioError> {
 That's it for the producer! Let's hook up some code in `main` to call it and test it out.
 
 ```rust
-use async_std::task::block_on;
-fn main() {
-    let _result = block_on(produce("Hello, Fluvio!"));
+#[async_std::main]
+async fn main() {
+    let _result = produce("Hello, Fluvio!").await;
 }
 ```
 
@@ -155,6 +156,7 @@ Now let's write some code in Rust to do the consuming for us.
 
 ```rust
 use fluvio::Offset;
+use async_std::stream::StreamExt;
 
 async fn consume() -> Result<(), FluvioError> {
     let consumer = fluvio::consumer("hello-fluvio", 0).await?;
@@ -162,10 +164,8 @@ async fn consume() -> Result<(), FluvioError> {
 
     // Iterate over all events in the topic
     while let Some(Ok(record)) = stream.next().await {
-        if let Some(bytes) = record.try_into_bytes() {
-            let string = String::from_utf8_lossy(&bytes);
-            println!("Got record: {}", string);
-        }
+        let string = String::from_utf8_lossy(&record.as_ref());
+        println!("Got record: {}", string);
     }
     Ok(())
 }
@@ -183,17 +183,18 @@ both the producer and the consumer at the same time, so let's set up some simple
 command-line arguments so we can choose whether to run the producer or the consumer.
 
 ```rust
-fn main() {
+#[async_std::main]
+async fn main() {
     // Collect our arguments into a slice of &str
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            block_on(produce("Hello, Fluvio!"))
+            produce("Hello, Fluvio!").await
         },
         [_, "consume"] => {
-            block_on(consume())
+            consume().await
         },
         _ => {
             println!("Usage: hello-fluvio [produce|consume]");
@@ -232,21 +233,22 @@ We can make the producer send any text that was typed after the `produce`
 command like this:
 
 ```rust
-fn main() {
+#[async_std::main]
+async fn main() {
     // Collect our arguments into a slice of &str
     let args: Vec<String> = std::env::args().collect();
     let args_slice: Vec<&str> = args.iter().map(|s| &**s).collect();
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            block_on(produce("Hello, Fluvio!"))
+            produce("Hello, Fluvio!").await
         },
         [_, "produce", rest @ ..] => {
             let message = rest.join(" ");
-            block_on(produce(&message))
+            produce(&message).await
         },
         [_, "consume"] => {
-            block_on(consume())
+            consume().await
         },
         _ => {
             println!("Usage: hello-fluvio [produce|consume]");
@@ -256,7 +258,7 @@ fn main() {
 
     if let Err(err) = result {
         println!("Got error: {}", err);
-    }    
+    }
 }
 ```
 
@@ -276,7 +278,7 @@ Hello, World! 🎉
 
 ## Congratulations!
 
-You've now completed the Fluvio "Hello, World! 🎉" tutorial! 
+You've now completed the Fluvio "Hello, World! 🎉" tutorial!
 
 Checkout [Fluvio Rust API on docs.rs] to learn more about writing your own Fluvio applications in Rust.
 

@@ -15,7 +15,7 @@
         <div class="right-side">
           {{- partial "main/code-samples.html" . -}}
           <div class="signup-button pt-2">
-            <a class="btn btn-primary" href="{{ $page.Params.button.link }}">
+            <a class="btn btn-primary" href="{{ $page.Params.button.link }}" target="_blank">
               {{ $page.Params.button.label }}
             </a>
           </div>
@@ -58,5 +58,4 @@
     {{- end -}}
   </div>
 </div>
-
 {{ end }}

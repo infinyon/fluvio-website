@@ -59,8 +59,8 @@ the version:
 
 ```bash
 $ minikube version
-minikube version: v1.16.0
-commit: 9f1e482427589ff8451c4723b6ba53bb9742fbb1
+minikube version: v1.17.1
+commit: 043bdca07e54ab6e4fc0457e3064048f34133d7e
 ```
 
 To start your minikube cluster, run the following. This will vary depending on what
@@ -170,32 +170,13 @@ Once we have the minikube tunnel running, we can run the startup command.
 
 ```bash
 $ fluvio cluster start
-Fluvio system chart not installed. Attempting to install
-"fluvio" has been added to your repositories
-Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "fluvio" chart repository
-Update Complete. ⎈Happy Helming!⎈
-NAME: fluvio-sys
-LAST DEPLOYED: Tue Jan  5 12:25:17 2021
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-"fluvio" already exists with the same configuration, skipping
-Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "fluvio" chart repository
-Update Complete. ⎈Happy Helming!⎈
-NAME: fluvio
-LAST DEPLOYED: Tue Jan  5 12:25:23 2021
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
 ✅ ok: Kubernetes config is loadable
 ✅ ok: Supported helm version is installed
-✅ ok: Fixed: Missing Fluvio system charts.
-✅ ok: Previous fluvio installation not found
 ✅ ok: Load balancer is up
+✅ ok: Fluvio system charts are installed
+✅ ok: Previous fluvio installation not found
+Waiting up to 60 seconds for Fluvio cluster version check...
+Successfully installed Fluvio!
 ```
 
 You can check that everything worked by listing out the cluster's SPUs:
