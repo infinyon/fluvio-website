@@ -14,86 +14,81 @@ hidden: false
 ---
 
 
-Today we are pleased to announce The Fluvio Cloud Platform, the fastest and easiest way to get started using Fluvio.
-Fluvio Cloud is now in alpha, and you can create a free account using the link below:
+Today we are pleased to announce The Fluvio Cloud Platform, the fastest and easiest way to get started with Fluvio.
+
+Fluvio Cloud is now in `alpha` and you can create a free account using the link below:
 
 <center><a class="btn btn-primary" href="https://cloud.fluvio.io/signup" target="_blank" role="button">Sign Up for Fluvio Cloud</a></center>
 
 ## About Fluvio
 
-Our business research has shown that modern businesses require real-time
-collaboration, analysis, and adaptation. Yet, building real-time
-infrastructure is a painful, expensive, and error-prone endeavor. This is why
-we built Fluvio - the open-source, high-performance distributed data streaming
-platform for real-time apps that's written in Rust.
+Our research has shown that modern businesses require real-time collaboration, analysis, and adaptation. Yet, building real-time infrastructure is a painful, expensive, and error-prone endeavor. This is why we built Fluvio - an open-source, high-performance distributed data streaming platform for real-time apps written in Rust.
 
-Building a streaming tool is just half the battle so we built Fluvio
-Cloud which provisions and manages your Fluvio cluster for you, letting you get
-started right away.  Getting started is as simple as creating an account and
-installing the [Fluvio CLI], our all-in-one tool for working with Fluvio.
+Building a streaming app or data pipeline is just half the battle, the other is getting it deployed. We built Fluvio Cloud to provision and manage the Fluvio cluster for you. Getting started is as simple as creating an account and installing the [Fluvio CLI] - our all-in-one tool for working with Fluvio.
 
-One of the cool things about Fluvio is that we leverage [Rust's FFI] allowing
-us to reuse core compenents in our non-rust client libraries.  We used this
-construct to build [node-js client] as shown below.
+One of the cool things about Fluvio is that it leverages  <a href="https://doc.rust-lang.org/nomicon/ffi.html#calling-foreign-functions" target="_blank" role="button">Rust's FFI</a> allowing us to reuse core components in non-rust client libraries. We used this construct to build [node-js client] as shown in the tutorial below.
 
-There are many reasons why Fluvio is awesome but this is a post about using
-Fluvio Cloud. :)
+There are many other reasons why Fluvio is awesome but this is a post about using Fluvio Cloud. :wink:
 
-[Rust's FFI]: https://doc.rust-lang.org/nomicon/ffi.html#calling-foreign-functions
 [Fluvio CLI]: /docs/getting-started/
 [node-js client]: https://github.com/infinyon/fluvio-client-node
 
 ## Using The Fluvio Cloud Platform
 
-There are several [blog posts](/blog) and [tutorials](/tutorials) that show the power of Fluvio
-when utilized for powering real-time services.
+There are several [blog posts](/blog) and [tutorials](/tutorials) that show the power of Fluvio, so let's get setup.
 
 ### Setup
-Setting up the cloud is very straight forward as mentioned in the introduction
-but we'll reiterate those steps anyway. Once you've verified your account (link
-        in the email), a fluvio instance will be automatically provisioned for
-you. Then to make use of it, just do
+
+Setting up the Fluvio Cloud is straight forward, <a href="https://cloud.fluvio.io/signup" target="_blank" role="button">sign up</a> for an account and check your email for confirmation. Once you've verified your account, a Fluvio cluster will be automatically provisioned for you. 
+
+Then to make use of it, just run
+
 ```bash
 fluvio cloud login
 ```
-This will propt you for the credentials you used to sign up in the web
-form. It will then store this as a profile setting. You can see this setting by
-doing:
+
+The command will prompt you for the credentials you used to sign up in the web form. Upon validation, Fluvio retrieves your cloud settings and saves them in your local profile. 
+
+Checkout your available profiles at:
+
 ```bash
 fluvio profile view
 ```
 
-If you've already got a local instance of fluvio running, you can easily switch
-the instance the client is using by doing:
+If you already have a local instance of Fluvio running, you can use the CLI to switch from one instance to another. The following command informs the client to use Fluvio Cloud:
+
 ```bash
 fluvio profile switch cloud
 ```
 
-### Producing and Consuming a Datastream
+### Produce/Consume using CLI
 
-On a fresh Fluvio instance, you'll need to create some topics:
+On a fresh Fluvio installation, you'll need to create topics:
+
 ```bash
 fluvio topic create hello-fluvio-cloud
 ```
 
-Getting data in and out of the cloud is just as easy as all our other tutorials:
+Getting data in and out of the cloud is easy - open two terminals, one for the producer and the other for the consumer. 
 
-In one terminal do:
+In one terminal run:
+
 ```bash
 fluvio consume hello-fluvio-cloud
 ```
 
-and in another terminal do:
+and in the another:
 
 ```bash
 fluvio produce hello-fluvio-cloud
 ```
 
-The produce command listens to `stdin` and sends it to fluvio cloud on the
+The produce command listens on `stdin` messages and sends them to Fluvio Cloud on the
 specified topic. In our case, the topic is `hello-fluvio-cloud`. Now, type
 `Hello fluvio cloud!` (or whatever you'd like) into the producer terminal.
 
 Your two terminals should now look like:
+
 ```bash
 $ fluvio produce hello-fluvio-cloud
 Hello fluvio cloud!
@@ -105,21 +100,21 @@ $ fluvio consume hello-fluvio-cloud
 Hello fluvio cloud!
 ```
 
+To exit, press `<CTRL>-C`.
+
 ### Produce/Consume using Rust/Node.JS
 
 You can also use produce and consume programmatically, using our [rust
-client](https://crates.io/crates/fluvio) and [nodejs
-client](https://www.npmjs.com/package/@fluvio/client) requires no addional
-steps to use Fluvio Cloud.
+client](https://crates.io/crates/fluvio) or [nodejs
+client](https://www.npmjs.com/package/@fluvio/client). The profile ensures clients will use the appropriate cluster, in this case Fluvio Cloud.
 
-See our [tutorials](/tutorials) for the entire guide but to use rust or nodejs you need:
+The following code shows show a producer written in Node.js and a consumer written in Rust. (see our [tutorials](/tutorials) for a complete step-by-step):
 
 ```javascript
 const fluvio = await Fluvio.connect();
 const producer = await fluvio.topicProducer('hello-fluvio-cloud');
 await producer.sendRecord("Hello Fluvio Cloud! 🎉");
 ```
-
 and
 
 ```rust
@@ -132,14 +127,24 @@ while let Some(Ok(record)) = stream.next().await {
 }
 ```
 
-And run the rust version in one terminal and the node version in another
-terminal, the rust consumer will print:
+Run the rust version in one terminal and the node version in another. The rust consumer will print:
 
 ```bash
 Got Record: Hello Fluvio Cloud! 🎉
 ```
 
+All it takes is a few lines of code and traffic is flowing. All your cluster maintenance headaches are gone.
+
+## Pricing and AWS Region Availability
+
+Fluvio Cloud is currently available in one AWS regions in the U.S. (N. Virginia). We plan to add additional region options in the U.S. and Europe and expanding to other parts of the world in the near future.
+
+Fluvio Cloud is in alpha and it is free to use. We will update pricing information in the near future. Fluvio users that sing-up for our Beta program will receive addition discounts (connect to us in [Discord](https://discordapp.com/invite/bBG2dTz) for details).
+
 ## Fluvio Platform Highlights
+
+The following is a short list of benefits you gain by using Fluvio:
+
 * **Declarative Management**: Fluvio allows operators to declare desired state
 and the system will do the rest. No resource available, no worries, the objects
 are shown `in progress` until the resource constraints are resolved.
