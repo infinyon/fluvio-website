@@ -27,20 +27,19 @@ infrastructure is a painful, expensive, and error-prone endeavor. This is why
 we built Fluvio - the open-source, high-performance distributed data streaming
 platform for real-time apps that's written in Rust.
 
-Building a streaming tool is just have just half the battle so we build Fluvio
+Building a streaming tool is just have just half the battle so we built Fluvio
 Cloud which provisions and manages your Fluvio cluster for you, letting you get
 started right away.  Getting started is as simple as creating an account and
 installing the [Fluvio CLI], our all-in-one tool for working with Fluvio.
 
-One of the cool things about Fluvio is that we leverage [Rust's FFI] so that
-our code can be called from any language that supports the FFI which is [very
-few exceptions]. This is how we were able to build a [node-js client] without
-too much work.
+One of the cool things about Fluvio is that we leverage [Rust's FFI] allowing
+us to reuse core compenents in our non-rust client libraries. This is how we
+were able to build a [node-js client] without too much work.
 
-There are tons of reasons why Fluvio is awesome but this is a post about Fluvio Cloud. :)
+There are tons of reasons why Fluvio is awesome but this is a post about using
+Fluvio Cloud. :)
 
 [Rust's FFI]: https://doc.rust-lang.org/nomicon/ffi.html#calling-foreign-functions
-[very few exceptions]: https://softwareengineering.stackexchange.com/questions/21300/what-imperative-programming-languages-do-not-support-recursion
 [Fluvio CLI]: /docs/getting-started/
 [node-js client]: https://github.com/infinyon/fluvio-client-node
 
@@ -58,8 +57,7 @@ you. Then to make use of it, just do
 ```bash
 fluvio cloud login
 ```
-
-and this will propt you for the credentials you used to sign up in the web
+This will propt you for the credentials you used to sign up in the web
 form. It will then store this as a profile setting. You can see this setting by
 doing:
 ```bash
@@ -73,6 +71,7 @@ fluvio profile switch cloud
 ```
 
 ## Producing and Consuming a datastream
+
 On a fresh Fluvio instance, you'll need to create some topics:
 ```bash
 fluvio topic create hello-fluvio-cloud
@@ -85,17 +84,17 @@ In one terminal do:
 fluvio consume hello-fluvio-cloud
 ```
 
-and in another do:
+and in another terminal do:
 
 ```bash
 fluvio produce hello-fluvio-cloud
 ```
 
 The produce command listens to `stdin` and sends it to fluvio cloud on the
-specified topic. In our case, `hello-fluvio-cloud`. Type into the `produce`
-terminal.
+specified topic. In our case, the topic is `hello-fluvio-cloud`. Now, type
+`Hello fluvio cloud!` (or whatever you'd like) into the producer terminal.
 
-Your two terminals should look like:
+Your two terminals should now look like:
 ```bash
 $ fluvio produce hello-fluvio-cloud
 Hello fluvio cloud!
@@ -140,16 +139,11 @@ Got Record: Hello Fluvio Cloud! 🎉
 
 # Summary
 
-Setting up a real-time data streaming app shouldn't be a ton of work and
-hopefully this post shows just how simple yet powerful our platform is and will
-become.
+Setting up a real-time data streaming app should be easy and painless. Hopefully this
+post shows you just how simple yet powerful our platform is.
 
-Join the conversation on [Discord](https://discordapp.com/invite/bBG2dTz), follow [the project on github](https://github.com/infinyon/fluvio/watchers) or open an [issue](https://github.com/infinyon/fluvio/issues) if you find a bug or have a feature request.
-
-[getting started guide]: https://www.fluvio.io/docs/getting-started/
-
-* [Discord](https://discordapp.com/invite/bBG2dTz)
-
-[free Fluvio Cloud account]: https://cloud.fluvio.io/signup
-[getting started guide]: https://www.fluvio.io/docs/getting-started/
-
+Don't forget to join the conversation on
+[Discord](https://discordapp.com/invite/bBG2dTz), follow [the project on
+github](https://github.com/infinyon/fluvio/watchers) or open an
+[issue](https://github.com/infinyon/fluvio/issues) if you find a bug or have a
+feature request.
