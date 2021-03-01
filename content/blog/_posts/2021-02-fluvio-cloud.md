@@ -33,10 +33,10 @@ started right away.  Getting started is as simple as creating an account and
 installing the [Fluvio CLI], our all-in-one tool for working with Fluvio.
 
 One of the cool things about Fluvio is that we leverage [Rust's FFI] allowing
-us to reuse core compenents in our non-rust client libraries. This is how we
-were able to build a [node-js client] without too much work.
+us to reuse core compenents in our non-rust client libraries.  We used this
+construct to build [node-js client] as shown below.
 
-There are tons of reasons why Fluvio is awesome but this is a post about using
+There are many reasons why Fluvio is awesome but this is a post about using
 Fluvio Cloud. :)
 
 [Rust's FFI]: https://doc.rust-lang.org/nomicon/ffi.html#calling-foreign-functions
@@ -45,9 +45,8 @@ Fluvio Cloud. :)
 
 # Using The Fluvio Cloud Platform
 
-We've written plenty of [Fluvio tutorials](/tutorials) but we'd like to show
-how Fluvio cloud acts the same as if you were using it locally or if you host
-it yourself.
+There are several [blog posts](/blog) and [tutorials](/tutorials) that show the power of Fluvio
+when utilized for powering real-time services.
 
 ## Setup
 Setting up the cloud is very straight forward as mentioned in the introduction
@@ -106,12 +105,14 @@ $ fluvio consume hello-fluvio-cloud
 Hello fluvio cloud!
 ```
 
-Similar to using the commandline, using the [rust
+### Produce/Consume using Rust/Node.JS
+
+You can also use produce and consume programmatically, using our [rust
 client](https://crates.io/crates/fluvio) and [nodejs
 client](https://www.npmjs.com/package/@fluvio/client) requires no addional
 steps to use Fluvio Cloud.
 
-We'll leave out the project setup steps but if you have:
+See our [tutorials](/tutorials) for the entire guide but to use rust or nodejs you need:
 
 ```javascript
 const fluvio = await Fluvio.connect();
@@ -130,11 +131,43 @@ while let Some(Ok(record)) = stream.next().await {
 }
 ```
 
-And run the rust version in one terminal and the node version in the other
+And run the rust version in one terminal and the node version in another
 terminal, the rust consumer will print:
 ```
 Got Record: Hello Fluvio Cloud! 🎉
 ```
+
+# Fluvio Platform Highlights
+* **Declarative Management**: Fluvio allows operators to declare desired state
+and the system will do the rest. No resource available, no worries, the objects
+are shown `in progress` until the resource constraints are resolved.
+
+* **Low Latency**: Fluvio takes advantage of Rust’s async runtime and all
+available cores. It also interacts directly with hardware I/O to achieve
+predictable ultra-low latency.
+
+* **Low Memory Footprint**: Fluvio is highly optimized machine code and it does
+not require an intermediary virtual machine. Fluvio can run anywhere from
+Raspberry Pi to  multi-core systems.
+
+* **Built-in Retention**: Fluvio uses long-lived immutable storage to persist
+data streams. Each data stream is copied to multiple servers and retained for
+hours or years.
+
+* **Guaranteed Message Ordering**: Fluvio guarantees partition-level message
+ordering. Messages are stored and forwarded to consumers in the order they are
+received from the producers.
+
+* **Cloud Native by Design**: Fluvio is designed to work natively with
+Kubernetes. It uses Helm charts for installation, CRDs for provisioning, and
+Operators to interact with the KV store.
+
+* **Developer Friendly**: Fluvio offers native language bindings in many modern
+programming languages such as Rust and Node (Python, Java, and Swift will be
+        available in future releases).
+
+* **Powerful CLI:** Fluvio CLI can manage all your clusters whether they are
+installed locally, in your data center, or in a public cloud.
 
 
 # Summary
