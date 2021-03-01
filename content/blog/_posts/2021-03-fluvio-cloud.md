@@ -4,9 +4,9 @@ author:
     name: "The Fluvio Team"
 description: Today we are pleased to announce Fluvio Cloud, the easiest way to get started with Fluvio.
 metadata: NEWS
-date: 2021-02-26
+date: 2021-03-01
 slug: announcing-fluvio-cloud-platform
-url: /blog/2021/02/announcing-fluvio-cloud-platform
+url: /blog/2021/03/announcing-fluvio-cloud-platform
 img: blog/images/fluvio-cloud/social/cloud.jpg
 tile: blog/images/fluvio-cloud/social/cloud-tile.svg
 twitter-card: summary_large_image
@@ -19,7 +19,7 @@ Fluvio Cloud is now in alpha, and you can create a free account using the link b
 
 <center><a class="btn btn-primary" href="https://cloud.fluvio.io/signup" target="_blank" role="button">Sign Up for Fluvio Cloud</a></center>
 
-# About Fluvio
+## About Fluvio
 
 Our business research has shown that modern businesses require real-time
 collaboration, analysis, and adaptation. Yet, building real-time
@@ -43,12 +43,12 @@ Fluvio Cloud. :)
 [Fluvio CLI]: /docs/getting-started/
 [node-js client]: https://github.com/infinyon/fluvio-client-node
 
-# Using The Fluvio Cloud Platform
+## Using The Fluvio Cloud Platform
 
 There are several [blog posts](/blog) and [tutorials](/tutorials) that show the power of Fluvio
 when utilized for powering real-time services.
 
-## Setup
+### Setup
 Setting up the cloud is very straight forward as mentioned in the introduction
 but we'll reiterate those steps anyway. Once you've verified your account (link
         in the email), a fluvio instance will be automatically provisioned for
@@ -69,7 +69,7 @@ the instance the client is using by doing:
 fluvio profile switch cloud
 ```
 
-## Producing and Consuming a datastream
+### Producing and Consuming a Datastream
 
 On a fresh Fluvio instance, you'll need to create some topics:
 ```bash
@@ -121,6 +121,7 @@ await producer.sendRecord("Hello Fluvio Cloud! 🎉");
 ```
 
 and
+
 ```rust
 let consumer = fluvio::consumer("hello-fluvio-cloud", 0).await?;
 let mut stream = consumer.stream(Offset::beginning()).await?;
@@ -133,11 +134,12 @@ while let Some(Ok(record)) = stream.next().await {
 
 And run the rust version in one terminal and the node version in another
 terminal, the rust consumer will print:
-```
+
+```bash
 Got Record: Hello Fluvio Cloud! 🎉
 ```
 
-# Fluvio Platform Highlights
+## Fluvio Platform Highlights
 * **Declarative Management**: Fluvio allows operators to declare desired state
 and the system will do the rest. No resource available, no worries, the objects
 are shown `in progress` until the resource constraints are resolved.
