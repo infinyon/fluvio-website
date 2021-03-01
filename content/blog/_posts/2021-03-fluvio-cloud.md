@@ -2,7 +2,7 @@
 title: Announcing Fluvio Cloud Platform
 author:
     name: "The Fluvio Team"
-description: Today we are pleased to announce Fluvio Cloud, the easiest way to get started with Fluvio.
+description: Fluvio Cloud, a low latency data streaming infrastructure for developers like us.
 metadata: NEWS
 date: 2021-03-01
 slug: announcing-fluvio-cloud-platform
