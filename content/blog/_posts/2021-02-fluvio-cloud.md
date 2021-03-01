@@ -21,13 +21,13 @@ Fluvio Cloud is now in alpha, and you can create a free account using the link b
 
 # About Fluvio
 
-Our business research has show that modern businesses require real-time
+Our business research has shown that modern businesses require real-time
 collaboration, analysis, and adaptation. Yet, building real-time
 infrastructure is a painful, expensive, and error-prone endeavor. This is why
 we built Fluvio - the open-source, high-performance distributed data streaming
 platform for real-time apps that's written in Rust.
 
-Building a streaming tool is just have just half the battle so we built Fluvio
+Building a streaming tool is just half the battle so we built Fluvio
 Cloud which provisions and manages your Fluvio cluster for you, letting you get
 started right away.  Getting started is as simple as creating an account and
 installing the [Fluvio CLI], our all-in-one tool for working with Fluvio.
