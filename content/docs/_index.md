@@ -119,7 +119,9 @@ Fluvio uses declarative configurations instead of imperative commands to manage 
 
 ## Key Features
 
-Key features are centered around performance and ease of use:
+A subset of key features are as follows:
+
+* **Declarative Management**: Fluvio allows operators to declare desired state and the system will do the rest. No resource available, no worries, the objects are shown `in progress` until the resource constraints are resolved.
 
 * **Ultra Low Latency**: Fluvio takes advantage of Rust's async runtime to improve system performance and achieve low latency. It utilizes all available cores and interacts directly with hardware I/O. Unlike other streaming platforms where garbage collection adds unpredictable latency, Fluvio latency is constant and predictable. 
 
