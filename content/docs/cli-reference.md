@@ -231,29 +231,27 @@ This can be useful for testing your applications by manually sending specific me
 fluvio-produce
 Write messages to a topic/partition
 
-By default, this reads input from stdin until EOF, and sends the contents as one
-record. Alternatively, input files may be given with '--files' and input may be
-sent line-by-line with '--lines'.
+When no '--files' are provided, the producer will read from 'stdin' and send
+each line of input as one record.
+
+If one or more files are given with '--files', each file is sent as one entire
+record.
 
 If '--key-separator' or '--json-path' are used, records are sent as key/value
-pairs. In this case, '--partition' is ignored and the partition each record is
-sent to is derived from the record's key.
+pairs, and the keys are used to determine which partition the records are sent
+to.
 
 USAGE:
     fluvio produce [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -l, --lines      Send each line of input as its own record (using '\n')
     -v, --verbose    Print progress output when sending records
     -h, --help       Prints help information
 
 OPTIONS:
-    -p, --partition <integer>
-            The ID of the Partition to produce to [default: 0]
-
         --key-separator <key-separator>
-            Sends key/value records split on the first instance of the
-            separator. Implies --lines
+            Sends key/value records split on the first instance of the separator
+
         --json-path <json-path>
             Sends key/value JSON records where the key is selected using this
             JSON path
@@ -265,60 +263,34 @@ ARGS:
     <topic>    The name of the Topic to produce to
 ```
 
-#### Example 1: Produce one record from stdin
+#### Example 1: Produce records from stdin
 
 The quickest way to send a record using the producer is to just type your record
 into standard input:
 
 ```
 $ fluvio produce my-topic
-Reading one record from stdin (use ctrl-D to send):
+Reading one record per line from stdin:
 ```
 
-As the message says, by default the producer will read everything you type into
-stdin and send it as a single record after you press `ctrl-D` to mark the end of
-the message. This means that your record can even span multiple lines:
+As the message says, each line that you type will be sent a new record to the topic.
 
 ```
 $ fluvio produce my-topic
-Reading one record from stdin (use ctrl-D to send):
+Reading one record per line from stdin:
 This is my first record ever
-This is the second line of my first record ever
-^D
 Ok!
-```
-
-The `Ok!` was printed by the producer after I pressed `ctrl-D` to send the record.
-
--> If you do not put a new line at the end of your record, you need to use `ctrl-D` twice!
-
-#### Example 2: Produce multiple records from stdin
-
-You may find yourself wanting to send a new record each time you finish typing a
-line into stdin. You can do this using the `--lines` flag:
-
-```
-$ fluvio produce my-topic --lines
-Reading one record per line from stdin:
-```
-
-The producer tells us that each line will be sent as a new record. Let's send some:
-
-```
-$ fluvio produce my-topic --lines
-Reading one record per line from stdin:
 This is my second record ever
-Ok!
-This is my third record ever
 Ok!
 ^C
 ```
 
--> Using `ctrl-D` here would send one last (empty) record before exiting. Use `ctrl-C` to exit without sending.
+-> In order to stop the producer, we need to press `ctrl-C` (shown above as `^C`)
 
-The producer prints `Ok!` after each individual record is successfully sent.
+The `Ok!` was printed by the producer after each record, to let us know the record
+was sent successfully.
 
-#### Example 3: Produce key/value records from stdin
+#### Example 2: Produce key/value records from stdin
 
 Fluvio supports key/value records out-of-the-box. In a key/value record, the key is used
 to decide which partition the record is sent to. Let's try sending some simple key/value records:
@@ -348,33 +320,14 @@ Ok!
 
 The producer splits the key from the value and prints it in a `[key] value` format.
 
-#### Example 4: Produce key/value records from JSON on stdin
-
-If the records we are producing are JSON data, we can use a [jsonpath] to specify a location
-inside the JSON data to extract and use as a key. The original, unmodified JSON data will be
-sent as the record's value.
-
-[jsonpath]: https://docs.rs/jsonpath
-
-```
-$ fluvio produce my-topic -v --lines --json-path="$.name"
-Reading one record per line from stdin:
-{"name":"Alice","message":"Hello, Bob!"}
-[Alice] {"name":"Alice","message":"Hello, Bob!"}
-Ok!
-{"name":"Bob","message":"Hello, Alice!"}
-[Bob] {"name":"Bob","message":"Hello, Alice!"}
-Ok!
-^C
-```
-
-Notice that the producer correctly picked `Alice` and `Bob` as the keys to the respective records!
-
-#### Example 5: Produce key/value records from JSON files
+#### Example 3: Produce key/value records from JSON files
 
 Sometimes, we may have multiple files that each contain one record we want to send. We
 can use the `--files` (`-f`) argument to specify one or more files to send all at once!
 Suppose we have the following JSON files:
+
+Suppose we want to send some JSON data as our records. We have two files, `tom.json`
+and `jerry.json`, and we want to use the `name` field as the key for these records.
 
 ```
 $ cat tom.json
@@ -390,7 +343,10 @@ $ cat jerry.json
 }
 ```
 
-We'll choose `name` as the key, and select the two files using the `-f` argument:
+We can use the `--files` (`-f`) argument to select these files, and we can use the
+`--json-path` argument to describe which data we should use as the record keys.
+
+To choose the `name` field as our key, we'll use `--json-path="$.name"`:
 
 ```
 $ fluvio produce my-topic -v --json-path="$.name" -f tom.json jerry.json
@@ -473,14 +429,10 @@ after all the records have been read:
 ```
 $ fluvio consume my-topic -B -d
 [null] This is my first record ever
-This is the second line of my first record ever
 [null] This is my second record ever
-[null] This is my third record ever
 [alice] Alice In Wonderland
 [batman] Bruce Wayne
 [santa] Santa Claus
-[Alice] {"name":"Alice","message":"Hello, Bob!"}
-[Bob] {"name":"Bob","message":"Hello, Alice!"}
 [Tom] {
   "name":"Tom",
   "animal":"Cat"
@@ -506,9 +458,9 @@ To begin reading from the fifth-to-the-last record, we can use offset `-5`, like
 
 ```
 $ fluvio consume my-topic -d --offset="-5"
+[alice] Alice In Wonderland
+[batman] Bruce Wayne
 [santa] Santa Claus
-[Alice] {"name":"Alice","message":"Hello, Bob!"}
-[Bob] {"name":"Bob","message":"Hello, Alice!"}
 [Tom] {
   "name":"Tom",
   "animal":"Cat"
