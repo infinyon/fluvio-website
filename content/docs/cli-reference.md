@@ -271,13 +271,6 @@ into standard input:
 ```
 $ fluvio produce my-topic
 Reading one record per line from stdin:
-```
-
-As the message says, each line that you type will be sent a new record to the topic.
-
-```
-$ fluvio produce my-topic
-Reading one record per line from stdin:
 This is my first record ever
 Ok!
 This is my second record ever
@@ -286,6 +279,8 @@ Ok!
 ```
 
 -> In order to stop the producer, we need to press `ctrl-C` (shown above as `^C`)
+
+As the message says, each line that you type will be sent a new record to the topic.
 
 The `Ok!` was printed by the producer after each record, to let us know the record
 was sent successfully.
