@@ -36,6 +36,7 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio update]                   | Update the Fluvio CLI                                              |
 | [fluvio version]                  | Print Fluvio version information                                   |
 
+[fluvio topics]: #fluvio-topic
 [fluvio topic create]: #fluvio-topic-create
 [fluvio topic list]: #fluvio-topic-list
 [fluvio topic describe]: #fluvio-topic-describe
@@ -58,7 +59,11 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio update]: #fluvio-update
 [fluvio version]: #fluvio-version
 
-## `fluvio topic create`
+## Topics
+
+Commands for topic management.
+
+### `fluvio topic create`
 
 This command is used to create new Fluvio topics. A Fluvio topic is a stream where
 you send related messages. Different topics have unique names and store their data
@@ -97,7 +102,7 @@ $ fluvio topic create greeting
 topic "greeting" created
 ```
 
-## `fluvio topic list`
+### `fluvio topic list`
 
 This command shows you all the existing topics in your cluster, as well as some basic
 information about them, including how many partitions a topic has and how many times it
@@ -124,7 +129,7 @@ $ fluvio topic list
  greeting  computed      1          1                   resolution::provisioned   
 ```
 
-## `fluvio topic describe`
+### `fluvio topic describe`
 
 This command prints more detailed information about a specific topic.
 
@@ -158,7 +163,7 @@ $ fluvio topic describe greeting
  -----------------           
 ```
 
-## `fluvio topic delete`
+### `fluvio topic delete`
 
 This command deletes an existing Fluvio topic and all data associated with it.
 This data may not be recovered, so use this with care.
@@ -182,7 +187,11 @@ $ fluvio topic delete greeting
 topic "greeting" deleted
 ```
 
-## `fluvio partition list`
+## Partitions
+
+Commands for partition management.
+
+### `fluvio partition list`
 
 Prints basic information about each partition in the cluster, such as
 which topic it belongs to, which SPU is leading the partition, and the
@@ -209,7 +218,11 @@ $ fluvio partition list
  greeting  0          5001    []        Online      1   1    0    [] 
 ```
 
-## `fluvio produce`
+## Producer/Consumer
+
+Commands for producer and consumer.
+
+### `fluvio produce`
 
 The `fluvio produce` command is a way to send messages to a particular topic and partition.
 This can be useful for testing your applications by manually sending specific messages.
@@ -271,7 +284,7 @@ $ fluvio consume my-topic -B -d
 {"user":"Alice","message":"Hello, Bob!"}
 ```
 
-## `fluvio consume`
+### `fluvio consume`
 
 The `fluvio consume` command is a way to read the contents of messages in a Fluvio topic
 from a command-line environment. This can be useful if you are developing an application
@@ -330,7 +343,10 @@ simply remove the `-d` flag:
 fluvio consume my-topic -B -p 1
 ```
 
-## `fluvio profile current`
+## Profiles
+
+Commands for profile management
+### `fluvio profile current`
 
 Prints out the name of the active Fluvio profile. Profiles are used to communicate with
 different Fluvio clusters. For example, let's say you have an application that uses
@@ -360,7 +376,7 @@ $ fluvio profile current
 local
 ```
 
-## `fluvio profile delete`
+### `fluvio profile delete`
 
 Deletes a profile from your Fluvio configuration (`~/.fluvio/config`). This will
 not delete a cluster (for that, see [fluvio cluster delete]), but it will cause
@@ -396,7 +412,7 @@ profile local deleted
 warning: this removed your current profile, use 'fluvio profile switch' to select a different one
 ```
 
-## `fluvio profile delete-cluster`
+### `fluvio profile delete-cluster`
 
 Deletes cluster connection information from your Fluvio configuration. This will not delete
 a cluster itself (for that see [fluvio cluster delete]), but it will cause the Fluvio CLI to
@@ -424,7 +440,7 @@ $ fluvio profile delete-cluster local
 Cluster local deleted
 ```
 
-## `fluvio profile switch`
+### `fluvio profile switch`
 
 This switches the "current" profile. After switching current profiles, all
 subsequent Fluvio CLI commands that interact with a cluster will target the
@@ -450,7 +466,7 @@ Example usage:
 $ fluvio profile switch fluvio-cloud
 ```
 
-## `fluvio profile view`
+### `fluvio profile view`
 
 This prints the entire Fluvio configuration (from `~/.fluvio/config`).
 
@@ -491,7 +507,10 @@ Config {
 }
 ```
 
-## `fluvio cluster check`
+## Clusters
+
+Commands for cluster management.
+### `fluvio cluster check`
 
 The cluster commands are used to install your own Fluvio cluster. This command
 is used to check whether you have all the required dependencies set up on your
@@ -526,7 +545,7 @@ You may proceed with cluster startup
 next: run `fluvio cluster start`
 ```
 
-## `fluvio cluster start`
+### `fluvio cluster start`
 
 This command is used to start your own Fluvio cluster, with all the
 machinery needed to receive, process, and serve streaming messages.
@@ -643,7 +662,7 @@ Performing pre-flight checks
 ✅ ok: Fluvio system charts are installed
 ```
 
-## `fluvio cluster delete`
+### `fluvio cluster delete`
 
 Deletes a Fluvio cluster and all data associated with it. Be careful, this
 cannot be undone.
@@ -680,7 +699,7 @@ To uninstall Fluvio from your local machine:
 $ fluvio cluster delete --local
 ```
 
-## `fluvio cluster releases list`
+### `fluvio cluster releases list`
 
 Prints all the published versions of Fluvio that are candidates to
 install on Kubernetes with `fluvio cluster start`.
@@ -713,7 +732,7 @@ VERSION
 ...
 ```
 
-## `fluvio cluster run sc`
+### `fluvio cluster run sc`
 
 Directly invokes a Streaming Controller (SC) from the command line. This is a low-level
 command and is not typically what you want to be using. If you want to run Fluvio
@@ -766,7 +785,7 @@ OPTIONS:
              [env: AUTH_POLICY=]
 ```
 
-## `fluvio cluster run spu`
+### `fluvio cluster run spu`
 
 Directly invokes a Streaming Processing Unit (SPU) from the command line. This is a
 low-level command and is not typically what you want to be using. If you want to run
@@ -826,7 +845,11 @@ OPTIONS:
             TLS: address of non tls public service, required
 ```
 
-## `fluvio install`
+## Maintenance
+
+Maintenance commands, cluster installation, upgrading and versioning.
+
+### `fluvio install`
 
 Some Fluvio CLI commands are distributed as separate executables that we call
 "extensions". This command installs and updates extensions by name, placing
@@ -864,7 +887,7 @@ $ fluvio install fluvio/fluvio-cloud
 🔑 Downloaded and verified package file
 ```
 
-## `fluvio update`
+### `fluvio update`
 
 This command performs a self-update for the Fluvio CLI. It takes no arguments,
 and just simply downloads the latest version of `fluvio` and overwrites itself.
@@ -879,7 +902,7 @@ $ fluvio update
 ✅ Successfully installed ~/.fluvio/bin/fluvio
 ```
 
-## `fluvio version`
+### `fluvio version`
 
 This command prints out the version of the Fluvio CLI that you're running, as
 well as some other useful information about how it was built. For example, it
