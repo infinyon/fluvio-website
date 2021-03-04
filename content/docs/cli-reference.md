@@ -228,61 +228,191 @@ The `fluvio produce` command is a way to send messages to a particular topic and
 This can be useful for testing your applications by manually sending specific messages.
 
 ```
-fluvio-produce 0.4.0
+fluvio-produce
 Write messages to a topic/partition
 
-By default, this reads a single line from stdin to use as the message. If you
-run this with no file options, the command will hang until you type a line in
-the terminal. Alternatively, you can pipe a message into the command like this:
+By default, this reads input from stdin until EOF, and sends the contents as one
+record. Alternatively, input files may be given with '--files' and input may be
+sent line-by-line with '--lines'.
 
-$ echo "Hello, world" | fluvio produce greetings
+If '--key-separator' or '--json-path' are used, records are sent as key/value
+pairs. In this case, '--partition' is ignored and the partition each record is
+sent to is derived from the record's key.
 
 USAGE:
     fluvio produce [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -C, --continuous    Send messages in an infinite loop
-    -h, --help          Prints help information
+    -l, --lines      Send each line of input as its own record (using '\n')
+    -v, --verbose    Print progress output when sending records
+    -h, --help       Prints help information
 
 OPTIONS:
     -p, --partition <integer>
             The ID of the Partition to produce to [default: 0]
 
-    -l, --record-per-line <filename>
-            Send each line of the file as its own Record
-
-    -r, --record-file <filename>...     Send an entire file as a single Record
+        --key-separator <key-separator>
+            Sends key/value records split on the first instance of the
+            separator. Implies --lines
+        --json-path <json-path>
+            Sends key/value JSON records where the key is selected using this
+            JSON path
+    -f, --files <files>...
+            Paths to files to produce to the topic. If absent, producer will
+            read stdin
 
 ARGS:
     <topic>    The name of the Topic to produce to
 ```
 
-By default, the `fluvio produce` command will read a single line from `stdin` and send it
-as the payload of the message. However, you can also specify files to read messages from.
-With the `--record-per-line` flag, you can send many messages from a single file, or with
-the `--record-file` flag you can send the entire contents of a file (including newlines)
-as a single record.
+#### Example 1: Produce one record from stdin
 
-Example usage:
+The quickest way to send a record using the producer is to just type your record
+into standard input:
 
 ```
-$ cat records.txt
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
+$ fluvio produce my-topic
+Reading one record from stdin (use ctrl-D to send):
+```
 
-$ fluvio produce my-topic --record-per-line records.txt
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
+As the message says, by default the producer will read everything you type into
+stdin and send it as a single record after you press `ctrl-D` to mark the end of
+the message. This means that your record can even span multiple lines:
+
+```
+$ fluvio produce my-topic
+Reading one record from stdin (use ctrl-D to send):
+This is my first record ever
+This is the second line of my first record ever
+^D
 Ok!
 ```
 
-You can then confirm that the records were sent by reading them back with `fluvio consume`:
+The `Ok!` was printed by the producer after I pressed `ctrl-D` to send the record.
+
+-> If you do not put a new line at the end of your record, you need to use `ctrl-D` twice!
+
+#### Example 2: Produce multiple records from stdin
+
+You may find yourself wanting to send a new record each time you finish typing a
+line into stdin. You can do this using the `--lines` flag:
 
 ```
-$ fluvio consume my-topic -B -d
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
+$ fluvio produce my-topic --lines
+Reading one record per line from stdin:
 ```
+
+The producer tells us that each line will be sent as a new record. Let's send some:
+
+```
+$ fluvio produce my-topic --lines
+Reading one record per line from stdin:
+This is my second record ever
+Ok!
+This is my third record ever
+Ok!
+^C
+```
+
+-> Using `ctrl-D` here would send one last (empty) record before exiting. Use `ctrl-C` to exit without sending.
+
+The producer prints `Ok!` after each individual record is successfully sent.
+
+#### Example 3: Produce key/value records from stdin
+
+Fluvio supports key/value records out-of-the-box. In a key/value record, the key is used
+to decide which partition the record is sent to. Let's try sending some simple key/value records:
+
+```
+$ fluvio produce my-topic --key-separator=":"
+Reading one record per line from stdin:
+alice:Alice In Wonderland
+Ok!
+batman:Bruce Wayne
+Ok!
+^C
+```
+
+So our records are being sent, but how do we know that the producer recognized each key properly?
+We can use the `--verbose` (`-v`) flag to tell the producer to print back the keys and values it
+recognizes. That way, we can be confident that our records are being sent the way we want them to be.
+
+```
+$ fluvio produce my-topic -v --key-separator=":"
+Reading one record per line from stdin:
+santa:Santa Claus
+[santa] Santa Claus
+Ok!
+^C
+```
+
+The producer splits the key from the value and prints it in a `[key] value` format.
+
+#### Example 4: Produce key/value records from JSON on stdin
+
+If the records we are producing are JSON data, we can use a [jsonpath] to specify a location
+inside the JSON data to extract and use as a key. The original, unmodified JSON data will be
+sent as the record's value.
+
+[jsonpath]: https://docs.rs/jsonpath
+
+```
+$ fluvio produce my-topic -v --lines --json-path="$.name"
+Reading one record per line from stdin:
+{"name":"Alice","message":"Hello, Bob!"}
+[Alice] {"name":"Alice","message":"Hello, Bob!"}
+Ok!
+{"name":"Bob","message":"Hello, Alice!"}
+[Bob] {"name":"Bob","message":"Hello, Alice!"}
+Ok!
+^C
+```
+
+Notice that the producer correctly picked `Alice` and `Bob` as the keys to the respective records!
+
+#### Example 5: Produce key/value records from JSON files
+
+Sometimes, we may have multiple files that each contain one record we want to send. We
+can use the `--files` (`-f`) argument to specify one or more files to send all at once!
+Suppose we have the following JSON files:
+
+```
+$ cat tom.json
+{
+  "name": "Tom",
+  "animal": "Cat"
+}
+
+$ cat jerry.json
+{
+  "name": "Jerry",
+  "animal": "Mouse"
+}
+```
+
+We'll choose `name` as the key, and select the two files using the `-f` argument:
+
+```
+$ fluvio produce my-topic -v --json-path="$.name" -f tom.json jerry.json
+[Tom] {
+  "name":"Tom",
+  "animal":"Cat"
+}
+
+Ok!
+[Jerry] {
+  "name":"Jerry",
+  "animal":"Mouse"
+}
+
+Ok!
+^C
+```
+
+Notice that `-f` can take multiple arguments at once! That way, we can read all
+the files during a single run of the producer, rather than re-running it for each
+file we want to give. This makes the producer efficient, since it keeps the same network
+connection open while producing all the files.
 
 ### `fluvio consume`
 
@@ -296,14 +426,18 @@ If your topic has more than one partition, the `consume` command will only read 
 of those partitions, defaulting to the first one (index zero). You can specify which
 partition you want to read messages from using the `-p` option.
 
-Arguments:
-
 ```
-fluvio-consume 0.4.0
+fluvio-consume
 Read messages from a topic/partition
 
+By default, consume operates in "streaming" mode, where the command will remain
+active and wait for new messages, printing them as they arrive. You can use the
+'-d' flag to exit after consuming all available messages.
+
+Records are printed in "[key]: value" format, where "null" is used for no key.
+
 USAGE:
-    fluvio consume [FLAGS] [OPTIONS] <string>
+    fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
     -B, --from-beginning        Start reading from beginning
@@ -323,29 +457,76 @@ OPTIONS:
             json, raw]
 
 ARGS:
-    <string>    Topic name
+    <topic>    Topic name
 ```
 
-Example usage:
+For our consumer examples, we are going to read back the records we sent from the producer
+examples above.
 
-Let's say you want to read all the messages that have ever been produced for a particular
-topic and partition, then stop when they have all been consumed. If our topic is named
-"my-topic", and we want to consume from partition 1, we can run:
+#### Example 1: Consume all records
 
-```
-fluvio consume my-topic -B -d -p 1 
-```
-
-If you would like the consumer to continue running and print new messages as they arrive,
-simply remove the `-d` flag:
+When consuming, we need to specify a starting offset from which to begin reading.
+We can use the `--from-beginning` (`-B`) flag in order to read everything from the very
+beginning. Here we'll also use the `--disable-continuous` (`-d`) flag in order to exit
+after all the records have been read:
 
 ```
-fluvio consume my-topic -B -p 1
+$ fluvio consume my-topic -B -d
+[null] This is my first record ever
+This is the second line of my first record ever
+[null] This is my second record ever
+[null] This is my third record ever
+[alice] Alice In Wonderland
+[batman] Bruce Wayne
+[santa] Santa Claus
+[Alice] {"name":"Alice","message":"Hello, Bob!"}
+[Bob] {"name":"Bob","message":"Hello, Alice!"}
+[Tom] {
+  "name":"Tom",
+  "animal":"Cat"
+}
+
+[Jerry] {
+  "name":"Jerry",
+  "animal":"Mouse"
+}
 ```
+
+Looking at the output of the consumer, notice that _all_ of the records are actually
+key/value records, even the ones that we never defined a key for! Records without keys
+are printed with `[null]`, and there is no guarantee about which partition they live on.
+
+#### Example 2: Consume the latest 5 records
+
+Sometimes we do not want to read _all_ of the records from a partition, just some subset
+of them. We can use the `--offset` (`-o`) argument to tell the consumer where to begin
+reading records from.
+
+To begin reading from the fifth-to-the-last record, we can use offset `-5`, like this: 
+
+```
+$ fluvio consume my-topic -d --offset="-5"
+[santa] Santa Claus
+[Alice] {"name":"Alice","message":"Hello, Bob!"}
+[Bob] {"name":"Bob","message":"Hello, Alice!"}
+[Tom] {
+  "name":"Tom",
+  "animal":"Cat"
+}
+
+[Jerry] {
+  "name":"Jerry",
+  "animal":"Mouse"
+}
+```
+
+Negative offsets count backward from the end of a partition, and positive offsets count
+forward from the beginning of a partition.
 
 ## Profiles
 
 Commands for profile management
+
 ### `fluvio profile current`
 
 Prints out the name of the active Fluvio profile. Profiles are used to communicate with
@@ -510,6 +691,7 @@ Config {
 ## Clusters
 
 Commands for cluster management.
+
 ### `fluvio cluster check`
 
 The cluster commands are used to install your own Fluvio cluster. This command
