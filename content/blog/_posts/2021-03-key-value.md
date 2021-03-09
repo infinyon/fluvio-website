@@ -11,7 +11,7 @@ hidden: false
 ---
 
 This week, we're happy to announce the addition of a Key/Value API for
-Fluvio producer and consumers! The ability to define a Key for your records
+Fluvio producers and consumers! The ability to define a Key for your records
 gives you more control over how your data is distributed and stored within
 Fluvio. In this blog, we'll talk more about the guarantees that key/value
 records give you, as well as how to use key/value records from Fluvio's
@@ -29,7 +29,7 @@ delivered in order. This also means that records belonging to different users ma
 distributed across different partitions, making the system free to spread traffic
 out across multiple servers and increase throughput.
 
-## Producing and Consuming Key/Value records on the CLI
+## Producing and Consuming simple Key/Value records
 
 In this section, we'll be showing `fluvio` commands for producing and consuming
 key/value records. If you want to follow along, make sure you've followed the
@@ -44,6 +44,8 @@ Once the cluster is set up, create a fresh topic to use for this example:
 ```bash
 $ fluvio topic create key-value-text
 ```
+
+#### Producing key/value records
 
 The producer and consumer built into Fluvio's CLI can send and receive key/value
 records. Let's look at a quick example of producing data from a text file.
@@ -74,6 +76,32 @@ Let's break down this command:
 - `-v` or (`--verbose`) tells the producer to print each record after it's sent
 - `--key-separator "="` tells the producer to split each line on an `=`, using the
 left side as the key and the right side as the value.
+  
+We can tell that the producer recognized the keys correctly because it prints them
+back out in square brackets. Next, let's look at how to use a consumer to read back
+records that have been stored.
+
+#### Consuming key/value records
+
+Let's get right to it and consume our records:
+
+```bash
+$ fluvio consume key-value-text -B -d
+Deposit 100.00
+Withdraw 50.00
+Withdraw 25.00
+```
+
+By default, the consumer does not print the keys of each record. This highlights the
+fact that key/value records are the same as regular records, they just happen to have keys.
+We can tell the consumer to print the keys that belong to each record with `--key-value`:
+
+```bash
+$ fluvio consume key-value-text -B -d --key-value
+[alice] Deposit 100.00
+[bob] Withdraw 50.00
+[bob] Withdraw 25.00
+```
 
 # Summary
 
