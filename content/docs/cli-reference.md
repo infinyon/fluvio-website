@@ -385,14 +385,14 @@ By default, consume operates in "streaming" mode, where the command will remain
 active and wait for new messages, printing them as they arrive. You can use the
 '-d' flag to exit after consuming all available messages.
 
-Records are printed in "[key]: value" format, where "null" is used for no key.
-
 USAGE:
     fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
     -B, --from-beginning        Start reading from beginning
     -d, --disable-continuous    disable continuous processing of messages
+    -k, --key-value             Print records in "[key] value" format, with
+                                "[null]" for no key
     -s, --suppress-unknown      Suppress items items that have an unknown output
                                 type
     -h, --help                  Prints help information
@@ -423,6 +423,33 @@ after all the records have been read:
 
 ```
 $ fluvio consume my-topic -B -d
+This is my first record ever
+This is my second record ever
+Alice In Wonderland
+Bruce Wayne
+Santa Claus
+{
+  "name":"Tom",
+  "animal":"Cat"
+}
+
+{
+  "name":"Jerry",
+  "animal":"Mouse"
+}
+```
+
+Notice that all the records are printed by value only: the records with keys have not
+had their keys printed! This is the default behavior of the consumer. To see how to print
+the keys of key/value records, see the next example!
+
+#### Example 2: Consume key/value records
+
+If we want to see both the keys _and_ values of the records in the topic, you can use
+the `--key-value` flag:
+
+```
+$ fluvio consume my-topic -d --key-value
 [null] This is my first record ever
 [null] This is my second record ever
 [alice] Alice In Wonderland
@@ -439,36 +466,7 @@ $ fluvio consume my-topic -B -d
 }
 ```
 
-Looking at the output of the consumer, notice that _all_ of the records are actually
-key/value records, even the ones that we never defined a key for! Records without keys
-are printed with `[null]`, and there is no guarantee about which partition they live on.
-
-#### Example 2: Consume the latest 5 records
-
-Sometimes we do not want to read _all_ of the records from a partition, just some subset
-of them. We can use the `--offset` (`-o`) argument to tell the consumer where to begin
-reading records from.
-
-To begin reading from the fifth-to-the-last record, we can use offset `-5`, like this: 
-
-```
-$ fluvio consume my-topic -d --offset="-5"
-[alice] Alice In Wonderland
-[batman] Bruce Wayne
-[santa] Santa Claus
-[Tom] {
-  "name":"Tom",
-  "animal":"Cat"
-}
-
-[Jerry] {
-  "name":"Jerry",
-  "animal":"Mouse"
-}
-```
-
-Negative offsets count backward from the end of a partition, and positive offsets count
-forward from the beginning of a partition.
+Records that were not given a key are printed with `[null]`.
 
 ## Profiles
 
