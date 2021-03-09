@@ -310,56 +310,6 @@ Ok!
 
 The producer splits the key from the value and prints it in a `[key] value` format.
 
-#### Example 3: Produce key/value records from JSON files
-
-Sometimes, we may have multiple files that each contain one record we want to send. We
-can use the `--files` (`-f`) argument to specify one or more files to send all at once!
-Suppose we have the following JSON files:
-
-Suppose we want to send some JSON data as our records. We have two files, `tom.json`
-and `jerry.json`, and we want to use the `name` field as the key for these records.
-
-```
-$ cat tom.json
-{
-  "name": "Tom",
-  "animal": "Cat"
-}
-
-$ cat jerry.json
-{
-  "name": "Jerry",
-  "animal": "Mouse"
-}
-```
-
-We can use the `--files` (`-f`) argument to select these files, and we can use the
-`--json-path` argument to describe which data we should use as the record keys.
-
-To choose the `name` field as our key, we'll use `--json-path="$.name"`:
-
-```
-$ fluvio produce my-topic -v --json-path="$.name" -f tom.json jerry.json
-[Tom] {
-  "name":"Tom",
-  "animal":"Cat"
-}
-
-Ok!
-[Jerry] {
-  "name":"Jerry",
-  "animal":"Mouse"
-}
-
-Ok!
-^C
-```
-
-Notice that `-f` can take multiple arguments at once! That way, we can read all
-the files during a single run of the producer, rather than re-running it for each
-file we want to give. This makes the producer efficient, since it keeps the same network
-connection open while producing all the files.
-
 ### `fluvio consume`
 
 The `fluvio consume` command is a way to read the contents of messages in a Fluvio topic
