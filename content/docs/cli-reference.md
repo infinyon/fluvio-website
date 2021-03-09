@@ -382,7 +382,7 @@ If we want to see both the keys _and_ values of the records in the topic, you ca
 the `--key-value` flag:
 
 ```
-$ fluvio consume my-topic -d --key-value
+$ fluvio consume my-topic -B -d --key-value
 [null] This is my first record ever
 [null] This is my second record ever
 [alice] Alice In Wonderland
