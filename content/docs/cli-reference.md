@@ -265,12 +265,11 @@ into standard input:
 
 ```
 $ fluvio produce my-topic
-Reading one record per line from stdin:
-This is my first record ever
+> This is my first record ever
 Ok!
-This is my second record ever
+> This is my second record ever
 Ok!
-^C
+> ^C
 ```
 
 -> In order to stop the producer, we need to press `ctrl-C` (shown above as `^C`)
@@ -287,12 +286,11 @@ to decide which partition the record is sent to. Let's try sending some simple k
 
 ```
 $ fluvio produce my-topic --key-separator=":"
-Reading one record per line from stdin:
-alice:Alice In Wonderland
+> alice:Alice In Wonderland
 Ok!
-batman:Bruce Wayne
+> batman:Bruce Wayne
 Ok!
-^C
+> ^C
 ```
 
 So our records are being sent, but how do we know that the producer recognized each key properly?
@@ -301,11 +299,10 @@ recognizes. That way, we can be confident that our records are being sent the wa
 
 ```
 $ fluvio produce my-topic -v --key-separator=":"
-Reading one record per line from stdin:
-santa:Santa Claus
+> santa:Santa Claus
 [santa] Santa Claus
 Ok!
-^C
+> ^C
 ```
 
 The producer splits the key from the value and prints it in a `[key] value` format.
@@ -373,15 +370,6 @@ This is my second record ever
 Alice In Wonderland
 Bruce Wayne
 Santa Claus
-{
-  "name":"Tom",
-  "animal":"Cat"
-}
-
-{
-  "name":"Jerry",
-  "animal":"Mouse"
-}
 ```
 
 Notice that all the records are printed by value only: the records with keys have not
@@ -400,15 +388,6 @@ $ fluvio consume my-topic -d --key-value
 [alice] Alice In Wonderland
 [batman] Bruce Wayne
 [santa] Santa Claus
-[Tom] {
-  "name":"Tom",
-  "animal":"Cat"
-}
-
-[Jerry] {
-  "name":"Jerry",
-  "animal":"Mouse"
-}
 ```
 
 Records that were not given a key are printed with `[null]`.
