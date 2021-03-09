@@ -231,15 +231,13 @@ This can be useful for testing your applications by manually sending specific me
 fluvio-produce
 Write messages to a topic/partition
 
-When no '--files' are provided, the producer will read from 'stdin' and send
-each line of input as one record.
+When no '--file' is provided, the producer will read from 'stdin' and send each
+line of input as one record.
 
-If one or more files are given with '--files', each file is sent as one entire
-record.
+If a file is given with '--file', the file is sent as one entire record.
 
-If '--key-separator' or '--json-path' are used, records are sent as key/value
-pairs, and the keys are used to determine which partition the records are sent
-to.
+If '--key-separator' is used, records are sent as key/value pairs, and the keys
+are used to determine which partition the records are sent to.
 
 USAGE:
     fluvio produce [FLAGS] [OPTIONS] <topic>
@@ -252,11 +250,8 @@ OPTIONS:
         --key-separator <key-separator>
             Sends key/value records split on the first instance of the separator
 
-        --json-path <json-path>
-            Sends key/value JSON records where the key is selected using this
-            JSON path
-    -f, --files <files>...
-            Paths to files to produce to the topic. If absent, producer will
+    -f, --file <file>
+            Path to a file to produce to the topic. If absent, producer will
             read stdin
 
 ARGS:
