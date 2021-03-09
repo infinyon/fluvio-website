@@ -42,7 +42,7 @@ key/value records. If you want to follow along, make sure you've followed the
 Once the cluster is set up, create a fresh topic to use for this example:
 
 ```bash
-$ fluvio topic create key-value-text
+$ fluvio topic create bank-transactions
 ```
 
 #### Producing key/value records
@@ -51,18 +51,18 @@ The producer and consumer built into Fluvio's CLI can send and receive key/value
 records. Let's look at a quick example of producing data from a text file.
 
 ```bash
-$ cat data.txt
+$ cat transactions.txt
 alice=Deposit 100.00
 bob=Withdraw 50.00
 bob=Withdraw 25.00
 ```
 
-Here we have a file, `data.txt`, with keys and values separated by a `=` and with
+Here we have a file, `transactions.txt`, with keys and values separated by a `=` and with
 one record on each line of the file. We can use the following command to send
 each line as a key/value record:
 
 ```bash
-$ fluvio produce key-value-text -v --key-separator "="
+$ fluvio produce bank-transactions -v --key-separator "=" -f transactions.txt
 [alice] Deposit 100.00
 [bob] Withdraw 50.00
 [bob] Withdraw 25.00
@@ -75,7 +75,8 @@ Let's break down this command:
 - `key-value-text` is the name of the topic we want to produce to
 - `-v` or (`--verbose`) tells the producer to print each record after it's sent
 - `--key-separator "="` tells the producer to split each line on an `=`, using the
-left side as the key and the right side as the value.
+left side as the key and the right side as the value
+- `-f transactions.txt` tells the producer to read data from the `transactions.txt` file
   
 We can tell that the producer recognized the keys correctly because it prints them
 back out in square brackets. Next, let's look at how to use a consumer to read back
@@ -86,7 +87,7 @@ records that have been stored.
 Let's get right to it and consume our records:
 
 ```bash
-$ fluvio consume key-value-text -B -d
+$ fluvio consume bank-transactions -B -d
 Deposit 100.00
 Withdraw 50.00
 Withdraw 25.00
@@ -97,7 +98,7 @@ fact that key/value records are the same as regular records, they just happen to
 We can tell the consumer to print the keys that belong to each record with `--key-value`:
 
 ```bash
-$ fluvio consume key-value-text -B -d --key-value
+$ fluvio consume bank-transactions -B -d --key-value
 [alice] Deposit 100.00
 [bob] Withdraw 50.00
 [bob] Withdraw 25.00
