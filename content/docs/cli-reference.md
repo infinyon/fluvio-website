@@ -228,61 +228,84 @@ The `fluvio produce` command is a way to send messages to a particular topic and
 This can be useful for testing your applications by manually sending specific messages.
 
 ```
-fluvio-produce 0.4.0
+fluvio-produce
 Write messages to a topic/partition
 
-By default, this reads a single line from stdin to use as the message. If you
-run this with no file options, the command will hang until you type a line in
-the terminal. Alternatively, you can pipe a message into the command like this:
+When no '--file' is provided, the producer will read from 'stdin' and send each
+line of input as one record.
 
-$ echo "Hello, world" | fluvio produce greetings
+If a file is given with '--file', the file is sent as one entire record.
+
+If '--key-separator' is used, records are sent as key/value pairs, and the keys
+are used to determine which partition the records are sent to.
 
 USAGE:
     fluvio produce [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -C, --continuous    Send messages in an infinite loop
-    -h, --help          Prints help information
+    -v, --verbose    Print progress output when sending records
+    -h, --help       Prints help information
 
 OPTIONS:
-    -p, --partition <integer>
-            The ID of the Partition to produce to [default: 0]
+        --key-separator <key-separator>
+            Sends key/value records split on the first instance of the separator
 
-    -l, --record-per-line <filename>
-            Send each line of the file as its own Record
-
-    -r, --record-file <filename>...     Send an entire file as a single Record
+    -f, --file <file>
+            Path to a file to produce to the topic. If absent, producer will
+            read stdin
 
 ARGS:
     <topic>    The name of the Topic to produce to
 ```
 
-By default, the `fluvio produce` command will read a single line from `stdin` and send it
-as the payload of the message. However, you can also specify files to read messages from.
-With the `--record-per-line` flag, you can send many messages from a single file, or with
-the `--record-file` flag you can send the entire contents of a file (including newlines)
-as a single record.
+#### Example 1: Produce records from stdin
 
-Example usage:
+The quickest way to send a record using the producer is to just type your record
+into standard input:
 
 ```
-$ cat records.txt
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
-
-$ fluvio produce my-topic --record-per-line records.txt
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
+$ fluvio produce my-topic
+> This is my first record ever
 Ok!
+> This is my second record ever
+Ok!
+> ^C
 ```
 
-You can then confirm that the records were sent by reading them back with `fluvio consume`:
+-> In order to stop the producer, we need to press `ctrl-C` (shown above as `^C`)
+
+As the message says, each line that you type will be sent a new record to the topic.
+
+The `Ok!` was printed by the producer after each record, to let us know the record
+was sent successfully.
+
+#### Example 2: Produce key/value records from stdin
+
+Fluvio supports key/value records out-of-the-box. In a key/value record, the key is used
+to decide which partition the record is sent to. Let's try sending some simple key/value records:
 
 ```
-$ fluvio consume my-topic -B -d
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
+$ fluvio produce my-topic --key-separator=":"
+> alice:Alice In Wonderland
+Ok!
+> batman:Bruce Wayne
+Ok!
+> ^C
 ```
+
+So our records are being sent, but how do we know that the producer recognized each key properly?
+We can use the `--verbose` (`-v`) flag to tell the producer to print back the keys and values it
+recognizes. That way, we can be confident that our records are being sent the way we want them to be.
+
+```
+$ fluvio produce my-topic -v --key-separator=":"
+> santa:Santa Claus
+[santa] Santa Claus
+Ok!
+> ^C
+```
+
+The producer splits the key from the value and prints it in a `[key] value` format.
 
 ### `fluvio consume`
 
@@ -296,18 +319,22 @@ If your topic has more than one partition, the `consume` command will only read 
 of those partitions, defaulting to the first one (index zero). You can specify which
 partition you want to read messages from using the `-p` option.
 
-Arguments:
-
 ```
-fluvio-consume 0.4.0
+fluvio-consume
 Read messages from a topic/partition
 
+By default, consume operates in "streaming" mode, where the command will remain
+active and wait for new messages, printing them as they arrive. You can use the
+'-d' flag to exit after consuming all available messages.
+
 USAGE:
-    fluvio consume [FLAGS] [OPTIONS] <string>
+    fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
     -B, --from-beginning        Start reading from beginning
     -d, --disable-continuous    disable continuous processing of messages
+    -k, --key-value             Print records in "[key] value" format, with
+                                "[null]" for no key
     -s, --suppress-unknown      Suppress items items that have an unknown output
                                 type
     -h, --help                  Prints help information
@@ -323,29 +350,52 @@ OPTIONS:
             json, raw]
 
 ARGS:
-    <string>    Topic name
+    <topic>    Topic name
 ```
 
-Example usage:
+For our consumer examples, we are going to read back the records we sent from the producer
+examples above.
 
-Let's say you want to read all the messages that have ever been produced for a particular
-topic and partition, then stop when they have all been consumed. If our topic is named
-"my-topic", and we want to consume from partition 1, we can run:
+#### Example 1: Consume all records
 
-```
-fluvio consume my-topic -B -d -p 1 
-```
-
-If you would like the consumer to continue running and print new messages as they arrive,
-simply remove the `-d` flag:
+When consuming, we need to specify a starting offset from which to begin reading.
+We can use the `--from-beginning` (`-B`) flag in order to read everything from the very
+beginning. Here we'll also use the `--disable-continuous` (`-d`) flag in order to exit
+after all the records have been read:
 
 ```
-fluvio consume my-topic -B -p 1
+$ fluvio consume my-topic -B -d
+This is my first record ever
+This is my second record ever
+Alice In Wonderland
+Bruce Wayne
+Santa Claus
 ```
+
+Notice that all the records are printed by value only: the records with keys have not
+had their keys printed! This is the default behavior of the consumer. To see how to print
+the keys of key/value records, see the next example!
+
+#### Example 2: Consume key/value records
+
+If we want to see both the keys _and_ values of the records in the topic, you can use
+the `--key-value` flag:
+
+```
+$ fluvio consume my-topic -B -d --key-value
+[null] This is my first record ever
+[null] This is my second record ever
+[alice] Alice In Wonderland
+[batman] Bruce Wayne
+[santa] Santa Claus
+```
+
+Records that were not given a key are printed with `[null]`.
 
 ## Profiles
 
 Commands for profile management
+
 ### `fluvio profile current`
 
 Prints out the name of the active Fluvio profile. Profiles are used to communicate with
@@ -510,6 +560,7 @@ Config {
 ## Clusters
 
 Commands for cluster management.
+
 ### `fluvio cluster check`
 
 The cluster commands are used to install your own Fluvio cluster. This command
