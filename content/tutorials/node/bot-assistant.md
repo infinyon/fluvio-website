@@ -112,7 +112,7 @@ The messages can be viewed in Fluvio:
 fluvio consume bot-assist-messages -B
 ```
 
-Returns all messages in the users topic:
+Option `-B` display messages from the beginning:
 
 ```json
 {"sid":"5bf749550eb989aaeb924dc1b4c143daec71986f","timestamp":"2021-03-11T22:29:18.905"}
@@ -125,7 +125,7 @@ Returns all messages in the users topic:
 {"sid":"e34678b5ce0586560bfd034468f76c210e282855","payload":{"kind":"Request","message":{"kind":"ChoiceRequest","groupId":"others","question":"Any other?","choices":[{"itemId":"yes","content":"Yes"},{"itemId":"no","content":"No"}]}},"timestamp":"2021-03-11T22:35:46.548"}
 ```
 
-Each message uses session id as key.
+Each session exchanged are grouped by the session id.
 
 ## Conclusion
 
