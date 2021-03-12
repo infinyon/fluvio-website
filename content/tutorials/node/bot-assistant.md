@@ -118,6 +118,11 @@ Returns all messages in the users topic:
 {"sid":"5bf749550eb989aaeb924dc1b4c143daec71986f","timestamp":"2021-03-11T22:29:18.905"}
 {"sid":"5bf749550eb989aaeb924dc1b4c143daec71986f","payload":{"kind":"Request","message":{"kind":"BotText","content":"Hi, I'm Bot! Nice to meet you."}},"timestamp":"2021-03-11T22:29:19.077"}
 {"sid":"5bf749550eb989aaeb924dc1b4c143daec71986f","payload":{"kind":"Request","message":{"kind":"ChoiceRequest","groupId":"lang","question":"What programming language do you use in your hobby projects?","choices":[{"itemId":"rust","content":"Rust"},{"itemId":"go","content":"Go"},{"itemId":"other","content":"Other"}]}},"timestamp":"2021-03-11T22:29:19.346"}
+{"sid":"e34678b5ce0586560bfd034468f76c210e282855","timestamp":"2021-03-11T22:35:44.261"}
+{"sid":"e34678b5ce0586560bfd034468f76c210e282855","payload":{"kind":"Request","message":{"kind":"BotText","content":"Hi, I'm Bot! Nice to meet you."}},"timestamp":"2021-03-11T22:35:44.438"}
+{"sid":"e34678b5ce0586560bfd034468f76c210e282855","payload":{"kind":"Request","message":{"kind":"ChoiceRequest","groupId":"lang","question":"What programming language do you use in your hobby projects?","choices":[{"itemId":"rust","content":"Rust"},{"itemId":"go","content":"Go"},{"itemId":"other","content":"Other"}]}},"timestamp":"2021-03-11T22:35:44.716"}
+{"sid":"e34678b5ce0586560bfd034468f76c210e282855","payload":{"kind":"Response","message":{"kind":"ChoiceResponse","groupId":"lang","itemId":"go","content":"Go"}},"timestamp":"2021-03-11T22:35:46.373"}
+{"sid":"e34678b5ce0586560bfd034468f76c210e282855","payload":{"kind":"Request","message":{"kind":"ChoiceRequest","groupId":"others","question":"Any other?","choices":[{"itemId":"yes","content":"Yes"},{"itemId":"no","content":"No"}]}},"timestamp":"2021-03-11T22:35:46.548"}
 ```
 
 Each message uses session id as key.
