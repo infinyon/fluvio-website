@@ -35,6 +35,7 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio install]                  | Install Fluvio plugins                                             |
 | [fluvio update]                   | Update the Fluvio CLI                                              |
 | [fluvio version]                  | Print Fluvio version information                                   |
+| [fluvio cloud login]              | Login to Fluvio Cloud                                              |
 
 [fluvio topics]: #fluvio-topic
 [fluvio topic create]: #fluvio-topic-create
@@ -58,6 +59,7 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio install]: #fluvio-install
 [fluvio update]: #fluvio-update
 [fluvio version]: #fluvio-version
+[fluvio cloud login]: #fluvio-cloud-login
 
 ## Topics
 
@@ -921,3 +923,50 @@ Git Commit      : 68acd75c8d8c1a03ffa7512be5eb71fa6f79caa1
 OS Details      : Darwin 19.6.0 x86_64
 Rustc Version   : 1.48.0 (7eac88a 2020-11-16)
 ```
+
+### `fluvio cloud login`
+
+This command is used to get started working with [Fluvio Cloud], our hosted
+Fluvio offering. After creating an account, run this command and provide your
+email and password in order to download your Fluvio Cloud Profile. This allows
+you to interact with your Cloud cluster just like any other kind of cluster.
+
+[Fluvio Cloud]: https://cloud.fluvio.io/signup
+
+```
+fluvio-cloud-login
+Log into Fluvio Cloud with a username and password
+
+USAGE:
+    fluvio-cloud login [OPTIONS]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+        --email <email>          Fluvio Cloud email to use for logging in
+        --password <password>    Password to use when logging in (not recommended)
+        --profile <profile>      The name of the Profile to save
+```
+
+Example usage:
+
+```
+$ fluvio cloud login
+Fluvio Cloud email: mosher@infinyon.com
+Password: <hidden>
+```
+
+After it's completed successfully, you should be able to see your new cloud
+profile using `fluvio profile view`:
+
+```
+$ fluvio profile view
+    PROFILE    CLUSTER    ADDRESS                          TLS
+ *  cloud      cloud      router.cloud.fluvio.io:9003      Verified
+```
+
+At this point, any other `fluvio` commands (such as produce, consume, etc.) will
+now interact with your `cloud` cluster. To switch back to a different cluster, see
+[fluvio profile switch].
