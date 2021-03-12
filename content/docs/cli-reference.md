@@ -32,6 +32,7 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio cluster releases list]    | Show a list of Fluvio release versions                             |
 | [fluvio cluster run sc]           | Run a new Streaming Controller (SC)                                |
 | [fluvio cluster run spu]          | Run a new Streaming Processing Unit (SPU)                          |
+| [fluvio cluster spu list]         | List the cluster's Streaming Processing Units (SPUs)               |
 | [fluvio install]                  | Install Fluvio plugins                                             |
 | [fluvio update]                   | Update the Fluvio CLI                                              |
 | [fluvio version]                  | Print Fluvio version information                                   |
@@ -845,6 +846,35 @@ OPTIONS:
 
         --bind-non-tls-public <bind-non-tls-public>
             TLS: address of non tls public service, required
+```
+
+### `fluvio cluster spu list`
+
+This command shows details about the active SPUs in your cluster.
+It is mostly useful for checking on the status of individual SPUs
+to see whether they are still online, and which addresses they live at.
+
+```
+fluvio-cluster-spu-list
+List all SPUs known by this cluster (managed AND custom)
+
+fluvio cluster spu list [FLAGS] [OPTIONS]
+
+FLAGS:
+        --custom    Whether to list only custom SPUs
+    -h, --help      Prints help information
+
+OPTIONS:
+    -O, --output <type>    Output [default: table]  [possible values: table,
+                           yaml, json]
+```
+
+Example usage:
+
+```
+$ fluvio cluster spu list
+ ID    NAME             STATUS  TYPE      RACK  PUBLIC          PRIVATE
+ 5001  custom-spu-5001  Online  "custom"   -    localhost:9010  localhost:9011
 ```
 
 ## Maintenance
