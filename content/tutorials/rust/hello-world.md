@@ -65,8 +65,8 @@ authors = ["Your name <your_email@example.com>"]
 edition = "2018"
 
 [dependencies]
-fluvio = "0.5.0"
-async-std = { version = "1.0.0", features = ["attributes"] }
+fluvio = "0.6.0"
+async-std = { version = "1", features = ["attributes"] }
 ```
 
 ### Create Producer/Consumer
@@ -83,7 +83,7 @@ async fn main() {
     println!("Hello, world!");
 }
 
-async fn produce(message: &str) -> Result<(), FluvioError> {
+async fn produce(key: &str, value: &str) -> Result<(), FluvioError> {
     todo!()
 }
 
@@ -112,9 +112,9 @@ We'll start out by writing our producer code, which will send messages
 to our Topic.
 
 ```rust
-async fn produce(message: &str) -> Result<(), FluvioError> {
+async fn produce(key: &str, value: &str) -> Result<(), FluvioError> {
     let producer = fluvio::producer("hello-fluvio").await?;
-    producer.send_record(message, 0).await?;
+    producer.send(key, value).await?;
     Ok(())
 }
 ```
@@ -124,14 +124,9 @@ That's it for the producer! Let's hook up some code in `main` to call it and tes
 ```rust
 #[async_std::main]
 async fn main() {
-    let _result = produce("Hello, Fluvio!").await;
+    let _result = produce("Hello", "Fluvio!").await;
 }
 ```
-
-Notice that we had to use the `block_on` function from `async_std`. This `block_on` function
-is acting as our [executor], and is part of the machinery that makes async code in Rust work.
-
-[executor]: https://rust-lang.github.io/async-book/02_execution/04_executor.html
 
 We can now run this code and see it in action. We'll use the `fluvio` CLI to see
 the message arrive at the "hello-fluvio" topic.
@@ -164,8 +159,10 @@ async fn consume() -> Result<(), FluvioError> {
 
     // Iterate over all events in the topic
     while let Some(Ok(record)) = stream.next().await {
-        let string = String::from_utf8_lossy(&record.as_ref());
-        println!("Got record: {}", string);
+        let key_bytes = record.key().unwrap();
+        let key = String::from_utf8_lossy(key_bytes).to_string();
+        let value = String::from_utf8_lossy(record.value()).to_string();
+        println!("Consumed record: Key={}, value={}", key, value);
     }
     Ok(())
 }
@@ -191,7 +188,7 @@ async fn main() {
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            produce("Hello, Fluvio!").await
+            produce("Hello", "Fluvio!").await
         },
         [_, "consume"] => {
             consume().await
@@ -213,7 +210,7 @@ to read them back. Let's try out our consumer code now:
 
 ```bash
 $ cargo run -- consume
-Hello, Fluvio!
+Consumed record: Key=Hello, value=World!
 ```
 
 In another terminal window, let's run your producer one more time
@@ -222,7 +219,7 @@ In another terminal window, let's run your producer one more time
 $ cargo run -- produce
 ```
 
-You should see another `Hello, Fluvio!` message appear in your consumer window!
+You should see another record appear in your consumer window!
 You've successfully communicated messages between two processes by streaming
 them with Fluvio.
 
@@ -241,11 +238,11 @@ async fn main() {
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            produce("Hello, Fluvio!").await
+            produce("Hello", "Fluvio!").await
         },
         [_, "produce", rest @ ..] => {
             let message = rest.join(" ");
-            produce(&message).await
+            produce("Custom", &message).await
         },
         [_, "consume"] => {
             consume().await
@@ -272,14 +269,14 @@ And in your consumer window, you should see it appear!
 
 ```bash
 $ cargo run -- consume
-Hello, Fluvio!
-Hello, World! 🎉
+Consumed record: Key=Hello, value=Fluvio!
+Consumed record: Key=Custom, value=Hello, World! 🎉
 ```
 
 ## Congratulations!
 
 You've now completed the Fluvio "Hello, World! 🎉" tutorial!
 
-Checkout [Fluvio Rust API on docs.rs] to learn more about writing your own Fluvio applications in Rust.
+Check out the [Fluvio Rust API on docs.rs] to learn more about writing your own Fluvio applications in Rust.
 
 [Fluvio Rust API on docs.rs]: https://docs.rs/fluvio
