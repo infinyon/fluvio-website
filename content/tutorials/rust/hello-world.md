@@ -30,10 +30,10 @@ See our [getting started] guide for more details on getting set up.
 
 In Fluvio, we send all of our messages to something called a Topic, which
 is like a category for related messages. For this tutorial, we'll create
-a topic called `hello-fluvio` using the following command:
+a topic called `hello-rust` using the following command:
 
 ```bash
-$ fluvio topic create hello-fluvio
+$ fluvio topic create hello-rust
 ```
 
 ## Creating a new Cargo project
@@ -46,8 +46,8 @@ is helpful because it manages compiling our code and dependencies.
 To create a new Rust project with cargo, run
 
 ```bash
-$ cargo new --bin hello-fluvio
-     Created binary (application) `hello-fluvio` package
+$ cargo new --bin hello-rust
+     Created binary (application) `hello-rust` package
 ```
 
 One of the first things we need to do is add our dependencies. We're going to need
@@ -56,17 +56,17 @@ In your project folder, edit your `Cargo.toml` and add lines under your `[depend
 section to import `fluvio` and `async-std`. It should look something like this:
 
 ```bash
-$ cd hello-fluvio
+$ cd hello-rust
 $ cat Cargo.toml
 [package]
-name = "hello-fluvio"
+name = "hello-rust"
 version = "0.1.0"
 authors = ["Your name <your_email@example.com>"]
 edition = "2018"
 
 [dependencies]
-fluvio = "0.6.0"
-async-std = { version = "1", features = ["attributes"] }
+fluvio = "0.5.0"
+async-std = { version = "1.0.0", features = ["attributes"] }
 ```
 
 ### Create Producer/Consumer
@@ -83,7 +83,7 @@ async fn main() {
     println!("Hello, world!");
 }
 
-async fn produce(key: &str, value: &str) -> Result<(), FluvioError> {
+async fn produce(message: &str) -> Result<(), FluvioError> {
     todo!()
 }
 
@@ -112,9 +112,9 @@ We'll start out by writing our producer code, which will send messages
 to our Topic.
 
 ```rust
-async fn produce(key: &str, value: &str) -> Result<(), FluvioError> {
-    let producer = fluvio::producer("hello-fluvio").await?;
-    producer.send(key, value).await?;
+async fn produce(message: &str) -> Result<(), FluvioError> {
+    let producer = fluvio::producer("hello-rust").await?;
+    producer.send_record(message, 0).await?;
     Ok(())
 }
 ```
@@ -124,18 +124,23 @@ That's it for the producer! Let's hook up some code in `main` to call it and tes
 ```rust
 #[async_std::main]
 async fn main() {
-    let _result = produce("Hello", "Fluvio!").await;
+    let _result = produce("Hello, Fluvio!").await;
 }
 ```
 
-We can now run this code and see it in action. We'll use the `fluvio` CLI to see
-the message arrive at the "hello-fluvio" topic.
+Notice that we had to use the `block_on` function from `async_std`. This `block_on` function
+is acting as our [executor], and is part of the machinery that makes async code in Rust work.
 
-In one terminal window, run the following command to print out events in the "hello-fluvio"
+[executor]: https://rust-lang.github.io/async-book/02_execution/04_executor.html
+
+We can now run this code and see it in action. We'll use the `fluvio` CLI to see
+the message arrive at the "hello-rust" topic.
+
+In one terminal window, run the following command to print out events in the "hello-rust"
 topic
 
 ```bash
-$ fluvio consume hello-fluvio -B --key-value
+$ fluvio consume hello-rust -B
 ```
 
 Then in another terminal window, run the following command from within your project
@@ -145,8 +150,7 @@ directory
 $ cargo run
 ```
 
-In your consumer window, you should see a message with `[Hello] Fluvio!` appear!
-The `[Hello]` is in square brackets to show that it is the key for that record.
+In your consumer window, you should see a message with `Hello, Fluvio!` appear!
 
 Now let's write some code in Rust to do the consuming for us.
 
@@ -155,15 +159,13 @@ use fluvio::Offset;
 use async_std::stream::StreamExt;
 
 async fn consume() -> Result<(), FluvioError> {
-    let consumer = fluvio::consumer("hello-fluvio", 0).await?;
+    let consumer = fluvio::consumer("hello-rust", 0).await?;
     let mut stream = consumer.stream(Offset::beginning()).await?;
 
     // Iterate over all events in the topic
     while let Some(Ok(record)) = stream.next().await {
-        let key_bytes = record.key().unwrap();
-        let key = String::from_utf8_lossy(key_bytes).to_string();
-        let value = String::from_utf8_lossy(record.value()).to_string();
-        println!("Consumed record: Key={}, value={}", key, value);
+        let string = String::from_utf8_lossy(&record.as_ref());
+        println!("Got record: {}", string);
     }
     Ok(())
 }
@@ -189,13 +191,13 @@ async fn main() {
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            produce("Hello", "Fluvio!").await
+            produce("Hello, Fluvio!").await
         },
         [_, "consume"] => {
             consume().await
         },
         _ => {
-            println!("Usage: hello-fluvio [produce|consume]");
+            println!("Usage: hello-rust [produce|consume]");
             return;
         },
     };
@@ -211,7 +213,7 @@ to read them back. Let's try out our consumer code now:
 
 ```bash
 $ cargo run -- consume
-Consumed record: Key=Hello, value=Fluvio!
+Hello, Fluvio!
 ```
 
 In another terminal window, let's run your producer one more time
@@ -220,7 +222,7 @@ In another terminal window, let's run your producer one more time
 $ cargo run -- produce
 ```
 
-You should see another record appear in your consumer window!
+You should see another `Hello, Fluvio!` message appear in your consumer window!
 You've successfully communicated messages between two processes by streaming
 them with Fluvio.
 
@@ -239,17 +241,17 @@ async fn main() {
 
     let result = match &*args_slice {
         [_, "produce"] => {
-            produce("Hello", "Fluvio!").await
+            produce("Hello, Fluvio!").await
         },
         [_, "produce", rest @ ..] => {
             let message = rest.join(" ");
-            produce("Custom", &message).await
+            produce(&message).await
         },
         [_, "consume"] => {
             consume().await
         },
         _ => {
-            println!("Usage: hello-fluvio [produce|consume]");
+            println!("Usage: hello-rust [produce|consume]");
             return;
         },
     };
@@ -270,14 +272,14 @@ And in your consumer window, you should see it appear!
 
 ```bash
 $ cargo run -- consume
-Consumed record: Key=Hello, value=Fluvio!
-Consumed record: Key=Custom, value=Hello, World! 🎉
+Hello, Fluvio!
+Hello, World! 🎉
 ```
 
 ## Congratulations!
 
 You've now completed the Fluvio "Hello, World! 🎉" tutorial!
 
-Check out the [Fluvio Rust API on docs.rs] to learn more about writing your own Fluvio applications in Rust.
+Checkout [Fluvio Rust API on docs.rs] to learn more about writing your own Fluvio applications in Rust.
 
 [Fluvio Rust API on docs.rs]: https://docs.rs/fluvio

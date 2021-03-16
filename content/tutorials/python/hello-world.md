@@ -24,10 +24,10 @@ See our [getting started] guide for more details on getting set up.
 
 In Fluvio, we send all of our messages to something called a Topic, which
 is like a category for related messages. For this tutorial, we'll create
-a topic called `hello-fluvio` using the following command:
+a topic called `hello-python` using the following command:
 
 ```bash
-$ fluvio topic create hello-fluvio
+$ fluvio topic create hello-python
 ```
 
 ### Check Python
@@ -89,7 +89,7 @@ Write the following code in your `producer.py` file.
 - _Import `fluvio`;_
 - _Create a new Fluvio Client Instance;_
 - _Create a connection to a local Fluvio Cluster;_
-- _Create a new topic producer for `hello-fluvio`;_
+- _Create a new topic producer for `hello-python`;_
 - _Listen for input typed into the terminal;_
 - _Send typed input to the fluvio cluster;_
 
@@ -98,7 +98,7 @@ Write the following code in your `producer.py` file.
 from fluvio import Fluvio
 fluvio = Fluvio.connect()
 
-producer = fluvio.topic_producer("hello-fluvio")
+producer = fluvio.topic_producer("hello-python")
 partition = 0
 while True:
     line = input('> ')
@@ -114,13 +114,13 @@ Write the following code in your `consumer.ts` file.
 - _Import `fluvio` module;_
 - _Create a new Fluvio Client Instance;_
 - _Create a connection to a local Fluvio Cluster;_
-- _Create a new topic consumer for `hello-fluvio`;_
+- _Create a new topic consumer for `hello-python`;_
 - _Listen for events sent by a topic producer;_
 
 ```python
 from fluvio import Fluvio
 partition = 0
-consumer = fluvio.partition_consumer("hello-fluvio")
+consumer = fluvio.partition_consumer("hello-python")
 for i in consumer.stream(0):
     print("Received message: %s" % i)
 ```
