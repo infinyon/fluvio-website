@@ -55,24 +55,33 @@ Run the following commands to set up your project for development:
 $ mkdir fluvio-demo
 $ cd fluvio-demo
 $ npm init -y
-$ npm install typescript ts-node @types/node -D
-$ npm install @fluvio/client -S
+$ npm install -D typescript ts-node @types/node
+$ npm install -S @fluvio/client
 $ touch producer.ts consumer.ts
 ```
 
 Your working directory should now contain the following files:
 
 ```bash
-$ tree -L 1
-.
-├── consumer.ts
-├── node_modules
-├── package-lock.json
-├── package.json
-└── producer.ts
+$ ls
+consumer.ts  node_modules  package-lock.json  package.json  producer.ts
+```
 
-1 directory, 4 files
+And your `package.json` should have the following:
 
+```bash
+$ cat package.json
+{
+  ...
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@fluvio/client": "^0.7.1"
+  }
+}
 ```
 
 ### Writing the `producer.ts` File
