@@ -122,7 +122,6 @@ Futures helpers. Update your `Cargo.toml` to include these dependencies:
 [dependencies]
 fluvio = "0.6.0"
 async-std = { version = "1", features = ["attributes"] }
-futures-lite = "1.11" # For StreamExt in consumer
 ```
 
 Let's set up our main function to be asynchronous.
@@ -187,7 +186,7 @@ $ fluvio consume rusty-topic -B -d --key-value
 Hooray, our producer worked! Now let's write a consumer in Rust.
 
 ```rust
-use futures_lite::StreamExt;
+use async_std::stream::StreamExt;
 
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -208,11 +207,11 @@ Let's run our consumer and see what we get.
 
 ```bash
 $ cargo run
-Consumed record! Key=Some("0"), value=This is record 0
-Consumed record! Key=Some("1"), value=This is record 1
-Consumed record! Key=Some("2"), value=This is record 2
-Consumed record! Key=Some("3"), value=This is record 3
-Consumed record! Key=Some("4"), value=This is record 4
+Consumed record! Key=Some("0"), value=This is rusty record 0
+Consumed record! Key=Some("1"), value=This is rusty record 1
+Consumed record! Key=Some("2"), value=This is rusty record 2
+Consumed record! Key=Some("3"), value=This is rusty record 3
+Consumed record! Key=Some("4"), value=This is rusty record 4
 ^C
 ```
 
