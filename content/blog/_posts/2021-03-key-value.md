@@ -330,8 +330,18 @@ Consumed record! Key=4, value=This is nodejs record 4
 
 # Summary
 
-Don't forget to join the conversation on
-[Discord](https://discordapp.com/invite/bBG2dTz), follow [the project on
-github](https://github.com/infinyon/fluvio/watchers) or open an
-[issue](https://github.com/infinyon/fluvio/issues) if you find a bug or have a
-feature request.
+We hope you enjoyed this quick tour of key/value records in Fluvio. Feel free
+to [check out our Github], file any feature requests, or ask us questions
+[in our community Discord]. We'd love to hear about your streaming use-cases
+and help to make Fluvio the best streaming platform it can be!
+
+[check out our Github]: https://github.com/infinyon/fluvio
+[in our community Discord]: https://discordapp.com/invite/bBG2dTz
+
+Until next time!
+
+#### Quick links:
+
+- [Getting started with Fluvio](/docs/getting-started/)
+- [Fluvio CLI reference](/docs/cli-reference/)
+- [Fluvio Architecture](/docs/architecture/)
