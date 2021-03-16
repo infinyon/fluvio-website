@@ -135,7 +135,7 @@ In one terminal window, run the following command to print out events in the "he
 topic
 
 ```bash
-$ fluvio consume hello-fluvio -B
+$ fluvio consume hello-fluvio -B --key-value
 ```
 
 Then in another terminal window, run the following command from within your project
@@ -145,7 +145,8 @@ directory
 $ cargo run
 ```
 
-In your consumer window, you should see a message with `Hello, Fluvio!` appear!
+In your consumer window, you should see a message with `[Hello] Fluvio!` appear!
+The `[Hello]` is in square brackets to show that it is the key for that record.
 
 Now let's write some code in Rust to do the consuming for us.
 
@@ -210,7 +211,7 @@ to read them back. Let's try out our consumer code now:
 
 ```bash
 $ cargo run -- consume
-Consumed record: Key=Hello, value=World!
+Consumed record: Key=Hello, value=Fluvio!
 ```
 
 In another terminal window, let's run your producer one more time
