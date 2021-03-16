@@ -16,7 +16,7 @@ back.
 Before starting on this tutorial, you'll need to have completed the following
 
 - Install the [Rust programming language]
-- Have the Fluvio CLI (version  `0.7.0` or greater) installed <sup>[1]</sup>
+- Have the Fluvio CLI (version  `0.7.1` or greater) installed <sup>[1]</sup>
 - Have access to a Fluvio cluster.
 
 See our [getting started] guide for more details on getting set up.

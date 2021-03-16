@@ -10,8 +10,8 @@ In this tutorial, you will learn how to create a topic, build a producer/consume
 
 Before starting on this tutorial, you'll need to have completed the following
 
-- Install [Node.js](#check-nodejs) (**v12.11.0** or above) 
-- Have the Fluvio CLI (version  `0.7.0` or greater) installed <sup>[1]</sup>
+- Install [Node.js](#check-nodejs) (**v12.11.0** or above)
+- Have the Fluvio CLI (version  `0.7.1` or greater) installed <sup>[1]</sup>
 - Have access to a Fluvio cluster.
 
 See our [getting started] guide for more details on getting set up.
@@ -209,7 +209,7 @@ Received record: Key=line, value=Hello, World! 🎉
 
 ## Congratulations!
 
-You've now completed the Fluvio "Hello, World! 🎉" tutorial. 
+You've now completed the Fluvio "Hello, World! 🎉" tutorial.
 
 Head over to the Fluvio Node documentation to learn more about the library and available options.
 
