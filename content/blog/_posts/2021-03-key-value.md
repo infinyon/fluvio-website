@@ -124,17 +124,7 @@ fluvio = "0.6.0"
 async-std = { version = "1", features = ["attributes"] }
 ```
 
-Let's set up our main function to be asynchronous.
-
-```rust
-// src/main.rs
-
-#[async_std::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // todo
-    Ok(())
-}
-```
+The `attributes` feature from `async_std` will let us write async code directly in main!
 
 #### Producing from Rust
 
@@ -183,7 +173,7 @@ $ fluvio consume rusty-topic -B -d --key-value
 [4] This is rusty record 4
 ```
 
-Hooray, our producer worked! Now let's write a consumer in Rust.
+Hooray, our producer worked! Let's rewrite main to test out the consumer API in Rust:
 
 ```rust
 use async_std::stream::StreamExt;
@@ -191,7 +181,7 @@ use async_std::stream::StreamExt;
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let consumer = fluvio::consumer("rusty-topic", 0).await?;
-    let mut stream = consumer.stream(fluvio::Offset::from_beginning()).await?;
+    let mut stream = consumer.stream(fluvio::Offset::beginning()).await?;
     
     while let Some(Ok(record)) = stream.next().await {
         // Let's convert the key and value into Strings
