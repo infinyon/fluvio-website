@@ -2,7 +2,7 @@
 title: Key/Value records in Fluvio
 author:
     name: "The Fluvio Team"
-description: 
+description: Learn how to easily partition data with key/value records in Fluvio.
 date: 2021-03-01
 slug: key-value-records
 url: /blog/2021/03/key-value-records
