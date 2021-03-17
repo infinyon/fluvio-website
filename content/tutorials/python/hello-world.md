@@ -4,7 +4,7 @@ toc: true
 ---
 {{< lang-selector >}}
 
-In this tutorial, you will learn how to create a topic, build a producer/consumer in Typescript, and sends a "Hello, World! 🎉" message.
+In this tutorial, you will learn how to create a topic, build a producer/consumer in Python, and sends a "Hello, World! 🎉" message.
 
 ## Prerequisites
 
@@ -54,12 +54,12 @@ The following sections will setup your project and walk through writing the appl
 Run the following script to setup your project for development:
 
 ```bash
-$ mkdir fluvio-python-demo && \
-cd fluvio-python-demo && \
-python -m venv venv && \
-source venv/bin/activate && \
-pip install fluvio && \
-touch producer.py consumer.py
+$ mkdir fluvio-python-demo
+$ cd fluvio-python-demo
+$ python -m venv venv
+$ source venv/bin/activate
+$ pip install fluvio
+$ touch producer.py consumer.py
 ```
 
 This willl create a directory `fluvio-python-demo` with a [Virtual
