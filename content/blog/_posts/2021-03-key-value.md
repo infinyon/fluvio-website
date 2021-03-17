@@ -111,7 +111,7 @@ you can use the new key/value APIs of the `fluvio` crate. Let's set up a project
 everything we need.
 
 ```bash
-$ cargo new rusty-streams
+$ cargo new rusty-streams && cd rusty-streams
 ```
 
 For this project, we'll need the `fluvio` crate, as well as an async runtime and some
