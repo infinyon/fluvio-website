@@ -172,6 +172,6 @@ and available options.
 
 ## Read the `fluvio` Docs
 
-Checkout <a href="https://infinyon.github.io/fluvio-client-python/fluvio.html"
+Check out <a href="https://infinyon.github.io/fluvio-client-python/fluvio.html"
 target="_blank">Python API</a> reference guide for additional usage information
 and documentation.
