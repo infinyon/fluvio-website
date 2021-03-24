@@ -9,7 +9,7 @@ enableEmoji=true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-      
+
 [params]
   version = "1.1.1"
   blog_time_format = "January 02, 2006"
@@ -33,7 +33,7 @@ enableEmoji=true
     identifier = "apis"
     name = "APIs"
     weight = 102
-    
+
   [[menu.main]]
     identifier = "rust"
     name = "Rust API"
@@ -46,6 +46,13 @@ enableEmoji=true
     identifier = "node"
     name = "Node API"
     url = "https://infinyon.github.io/fluvio-client-node/"
+    pre = "fas fa-sm fa-external-link-alt"
+    parent = "apis"
+    weight = 120
+  [[menu.main]]
+    identifier = "python"
+    name = "Python API"
+    url = "https://infinyon.github.io/fluvio-client-python/fluvio.html"
     pre = "fas fa-sm fa-external-link-alt"
     parent = "apis"
     weight = 120
