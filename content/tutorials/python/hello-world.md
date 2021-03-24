@@ -88,7 +88,7 @@ producer = fluvio.topic_producer("hello-python")
 partition = 0
 while True:
     line = input('> ')
-    producer.send_record(line, partition)
+    producer.send_record_string(line, partition)
 ```
 
 ##### This code performs the following actions:
@@ -103,14 +103,15 @@ while True:
 
 ### Writing the `consumer.py` File
 
-Write the following code in your `consumer.ts` file.
+Write the following code in your `consumer.py` file.
 
 ```python
-from fluvio import Fluvio
+from fluvio import (Fluvio, Offset)
+fluvio = Fluvio.connect()
 partition = 0
-consumer = fluvio.partition_consumer("hello-python")
-for i in consumer.stream(0):
-    print("Received message: %s" % i)
+consumer = fluvio.partition_consumer("hello-python", partition)
+for i in consumer.stream(Offset.beginning()):
+    print("Received message: %s" % i.value_string())
 ```
 
 ##### This code performs the following actions:
