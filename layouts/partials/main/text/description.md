@@ -1,6 +1,6 @@
 Fluvio is a low latency distributed data streaming platform that connects producers and consumers across data silos, tools, and apps.
 
-Sign-up for <a href="/docs/getting-started/fluvio-cloud">Fluvio Cloud</a> or install <a href="/docs/getting-started/fluvio-local">Fluvio locally</a>, choose an API -  <a href="https://nodejs.org/" target="_blank">Node</a>, <a href="https://www.rust-lang.org/" target="_blank">Rust</a>, <a href="https://www.python.org/" target="_blank" style="text-decoration: none;">Python</a> - and build your first data streaming App.
+Sign-up for <a href="/docs/getting-started/fluvio-cloud">Fluvio Cloud</a> or install <a href="/docs/getting-started/fluvio-local">Fluvio locally</a>, choose an API -  <a href="https://nodejs.org/" target="_blank">Node</a>, <a href="https://www.rust-lang.org/" target="_blank">Rust</a>, <a href="https://www.python.org/" target="_blank" style="text-decoration: none;">Python</a> - and roll out your first data streaming service.
 
 
 <!-- 
