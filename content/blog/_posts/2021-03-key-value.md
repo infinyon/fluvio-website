@@ -1,5 +1,5 @@
 ---
-title: Key/Value records in Fluvio
+title: Stream Key/Value records in Fluvio
 author:
     name: "The Fluvio Team"
 description: Learn how to easily partition data with key/value records in Fluvio.
