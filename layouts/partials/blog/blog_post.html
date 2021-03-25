@@ -5,12 +5,35 @@
 {{- $url := absURL .page.Params.url | safeHTML -}}
 {{- $description := .page.Params.description | safeHTML -}}
 {{- $title := .page.Title | safeHTML -}}
+
 {{- $org := "" -}}
 {{- if (.page.Param "author.org") -}}
     {{ $org = print " (" (.page.Param "author.org")  ")" }}
 {{- end -}}
 
+{{- $img := "" -}}
+{{- if (.page.Param "img") -}}
+    {{- $img = .page.Param "img" -}}
+{{- end -}}
+
+{{- $imageCredit := "" -}}
+{{- if (.page.Param "img-credit.link") -}}
+    {{ $imageCredit = printf "<a href=\"%s\" target=\"_blank\">Photo by" (.page.Param "img-credit.link") }}
+{{- end -}}
+{{- if (.page.Param "img-credit.author") -}}
+    {{ $imageCredit = printf "%s %s" $imageCredit (.page.Param "img-credit.author") }}
+{{- else -}}
+    {{ $imageCredit = printf "%s Unknown" $imageCredit }}    
+{{- end -}}
+{{- if (.page.Param "img-credit.site") -}}
+    {{ $imageCredit = printf "%s | %s" $imageCredit (.page.Param "img-credit.site") }}
+{{- end -}}
+{{- if ne $imageCredit "" -}}
+    {{ $imageCredit = printf "%s </a>" $imageCredit }}    
+{{- end -}}
+
 <h1 class="post-title entry-title">{{ .page.Title }}</h1>
+
 <div class="subtitle">
     <div class="row pl-3">
         <div>
@@ -30,7 +53,19 @@
     </div>
 </div>
 
+{{- if ne $img "" -}}
+<div class="blog-image">
+    <img src="/{{$img}}" />
+    <div class="credit">{{ $imageCredit | safeHTML }}</div>
+</div>
+{{- end -}}
+
+<div class="blog-content">
+{{ $content }}
+</div>
+
 <div class="social">
+    <span>Please share if you found it useful:</span>
     <a class="button twitter" title="Share on Twitter"
         href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $title }}"
         target="_blank">
@@ -51,8 +86,4 @@
         target="_blank">
         <i class="fab fa-lg fa-reddit"></i>
     </a>
-</div>
-
-<div class="blog-content">
-{{ $content }}
 </div>

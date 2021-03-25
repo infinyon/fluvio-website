@@ -3,11 +3,15 @@ title: Key/Value records in Fluvio
 author:
     name: "The Fluvio Team"
 description: Learn how to easily partition data with key/value records in Fluvio.
-date: 2021-03-01
+date: 2021-03-24
 slug: key-value-records
 url: /blog/2021/03/key-value-records
+img: blog/images/key-value/social/florian-berger-keys.jpg
+img-credit:
+    link: https://unsplash.com/photos/SzG0ncGBOeo
+    author: Florian Berger
+    site: Upsplash
 twitter-card: summary_large_image
-hidden: false
 ---
 
 This week, we're happy to announce the addition of a Key/Value API for
