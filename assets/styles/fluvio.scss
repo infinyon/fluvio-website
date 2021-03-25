@@ -133,7 +133,19 @@ a#logo {
 }
 
 .social {
-  margin: 10px 0 15px 20px;
+  width: 100%;
+  padding: 20px 0 30px 0;
+  margin-bottom: 10px;
+  text-align: center;
+  background: $col-gray-light12;
+  border: 1px solid $col-gray-light8;
+  border-radius: 20px;
+
+  span {
+    display: block;
+    line-height: 2.5em;
+    color: $col-gray-light4;
+  };
 
   .button {
       border: none;
@@ -383,7 +395,7 @@ footer {
   
   .title {
     font-family: $font-logo;
-    font-size: 4em;
+    font-size: 3.8em;
     font-weight: 700;
     line-height: 1.35em;
     color: $col-main-title;

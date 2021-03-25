@@ -26,9 +26,10 @@
     }
 
     .card-img {
-      margin: -2px 0 0 -1px;
       img {
-        width: 299px;
+        border-radius: 5px 5px 0 0;
+        border-bottom: 1px solid $col-gray-light8;
+        width: 296px;
       }
     }
 

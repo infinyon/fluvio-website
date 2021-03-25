@@ -3,6 +3,12 @@
     min-width: 300px;
   }
 
+  .blog-image {
+    margin: 20px;
+    .credit {text-align: center;}
+    img {max-width: 680px !important;}
+  }
+
   .blog-content {
     margin: .5em 0 2.5em 0;
 

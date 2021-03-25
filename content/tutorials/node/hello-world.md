@@ -49,44 +49,44 @@ The following sections will setup your project and walk through writing the appl
 
 ### Installing Project Dependencies
 
-Run the following script to setup your project for development:
+Run the following commands to set up your project for development:
 
 ```bash
-$ mkdir fluvio-demo && cd fluvio-demo && npm init -y && \
-npm install typescript ts-node @types/node -D && \
-npm install @fluvio/client -S && \
-touch producer.ts consumer.ts
+$ mkdir fluvio-demo
+$ cd fluvio-demo
+$ npm init -y
+$ npm install -D typescript ts-node @types/node
+$ npm install -S @fluvio/client
+$ touch producer.ts consumer.ts
 ```
 
 Your working directory should now contain the following files:
 
 ```bash
-$ tree -L 1
-.
-├── consumer.ts
-├── node_modules
-├── package-lock.json
-├── package.json
-└── producer.ts
+$ ls
+consumer.ts  node_modules  package-lock.json  package.json  producer.ts
+```
 
-1 directory, 4 files
+And your `package.json` should have the following:
 
+```bash
+$ cat package.json
+{
+  ...
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@fluvio/client": "^0.7.1"
+  }
+}
 ```
 
 ### Writing the `producer.ts` File
 
 Write the following code in your `producer.ts` file.
-
-
-##### This code performs the following actions:
-
-- _Import `@fluvio/client` and Node.js' `readline` modules;_
-- _Create a new Fluvio Client Instance;_
-- _Create a connection to a local Fluvio Cluster;_
-- _Create a new topic producer for `hello-fluvio`;_
-- _Listen for input typed into the terminal;_
-- _Send typed input to the fluvio cluster;_
-
 
 ```TypeScript
 import Fluvio from "@fluvio/client";
@@ -101,25 +101,62 @@ const rl = createInterface({
   output: process.stdout,
 });
 
-(async () => {
-  // Connect the fluvio cluster;
-  await fluvio.connect();
+const produce = async () => {
+    // Connect the fluvio cluster;
+    await fluvio.connect();
 
-  // Create a topic producer;
-  const producer = await fluvio.topicProducer("hello-fluvio");
-  const partition = 0;
-  console.log("Fluvio Producer created, waiting for input:\n\n>")
-  // Relay terminal input to fluvio topic producer;
-  rl.on("line", async (input) => {
-    await producer.sendRecord(input, partition);
-  });
-})();
+    // Create a topic producer;
+    const producer = await fluvio.topicProducer("hello-fluvio");
+    console.log("Fluvio Producer created, waiting for input:\n\n>")
+    // Relay terminal input to fluvio topic producer;
+    rl.on("line", async (input) => {
+        await producer.send("line", input);
+    });
+};
 
+produce();
 ```
+
+##### This code performs the following actions:
+
+- _Import `@fluvio/client` and Node.js' `readline` modules;_
+- _Create a new Fluvio Client Instance;_
+- _Create a connection to a local Fluvio Cluster;_
+- _Create a new topic producer for `hello-fluvio`;_
+- _Listen for input typed into the terminal;_
+- _Send typed input to the fluvio cluster;_
+
 
 ### Writing the `consumer.ts` File
 
 Write the following code in your `consumer.ts` file.
+
+```TypeScript
+import Fluvio, { Offset } from "@fluvio/client";
+
+// Create Fluvio Client Instance
+const fluvio = new Fluvio();
+
+const consume = async () => {
+    // Connect the fluvio cluster;
+    await fluvio.connect();
+
+    const partition = 0;
+
+    // Create Topic Consumer
+    const consumer = await fluvio.partitionConsumer("hello-fluvio", partition);
+    console.log("Fluvio Consumer created, listening for events:\n\n")
+    const stream = await consumer.createStream(Offset.FromBeginning());
+    
+    for await (const record of stream) {
+        const key = record.keyString();
+        const value = record.valueString();
+        console.log(`Received record: Key=${key}, value=${value}`);
+    }
+};
+
+consume();
+```
 
 ##### This code performs the following actions:
 
@@ -128,35 +165,6 @@ Write the following code in your `consumer.ts` file.
 - _Create a connection to a local Fluvio Cluster;_
 - _Create a new topic consumer for `hello-fluvio`;_
 - _Listen for events sent by a topic producer;_
-
-
-```TypeScript
-import Fluvio, { OffsetFrom } from "@fluvio/client";
-
-// Create Fluvio Client Instance
-const fluvio = new Fluvio();
-
-(async () => {
-  // Connect the fluvio cluster;
-  await fluvio.connect();
-
-  const partition = 0;
-
-  //   Create Topic Consumer
-  const consumer = await fluvio.partitionConsumer("hello-fluvio", partition);
-  console.log("Fluvio Consumer created, listening for events:\n\n")
-  await consumer.stream(
-    {
-      index: 0,
-      from: OffsetFrom.Beginning,
-    },
-    async (msg: string) => {
-      console.log(`Received message: ${msg}`);
-    }
-  );
-})();
-
-```
 
 ## Running the Demo
 
@@ -196,8 +204,7 @@ $ npx ts-node ./consumer.ts
 ```bash
 Fluvio Consumer created, listening for events:
 
-
-Received message: Hello, World! 🎉
+Received record: Key=line, value=Hello, World! 🎉
 ```
 
 ## Congratulations!

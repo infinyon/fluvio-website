@@ -4,7 +4,7 @@ author:
     name: "The Fluvio Team"
 description: Fluvio Cloud, a low latency data streaming platform for App developers like us.
 metadata: NEWS
-date: 2021-03-01
+date: 2021-03-07
 slug: announcing-fluvio-cloud-platform
 url: /blog/2021/03/announcing-fluvio-cloud-platform
 img: blog/images/fluvio-cloud/social/cloud.jpg

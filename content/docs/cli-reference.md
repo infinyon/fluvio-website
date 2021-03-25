@@ -32,10 +32,13 @@ Here is a list of all Fluvio commands that are available by default:
 | [fluvio cluster releases list]    | Show a list of Fluvio release versions                             |
 | [fluvio cluster run sc]           | Run a new Streaming Controller (SC)                                |
 | [fluvio cluster run spu]          | Run a new Streaming Processing Unit (SPU)                          |
+| [fluvio cluster spu list]         | List the cluster's Streaming Processing Units (SPUs)               |
 | [fluvio install]                  | Install Fluvio plugins                                             |
 | [fluvio update]                   | Update the Fluvio CLI                                              |
 | [fluvio version]                  | Print Fluvio version information                                   |
+| [fluvio cloud login]              | Login to Fluvio Cloud                                              |
 
+[fluvio topics]: #fluvio-topic
 [fluvio topic create]: #fluvio-topic-create
 [fluvio topic list]: #fluvio-topic-list
 [fluvio topic describe]: #fluvio-topic-describe
@@ -57,8 +60,13 @@ Here is a list of all Fluvio commands that are available by default:
 [fluvio install]: #fluvio-install
 [fluvio update]: #fluvio-update
 [fluvio version]: #fluvio-version
+[fluvio cloud login]: #fluvio-cloud-login
 
-## `fluvio topic create`
+## Topics
+
+Commands for topic management.
+
+### `fluvio topic create`
 
 This command is used to create new Fluvio topics. A Fluvio topic is a stream where
 you send related messages. Different topics have unique names and store their data
@@ -97,7 +105,7 @@ $ fluvio topic create greeting
 topic "greeting" created
 ```
 
-## `fluvio topic list`
+### `fluvio topic list`
 
 This command shows you all the existing topics in your cluster, as well as some basic
 information about them, including how many partitions a topic has and how many times it
@@ -124,7 +132,7 @@ $ fluvio topic list
  greeting  computed      1          1                   resolution::provisioned   
 ```
 
-## `fluvio topic describe`
+### `fluvio topic describe`
 
 This command prints more detailed information about a specific topic.
 
@@ -158,7 +166,7 @@ $ fluvio topic describe greeting
  -----------------           
 ```
 
-## `fluvio topic delete`
+### `fluvio topic delete`
 
 This command deletes an existing Fluvio topic and all data associated with it.
 This data may not be recovered, so use this with care.
@@ -182,7 +190,11 @@ $ fluvio topic delete greeting
 topic "greeting" deleted
 ```
 
-## `fluvio partition list`
+## Partitions
+
+Commands for partition management.
+
+### `fluvio partition list`
 
 Prints basic information about each partition in the cluster, such as
 which topic it belongs to, which SPU is leading the partition, and the
@@ -209,69 +221,96 @@ $ fluvio partition list
  greeting  0          5001    []        Online      1   1    0    [] 
 ```
 
-## `fluvio produce`
+## Producer/Consumer
+
+Commands for producer and consumer.
+
+### `fluvio produce`
 
 The `fluvio produce` command is a way to send messages to a particular topic and partition.
 This can be useful for testing your applications by manually sending specific messages.
 
 ```
-fluvio-produce 0.4.0
+fluvio-produce
 Write messages to a topic/partition
 
-By default, this reads a single line from stdin to use as the message. If you
-run this with no file options, the command will hang until you type a line in
-the terminal. Alternatively, you can pipe a message into the command like this:
+When no '--file' is provided, the producer will read from 'stdin' and send each
+line of input as one record.
 
-$ echo "Hello, world" | fluvio produce greetings
+If a file is given with '--file', the file is sent as one entire record.
+
+If '--key-separator' is used, records are sent as key/value pairs, and the keys
+are used to determine which partition the records are sent to.
 
 USAGE:
     fluvio produce [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -C, --continuous    Send messages in an infinite loop
-    -h, --help          Prints help information
+    -v, --verbose    Print progress output when sending records
+    -h, --help       Prints help information
 
 OPTIONS:
-    -p, --partition <integer>
-            The ID of the Partition to produce to [default: 0]
+        --key-separator <key-separator>
+            Sends key/value records split on the first instance of the separator
 
-    -l, --record-per-line <filename>
-            Send each line of the file as its own Record
-
-    -r, --record-file <filename>...     Send an entire file as a single Record
+    -f, --file <file>
+            Path to a file to produce to the topic. If absent, producer will
+            read stdin
 
 ARGS:
     <topic>    The name of the Topic to produce to
 ```
 
-By default, the `fluvio produce` command will read a single line from `stdin` and send it
-as the payload of the message. However, you can also specify files to read messages from.
-With the `--record-per-line` flag, you can send many messages from a single file, or with
-the `--record-file` flag you can send the entire contents of a file (including newlines)
-as a single record.
+#### Example 1: Produce records from stdin
 
-Example usage:
+The quickest way to send a record using the producer is to just type your record
+into standard input:
 
 ```
-$ cat records.txt
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
-
-$ fluvio produce my-topic --record-per-line records.txt
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
+$ fluvio produce my-topic
+> This is my first record ever
 Ok!
+> This is my second record ever
+Ok!
+> ^C
 ```
 
-You can then confirm that the records were sent by reading them back with `fluvio consume`:
+-> In order to stop the producer, we need to press `ctrl-C` (shown above as `^C`)
+
+As the message says, each line that you type will be sent a new record to the topic.
+
+The `Ok!` was printed by the producer after each record, to let us know the record
+was sent successfully.
+
+#### Example 2: Produce key/value records from stdin
+
+Fluvio supports key/value records out-of-the-box. In a key/value record, the key is used
+to decide which partition the record is sent to. Let's try sending some simple key/value records:
 
 ```
-$ fluvio consume my-topic -B -d
-{"user":"Bob","message":"Hello, Alice!"}
-{"user":"Alice","message":"Hello, Bob!"}
+$ fluvio produce my-topic --key-separator=":"
+> alice:Alice In Wonderland
+Ok!
+> batman:Bruce Wayne
+Ok!
+> ^C
 ```
 
-## `fluvio consume`
+So our records are being sent, but how do we know that the producer recognized each key properly?
+We can use the `--verbose` (`-v`) flag to tell the producer to print back the keys and values it
+recognizes. That way, we can be confident that our records are being sent the way we want them to be.
+
+```
+$ fluvio produce my-topic -v --key-separator=":"
+> santa:Santa Claus
+[santa] Santa Claus
+Ok!
+> ^C
+```
+
+The producer splits the key from the value and prints it in a `[key] value` format.
+
+### `fluvio consume`
 
 The `fluvio consume` command is a way to read the contents of messages in a Fluvio topic
 from a command-line environment. This can be useful if you are developing an application
@@ -283,18 +322,22 @@ If your topic has more than one partition, the `consume` command will only read 
 of those partitions, defaulting to the first one (index zero). You can specify which
 partition you want to read messages from using the `-p` option.
 
-Arguments:
-
 ```
-fluvio-consume 0.4.0
+fluvio-consume
 Read messages from a topic/partition
 
+By default, consume operates in "streaming" mode, where the command will remain
+active and wait for new messages, printing them as they arrive. You can use the
+'-d' flag to exit after consuming all available messages.
+
 USAGE:
-    fluvio consume [FLAGS] [OPTIONS] <string>
+    fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
     -B, --from-beginning        Start reading from beginning
     -d, --disable-continuous    disable continuous processing of messages
+    -k, --key-value             Print records in "[key] value" format, with
+                                "[null]" for no key
     -s, --suppress-unknown      Suppress items items that have an unknown output
                                 type
     -h, --help                  Prints help information
@@ -310,27 +353,53 @@ OPTIONS:
             json, raw]
 
 ARGS:
-    <string>    Topic name
+    <topic>    Topic name
 ```
 
-Example usage:
+For our consumer examples, we are going to read back the records we sent from the producer
+examples above.
 
-Let's say you want to read all the messages that have ever been produced for a particular
-topic and partition, then stop when they have all been consumed. If our topic is named
-"my-topic", and we want to consume from partition 1, we can run:
+#### Example 1: Consume all records
 
-```
-fluvio consume my-topic -B -d -p 1 
-```
-
-If you would like the consumer to continue running and print new messages as they arrive,
-simply remove the `-d` flag:
+When consuming, we need to specify a starting offset from which to begin reading.
+We can use the `--from-beginning` (`-B`) flag in order to read everything from the very
+beginning. Here we'll also use the `--disable-continuous` (`-d`) flag in order to exit
+after all the records have been read:
 
 ```
-fluvio consume my-topic -B -p 1
+$ fluvio consume my-topic -B -d
+This is my first record ever
+This is my second record ever
+Alice In Wonderland
+Bruce Wayne
+Santa Claus
 ```
 
-## `fluvio profile current`
+Notice that all the records are printed by value only: the records with keys have not
+had their keys printed! This is the default behavior of the consumer. To see how to print
+the keys of key/value records, see the next example!
+
+#### Example 2: Consume key/value records
+
+If we want to see both the keys _and_ values of the records in the topic, you can use
+the `--key-value` flag:
+
+```
+$ fluvio consume my-topic -B -d --key-value
+[null] This is my first record ever
+[null] This is my second record ever
+[alice] Alice In Wonderland
+[batman] Bruce Wayne
+[santa] Santa Claus
+```
+
+Records that were not given a key are printed with `[null]`.
+
+## Profiles
+
+Commands for profile management
+
+### `fluvio profile current`
 
 Prints out the name of the active Fluvio profile. Profiles are used to communicate with
 different Fluvio clusters. For example, let's say you have an application that uses
@@ -360,7 +429,7 @@ $ fluvio profile current
 local
 ```
 
-## `fluvio profile delete`
+### `fluvio profile delete`
 
 Deletes a profile from your Fluvio configuration (`~/.fluvio/config`). This will
 not delete a cluster (for that, see [fluvio cluster delete]), but it will cause
@@ -396,7 +465,7 @@ profile local deleted
 warning: this removed your current profile, use 'fluvio profile switch' to select a different one
 ```
 
-## `fluvio profile delete-cluster`
+### `fluvio profile delete-cluster`
 
 Deletes cluster connection information from your Fluvio configuration. This will not delete
 a cluster itself (for that see [fluvio cluster delete]), but it will cause the Fluvio CLI to
@@ -424,7 +493,7 @@ $ fluvio profile delete-cluster local
 Cluster local deleted
 ```
 
-## `fluvio profile switch`
+### `fluvio profile switch`
 
 This switches the "current" profile. After switching current profiles, all
 subsequent Fluvio CLI commands that interact with a cluster will target the
@@ -450,7 +519,7 @@ Example usage:
 $ fluvio profile switch fluvio-cloud
 ```
 
-## `fluvio profile view`
+### `fluvio profile view`
 
 This prints the entire Fluvio configuration (from `~/.fluvio/config`).
 
@@ -491,7 +560,11 @@ Config {
 }
 ```
 
-## `fluvio cluster check`
+## Clusters
+
+Commands for cluster management.
+
+### `fluvio cluster check`
 
 The cluster commands are used to install your own Fluvio cluster. This command
 is used to check whether you have all the required dependencies set up on your
@@ -526,7 +599,7 @@ You may proceed with cluster startup
 next: run `fluvio cluster start`
 ```
 
-## `fluvio cluster start`
+### `fluvio cluster start`
 
 This command is used to start your own Fluvio cluster, with all the
 machinery needed to receive, process, and serve streaming messages.
@@ -643,7 +716,7 @@ Performing pre-flight checks
 ✅ ok: Fluvio system charts are installed
 ```
 
-## `fluvio cluster delete`
+### `fluvio cluster delete`
 
 Deletes a Fluvio cluster and all data associated with it. Be careful, this
 cannot be undone.
@@ -680,7 +753,7 @@ To uninstall Fluvio from your local machine:
 $ fluvio cluster delete --local
 ```
 
-## `fluvio cluster releases list`
+### `fluvio cluster releases list`
 
 Prints all the published versions of Fluvio that are candidates to
 install on Kubernetes with `fluvio cluster start`.
@@ -713,7 +786,7 @@ VERSION
 ...
 ```
 
-## `fluvio cluster run sc`
+### `fluvio cluster run sc`
 
 Directly invokes a Streaming Controller (SC) from the command line. This is a low-level
 command and is not typically what you want to be using. If you want to run Fluvio
@@ -766,7 +839,7 @@ OPTIONS:
              [env: AUTH_POLICY=]
 ```
 
-## `fluvio cluster run spu`
+### `fluvio cluster run spu`
 
 Directly invokes a Streaming Processing Unit (SPU) from the command line. This is a
 low-level command and is not typically what you want to be using. If you want to run
@@ -826,7 +899,40 @@ OPTIONS:
             TLS: address of non tls public service, required
 ```
 
-## `fluvio install`
+### `fluvio cluster spu list`
+
+This command shows details about the active SPUs in your cluster.
+It is mostly useful for checking on the status of individual SPUs
+to see whether they are still online, and which addresses they live at.
+
+```
+fluvio-cluster-spu-list
+List all SPUs known by this cluster (managed AND custom)
+
+fluvio cluster spu list [FLAGS] [OPTIONS]
+
+FLAGS:
+        --custom    Whether to list only custom SPUs
+    -h, --help      Prints help information
+
+OPTIONS:
+    -O, --output <type>    Output [default: table]  [possible values: table,
+                           yaml, json]
+```
+
+Example usage:
+
+```
+$ fluvio cluster spu list
+ ID    NAME             STATUS  TYPE      RACK  PUBLIC          PRIVATE
+ 5001  custom-spu-5001  Online  "custom"   -    localhost:9010  localhost:9011
+```
+
+## Maintenance
+
+Maintenance commands, cluster installation, upgrading and versioning.
+
+### `fluvio install`
 
 Some Fluvio CLI commands are distributed as separate executables that we call
 "extensions". This command installs and updates extensions by name, placing
@@ -864,7 +970,7 @@ $ fluvio install fluvio/fluvio-cloud
 🔑 Downloaded and verified package file
 ```
 
-## `fluvio update`
+### `fluvio update`
 
 This command performs a self-update for the Fluvio CLI. It takes no arguments,
 and just simply downloads the latest version of `fluvio` and overwrites itself.
@@ -879,7 +985,7 @@ $ fluvio update
 ✅ Successfully installed ~/.fluvio/bin/fluvio
 ```
 
-## `fluvio version`
+### `fluvio version`
 
 This command prints out the version of the Fluvio CLI that you're running, as
 well as some other useful information about how it was built. For example, it
@@ -898,3 +1004,50 @@ Git Commit      : 68acd75c8d8c1a03ffa7512be5eb71fa6f79caa1
 OS Details      : Darwin 19.6.0 x86_64
 Rustc Version   : 1.48.0 (7eac88a 2020-11-16)
 ```
+
+### `fluvio cloud login`
+
+This command is used to get started working with [Fluvio Cloud], our hosted
+Fluvio offering. After creating an account, run this command and provide your
+email and password in order to download your Fluvio Cloud Profile. This allows
+you to interact with your Cloud cluster just like any other kind of cluster.
+
+[Fluvio Cloud]: https://cloud.fluvio.io/signup
+
+```
+fluvio-cloud-login
+Log into Fluvio Cloud with a username and password
+
+USAGE:
+    fluvio-cloud login [OPTIONS]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+        --email <email>          Fluvio Cloud email to use for logging in
+        --password <password>    Password to use when logging in (not recommended)
+        --profile <profile>      The name of the Profile to save
+```
+
+Example usage:
+
+```
+$ fluvio cloud login
+Fluvio Cloud email: mosher@infinyon.com
+Password: <hidden>
+```
+
+After it's completed successfully, you should be able to see your new cloud
+profile using `fluvio profile view`:
+
+```
+$ fluvio profile view
+    PROFILE    CLUSTER    ADDRESS                          TLS
+ *  cloud      cloud      router.cloud.fluvio.io:9003      Verified
+```
+
+At this point, any other `fluvio` commands (such as produce, consume, etc.) will
+now interact with your `cloud` cluster. To switch back to a different cluster, see
+[fluvio profile switch].
