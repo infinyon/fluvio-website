@@ -12,24 +12,26 @@
 {{- end -}}
 
 {{- $img := "" -}}
-{{- if (.page.Param "img") -}}
+{{- if (.page.Param "tile") -}}
+    {{- $img = .page.Param "tile" -}}
+{{- else if (.page.Param "img") -}}
     {{- $img = .page.Param "img" -}}
 {{- end -}}
 
 {{- $imageCredit := "" -}}
 {{- if (.page.Param "img-credit.link") -}}
     {{ $imageCredit = printf "<a href=\"%s\" target=\"_blank\">Photo by" (.page.Param "img-credit.link") }}
-{{- end -}}
-{{- if (.page.Param "img-credit.author") -}}
-    {{ $imageCredit = printf "%s %s" $imageCredit (.page.Param "img-credit.author") }}
-{{- else -}}
-    {{ $imageCredit = printf "%s Unknown" $imageCredit }}    
-{{- end -}}
-{{- if (.page.Param "img-credit.site") -}}
-    {{ $imageCredit = printf "%s | %s" $imageCredit (.page.Param "img-credit.site") }}
-{{- end -}}
-{{- if ne $imageCredit "" -}}
-    {{ $imageCredit = printf "%s </a>" $imageCredit }}    
+    {{- if (.page.Param "img-credit.author") -}}
+        {{ $imageCredit = printf "%s %s" $imageCredit (.page.Param "img-credit.author") }}
+    {{- else -}}
+        {{ $imageCredit = printf "%s Unknown" $imageCredit }}    
+    {{- end -}}
+    {{- if (.page.Param "img-credit.site") -}}
+        {{ $imageCredit = printf "%s | %s" $imageCredit (.page.Param "img-credit.site") }}
+    {{- end -}}
+    {{- if ne $imageCredit "" -}}
+        {{ $imageCredit = printf "%s </a>" $imageCredit }}    
+    {{- end -}}
 {{- end -}}
 
 <h1 class="post-title entry-title">{{ .page.Title }}</h1>
@@ -56,7 +58,9 @@
 {{- if ne $img "" -}}
 <div class="blog-image">
     <img src="/{{$img}}" />
-    <div class="credit">{{ $imageCredit | safeHTML }}</div>
+    {{- if ne $imageCredit "" -}}
+        <div class="credit">{{ $imageCredit | safeHTML }}</div>
+    {{- end -}}
 </div>
 {{- end -}}
 

@@ -9,7 +9,7 @@
     {{- $description = .page.Param "description" -}}
 {{- end }}
 <meta property="og:description" content="{{ $description }}" />
-{{- if .page.Param "image" -}}
+{{- if .page.Param "img" -}}
     {{- $img := print .page.Site.BaseURL (.page.Param "img") }}
 <meta property="og:image" content="{{ $img }}">
 <meta name="twitter:site" content="@fluvio_io">
