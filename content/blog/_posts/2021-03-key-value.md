@@ -1,7 +1,8 @@
 ---
 title: Stream Key/Value records in Fluvio
 author:
-    name: "Nick Mosher (@nicholastmosher)"
+    name: "Nick Mosher"
+    handle: "@nicholastmosher"
 description: "Learn how to use key/value records to control how your data is distributed and stored within
 Fluvio."
 date: 2021-03-24

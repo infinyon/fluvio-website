@@ -11,6 +11,11 @@
     {{ $org = print " (" (.page.Param "author.org")  ")" }}
 {{- end -}}
 
+{{- $handle := "" -}}
+{{- if (.page.Param "author.handle") -}}
+    {{ $handle = print " (" (.page.Param "author.handle")  ")" }}
+{{- end -}}
+
 {{- $img := "" -}}
 {{- if (.page.Param "tile") -}}
     {{- $img = .page.Param "tile" -}}
@@ -40,7 +45,10 @@
     <div class="row pl-3">
         <div>
             <span class="by">by</span> 
-            <span class="author">{{ .page.Param "author.name"}}</span>{{ $org }} 
+            <span class="author">{{ .page.Param "author.name"}}</span>
+            {{- if ne $handle "" -}}
+                <span class="handle">{{ $handle }}</span>
+            {{- end }}
         </div>
         <div class="col-md-auto">
             <span class="mr-1">|</span>
