@@ -46,9 +46,8 @@
       text-transform: uppercase;
     }
 
-    .handle {
-      color: #555555;
-      font-weight: 700;
+    a {
+      font-family: $font-blog;
       font-size: .95em;
     }
 
