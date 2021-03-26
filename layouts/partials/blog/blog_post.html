@@ -11,6 +11,11 @@
     {{ $org = print " (" (.page.Param "author.org")  ")" }}
 {{- end -}}
 
+{{- $github := "" -}}
+{{- if (.page.Param "author.github") -}}
+    {{ $github = printf " (<a href=\"https://github.com/%s\" target=\"_blank\">@%s</a>)" (.page.Param "author.github") (.page.Param "author.github") }}
+{{- end -}}
+
 {{- $img := "" -}}
 {{- if (.page.Param "tile") -}}
     {{- $img = .page.Param "tile" -}}
@@ -40,7 +45,10 @@
     <div class="row pl-3">
         <div>
             <span class="by">by</span> 
-            <span class="author">{{ .page.Param "author.name"}}</span>{{ $org }} 
+            <span class="author">{{ .page.Param "author.name"}}</span>
+            {{- if ne $github "" -}}
+                {{ $github | safeHTML }}
+            {{- end }}
         </div>
         <div class="col-md-auto">
             <span class="mr-1">|</span>
