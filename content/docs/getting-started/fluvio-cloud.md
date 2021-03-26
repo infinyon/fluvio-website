@@ -8,13 +8,7 @@ weight: 30
 Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
 
 {{<idea>}}
-<<<<<<< HEAD
-Fluvio Cloud is currently in **alpha** - the **apis** are under active development and you may face **instability** in various **edge** situations. 
-
-**Our pledge** is to be actively engaged with Fluvio users and respond to issues and suggestions in the shortest possible time.
-=======
 Fluvio Cloud is currently in **alpha** and is not suitable for production environments.
->>>>>>> master
 {{</idea>}}
 
 You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> or in <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a>.
