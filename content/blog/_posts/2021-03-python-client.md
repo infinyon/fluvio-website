@@ -7,11 +7,7 @@ description: "Learn how to wrap your rust crate in Python"
 date: 2021-03-28
 slug: key-value-records
 url: /blog/2021/03/python-client
-img: blog/images/key-value/social/florian-berger-keys.jpg
-img-credit:
-    link: https://unsplash.com/photos/SzG0ncGBOeo
-    author: Florian Berger
-    site: Upsplash
+img: blog/images/python-client/python-blog-social.png
 twitter-card: summary_large_image
 
 ---
