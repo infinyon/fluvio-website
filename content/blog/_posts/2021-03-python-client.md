@@ -216,16 +216,12 @@ You can get the source for this post in our [fluvio-demo-apps-rust] repository.
 
 [fluvio-demo-apps-rust]: https://github.com/infinyon/fluvio-demo-apps-rust/tree/master/my-python-lib-blog-post
 
-This is just the basics for setting up a Python wrapper. For our Fluvio Python
-Client, our Rust crate is [`_fluvio_python`] so that it's not exported and
-wrapped the rust structs with python classes, so we can have nice [documentation generation].
+These are just the basics for setting up a Python wrapper. In the Fluvio Python Client, the Rust crate is [`_fluvio_python`]; a private python module that wraps the rust structs with python classes, giving us nice [documentation generation].
 
 [`_fluvio_python`]: https://github.com/infinyon/fluvio-client-python/blob/c6d82d63a001376325d8583c75319c41fd5bfcd5/build.rs#L10
 [documentation generation]: https://infinyon.github.io/fluvio-client-python/fluvio.html
 
-Packaging this up as Python package, testing and putting it on pypi is another
-key part for productionalizing such a project. You can see how we did it in our
-[`Makefile`] and [github publishing workflow].
+Packaging, testing, and publishing on `pypi` is beyond the scope of this blog. Checkout the [`Makefile`] and the [github publishing workflow] for additional information.
 
 [`Makefile`]: https://github.com/infinyon/fluvio-client-python/blob/main/Makefile
 [github publishing workflow]: https://github.com/infinyon/fluvio-client-python/blob/main/.github/workflows/publish.yml
