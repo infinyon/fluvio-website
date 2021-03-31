@@ -3,7 +3,7 @@ title: How we built our Python Client that's mostly Rust
 author:
     name: "Sebastian Imlay"
     github: "simlay"
-description: "Learn how to wrap your rust crate in Python"
+description: "Learn how to wrap your Rust crate in Python."
 date: 2021-03-28
 slug: key-value-records
 url: /blog/2021/03/python-client
