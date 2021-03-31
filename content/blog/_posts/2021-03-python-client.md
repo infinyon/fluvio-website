@@ -139,13 +139,15 @@ The `src/lib.rs` should currently have some basic tests. We'll change it to the 
 include!(concat!(env!("OUT_DIR"), "/glue.rs"));
 ```
 
-This is a typical Rust pattern when using build scripts. The code takes the file in ${OUT_DIR}/glue.rs 
-and includes the contents into src/lib.rs in the build directory. The result will be as if we hand-wrote 
-the generated code in our `lib.rs` file.
+This is a typical Rust pattern when using build scripts. The code takes the
+file in `${OUT_DIR}/glue.rs` and includes the contents into `src/lib.rs` in the
+build directory. The result will be as if we hand-wrote the generated code in
+our `lib.rs` file.
 
-This section uses flapigen to expand the [`foreign_class`] macro into many [cpython] functions as an 
-[extension module], and cargo compiles it as a [`cdylib`]. If you want to see what that looks like, install 
-[`cargo-expand`] and run `cargo expand`. You'll get a lot of generated rust code.
+This section uses flapigen to expand the [`foreign_class`] macro into many
+[cpython] functions as an [extension module], and cargo compiles it as a
+[`cdylib`]. If you want to see what that looks like, install [`cargo-expand`]
+and run `cargo expand`. You'll get a lot of generated rust code.
 
 [`foreign_class`]: https://dushistov.github.io/flapigen-rs/foreign-class.html
 [cpython]: https://github.com/dgrunwald/rust-cpython
@@ -183,9 +185,12 @@ This is the most basic [setuptools-rust] setup, except for using
 [setuptools-rust]: https://github.com/PyO3/setuptools-rust#setuppy
 [`RustCPython`]: https://setuptools-rust.readthedocs.io/en/latest/reference.html#setuptools_rust.Binding
 
-To build the Rust and the Python packages just run `python setup.py develop`. Python calls `cargo` and moves `cdylib` into your local directory.
+To build the Rust and the Python packages just run `python setup.py develop`.
+Python calls `cargo` and moves `cdylib` into your local directory.
 
-Now in a `simple.py` script to use said library:
+## Testing it all out
+
+Create a `simple.py` script with the following in it:
 
 ```python
 from my_python_lib import Foo
@@ -209,7 +214,7 @@ And there you go, you've called Rust from Python!
 
 You can get the source for this post in our [fluvio-demo-apps-rust] repository.
 
-[fluvio-demo-apps-rust]: https://github.com/infinyon/fluvio-demo-apps-rust/
+[fluvio-demo-apps-rust]: https://github.com/infinyon/fluvio-demo-apps-rust/tree/master/my-python-lib-blog-post
 
 This is just the basics for setting up a Python wrapper. For our Fluvio Python
 Client, our Rust crate is [`_fluvio_python`] so that it's not exported and
