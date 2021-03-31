@@ -21,7 +21,7 @@ Using the Python client is just as easy as using our other clients. Check out th
 [documentation]: https://infinyon.github.io/fluvio-client-python/fluvio.html
 
 In this post, we'll talk about how we were able to leverage some of the great
-Rust tooling to build a Python client without writing much Python itself.
+Rust tools to build a Python client without writing much Python itself.
 
 # Overview
 
@@ -45,10 +45,10 @@ python -m venv venv
 source venv/bin/activate
 ```
 
-The above creates a Rust crate named `my-python-lib`, then creates a Python
+The above creates a Rust crate named `my-python-lib`, then sets-up a Python
 [virtual environment].
 
--> **Note**: you'll need to have the [rust toolchain] and [python 3.6] or above installed.
+-> **Note**: You'll need to have the [rust toolchain] and [python 3.6] or above installed.
 
 [virtual environment]: https://docs.python.org/3/tutorial/venv.html
 [rust toolchain]: https://rustup.rs/
@@ -71,7 +71,7 @@ flapigen = "0.6.0-pre7"
 ```
 
 The `crate-type = ["cdylib"]` tells Rust to build our crate as a C-compatible
-[dynamic library] rather than a typical crate. This will allow our Python code
+[dynamic library] rather than a typical crate. This crate type will allow our Python code
 to interact with our library as if it were compiled C code rather than Rust.
 
 [dynamic library]: https://en.wikipedia.org/wiki/Dynamic_linker
@@ -95,8 +95,8 @@ fn main() {
 }
 ```
 
-This is the code that sets up `flapigen` to run on our project. At build time,
-it will read the "glue code" we write in `src/glue.rs.in`, and will generate
+The code sets up `flapigen` to run on our project. At build time,
+it will read the "glue code" we write in `src/glue.rs.in`, and generate
 Rust code to interact with Python and place it in `${OUT_DIR}/glue.rs`.
 
 Now we'll add a `src/glue.rs.in` file with something like the following:
@@ -126,7 +126,7 @@ foreign_class!(class Foo {
 });
 ```
 
-This is a simple example the [flapigen book] that we can nicely copy and paste.
+This simple example was published in the [flapigen book] and we can copy and paste it here.
 
 [flapigen book]: https://dushistov.github.io/flapigen-rs/foreign-class.html
 [build script]: https://doc.rust-lang.org/cargo/reference/build-scripts.html
@@ -139,13 +139,12 @@ The `src/lib.rs` should currently have some basic tests. We'll change it to the 
 include!(concat!(env!("OUT_DIR"), "/glue.rs"));
 ```
 
-This is a very common Rust pattern with build generation. What this does is
-take the file in `${OUT_DIR}/glue.rs` and include the contents `src/lib.rs`.
-The end result will be as if we hand-wrote the generated code in our `lib.rs` file.
+This is a typical Rust pattern when using build scripts. The code takes the file in ${OUT_DIR}/glue.rs 
+and includes the contents into src/lib.rs in the build directory. The result will be as if we hand-wrote 
+the generated code in our `lib.rs` file.
 
-This section uses flapigen to expand the [`foreign_class`] macro into a bunch of
-[cpython] functions as an [extension module] and cargo compiles it as a
-[`cdylib`]. If you wanna see what that actually looks like, install
+This section uses flapigen to expand the [`foreign_class`] macro into many [cpython] functions as an 
+[extension module], and cargo compiles it as a [`cdylib`]. If you want to see what that looks like, install 
 [`cargo-expand`] and run `cargo expand`. You'll get a lot of generated rust code.
 
 [`foreign_class`]: https://dushistov.github.io/flapigen-rs/foreign-class.html
@@ -156,14 +155,14 @@ This section uses flapigen to expand the [`foreign_class`] macro into a bunch of
 
 ## Python Glue
 
-In the [`setup`](#setup), we created a virtual environment, now we'll need to
+In the [`setup`](#setup), we created a virtual environment, and now we'll need to
 install some Python tools via:
 
 ```sh
 source venv/bin/activate && pip install setuptools-rust
 ```
 
-Now to create a python package you create a file called `setup.py` with:
+Now to create a python package, you create a file called `setup.py` with:
 
 ```python
 from setuptools import setup
@@ -184,8 +183,7 @@ This is the most basic [setuptools-rust] setup, except for using
 [setuptools-rust]: https://github.com/PyO3/setuptools-rust#setuppy
 [`RustCPython`]: https://setuptools-rust.readthedocs.io/en/latest/reference.html#setuptools_rust.Binding
 
-Now to build the Rust and Python just do `python setup.py develop`.
-This will call `cargo` and move it into your local directory.
+To build the Rust and the Python packages just run `python setup.py develop`. Python calls `cargo` and moves `cdylib` into your local directory.
 
 Now in a `simple.py` script to use said library:
 
