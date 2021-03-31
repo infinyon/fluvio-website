@@ -76,7 +76,7 @@ to interact with our library as if it were compiled C code rather than Rust.
 
 [dynamic library]: https://en.wikipedia.org/wiki/Dynamic_linker
 
-Now we'll create a file called `build.rs` and add the following:
+Now we'll create a [build script] in `build.rs` by adding the following:
 
 ```rust
 use flapigen::{LanguageConfig, PythonConfig};
@@ -129,6 +129,7 @@ foreign_class!(class Foo {
 This is a simple example the [flapigen book] that we can nicely copy and paste.
 
 [flapigen book]: https://dushistov.github.io/flapigen-rs/foreign-class.html
+[build script]: https://doc.rust-lang.org/cargo/reference/build-scripts.html
 
 The `src/lib.rs` should currently have some basic tests. We'll change it to the following:
 
@@ -156,9 +157,13 @@ This section uses flapigen to expand the [`foreign_class`] macro into a bunch of
 ## Python Glue
 
 In the [`setup`](#setup), we created a virtual environment, now we'll need to
-install some Python tools.
+install some Python tools via:
 
-Create a file called `setup.py` with:
+```sh
+source venv/bin/activate && pip install setuptools-rust
+```
+
+Now to create a python package you create a file called `setup.py` with:
 
 ```python
 from setuptools import setup
@@ -178,12 +183,6 @@ This is the most basic [setuptools-rust] setup, except for using
 
 [setuptools-rust]: https://github.com/PyO3/setuptools-rust#setuppy
 [`RustCPython`]: https://setuptools-rust.readthedocs.io/en/latest/reference.html#setuptools_rust.Binding
-
-You'll need to install `setuptools-rust` in your virtual env via:
-
-```sh
-source venv/bin/activate && pip install setuptools-rust
-```
 
 Now to build the Rust and Python just do `python setup.py develop`.
 This will call `cargo` and move it into your local directory.
