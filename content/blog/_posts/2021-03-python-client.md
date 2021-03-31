@@ -29,7 +29,7 @@ In short, we will:
 
 - use [flapigen] to define how our Rust structs will go across the FFI.
 - use the [rust-cpython] extension in our Python project and call it.
-  
+
 [flapigen]: https://github.com/Dushistov/flapigen-rs
 [rust-cpython]: https://github.com/dgrunwald/rust-cpython
 
@@ -48,7 +48,7 @@ source venv/bin/activate
 The above creates a Rust crate named `my-python-lib`, then creates a Python
 [virtual environment].
 
-Note: you'll need to have the [rust toolchain] and [python 3.6] or above installed.
+-> **Note**: you'll need to have the [rust toolchain] and [python 3.6] or above installed.
 
 [virtual environment]: https://docs.python.org/3/tutorial/venv.html
 [rust toolchain]: https://rustup.rs/
@@ -59,7 +59,7 @@ Note: you'll need to have the [rust toolchain] and [python 3.6] or above install
 
 We'll need to add this to your `Cargo.toml`:
 
-```toml
+```bash
 [lib]
 crate-type = ["cdylib"]
 
