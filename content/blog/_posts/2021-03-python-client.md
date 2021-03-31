@@ -8,6 +8,7 @@ date: 2021-03-28
 slug: key-value-records
 url: /blog/2021/03/python-client
 img: blog/images/python-client/python-blog-social.png
+tile: blog/images/python-client/python-blog-tile.png
 twitter-card: summary_large_image
 
 ---

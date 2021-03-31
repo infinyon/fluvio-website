@@ -17,10 +17,10 @@
 {{- end -}}
 
 {{- $img := "" -}}
-{{- if (.page.Param "tile") -}}
-    {{- $img = .page.Param "tile" -}}
-{{- else if (.page.Param "img") -}}
+{{- if (.page.Param "img") -}}
     {{- $img = .page.Param "img" -}}
+{{- else if (.page.Param "tile") -}}
+    {{- $img = .page.Param "tile" -}}
 {{- end -}}
 
 {{- $imageCredit := "" -}}
