@@ -65,13 +65,6 @@ enableEmoji=true
     weight = 130
 
   [[menu.main]]
-    identifier = "github"
-    name = "github"
-    url = "https://github.com/infinyon/fluvio"
-    pre = "fab fa-github"
-    weight = 150
-
-  [[menu.main]]
     identifier = "chat"
     name = "chat"
     url = "https://discordapp.com/invite/bBG2dTz"
