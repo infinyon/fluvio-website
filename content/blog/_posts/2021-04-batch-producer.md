@@ -430,10 +430,10 @@ impl_js_value_for_tuple! {
 
 Bingo! We now have working implementations for converting tuple types from Node
 to Rust. This pattern also works out in the opposite direction, and I was able
-to write a macro to [impl TryIntoJs for tuples] as well! So mission accomplished,
+to write a macro to [impl TryIntoJs for tuples] as well! Mission accomplished,
 we can now pass values both ways in tuples.
 
-[impl TryIntoJs for tuples]: 
+[impl TryIntoJs for tuples]: https://github.com/infinyon/node-bindgen/blob/master/nj-core/src/convert.rs#L327-L362
 
 ## Conclusion
 
