@@ -106,7 +106,7 @@ async fn send_all(records: Vec<(String, String)>) {
 
 When I compiled it, I was met with this error message:
 
-```
+```bash
 error[E0277]: the trait bound `(String, String): JSValue<'_>` is not satisfied
  --> tuples/src/lib.rs:3:1
   |
@@ -216,7 +216,36 @@ our initial implementation with `(A, B)`, we'll make sure the array has length 2
   
 Alright, let's see if we can execute on this plan:
 
-<script src="https://gist.github.com/nicholastmosher/37e61919709f6897d3659ceec16bceb5.js"></script>
+```rust
+impl<'a, A, B> JSValue<'a> for (A, B)
+where
+    A: JSValue<'a>,
+    B: JSValue<'a>,
+{
+    fn convert_to_rust(env: &'a JsEnv, js_value: napi_value) -> Result<Self, NjError> {
+        use crate::sys::napi_get_array_length;
+        if !env.is_array(js_value)? {
+            return Err(NjError::Other("not array".to_owned()));
+        }
+
+        let required_length = 2; // Since this tuple has 2 elements
+        let mut length: u32 = 0;
+        napi_call_result!(napi_get_array_length(env.inner(), js_value, &mut length))?;
+        if length != required_length {
+            return Err(NjError::Other(format!("Expected array of length {}", required_length)));
+        }
+        
+        let napi_value_a = env.get_element(js_value, 0)?;
+        let a = A::convert_to_rust(env, napi_value_a)?;
+
+        let napi_value_b = env.get_element(js_value, 1)?;
+        let b = B::convert_to_rust(env, napi_value_b)?;
+
+        let tuple = (a, b);
+        Ok(tuple)
+    }
+}
+```
 
 Ok, let's try it out with the `send_all` function and see if it worked!
 
