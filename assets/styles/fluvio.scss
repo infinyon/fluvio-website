@@ -645,6 +645,18 @@ code {
   }  
 }
 
+blockquote {
+  margin: 10px 40px 10px 10px !important;
+
+  p {
+    background: $col-gray-light12;
+    padding: 14px !important;
+    font-family: $font-body !important;
+    //font-style: italic;
+    font-size: 1.1em !important;
+  }
+}
+
 // --------------
 // Others
 // --------------
