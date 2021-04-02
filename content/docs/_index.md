@@ -90,12 +90,16 @@ For additional information, check out the [Replica Election](/docs/architecture/
 
 Fluvio is designed to integrate natively with most programming languages.  The following native interfaces are listed in order of priority:
 
-* Rust &#10004;
-* Node.js &#10004;
-* Swift - *coming soon*
+* [Rust] &#10004;
+* [Node.js] &#10004;
+* [Python] &#10004;
 * Java - *coming soon*
-* Python - *coming soon*
-* Go - *coming soon*
+* Swift - *roadmap*
+* Go - *roadmap*
+
+[Rust]: https://docs.rs/fluvio
+[Node.js]: https://infinyon.github.io/fluvio-client-node/
+[Python]: https://infinyon.github.io/fluvio-client-python/fluvio.html
 
 The APIs can be used to manage and operate all areas of the systems:
 
