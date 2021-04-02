@@ -1,9 +1,9 @@
 ---
-title: Improving node-bindgen with tuple support
+title: Sending tuples from Node to Rust and back
 author:
     name: "Nick Mosher"
     github: "nicholastmosher"
-description: "See how to pass tuples from Node to Rust and back"
+description: "How I added tuple support to node-bindgen"
 date: 2021-03-24
 slug: node-bindgen-tuples
 url: /blog/2021/03/node-bindgen-tuples
@@ -11,10 +11,18 @@ twitter-card: summary_large_image
 ---
 
 This week in Fluvio, I want to talk about an interesting problem I encountered
-while implementing a Batch Producer API for the Fluvio client. The problem
-essentially boils down to: Can I send tuples of values from our Node client to
-Rust and back? Let me start by outlining the Rust API that I wanted to express
-in Node:
+while implementing a Batch Producer API for the Fluvio client. As part of our
+feature development process, we update each of our language clients with
+new APIs for interacting with the new functionality. This particular problem
+cropped up while I was implementing the Node client API for batch record producing,
+and has to do with passing Tuples from Node to Rust.
+
+In our batch producer API, the goal is to send multiple records to Fluvio in one
+request. Records are represented as a value and potentially a key. I chose to
+expose this functionality with a function that accepts any iterator over items
+of type `(Option<K>, V)`. The elements of this tuple represent the potential key
+and the definite value. The specific function I wanted to write in Rust and call
+from Node is the following:
 
 ```rust
 async fn send_all<I, K, V>(records: I) 
@@ -25,10 +33,9 @@ where
 { /* ... */ }
 ```
 
-Ok, so the actual API involves a little bit more than just tuples. To be as
-flexible as possible, we're using a couple of generics so that callers have more
-freedom with the values they can pass to us. An english description of this API
-might go something like this:
+To be as flexible as possible, we're using a couple of generics so that callers
+have more freedom with the values they can pass to us. An english description of
+this API might go something like this:
 
 > Provide a value `records` which can be turned into an iterator over tuples
 > `(Option<K>, V)`, where K and V are each types that can be converted into
@@ -37,8 +44,8 @@ might go something like this:
 Here are some quick examples of values you could provide to this API:
 
 ```rust
-let records = vec![ (Some("Hello"), "World!") ];
-let records = Some( (Some("Hello"), "World!") );
+let records = vec![ (Some("Hello"), String::from("World!")) ];
+let records = Some( ( Some(vec![0x48, 0x65, 0x6c, 0x6c, 0x6f]), "World!" ) );
 let records = {
     let mut r = HashSet::new();
     r.insert( (Some("Hello"), "World!") );
@@ -46,10 +53,10 @@ let records = {
 };
 ```
 
-Now let's think about what we want out of a Node API. In javascript, we don't really
+Now let's think about what we want out of a Node API. In Javascript, we don't really
 abstract over different types of iterators often enough for it to be relevant, so we
 can settle with passing a plain array. What about the elements of our array though?
-Javascript doesn't technically have tuples, but a lot of people work around this by
+Javascript doesn't technically have tuples, but a common pattern to use instead is
 simply choosing a fixed-size array and putting all of their values into it. In fact,
 typescript even supports annotating this situation! Let's take a look at how this
 plays out:
@@ -73,9 +80,12 @@ how to glue them together using [node-bindgen].
 
 ### Node-bindgen
 
-With node-bindgen, the general pattern is to write functions that are annotated with
-`#[node_bindgen]`, and the procedural macro will generate the glue code to convert JS values
-into Rust ones and vice-versa. An example node-bindgen function might look like this:
+Node-bindgen is a Rust crate for automatically generating glue code for Node programs
+that want to interact with Rust functions and types. It works by providing an attribute,
+`[node_bindgen]`, that can be applied to functions and implementation blocks. At
+compile-time, node-bindgen generates conversion code for Node and Rust code to
+pass values back and forth, leveraging Node's N-API. An example node-bindgen function
+might look like this:
 
 ```rust
 use node_bindgen::derive::node_bindgen;
