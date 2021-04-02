@@ -86,7 +86,7 @@ how to glue them together using [node-bindgen].
 
 Node-bindgen is a Rust crate for automatically generating glue code for Node programs
 that want to interact with Rust functions and types. It works by providing an attribute,
-`[node_bindgen]`, that can be applied to functions and implementation blocks. At
+`#[node_bindgen]`, that can be applied to functions and implementation blocks. At
 compile-time, node-bindgen generates conversion code for Node and Rust code to
 pass values back and forth, leveraging Node's N-API. An example node-bindgen function
 might look like this:
