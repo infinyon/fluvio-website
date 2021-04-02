@@ -1,7 +1,10 @@
 {{- $content := .page.Content -}}
-{{- $content := partial "augment/idea-symbol.html" $content -}}
-{{- $content := partial "augment/caution-symbol.html" $content -}}
-{{- $content := partial "augment/headline-hash.html" $content -}}
+{{- $content = partial "augment/idea-symbol.html" $content -}}
+{{- $content = partial "augment/caution-symbol.html" $content -}}
+{{- $content = partial "augment/headline-hash.html" $content -}}
+{{- if .page.Params.code.height }}
+    {{- $content = partial "augment/code-box-height.html" (dict "content" $content "height" .page.Params.code.height) -}}
+{{- end -}}
 {{- $url := absURL .page.Params.url | safeHTML -}}
 {{- $description := .page.Params.description | safeHTML -}}
 {{- $title := .page.Title | safeHTML -}}
