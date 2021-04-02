@@ -7,11 +7,8 @@ description: "How I added tuple support to node-bindgen"
 date: 2021-04-02
 slug: node-bindgen-tuples
 url: /blog/2021/04/node-bindgen-tuples
-img: blog/images/batch-producer/greg-jeanneau-stairs.jpg
-img-credit:
-    link: https://unsplash.com/photos/0StwxZ4NigE
-    author: Greg Jeanneau
-    site: Upsplash
+img: blog/images/batch-producer/rust-node-blog-social.png
+tile: blog/images/batch-producer/rust-node-blog-tile.png
 twitter-card: summary_large_image
 code:
     height: 740
