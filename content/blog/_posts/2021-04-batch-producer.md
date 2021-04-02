@@ -3,7 +3,7 @@ title: Sending tuples from Node to Rust and back
 author:
     name: "Nick Mosher"
     github: "nicholastmosher"
-description: "How I added tuple support to node-bindgen"
+description: "How I added tuple support to node-bindgen."
 date: 2021-04-02
 slug: node-bindgen-tuples
 url: /blog/2021/04/node-bindgen-tuples
@@ -20,6 +20,14 @@ feature development process, we update each of our language clients with
 new APIs for interacting with the new functionality. This particular problem
 cropped up while I was implementing the Node client API for batch record producing,
 and has to do with passing Tuples from Node to Rust.
+
+# Overview
+
+In this post, I'll talk you through the problem solving journey I went on this week, by:
+
+- Describing the Rust API I wanted to call from Node
+- Discovering why the Node API didn't work out-of-the-box, and
+- Explaining how I solved the problem with a patch to `node-bindgen`
 
 In our batch producer API, the goal is to send multiple records to Fluvio in one
 request. Records are represented as a value and potentially a key. I chose to
