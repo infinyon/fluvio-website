@@ -1,7 +1,8 @@
 ---
 title: Websocket Glue for Data Streaming Apps
-author: 
-    name: "The Fluvio Team"
+author:
+    name: "A.J. Hunyady"
+    github: "ajhunyady"
 description: Create session-aware websocket glue that can be utilized by data streaming applications.
 metadata: TECH
 date: 2021-01-05

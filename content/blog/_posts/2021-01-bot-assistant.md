@@ -1,7 +1,8 @@
 ---
 title: Build Your Own Custom Robot Assistant
-author: 
-    name: "The Fluvio Team"
+author:
+    name: "A.J. Hunyady"
+    github: "ajhunyady"
 description: Use data streaming to build a custom robot assistant that can connect to any backend service in the organization.
 metadata: TECH
 date: 2021-01-30

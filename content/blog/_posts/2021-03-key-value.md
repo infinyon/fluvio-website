@@ -5,7 +5,7 @@ author:
     github: "nicholastmosher"
 description: "Learn how to use key/value records to control how your data is distributed and stored within
 Fluvio."
-date: 2021-03-24
+date: 2021-03-28
 slug: key-value-records
 url: /blog/2021/03/key-value-records
 img: blog/images/key-value/social/florian-berger-keys.jpg

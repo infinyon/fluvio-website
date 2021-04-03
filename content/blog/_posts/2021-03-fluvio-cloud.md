@@ -1,7 +1,8 @@
 ---
 title: Announcing Fluvio Cloud Platform
 author:
-    name: "The Fluvio Team"
+    name: "Sebastian Imlay"
+    github: "simlay"
 description: Fluvio Cloud, a low latency data streaming platform for App developers like us.
 metadata: NEWS
 date: 2021-03-07

@@ -4,7 +4,7 @@ author:
     name: "Sebastian Imlay"
     github: "simlay"
 description: "Learn how to wrap your Rust crate in Python."
-date: 2021-03-28
+date: 2021-03-24
 slug: key-value-records
 url: /blog/2021/03/python-client
 img: blog/images/python-client/python-blog-social.png
