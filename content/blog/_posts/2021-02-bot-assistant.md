@@ -5,9 +5,9 @@ author:
     github: "ajhunyady"
 description: Use data streaming to build a custom robot assistant that can connect to any backend service in the organization.
 metadata: TECH
-date: 2021-01-30
+date: 2021-02-01
 slug: bot-assistant
-url: /blog/2021/01/bot-assistant
+url: /blog/2021/02/bot-assistant
 img: blog/images/bot-assistant/social/bot.jpg
 twitter-card: summary_large_image
 ---
