@@ -4,7 +4,7 @@ author:
     name: "Nick Mosher"
     github: "nicholastmosher"
 description: "How I added tuple support to node-bindgen."
-date: 2021-04-02
+date: 2021-04-05
 slug: node-bindgen-tuples
 url: /blog/2021/04/node-bindgen-tuples
 img: blog/images/batch-producer/rust-node-blog-social.png
