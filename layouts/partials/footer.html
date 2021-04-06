@@ -1,8 +1,8 @@
 {{- $isProduction := true -}}
 {{- if in (string .Site.BaseURL) "localhost" -}}
   {{ $isProduction = false }}
-{{- else if in (string .Site.BaseURL) "nightly" -}}
-  {{ $isProduction = false }}
+{{/* else if in (string .Site.BaseURL) "nightly" */}}
+  {{/* $isProduction = false */}}
 {{- end -}}
 
 <footer class="footer mt-4">
