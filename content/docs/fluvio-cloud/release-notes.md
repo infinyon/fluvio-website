@@ -9,6 +9,12 @@ This page contains the latest release notes for updates to [Fluvio Cloud].
 
 [Fluvio Cloud]: /signup
 
+## April 7, 2021
+
+###### Updates:
+
+- Upgrade to [Fluvio 0.7.3](https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md#platform-version-073---2020-04-02)
+
 ## March 25, 2021
 
 ###### Updates:
