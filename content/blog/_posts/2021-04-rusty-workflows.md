@@ -89,14 +89,17 @@ The part of this that we're interested in is the `matrix` object. Notice that
 it is a proper key-value object, it has keys `os`, `rust`, and `make`. These
 keys are arbitrary, you can choose any names that you want for them. I like to
 think of them as the "dimensions" of the matrix. The value at each of these keys
-must be a list. For the key `os`, the list is `[ubuntu-latest, macos-latest]`.
-For the key `rust`, we have a list with a single element: `[stable]`. And even
-though the value under `make` looks different, notice that it is still a list,
-it is just a list of more yaml objects. When GitHub Actions reads your job
-definition, it performs a sort of cross-product on each entry in your matrix,
-creating a list of all the combinations of items in your lists. For this matrix
-definition, GitHub will generate the following list of configurations to run
-the job with:
+must be a list:
+
+- For the key `os`, the list is `[ubuntu-latest, macos-latest]`.
+- For the key `rust`, we have a list with a single element: `[stable]`. 
+- And even though the value under `make` looks different, notice that it is still a list,
+  it is just a list of more yaml objects.
+  
+When GitHub Actions reads your job definition, it performs a sort of cross-product
+on each entry in your matrix, creating a list of all the combinations of items in
+your lists. For this matrix definition, GitHub will generate the following list of
+configurations to run the job with:
 
 ```yaml
 - os: ubuntu-latest
@@ -206,7 +209,7 @@ the small pieces of each job that are different from the others, and put those
 as options in the matrix. Next I'll walk through the rest of the job definition
 and talk about how we set it up to meet our Rust project needs.
 
-## Setting up a job with `sccache` for Rust
+## Optimizing Rust's build speed with `sccache`
 
 For the rest of this post I'll just be talking about how I set up the rest
 of this job definition to build and test our Rust binaries using `sccache`.
@@ -323,11 +326,7 @@ other Rust projects ;)
 
 Let's start with the `env` section. First, we set `RUST_BACKTRACE: full` because
 if any of our tests panic we want to know why. `RUSTV` is an environment variable
-that we use inside our `Makefile` to tell cargo commands which release channel to
-use. If you didn't know, you can run commands like `cargo +nightly check` to run
-cargo commands using nightly, even if your default `rustup` profile specifies
-something else. So in our Makefile, we use `cargo +$(RUSTV) something` when defining
-cargo tasks so that the tasks adapt based on the job configuration we set.
+that we use inside our `Makefile` to tell cargo commands which release channel to use.
 
 The rest of the env has to do with [`sccache`]. As I mentioned before, we want to
 use [`sccache`] to reduce the number of times we need to re-build crates when possible.
@@ -380,7 +379,9 @@ This is a good example of adapting steps according to a matrix. Depending on whe
 we are running on `ubuntu-latest` or `macos-latest`, there is a different procedure for
 installing `sccache`. Notice that only one of these two steps will ever run in a given
 execution of a job: the `if:` conditional checks which `matrix.os` value is specified
-in this job instance. This is also a great example of a good opportunity for creating
+in this job instance.
+
+This is also a great example of a good opportunity for creating
 a reusable GitHub Action definition. If there's an action definition out there for
 more easily installing `sccache` (or if one of you readers decides to put one together),
 let me know!
@@ -403,12 +404,11 @@ decides to run your workflow against other release channels, the only edit that 
 need to be made is in the matrix.
 
 This next one has to do with `sccache` again, and it has to do with saving the cache
-directory itself. If we were using `sccache` locally for development, we would not need
-to worry about the cache directory, since it sits persistently on our local disk. However,
-with the free GitHub action runners, your jobs are always run on a fresh instance of a
-container or virtual machine somewhere. This means that if we didn't do something to
-specifically save our cache directory, it would get blown away on every new job, defeating
-any benefit it would have given us. To avoid this, we use GitHub's `cache` action:
+directory itself. When using the free GitHub Action runners, jobs are always run on a
+fresh instance of a container or virtual machine somewhere. This means that our
+sccache would have to start from scratch on every job and we wouldn't get any benefit
+out of it. To fix this, we can use the `actions/cache@v2` action to preserve certain
+directories between job runs.
 
 ```yaml
       - name: Cache cargo registry
@@ -431,7 +431,7 @@ any benefit it would have given us. To avoid this, we use GitHub's `cache` actio
             ${{ runner.os }}-sccache-
 ```
 
-The `cache` action lets you specify directories that the GitHub runner will save at the
+The `actions/cache@v2` action lets us specify directories that the GitHub runner will save at the
 end of each job, and attempt to restore at the beginning of the next job. You can have
 multiple different types of things you want to cache, so you have to choose a `key` for
 each cache to be labeled with when it gets saved. You also need to give it `restore-keys`
@@ -450,7 +450,8 @@ If you know one way or another, [let me know]!
 
 {{</idea>}}
 
-Finally, we have the last steps of our jobs:
+Finally, we have the last steps of our jobs. Here we start the sccache server, run our
+Make task, then print statistics and stop the sccache server.
 
 ```yaml
       - name: Start sccache server
@@ -463,8 +464,7 @@ Finally, we have the last steps of our jobs:
         run: sccache --stop-server || true
 ```
 
-Here we start the sccache server, run our Make task, then print statistics and stop
-the sccache server. There are a couple things you will want to check on when you first
+There are a couple of things you will want to check on when you first
 set this up to make sure you are actually getting benefit from the cache:
 
 - Make sure your cargo commands are actually running sccache
@@ -522,6 +522,8 @@ double-check that your `RUSTC_WRAPPER` environment variable is set properly.
      Running `rustc --crate-name fluvio_spu --edition=2018
 ```
 
+### Verifying the `sccache` results
+
 When you have set things up so that sccache is properly running, you will see stats
 that have actual numbers in them rather than zeros. The next step is to make sure that
 those numbers are telling you that you hit the cache rather than rebuilding (missing the cache).
@@ -533,8 +535,48 @@ You might miss the cache for a couple of reasons:
 - Something went wrong when re-loading the cache directory (e.g. from the GitHub cache).
 - You have added a ton of dependencies to your project that you haven't built before, so they're not in the cache
 
-When everything is set up properly and you are making good use of sccache, your stats
-output will look more like this:
+Here is an example of what your stats might look like if you have missed the cache.
+Notice that the number of hits is actually not zero, it's just a very low number.
+I think this is probably because of caching duplicate dependencies within your dependency tree.
+However, if you see these results after a build, then your build did not really benefit from
+`sccache`.
+
+```bash
+Compile requests                    484
+Compile requests executed           343
+Cache hits                           13
+Cache hits (Rust)                    13
+Cache misses                        330
+Cache misses (Rust)                 330
+Cache timeouts                        0
+Cache read errors                     0
+Forced recaches                       0
+Cache write errors                    0
+Compilation failures                  0
+Cache errors                        313
+Cache errors (Rust)                 313
+Non-cacheable compilations            0
+Non-cacheable calls                 141
+Non-compilation calls                 0
+Unsupported compiler calls            0
+Average cache write               0.000 s
+Average cache read miss           2.249 s
+Average cache read hit            0.001 s
+Failed distributed compilations       0
+
+Non-cacheable reasons:
+crate-type                          111
+incremental                          28
+-                                     2
+
+Cache location                  Local disk: "/Users/runner/Library/Caches/Mozilla.sccache"
+Cache size                            4 GiB
+Max cache size                       10 GiB
+```
+
+Usually if you get these results, all you need to do is run the build again, and
+the second build will be able to leverage the pre-compiled artifacts from the previous run.
+The stats from the second build might look more like the following:
 
 ```bash
 Compile requests                    481
@@ -569,7 +611,7 @@ Max cache size                        2 GiB
 ```
 
 Notice that we have many more cache hits than cache misses, that's the indicator that
-we are getting good value out of sccache.
+we are getting good value out of `sccache`.
 
 ## The end result
 
