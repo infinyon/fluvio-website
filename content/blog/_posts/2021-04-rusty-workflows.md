@@ -1,14 +1,12 @@
 ---
-title: Improving our Rusty GitHub workflows
+title: GitHub Actions best practices for Rust projects
 author:
     name: "Nick Mosher"
     github: "nicholastmosher"
 description: "How I cleaned up Rust CI boilerplate using the GitHub Actions build matrix"
 date: 2021-04-15
-slug: advanced-rust-workflows
-url: /blog/2021/04/advanced-rust-workflows
-img: blog/images/batch-producer/rust-node-blog-social.png
-tile: blog/images/batch-producer/rust-node-blog-tile.png
+slug: github-actions-best-practices
+url: /blog/2021/04/github-actions-best-practices
 twitter-card: summary_large_image
 code:
     height: 9000
