@@ -134,37 +134,55 @@ configurations to run the job with:
     task: "run-all-doc-test"
 ```
 
-In the rest of the job definition, you can access these configurations
-using the `${{ matrix.KEY }}` syntax. You can see in the job definition
-above that I use this in the line `runs-on: ${{ matrix.os }}`, which is
-how I tell the runner which type of machine to run the job on.
+In the rest of the job definition, you can access the fields of the
+active configuration using the `${{ matrix.KEY }}` syntax. You can
+see in the job definition above that this is used in the line
+`runs-on: ${{ matrix.os }}`, which is how we tell the runner which
+type of machine to run the job on.
 
 You may be wondering right now, "Hey, what happened to `include` and
 `exclude`? They didn't get mixed into the matrix!", and you would be
 right. `include` and `exclude` are special keys that allow you to
-manually edit the resulting configuration. In the job above, I use the
-`include` rules to add `sccache-path: /home/runner/.cache/sccache` to
-any config that includes `os: ubuntu-latest`, but when I have
-`os: macos-latest`, I set `sccache-path: /Users/runner/Library/Caches/Mozilla.sccache`
-instead.
+manually edit the resulting configurations.
 
-Similarly, I can use the `exclude` rule to describe configurations that
-I don't want to run a job instance for. For example, I don't actually need
-to run Clippy on each OS I've defined, so I can remove the entry for Clippy
-on `macos-latest` using this rule:
+When writing a rule for `include`, we are essentially writing a pattern
+that matches against the output configurations and may add new data to
+them. Let's look at the effect of a specific `include` rule:
 
 ```yaml
-exclude:
-- os: macos-latest
-  rust: stable
-  make:
-    name: Clippy
+      include:
+        - os: ubuntu-latest
+          sccache-path: /home/runner/.cache/sccache
 ```
 
-After the include and exclude rules are applied, the new resulting configuration
-looks more like this:
+This says: "for any configuration that has `os: ubuntu-latest`, add
+another key that has `sccache-path: /home/runner/.cache/sccache`".
+If we apply this rule to our output configuration, it would look like
+this:
 
 ```diff
+  - os: ubuntu-latest
+    rust: stable
+    make:
+      name: Unit tests
+      task: "build-all-test run-all-unit-test"
++   sccache-path: /home/runner/.cache/sccache
+  - os: macos-latest
+    rust: stable
+    make:
+      name: Unit tests
+      task: "build-all-test run-all-unit-test"
+  - os: ubuntu-latest
+    rust: stable
+    make:
+      name: Doc tests
+      task: "run-all-doc-test"
++   sccache-path: /home/runner/.cache/sccache
+  - os: macos-latest
+    rust: stable
+    make:
+      name: Doc tests
+      task: "run-all-doc-test"
   - os: ubuntu-latest
     rust: stable
     make:
@@ -176,7 +194,61 @@ looks more like this:
     make:
       name: Clippy
       task: "check-clippy"
-+   sccache-path: /Users/runner/Library/Caches/Mozilla.sccache
+```
+
+Similarly, we can use `exclude` rules to describe objects in the output
+configuration to discard. For example, we currently have two configurations
+that will cause Clippy to be run, but we really only need Clippy to run
+once. Let's look at the effect the following `exclude` rule from our matrix
+has on the output configuration:
+
+```yaml
+exclude:
+  - os: macos-latest
+    rust: stable
+    make:
+      name: Clippy
+```
+
+When this rule gets applied, it removes the entry for Clippy on MacOS:
+
+```diff
+  - os: ubuntu-latest
+    rust: stable
+    make:
+      name: Unit tests
+      task: "build-all-test run-all-unit-test"
+  - os: macos-latest
+    rust: stable
+    make:
+      name: Unit tests
+      task: "build-all-test run-all-unit-test"
+  - os: ubuntu-latest
+    rust: stable
+    make:
+      name: Doc tests
+      task: "run-all-doc-test"
+  - os: macos-latest
+    rust: stable
+    make:
+      name: Doc tests
+      task: "run-all-doc-test"
+  - os: ubuntu-latest
+    rust: stable
+    make:
+      name: Clippy
+      task: "check-clippy"
+- - os: macos-latest
+-   rust: stable
+-   make:
+-     name: Clippy
+-     task: "check-clippy"
+```
+
+Putting it all together, our matrix definition with all the include
+and exclude rules applied will look like the following:
+
+```diff
   - os: ubuntu-latest
     rust: stable
     make:
@@ -195,11 +267,23 @@ looks more like this:
       name: Doc tests
       task: "run-all-doc-test"
 +   sccache-path: /home/runner/.cache/sccache
+  - os: macos-latest
+    rust: stable
+    make:
+      name: Doc tests
+      task: "run-all-doc-test"
++   sccache-path: /Users/runner/Library/Caches/Mozilla.sccache
+  - os: ubuntu-latest
+    rust: stable
+    make:
+      name: Clippy
+      task: "check-clippy"
++   sccache-path: /home/runner/.cache/sccache
 - - os: macos-latest
 -   rust: stable
 -   make:
--     name: Doc tests
--     task: "run-all-doc-test"
+-     name: Clippy
+-     task: "check-clippy"
 ```
 
 Ok, awesome. So now we have a strategy for adding new configurations
