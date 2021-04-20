@@ -24,6 +24,8 @@ two main improvements I worked on:
 [Fluvio]: https://github.com/infinyon/fluvio/
 
 - Consolidating multiple jobs using the build matrix
+  - This cut our workflow file size almost in half, from 477 lines to 264,
+    making CI easier to maintain.
 - Setting up `sccache` to improve our building and testing speed
   - We actually had already set up `sccache` but it was misconfigured.
     I'll talk about how to check that everything is set up properly.
@@ -138,6 +140,8 @@ see in the job definition above that this is used in the line
 `runs-on: ${{ matrix.os }}`, which is how we tell the runner which
 type of machine to run the job on.
 
+### Include and Exclude rules
+
 You may be wondering right now, "Hey, what happened to `include` and
 `exclude`? They didn't get mixed into the matrix!", and you would be
 right. `include` and `exclude` are special keys that allow you to
@@ -194,6 +198,9 @@ this:
       task: "check-clippy"
 ```
 
+> **Note**: the `+` at the beginning of the green lines is not part of the workflow file,
+> it is part of the diff syntax I'm using to show you that this line was added
+
 Similarly, we can use `exclude` rules to describe objects in the output
 configuration to discard. For example, we currently have two configurations
 that will cause Clippy to be run, but we really only need Clippy to run
@@ -242,6 +249,9 @@ When this rule gets applied, it removes the entry for Clippy on MacOS:
 -     name: Clippy
 -     task: "check-clippy"
 ```
+
+> **Note**: The first `-` on the red lines is also not part of the workflow file,
+> it is part of the removed-lines diff syntax
 
 Putting it all together, our matrix definition with all the include
 and exclude rules applied will look like the following:
