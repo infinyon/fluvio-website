@@ -3,10 +3,11 @@ title: GitHub Actions best practices for Rust projects
 author:
     name: "Nick Mosher"
     github: "nicholastmosher"
-description: "How I cleaned up Rust CI boilerplate using the GitHub Actions build matrix"
-date: 2021-04-15
+description: "How I cleaned up Rust CI boilerplate using the GitHub Actions build matrix."
+date: 2021-04-20
 slug: github-actions-best-practices
 url: /blog/2021/04/github-actions-best-practices
+img: blog/images/rust-workflows/github-actions-social.png
 twitter-card: summary_large_image
 code:
     height: 9000
