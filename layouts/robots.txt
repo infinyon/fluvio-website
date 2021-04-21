@@ -1,0 +1,6 @@
+User-agent: *
+{{- if in (string .Site.BaseURL) "nightly" }}
+Disallow: /
+{{ else }}
+Disallow:
+{{ end }}
