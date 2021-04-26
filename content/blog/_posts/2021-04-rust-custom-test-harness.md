@@ -66,6 +66,7 @@ In your Cargo.toml, you want to add
 ```toml
 # Cargo.toml
 
+# We'll revisit the `inventory` crate later in the post
 [dev-dependencies]
 inventory = "0.1"
 
@@ -78,9 +79,6 @@ harness = false
 What this does is tell cargo test to not use libtest when running the `integration` test.
 
 Then when we run `cargo test integration`, what cargo will do is compile `integration/main.rs` and execute it in the same manner as `cargo run`. This is all a harness is from `cargo`’s perspective. 
-
-(We'll revisit the `inventory` crate later in the post)
-
 
 ### Add Setup and teardown steps
 
