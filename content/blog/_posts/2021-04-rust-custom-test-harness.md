@@ -288,7 +288,14 @@ impl IntegrationTest {
 }
 ```
 
-If you want to see more of these ideas extended even further for a complex system, check out [Fluvio’s integration test runner](https://github.com/infinyon/fluvio/tree/master/tests/runner/src). We use a CLI and async functions, and an attribute procedural macro to cut down on some of the boilerplate.
+{{<idea>}}
+
+If you want to see more of these ideas extended even further, check out [Fluvio’s integration test runner](https://github.com/infinyon/fluvio/tree/master/tests/runner/src).
+
+We use the CLI to customize setup, handle async testing, and we use an [attribute macro] to collect tests.
+
+[attribute macro]: https://github.com/infinyon/fluvio/blob/master/tests/runner/src/fluvio-integration-derive/src/lib.rs 
+{{</idea>}}
 
 ### Conclusion
 
