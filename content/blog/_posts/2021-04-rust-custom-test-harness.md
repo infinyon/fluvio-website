@@ -7,8 +7,8 @@ description: "Building a custom test harness in Rust is less complicated followi
 date: 2021-04-26
 slug: rust-custom-test-harness 
 url: /blog/2021/04/rust-custom-test-harness
-img: blog/images/rust-custom-harness/test-harness-social.png
-tile: blog/images/rust-custom-harness/test-harness-social.png
+img: blog/images/rust-custom-harness/banner-title.png
+tile: blog/images/rust-custom-harness/banner-notitle.png
 twitter-card: summary_large_image
 code:
     height: 9000
@@ -45,7 +45,10 @@ It isn’t convenient to manage setup and teardown in a different context than t
 
 ### Where do we get started with a custom test harness?
 
-We’re going to build all our integration tests into a single crate. This is recommended in order to speed up compile time ([[1](https://endler.dev/2020/rust-compile-times/#combine-all-integration-tests-in-a-single-binary)], [[2](https://matklad.github.io/2021/02/27/delete-cargo-integration-tests.html)])
+We’re going to build all our integration tests into a single crate. This is recommended in order to speed up compile time ([[1]], [[2]])
+
+[1]: https://endler.dev/2020/rust-compile-times/#combine-all-integration-tests-in-a-single-binary
+[2]: https://matklad.github.io/2021/02/27/delete-cargo-integration-tests.html
 
 This is distinctive, because libtest will compile each of your `#[test]` labeled functions into its own binary crate (with its own `main()`) and executes it as part of the test. 
 
@@ -67,8 +70,8 @@ In your Cargo.toml, you want to add
 inventory = "0.1"
 
 [[test]]
-name = “integration”
-path = “integration/main.rs”
+name = "integration"
+path = "integration/main.rs"
 harness = false
 ```
 
