@@ -14,48 +14,49 @@ code:
     height: 9000
 ---
 
-## Let’s talk about integration testing in Rust
-
 I ran into a problem effectively using `cargo test` in [Fluvio](https://github.com/infinyon/fluvio) for integration testing.
 
-We have to support several different environment configurations. The tests we want to write shouldn't need to be aware of their environment in detail. However, the default test harness, [libtest] does not support writing integration tests with this kind of opinionated organization.
+## Let’s talk about integration testing in Rust
 
-But I learned that you aren’t stuck with the functionality of `cargo test`.
+While creating integration testing for Fluvio, I ran into a problem. Organizing and executing integration tests with `cargo test` was becoming inefficient. We needed to standardize the setup of a test environment. 
 
-In this post, we’ll go implementing a custom test harness and some of the decision making that led me to this type of solution.
+As a lone developer, you can apply one-off customizations when running tests locally. But if you try to extend that strategy to continuous integration, you’ll quickly find that making changes manually becomes burdensome. CI encourages testing many different configurations, which means a successful CI plan requires easy management of test harness variables (a.k.a. Not manually updating variables for every test you need to run).
 
-[libtest]: https://github.com/rust-lang/libtest
+`cargo test` is just not equipped to handle this specialized focus on environment setup, or the cleanup/teardown needed after a test is run. When using `cargo test`, these crucial tasks could only occur outside of the harness or within the logic of a test. Neither of these are good choices. Outside of the harness is not ideal because these processes end up too disconnected and hard to maintain. Likewise, including setup/teardown within the logic of a test is inappropriate because it creates mental overhead for a test writer, and may obscure the results of tests.
 
-### How does cargo test work by default?
+I needed to find a way around the limited functionality of `cargo test` -- keep reading to find out how I did it by creating a standardized setup and teardown as part of our testing harness.
 
-There is a distinction between unit tests and integration tests in [the Rust book](https://doc.rust-lang.org/book/ch11-03-test-organization.html). The distinction is less about testing strategy and more about defining Rust’s conventions for test organization.
+### How does `cargo test` work by default?
+
+There is a distinction between unit tests and integration tests in [the Rust book]. The distinction is less about testing strategy and more about defining Rust’s conventions for test organization.
+
+[the Rust book]: https://doc.rust-lang.org/book/ch11-03-test-organization.html
 
 The main points are that:
   * Your tests are annotated with `#[test]`
   * [libtest] harness enumerates through all of your tests (a point we’ll revisit later in more detail)
   * libtest returns the pass/fail status of the execution
 
+[libtest]: https://github.com/rust-lang/libtest
 
 ### What do I need from integration testing?
 
-There isn’t anything libtest specifically offers to support integration testing patterns.
+Libtest doesn't specifically offer anything to support integration testing patterns.
 
-Setup of a standard test environment, especially in a complex system, is essential for managing expected behavior when making code changes.
+Setup of a standard test environment – especially in a complex system – is essential for managing expected behavior when making code changes.
 
-Libtest does not assist with setup or teardown. I need the ability to abstract away the setup and teardown of my test environment from test code. 
+Unfortunately libtest does not assist with setup or teardown. I needed the ability to abstract away the setup and teardown of my test environment from test code. 
 
-This task will be performed either way. Without harness support, setup/teardown will be performed via external shell scripts or padding the setup/teardown process within every single integration test...
+This task will be performed either way. Without harness support, setup/teardown will be performed via external shell scripts or padding the setup/teardown process within every single integration test... (no one's idea of fun).
 
-It isn’t convenient to manage setup and teardown in a different context than the integration test. This kind of testing overhead leads to hard to reproduce and time consuming mistakes.
+It isn’t convenient to manage setup and teardown in a different context than the integration test. This kind of testing overhead leads to hard-to-reproduce and time consuming mistakes.
 
 ### Where do we get started with a custom test harness?
 
-We’re going to build all our integration tests into a single crate. This is recommended in order to speed up compile time ([[1]], [[2]])
+By default, libtest will compile each of your `#[test]` labeled functions into their own binary crates (with its own `main()`) and executes it as part of the test. But we’re going to build all our integration tests into a single crate. This is recommended in order to speed up compile time ([[1]], [[2]])
 
 [1]: https://endler.dev/2020/rust-compile-times/#combine-all-integration-tests-in-a-single-binary
 [2]: https://matklad.github.io/2021/02/27/delete-cargo-integration-tests.html
-
-This is distinctive, because libtest will compile each of your `#[test]` labeled functions into its own binary crate (with its own `main()`) and executes it as part of the test. 
 
 First we’re going to create an integration test directory at the root of the crate where we’re going to build our integration test focused binary.
 
@@ -81,13 +82,13 @@ path = "integration/main.rs"
 harness = false
 ```
 
-What this does is tell cargo test to not use libtest when running the `integration` test.
+This tells cargo test to not use libtest when running the `integration` test.
 
-Then when we run `cargo test integration`, what cargo will do is compile `integration/main.rs` and execute it in the same manner as `cargo run`. This is all a harness is from `cargo`’s perspective. 
+When we run `cargo test integration`, what cargo will compile `integration/main.rs` and execute it in the same manner as `cargo run`. This is all a harness is from `cargo`’s perspective. 
 
 ### Add Setup and teardown steps
 
-First thing we’ll do is lay the foundation for our testing pattern. We’ll create 2 functions, `setup()` and `teardown()`, and add them to our `main()` (with reserved space inbetween for our future tests to be called).
+Next we’ll lay the foundation for our testing pattern. We’ll create 2 functions, `setup()` and `teardown()`, and add them to our `main()` (with reserved space in between for our future tests to be called).
 
 ```rust
 // main.rs
@@ -112,31 +113,27 @@ fn main() {
 
 ### Collect all integration tests
 
-The next job our test runner needs to do is to create a list of all the test functions. I thought there would be an easy way to do this by leveraging [libtest]'s `#[test]` attribute. 
+To do its job, our test runner needs to create a list of all the test functions. Initially, I thought there would be an easy way to do this by leveraging [libtest]'s `#[test]` attribute. 
 
-Long story short, there is no straightforward way to reuse libtest for the purpose of test collection. 
-
-#### How does libtest collect tests?
-
-After digging around in [relevant areas of libtest] and [Cargo test] and [Rustc macros] code, the short answer is: it isn’t clear and it isn't reusable.
+I dug around in [relevant areas of libtest] and [Cargo test] and [Rustc macros] code, but long (sad) story short, there is no straightforward way to reuse libtest for the purpose of test collection.
 
 [relevant areas of libtest]: https://github.com/rust-lang/libtest/blob/master/libtest/lib.rs
 [Cargo test]: https://github.com/rust-lang/cargo/blob/master/src/cargo/ops/cargo_test.rs
 [Rustc macros]: https://github.com/rust-lang/rust/blob/master/compiler/rustc_builtin_macros/src/test.rs
 
-If that surprises you, then you're like me. I was hoping to use the test collection functionality from `#[test]`, but it wasn’t clear how to accomplish this. My mental model for how `cargo test` works needed a refresh.
+If that surprises you, then you're like me. I had hoped to use the test collection functionality from `#[test]`, but it wasn’t clear how I could accomplish this. My mental model for how `cargo test` works needed a refresh.
 
-This gives you 2 practical options for collecting tests
+Now that we’ve removed the option of using libtest, so that gives you 2 practical options for collecting tests:
 
 1. Manually modify `integration/main.rs` and add your test in between the setup and teardown
     * A quick and straightforward solution if you have a small set of tests
-    * This option requires us to add new tests to this list, which can be error prone and tedious as we grow.
+    * This option requires us to add new tests to this list, which can be error-prone and tedious as we grow.
 2. Build a test collector. We generate an external test catalog, and modify `integration/main.rs` to execute tests from the catalog.
     * This is a long term solution, which we’ll be covering for the rest of the post.
 
 ### Building the test collector
 
-The [inventory] crate is a plugin registry system. We'll be using it for all the heavy lifting in our test framework - we'll be treating our tests as the plugins
+For this test collector, we'll be utilizing a crate. The [inventory] crate is a plugin registry system. We'll be using it for all the heavy lifting in our test framework, which means we'll be treating our tests as plugins.
 
 [inventory]: https://crates.io/crates/inventory
 
@@ -180,14 +177,14 @@ pub struct IntegrationTest {
 inventory::collect!(IntegrationTest);
 ```
 
-Our struct `IntegrationTest` has 2 fields. 
+In this example, our struct `IntegrationTest` has 2 fields. 
 
 *   `name` is a human-readable name, which can be used as a key for test selection.
 *   `test_fn` is a pointer to a function whose signature is non-async, takes no args, and does not return anything.
 
-I did not have simple success with using `async` function signatures, but you can use functions that take args, and return things.
+Note:  You can use functions that take args, and return things.
 
-ex. 
+For example:
 
 ```rust
 pub test_fn: fn(String) -> Result<(), ()>,
@@ -224,7 +221,7 @@ inventory::submit!(IntegrationTest {
 });
 ```
 
-We use `inventory::submit!()` to register our new test with the `IntegrationTest` struct we defined earlier.
+We'll use `inventory::submit!()` to register our new test with the `IntegrationTest` struct we defined earlier.
 
 `name` is a friendly, human-readable name. We can use this name as a key to search through the plugin registry.
 
@@ -312,6 +309,6 @@ We use the CLI to customize setup, handle async testing, and we use an [attribut
 
 Rust’s testing ecosystem in the 2018 edition is great for unit testing. But for integration testing it still has room for improvement. Custom harnesses will become more necessary as Rust gains new developers. 
 
-If we want to avoid reinventing the wheel, we need stable support from [libtest](https://docs.rs/libtest/0.0.1/libtest/) or more examples of how to perform test collection and patterns for setup, test, teardown workflows.
+If we want to avoid reinventing the wheel, we need stable support from [libtest](https://docs.rs/libtest/0.0.1/libtest/) or more examples of how to perform test collection and patterns for setup, test, and teardown workflows.
 
-If you made it this far, thank you! I wish I had a guide like this before setting out on this development journey. Hopefully others find my experience helpful.
+If you made it this far, thank you for following along with me! I wrote this because I could not find a guide to do this before trying to do this myself, and knowing these things beforehand would have made it much faster. Hopefully others find my experience helpful.
