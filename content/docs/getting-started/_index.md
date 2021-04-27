@@ -29,12 +29,19 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 If everything works successfully, you should see output similar to this:
 
 ```bash
-fluvio: ⏳ Downloading Fluvio 0.7.0 for x86_64-apple-darwin...
+fluvio: ⏳ Downloading Fluvio 0.8.0 for x86_64-apple-darwin...
 fluvio: ⬇️ Downloaded Fluvio, installing...
 fluvio: ✅ Successfully installed ~/.fluvio/bin/fluvio
 fluvio: ☁️ Installing Fluvio Cloud...
 fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-cloud...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.4...
+fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.5...
+fluvio: 🔑 Downloaded and verified package file
+fluvio: ☁️ Installing Fluvio Runner...
+fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-run...
+fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-run:0.8.0...
+fluvio: 🔑 Downloaded and verified package file
+fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-run...
+fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-run:0.8.0...
 fluvio: 🔑 Downloaded and verified package file
 fluvio: 🎉 Install complete!
 fluvio: 💡 You'll need to add '~/.fluvio/bin/' to your PATH variable
@@ -54,16 +61,19 @@ commands:
 
 ```bash
 $ fluvio version
-Fluvio CLI        : 0.7.0
-Fluvio CLI SHA256 : ba6a3f659080446d5951fb1e1906f0aebef35c83bd797515a4b734ee53acfd24
-Fluvio Platform   : 0.7.0 (minikube)
-Git Commit        : f4cf81b52dbd000cd6fc87b59927aeb73e737d8a
-OS Details        : Darwin 10.16 (kernel 20.3.0)
+Fluvio CLI           : 0.8.0
+Fluvio CLI SHA256    : 493abdb87591eb439884b8caf1e103135a30318e3d9d48efab117fb96b35c67b
+Fluvio Platform      : 0.8.0 (local)
+Git Commit           : 2b1b06f27e68a79a58617cc670ff38ef5abe8985
+OS Details           : Darwin 10.16 (kernel 20.3.0)
+=== Plugin Versions ===
+Fluvio Runner (fluvio-run)     : 0.1.0
+Fluvio Cloud CLI (fluvio-cloud) : 0.1.5
 ```
 
 ```bash
 $ fluvio cloud
-fluvio-cloud 0.1.4
+fluvio-cloud 0.1.5
 
 USAGE:
     fluvio-cloud <SUBCOMMAND>

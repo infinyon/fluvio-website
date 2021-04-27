@@ -65,7 +65,7 @@ authors = ["Your name <your_email@example.com>"]
 edition = "2018"
 
 [dependencies]
-fluvio = "0.6.0"
+fluvio = "0.7.0"
 async-std = { version = "1", features = ["attributes"] }
 ```
 
