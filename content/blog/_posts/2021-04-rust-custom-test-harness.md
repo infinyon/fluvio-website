@@ -16,10 +16,15 @@ code:
 
 ## Let’s talk about integration testing in Rust
 
-I ran into a problem effectively using `cargo test` in [Fluvio](https://github.com/infinyon/fluvio) for integration testing. But I learned that you aren’t stuck with the functionality of `cargo test`.
+I ran into a problem effectively using `cargo test` in [Fluvio](https://github.com/infinyon/fluvio) for integration testing.
+
+We have to support several different environment configurations. The tests we want to write shouldn't need to be aware of their environment in detail. However, the default test harness, [libtest] does not support writing integration tests with this kind of opinionated organization.
+
+But I learned that you aren’t stuck with the functionality of `cargo test`.
 
 In this post, we’ll go implementing a custom test harness and some of the decision making that led me to this type of solution.
 
+[libtest]: https://github.com/rust-lang/libtest
 
 ### How does cargo test work by default?
 
@@ -27,7 +32,7 @@ There is a distinction between unit tests and integration tests in [the Rust boo
 
 The main points are that:
   * Your tests are annotated with `#[test]`
-  * [libtest](https://github.com/rust-lang/libtest) harness enumerates through all of your tests (a point we’ll revisit later in more detail)
+  * [libtest] harness enumerates through all of your tests (a point we’ll revisit later in more detail)
   * libtest returns the pass/fail status of the execution
 
 
@@ -107,25 +112,33 @@ fn main() {
 
 ### Collect all integration tests
 
-What do I mean? Just use `#[test]`, right? That’s what I was thinking at least. Turns out that is you opt out of using `#[test]` with `harness = false`. 
+The next job our test runner needs to do is to create a list of all the test functions. I thought there would be an easy way to do this by leveraging [libtest]'s `#[test]` attribute. 
 
+Long story short, there is no straightforward way to reuse libtest for the purpose of test collection. 
 
 #### How does libtest collect tests?
 
-After digging around in the [libtest](https://github.com/rust-lang/libtest/blob/master/libtest/lib.rs) and [Cargo](https://github.com/rust-lang/cargo/blob/master/src/cargo/ops/cargo_test.rs) and [Rust](https://github.com/rust-lang/rust/blob/master/compiler/rustc_builtin_macros/src/test.rs) code, the short answer is: it isn’t clear and it isn't reusable.
+After digging around in [relevant areas of libtest] and [Cargo test] and [Rustc macros] code, the short answer is: it isn’t clear and it isn't reusable.
 
-If that surprises you, then you were like me. I was hoping to use the test collection functionality from `#[test]`, but it wasn’t clear how to accomplish this. My mental model for how `cargo test` works needed a refresh.
+[relevant areas of libtest]: https://github.com/rust-lang/libtest/blob/master/libtest/lib.rs
+[Cargo test]: https://github.com/rust-lang/cargo/blob/master/src/cargo/ops/cargo_test.rs
+[Rustc macros]: https://github.com/rust-lang/rust/blob/master/compiler/rustc_builtin_macros/src/test.rs
+
+If that surprises you, then you're like me. I was hoping to use the test collection functionality from `#[test]`, but it wasn’t clear how to accomplish this. My mental model for how `cargo test` works needed a refresh.
 
 This gives you 2 practical options for collecting tests
 
 1. Manually modify `integration/main.rs` and add your test in between the setup and teardown
     * A quick and straightforward solution if you have a small set of tests
+    * This option requires us to add new tests to this list, which can be error prone and tedious as we grow.
 2. Build a test collector. We generate an external test catalog, and modify `integration/main.rs` to execute tests from the catalog.
     * This is a long term solution, which we’ll be covering for the rest of the post.
 
 ### Building the test collector
 
-The [inventory](https://crates.io/crates/inventory) crate markets itself as a plugin registry system. It will be doing all the heavy lifting. In this case, our tests are the plugins. 
+The [inventory] crate is a plugin registry system. We'll be using it for all the heavy lifting in our test framework - we'll be treating our tests as the plugins
+
+[inventory]: https://crates.io/crates/inventory
 
 In our `main.rs`, let’s declare a new module `tests`, where we can organize all the integration tests.
 
