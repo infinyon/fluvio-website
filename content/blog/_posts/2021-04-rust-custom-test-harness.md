@@ -7,7 +7,7 @@ description: "Building a custom test harness in Rust is less complicated followi
 date: 2021-04-27
 slug: rust-custom-test-harness 
 url: /blog/2021/04/rust-custom-test-harness
-img: blog/images/rust-custom-harness/banner-title.png
+img: blog/images/rust-custom-harness/banner-notitle.png
 tile: blog/images/rust-custom-harness/banner-notitle.png
 twitter-card: summary_large_image
 code:
