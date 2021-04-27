@@ -4,7 +4,7 @@ author:
     name: "T.J. Telan"
     github: "tjtelan"
 description: "Building a custom test harness in Rust is less complicated following these patterns"
-date: 2021-04-26
+date: 2021-04-27
 slug: rust-custom-test-harness 
 url: /blog/2021/04/rust-custom-test-harness
 img: blog/images/rust-custom-harness/banner-title.png
