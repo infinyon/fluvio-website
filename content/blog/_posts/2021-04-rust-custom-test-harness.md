@@ -3,7 +3,7 @@ title: How to Build a Custom Test Harness in Rust
 author:
     name: "T.J. Telan"
     github: "tjtelan"
-description: "Building a custom test harness in Rust is less complicated following these patterns"
+description: "Building a custom test harness in Rust is less complicated following these patterns."
 date: 2021-04-27
 slug: rust-custom-test-harness 
 url: /blog/2021/04/rust-custom-test-harness
