@@ -5,6 +5,7 @@ tags:
   - node
   - rust
   - python
+  - java
 githubAuthors:
   - simlay
   - nicholastmosher
