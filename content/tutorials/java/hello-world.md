@@ -6,21 +6,14 @@ toc: true
 
 In this tutorial, you will learn how to create a topic, build a producer/consumer in Java, and sends a "Hello, World! 🎉" message.
 
-## Prerequisites
+## Prerequisites: Install Fluvio, Java and Gradle
 
+Before starting this tutorial, make sure you have
+[followed the Fluvio getting started guide] and have installed the Fluvio CLI
+and have access to a Fluvio cluster, either in Fluvio Cloud or running locally
+on your machine. Then, you'll need to make sure you have Java and Gradle installed.
 
-
-### Create a Topic using the Fluvio CLI
-
-In Fluvio, we send all of our messages to something called a Topic, which
-is like a category for related messages. For this tutorial, we'll create
-a topic called `hello-java` using the following command:
-
-```bash
-$ fluvio topic create hello-python
-```
-
-### Check Java
+[followed the Fluvio getting started guide]: /docs/getting-started
 
 The Fluvio Java library should work with any version of Java greater than
 version 8, but we have specifically tested it on Java 8, 11, 15, and 16.
@@ -31,10 +24,6 @@ and to see what version it is, run the following:
 $ javac --version
 javac 16.0.1      # You might have something different
 ```
-
-If you have `javac` > 8.x installed, feel free to skip the next step!
-
-#### Install Java and Gradle
 
 If you don't already have a JDK installed, [visit the Oracle website] in order
 to download it. Choose the link for your platform, then run the installer and
@@ -52,7 +41,7 @@ There are two environment variables we need to make sure are right, your
 `javac --version`, you can skip this extra PATH setup, but you may still need
 to set up JAVA_HOME.
 
-##### Setup PATH and JAVA_HOME
+### Setup PATH and JAVA_HOME
 
 If you still can't execute `javac`, you may need to update your PATH.
 Make sure you remember where you installed your JDK. We'll give examples of
@@ -280,43 +269,180 @@ To do this, we'll update the `build.gradle` file like the following:
   }
 ```
 
-### Writing the Producer
+Notice the `credentials` block. In order to download libraries from GitHub Packages,
+we need to provide a GitHub username (the `GITHUB_ACTOR`) as well as something called
+a "Personal Access Token" (the `GITHUB_TOKEN`). Let's see how to create the token on
+the GitHub website.
 
+#### Creating a Personal Access Token
 
-##### This code performs the following actions:
+In order to create a token, click on your user profile on the GitHub website and go to
+the "Settings" page.
 
-- _Import `fluvio`;_
-- _Create a new Fluvio Client Instance;_
-- _Create a connection to a local Fluvio Cluster;_
-- _Create a new topic producer for `hello-python`;_
-- _Listen for input typed into the terminal;_
-- _Send typed input to the fluvio cluster;_
+<img 
+    src="/tutorials/images/java/settings.png"
+    alt="In the profile dropdown, click on the settings item" />
 
+Then, click on "Developer settings" in the left-hand menu.
 
-### Writing the Consumer
+<img
+    src="/tutorials/images/java/developer-settings.png"
+    alt="In settings, click on Developer Settings" />
 
+Then, click on "Personal access tokens" and "Generate new token".
 
-##### This code performs the following actions:
+<img
+    style="width:600px;"
+    src="/tutorials/images/java/personal-access-token.png"
+    alt="In developer settings, click on personal access tokens" />
 
-- _Import `fluvio` module;_
-- _Create a new Fluvio Client Instance;_
-- _Create a connection to a local Fluvio Cluster;_
-- _Create a new topic consumer for `hello-python`;_
-- _Listen for events sent by a topic producer;_
+You'll be prompted to re-enter your password for GitHub, then you'll find a page where
+you can grant permissions to your new token. The only permission this token needs is
+`read:packages`, so leave all the other fields blank. Then, click Generate Token.
+
+<img
+    style="height:800px;"
+    src="/tutorials/images/java/new-token.png"
+    alt="Add the read packages permission to your token" />
+
+On the next page, you'll be presented with a token that will allow you to download
+packages from GitHub Packages. Make sure to copy that token, and let's place it in a
+new file called `.env` in the root of your project.
+
+```bash
+export GITHUB_ACTOR="Your GitHub username"
+export GITHUB_TOKEN="Your GitHub token"
+```
+
+And as one last step let's set the following permission on the `.env` file:
+
+```bash
+$ chmod +x .env
+```
+
+This pattern of saving tokens and other environment variables to a `.env` file is a
+common practice in projects that need to grant access to secret data. It is important
+not to commit this file to git, because you don't want to share your `.env` file with
+anybody else.
+
+From now on, whenever you want to run your project, start by "sourcing" the `.env` file
+to load those variables into your shell:
+
+```bash
+$ source .env
+```
+
+To make sure it worked, let's build and run the project one more time.
+
+```bash
+$ ./gradlew run
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :app:run
+Hello World!
+
+BUILD SUCCESSFUL in 4s
+2 actionable tasks: 1 executed, 1 up-to-date
+```
+
+If that didn't work for you, double check that you followed all the steps correctly.
+Once you have that working, continue on to see how to produce and consume records in
+our new app!
+
+### Writing the Application
+
+Now we're ready to write our Java app. In our source file,
+`app/src/main/java/fluvio/java/app/App.java`, open an editor and write the following:
+
+```java
+package fluvio.java.app;
+
+import com.infinyon.fluvio.Fluvio;
+import com.infinyon.fluvio.TopicProducer;
+import com.infinyon.fluvio.PartitionConsumer;
+import com.infinyon.fluvio.PartitionConsumerStream;
+import com.infinyon.fluvio.Offset;
+import com.infinyon.fluvio.Record;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        Fluvio fluvio = Fluvio.connect();
+        TopicProducer producer = fluvio.topic_producer("hello-java");
+        PartitionConsumer consumer = fluvio.partition_consumer("hello-java", 0);
+
+        for (int i = 0; i < 10; i++) {
+            producer.send(String.valueOf(i).getBytes(), ("Hello " + i).getBytes());
+        }
+
+        PartitionConsumerStream stream = consumer.stream(Offset.beginning());
+        for (int i = 0; i < 10; i++) {
+            Record record = stream.next();
+            System.out.printf("Consumed record, key=%s, value=%s\n", record.key_string(), record.value_string());
+        }
+    }
+}
+```
 
 ## Running the Demo
 
-Now that the code is written, we're ready to run our `Hello, World! 🎉` example. Run the following commands in separate terminals.
+In order to send and receive records from Fluvio, we need to first create a Topic:
 
-### Running the Producer
+```bash
+$ fluvio topic create hello-java
+```
 
+This is the name of the topic we used in our Java code, so make sure you use the same name!
 
-### Running the Consumer
+Next, let's open up a Fluvio consumer on the command-line so that we can see the records
+being sent to our topic:
 
+```bash
+$ fluvio consume hello-java -B --key-value
+```
+
+This terminal will stay open and start printing out records as they are sent to our topic.
+
+Next, let's use another terminal to run the Java project. Open up your project directory
+again and run gradle again.
+
+```bash
+$ ./gradlew run
+
+> Task :app:run
+Consumed record, key=0, value=Hello 0
+Consumed record, key=1, value=Hello 1
+Consumed record, key=2, value=Hello 2
+Consumed record, key=3, value=Hello 3
+Consumed record, key=4, value=Hello 4
+Consumed record, key=5, value=Hello 5
+Consumed record, key=6, value=Hello 6
+Consumed record, key=7, value=Hello 7
+Consumed record, key=8, value=Hello 8
+Consumed record, key=9, value=Hello 9
+
+BUILD SUCCESSFUL in 722ms
+2 actionable tasks: 2 executed
+```
+
+In your other terminal window with the Fluvio consumer, you should have seen your records appear:
+
+```bash
+$ fluvio consume hello-java -B --key-value
+[0] Hello 0
+[1] Hello 1
+[2] Hello 2
+[3] Hello 3
+[4] Hello 4
+[5] Hello 5
+[6] Hello 6
+[7] Hello 7
+[8] Hello 8
+[9] Hello 9
+```
 
 ## Congratulations!
 
-You've now completed the Fluvio "Hello, World! 🎉" tutorial.
+You've now completed the Fluvio "Hello, World! 🎉" tutorial for Java.
 
 Head over to the Fluvio Java documentation to learn more about the library
 and available options.
