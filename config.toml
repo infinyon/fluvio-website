@@ -50,13 +50,22 @@ enableEmoji=true
     pre = "fas fa-sm fa-external-link-alt"
     parent = "apis"
     weight = 120
+
   [[menu.main]]
     identifier = "python"
     name = "Python API"
     url = "https://infinyon.github.io/fluvio-client-python/fluvio.html"
     pre = "fas fa-sm fa-external-link-alt"
     parent = "apis"
-    weight = 120
+    weight = 130
+
+  [[menu.main]]
+    identifier = "java"
+    name = "JAVA API"
+    url = "https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html"
+    pre = "fas fa-sm fa-external-link-alt"
+    parent = "apis"
+    weight = 140
 
   [[menu.main]]
     identifier = "blog"
