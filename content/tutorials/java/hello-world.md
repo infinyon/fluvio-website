@@ -461,6 +461,4 @@ and available options.
 
 ## Read the `fluvio` Docs
 
-Check out <a href="https://infinyon.github.io/fluvio-client-python/fluvio.html" ////////////////////////////////////
-target="_blank">Python API</a> reference guide for additional usage information
-and documentation.
+Check out <a href="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" target="_blank">Java API</a> reference guide for additional usage information and documentation.
