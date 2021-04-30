@@ -86,6 +86,8 @@ download the Fluvio library and compile everything correctly. [Visit the gradle 
 to download and install it. When you're done, you should be able to run the
 `gradle --version` command.
 
+[Visit the gradle website]: https://gradle.org/
+
 ## Setting up the project
 
 Now we're going to use `gradle` to help us set up the project. Let's create a
@@ -293,19 +295,21 @@ the "Settings" page.
 
 <img 
     src="/tutorials/images/java/settings.png"
+    style="justify: center; max-width: 300px;"
     alt="In the profile dropdown, click on the settings item" />
 
 Then, click on "Developer settings" in the left-hand menu.
 
 <img
     src="/tutorials/images/java/developer-settings.png"
-    alt="In settings, click on Developer Settings" />
+    style="justify: center; max-width: 600px" 
+    alt="In settings, click on Developer Settings"/>
 
 Then, click on "Personal access tokens" and "Generate new token".
 
 <img
-    style="width:600px;"
     src="/tutorials/images/java/personal-access-token.png"
+    style="justify: center; max-width: 780px" 
     alt="In developer settings, click on personal access tokens" />
 
 You'll be prompted to re-enter your password for GitHub, then you'll find a page where
@@ -313,8 +317,8 @@ you can grant permissions to your new token. The only permission this token need
 `read:packages`, so leave all the other fields blank. Then, click Generate Token.
 
 <img
-    style="height:800px;"
     src="/tutorials/images/java/new-token.png"
+    style="justify: center; max-width: 780px" 
     alt="Add the read packages permission to your token" />
 
 On the next page, you'll be presented with a token that will allow you to download
