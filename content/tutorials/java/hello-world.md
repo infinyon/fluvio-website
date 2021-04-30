@@ -48,12 +48,20 @@ Make sure you remember where you installed your JDK. We'll give examples of
 common locations where it might get installed below. To update these variables,
 we'll update a file called `~/.bashrc`.
 
+{{< tabs tabTotal="2" tabID="1" tabName1="Mac" tabName2="Linux">}}
+
+{{< tab tabNum="1" >}}
+
 On Mac, we'll add a line to the end of your `~/.bashrc` that looks something like this:
 
 ```bash
 export PATH="/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home/bin:${PATH}"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home"
 ```
+
+{{< /tab >}}
+
+{{< tab tabNum="2" >}}
 
 On Linux, "installing" Java essentially amounts to unzipping the download file in
 a particular directory. I tend to put the JDK right into the home directory, e.g.
@@ -65,7 +73,11 @@ export PATH="${HOME}/jdk1.8.0_181/bin:${PATH}"
 export JAVA_HOME="${HOME}/jdk1.8.0_181/"
 ```
 
-Note that the `JAVA_HOME` path is essentially the same as the PATH, minus the `bin` at the end.
+{{< /tab >}}
+
+{{< /tabs >}}
+
+-> Note that the `JAVA_HOME` path is essentially the same as the PATH, minus the `bin` at the end.
 
 ### Install Gradle
 
