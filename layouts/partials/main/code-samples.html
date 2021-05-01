@@ -4,6 +4,7 @@
         <li class="nav-item"><a class="nav-link active" id="node-producer-tab" data-toggle="pill" href="#node-producer" role="tab">Node</a></li>
         <li class="nav-item"><a class="nav-link" id="rust-producer-tab" data-toggle="pill" href="#rust-producer" role="tab">Rust</a></li>
         <li class="nav-item"><a class="nav-link" id="python-producer-tab" data-toggle="pill" href="#python-producer" role="tab">Python</a></li>
+        <li class="nav-item"><a class="nav-link" id="java-producer-tab" data-toggle="pill" href="#java-producer" role="tab">Java</a></li>
          <!--
         <li class="nav-item"><a class="nav-link" id="swift-producer-tab" data-toggle="pill" href="#swift-producer" role="tab">Swift</a></li>
         !-->
@@ -18,6 +19,9 @@
         <div class="tab-pane" id="python-producer" role="tabpanel">
             {{ partial "main/code/python-producer.md" | markdownify }}
         </div>
+        <div class="tab-pane" id="java-producer" role="tabpanel">
+            {{ partial "main/code/java-producer.md" | markdownify }}
+        </div>
         <!--
         <div class="tab-pane" id="swift-producer" role="tabpanel">
             {{ partial "main/code/swift-producer.md" | markdownify }}
@@ -30,6 +34,7 @@
         <li class="nav-item"><a class="nav-link active" id="node-consumer-tab" data-toggle="pill" href="#node-consumer" role="tab">Node</a></li>
         <li class="nav-item"><a class="nav-link" id="rust-consumer-tab" data-toggle="pill" href="#rust-consumer" role="tab">Rust</a></li>
         <li class="nav-item"><a class="nav-link" id="python-consumer-tab" data-toggle="pill" href="#python-consumer" role="tab">Python</a></li>
+        <li class="nav-item"><a class="nav-link" id="java-consumer-tab" data-toggle="pill" href="#java-consumer" role="tab">Java</a></li>
         <!--
         <li class="nav-item"><a class="nav-link" id="swift-consumer-tab" data-toggle="pill" href="#swift-consumer" role="tab">Swift</a></li>
         !-->
@@ -43,6 +48,9 @@
         </div>
         <div class="tab-pane" id="python-consumer" role="tabpanel">
             {{ partial "main/code/python-consumer.md" | markdownify }}
+        </div>
+        <div class="tab-pane" id="java-consumer" role="tabpanel">
+            {{ partial "main/code/java-consumer.md" | markdownify }}
         </div>
         <!--
         <div class="tab-pane" id="swift-consumer" role="tabpanel">
