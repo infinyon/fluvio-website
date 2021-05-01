@@ -13,7 +13,7 @@ public class App {
 
         PartitionConsumerStream stream = consumer.stream(Offset.beginning());
         Record record = stream.next();
-            System.out.printf("Consumed record, key=%s, value=%s\n", record.key_string(), record.value_string());
+        System.out.printf("Consumed record, key=%s, value=%s\n", record.key_string(), record.value_string());
     }
 }
 

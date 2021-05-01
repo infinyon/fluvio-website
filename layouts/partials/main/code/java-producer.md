@@ -8,7 +8,7 @@ public class App {
         Fluvio fluvio = Fluvio.connect();
         TopicProducer producer = fluvio.topic_producer("hello-java");
         
-        producer.send(String.valueOf(i).getBytes(), ("Hello " + i).getBytes());
+        producer.send(String.valueOf("1").getBytes(), ("Hello", "Fluvio!").getBytes());
     }
 }
 ```
