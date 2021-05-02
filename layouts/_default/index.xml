@@ -4,17 +4,17 @@
 		<link>{{ .Permalink }}</link>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<rights>Copyright (c) {{ .Site.Params.Author }} {{ .Site.LastChange.Year }}</rights>
-		<lastBuildDate>{{ .Date }}</lastBuildDate>
+		<copyright>Copyright (c) {{ .Site.LastChange.Year }} {{ .Site.Params.Author }}</copyright>
+		<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 +0800" }}</lastBuildDate>
         <atom:link href="{{ .Permalink }}index.xml" rel="self" type="application/rss+xml"/>
 		{{ range first 20 (where (where .Site.RegularPages "Section" "blog") ".Params.hidden" "ne" "true") }}
 		<item>
 			<title>{{ .Title | html }}</title>
 			<link>{{ .Permalink }}</link>
-			<pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 MST" }}</pubDate>
-			<author>{{ .Site.Params.Author }}</author>
+			<pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 +0800" }}</pubDate>
+			<author>https://github.com/{{ .Params.Author.github }}</author>
 			<guid>{{ .Permalink }}</guid>
-			<description>{{ (printf "%s<br>%s" .Params.description .Summary) | html }}</description>
+			<description>{{ (printf "%s<br/> %s" .Params.description .Summary) | markdownify }}</description>
 		</item>
 		{{ end }}
 	</channel>
