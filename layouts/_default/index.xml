@@ -1,20 +1,38 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" | safeHTML }}
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+  	>	
 	<channel>
 		<title>{{ .Site.Title }} - {{ .Site.Params.description }}</title>
 		<link>{{ .Permalink }}</link>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
+		<description></description>
 		<copyright>Copyright (c) {{ .Site.LastChange.Year }} {{ .Site.Params.Author }}</copyright>
 		<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 +0800" }}</lastBuildDate>
-        <atom:link href="{{ .Permalink }}index.xml" rel="self" type="application/rss+xml"/>
+        <atom:link href="{{ .Permalink }}rss.xml" rel="self" type="application/rss+xml"/>
+		<language>en-US</language>
 		{{ range first 20 (where (where .Site.RegularPages "Section" "blog") ".Params.hidden" "ne" "true") }}
 		<item>
 			<title>{{ .Title | html }}</title>
 			<link>{{ .Permalink }}</link>
 			<pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 +0800" }}</pubDate>
-			<author>https://github.com/{{ .Params.Author.github }}</author>
 			<guid>{{ .Permalink }}</guid>
-			<description>{{ (printf "%s<br/> %s" .Params.description .Summary) | markdownify }}</description>
+			<dc:creator>{{ .Params.author.name }}</dc:creator>
+			<category>
+				{{ `<![CDATA[Fluvio]]>` | safeHTML}}
+			</category>
+			<description>
+			    {{ `<![CDATA[` | safeHTML }}
+        			{{ .Params.description }}
+					{{ .Summary }}
+      			{{ `]]>` | safeHTML }}
+			</description>
 		</item>
 		{{ end }}
 	</channel>
