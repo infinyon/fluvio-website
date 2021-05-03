@@ -11,7 +11,6 @@
 		<title>{{ .Site.Title }} - {{ .Site.Params.description }}</title>
 		<link>{{ .Permalink }}</link>
 		<generator>Hugo -- gohugo.io</generator>
-		<language>en-us</language>
 		<description></description>
 		<copyright>Copyright (c) {{ .Site.LastChange.Year }} {{ .Site.Params.Author }}</copyright>
 		<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 +0800" }}</lastBuildDate>
