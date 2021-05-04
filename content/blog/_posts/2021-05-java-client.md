@@ -1,5 +1,5 @@
 ---
-title: Embedding Rust code in Java jar for distribution
+title: Embedding Rust code in Java Jar for distribution
 author:
     name: "Sebastian Imlay"
     github: "simlay"
