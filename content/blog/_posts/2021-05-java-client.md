@@ -13,14 +13,15 @@ img-credit:
     author: Jenny Downing
     site: Flikr
 twitter-card: summary_large_image
+code:
+    height: 1200
 ---
 
 This week, we're happy to announce the addition of a [Java client library for Fluvio].
 Using the Java client is just as easy as using our other clients. Check out the
 [hello world in Java tutorial] or [documentation] for usage.
 
-In this post, we'll talk about how we were able to bundle and distribute our
-rust into a [Java Jar] using [Gradle] to target a desktop enviroment.  To do
+This post will talk about how we bundled and distributed our rust code into a [Java Jar] using [Gradle] to target a desktop enviroment.  To do
 this for android, we recommend the [Flapigen android example].
 
 [Java client library for Fluvio]: https://github.com/infinyon/fluvio-client-java
@@ -32,18 +33,17 @@ this for android, we recommend the [Flapigen android example].
 
 # Overview
 
-Similar to how we used [flapigen] in [our python post], we will do the same but
-focus more on how to bundle the rust into the jar for publishing.
+Similar to [our python post], we used [flapigen] for packaging, but then it took a bit of research and many cups of coffee to figure out how to bundle rust into a jar for publishing. Let's get started.
 
 [flapigen]: https://github.com/Dushistov/flapigen-rs
 [our python post]: /blog/2021/03/python-client/
 
 ## Setup
 
-Before doing anything make sure you've got the [rust toolchain] and [Gradle installed].
+Before doing anything, make sure you've got the [rust toolchain] and [Gradle installed].
 
-To get started, we'll create a new project folder that's set up for both
-Rust and Python, using `cargo` and `venv`.
+To get started, we'll create a new project folder set up for both
+Rust and Gradle, using [cargo] and [venv].
 
 ```bash
 cargo new --lib my-java-lib
@@ -51,7 +51,7 @@ cd my-java-lib
 gradle init
 ```
 
-You will then be prompted from Gradle. Follow the [Building Java Libraries Sample]. It should look similar to:
+Gradle will guide you through the installation. Follow the [Building Java Libraries Sample]. It should look similar to this:
 
 ```bash
 $ gradle init
@@ -94,7 +94,7 @@ BUILD SUCCESSFUL in 37s
 2 actionable tasks: 2 executed
 ```
 
-The above creates a Rust crate named `my-java-lib` and a gradle library named
+The above creates a Rust crate named `my-java-lib` and a gradle library called
 `my-java-lib`.
 
 
@@ -122,7 +122,8 @@ $ tree
    |-src
 ```
 
-[virtual environment]: https://docs.python.org/3/tutorial/venv.html
+[cargo]: https://doc.rust-lang.org/stable/cargo/
+[venv]: https://docs.python.org/3/tutorial/venv.html
 [rust toolchain]: https://rustup.rs/
 [Gradle installed]: https://docs.gradle.org/current/userguide/installation.html
 [Building Java Libraries Sample]: https://docs.gradle.org/current/samples/sample_building_java_libraries.html
@@ -158,7 +159,6 @@ use std::{
 };
 
 fn main() {
-
     let out_dir = env::var("OUT_DIR").unwrap();
     let jni_c_headers_rs = Path::new(&out_dir).join("jni_c_header.rs");
     gen_jni_bindings(&jni_c_headers_rs);
@@ -181,16 +181,16 @@ fn main() {
         flapigen::Generator::new(
             LanguageConfig::JavaConfig(java_cfg)
         ).rustfmt_bindings(true);
+
     flap_gen.expand("java bindings", &in_src, &out_src);
     println!("cargo:rerun-if-changed={}", in_src.display());
 }
 
 fn gen_jni_bindings(jni_c_headers_rs: &Path) {
     let java_home = env::var("JAVA_HOME").expect("JAVA_HOME env variable not settted");
-
     let java_include_dir = Path::new(&java_home).join("include");
-
     let target = env::var("TARGET").expect("target env var not setted");
+
     let java_sys_include_dir = java_include_dir.join(if target.contains("windows") {
         "win32"
     } else if target.contains("darwin") {
@@ -202,8 +202,7 @@ fn gen_jni_bindings(jni_c_headers_rs: &Path) {
     let include_dirs = [java_include_dir, java_sys_include_dir];
     println!("jni include dirs {:?}", include_dirs);
 
-    let jni_h_path =
-        search_file_in_directory(&include_dirs[..], "jni.h").expect("Can not find jni.h");
+    let jni_h_path = search_file_in_directory(&include_dirs[..], "jni.h").expect("Can not find jni.h");
     println!("cargo:rerun-if-changed={}", jni_h_path.display());
 
     gen_binding(&include_dirs[..], &jni_h_path, jni_c_headers_rs).expect("gen_binding failed");
@@ -226,6 +225,7 @@ fn gen_binding<P: AsRef<Path>>(
     output_rust: &Path,
 ) -> Result<(), String> {
     let mut bindings: bindgen::Builder = bindgen::builder().header(c_file_path.to_str().unwrap());
+
     bindings = include_dirs.iter().fold(bindings, |acc, x| {
         acc.clang_arg("-I".to_string() + x.as_ref().to_str().unwrap())
     });
@@ -233,6 +233,7 @@ fn gen_binding<P: AsRef<Path>>(
     let generated_bindings = bindings
         .generate()
         .map_err(|_| "Failed to generate bindings".to_string())?;
+
     generated_bindings
         .write_to_file(output_rust)
         .map_err(|err| err.to_string())?;
@@ -241,8 +242,8 @@ fn gen_binding<P: AsRef<Path>>(
 }
 ```
 
-This buildscript is so long because:
-1) it actually looks at the `JAVA_HOME` environment variable
+This buildscript is long because:
+1) it looks at the `JAVA_HOME` environment variable
 2) looks for the [JNI] headers
 3) uses [rust-bindgen] to generate bindings to the java runtime
 4) Generates flaipgen FFI functions
@@ -258,22 +259,27 @@ Now we'll add a `src/java_glue.rs.in` file with something like the following:
 ```rust
 // src/java_glue.rs.in
 use crate::jni_c_header::*;
+
 pub struct Foo {
     val: i32
 }
+
 impl Foo {
     pub fn new(val: i32) -> Self {
         Self {
             val
         }
     }
+
     pub fn set_field(&mut self, new_val: i32) {
         self.val = new_val;
     }
+
     pub fn val(&self) -> i32 {
         self.val
     }
 }
+
 foreign_class!(class Foo {
     self_type Foo;
     constructor Foo::new(_: i32) -> Foo;
@@ -283,7 +289,7 @@ foreign_class!(class Foo {
 ```
 
 
-This simple example was published in the [flapigen book] and we can copy and paste it here.
+This simple example was published in the [flapigen book], and we can copy and paste it here.
 
 [flapigen book]: https://dushistov.github.io/flapigen-rs/foreign-class.html
 
@@ -333,18 +339,17 @@ include!(concat!(env!("OUT_DIR"), "/jni_c_header.rs"));
 
 This section uses flapigen to expand the [`foreign_class`] macro into many
 java functions. If you want to see what that looks like, install [`cargo-expand`]
-and run `cargo expand`. You willl get a lot of generated rust code.
+and run `cargo expand`. You will get a lot of generated rust code.
 
 [`foreign_class`]: https://dushistov.github.io/flapigen-rs/foreign-class.html
 [`cargo-expand`]: https://crates.io/crates/cargo-expand
 
-Once everything is setup, run `cargo check` or `cargo build` and there will now
-exist some java files in `lib/src/main/java/my/java/lib/`
+Once everything is setup, run `cargo check` or `cargo build` to generate the java files in `lib/src/main/java/my/java/lib/`
 
 ## Java Glue
 
-Before we start, make sure to run `cargo build`. This will generate the
-following files in `lib/src/main/java/my/java/lib/`:
+Make sure to run `cargo build` as we'll be using the files generate the
+following directory `lib/src/main/java/my/java/lib/` to continue:
 
 ```bash
 Foo.java
@@ -353,9 +358,7 @@ JNIReachabilityFence.java
 Library.java
 ```
 
-The gradle setup step created the `Library.java` but the other three were
-generated from flapigen. `Foo.java` is what we care about. Yours should look
-like:
+The gradle setup step created `Library.java`, and flapigen the other three files. `Foo.java` is the file we care about, and it should look like this:
 
 ```java
 // Automatically generated by flapigen
@@ -404,13 +407,13 @@ public final class Foo {
 }
 ```
 
-The functions to notice in that class are the `set_filed`, `val` and
-constructor fields. We specified those in the `src/java_glue.rs.in` when
-describing our class.
+The src/java_glue.rs file we wrote in the section above instructed `flappigen` to provision and manipulate `mNativeObj`.
+
+Let's run `./gradlew test` to execute the java tests. This step ensures the tests have been setup correctly before we go and break them.
 
 To run the java tests, run `./gradlew test`. This won't test that we've hooked
 up the rust quite yet but it's important to make sure your tests run correctly
-before we go and break them.
+before we go and break them. :wink:
 
 ### FooTest.java
 Let's add a java unit test that actually calls the flapigen `Foo` class which
