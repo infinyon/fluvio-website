@@ -4,7 +4,7 @@ author:
     name: "Sebastian Imlay"
     github: "simlay"
 description: "Learn how to wrap your Rust crate in a Java Jar for the desktop/server."
-date: 2021-05-03
+date: 2021-05-04
 slug: java-client
 url: /blog/2021/05/java-client
 img: blog/images/java-client/crab-in-jar.png
