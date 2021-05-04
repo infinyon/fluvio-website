@@ -581,7 +581,7 @@ foreign_class!(class Foo {
 });
 ```
 
-The `foreigh_code` block will add `static { ... }` block to the `Foo` class
+The `foreign_code` block will add `static { ... }` block to the `Foo` class
 declaration in the java.
 
 
