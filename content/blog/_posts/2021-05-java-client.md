@@ -348,8 +348,8 @@ include!(concat!(env!("OUT_DIR"), "/jni_c_header.rs"));
 
 
 This section uses flapigen to expand the [`foreign_class`] macro into many
-java functions. If you want to see what that looks like, install [`cargo-expand`]
-and run `cargo expand`. You will get a lot of generated rust code.
+Java functions. If you want to see what that looks like, install [`cargo-expand`]
+and run `cargo expand`. You will get a lot of generated Rust code.
 
 [`foreign_class`]: https://dushistov.github.io/flapigen-rs/foreign-class.html
 [`cargo-expand`]: https://crates.io/crates/cargo-expand
@@ -558,7 +558,7 @@ libmy_java_lib.so
 
 ## The magic step - loading the runtime library from your jar.
 
-It seems there is no way to test if your library is linked correctly at compile time using `gradle` or `java`. When the program starts, the user must reference the internal shared library:
+It seems there is no way to test if your library is linked correctly at compile time using Gradle or Java. When the program starts, the user must reference the internal shared library:
 
 ```java
 static { System.loadLibrary("my_java_lib"); }
