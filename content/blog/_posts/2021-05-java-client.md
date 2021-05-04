@@ -7,8 +7,11 @@ description: "Learn how to wrap your Rust crate in a Java Jar for the desktop/se
 date: 2021-05-03
 slug: java-client
 url: /blog/2021/05/java-client
-img: blog/images/python-client/python-blog-social.png
-tile: blog/images/python-client/python-blog-tile.png
+img: blog/images/java-client/crab-in-jar.png
+img-credit:
+    link: https://www.flickr.com/photos/jenny-pics/4821968234/
+    author: Jenny Downing
+    site: Flikr
 twitter-card: summary_large_image
 ---
 
