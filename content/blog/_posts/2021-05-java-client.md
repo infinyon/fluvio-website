@@ -549,7 +549,7 @@ Simply download [Adam Heinrich's NativUtils.java] to
 `my.java.lib`.
 
 Then go back to your flaipgen `Foo` class and change it to:
-```
+```rust
 foreign_class!(class Foo {
     self_type Foo;
     constructor Foo::new(_: i32) -> Foo;
