@@ -43,7 +43,7 @@ Similar to [our python post], we used [flapigen] for packaging, but then it took
 Before doing anything, make sure you've got the [rust toolchain] and [Gradle installed].
 
 To get started, we'll create a new project folder set up for both
-Rust and Gradle, using [cargo] and [venv].
+Rust and Gradle.
 
 ```bash
 cargo new --lib my-java-lib
@@ -122,8 +122,6 @@ $ tree
    |-src
 ```
 
-[cargo]: https://doc.rust-lang.org/stable/cargo/
-[venv]: https://docs.python.org/3/tutorial/venv.html
 [rust toolchain]: https://rustup.rs/
 [Gradle installed]: https://docs.gradle.org/current/userguide/installation.html
 [Building Java Libraries Sample]: https://docs.gradle.org/current/samples/sample_building_java_libraries.html
@@ -416,8 +414,11 @@ up the rust quite yet but it's important to make sure your tests run correctly
 before we go and break them. :wink:
 
 ### FooTest.java
-Let's add a java unit test that actually calls the flapigen `Foo` class which
-uses our rust. Create the file `lib/src/test/java/my/java/lib/FooTest.java`:
+
+Now, let's add a failing java unit test which calls our rust. The purpose of
+this is to ensure that the unit test is actually called and that the library is
+loaded correctly. Create the file
+`lib/src/test/java/my/java/lib/FooTest.java`:
 
 ```java
 // lib/src/test/java/my/java/lib/FooTest.java
