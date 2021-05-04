@@ -34,7 +34,18 @@ android, we recommend the [Flapigen android example].
 
 # Overview
 
-Similar to [our python post], we used [flapigen] for packaging, but then it took a bit of research and many cups of coffee to figure out how to bundle Rust into a jar for publishing. Let's get started.
+Similar to [our python post], we used [flapigen] for packaging, but then it
+took a bit of research and many cups of coffee to figure out how to bundle Rust
+into a jar for publishing.
+
+In this post we will describe the process for:
+* [Setting up a Gradle and Rust Project](#setup)
+* [Configuring flapigen to run at build-time and generate Java bindings from our Rust interface](#rust-glue)
+* [Bundling the Rust native library into the Java jar](#gradle-build)
+* [Loading the native library at runtime](#the-magic-step---loading-the-runtime-library-from-your-jar)
+* [Writing tests to verify the behavior](#testing-it-all-out)
+
+Let's get started.
 
 [flapigen]: https://github.com/Dushistov/flapigen-rs
 [our python post]: /blog/2021/03/python-client/
@@ -572,7 +583,7 @@ foreign_class!(class Foo {
     foreign_code r#"
         static {
             try {
-                NativeUtils.loadLibraryFromJar("/libmy_java_lib.so");
+                NativeUtils.loadLibraryFromJar("/libmy_java_lib.so"); // for macOS, make sure this is .dylib rather than .so
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }
@@ -582,6 +593,10 @@ foreign_class!(class Foo {
 
 The `foreign_code` block will add a `static { ... }` routine to the `Foo` class
 declaration in java.
+
+-> **Note**: On macOS, you will need to use `.dylib` rather than `.so` for your `loadLibraryFromJar` call. In our client, [detect the operating system at runtime].
+
+[detect the operating system at runtime]: https://github.com/infinyon/fluvio-client-java/blob/d5dd4c6e9bc9422c8f07b6a7e24dc2fa4530602f/fluvio/src/main/java/com/infinyon/fluvio/NativeUtils.java#L75-L83
 
 ## Testing it all out
 
