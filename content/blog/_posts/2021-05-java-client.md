@@ -3,7 +3,7 @@ title: Embedding Rust code in Java jar for distribution
 author:
     name: "Sebastian Imlay"
     github: "simlay"
-description: "Learn how to wrap your Rust crate in a Java Jar for the desktop/server"
+description: "Learn how to wrap your Rust crate in a Java Jar for the desktop/server."
 date: 2021-05-03
 slug: java-client
 url: /blog/2021/05/java-client
