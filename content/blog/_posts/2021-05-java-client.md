@@ -1,5 +1,5 @@
 ---
-title: Wrapping your rust in a Java Jar for distribution
+title: Embedding Rust code in Java jar for distribution
 author:
     name: "Sebastian Imlay"
     github: "simlay"
@@ -21,8 +21,9 @@ This week, we're happy to announce the addition of a [Java client library for Fl
 Using the Java client is just as easy as using our other clients. Check out the
 [hello world in Java tutorial] or [documentation] for usage.
 
-This post will talk about how we bundled and distributed our rust code into a [Java Jar] using [Gradle] to target a desktop enviroment.  To do
-this for android, we recommend the [Flapigen android example].
+This post will talk about how we bundled and distributed our Rust code into a
+[Java Jar] using [Gradle] to target a desktop enviroment.  To do this for
+android, we recommend the [Flapigen android example].
 
 [Java client library for Fluvio]: https://github.com/infinyon/fluvio-client-java
 [hello world in Java tutorial]: /tutorials/java/hello-world/
@@ -33,14 +34,14 @@ this for android, we recommend the [Flapigen android example].
 
 # Overview
 
-Similar to [our python post], we used [flapigen] for packaging, but then it took a bit of research and many cups of coffee to figure out how to bundle rust into a jar for publishing. Let's get started.
+Similar to [our python post], we used [flapigen] for packaging, but then it took a bit of research and many cups of coffee to figure out how to bundle Rust into a jar for publishing. Let's get started.
 
 [flapigen]: https://github.com/Dushistov/flapigen-rs
 [our python post]: /blog/2021/03/python-client/
 
 ## Setup
 
-Before doing anything, make sure you've got the [rust toolchain] and [Gradle installed].
+Before doing anything, make sure you've got the [Rust toolchain] and [Gradle installed].
 
 To get started, we'll create a new project folder set up for both
 Rust and Gradle.
@@ -122,7 +123,7 @@ $ tree
    |-src
 ```
 
-[rust toolchain]: https://rustup.rs/
+[Rust toolchain]: https://rustup.rs/
 [Gradle installed]: https://docs.gradle.org/current/userguide/installation.html
 [Building Java Libraries Sample]: https://docs.gradle.org/current/samples/sample_building_java_libraries.html
 
@@ -243,9 +244,9 @@ fn gen_binding<P: AsRef<Path>>(
 This buildscript is long because:
 1) it looks at the `JAVA_HOME` environment variable
 2) looks for the [JNI] headers
-3) uses [rust-bindgen] to generate bindings to the java runtime
+3) uses [rust-bindgen] to generate bindings to the Java runtime
 4) Generates flaipgen FFI functions
-5) Generates java classes for the flapigen classes and puts them in
+5) Generates Java classes for the flapigen classes and puts them in
 `lib/src/main/java/my/java/lib/`
 
 [JNI]: https://en.wikipedia.org/wiki/Java_Native_Interface
@@ -342,7 +343,7 @@ and run `cargo expand`. You will get a lot of generated rust code.
 [`foreign_class`]: https://dushistov.github.io/flapigen-rs/foreign-class.html
 [`cargo-expand`]: https://crates.io/crates/cargo-expand
 
-Once everything is setup, run `cargo check` or `cargo build` to generate the java files in `lib/src/main/java/my/java/lib/`
+Once everything is setup, run `cargo check` or `cargo build` to generate the Java files in `lib/src/main/java/my/java/lib/`
 
 ## Java Glue
 
@@ -407,13 +408,15 @@ public final class Foo {
 
 The src/java_glue.rs file we wrote in the section above instructed `flappigen` to provision and manipulate `mNativeObj`.
 
-To run the java tests, run `./gradlew test`. This won't test that we've hooked
-up the rust quite yet but it's important to make sure your tests run correctly
+To run the Java tests, run `./gradlew test`. This won't test that we've hooked
+up the Rust quite yet but it's important to make sure your tests run correctly
 before we go and break them. :wink:
 
 ### FooTest.java
 
-Now, let's add a failing java unit test that calls our rust. The test ensures that the unit test is actually called and that the library is loaded correctly. Create the file
+Now, let's add a failing Java unit test that calls our Rust. The test ensures
+that the unit test is actually called and that the library is loaded correctly.
+Create the file
 `lib/src/test/java/my/java/lib/FooTest.java`:
 
 ```java
@@ -459,7 +462,7 @@ BUILD FAILED in 741ms
 3 actionable tasks: 2 executed, 1 up-to-date
 ```
 
-This means we need to link our rust as a static library.
+This means we need to link our Rust as a static library.
 
 ## Gradle build
 
@@ -514,14 +517,14 @@ sourceSets {
 }
 ```
 
-In short, this adds:
+In short, this:
 * runs `cargo build --release` as a build step
 * Copies the cydylib from `./target/release/` into `lib/rust-lib`
 * And then adds the `rust-lib` directory as a `resource` to the [Gradle SourceSets].
 
 [Gradle SourceSets]: https://docs.gradle.org/current/dsl/org.gradle.api.tasks.SourceSet.html
 
-To verify that the rust is in our Jar, run:
+To verify that the Rust is in our Jar, run:
 
 ```bash
 ./gradlew build -x test && jar tf lib/build/libs/lib.jar
@@ -645,8 +648,8 @@ $ ./gradlew test
     6 actionable tasks: 1 executed, 5 up-to-date
 ```
 
-And there you go! You've now called rust from java and can distribute your rust code
-in a java jar! :tada:
+And there you go! You've now called Rust from Java and can distribute your Rust code
+in a Java Jar! :tada:
 
 ## Conclusion
 
