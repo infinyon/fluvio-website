@@ -407,17 +407,13 @@ public final class Foo {
 
 The src/java_glue.rs file we wrote in the section above instructed `flappigen` to provision and manipulate `mNativeObj`.
 
-Let's run `./gradlew test` to execute the java tests. This step ensures the tests have been setup correctly before we go and break them.
-
 To run the java tests, run `./gradlew test`. This won't test that we've hooked
 up the rust quite yet but it's important to make sure your tests run correctly
 before we go and break them. :wink:
 
 ### FooTest.java
 
-Now, let's add a failing java unit test which calls our rust. The purpose of
-this is to ensure that the unit test is actually called and that the library is
-loaded correctly. Create the file
+Now, let's add a failing java unit test that calls our rust. The test ensures that the unit test is actually called and that the library is loaded correctly. Create the file
 `lib/src/test/java/my/java/lib/FooTest.java`:
 
 ```java
@@ -465,10 +461,9 @@ BUILD FAILED in 741ms
 
 This means we need to link our rust as a static library.
 
-## Graldle build
+## Gradle build
 
-The `gradle init` step in the [setup](#setup) generated a template of the
-project. We just need to add to `lib/build.gradle`:
+The `gradle init` step in the [setup](#setup) generated a project template. We need to add the project template to `lib/build.gradle`:
 
 ```groovy
 // Append to `lib/build.gradle`
@@ -489,6 +484,7 @@ tasks.create(name: "cargo-output-dir", description: "Get cargo metadata") {
         project.ext.cargo_target_directory = json.target_directory
     }
 }
+
 // Build with cargo
 tasks.create(name: "cargo-build", type: Exec, description: "Running Cargo build", dependsOn: "cargo-output-dir") {
     workingDir rustBasePath
@@ -500,6 +496,7 @@ tasks.create(name: "rust-deploy", type: Sync, dependsOn: "cargo-build") {
     include "*.dylib","*.so"
     into "rust-lib/"
 }
+
 clean.dependsOn "clean-rust"
 tasks.withType(JavaCompile) {
     compileTask -> compileTask.dependsOn "rust-deploy"
@@ -529,7 +526,8 @@ To verify that the rust is in our Jar, run:
 ```bash
 ./gradlew build -x test && jar tf lib/build/libs/lib.jar
 ```
-It should look like:
+
+It should look like this:
 
 ```bash
 META-INF/
@@ -544,25 +542,23 @@ my/java/lib/JNIReachabilityFence.class
 libmy_java_lib.so
 ```
 
-## The magic step - loading your runtime library from your jar.
+## The magic step - loading the runtime library from your jar.
 
-It seem's there's no way to test you your library is linked correctly at
-compile time using gradle or java. When the program starts, the user of a shared library must have:
+It seems there is no way to test if your library is linked correctly at compile time using `gradle` or `java`. When the program starts, the user must reference the internal shared library:
+
 ```java
 static { System.loadLibrary("my_java_lib"); }
 ```
-in their source someplace to [load the library at runtime]
 
-We strive to make our client libraries have a very nice user experience. So
-requiring the user add the shared library to their isn't ideal.  Fortunately,
-          [a nice internet patron has a workround] which looks at the jar,
-          unzips it in a temp directory and then calls `System.load`.
+Our library is now [loaded at runtime](https://www.tutorialspoint.com/java/lang/runtime_loadlibrary.htm).
 
-Simply download [Adam Heinrich's NativUtils.java] to
+requiring the user to add a shared library to their environment is inconvenient.  Fortunately, [a nice internet patron has a workaround]( https://www.adamh.cz/blog/2012/12/how-to-load-native-jni-library-from-jar/). The solution looks at the jar, unzips it in a temp directory, and then calls `System.load`.
+
+Simply download [Adam Heinrich's NativUtils.java](https://raw.githubusercontent.com/adamheinrich/native-utils/master/src/main/java/cz/adamh/utils/NativeUtils.java) to
 `lib/src/main/java/my/java/lib/NativeUtils.java`, change the package to
 `my.java.lib`.
 
-Then go back to your flaipgen `Foo` class and change it to:
+Finally, we go back to your flaipgen `Foo` class and update it as follows:
 
 ```rust
 foreign_class!(class Foo {
@@ -581,14 +577,8 @@ foreign_class!(class Foo {
 });
 ```
 
-The `foreign_code` block will add `static { ... }` block to the `Foo` class
-declaration in the java.
-
-
-[load the library at runtime]: https://www.tutorialspoint.com/java/lang/runtime_loadlibrary.htm
-[a nice internet patron has a workround]: https://www.adamh.cz/blog/2012/12/how-to-load-native-jni-library-from-jar/
-[Adam Heinrich's NativUtil.java]: https://raw.githubusercontent.com/adamheinrich/native-utils/master/src/main/java/cz/adamh/utils/NativeUtils.java
-
+The `foreign_code` block will add a `static { ... }` routine to the `Foo` class
+declaration in java.
 
 ## Testing it all out
 
@@ -624,7 +614,7 @@ BUILD FAILED in 943ms
 6 actionable tasks: 2 executed, 4 up-to-date
 ```
 
-Now, let's update our `FooTest.java` to be:
+Now, let's update our `FooTest.java` to the following:
 
 ```java
 package my.java.lib;
@@ -655,8 +645,8 @@ $ ./gradlew test
     6 actionable tasks: 1 executed, 5 up-to-date
 ```
 
-And there you go! You've now called rust from java and can distribute the rust
-in the jar!
+And there you go! You've now called rust from java and can distribute your rust code
+in a java jar! :tada:
 
 ## Conclusion
 
@@ -667,7 +657,4 @@ post in our [fluvio-demo-apps-rust] repository.
 [fluvio-demo-apps-rust]: https://github.com/infinyon/fluvio-demo-apps-rust/tree/master/my-java-lib-blog-post
 
 Adding cleaner docs to JavaDoc is also another thing we could talk about we
-wanted to keep this post short. You can checkout how we did better [documentation generation] with [Fluvio Java Client].
-
-[Fluvio Java Client]: https://github.com/infinyon/fluvio-client-java/blob/d5dd4c6e9bc9422c8f07b6a7e24dc2fa4530602f/src/java_glue.rs.in#L44-L104
-[documentation generation]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html
+wanted to keep this post short. You can checkout how we are [generating the documentation](https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html) in our [Fluvio Java Client](https://github.com/infinyon/fluvio-client-java/blob/d5dd4c6e9bc9422c8f07b6a7e24dc2fa4530602f/src/java_glue.rs.in#L44-L104) repository.
