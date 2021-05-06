@@ -1,7 +1,7 @@
 {{- $current := .Page -}}
 {{- $all_pages := (where .Site.Pages "Section" .Section).ByWeight -}}
 
-<div class="sMenu">
+<div class=".sidebar">
 <!-- Top Pages -->
 {{ range $all_pages }}
    {{ if and .IsPage (eq .CurrentSection .FirstSection) }}

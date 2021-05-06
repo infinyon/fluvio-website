@@ -1,5 +1,8 @@
-.sMenu {
-    margin: 20px 5px 10px 10px;
+.sidebar {
+    margin: 20px 5px;
+    min-width: 220px;
+    max-width: 220px;
+    min-height: 100vh;
 
     .card {
         padding-left: 5px;
@@ -11,7 +14,7 @@
             text-decoration: none;
             color: $gray10;
             line-height: 1.8em;
-            font-size: .9em;
+            font-size: .95em;
             font-weight: normal;
         }
     }
@@ -33,4 +36,26 @@
             padding-left: 10px;
         }
     }
+}
+
+.sidebar.active {
+    margin-left: -220px;
+}
+
+.sidebar-nav {
+    display: none;
+    text-align: center;
+    border-bottom: 1px solid $gray5;
+    color: $white;
+    background: $main-light;
+    padding: 10px;
+    font-size: 1.2em;
+
+    i {padding-right: 10px; }
+}
+
+@media (max-width: 768px) {
+    .sidebar-nav { display: block; }
+    .sidebar {margin-left: -220px;}
+    .sidebar.active {margin-left: 0;}
 }

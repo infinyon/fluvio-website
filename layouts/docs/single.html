@@ -1,19 +1,7 @@
-{{ define "main" }}
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md sidemenu">
-        {{ partial "docs/side-menu.html" . }}
-      </div>
-      <div class="col-md main-area">
-        {{- block "content" . }}{{- end }}
-      </div>
-      <div class="doc-toc">
-        {{ partial "docs/table-of-contents" . }}
-      </div>
-    </div>     
-  </div>
+{{ define "content" }}
+  {{ partial "docs/doc-page" . }}
 {{ end }}
 
-{{ define "content" }}
-  {{ partial "docs/page-content" (dict "page" .) }}
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
 {{ end }}

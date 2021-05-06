@@ -1,0 +1,17 @@
+<div class="sidebar-nav">
+    <i class="fas fa-sm fa-bars"></i> 
+    Docs Navigation
+</div>
+<div class="container-fluid site-width">
+    <div class="content-wrapper">
+        <div class="sidebar">
+        {{ partial "docs/sidebar.html" . }}
+        </div>
+        <div class="main-area">
+            {{ partial "docs/content" (dict "page" .) }}
+        </div>
+        <div class="doc-toc">
+        {{ partial "docs/table-of-contents" . }}
+        </div>
+    </div>
+</div>
