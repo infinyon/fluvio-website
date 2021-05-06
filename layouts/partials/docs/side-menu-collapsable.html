@@ -1,14 +1,24 @@
-{{- template "top-nav" (dict "selected" .ctx "ancesters" .ancesters) -}}
+<!-- Generate all ancesters sections (e.g. doc/section1/, doc/section1/subsection1/) -->
+{{- $section_path := .CurrentSection -}}
+{{- $section_nodes := split $section_path.File "/" }}
+{{- $last_cnt := (sub (len $section_nodes) 1) }}
+{{- $collector := "" }}
+{{- $ancesters := slice }}
+{{- range $index, $node := $section_nodes -}}
+    {{- if (eq $index 0) -}}
+        {{- $collector = $node -}}
+    {{- else if (lt $index $last_cnt) -}}
+        {{- $collector = (print  $collector "/" $node ) -}}
+        {{- $ancesters = $ancesters | append (print $collector "/") -}}
+    {{- end -}}
+{{- end -}}
+
+{{- template "top-nav" (dict "selected" . "ancesters" $ancesters) -}}
 
 {{- define "top-nav" -}}
 	{{- $top_section := site.GetPage "section" "docs" -}}
 	<div id="top-nav" class=""> 
-		{{- template "section-content" (dict 
-			"selected" .selected 
-			"section" $top_section 
-			"parent" "top-nav" 
-			"ancesters" .ancesters) 
-		-}}
+		{{- template "section-content" (dict "selected" .selected "section" $top_section "parent" "top-nav" "ancesters" .ancesters) -}}
 	</div>
 {{- end -}}
 
@@ -58,7 +68,7 @@
 	
 	<div id="hdr-{{ $section_id }}", class="card-header">
 		<div class="mb-0">
-			<a role="button" data-toggle="" href="#clps-{{ $section_id }}" aria-expanded="{{$expanded}}" aria-controls="clps-{{ $section_id }}">
+			<a role="button" data-toggle="collapse" href="#clps-{{ $section_id }}" aria-expanded="{{$expanded}}" aria-controls="clps-{{ $section_id }}">
 				{{ $menu }}
 			</a>
 		</div>
@@ -78,7 +88,7 @@
 		{{- $selected = " selected" -}}
 	{{- end -}}
 
-  <div id="clps-{{ $section_id }}" class="{{ $show }}" data-parent="#{{ .parent }}" aria-labelledby="hdr-{{ $section_id }}">
+  <div id="clps-{{ $section_id }}" class="collapse{{ $show }}" data-parent="#{{ .parent }}" aria-labelledby="hdr-{{ $section_id }}">
     <div id="{{ $section_id }}" class="card-body">
 		<div class="card card-page{{ $selected }}"><a href="{{ .section.RelPermalink }}">{{ $menu }}</a></div>
       	{{- template "section-content" (dict "section" .section "parent" $section_id "ancesters" .ancesters "selected" .selected) -}}

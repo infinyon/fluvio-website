@@ -1,8 +1,6 @@
 ---
-title: Getting Started with Fluvio Cloud
-menu: Use Fluvio Cloud
-toc: true
-weight: 30
+title: What is Fluvio?
+weight: 10
 ---
 
 Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
