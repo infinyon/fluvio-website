@@ -6,13 +6,13 @@
     {{- block "head-meta" . -}}{{- end }}
     {{- partial "head-link.html" . }}
     {{- partial "head-script.html" . }}
-    {{- partial "others/cookies.html" . }}
+    {{- partial "common/cookies.html" . }}
     {{- block "head-script" . -}}{{- end }}
   </head>
-  <body class="d-flex flex-column">
+  <body class="content d-flex flex-column">
     {{- partial "menu.html" . -}}
     <div id="content">
-    {{- block "main" . }}{{- end }}
+    {{- block "content" . }}{{- end }}
     </div>
     {{- partial "footer.html" . -}}
   </body>

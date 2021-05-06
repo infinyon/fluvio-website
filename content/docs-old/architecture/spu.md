@@ -7,8 +7,9 @@ weight: 20
 
 **Streaming Processing Unit (SPU)** is responsible for processing data streams in real-time. The SPUs is designed for **horizontal scale**, where SPUs are gradually added to the cluster to accommodate higher data throughput. Each SPU **manages replicas** which represent the lowest unit of a data stream. Replicas are copies of data streams that are evenly distributed across SPUs. 
 
-{{< image src="architecture/spu-architecture.svg" alt="SPU Architecture" justify="center" width="660" type="scaled-90">}}
-
+<img src="architecture/spu-architecture.svg"
+     alt="SPU Architecture"
+     style="justify: center; max-width: 660px" />
 
 #### Default Ports
 
@@ -30,7 +31,9 @@ The **SPU** is a high performance streaming processing unit that works in unisom
 
 The following diagram describes **SPU** object relationships and workflows:
 
-{{< image src="architecture/spu-workflow.svg" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
+<img src="architecture/spu-workflow.svg"
+     alt="SC Controller"
+     style="justify: center; max-width: 800px" />
 
 1. Leader Controller (LC)
     * receives SPU and Partition specs from SC Dispatcher

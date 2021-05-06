@@ -1,0 +1,45 @@
+.social {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+
+  .button {
+      border: none;
+      color: $white;
+      padding-top:7px;
+      text-align: center;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin: 2px;
+      border-radius: 50%;
+      line-height: 2em;
+  }
+
+  .rss {
+    background: $main-light; //$col-rss;
+    color: $white;
+    i {color: $white}
+  }
+
+  .twitter {
+    background: $main-light; //$col-twitter;
+    color:  $white;
+  }
+
+  .linkedin {
+    background: $main-light; //$col-linkedin;
+    color:  $white;
+  }
+
+  .ycombinator {
+    background: $main-light; //$col-ycombinator;
+    color:  $white;
+    i { font-family: arial; }
+  }
+  
+  .reddit {
+    background: $main-light; //$col-reddit;
+    color:  $white;
+  }
+}

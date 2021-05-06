@@ -1,0 +1,109 @@
+.footer-width {max-width: 1400px; }
+
+.footer {
+  width: 100%;
+  padding: 20px;
+
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $gray10;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .company {
+    .logo img { 
+      padding-left:10px;
+      height:30px; 
+    }
+
+    .social {
+      text-align: right;
+
+      ul {
+        margin: 0;
+        padding: 0 20px;
+        list-style: none;
+        
+        li {
+          display: inline;
+          padding-left: 10px;
+          
+          i {color: $gray7; font-size: 1.6em;}
+          i:hover {color: $gray1;}
+        }
+      }  
+    }  
+  }
+
+  .subscribe {
+    padding: 15px 10px;
+    .content { margin: auto; }
+
+    .title {
+      text-align:center;
+      font-size: 1.15em;
+      color: $gray3;
+    }
+
+    input {
+      width: 320px;
+      font-size: .9em;
+    }
+
+    input[type=text] {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background: $main-darker;
+      border: 2px solid  $main-light;
+      box-sizing: border-box;
+    }
+
+    input[type=text]::placeholder {
+      color: $gray8;
+      opacity: 1;
+    }
+
+    input[type=text]::placeholder {
+      color: $gray8;
+      opacity: 1;
+    }
+  }
+
+  .legal {
+    margin-top: -15px;
+    
+    .docs {
+      text-align: right;
+
+      ul {
+        margin: 0;
+        padding: 0 10px;
+        list-style: none;
+        
+        li {
+          display: inline;
+          padding-left: 5px;
+          color: $gray7;
+          
+          a {color: $gray7; font-size: .85em;}
+          a:hover {color: $gray1;}
+        }
+      }  
+    }
+  }
+}
+
+@media (max-width: 576px ) {
+  .footer hr { margin-left: -10px; margin-right: -10px; }
+  .footer .company,
+  .footer .subscribe {padding: 10px 0;}
+  .footer .company .logo {padding: 0; }
+
+  .footer .company .social ul {
+    padding-right: 0;
+    li {padding-left: 5px;}
+  }
+}

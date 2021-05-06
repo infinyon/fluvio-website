@@ -23,7 +23,9 @@ $ fluvio topic create --topic topic-a --partitions 2 --replication 3
 
 **Leaders** maintain the primary data set and **followers** store a copy of the data. Leaders and followers map to independent **SPUs**:
 
-{{< image src="architecture/assignment-leader-followers.svg" alt="Leader, Followers" justify="center" width="640" type="scaled-95">}}
+<img src="architecture/assignment-leader-followers.svg"
+     alt="Leader, Followers"
+     style="justify: center; max-width: 640px" />
 
 * topic-a/0
     * **leader** on SPU-1
@@ -36,7 +38,9 @@ $ fluvio topic create --topic topic-a --partitions 2 --replication 3
 
 **Partition** are configuration objects managed by the system. Topics and partitions are linked through a **parent-child** relationship. Partition generation algorithm is described in the [SC Architecture](../sc/#partitions).
 
-{{< image src="architecture/topic-2-partitions.svg" alt="Topic 2 Assignment" justify="center" width="680" type="scaled-90">}}
+<img src="architecture/topic-2-partitions.svg"
+     alt="Topic 2 Assignment"
+     style="justify: center; max-width: 680px" />
 
 If a topic is deleted, all child partitions are automatically removed.
 

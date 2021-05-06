@@ -1,44 +1,31 @@
 .copy-code-button {
   position: absolute;
-  z-index: 2;
+  width: 80px;
+  height: 25px;
   right: 0;
-  font-size: 13px;
-  font-weight: 700;
   line-height: 14px;
   letter-spacing: 0.5px;
-  width: 70px;
-  color: #232326;
-  background-color: #7f7f7f;
-  border: 1.25px solid #232326;
-  border-top-left-radius: 0;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 4px;
+  color: $black;
+  background-color: $gray9;
+  border: 1.25px solid $gray8;
+  border-radius: 5px;
   white-space: nowrap;
-  padding: 4px 4px 5px 4px;
-  margin: 12px 25px 0 1px;
+  margin: 14px 30px;
+  opacity: 0.6;
+  font-size: 0.9em;
+  z-index: 2;
   cursor: pointer;
-  opacity: 0.8;
 }
 
 .copy-code-button:hover,
 .copy-code-button:focus,
 .copy-code-button:active,
 .copy-code-button:active:hover {
-  color: #222225;
-  background-color: #b3b3b3;
-  opacity: 0.8;
+  color: $gray2;
+  background-color:$gray10;
+  opacity: 1.0;
 }
 
 .copy-code-button:focus {
     outline: 0;
-}
-
-// --------------
-// Screen Sizes
-// --------------
-@media (max-width: 992px) {
-  .copy-code-button {
-    margin: 12px 40px 0 1px;    
-  }
 }

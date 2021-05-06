@@ -9,23 +9,24 @@
 
         a { 
             text-decoration: none;
-            color: $col-gray-dark2;
+            color: $gray10;
             line-height: 1.8em;
-            font-family: $font-body;
-            font-size: .95em;
+            font-size: .9em;
+            font-weight: normal;
         }
     }
     .card.selected {
-        border-left: 4px solid $menu-sel-border;
-        background: $menu-sel;
+        border-left: 4px solid $pink;
+        background: $main-lightest;
     }
 
 
     .section {
         .title {
             margin: 12px 0 2px;
-            color: $menu-title;
+            color: $main-light;
             text-transform: uppercase;
+            font-weight: normal;
         }
 
         .card {

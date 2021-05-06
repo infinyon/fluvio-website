@@ -34,26 +34,6 @@ Welcome to the intro guide to Fluvio! The Concepts section helps you learn about
 {{< /caution >}}
 
 
-{{< fluvio >}}
-$ fluvio auth-token create -h
-fluvio-auth-token-create 0.1.0
-Create auth token
-
-USAGE:
-    fluvio auth-token create [FLAGS] [OPTIONS] --max-spu <integer> --min-spu <integer> --token-name <string> --secret <alpha-numeric>
-
-FLAGS:
-    -g, --generate-secret    Generate a random secret
-    -h, --help               Prints help information
-
-OPTIONS:
-    -n, --token-name <string>        Token name
-    -s, --secret <alpha-numeric>     Token secret of 16 characters in length
-
-SUBCOMMANDS:
-    consume       Read messages from a topic/partition
-{{< /fluvio >}}
-
 ```
 $ fluvio auth-token create -h
 fluvio-auth-token-create 0.1.0
@@ -247,8 +227,10 @@ Some _Numbers_
 
 ### Images
 
-{{< image src="common/rust.svg" alt="Sample Image" justify="center" width="560" type="scaled-90">}}
-
+<img src="architecture/rust.svg"
+     alt="Sample Image"
+     style="justify: center; max-width: 560px" />
+     
 ## Header H2
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
 
