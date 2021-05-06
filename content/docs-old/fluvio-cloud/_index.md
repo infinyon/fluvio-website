@@ -20,7 +20,9 @@ For step-by-step instruction, checkout [Getting Started with Fluvio Cloud](/docs
 
 Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 1 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
 
-{{< image src="fluvio-cloud/fluvio-cloud.svg" alt="Fluvio Cloud" justify="center" width="360" type="scaled-90">}}
+<img src="fluvio-cloud/fluvio-cloud.svg"
+     alt="Fluvio Cloud"
+     style="justify: center; max-width: 360px" />
 
 [Getting Started](/docs/getting-started) provides a step-by-step guide on how to create a Fluvio Cloud account and stream "Hello World". 
 
