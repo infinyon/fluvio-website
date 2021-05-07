@@ -75,14 +75,12 @@ enableEmoji=true
 
   [[menu.main]]
     identifier = "blog"
-    name = "Blog"
     url = "/blog/"
     pre = "fab fab-sm fa-blogger"
     weight = 130
 
   [[menu.main]]
     identifier = "chat"
-    name = "chat"
     url = "https://discordapp.com/invite/bBG2dTz"
     pre = "fab fa-discord"
     weight = 160

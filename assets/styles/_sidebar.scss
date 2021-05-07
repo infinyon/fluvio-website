@@ -3,6 +3,7 @@ $sidebar-width: 200px;
     min-width: $sidebar-width;
     max-width: $sidebar-width;
     min-height: 100vh;
+    margin-top: 10px;
     padding-top: 10px;
     border-right: 1px solid $main-lighter;
 
@@ -17,10 +18,9 @@ $sidebar-width: 200px;
             text-decoration: none;
             color: $gray10;
             line-height: 1.8em;
-            font-size: .95em;
+            font-size: .9em;
             font-weight: normal;
         }
-
     }
 
     .card.selected {
@@ -74,7 +74,7 @@ $sidebar-width: 200px;
 .sidebar-nav {
     display: none;
     text-align: center;
-    border-bottom: 1px solid $gray6;
+    border-bottom: 1px solid $gray5;
     color: $white;
     background: $main-light;
     padding: 10px;
