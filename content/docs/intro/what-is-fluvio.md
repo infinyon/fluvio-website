@@ -1,5 +1,5 @@
 ---
 title: Introduction to Fluvio
-menu: Intro to Fluvio 
+menu: What is Fluvio?
 weight: 10
 ---

@@ -10,6 +10,7 @@
     {{- block "head-script" . -}}{{- end }}
   </head>
   <body class="content d-flex flex-column">
+    <div class="page-overlay"></div>
     {{- partial "menu.html" . -}}
     <div id="content">
     {{- block "content" . }}{{- end }}

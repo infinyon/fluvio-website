@@ -5,9 +5,12 @@
 <div class="container-fluid site-width">
     <div class="content-wrapper">
         <div class="sidebar">
-        {{ partial "docs/sidebar.html" . }}
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>Close
+            </div>
+            {{ partial "docs/sidebar.html" . }}
         </div>
-        <div class="main-area">
+        <div class="doc">
             {{ partial "docs/content" (dict "page" .) }}
         </div>
         <div class="doc-toc">

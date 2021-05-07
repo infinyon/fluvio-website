@@ -1,0 +1,96 @@
+.doc {
+  margin: 10px 20px;
+
+  h1, h2, h3, h4, h5, h6 { 
+    a { color:$main-dark } 
+  }
+
+  li {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    
+    p {
+      margin-top: .2rem;
+      margin-bottom: .2rem;
+    }
+  }
+    
+  img {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .subtitle {
+    padding: 10px 15px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+  }
+  
+  h3:after {
+    margin-right: 100px !important;
+  }
+
+  a.hanchor:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a.hanchor img {
+    display: inline;
+    width: 1.4em;
+    margin: 0 0 .12em .2em;
+    padding: .32em;
+  }
+
+  h4 a.hanchor img {
+    width: 1.6em;
+    margin: 0 0 .2em .15em;
+  }
+  a.hanchor span {
+    visibility: hidden;
+  }
+  
+  a.hanchor:hover span {
+    visibility: visible;
+  }
+
+  .copied {
+    display:inline;
+    padding-left: 5px;
+    font-size: 12pt;
+    font-weight: normal;
+    color: $gray10;
+    visibility: hidden;    
+  }
+
+  .fas {
+    padding-left: 10px;
+    padding-top: .15em;
+    vertical-align: top;
+    color: $main-light;
+  }
+  
+  .doc-content {
+    margin: .5em 0 2.5em 0;
+
+    /* code section */
+    .highlight pre {
+      max-height: 800px; 
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+    ::-webkit-scrollbar {
+      -webkit-appearance: none; 
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 4px; 
+      background-color: rgba(255, 255, 255, .5); 
+      box-shadow: 0 0 1px rgba(0, 0, 0, .5)
+    }
+  }
+}

@@ -1,10 +1,13 @@
+$sidebar-width: 200px;
 .sidebar {
-    margin: 20px 5px;
-    min-width: 220px;
-    max-width: 220px;
+    min-width: $sidebar-width;
+    max-width: $sidebar-width;
     min-height: 100vh;
+    padding-top: 10px;
+    border-right: 1px solid $main-lighter;
 
     .card {
+        //margin-right: 5px;
         padding-left: 5px;
         border: none;
         border-left: 4px solid transparent;
@@ -17,12 +20,17 @@
             font-size: .95em;
             font-weight: normal;
         }
+
     }
+
     .card.selected {
         border-left: 4px solid $pink;
         background: $main-lightest;
     }
 
+    .card:hover {
+        background: $main-lightest;
+    }
 
     .section {
         .title {
@@ -36,16 +44,37 @@
             padding-left: 10px;
         }
     }
+
+    #dismiss {
+        display: none;
+        text-align: right;
+        margin-right: 5px;
+        i {padding-right: 5px;}
+    }
 }
 
 .sidebar.active {
-    margin-left: -220px;
+    margin-left: -$sidebar-width;
+}
+
+.sidebar.ontop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: -90px;
+    z-index: 9999;
+    background: white;
+    padding: 10px;
+
+    #dismiss {
+        display: block;
+    }
 }
 
 .sidebar-nav {
     display: none;
     text-align: center;
-    border-bottom: 1px solid $gray5;
+    border-bottom: 1px solid $gray6;
     color: $white;
     background: $main-light;
     padding: 10px;
@@ -54,8 +83,31 @@
     i {padding-right: 10px; }
 }
 
+.page-overlay {
+    display: none;
+    position: fixed;
+    /* full screen */
+    width: 100vw;
+    height: 100vh;
+    /* transparent black */
+    background: rgba(0, 0, 0, 0.7);
+    /* middle layer, i.e. appears below the sidebar */
+    z-index: 998;
+    opacity: 0;
+    /* animate the transition */
+    transition: all 0.5s ease-in-out;
+}
+
+.page-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
 @media (max-width: 768px) {
     .sidebar-nav { display: block; }
-    .sidebar {margin-left: -220px;}
+    .sidebar {
+        margin-left: calc(#{-$sidebar-width} - 15px);
+        border-right: none;
+    }
     .sidebar.active {margin-left: 0;}
 }
