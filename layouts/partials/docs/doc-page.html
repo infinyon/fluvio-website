@@ -2,19 +2,24 @@
     <i class="fas fa-sm fa-bars"></i> 
     Docs Navigation
 </div>
+
 <div class="container-fluid site-width">
-    <div class="content-wrapper">
-        <div class="sidebar">
-            <div id="dismiss">
-                <i class="fas fa-arrow-left"></i>Close
+    <div class="row">
+        <div class="col-md sidebar-area">
+            <div class="sidebar">
+                <div id="dismiss">
+                    <i class="fas fa-arrow-left"></i>Close
+                </div>
+                {{ partial "docs/sidebar.html" . }}
             </div>
-            {{ partial "docs/sidebar.html" . }}
         </div>
-        <div class="doc">
-            {{ partial "docs/content" (dict "page" .) }}
+        <div class="col-md doc-area">
+            <div class="doc">
+                {{ partial "docs/doc-content" (dict "page" .) }}
+            </div>
         </div>
-        <div class="doc-toc">
-        {{ partial "docs/table-of-contents" . }}
+        <div class="doc-toc toc-area">
+            {{ partial "docs/table-of-contents" . }}
         </div>
     </div>
 </div>

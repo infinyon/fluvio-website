@@ -5,7 +5,7 @@
 <!-- a post can explicitly disable Table of Contents with toc: false -->
 {{- $show_toc := (eq $.Params.toc true) -}}
 {{- if and $has_headers $show_toc -}}
-<div class="col-md toc-area sticky-top">
+<div class="sticky-top">
     <div class="side-toc">
         {{- range $headers -}}
             {{- $header := . -}}

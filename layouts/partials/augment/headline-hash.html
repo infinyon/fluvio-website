@@ -1,1 +1,1 @@
-{{ . | replaceRE "(<h[2-4] id=\"([^\"]+)\".+)(</h[2-4]+>)" `${1}&nbsp;<a class="hanchor" ariaLabel="Anchor" href="#${2}"><i class="fas fa-link fa-rotate-45 anchor"></i></a> ${3}` | safeHTML }}
+{{ . | replaceRE "(<h[2-4] id=\"([^\"]+)\".+)(</h[2-4]+>)" `<a class="hanchor" ariaLabel="Anchor" id="#${2}" href="#${2}" onclick="copyClipboard('${2}')">${1}<span><img src="/images/assets/external-link.svg" /><span></a><div id='${2}' class="copied">Copied!</div>${3}` | safeHTML }}

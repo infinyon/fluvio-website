@@ -1,6 +1,10 @@
-.doc {
-  margin: 10px 20px;
 
+.doc-area {
+  min-width: 300px;
+  margin: 0 10px;
+}
+
+.doc {
   h1, h2, h3, h4, h5, h6 { 
     a { color:$main-dark } 
   }
@@ -82,6 +86,7 @@
       overflow-y: auto;
       overflow-x: auto;
     }
+    
     ::-webkit-scrollbar {
       -webkit-appearance: none; 
       width: 7px;

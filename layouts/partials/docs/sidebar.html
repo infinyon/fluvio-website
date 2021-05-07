@@ -4,38 +4,42 @@
 <div class=".sidebar">
 <!-- Top Pages -->
 {{ range $all_pages }}
-   {{ if and .IsPage (eq .CurrentSection .FirstSection) }}
+    {{ if not .Params.hidden }}
+        {{ if and .IsPage (eq .CurrentSection .FirstSection) }}
             {{- $selected := "" -}}
             {{- if eq $current .Page -}}
-        	    {{- $selected = " selected" -}}
+                {{- $selected = " selected" -}}
             {{- end -}}
-    	    {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
-	        {{- if isset .Page.Params "link" }}
-		        <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
-	        {{- else }}
-		        <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
-	        {{- end -}}
-    {{ end }}
-{{ end }}
+            {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
+            {{- if isset .Page.Params "link" }}
+                <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
+            {{- else }}
+                <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
 
 <!-- Sections -->
 {{- range $all_pages -}}
-    {{- if and .IsSection .Page.Parent.IsSection -}}
-        <div class="section">
-            <div class="title">{{.Title}}</div>
-        {{ range .Pages.ByWeight }}
-            {{- $selected := "" -}}
-            {{- if eq $current .Page -}}
-        	    {{- $selected = " selected" -}}
+    {{ if not .Params.hidden }}
+        {{- if and .IsSection .Page.Parent.IsSection -}}
+            <div class="section">
+                <div class="title">{{.Title}}</div>
+            {{ range .Pages.ByWeight }}
+                {{- $selected := "" -}}
+                {{- if eq $current .Page -}}
+                    {{- $selected = " selected" -}}
+                {{- end -}}
+                {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
+                {{- if isset .Page.Params "link" }}
+                    <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
+                {{- else }}
+                    <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
+                {{- end -}}
             {{- end -}}
-    	    {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
-	        {{- if isset .Page.Params "link" }}
-		        <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
-	        {{- else }}
-		        <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
-	        {{- end -}}
+            </div>
         {{- end -}}
-        </div>
     {{- end -}}
 {{- end -}}
 </div>
@@ -48,7 +52,7 @@
 
         $('#dismiss, .page-overlay').on('click', function () {
             // hide sidebar
-            $('.sidebar').removeClass('active');
+            $('.sidebar-area').removeClass('active');
             $('.sidebar').removeClass('ontop');
             
             // hide overlay
@@ -57,7 +61,7 @@
 
         $('.sidebar-nav').on('click', function () {
             // open sidebar
-            $('.sidebar').addClass('active');
+            $('.sidebar-area').addClass('active');
             $('.sidebar').addClass('ontop');
 
             // fade in the overlay

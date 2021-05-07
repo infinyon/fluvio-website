@@ -8,6 +8,37 @@ weight: 50
 
 If an SPU becomes incapacitated, the election algorithm identifies all impacted replica sets and triggers a re-election. The following section describes the algorithm utilized by each replica set as it elects a new leader. 
 
+```rust
+//!----------------------------------
+//! # Streaming Coordinator Metadata
+//!
+//! Metadata stores a copy of the data from KV store in local memory.
+//!----------------------------------
+
+impl ScMetadata {
+    pub fn shared_metadata(config: ScConfig) -> Arc<Self> {
+        Arc::new(ScMetadata::new(config))
+    }
+
+    /// private function to provision metadata
+    fn new(config: ScConfig) -> Self {
+        ScMetadata {
+            auth_tokens: Arc::new(AuthTokenMemStore::default("test asdf asdf asd fas df asdf asd fasd fasdf")),
+            config: config,
+        }
+    }
+
+    /// format metadata cache into a table string
+    #[allow(dead_code)]
+    pub fn table_fmt(&self) -> String {
+        let mut table = String::new();
+        let newline = format!("\n");
+
+        table.push_str(&self.partitions.table_fmt());
+        table
+    }
+}
+```
 
 ## Roles and Responsibilities
 
@@ -198,7 +229,6 @@ Consumers can choose to receive either COMMITTED or UNCOMMITTED records. The sec
 By default only COMMITTED messages are sent to consumers.
 
 #### Related Topics
--------------------
 * [SC Architecture](../sc)
 * [SPU Architecture](../spu)
 * [Topic/Partitions](../topics-partitions)

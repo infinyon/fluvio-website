@@ -65,7 +65,7 @@ h2, .font-xl {font-size: 1.8rem; }
 h3, .font-lg, .related-hdr {font-size: 1.5rem; }
 h4, .font-md, .font-md-underline {font-size: 1.2rem; }
 h5 {font-size: 1.1rem;}
-h6 {font-size: .9rem;}
+h6 {font-size: 1rem;}
 p, li, .font-rg {font-size: 1.12rem; color: $gray12; line-height: 1.7rem;}
 
 h1 {padding: 30px 0 20px;}
@@ -94,11 +94,9 @@ p, li, h1, h2, h3, h4, h5, h6 {
 // --------------
 // Code
 // --------------
-code {
-  padding: 4px 7px 3px 0;
-  background: $gray0;
-  color: $gray2;
-  border-radius: .25em;  
+pre {
+  background: $main-lightest;
+  padding: 10px;
 }
 
 // --------------

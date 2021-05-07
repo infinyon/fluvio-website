@@ -1,15 +1,22 @@
-$sidebar-width: 200px;
-.sidebar {
+$sidebar-width: 220px;
+
+.sidebar-area {
     min-width: $sidebar-width;
     max-width: $sidebar-width;
     min-height: 100vh;
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 20px;
     border-right: 1px solid $main-lighter;
+}
 
+.sidebar-area.active {
+    display: block;
+//    margin-left: -15px;
+//    width: $sidebar-width+50px
+}
+
+.sidebar {
     .card {
-        //margin-right: 5px;
-        padding-left: 5px;
+        //padding-left: 5px;
         border: none;
         border-left: 4px solid transparent;
         border-radius: 0;
@@ -51,10 +58,6 @@ $sidebar-width: 200px;
         margin-right: 5px;
         i {padding-right: 5px;}
     }
-}
-
-.sidebar.active {
-    margin-left: -$sidebar-width;
 }
 
 .sidebar.ontop {
@@ -105,9 +108,6 @@ $sidebar-width: 200px;
 
 @media (max-width: 768px) {
     .sidebar-nav { display: block; }
-    .sidebar {
-        margin-left: calc(#{-$sidebar-width} - 15px);
-        border-right: none;
-    }
+    .sidebar-area {display: none;}
     .sidebar.active {margin-left: 0;}
 }

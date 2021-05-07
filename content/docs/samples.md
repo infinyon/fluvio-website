@@ -206,9 +206,9 @@ Some _Numbers_
 
 ### Images
 
-<img src="architecture/rust.svg"
+<img src="/images/assets/external-link.svg"
      alt="Sample Image"
-     style="justify: center; max-width: 560px" />
+     style="justify: center; max-width: 200px" />
      
 ## Header H2
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
