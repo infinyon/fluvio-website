@@ -1,5 +1,6 @@
 ---
-title: Cloud
+title: SignUp for Fluvio Cloud
+menu: Cloud
 weight: 40
 ---
 

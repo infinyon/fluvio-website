@@ -1,5 +1,6 @@
 ---
-title: MacOS
+title: MacOS Installation
+menu: MacOS
 weight: 10
 ---
 

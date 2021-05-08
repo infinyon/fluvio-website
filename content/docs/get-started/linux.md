@@ -1,4 +1,5 @@
 ---
-title: Linux
+title: Linux Installation
+menu: Linux
 weight: 20
 ---
