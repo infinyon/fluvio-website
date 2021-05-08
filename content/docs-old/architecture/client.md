@@ -1,6 +1,5 @@
 ---
 title: Client Library
-toc: true
 weight: 60
 ---
 

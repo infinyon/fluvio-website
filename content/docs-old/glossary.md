@@ -1,7 +1,6 @@
 ---
 title: Glossary of Domain Centric Technical Terms
 menu: Glossary of Terms
-toc: true
 hidden: true
 weight: 600
 ---

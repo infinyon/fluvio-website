@@ -1,7 +1,6 @@
 ---
 title: Fluvio CLI Reference
 menu: CLI Reference
-toc: true
 weight: 300
 ---
 

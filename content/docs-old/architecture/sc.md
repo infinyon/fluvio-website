@@ -1,7 +1,6 @@
 ---
 title: Streaming Controller (SC) Architecture
 menu: SC
-toc: true
 weight: 10
 ---
 

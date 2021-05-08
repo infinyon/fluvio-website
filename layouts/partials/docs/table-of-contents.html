@@ -4,7 +4,6 @@
 {{- $has_headers := ge (len $headers) 1 -}}
 <!-- a post can explicitly disable Table of Contents with toc: false -->
 {{- $show_toc := (eq $.Params.toc true) -}}
-{{- if and $has_headers $show_toc -}}
 <div class="sticky-top">
     <div class="side-toc">
         {{- range $headers -}}
@@ -29,4 +28,3 @@
         {{- end }}
     </div>
 </div>
-{{- end -}}

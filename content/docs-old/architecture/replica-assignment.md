@@ -1,6 +1,5 @@
 ---
 title: Replica Assignment
-toc: true
 weight: 40
 ---
 

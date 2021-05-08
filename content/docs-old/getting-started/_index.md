@@ -2,7 +2,6 @@
 title: Getting Started with Fluvio
 folder: Getting Started
 menu: Overview
-toc: true
 weight: 10
 ---
 

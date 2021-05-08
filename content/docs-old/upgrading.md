@@ -1,7 +1,6 @@
 ---
 title: Upgrading Fluvio
 menu: Upgrading Fluvio
-toc: true
 weight: 400
 ---
 

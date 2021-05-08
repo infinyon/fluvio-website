@@ -2,6 +2,7 @@
 title: Samples (fluvio elements)
 weight: 100000
 hidden: true
+notoc: true
 ---
 
 Welcome to the intro guide to Fluvio! The Concepts section helps you learn about all parts of the Fluvio system and to gain deeper understanding of how Fluvio works.

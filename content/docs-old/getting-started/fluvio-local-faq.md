@@ -1,7 +1,6 @@
 ---
 title: Troubleshoot Fluvio Installation
 menu: Troubleshooting
-toc: true
 weight: 60
 ---
 

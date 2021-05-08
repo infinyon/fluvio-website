@@ -1,6 +1,5 @@
 ---
 title: Topic/Partitions
-toc: true
 weight: 30
 ---
 

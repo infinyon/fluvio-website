@@ -1,6 +1,5 @@
 ---
 title: Replica Election
-toc: true
 weight: 50
 ---
 

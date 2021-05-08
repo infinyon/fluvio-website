@@ -1,7 +1,6 @@
 ---
 title: Installing Fluvio Locally
 menu: Install Fluvio Locally
-toc: true
 weight: 40
 ---
 

@@ -2,7 +2,6 @@
 title: Architecture
 folder: Architecture 
 menu: Overview
-toc: true
 weight: 20
 ---
 

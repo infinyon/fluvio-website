@@ -1,7 +1,6 @@
 ---
 title: Streaming Processing Unit (SPU) Architecture
 menu: SPU
-toc: true
 weight: 20
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Fluvio Cloud Release Notes
 menu: Release Notes
-toc: true
 weight: 200
 ---
 
