@@ -55,6 +55,11 @@
             $('.sidebar-area').removeClass('active');
             $('.sidebar').removeClass('ontop');
             
+            // renable elements
+            $('.doc-area').css({'display': ''});
+            $('.toc-area').css({'display': ''});
+            $('.footer').css({'display': ''});
+            
             // hide overlay
             $('.page-overlay').removeClass('active');
         });
@@ -68,6 +73,11 @@
             $('.page-overlay').addClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+
+            // hide elements
+            $('.doc-area').css({'display': 'none'});
+            $('.toc-area').css({'display': 'none'});
+            $('.footer').css({'display': 'none'});
         });
     });
 </script>

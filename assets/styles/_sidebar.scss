@@ -10,13 +10,13 @@ $sidebar-width: 220px;
 
 .sidebar-area.active {
     display: block;
-//    margin-left: -15px;
-//    width: $sidebar-width+50px
+    margin-top: -10px;
+    margin-bottom: 10px;
+    margin-left: -10px;
 }
 
 .sidebar {
     .card {
-        //padding-left: 5px;
         border: none;
         border-left: 4px solid transparent;
         border-radius: 0;
@@ -93,7 +93,7 @@ $sidebar-width: 220px;
     width: 100vw;
     height: 100vh;
     /* transparent black */
-    background: rgba(0, 0, 0, 0.7);
+    background: black;
     /* middle layer, i.e. appears below the sidebar */
     z-index: 998;
     opacity: 0;
