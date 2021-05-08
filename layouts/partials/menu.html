@@ -36,7 +36,7 @@
             </li>
           {{- else -}}
             {{- $active := "" -}}
-            {{- if eq $currentPage.Section (.Name | lower) -}}
+            {{- if eq $currentPage.Section (.Identifier | lower) -}}
               {{- $active = "active" -}}
             {{- end -}}
             {{- $target := "_self" -}}

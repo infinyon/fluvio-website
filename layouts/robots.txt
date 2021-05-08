@@ -1,6 +1,8 @@
 User-agent: *
 {{- if in (string .Site.BaseURL) "nightly" }}
 Disallow: /
+{{- else if in (string .Site.BaseURL) "fluvio2" }}
+Disallow: /
 {{ else }}
 Disallow:
 {{ end }}

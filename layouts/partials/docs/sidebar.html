@@ -2,6 +2,22 @@
 {{- $all_pages := (where .Site.Pages "Section" .Section).ByWeight -}}
 
 <div class=".sidebar">
+<!-- Overview Page -->
+{{- with .Site.GetPage .Section }}
+    {{ if not .Params.hidden }}
+        {{- $selected := "" -}}
+        {{- if eq $current .Page -}}
+            {{- $selected = " selected-first" -}}
+        {{- end -}}
+        {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
+        {{- if isset .Page.Params "link" }}
+            <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank" class="first">{{ $menu }}</a></div>
+        {{- else }}
+            <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}" class="first">{{ $menu }}</a></div>
+        {{- end -}}
+    {{- end -}}
+{{ end -}}
+
 <!-- Top Pages -->
 {{ range $all_pages }}
     {{ if not .Params.hidden }}
@@ -12,9 +28,9 @@
             {{- end -}}
             {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
             {{- if isset .Page.Params "link" }}
-                <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
+                <div class="card item {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
             {{- else }}
-                <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
+                <div class="card item {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
             {{- end -}}
         {{- end -}}
     {{- end -}}

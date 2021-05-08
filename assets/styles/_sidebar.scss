@@ -28,10 +28,19 @@ $sidebar-width: 220px;
             font-size: .9em;
             font-weight: normal;
         }
+        a.first { 
+            font-size: 1.15em; 
+            color: $main-light;
+        }
     }
 
     .card.selected {
+        background: $main-lightest;
+        padding-left: 10px;
         border-left: 4px solid $pink;
+    }
+
+    .card.selected-first {
         background: $main-lightest;
     }
 
@@ -41,7 +50,7 @@ $sidebar-width: 220px;
 
     .section {
         .title {
-            margin: 12px 0 2px;
+            margin: 12px 4px 2px;
             color: $main-light;
             text-transform: uppercase;
             font-weight: normal;
