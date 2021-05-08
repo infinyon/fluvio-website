@@ -3,6 +3,8 @@
   {{ $isProduction = false }}
 {{- else if in (string .Site.BaseURL) "nightly" -}}
   {{ $isProduction = false }}
+{{- else if in (string .Site.BaseURL) "fluvio2" -}}
+  {{ $isProduction = false }}  
 {{- end -}}
 
 <footer class="footer mt-4">
