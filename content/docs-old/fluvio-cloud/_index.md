@@ -49,6 +49,5 @@ Later versions will provide the ability to control **storage** and **SPU** confi
 
 
 #### Related Topics
--------------------
 * [Getting Started](/docs/getting-started)
 * [Fluvio Architecture](/docs/architecture)
