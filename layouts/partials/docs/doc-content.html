@@ -7,7 +7,7 @@
     {{- $content = partial "augment/code-box-height.html" (dict "content" $content "height" .page.Params.code.height) -}}
 {{- end -}}
 
-{{- $title := .page.Title | safeHTML -}}
+{{- $title := printf "Fluvio - %s" (.page.Title | safeHTML) -}}
 
 <h1>{{ $title }}</h1>
 <div class="doc-content">

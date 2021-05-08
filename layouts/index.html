@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{ define "content" }}
 {{- $page := .Site.GetPage "/main/_index.md" -}}
 {{- $header := .Site.GetPage "/main/header.md" -}}
 {{- $paragraph1 := .Site.GetPage "/main/paragraph1.md" -}}
@@ -23,39 +23,6 @@
       </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="container main">
-  <div class="row">
-    {{- range (where $.Site.RegularPages "Section" "main" ) -}}
-      <div class="col-md-6 col-lg-4 box">
-        <div class="card bg-light">
-          <div class="m-3 align-self-center">
-            <div class="box-header font-xl">
-              {{ .Title}}
-            </div>
-
-            {{/* }}
-            <hr style="margin-right:-2px;"/>
-            {{ */}}
-
-            <a href="{{ .Params.link | relURL}}">
-              <img src="/img/{{.Params.image}}" class="mx-auto d-block" height="150" width="275">
-            </a>
-
-            {{/* }}
-            <hr style="margin-top:20px; margin-bottom: -15px; margin-right:-2px;"/>
-            {{ */}}
-
-            <article class="box-content" style="width: 260px">
-              <p>{{ .Summary }}</p>
-            </article>
-
-          </div>
-        </div>
-      </div>
-    {{- end -}}
   </div>
 </div>
 {{ end }}
