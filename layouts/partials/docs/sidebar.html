@@ -70,6 +70,8 @@
             // hide sidebar
             $('.sidebar-area').removeClass('active');
             $('.sidebar').removeClass('ontop');
+            $('.sidebar').css({'font-size': ''});
+            $('.sidebar').css({'width': ''});
             
             // renable elements
             $('.doc-area').css({'display': ''});
@@ -84,6 +86,8 @@
             // open sidebar
             $('.sidebar-area').addClass('active');
             $('.sidebar').addClass('ontop');
+            $('.sidebar').css({'font-size': '1.2em'});
+            $('.sidebar').css({'width': '300px'});
 
             // fade in the overlay
             $('.page-overlay').addClass('active');
