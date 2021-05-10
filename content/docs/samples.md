@@ -239,7 +239,6 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 {{< icon-gopher >}}
 {{< icon-go >}}
 
-
 ##### Custom Size & Link
 
 {{< icon-rust width="32" link="https://docs.rs/fluvio/" external="true">}}
