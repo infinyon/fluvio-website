@@ -269,7 +269,7 @@ I have a few big points I want to walk through:
 
 - Configuring Bors to use squash commits
 - Disabling the Big Green Merge Button
-- Specifying a minimum number of PR reviewers
+- Specifying a minimum number of PR approvals
 
 #### Using Squash Commits
 
@@ -311,7 +311,7 @@ use_squash_merge = true
 
 When we started considering the Bors workflow, we wanted to make sure that there
 was no way for developers (present or future) to get confused about the merging
-process. If we were going to be using bors and closing PRs using the "bors r+"
+process. If we were going to be using Bors and closing PRs using the "bors r+"
 command, we did not want it to be possible for newcomers to use
 GitHub's merge button to accidentally bypass the Bors merging process.
 
@@ -323,7 +323,7 @@ will not be available anyway.
 
 In repositories where you have administrator privileges, adding this branch
 protection rule will demote the Big Green Button into the Red Admin Override
-button, but it is still a good visual indicator that you should not press the
+Button, but it is still a good visual indicator that you should not press the
 button. Plus, if you are an administrator, you probably know to use Bors instead.
 
 <img
@@ -336,3 +336,43 @@ disabled completely.
 <img
     src="/blog/images/bors/disable-green-button.png"
     alt="A screenshot of a PR where the Green Merge Button is disabled" />
+
+#### Specifying a minimum number of PR approvals
+
+One big question we had before adopting Bors was: "Will this change the way that
+we need to do reviews?". When looking at the Bors reference, it seemed almost like
+Bors was introducing its own review system. [There are extra Bors commands] such as
+"bors delegate+", or "bors delegate=[list]" which seemed to allude to a custom
+reviewer flow.
+
+[There are extra Bors commands]: https://bors.tech/documentation/
+
+While we have not yet tested out how the "delegate" commands work (we have not needed to),
+we did find this tidbit in the reference that seemed to answer our question:
+
+> required_approvals: Number of project members who must approve the PR
+> (using GitHub Reviews) before it is pushed to master.
+
+Perfect. So we do not need to know any other Bors commands or complicated workflows in
+order to conduct our reviews. However, there is a small nuance to be aware of. If you
+are setting a minimum number of reviewers, you should use the configuration in `bors.toml`
+rather than a branch protection rule on GitHub. If you use only a branch protection rule,
+then Bors will inevitably encounter errors when it tries to merge a PR with zero approvals
+into a protected branch. This results in an ugly API error on the Bors console rather than
+a tidy Bors message.
+
+The proper way to set a number of reviewers with Bors is with the `required_approvals` config
+in `bors.toml`:
+
+```toml
+# bors.toml
+status = [
+    "Done",
+]
+use_squash_merge = true
+required_approvals = 1
+```
+
+<img 
+    src="/blog/images/bors/bors-approvals.png"
+    alt="A screenshot of a GitHub PR where a bors r+ command was rejected due to too few approvals" />
