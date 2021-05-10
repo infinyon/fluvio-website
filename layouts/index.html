@@ -1,28 +1,3 @@
 {{ define "content" }}
-{{- $page := .Site.GetPage "/main/_index.md" -}}
-{{- $header := .Site.GetPage "/main/header.md" -}}
-{{- $paragraph1 := .Site.GetPage "/main/paragraph1.md" -}}
-{{- $paragraph2 := .Site.GetPage "/main/paragraph2.md" -}}
-
-<div class="jumbotron">
-  <div class="container main">
-    <div class="desc">
-     <div class="row">
-      <div class="col-lg-5 p-0 pt-2">
-        {{- partial "main/description.html" . -}}
-      </div>
-      <div class="col-lg-7">
-        <div class="right-side">
-          {{- partial "main/code-samples.html" . -}}
-          <div class="signup-button pt-2">
-            <a class="btn btn-primary" href="{{ $page.Params.button.link }}" target="_blank">
-              {{ $page.Params.button.label }}
-            </a>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-</div>
+<h1>Main Page</h1>
 {{ end }}
