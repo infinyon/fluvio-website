@@ -16,6 +16,11 @@
     border-bottom: 2px solid $col-top-menu-border; 
   }
 
+  .navbar-item.stars a img {
+    vertical-align:top;
+    height: 24px;
+  }
+
   .navbar-brand, 
   .navbar-text,
   .navbar-nav .nav-link {
@@ -85,7 +90,7 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 767px) {
   .navbar-custom {    
       .navbar-nav {
         margin-top:10px;
