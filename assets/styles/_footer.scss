@@ -30,8 +30,8 @@
           display: inline;
           padding-left: 10px;
           
-          i {color: $gray7; font-size: 1.6em;}
-          i:hover {color: $gray1;}
+          i {color: $gray2; font-size: 1.6em;}
+          i:hover {color:$white;}
         }
       }  
     }  
@@ -85,9 +85,9 @@
         li {
           display: inline;
           padding-left: 5px;
-          color: $gray7;
+          color: $gray4;
           
-          a {color: $gray7; font-size: .85em;}
+          a {color: $gray4; font-size: .85em;}
           a:hover {color: $gray1;}
         }
       }  
