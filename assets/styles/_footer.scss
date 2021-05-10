@@ -2,7 +2,7 @@
 
 .footer {
   width: 100%;
-  padding: 20px 0 10px 0;
+  padding: 20px 0 5px 0;
 
   hr {
     margin: 5px 0 20px 0;
@@ -37,40 +37,6 @@
     }  
   }
 
-  .subscribe {
-    padding: 15px 10px;
-    .content { margin: auto; }
-
-    .title {
-      text-align:center;
-      font-size: 1.15em;
-      color: $gray3;
-    }
-
-    input {
-      width: 320px;
-      font-size: .9em;
-    }
-
-    input[type=text] {
-      padding: 10px 20px;
-      margin: 10px 5px;
-      background: $main-darker;
-      border: 2px solid  $main-light;
-      box-sizing: border-box;
-    }
-
-    input[type=text]::placeholder {
-      color: $gray8;
-      opacity: 1;
-    }
-
-    input[type=text]::placeholder {
-      color: $gray8;
-      opacity: 1;
-    }
-  }
-
   .legal {
     margin-top: -15px;
     
@@ -85,9 +51,9 @@
         li {
           display: inline;
           padding-left: 5px;
-          color: $gray4;
+          color: $gray6;
           
-          a {color: $gray4; font-size: .85em;}
+          a {color: $gray6; font-size: .85em;}
           a:hover {color: $gray1;}
         }
       }  
@@ -97,12 +63,13 @@
 
 @media (max-width: 576px ) {
   .footer hr { margin-left: -10px; margin-right: -10px; }
-  .footer .company,
-  .footer .subscribe {padding: 10px 0;}
   .footer .company .logo {padding: 0; }
-
   .footer .company .social ul {
     padding-right: 0;
     li {padding-left: 5px;}
+  }
+  .footer .legal .docs {
+    text-align: center;
+    ul: {padding: 0}
   }
 }
