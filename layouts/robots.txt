@@ -1,6 +1,7 @@
-User-agent: *
 {{- if in (string .Site.BaseURL) "nightly" }}
+User-agent: *
 Disallow: /
 {{ else }}
-Disallow:
+User-agent: bot-traffic,bottraffic,trafficbot
+Disallow: /
 {{ end }}
