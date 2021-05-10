@@ -109,7 +109,12 @@
       .navbar-item.active {   
         border-bottom: none;
         //background-color: $col-top-menu-collapsed-sel;
-      } 
+      }
+
+      .navbar-item.stars a img {
+        margin-top: 8px;
+        margin-left: 8px;
+      }
 
       .navbar-dropdown {
           border-style: none;
