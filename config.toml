@@ -2,8 +2,8 @@ languageCode = "en-us"
 title = "Fluvio"
 
 enableRobotsTXT = true
-pygmentsUseClasses=true
-enableEmoji=true
+pygmentsUseClasses = true
+enableEmoji = true
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -22,6 +22,7 @@ enableEmoji=true
   blog_time_format = "January 02, 2006"
   short_time_format = "Jan 02, 2006"
   description = "Real-time Data Streaming Platform"
+  company_url = "https://www.infinyon.com"
 
 [menu]
   [[menu.main]]
