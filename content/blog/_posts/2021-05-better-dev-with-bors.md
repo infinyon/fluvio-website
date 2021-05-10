@@ -161,4 +161,148 @@ and add new repositories if you really like Bors.
     src="/blog/images/bors/install-bors-repo.png"
     alt="A screenshot of GitHub asking for permission to add Bors to specific repositories" />
 
+At this point, you should be done setting up the actual Bors application. All that's left to
+do is set up the `bors.toml` configuration file in your repository to tell Bors which workflows
+to monitor, and to set some options to customize the behavior for Bors on that repo.
+
 ## Configuring Bors with a simple CI workflow
+
+I've put together [a small sample repository] with a basic Rust project and a simple CI
+workflow using GitHub Actions. I'll talk through the key options in the `bors.toml` and
+how those options interact with the CI workflow.
+
+[a small sample repository]: https://github.com/nicholastmosher/bors-demo
+
+First, let's look at the CI workflow we're working with. This has a handful of jobs that
+should be useful for any Rust crate.
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - staging    # Causes CI to run when Bors pushes to staging
+      - trying     # Causes CI to run when Bors pushes to trying (bors try)
+
+jobs:
+  build:
+    name: ${{ matrix.task.name }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        rust: [stable]
+        task:
+          - name: Format
+            run: cargo fmt
+          - name: Clippy
+            run: cargo clippy
+          - name: Build
+            run: cargo build
+          - name: Test
+            run: cargo test
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Rust ${{ matrix.rust }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          profile: minimal
+          override: true
+          components: rustfmt, clippy
+
+      - name: ${{ matrix.task.name }}
+        run: ${{ matrix.task.run }}
+
+  # This job should depend on all required jobs.
+  # We will make Bors watch this job to tell whether to merge or not.
+  done:
+    name: Done
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Done
+        run: echo Done
+```
+
+<img
+    src="/blog/images/bors/workflow-jobs.png"
+    alt="A screenshot of the GitHub actions summary page for the CI workflow defined above" />
+
+This workflow creates four jobs for building and testing our Rust crate,
+and creates one job that depends on all the other jobs passing. The reason
+for setting it up this way is that Bors needs to know which jobs must pass
+in order to merge to master, which must be specified by name. Unfortunately,
+GitHub's default job naming scheme is somewhat nuanced and confusing, and
+it can be tricky to remember exactly how to specify those job names in the
+`bors.toml`. Instead of bothering to remember all of those rules, I like
+to just create one simple "Done" job that only runs when all the required
+jobs pass. Then, all we need to do is tell Bors to watch for the "Done"
+job to complete.
+
+```toml
+# bors.toml
+status = [
+    "Done",
+]
+```
+
+At this point, Bors should be up and ready to go. If you open a PR and comment
+"bors r+", within a minute you should see a notice that "Bors has added a commit
+that references this pull request". You can click on the yellow bubble next to
+that commit to view the status of the CI workflow that Bors is watching.
+
+### Bors config pro tips
+
+The `bors.toml` I showed above is the most minimal configuration you can use
+to get up and running with Bors. However, there are some other Bors options and
+GitHub repository options that we can use to make things nicer and more foolproof.
+I have a few big points I want to walk through:
+
+- Configuring Bors to use squash commits
+- Disabling the Big Green Merge Button
+- Specifying a minimum number of PR reviewers
+
+#### Using Squash Commits
+
+A squash commit is a way of taking all the commits on a branch and "squashing" them
+down into one commit. This is very useful for minimizing the amount of noise in the
+commit history. Bors supports a form of commit squashing in which it does the following:
+
+- For every PR in the ready queue, it squashes that PR's branch into one commit
+  - The PR title and description are used as the commit's message
+- It then cherry-picks each squashed commit into the staging branch
+
+To illustrate how merging versus squashing impacts your git history differently,
+I made five branches originating on master and used "bors r+" on all of their
+PRs at once. This first image shows the resulting history when using plain merges.
+
+<img
+    src="/blog/images/bors/plain-merges.png"
+    alt="A graph of the git commit history when performing plain merges" />
+
+And this next image shows the resulting history when using squash merges.
+
+<img
+    src="/blog/images/bors/squash-merges.png"
+    alt="A graph of the git commit history when performing squash merges" />
+
+We tend to prefer the squash merges because of the tidier history, but you can decide
+for yourself which mode works best for you. To enable squash merges, simply set the
+`use_squash_merge` configuration in `bors.toml`:
+
+```toml
+# bors.toml
+status = [
+    "Done",
+]
+use_squash_merge = true
+```
