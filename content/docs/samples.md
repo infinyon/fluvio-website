@@ -230,10 +230,19 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 ###### Header h6
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing ...
 
+## Language Icon Shortcodes
 
-#### Next Steps
-* [Getting Started](...)
+{{< icon-rust >}}
+{{< icon-python >}}
+{{< icon-node >}}
+{{< icon-java >}}
+{{< icon-gopher >}}
+{{< icon-go >}}
 
 
-#### Related Topics
-* [Compare with Other Software](...)
+##### Custom Size & Link
+
+{{< icon-rust width="32" link="https://docs.rs/fluvio/" external="true">}}
+{{< icon-python width="32" link="https://infinyon.github.io/fluvio-client-python/fluvio.html" external="true" >}}
+{{< icon-node width="32" link="https://infinyon.github.io/fluvio-client-node/" external="true">}}
+{{< icon-java width="38" link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
