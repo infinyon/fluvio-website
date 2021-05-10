@@ -17,3 +17,7 @@ API Reference... sample icons & usage:
 {{< icon-python width="32" link="https://infinyon.github.io/fluvio-client-python/fluvio.html" external="true" >}}
 {{< icon-node width="32" link="https://infinyon.github.io/fluvio-client-node/" external="true">}}
 {{< icon-java width="38" link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
+
+<hr />
+{{< icon-gopher >}}
+{{< icon-go >}}

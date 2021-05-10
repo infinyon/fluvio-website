@@ -1,0 +1,10 @@
+{{- $width := .Get "width" | default 60 -}}
+{{- $link := .Get "link" | default "/api/community/go" -}}
+{{- $target := "_self" -}}
+{{- if (.Get "external") -}}
+    {{- $target := "_blank" -}}
+{{- end -}}
+
+<a href="{{ $link }}" target="{{ $target }}" style="text-decoration: none;">
+    <img src="/images/assets/go.svg" style="display: inline; width: {{ $width}}px" alt="Go" />
+</a>
