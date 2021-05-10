@@ -1,10 +1,40 @@
 {{- $current := .Page -}}
 {{- $all_pages := (where .Site.Pages "Section" .Section).ByWeight -}}
 
+{{/* Params: .current .page .class */}}
+{{ define "menu-item" }}
+    {{- $selected := "" -}}
+    {{- if eq .current .page -}}
+        {{- $selected = " selected" -}}
+    {{- end -}}
+    {{- $menu := .page.Params.menu | default .page.LinkTitle -}}
+    {{- if .page.Params.link.local }}
+        <div class="card item {{ $selected }}"><a href="{{ .page.Params.link.local }}"
+            {{- if .class -}}
+                class="{{ .class }}"
+            {{- end -}}
+        >{{ $menu }}</a></div>
+    {{- else if .page.Params.link.external }}
+        <div class="card item {{ $selected }}"><a href="{{ .page.Params.link.external }}"
+            {{- if .class -}}
+                class="{{ .class }}"
+            {{- end -}} 
+        target="_blank">{{ $menu }}</a></div>
+    {{- else }}
+        <div class="card item {{ $selected }}"><a href="{{ .page.RelPermalink }}"
+            {{- if .class -}}
+                class="{{ .class }}"
+            {{- end -}}
+        >{{ $menu }}</a></div>
+    {{- end -}}
+{{ end }}
+
 <div class=".sidebar">
 <!-- Overview Page -->
 {{- with .Site.GetPage .Section }}
     {{ if not .Params.hidden }}
+        {{- block "menu-item" (dict "current" $current "page" . "class" "first") -}}{{- end }}
+        {{/* 
         {{- $selected := "" -}}
         {{- if eq $current .Page -}}
             {{- $selected = " selected-first" -}}
@@ -15,6 +45,7 @@
         {{- else }}
             <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}" class="first">{{ $menu }}</a></div>
         {{- end -}}
+        */}}
     {{- end -}}
 {{ end -}}
 
@@ -22,6 +53,8 @@
 {{ range $all_pages }}
     {{ if not .Params.hidden }}
         {{ if and .IsPage (eq .CurrentSection .FirstSection) }}
+            {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
+            {{/*
             {{- $selected := "" -}}
             {{- if eq $current .Page -}}
                 {{- $selected = " selected" -}}
@@ -32,6 +65,7 @@
             {{- else }}
                 <div class="card item {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
             {{- end -}}
+             */}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
@@ -43,16 +77,7 @@
             <div class="section">
                 <div class="title">{{.Title}}</div>
             {{ range .Pages.ByWeight }}
-                {{- $selected := "" -}}
-                {{- if eq $current .Page -}}
-                    {{- $selected = " selected" -}}
-                {{- end -}}
-                {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
-                {{- if isset .Page.Params "link" }}
-                    <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
-                {{- else }}
-                    <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
-                {{- end -}}
+                {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
             {{- end -}}
             </div>
         {{- end -}}
