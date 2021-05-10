@@ -37,6 +37,10 @@
     font-size: 1.04em;
     font-family: $main-dark;
     //text-transform: uppercase;
+
+    img {
+      height: 30px; 
+    }
   }
   
   .navbar-nav .nav-link-rev {

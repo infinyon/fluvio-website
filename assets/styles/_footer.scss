@@ -2,15 +2,14 @@
 
 .footer {
   width: 100%;
-  padding: 20px;
+  padding: 20px 0 10px 0;
 
   hr {
+    margin: 5px 0 20px 0;
     display: block;
     height: 1px;
     border: 0;
     border-top: 1px solid $gray10;
-    margin-top: 20px;
-    margin-bottom: 20px;
   }
 
   .company {
