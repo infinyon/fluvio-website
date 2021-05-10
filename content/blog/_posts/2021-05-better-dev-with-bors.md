@@ -15,13 +15,13 @@ code:
 
 Lately at InfinyOn, we've been doing a lot of work to improve our productivity and speed
 up our development cycles. One of the easiest and most effective things we've done in
-order to achieve this goal is to integrate the [Bors-ng] GitHub bot into our development
+order to achieve this goal is to integrate the [Bors-ng GitHub bot] into our development
 workflow. In this post, I'll talk about some of the problems we were facing, what Bors is
 and why it was a good solution for our team, and how adopting it has helped us to increase
 our development speed and confidence. I'll then describe how to set up Bors
 for your own repository and what to expect out of the new development workflow.
 
-[Bors-ng]: https://bors.tech
+[Bors-ng GitHub bot]: https://bors.tech
 
 ## What even is Bors?
 
@@ -61,7 +61,15 @@ these steps when working on a PR:
 - Get reviews and approvals from team members
 - When ready to merge, write a comment with the text "bors r+"
 
-TODO: IMAGE OF BORS R+
+<img
+    src="/blog/images/bors/bors-rplus.png"
+    alt="On the GitHub PR page I have commented 'bors r+' and Bors has created a new commit on staging" />
+
+See how Bors creates a `staging` branch at master, then merges the PR into it.
+
+<img
+    src="/blog/images/bors/merge-staging.png"
+    alt="Bors creates a staging branch where it merges PRs to run CI" />
 
 Notice that you still have to supply your own CI job definition, and that your CI may
 run each time new commits are pushed to a branch. The only difference in the development
@@ -76,7 +84,13 @@ head of master), and run CI once again on the _merged_ staging branch. Bors will
 the status of the CI jobs, and once all the required jobs have passed, it will push
 the staging branch to master, which is guaranteed to be a fast-forward.
 
-IMAGE OF BORS MERGE
+<img
+    src="/blog/images/bors/bors-merged.png"
+    alt="A screenshot of the GitHub PR page showing Bors has merged the PR" />
+
+<img
+    src="/blog/images/bors/merge-master.png"
+    alt="A git graph showing master has been fast-forwarded to meet staging" />
 
 ## Increased Productivity
 
@@ -103,3 +117,48 @@ a merge conflict or semantic conflict between your PR and another one that came 
 the queue. Note, however, that in this scenario you already would have needed to fix regular
 merge conflicts, and that Bors provides the benefit of notifying you when a semantic conflict
 causes a failure, which previously would have failed after reaching master rather than before.
+
+# Setting up Bors on a GitHub repository
+
+Like I mentioned before, Bors is a GitHub bot, so setting it up is a pretty straightforward
+process. In order to use it, you'll need to first add the Bors application to the GitHub
+account where the repositories you want to use it live. Then, you need to grant it access to
+some or all of the repositories in that account. You can start this process by
+[visiting the Bors website] and clicking "Log into dashboard". This should prompt you to login
+with GitHub or something similar. I have already added Bors to an account previously, so the
+steps you take may be slightly different from the ones I show, but they should be similar
+enough and very easy to follow.
+
+[visiting the Bors website]: https://bors.tech/
+
+<img
+    src="/blog/images/bors/bors-tech.png"
+    alt="The Bors.tech homepage with a Dashboard login button" />
+
+On my dashboard, I already have the `infinyon/fluvio` repository added to Bors, but if you're
+starting from scratch you will probably get a prompt right away to add Bors to an account
+and a repository. If you are adding a second repository like I am for this demonstration,
+there will be a Repositories page where you can add a new repository.
+
+<img
+    src="/blog/images/bors/bors-add-repo.png"
+    alt="A screenshot of the Bors dashboard with a button to add a new repository" />
+
+The first page should ask you which GitHub account or organization to add Bors to. You'll want
+to select the account which owns the repository you want. Note that if this is an organization,
+you need to have the appropriate access within the organization to add an application.
+
+<img
+    src="/blog/images/bors/install-bors-account.png"
+    alt="A screenshot of GitHub asking to install Bors on an account or organization" />
+
+The next page will prompt for whether you want to add Bors to all the repositories on the given
+account or just a specific one. I always recommend choosing specific access for things like this,
+in order to grant the least amount of privilege to tools where necessary. You can always come back
+and add new repositories if you really like Bors.
+
+<img
+    src="/blog/images/bors/install-bors-repo.png"
+    alt="A screenshot of GitHub asking for permission to add Bors to specific repositories" />
+
+## Configuring Bors with a simple CI workflow
