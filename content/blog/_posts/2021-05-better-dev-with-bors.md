@@ -168,7 +168,7 @@ to monitor, and to set some options to customize the behavior for Bors on that r
 ## Configuring Bors with a simple CI workflow
 
 I've put together [a small sample repository] with a basic Rust project and a simple CI
-workflow using GitHub Actions. I'll talk through the key options in the `bors.toml` and
+workflow using GitHub Actions. I'll talk through the key options in the `bors.toml` file and
 how those options interact with the CI workflow.
 
 [a small sample repository]: https://github.com/nicholastmosher/bors-demo
@@ -245,7 +245,7 @@ GitHub's default job naming scheme is somewhat nuanced and confusing, and
 it can be tricky to remember exactly how to specify those job names in the
 `bors.toml`. Instead of bothering to remember all of those rules, I like
 to just create one simple "Done" job that only runs when all the required
-jobs pass. Then, all we need to do is tell Bors to watch for the "Done"
+jobs pass. Then, all we need to do is tell Bors to watch for the Done
 job to complete.
 
 ```toml
@@ -376,3 +376,21 @@ required_approvals = 1
 <img 
     src="/blog/images/bors/bors-approvals.png"
     alt="A screenshot of a GitHub PR where a bors r+ command was rejected due to too few approvals" />
+
+# Conclusion
+
+I hope you found this post interesting and useful, and I encourage you to try out Bors
+on your own repositories! It is freely available for open-source repositories but unfortunately
+the publicly-hosted instance does not work with private repositories. I will be writing a
+follow-up blog in the coming weeks about how we took Bors a step further and used it to create
+a fully automated release pipeline. If you'd like a sneak-peek at how that all works,
+[feel free to check out our workflow configuration on Fluvio]. I would also like to thank
+the team over at [bors.tech] for creating and maintaining such a wonderful and freely available tool!
+
+Feel free to reach out with any questions on [Twitter], Reddit, or our [Fluvio team Discord],
+I love to hear from interested readers!
+
+[feel free to check out our workflow configuration on Fluvio]: https://github.com/infinyon/fluvio/blob/master/.github/workflows/ci.yml
+[bors.tech]: https://bors.tech
+[Twitter]: https://twitter.com/RazzleRustacean
+[Fluvio team Discord]: https://discordapp.com/invite/bBG2dTz
