@@ -17,10 +17,7 @@ enableEmoji = true
     baseName = "rss"  
 
 [params]
-  version = "1.1.1"
-  author = "InfinyOn Inc."
-  blog_time_format = "January 02, 2006"
-  short_time_format = "Jan 02, 2006"
+  version = "2.0.0"
   description = "Real-time Data Streaming Platform"
   company_url = "https://www.infinyon.com"
 
@@ -42,38 +39,6 @@ enableEmoji = true
     name = "APIs"
     url = "/api/"
     weight = 103
-
-  [[menu.main.bk]]
-    identifier = "rust"
-    name = "Rust API"
-    url = "https://docs.rs/fluvio/"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 110
-
-  [[menu.main.bk]]
-    identifier = "python"
-    name = "Python API"
-    url = "https://infinyon.github.io/fluvio-client-python/fluvio.html"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 120
-
-  [[menu.main.bk]]
-    identifier = "node"
-    name = "Node API"
-    url = "https://infinyon.github.io/fluvio-client-node/"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 130
-
-  [[menu.main.bk]]
-    identifier = "java"
-    name = "Java API"
-    url = "https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 140
 
   [[menu.main]]
     identifier = "chat"

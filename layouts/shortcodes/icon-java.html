@@ -1,6 +1,9 @@
 {{- $width := .Get "width" | default 48 -}}
 {{- $link := .Get "link" | default "/api/libraries/java" -}}
-{{- $target := (cond (gt (len (.Get "external")) 0) "_blank" "_self") -}}
+{{- $target := "_self" -}}
+{{- if (.Get "external") -}}
+    {{- $target := "_blank" -}}
+{{- end -}}
 
 <a href="{{ $link }}" target="{{ $target }}" style="text-decoration: none;">
     <img src="/images/assets/java.svg" style="display: inline; width: {{ $width}}px" alt="Java" />
