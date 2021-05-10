@@ -43,12 +43,8 @@ there is an opportunity to run CI workflows on this already-merged branch to dec
 whether it should be accepted or rejected. If the CI workflow fails, then Bors simply
 does not update master. If CI passes, then Bors fast-forwards master to match the
 merged commit on the staging branch - the same exact commit which has already been tested.
-
 This style of CI workflow - merging, testing, then fast-forwarding - greatly increases
-our confidence in the correctness of the code living in master. As we'll see,
-we can also leverage Bors in order to create a Continuous Delivery pipeline in which
-every commit to master guarantees the presence of a full set of release artifacts that
-have been fully tested and are ready to ship at a moment's notice.
+our confidence in the correctness of the code living in master.
 
 ## Hands-on: The Bors workflow
 
