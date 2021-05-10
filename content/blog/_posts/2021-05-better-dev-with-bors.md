@@ -1,12 +1,12 @@
 ---
-title: Increasing our development productivity and confidence with Bors
+title: Increasing our development confidence and productivity with Bors
 author:
     name: "Nick Mosher"
     github: "nicholastmosher"
 description: "TBD"
 date: 2021-04-20
 slug: github-actions-best-practices
-url: /blog/2021/04/github-actions-best-practices
+url: /blog/2021/05/bors
 img: blog/images/rust-workflows/github-actions-social.png
 twitter-card: summary_large_image
 code:
@@ -49,3 +49,57 @@ our confidence in the correctness of the code living in master. As we'll see,
 we can also leverage Bors in order to create a Continuous Delivery pipeline in which
 every commit to master guarantees the presence of a full set of release artifacts that
 have been fully tested and are ready to ship at a moment's notice.
+
+## Hands-on: The Bors workflow
+
+To give you a more concrete sense of how Bors operates, let me walk you through the
+experience as a developer using Bors on a day-to-day basis. Essentially, we follow
+these steps when working on a PR:
+
+- Push code changes to your branch and open a PR
+- Ensure your CI jobs are in a passing state
+- Get reviews and approvals from team members
+- When ready to merge, write a comment with the text "bors r+"
+
+TODO: IMAGE OF BORS R+
+
+Notice that you still have to supply your own CI job definition, and that your CI may
+run each time new commits are pushed to a branch. The only difference in the development
+process is when it comes time to actually merge the branch. Instead of using GitHub's
+big green "Merge/Squash/Rebase" button, we simply tell Bors that we think this PR is
+ready to merge.
+
+When we say "bors r+", we tell Bors to add this PR to the "ready queue".
+When there are one or more PRs in the ready queue, Bors will attempt to batch together
+all the ready PRs, merge them into the `staging` branch (which, remember, begins at the
+head of master), and run CI once again on the _merged_ staging branch. Bors will watch
+the status of the CI jobs, and once all the required jobs have passed, it will push
+the staging branch to master, which is guaranteed to be a fast-forward.
+
+IMAGE OF BORS MERGE
+
+## Increased Productivity
+
+I want to touch on one of the nice side effects of using Bors to merge PRs. It has actually
+helped us to reduce the amount of time we spend on preparing and babysitting PRs. Prior to
+using Bors, one of the strategies we used to avoid semantic merge conflicts was to require
+all branches to be "up-to-date with master" before merging. This is enforceable by GitHub
+and essentially means that you need to rebase against master any time another change lands
+before yours does. Because of this, we would often find ourselves trapped in a ruthless cycle:
+
+- Get the PR tested, approved, and ready to go
+- Get ready to press the Big Green Merge Button
+- Find out another PR was merged first and need to rebase
+
+This was especially painful because after rebasing, we would need to once again wait on our
+CI jobs to pass and hope that we don't get beaten to the merge again. One way to avoid this
+problem would have been to coordinate with team members before trying to merge PRs, but that
+requires more time and synchronization across the entire team, and does not scale well.
+
+Using Bors allows us to sidestep these issues entirely by simply letting it manage the merging
+process. After sending "bors r+" on a PR, you can usually move on and work on the next thing
+without needing to keep it in the back of your mind. The exception to this is if Bors finds
+a merge conflict or semantic conflict between your PR and another one that came before yours in
+the queue. Note, however, that in this scenario you already would have needed to fix regular
+merge conflicts, and that Bors provides the benefit of notifying you when a semantic conflict
+causes a failure, which previously would have failed after reaching master rather than before.
