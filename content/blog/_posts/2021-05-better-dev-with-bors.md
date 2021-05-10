@@ -306,3 +306,33 @@ status = [
 ]
 use_squash_merge = true
 ```
+
+#### Disabling the Big Green Merge Button
+
+When we started considering the Bors workflow, we wanted to make sure that there
+was no way for developers (present or future) to get confused about the merging
+process. If we were going to be using bors and closing PRs using the "bors r+"
+command, we did not want it to be possible for newcomers to use
+GitHub's merge button to accidentally bypass the Bors merging process.
+
+We discovered that we could practically disable the button by adding a branch
+protection rule requiring the "bors" status check. This is effective because
+the bors status check only passes when bors witnesses a passing CI workflow
+on `staging`. By that time, Bors will have merged and closed the PR, so the button
+will not be available anyway.
+
+In repositories where you have administrator privileges, adding this branch
+protection rule will demote the Big Green Button into the Red Admin Override
+button, but it is still a good visual indicator that you should not press the
+button. Plus, if you are an administrator, you probably know to use Bors instead.
+
+<img
+    src="/blog/images/bors/disable-green-button-admin.png"
+    alt="A screenshot of a PR where the Green Merge Button is replaced by the Red Administrator Merge button" />
+
+In repositories where you do not have administrator privileges, the button is
+disabled completely.
+
+<img
+    src="/blog/images/bors/disable-green-button.png"
+    alt="A screenshot of a PR where the Green Merge Button is disabled" />
