@@ -34,18 +34,6 @@
 {{- with .Site.GetPage .Section }}
     {{ if not .Params.hidden }}
         {{- block "menu-item" (dict "current" $current "page" . "class" "first") -}}{{- end }}
-        {{/* 
-        {{- $selected := "" -}}
-        {{- if eq $current .Page -}}
-            {{- $selected = " selected-first" -}}
-        {{- end -}}
-        {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
-        {{- if isset .Page.Params "link" }}
-            <div class="card {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank" class="first">{{ $menu }}</a></div>
-        {{- else }}
-            <div class="card {{ $selected }}"><a href="{{ .Page.RelPermalink }}" class="first">{{ $menu }}</a></div>
-        {{- end -}}
-        */}}
     {{- end -}}
 {{ end -}}
 
@@ -54,18 +42,6 @@
     {{ if not .Params.hidden }}
         {{ if and .IsPage (eq .CurrentSection .FirstSection) }}
             {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
-            {{/*
-            {{- $selected := "" -}}
-            {{- if eq $current .Page -}}
-                {{- $selected = " selected" -}}
-            {{- end -}}
-            {{- $menu := .Page.Params.menu | default .Page.LinkTitle -}}
-            {{- if isset .Page.Params "link" }}
-                <div class="card item {{ $selected }}"><a href="{{ .Page.Params.link }}" target="_blank">{{ $menu }}</a></div>
-            {{- else }}
-                <div class="card item {{ $selected }}"><a href="{{ .Page.RelPermalink }}">{{ $menu }}</a></div>
-            {{- end -}}
-             */}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
