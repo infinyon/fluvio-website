@@ -1,4 +1,5 @@
 ---
+title: "Real-time Data Hub"
 jumbotron:
   title: "Fluvio Data Hub"
   description: "An open-source distributed data streaming platform optimized for speed and flexibility. Use **Connect** to create real-time data streams and **SmartStreams&trade;**  to upload your custom logic and modify data while still in-flight."
@@ -7,7 +8,7 @@ jumbotron:
   get_started_link: "/docs/get-started/"
   contribute_link: "https://github.com/infinyon/fluvio/blob/master/CONTRIBUTING.md"
 technology:
-  title: "Core Technology"
+  title: "The Technology"
   items:
     - title: "Powered by Rust"
       description: "Blazing fast and memory-efficient, no runtime or garbage collector."
@@ -33,8 +34,8 @@ technology:
     - title: "Universal Client API"
       description: "Programming languages are bound natively, for optimal performance."
       icon: "/images/icons/language-bindings.svg"
-advantages:
-  title: "Why Fluvio?"
+platform:
+  title: "The Platform"
   items:
     - title: "Unified Cluster"
       description: "A unified cluster for streaming and stateful computation minimizes delay, reduces operational complexity, and boosts security. When streaming and stateful computation are combined, it sets the foundation for a new class of real-time streaming use cases unique to Fluvio. For example:"
@@ -75,5 +76,22 @@ advantages:
       description: "Fluvio platform has all the necessary components to deploy and run a data streaming cluster. The platform has built-in connectors and stateful computation modules to cover general use cases right out of the box. These connectors and stateful computations can be augmented as needed. We invite and appreciate help from the community to expand our collection of connectors and WASM stateful computation modules."
       icon: "/images/icons/batteries-included-vertical.svg"
       examples:
-        - "**Runs on Kubernetes**: use helm charts to install and provision Fluvio cluster."   
+        - "**Runs on Kubernetes**: use helm charts to install and provision Fluvio cluster." 
+easy: 
+  title: "Fast & Easy"
+  description: 
+    - "Fluvio makes real-time data streaming easy for everyone - developers, data engineers, IT operators."
+  items:
+    - title: "Deploy"
+      description: "Install in minutes - cloud, data center, or your laptop"
+      icon: "/images/icons/deploy.svg"
+    - title: "Operate"
+      description: "Flexible management interfaces - CLI, API, and GUI"
+      icon: "/images/icons/operate.svg"
+    - title: "Extend"
+      description: "Dynamically loadable modules to control traffic in real-time"
+      icon: "/images/icons/extend.svg"
+    - title: "Monitor"
+      description: "Cloud dashboard for monitoring and more (Preview)"  
+      icon: "/images/icons/monitor.svg" 
 ---

@@ -1,4 +1,4 @@
-.list-full-width { 
+.full-width-text { 
   padding: 10px 50px;
 
   .per-row {
@@ -29,13 +29,13 @@
 }
 
 @media (max-width: 767px) {
-  .list-full-width {
+  .full-width-text {
     padding: 10px 20px;
   }
 }
 
 @media (max-width: 576px ) {
-  .list-full-width {
+  .full-width-text {
     padding: 10px 5px;
   }
 }
