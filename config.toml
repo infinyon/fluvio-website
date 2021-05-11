@@ -4,6 +4,7 @@ title = "Fluvio"
 enableRobotsTXT = true
 pygmentsUseClasses=true
 enableEmoji=true
+disqusShortname = "fluvio"
 
 [markup]
   defaultMarkdownHandler = "goldmark"
