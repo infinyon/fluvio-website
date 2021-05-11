@@ -5,15 +5,9 @@ author:
     github: "nicholastmosher"
 description: "Taking automated testing to the next level"
 date: 2021-05-11
-<<<<<<< HEAD
-slug: github-actions-best-practices
-url: /blog/2021/05/bors
-img: blog/images/bors/social/github-fluvio-bors.png
-=======
 slug: bors-confident-merges
 url: /blog/2021/05/bors-confident-merges
-img: blog/images/bors/social/github-bors.png
->>>>>>> 82c110996f0a1052c1697aa2fb178dcd31f1bf8a
+img: blog/images/bors/social/github-fluvio-bors.png
 twitter-card: summary_large_image
 code:
     height: 9000
