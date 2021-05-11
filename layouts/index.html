@@ -1,3 +1,10 @@
 {{ define "content" }}
-<h1>Main Page</h1>
+  {{- partial "main/jumbotron.html" (dict "jumbotron" .Params.jumbotron) }}
+  {{- partial "main/easy-to-use.html" (.Site.GetPage "/main/easy-to-use.md") }}
+  {{- partial "main/features.html" .Params.technology -}}
+  {{- partial "main/list-full-width.html" .Params.advantages -}}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer/footer.html" . }}
 {{ end }}

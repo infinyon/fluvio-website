@@ -1,0 +1,41 @@
+.list-full-width { 
+  padding: 10px 50px;
+
+  .per-row {
+    padding-bottom: 20px;
+
+    .label {
+      padding: 10px;
+
+      img.icon { 
+        width:$icon-width + 5px; 
+        margin-right: 10px;
+      }
+
+      span {
+        font-size: 1.8rem;
+        color: $title-color;          
+        vertical-align: middle;
+      }
+    }
+
+    .description { font-size: 1.0em; padding-left: 10px;};
+    
+    ul {
+      padding: 5px 10px 0 50px;
+      li {font-size: 1em;}
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .list-full-width {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 576px ) {
+  .list-full-width {
+    padding: 10px 5px;
+  }
+}

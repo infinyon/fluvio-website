@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>Fluvio - {{ .Title }}</title>
-    {{- partial "head-meta.html" . }}
+    {{- partial "header/head-meta.html" . }}
     {{- block "head-meta" . -}}{{- end }}
-    {{- partial "head-link.html" . }}
-    {{- partial "head-script.html" . }}
+    {{- partial "header/head-link.html" . }}
+    {{- partial "header/head-script.html" . }}
     {{- partial "common/cookies.html" . }}
     {{- block "head-script" . -}}{{- end }}
   </head>
