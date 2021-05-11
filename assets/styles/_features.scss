@@ -1,3 +1,5 @@
+.card-width {width: 1200px; }
+
 .features {
     padding: 20px 5px 50px;
     text-align: center;
@@ -21,17 +23,25 @@
         .title {
           padding: 15px 0 5px;
           font-style: $main-font;
-          font-size: 1.1em;
+          font-size: 1.15em;
           font-weight: normal;
           color: $title-color;
         }
 
         .description {
-          font-size: .9em;
+          font-size: .1.0em;
           color: $text-color;
         }
       }
     }
+}
+
+@media (max-width: 1199px ) {
+  .card-width {width: 992px;}
+}
+
+@media (max-width: 991px ) {
+  .card-width {width:575px}
 }
 
 @media (max-width: 767px) {
@@ -41,7 +51,9 @@
   }
 }
 
-@media (max-width: 576px ) {
+@media (max-width: 575px ) {
+  .card-width {width:320px;}
+
   .features .feature {
     padding: 20px 20px;
     .card .icon img { width: $icon-width*1.5 };
