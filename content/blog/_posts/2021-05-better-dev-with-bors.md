@@ -4,10 +4,10 @@ author:
     name: "Nick Mosher"
     github: "nicholastmosher"
 description: "TBD"
-date: 2021-04-20
+date: 2021-05-11
 slug: github-actions-best-practices
 url: /blog/2021/05/bors
-img: blog/images/rust-workflows/github-actions-social.png
+img: blog/images/bors/social/github-bors.png
 twitter-card: summary_large_image
 code:
     height: 9000
