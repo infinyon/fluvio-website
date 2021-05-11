@@ -252,6 +252,10 @@ FLAGS:
 OPTIONS:
         --key-separator <key-separator>
             Sends key/value records split on the first instance of the separator
+            
+        --batch-size <batch-size>
+            Specifies the number of records to send in a batch. Only used for
+            files [default: 50]
 
     -f, --file <file>
             Path to a file to produce to the topic. If absent, producer will
