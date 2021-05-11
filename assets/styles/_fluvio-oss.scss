@@ -102,10 +102,16 @@ $text-color: $gray11;
   }
 }
 
-@media (max-width: 576px ) {
+@media (max-width: 575px ) {
   .fluvio-oss {
     margin: 5px;
     padding: 0 10px 10px 10px;
   }
-  
+
+  .card-width {width:320px;}
+
+  .header .title.underscore:after {
+    margin: 10px auto;
+  }
+
 }
