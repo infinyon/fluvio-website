@@ -1,9 +1,9 @@
 ---
-title: How we increased our development confidence and productivity with Bors
+title: Increasing our development confidence and productivity with Bors
 author:
     name: "Nick Mosher"
     github: "nicholastmosher"
-description: "Taking automated testing to the next level"
+description: "How a little GitHub bot keeps our Rust project passing CI in master 100% of the time."
 date: 2021-05-11
 slug: bors-confident-merges
 url: /blog/2021/05/bors-confident-merges
