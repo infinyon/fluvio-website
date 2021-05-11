@@ -1,19 +1,25 @@
 ---
-title: Increasing our development confidence and productivity with Bors
+title: How we increased our development confidence and productivity with Bors
 author:
     name: "Nick Mosher"
     github: "nicholastmosher"
-description: "TBD"
+description: "Taking automated testing to the next level"
 date: 2021-05-11
+<<<<<<< HEAD
 slug: github-actions-best-practices
 url: /blog/2021/05/bors
 img: blog/images/bors/social/github-fluvio-bors.png
+=======
+slug: bors-confident-merges
+url: /blog/2021/05/bors-confident-merges
+img: blog/images/bors/social/github-bors.png
+>>>>>>> 82c110996f0a1052c1697aa2fb178dcd31f1bf8a
 twitter-card: summary_large_image
 code:
     height: 9000
 ---
 
-Lately at InfinyOn, we've been doing a lot of work to improve our productivity and speed
+Lately on [Fluvio], we've been doing a lot of work to improve our productivity and speed
 up our development cycles. One of the easiest and most effective things we've done in
 order to achieve this goal is to integrate the [Bors-ng GitHub bot] into our development
 workflow. In this post, I'll talk about some of the problems we were facing, what Bors is
@@ -21,6 +27,7 @@ and why it was a good solution for our team, and how adopting it has helped us t
 our development speed and confidence. I'll then describe how to set up Bors
 for your own repository and what to expect out of the new development workflow.
 
+[Fluvio]: https://github.com/infinyon/fluvio
 [Bors-ng GitHub bot]: https://bors.tech
 
 ## What even is Bors?
@@ -95,7 +102,7 @@ helped us to reduce the amount of time we spend on preparing and babysitting PRs
 using Bors, one of the strategies we used to avoid semantic merge conflicts was to require
 all branches to be "up-to-date with master" before merging. This is enforceable by GitHub
 and essentially means that you need to rebase against master any time another change lands
-before yours does. Because of this, we would often find ourselves trapped in a ruthless cycle:
+before yours does. Because of this, we would often find ourselves trapped in a vicious cycle:
 
 - Get the PR tested, approved, and ready to go
 - Get ready to press the Big Green Merge Button
@@ -120,7 +127,7 @@ Like I mentioned before, Bors is a GitHub bot, so setting it up is a pretty stra
 process. In order to use it, you'll need to first add the Bors application to the GitHub
 account where the repositories you want to use it live. Then, you need to grant it access to
 some or all of the repositories in that account. You can start this process by
-[visiting the Bors website] and clicking "Log into dashboard". This should prompt you to login
+[visiting the Bors website] and clicking "Log into dashboard". This should prompt you to log in
 with GitHub or something similar. I have already added Bors to an account previously, so the
 steps you take may be slightly different from the ones I show, but they should be similar
 enough and very easy to follow.
@@ -131,10 +138,12 @@ enough and very easy to follow.
     src="/blog/images/bors/bors-tech.png"
     alt="The Bors.tech homepage with a Dashboard login button" />
 
-On my dashboard, I already have the `infinyon/fluvio` repository added to Bors, but if you're
+On my dashboard, I already have the [`infinyon/fluvio`] repository added to Bors, but if you're
 starting from scratch you will probably get a prompt right away to add Bors to an account
 and a repository. If you are adding a second repository like I am for this demonstration,
 there will be a Repositories page where you can add a new repository.
+
+[`infinyon/fluvio`]: https://github.com/infinyon/fluvio
 
 <img
     src="/blog/images/bors/bors-add-repo.png"
