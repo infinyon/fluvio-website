@@ -95,7 +95,7 @@ helped us to reduce the amount of time we spend on preparing and babysitting PRs
 using Bors, one of the strategies we used to avoid semantic merge conflicts was to require
 all branches to be "up-to-date with master" before merging. This is enforceable by GitHub
 and essentially means that you need to rebase against master any time another change lands
-before yours does. Because of this, we would often find ourselves trapped in a ruthless cycle:
+before yours does. Because of this, we would often find ourselves trapped in a vicious cycle:
 
 - Get the PR tested, approved, and ready to go
 - Get ready to press the Big Green Merge Button
