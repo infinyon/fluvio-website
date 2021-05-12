@@ -45,3 +45,11 @@ taken by a sensor, or a button click in a mobile app.
 - The mechanism for scaling up data throughput
 - Partitions are subdivisions of a Topic
 - All records sent to a specific partition are ordered
+- Records are persisted in exactly one partition, indexed by a position called an offset
+
+## Example producer use-cases
+
+- Recording all updates to a database
+- Recording all requests to an API
+- Reporting sensor measurements from an embedded device
+- Collecting server logs
