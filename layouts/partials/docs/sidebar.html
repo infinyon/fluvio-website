@@ -5,23 +5,27 @@
 {{ define "menu-item" }}
     {{- $selected := "" -}}
     {{- if eq .current .page -}}
-        {{- $selected = " selected" -}}
+        {{- if .class -}}
+            {{- $selected = " selected-first" -}}
+        {{- else -}}
+            {{- $selected = " selected" -}}
+        {{- end -}}
     {{- end -}}
     {{- $menu := .page.Params.menu | default .page.LinkTitle -}}
     {{- if .page.Params.link.local }}
-        <div class="card item {{ $selected }}"><a href="{{ .page.Params.link.local }}"
+        <div class="card item{{ $selected }}"><a href="{{ .page.Params.link.local }}"
             {{- if .class -}}
                 class="{{ .class }}"
             {{- end -}}
         >{{ $menu }}</a></div>
     {{- else if .page.Params.link.external }}
-        <div class="card item {{ $selected }}"><a href="{{ .page.Params.link.external }}"
+        <div class="card item{{ $selected }}"><a href="{{ .page.Params.link.external }}"
             {{- if .class -}}
                 class="{{ .class }}"
             {{- end -}} 
         target="_blank">{{ $menu }}</a></div>
     {{- else }}
-        <div class="card item {{ $selected }}"><a href="{{ .page.RelPermalink }}"
+        <div class="card item{{ $selected }}"><a href="{{ .page.RelPermalink }}"
             {{- if .class -}}
                 class="{{ .class }}"
             {{- end -}}
