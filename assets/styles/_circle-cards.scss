@@ -1,7 +1,4 @@
-$title-color: $gray12;
-$text-color: $gray11;
-
-.fluvio-oss {
+.circle-card-area {
   margin: 20px;
   padding: 0 40px 20px 40px;
   background:$main-lightest;
@@ -9,42 +6,6 @@ $text-color: $gray11;
 
   .content {
     margin: -15px 30px 0 30px;
-  }
-}
-
-.header {
-  padding: 50px 20px;
-
-  .title {
-    font-size: 2.3rem;
-    color: $title-color;
-    display: inline-block;
-  }
-
-  .title.underscore:after {
-    background: none repeat scroll 0 0 $main-defused;
-    content: "";
-    display: block;
-    position: relative;
-    height: 1px;
-    margin:10px -50px 0;
-  }
-
-  .description {
-    font-size: 1.2rem;
-  }
-
-  .tagline {
-    font-size: 1.7em;
-  }
-
-  .how {
-    font-size: 1.2rem;
-    text-align: left;
-  }
-
-  .bright {
-    color: $gray0;
   }
 }
 
@@ -97,21 +58,14 @@ $text-color: $gray11;
 }
 
 @media (max-width: 767px) {
-  .fluvio-oss {
+  .circle-card-area {
     padding: 0 20px 20px 20px;
   }
 }
 
 @media (max-width: 575px ) {
-  .fluvio-oss {
+  .circle-card-area {
     margin: 5px;
     padding: 0 10px 10px 10px;
   }
-
-  .card-width {width:320px;}
-
-  .header .title.underscore:after {
-    margin: 10px auto;
-  }
-
 }
