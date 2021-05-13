@@ -20,8 +20,8 @@ enableEmoji = true
   version = "2.0.0"
   description = "Real-time Data Streaming Platform"
   company_url = "https://www.infinyon.com"
-  company_logo = "/images/assets/infinyon-logo-full.svg"
-  site_logo = "/images/assets/fluvio-logo-full-white.svg"
+  company_logo = "/images/assets/infinyon-with-text.svg"
+  site_logo = "/images/assets/fluvio-with-text.svg"
 
 [menu]
   [[menu.fluvio]]

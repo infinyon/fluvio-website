@@ -1,12 +1,14 @@
-$background-color: $main-lightest;
-$item-color: $main-color;
+$background: $main-lightest;
+$item: $main-med;
 
 .top-menu {
-  background-color: $background-color;
-  padding: 10px;
+  background-color: $background;
+  padding: 20px 15px 15px 17px;
+  border-bottom: 1px solid $gray2;
+
   .logo {
     float: left;
-    img {height: 28px;}
+    img { height: 28px; }
   }
 
   ul {
@@ -26,22 +28,26 @@ $item-color: $main-color;
     font-size: 1.02em;
     line-height: 1.64em;
     text-align: center;
-    padding: 0 16px;
+    padding: 2px 16px 0 16px;
     text-decoration: none;
-    color: $item-color;
+    color: $item;
   }
   
   li a:hover {
-    color: $item-color;
+    color: $item;
   }
 
   li i {
-    font-size: 1.15em;
+    font-size: 1.2em;
   }
 }
 
 @media (max-width: 767px) {
-  .top-menu li span {
-    display: none;
+  .top-menu {
+    padding-left: 1px;
+    li {
+      span {display: none; }
+      i { font-size: 1.4em; line-height: 1.1em;}
+    }
   }
 }

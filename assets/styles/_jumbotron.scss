@@ -1,12 +1,15 @@
+$background: $white;
+$item: $gray12;
+
 .jtron-bk {
   background-size: cover;
-  background: $main-dark;
+  background:$background;
   z-index: -1;
 }
 
 .jtron {
   padding: 0;
-  min-height: 600px;
+  min-height: 580px;
   position: relative;
 
   .j-row {
@@ -43,7 +46,7 @@
       font-size: 2.7em; 
       line-height: 1.2em; 
       max-width: 620px;
-      color: $gray0; 
+      color: $item; 
       font-family: $main-font;
     };
     
@@ -51,7 +54,7 @@
       padding-bottom: 1.5em;
       font-size: 1.25em; 
       max-width: 600px;
-      color: $gray0; 
+      color:  $item;
       font-family: $main-font;
     };
 
