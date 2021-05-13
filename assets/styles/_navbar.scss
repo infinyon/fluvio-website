@@ -1,5 +1,12 @@
-.navbar-custom {
-  background-color: $col-top-menu-bg;
+.navbar-fluvio {
+  background-color: $main-dark;
+}
+
+.navbar-infinyon {
+  background-color: $main-color;
+}
+
+.navbar-fluvio, .navbar-infinyon {
   z-index: 2000;
 
   a.nav-link {
@@ -91,7 +98,15 @@
 }
 
 @media (max-width: 767px) {
-  .navbar-custom {    
+  .navbar-fluvio .navbar-dropdown {
+    background-color: $main-dark;
+  }
+  
+  .navbar-infinyon .navbar-dropdown {
+    background-color: $main-color;
+  }
+
+  .navbar-fluvio, .navbar-infinyon {    
       .navbar-nav {
         margin-top:10px;
         margin-bottom: 10px;
@@ -108,7 +123,6 @@
   
       .navbar-item.active {   
         border-bottom: none;
-        //background-color: $col-top-menu-collapsed-sel;
       }
 
       .navbar-item.stars a img {
@@ -118,7 +132,6 @@
 
       .navbar-dropdown {
           border-style: none;
-          background-color: $col-top-menu-bg;
           margin: -15px 10px 0;
           li { padding: 1px;}
           li:not(:last-child) { border-bottom: transparent; }

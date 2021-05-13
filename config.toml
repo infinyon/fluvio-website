@@ -22,26 +22,38 @@ enableEmoji = true
   company_url = "https://www.infinyon.com"
 
 [menu]
-  [[menu.main]]
+  [[menu.fluvio]]
     identifier = "docs"
     name = "Docs"
     url = "/docs/"
     weight = 100
 
-  [[menu.main]]
+  [[menu.fluvio]]
     identifier = "cli"
     name = "CLI"
     url = "/cli/"
     weight = 101
 
-  [[menu.main]]
+  [[menu.fluvio]]
     identifier = "api"
     name = "APIs"
     url = "/api/"
     weight = 103
 
-  [[menu.main]]
+  [[menu.fluvio]]
     identifier = "chat"
     url = "https://discordapp.com/invite/bBG2dTz"
     pre = "fab fa-discord"
     weight = 160
+
+  [[menu.infinyon]]
+    identifier = "blog"
+    name = "Blog"
+    url = "https://www.infinyon.com/blog"
+    weight = 100
+
+  [[menu.infinyon]]
+    identifier = "use-cases"
+    name = "Use Cases"
+    url = "https://www.infinyon.com/use-cases"
+    weight = 110

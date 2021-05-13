@@ -1,14 +1,15 @@
-{{- $currentPage := . -}}
-<nav id="navbar" class="navbar navbar-expand-md navbar-custom">
+{{- $currentPage := .page -}}
+<nav id="navbar" class="navbar navbar-expand-md navbar-{{ .name }}">
   <div class="container-fluid site-width">
-    <a class="navbar-brand" id="logo" href="{{ "/" | relURL}}"><img src="/images/assets/fluvio-logo-full-white.svg"></img></a>
+    {{- block "logo" . -}}{{- end }}
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        {{ range .Site.Menus.main }}
+      <ul class="navbar-nav {{ .justify }}">
+        {{ range .menu }}
           {{- if .HasChildren }}          
             <li class="navbar-item dropdown"> 
               <a href="{{ .URL }}" class="nav-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> 
@@ -56,10 +57,20 @@
             </li>        
           {{- end -}}
         {{- end -}}
-        <li class="navbar-item stars">
-          {{ "[![GitHub stars](https://img.shields.io/github/stars/infinyon/fluvio?style=social)](https://gitHub.com/infinyon/fluvio/stargazers/)" | markdownify }}
-        </li>      
+        {{- block "stars" . -}}{{- end }}
       </ul>
     </div>
   </div>
 </nav>
+
+{{- define "logo" -}}
+   <a class="navbar-brand" id="logo" href="{{ .link }}"><img src="/images/assets/{{ .name }}-logo-full-white.svg"></img></a>
+{{- end -}}
+
+{{- define "stars" -}}
+  {{- if .stars }}
+    <li class="navbar-item stars">
+      {{ "[![GitHub stars](https://img.shields.io/github/stars/infinyon/fluvio?style=social)](https://gitHub.com/infinyon/fluvio/stargazers/)" | markdownify }}
+    </li>  
+  {{ end -}}
+{{- end -}}

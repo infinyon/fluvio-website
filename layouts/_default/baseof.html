@@ -11,7 +11,21 @@
   </head>
   <body class="content d-flex flex-column">
     <div class="page-overlay"></div>
-    {{- partial "menu.html" . -}}
+    {{- partial "menu.html" (dict 
+      "page" . 
+      "menu" .Site.Menus.infinyon
+      "name" "infinyon"
+      "link" "https://www.infinyon.com"
+      "justify" "mr-auto"
+    ) -}}
+    {{- partial "menu.html" (dict 
+      "page" . 
+      "menu" .Site.Menus.fluvio
+      "name" "fluvio"
+      "link" "/"
+      "justify" "ml-auto"
+      "stars" true
+    ) -}}
     <div id="content">
     {{- block "content" . }}{{- end }}
     </div>
