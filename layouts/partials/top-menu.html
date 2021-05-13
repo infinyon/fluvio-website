@@ -1,0 +1,29 @@
+{{- $currentPage := .page -}}
+<div class="top-menu">
+  <div class="container-fluid site-width">
+    <a class="logo" href="{{ .page.Site.Params.company_url }}"><img src="{{ .page.Site.Params.company_logo }}"></img></a>
+    <ul>
+      {{ range .menu }}
+        {{- $active := "" -}}
+        {{- if eq $currentPage.Section (.Identifier | lower) -}}
+          {{- $active = "active" -}}
+        {{- end -}}
+        {{- $target := "_self" -}}
+        {{- if hasPrefix .URL "http" }}
+          {{- $target = "_blank" -}}
+        {{- end -}}        
+        <li>
+          <a href="{{ .URL }}" target="{{ $target }}">
+            {{ if .Pre }}
+              <i class="{{ .Pre }}"></i>
+            {{ end }}
+            {{ .Name }}
+            {{ if .Post }}
+              <i class="{{ .Post }}"></i>
+            {{ end }}
+          </a>                  
+        </li>        
+      {{- end -}}
+    </ul>
+  </div>
+</div>

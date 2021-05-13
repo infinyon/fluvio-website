@@ -11,8 +11,8 @@
   </head>
   <body class="content d-flex flex-column">
     <div class="page-overlay"></div>
-    {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.infinyon "name" "infinyon" "link" "https://www.infinyon.com" "logo" "infinyon-logo-full-thick.svg" "justify" "mr-auto") -}}
-    {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio "name" "fluvio" "link" "/" "logo" "fluvio-logo-full-white.svg" "justify" "ml-auto" "stars" true) -}}
+    {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
+    {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio) -}}
     <div id="content">
     {{- block "content" . }}{{- end }}
     </div>

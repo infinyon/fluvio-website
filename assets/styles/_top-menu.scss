@@ -1,5 +1,60 @@
-.navbar-custom {
-  background-color: $col-top-menu-bg;
+$background-color: $main-lightest;
+$item-color: $main-color;
+
+.top-menu {
+  background-color: $background-color;
+  padding: 10px;
+  .logo {
+    float: left;
+    img {height: 28px;}
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 25px;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    font-size: 1.05em;
+    line-height: 1.65em;
+    text-align: center;
+    padding: 0 16px;
+    text-decoration: none;
+    color: $item-color;
+  }
+  
+  li a:hover {
+    color: $item-color;
+  }
+}
+
+
+.navbar-infinyon {
+  background-color: $main-lightest;
+  .navbar-nav .nav-link {
+    color: $main-color;
+  }
+}
+
+/*
+.navbar-infinyon {
+  background-color: $main-color;
+  .navbar-brand { margin-left: -10px;}
+  .navbar-nav .nav-link {
+    color: $white;
+  }
+}
+*/
+
+.navbar-fluvio, .navbar-infinyon {
   z-index: 2000;
 
   a.nav-link {
@@ -24,7 +79,6 @@
   .navbar-brand, 
   .navbar-text,
   .navbar-nav .nav-link {
-    color: $col-top-menu;
     line-height: 1.6em;
     .fab {
       font-size: 1.4em;
@@ -91,7 +145,15 @@
 }
 
 @media (max-width: 767px) {
-  .navbar-custom {    
+  .navbar-fluvio .navbar-dropdown {
+    background-color: $main-dark;
+  }
+  
+  .navbar-infinyon .navbar-dropdown {
+    background-color: $main-color;
+  }
+
+  .navbar-fluvio, .navbar-infinyon {    
       .navbar-nav {
         margin-top:10px;
         margin-bottom: 10px;
@@ -108,7 +170,6 @@
   
       .navbar-item.active {   
         border-bottom: none;
-        //background-color: $col-top-menu-collapsed-sel;
       }
 
       .navbar-item.stars a img {
@@ -118,7 +179,6 @@
 
       .navbar-dropdown {
           border-style: none;
-          background-color: $col-top-menu-bg;
           margin: -15px 10px 0;
           li { padding: 1px;}
           li:not(:last-child) { border-bottom: transparent; }
