@@ -2,14 +2,6 @@
   background-size: cover;
   background: $main-dark;
   z-index: -1;
-  
-  /*
-  .lines {
-    background: url(/images/assets/bk-lines.png) no-repeat bottom left;
-    background-size: 700px;
-    z-index: -2;
-  }
-  */
 }
 
 .jtron {
@@ -74,8 +66,6 @@
 }
 
 @media (max-width: 991px ) {
-  //.jtron-bk .lines {background: none;}
-
   .jtron {
     min-height: 550px;
     .j-text { 
