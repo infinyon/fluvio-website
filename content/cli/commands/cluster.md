@@ -1,5 +1,5 @@
 ---
-title: Fluvio Runner
-menu: Runner
-weight: 10
+title: Fluvio Cluster
+menu: Cluster
+weight: 50
 ---

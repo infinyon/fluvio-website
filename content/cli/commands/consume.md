@@ -1,6 +1,6 @@
 ---
 title: Consume
-weight: 10
+weight: 20
 ---
 
 The `fluvio consume` command is a way to read the contents of records in a Fluvio topic

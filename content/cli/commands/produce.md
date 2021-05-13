@@ -1,6 +1,6 @@
 ---
 title: Produce
-weight: 20
+weight: 10
 ---
 
 The `fluvio produce` command is a way to send messages to a particular topic and partition.
