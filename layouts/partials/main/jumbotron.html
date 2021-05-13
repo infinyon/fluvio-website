@@ -4,7 +4,7 @@
       <div class="row d-flex no-gutters slider-text align-items-center j-row">
         <img class="j-img-oss lazy"  src="{{ .jumbotron.image }}" alt="{{ .jumbotron.alt }}">
         <div class="mt-5 pt-xs-7 j-text">
-          <div class="title">{{ .jumbotron.title }}</div>
+          <div class="title">{{ .jumbotron.title | markdownify }}</div>
           <div class="desc oss">{{ .jumbotron.description | markdownify}}</div>
           <div class="row pt-lg-5 pl-2 d-flex">
             <div class="px-2">
