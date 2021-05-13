@@ -18,38 +18,63 @@ they work.
 ## Records, Topics, and Partitions
 
 In order to understand producers, we need to have a good idea about the data they
-interact with (Records), the means by which they logically organize that data (Topics),
+interact with (records), the means by which they logically organize that data (topics),
 and the strategies they use in order to efficiently distribute and process that data
-(Partitions).
+(partitions). These are general ideas seen in many streaming systems, but we're going
+to review them in case you're not familiar with them.
 
 ### Records
 
-In Fluvio, like in many other streaming systems, a Record is simply a piece of data
-that is indexed and stored for later use. In streaming applications, a Record typically
-communicates the fact that a particular event has occurred, such as a measurement being
-taken by a sensor, or a button click in a mobile app.
+A **Record** is simply a piece of data that is indexed and stored for later use.
+In streaming applications, a record typically communicates the fact that a particular
+event has occurred, such as a measurement being taken by a sensor, or a button click in
+a mobile app. Any given record belongs to exactly one topic and one partition, and
+when it is stored it is assigned an offset, which is the absolute position of the
+record within it's parent partition.
 
-- Role of keys
-  - Hashing keys and round-robin
-- Values as bytes/json/etc
+In addition to carrying arbitrary data, records may optionally be created with a key.
+Record keys are used in order to determine which partition within a topic the record
+should be sent to. The golden rule is: any two records with the same key are always
+sent to the same partition. If a record does not have a key, it is assigned to a
+partition based on some configured strategy, such as round-robin.
 
 ### Topics
 
-- Topics are like tables in a database
-- Topics define properties such as number of partitions and replication factor
-- Topics may categorize different domains of data
-- A Producer must specify a Topic for each record being sent
+As we have alluded to, **Topics** are a tool for organizing records in a streaming system.
+You can think of a topic as the streaming equivalent of a table in a database. These
+are typically created by the cluster administrator rather than an application.
+Each time you send a record, you must specify a topic for it to be produced to.
+Topics may be used to keep different types of records separate from one another, and
+be organized in a way that aligns nicely with your application's domain model.
+
+In addition to logically separating records, topics may be individually configured
+with parameters to tune the performance and semantics of record delivery. Two
+notable parameters are the number of partitions the topic has as well as the
+replication factor, which describes the minimum number of copies of the data in the
+topic that must be maintained at all times.
 
 ### Partitions
 
-- The mechanism for scaling up data throughput
-- Partitions are subdivisions of a Topic
-- All records sent to a specific partition are ordered
-- Records are persisted in exactly one partition, indexed by a position called an offset
+**Partitions** are a mechanism by which the load of traffic to and from a given topic may
+be distributed and balanced between many machines. A single partition is a concrete,
+ordered log that is stored to disk. As a log, each record stored in a partition is
+given an offset, starting from zero and monotonically increasing by one for each new
+record. Once a record is committed to a partition and an offset is assigned to it,
+that offset (in that partition) will _always_ refer to that record - it is a permanent
+assignment. Because of this, all records that are sent to a given partition are
+guaranteed to remain ordered in the order they were committed.
 
-## Example producer use-cases
+There are a few important observations to note about the behavior of partitions based
+on the properties we just covered:
 
-- Recording all updates to a database
-- Recording all requests to an API
-- Reporting sensor measurements from an embedded device
-- Collecting server logs
+- When a record is assigned an offset, that offset permanently identifies
+  that record, but this does not necessarily mean that the record will always be available.
+  Topics generally define a _retention policy_, which describes how long records will be retained.
+  If a record lives beyond its retention policy, it may be deleted to make space for other data.
+  However, the offset that identified that record will never be reused for another record.
+- It is important to grasp that strong record ordering guarantees only apply for records within
+  a single partition. If records are sent to two different partitions in the same topic, there
+  is no way to establish ordering between records that live in the distinct partitions. For
+  this reason, it is important to select a key for your records based on your ordering needs.
+  Since records with the same key are always assigned to the same partition, any records that
+  share a key will always be totally ordered with respect to each other.
