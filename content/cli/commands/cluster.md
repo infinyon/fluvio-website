@@ -241,3 +241,34 @@ VERSION
 0.6.0-alpha.7-latest
 ...
 ```
+
+---
+
+# `fluvio cluster spu list`
+
+This command shows details about the active SPUs in your cluster.
+It is mostly useful for checking on the status of individual SPUs
+to see whether they are still online, and which addresses they live at.
+
+```
+fluvio-cluster-spu-list
+List all SPUs known by this cluster (managed AND custom)
+
+fluvio cluster spu list [FLAGS] [OPTIONS]
+
+FLAGS:
+        --custom    Whether to list only custom SPUs
+    -h, --help      Prints help information
+
+OPTIONS:
+    -O, --output <type>    Output [default: table]  [possible values: table,
+                           yaml, json]
+```
+
+Example usage:
+
+```
+$ fluvio cluster spu list
+ ID    NAME             STATUS  TYPE      RACK  PUBLIC          PRIVATE
+ 5001  custom-spu-5001  Online  "custom"   -    localhost:9010  localhost:9011
+```

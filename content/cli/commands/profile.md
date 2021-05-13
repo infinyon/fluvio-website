@@ -17,8 +17,10 @@ Prints out the name of the active Fluvio profile. Let's say you have a Fluvio Cl
 whose profile name is "cloud", and you have a local Fluvio cluster installed that
 you use for development, whose profile name is "local".
 
-If your current profile is "local", then a command such as `fluvio topic create greeting` will
+If your current profile is "local", then a command such as [`fluvio topic create greeting`] will
 create a "greeting" topic on your local cluster.
+
+[`fluvio topic create greeting`]: /cli/commands/topic#fluvio-topic-create
 
 ```
 fluvio-profile-current
@@ -43,10 +45,8 @@ local
 # `fluvio profile delete`
 
 Deletes a profile from your Fluvio configuration (`~/.fluvio/config`). This will
-not delete a cluster (for that, see [fluvio cluster delete]), but it will cause
+not delete a cluster (for that, see [`fluvio cluster delete`]), but it will cause
 the Fluvio CLI to no longer be able to interact with that cluster.
-
-[fluvio cluster delete]: /cli/cluster#fluvio-cluster-delete
 
 ```
 fluvio-profile-delete
@@ -83,8 +83,10 @@ warning: this removed your current profile, use 'fluvio profile switch' to selec
 # `fluvio profile delete-cluster`
 
 Deletes cluster connection information from your Fluvio configuration. This will not delete
-a cluster itself (for that see [fluvio cluster delete]), but it will cause the Fluvio CLI to
+a cluster itself (for that see [`fluvio cluster delete`]), but it will cause the Fluvio CLI to
 no longer be able to connect to that cluster.
+
+[`fluvio cluster delete`]: /cli/commands/cluster#fluvio-cluster-delete
 
 ```
 fluvio-profile-delete-cluster
@@ -133,7 +135,7 @@ ARGS:
 Example usage:
 
 ```
-$ fluvio profile switch fluvio-cloud
+$ fluvio profile switch cloud
 ```
 
 ---

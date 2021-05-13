@@ -1,4 +1,58 @@
 ---
-title: Install
+title: Install and Update
 weight: 70
 ---
+
+# `fluvio install`
+
+Some Fluvio CLI commands are distributed as separate executables that we call
+"extensions". This command installs and updates extensions by name, placing
+them in the `~/.fluvio/extensions/` directory.
+
+```
+fluvio-install
+Install Fluvio plugins
+
+The Fluvio CLI considers any executable with the prefix `fluvio-` to be a CLI
+plugin. For example, an executable named `fluvio-foo` in your PATH may be
+invoked by running `fluvio foo`.
+
+This command allows you to install plugins from Fluvio's package registry.
+
+USAGE:
+    fluvio install <package>
+
+FLAGS:
+    -h, --help    Prints help information
+
+OPTIONS:
+
+
+ARGS:
+    <package>    The ID of a package to install, e.g. "fluvio/fluvio-cloud"
+```
+
+Example usage:
+
+```
+$ fluvio install fluvio/fluvio-cloud
+🎣 Fetching latest version for package: fluvio/fluvio-cloud...
+⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.0...
+🔑 Downloaded and verified package file
+```
+
+---
+
+# `fluvio update`
+
+This command performs a self-update for the Fluvio CLI. It takes no arguments,
+and just simply downloads the latest version of `fluvio` and overwrites itself.
+
+Example usage:
+
+```
+$ fluvio update
+🎣 Fetching latest version for fluvio/fluvio...
+⏳ Downloading Fluvio CLI with latest version: fluvio/fluvio:0.6.0-beta.1...
+🔑 Downloaded and verified package file
+✅ Successfully installed ~/.fluvio/bin/fluvio
