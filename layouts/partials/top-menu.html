@@ -1,7 +1,8 @@
 {{- $currentPage := .page -}}
+{{- $companyURL := .page.Site.Params.company_url }}
 <div class="top-menu">
   <div class="container-fluid site-width">
-    <a class="logo" href="{{ .page.Site.Params.company_url }}"><img src="{{ .page.Site.Params.company_logo }}"></img></a>
+    <a class="logo" href="{{ $companyURL }}"><img src="{{ .page.Site.Params.company_logo }}"></img></a>
     <ul>
       {{ range .menu }}
         {{- $active := "" -}}
@@ -9,9 +10,11 @@
           {{- $active = "active" -}}
         {{- end -}}
         {{- $target := "_self" -}}
-        {{- if hasPrefix .URL "http" }}
-          {{- $target = "_blank" -}}
-        {{- end -}}        
+        {{- if hasPrefix .URL "http" -}}
+          {{- if not (in .URL  $companyURL) -}}
+            {{- $target = "_blank" -}}
+          {{- end -}}        
+        {{- end -}}          
         <li>
           <a href="{{ .URL }}" target="{{ $target }}">
             {{ if .Pre }}

@@ -1,4 +1,5 @@
 {{- $currentPage := .page -}}
+{{- $companyURL := .page.Site.Params.company_url }}
 <nav id="navbar" class="navbar navbar-expand-md navbar-custom">
   <div class="container-fluid site-width">
     {{- block "logo" . -}}{{- end }}
@@ -18,9 +19,11 @@
               <ul class="navbar-dropdown dropdown-menu">
                   {{ range .Children }}
                     {{- $target := "_self" -}}
-                    {{- if hasPrefix .URL "http" }}
-                      {{- $target = "_blank" -}}
-                    {{- end -}}                   
+                    {{- if hasPrefix .URL "http" -}}
+                      {{- if not (in .URL  $companyURL) -}}
+                        {{- $target = "_blank" -}}
+                      {{- end -}}        
+                    {{- end -}}                  
                     <li class="navbar-item">
                       <a class="nav-link" href="{{ .URL }}" target="{{ $target }}">
                         {{ if .Pre }}
@@ -41,8 +44,10 @@
               {{- $active = "active" -}}
             {{- end -}}
             {{- $target := "_self" -}}
-            {{- if hasPrefix .URL "http" }}
-              {{- $target = "_blank" -}}
+            {{- if hasPrefix .URL "http" -}}
+              {{- if not (in .URL $companyURL) -}}
+                {{- $target = "_blank" -}}
+              {{- end -}}        
             {{- end -}}        
             <li class="navbar-item {{ $active }}" >
               <a class="nav-link" href="{{ .URL }}" target="{{ $target }}">
