@@ -76,6 +76,7 @@ $sidebar-width: 220px;
     margin-top: -90px;
     z-index: 9999;
     background: white;
+    border: 1px solid $main-light;
     padding: 10px;
 
     #dismiss {
@@ -86,9 +87,10 @@ $sidebar-width: 220px;
 .sidebar-nav {
     display: none;
     text-align: center;
-    border-bottom: 1px solid $gray5;
-    color: $white;
-    background: $main-light;
+    border-top: 1px solid rgba($main-light, 0.3);
+    border-bottom: 1px solid rgba($main-light, 0.3);
+    color: $main-color;
+    background: $main-lighter;
     padding: 10px;
     font-size: 1.3em;
 
