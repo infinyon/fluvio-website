@@ -34,7 +34,7 @@ ARGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio install fluvio/fluvio-cloud
 🎣 Fetching latest version for package: fluvio/fluvio-cloud...
 ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.0...
@@ -46,9 +46,25 @@ $ fluvio install fluvio/fluvio-cloud
 This command performs a self-update for the Fluvio CLI. It takes no arguments,
 and just simply downloads the latest version of `fluvio` and overwrites itself.
 
+```
+fluvio-update 0.6.0
+Update the Fluvio CLI
+
+USAGE:
+    fluvio update [FLAGS] [plugins]...
+
+FLAGS:
+        --develop    Update to the latest prerelease rather than the latest
+                     release
+    -h, --help       Prints help information
+
+ARGS:
+    <plugins>...    (Optional) the name of one or more plugins to update
+```
+
 Example usage:
 
-```
+```bash
 $ fluvio update
 🎣 Fetching latest version for fluvio/fluvio...
 ⏳ Downloading Fluvio CLI with latest version: fluvio/fluvio:0.6.0-beta.1...

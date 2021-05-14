@@ -59,7 +59,7 @@ We can use the `--from-beginning` (`-B`) flag in order to read everything from t
 beginning. Here we'll also use the `--disable-continuous` (`-d`) flag in order to exit
 after all the records have been read:
 
-```
+```bash
 $ fluvio consume my-topic -B -d
 This is my first record ever
 This is my second record ever
@@ -77,7 +77,7 @@ the keys of key/value records, see the next example!
 If we want to see both the keys _and_ values of the records in the topic, you can use
 the `--key-value` flag:
 
-```
+```bash
 $ fluvio consume my-topic -B -d --key-value
 [null] This is my first record ever
 [null] This is my second record ever
