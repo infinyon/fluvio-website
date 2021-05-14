@@ -18,7 +18,7 @@
                 {{ partial "docs/doc-content" (dict "page" .) }}
             </div>
         </div>
-        {{ if not (.Params.notoc | default false) -}}
+        {{ if .Params.toc | default true -}}
         <div class="doc-toc toc-area">
             {{ partial "docs/table-of-contents" . }}
         </div>

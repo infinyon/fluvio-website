@@ -71,14 +71,14 @@ For example, [`hello-world-node.md`] has the following `front matter`:
 ```
 ---
 title: '"Hello World" ...'
-notoc: true
+toc: false
 ---
 ```
 
 The `front matter` parameters for the **programming language** file are defined as follows:
 
 * **title**: header of the file
-* **notoc**: if false, the TOC will not be automatically computed
+* **toc**: if false, the TOC will not be generated
 
 The `short code` is a script that generates the language selection buttons. In general the language selector short code should be placed right below the front matter:
 
