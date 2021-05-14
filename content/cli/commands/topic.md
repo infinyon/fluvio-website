@@ -6,7 +6,7 @@ weight: 30
 The `fluvio topic` family of commands is used to create and delete topics, as
 well as to view basic information about existing topics.
 
-# `fluvio topic create`
+## `fluvio topic create`
 
 This command is used to create new Fluvio topics. A Fluvio topic is a stream where
 you send related messages. Different topics have unique names and store their data
@@ -47,7 +47,7 @@ topic "greeting" created
 
 ---
 
-# `fluvio topic list`
+## `fluvio topic list`
 
 This command shows you all the existing topics in your cluster, as well as some basic
 information about them, including how many partitions a topic has and how many times it
@@ -76,7 +76,7 @@ $ fluvio topic list
 
 ---
 
-# `fluvio topic describe`
+## `fluvio topic describe`
 
 This command prints more detailed information about a specific topic.
 
@@ -112,7 +112,7 @@ $ fluvio topic describe greeting
 
 ---
 
-# `fluvio topic delete`
+## `fluvio topic delete`
 
 This command deletes an existing Fluvio topic and all data associated with it.
 This data may not be recovered, so use this with care.

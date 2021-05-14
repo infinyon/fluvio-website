@@ -3,7 +3,7 @@ title: Install and Update
 weight: 70
 ---
 
-# `fluvio install`
+## `fluvio install`
 
 Some Fluvio CLI commands are distributed as separate executables that we call
 "extensions". This command installs and updates extensions by name, placing
@@ -41,9 +41,7 @@ $ fluvio install fluvio/fluvio-cloud
 🔑 Downloaded and verified package file
 ```
 
----
-
-# `fluvio update`
+## `fluvio update`
 
 This command performs a self-update for the Fluvio CLI. It takes no arguments,
 and just simply downloads the latest version of `fluvio` and overwrites itself.

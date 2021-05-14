@@ -5,7 +5,7 @@ weight: 40
 
 Commands for partition management.
 
-# `fluvio partition list`
+## `fluvio partition list`
 
 Prints basic information about each partition in the cluster, such as
 which topic it belongs to, which SPU is leading the partition, and the
