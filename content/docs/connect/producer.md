@@ -3,7 +3,7 @@ title: Producers
 weight: 10
 ---
 
-"Producer" is the name we give to applications who "produce" streaming data.
+Producers are applications that "produce" streaming data.
 These applications may be monitoring the status of a system, collecting sensor
 data, watching traffic to a website, or otherwise observing events in some way.
 Producers may be general-purpose tools such as [the Fluvio CLI], or they may be
@@ -43,7 +43,7 @@ partition based on some configured strategy, such as round-robin.
 As we have alluded to, **Topics** are a tool for organizing records in a streaming system.
 You can think of a topic as the streaming equivalent of a table in a database. These
 are typically created by the cluster administrator rather than an application.
-Each time you send a record, you must specify a topic for it to be produced to.
+Each time you produce a record, you must specify a topic for it to be sent to.
 Topics may be used to keep different types of records separate from one another, and
 be organized in a way that aligns nicely with your application's domain model.
 
@@ -74,7 +74,21 @@ on the properties we just covered:
   However, the offset that identified that record will never be reused for another record.
 - It is important to grasp that strong record ordering guarantees only apply for records within
   a single partition. If records are sent to two different partitions in the same topic, there
-  is no way to establish ordering between records that live in the distinct partitions. For
+  is no way to establish ordering between the records living in the distinct partitions. For
   this reason, it is important to select a key for your records based on your ordering needs.
   Since records with the same key are always assigned to the same partition, any records that
   share a key will always be totally ordered with respect to each other.
+
+## Start Producing
+
+In order to get started with producing streaming data, you'll need to:
+
+- [Have a Fluvio cluster up and running](/docs/get-started),
+- [Create a Topic to produce data to](/cli/commands/topic#fluvio-topic-create), then
+- Choose one of the following producer interfaces to use:
+  - [Fluvio CLI](/cli/commands/produce)
+  - [Rust](/api/rust)
+  - [Node](/api/node)
+  - [Python](/api/python)
+  - [Java](/api/java)
+  
