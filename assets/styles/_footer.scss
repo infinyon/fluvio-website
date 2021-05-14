@@ -1,12 +1,11 @@
-$background: $white;
-
 .footer-width {max-width: 1400px; }
 
 .footer {
   width: 100%;
   padding: 20px 0 10px 0;
-  background: $background;
   border-top: 1px solid $main-lighter;
+  background: linear-gradient(180deg, rgb(253, 253, 253), $main-lighter) 0px 0px no-repeat padding-box padding-box transparent;
+
 
   hr {
     margin: 5px 0 20px 0;
