@@ -11,7 +11,7 @@ interact with the cluster defined by the active profile. Profiles are defined
 in the Fluvio configuration file at `~/.fluvio/config`, and the `fluvio profile`
 family of commands is used to view and manipulate profiles.
 
-# `fluvio profile current`
+## `fluvio profile current`
 
 Prints out the name of the active Fluvio profile. Let's say you have a Fluvio Cloud account
 whose profile name is "cloud", and you have a local Fluvio cluster installed that
@@ -40,9 +40,7 @@ $ fluvio profile current
 local
 ```
 
----
-
-# `fluvio profile delete`
+## `fluvio profile delete`
 
 Deletes a profile from your Fluvio configuration (`~/.fluvio/config`). This will
 not delete a cluster (for that, see [`fluvio cluster delete`]), but it will cause
@@ -78,9 +76,7 @@ profile local deleted
 warning: this removed your current profile, use 'fluvio profile switch' to select a different one
 ```
 
----
-
-# `fluvio profile delete-cluster`
+## `fluvio profile delete-cluster`
 
 Deletes cluster connection information from your Fluvio configuration. This will not delete
 a cluster itself (for that see [`fluvio cluster delete`]), but it will cause the Fluvio CLI to
@@ -110,9 +106,7 @@ $ fluvio profile delete-cluster local
 Cluster local deleted
 ```
 
----
-
-# `fluvio profile switch`
+## `fluvio profile switch`
 
 This switches the "current" profile. After switching current profiles, all
 subsequent Fluvio CLI commands that interact with a cluster will target the
@@ -138,9 +132,7 @@ Example usage:
 $ fluvio profile switch cloud
 ```
 
----
-
-# `fluvio profile view`
+## `fluvio profile view`
 
 Prints a table of your profiles, including the address of the associated
 cluster and which profile is active.

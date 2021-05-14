@@ -13,7 +13,7 @@ attempting to install your own cluster.
 
 [getting started guide]: /docs/get-started
 
-# `fluvio cluster check`
+## `fluvio cluster check`
 
 This command is used to check whether you have all the required dependencies
 set up on your system and whether they are running correctly.
@@ -49,9 +49,7 @@ You may proceed with cluster startup
 next: run `fluvio cluster start`
 ```
 
----
-
-# `fluvio cluster start`
+## `fluvio cluster start`
 
 This command is used to start your own Fluvio cluster, with all the
 machinery needed to receive, process, and serve streaming messages.
@@ -168,9 +166,7 @@ Performing pre-flight checks
 ✅ ok: Fluvio system charts are installed
 ```
 
----
-
-# `fluvio cluster delete`
+## `fluvio cluster delete`
 
 Deletes a Fluvio cluster and all data associated with it. Be careful, this
 cannot be undone.
@@ -207,9 +203,7 @@ To uninstall Fluvio from your local machine:
 $ fluvio cluster delete --local
 ```
 
----
-
-# `fluvio cluster releases list`
+## `fluvio cluster releases list`
 
 Prints all the published versions of Fluvio that are candidates to
 install on Kubernetes with `fluvio cluster start`.
@@ -242,9 +236,7 @@ VERSION
 ...
 ```
 
----
-
-# `fluvio cluster spu list`
+## `fluvio cluster spu list`
 
 This command shows details about the active SPUs in your cluster.
 It is mostly useful for checking on the status of individual SPUs
