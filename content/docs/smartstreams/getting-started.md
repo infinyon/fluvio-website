@@ -1,6 +1,6 @@
 ---
 title: Fluvio SmartStreams
-menu: SmartStreams
+menu: Getting Started
 weight: 10
 ---
 

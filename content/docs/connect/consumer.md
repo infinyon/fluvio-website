@@ -14,7 +14,7 @@ not expire after being consumed.
 
 [Producer documentation]: /docs/connect/producer
 
-### Offsets
+## Offsets
 
 In order to begin consuming records, a consumer must specify the topic and
 partition to consume from, as well as the offset into the partition where
