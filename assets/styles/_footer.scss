@@ -4,7 +4,6 @@
   width: 100%;
   padding: 20px 0 10px 0;
   border-top: 1px solid $main-lighter;
-  // background: linear-gradient(180deg, rgb(253, 253, 253), $main-lighter) 0px 0px no-repeat padding-box padding-box transparent;
   background: $white;
 
   hr {
@@ -12,7 +11,7 @@
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid $main-lighter;
+    border-top: 1px solid $main-lightest;
   }
 
   .company {

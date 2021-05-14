@@ -11,8 +11,7 @@
   </head>
   <body class="content d-flex flex-column">
     <div class="page-overlay"></div>
-    {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
-    {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio) -}}
+    {{- block "menu" . -}}{{- end }}
     <div id="content">
     {{- block "content" . }}{{- end }}
     </div>
