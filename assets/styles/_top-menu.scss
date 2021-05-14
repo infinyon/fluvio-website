@@ -1,10 +1,11 @@
-$background: $main-lightest;
+$background: $main-lighter;
 $item: $main-med;
 
 .top-menu {
-  background-color: $background;
+  background: linear-gradient(180deg, $main-lightest, rgba($main-light, 0.2)) 0px 0px no-repeat padding-box padding-box transparent;
+  //background-color: $background;
   padding: 20px 15px 15px 17px;
-  border-bottom: 1px solid rgba($main-light, 0.2);
+  border-bottom: 1px solid rgba($main-light, 0.3);
 
   .logo {
     float: left;
