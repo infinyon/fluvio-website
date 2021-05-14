@@ -1,6 +1,6 @@
 ---
-title: SignUp for Fluvio Cloud
-menu: Cloud
+title: Fluvio Cloud
+menu: Fluvio Cloud
 weight: 40
 ---
 
@@ -17,21 +17,13 @@ For step-by-step instruction, checkout [Getting Started with Fluvio Cloud](/docs
 
 ## Fluvio Cloud
 
-Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 1 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
+Each cloud account receives a dedicated <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller]({{< ref "/docs/architecture/cluster.md" >}}) (SC) and 1 x [Streaming Processing Units]({{< ref "/docs/architecture/cluster.md" >}}) (SPU). 
 
 <img src="../images/fluvio-cloud.svg"
      alt="Fluvio Cloud"
      style="justify: center; max-width: 360px" />
 
-[Getting Started](/docs/getting-started) provides a step-by-step guide on how to create a Fluvio Cloud account and stream "Hello World". 
-
-
 ### Data Streaming to Cloud
-
-There are currently three interfaces to stream real-time data to Fluvio Cloud:
-* [CLI](/docs/cli-reference)
-* <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API</a>
-* <a href="https://docs.rs/fluvio/" target="_blank">Rust API</a>
 
 All clients require a [Profile](/docs/cli/profiles) to stream data to and from a Fluvio cluster. The profile contains the authorization and access information the client uses to register and communicate with a cluster. All data between clients and Fluvio Cloud is **encrypted** in <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a>.
 
@@ -41,12 +33,16 @@ The profile is generated during cluster setup and it is available for download i
 
 When the **1GB** storage limit is reached, older data is purged to make room for new data.
 
-#### SPUs 
+#### Streaming Processor Units (SPU)
+
+For technical information about SPUs, see [Fluvio Architecture].
+
 Cloud environment does not allow changes to the number of SPUs. 
 
 Later versions will provide the ability to control **storage** and **SPU** configurations.
 
 
 #### Related Topics
-* [Getting Started](/docs/getting-started)
-* [Fluvio Architecture](/docs/architecture)
+* [Fluvio Architecture]
+
+[Fluvio Architecture]: {{< ref "/docs/architecture/overview.md" >}}
