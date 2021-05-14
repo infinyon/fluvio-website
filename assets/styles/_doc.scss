@@ -6,10 +6,18 @@
 
 .doc {
   h1, h2, h3, h4, h5, h6 { 
-    color: $main-dark;
-    a { color:$main-dark } 
+    color: $main-color;
+    a { color:$main-color } 
   }
 
+  a { 
+    color:$main-dialog;
+    &:hover {
+      color: $main-dialog;
+      text-decoration: underline;
+    }
+  } 
+  
   li {
     margin-top: .5rem;
     margin-bottom: .5rem;
