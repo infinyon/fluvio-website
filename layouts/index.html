@@ -1,7 +1,3 @@
-{{ define "menu" }}
-    {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
-{{ end }}
-
 {{ define "content" }}
   {{- partial "main/jumbotron.html" (dict "jumbotron" .Params.jumbotron) }}
   {{- partial "main/colored-circles.html" .Params.easy }}
