@@ -40,7 +40,7 @@ ARGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio topic create greeting
 topic "greeting" created
 ```
@@ -68,7 +68,7 @@ OPTIONS:
 
 Example usage:
 
-```
+```bash
 $ fluvio topic list
  NAME      TYPE      PARTITIONS  REPLICAS  IGNORE-RACK  STATUS                   REASON
  greeting  computed      1          1                   resolution::provisioned
@@ -98,7 +98,7 @@ ARGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio topic describe greeting
  Name                    :  greeting
  Type                    :  computed
@@ -131,7 +131,7 @@ ARGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio topic delete greeting
 topic "greeting" deleted
 ```

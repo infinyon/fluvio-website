@@ -33,7 +33,7 @@ FLAGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio cluster check
 Running pre-startup checks...
 ✅ ok: Kubernetes config is loadable
@@ -134,7 +134,7 @@ Example usage:
 
 To start a cluster on Minikube:
 
-```
+```bash
 $ fluvio cluster start
 "fluvio" has been added to your repositories
 Hang tight while we grab the latest from your chart repositories...
@@ -157,7 +157,7 @@ TEST SUITE: None
 
 To start a cluster locally (as processes on your machine):
 
-```
+```bash
 $ fluvio cluster start --local
 Performing pre-flight checks
 ✅ ok: Supported helm version is installed
@@ -193,13 +193,13 @@ Example usage:
 
 To uninstall Fluvio from Kubernetes (e.g. Minikube):
 
-```
+```bash
 $ fluvio cluster delete
 ```
 
 To uninstall Fluvio from your local machine:
 
-```
+```bash
 $ fluvio cluster delete --local
 ```
 
@@ -225,7 +225,7 @@ FLAGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio cluster releases list
 VERSION
 0.6.0-latest
@@ -259,7 +259,7 @@ OPTIONS:
 
 Example usage:
 
-```
+```bash
 $ fluvio cluster spu list
  ID    NAME             STATUS  TYPE      RACK  PUBLIC          PRIVATE
  5001  custom-spu-5001  Online  "custom"   -    localhost:9010  localhost:9011

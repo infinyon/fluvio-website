@@ -35,7 +35,7 @@ FLAGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio profile current
 local
 ```
@@ -62,7 +62,7 @@ ARGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio profile delete local
 profile local deleted
 ```
@@ -70,7 +70,7 @@ profile local deleted
 If you try to delete the current profile, you will get a warning, because other CLI
 commands depend on having a current profile being set.
 
-```
+```bash
 $ fluvio profile delete local
 profile local deleted
 warning: this removed your current profile, use 'fluvio profile switch' to select a different one
@@ -101,7 +101,7 @@ ARGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio profile delete-cluster local
 Cluster local deleted
 ```
@@ -128,7 +128,7 @@ ARGS:
 
 Example usage:
 
-```
+```bash
 $ fluvio profile switch cloud
 ```
 
@@ -154,7 +154,7 @@ OPTIONS:
 
 Example usage:
 
-```
+```bash
 $ fluvio profile view
     PROFILE    CLUSTER    ADDRESS                          TLS
  *  minikube   minikube   10.99.16.213:9003                Disabled

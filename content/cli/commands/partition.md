@@ -26,7 +26,7 @@ OPTIONS:
 
 Example usage:
 
-```
+```bash
 $ fluvio partition list
  TOPIC     PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
  greeting  0          5001    []        Online      1   1    0    []
