@@ -7,7 +7,34 @@
 .doc {
   h1, h2, h3, h4, h5, h6 { 
     color: $main-color;
-    a { color:$main-color } 
+
+    i {
+      font-size: 18px;
+      color: $pink1 !important;
+    }
+
+    &:hover {
+      cursor: pointer;
+      a#link { display: inline; }
+    }
+  }
+
+  h2, h3, h4 {
+    a#link {
+      margin-left: -18px;
+      padding-right: 2px;
+      display: none;
+    }
+  }
+
+  #aof {
+    position: relative;
+
+    a#anchor {
+      position: absolute;
+      left: 0px;
+      top: -80px;
+    }
   }
 
   a { 
@@ -40,50 +67,6 @@
     padding: 10px 15px;
     margin-top: -20px;
     margin-bottom: 20px;
-  }
-  
-  h3:after {
-    margin-right: 100px !important;
-  }
-
-  a.hanchor:hover {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  a.hanchor img {
-    display: inline;
-    width: 1.4em;
-    margin: 0 0 .12em .2em;
-    padding: .32em;
-  }
-
-  h4 a.hanchor img {
-    width: 1.6em;
-    margin: 0 0 .2em .15em;
-  }
-  a.hanchor span {
-    visibility: hidden;
-  }
-  
-  a.hanchor:hover span {
-    visibility: visible;
-  }
-
-  .copied {
-    display:inline;
-    padding-left: 5px;
-    font-size: 12pt;
-    font-weight: normal;
-    color: $gray10;
-    visibility: hidden;    
-  }
-
-  .fas {
-    padding-left: 10px;
-    padding-top: .15em;
-    vertical-align: top;
-    color: $main-light;
   }
   
   .doc-content {

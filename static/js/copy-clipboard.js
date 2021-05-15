@@ -1,6 +1,6 @@
 function copyClipboard(id) {
     $("#" + id).click(function (event) {
-        event.preventDefault();
+        //        event.preventDefault();
 
         var link = [location.protocol, '//', location.host, location.pathname, "#", id].join('');
         navigator.clipboard.writeText(link);
