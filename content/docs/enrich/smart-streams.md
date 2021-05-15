@@ -1,5 +1,5 @@
 ---
-title: Fluvio SmartStreams&trade;
-menu: SmartStreams&trade;
+title: Fluvio SmartStreams
+menu: SmartStreams
 weight: 10
 ---
