@@ -7,6 +7,14 @@ $(window).scroll(function () {
     } else if (scrollTop <= 65) {
         $('#navbar').removeClass('fixed-top');
         $('#content').css('marginTop', '0');
-        $('.toc-area').css('marginTop', '0');
+        $('.toc-area').css('marginTop', '10px');
+        $('.side-toc .offset').css('marginTop', '0');
+    }
+
+    var gradualTo = 153;
+    if (scrollTop >= 65 && scrollTop < gradualTo) {
+        $('.side-toc .offset').css('marginTop', (scrollTop - 65).toString() + 'px');
+    } else if (scrollTop >= gradualTo) {
+        $('.side-toc .offset').css('marginTop', '87px');
     }
 });

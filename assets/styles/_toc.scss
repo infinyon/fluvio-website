@@ -9,6 +9,8 @@ $toc-width: 220px;
 .side-toc {
   padding: 20px 15px;
   border-left: 1px solid $main-lighter;
+  
+  .offset { margin-top: 0; }
 
   ul {
     margin: 0;

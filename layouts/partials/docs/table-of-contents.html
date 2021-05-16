@@ -6,6 +6,7 @@
 {{- $show_toc := (eq $.Params.toc true) -}}
 <div class="sticky-top">
     <div class="side-toc">
+        <div class="offset">
         {{- range $headers -}}
             {{- $header := . -}}
             {{- range first 1 (findRE "<h[2-3]" $header 1) -}}
@@ -26,5 +27,6 @@
                 {{- end -}}
             {{- end -}}
         {{- end }}
+        </div>
     </div>
 </div>
