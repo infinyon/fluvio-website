@@ -1,4 +1,4 @@
 ---
-title: Enrich
+title: SmartStreams
 weight: 40
 ---

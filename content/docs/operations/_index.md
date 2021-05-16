@@ -1,4 +1,4 @@
 ---
-title: Operations
+title: OPERATIONS
 weight: 60
 ---

@@ -1,4 +1,4 @@
 ---
-title: Interfaces
+title: INTERFACES
 weight: 50
 ---

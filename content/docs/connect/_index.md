@@ -1,4 +1,4 @@
 ---
-title: Connect
+title: CONNECT
 weight: 30
 ---

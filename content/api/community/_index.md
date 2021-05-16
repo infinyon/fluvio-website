@@ -1,4 +1,4 @@
 ---
-title: Community
+title: COMMUNITY
 weight: 20
 ---

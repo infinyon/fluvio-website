@@ -1,4 +1,4 @@
 ---
-title: Commands
+title: COMMANDS
 weight: 10
 ---

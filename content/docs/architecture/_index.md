@@ -1,4 +1,4 @@
 ---
-title: Architecture
+title: ARCHITECTURE
 weight: 70
 ---

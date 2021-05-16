@@ -1,4 +1,4 @@
 ---
-title: Advanced
+title: ADVANCED
 weight: 30
 ---

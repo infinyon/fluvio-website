@@ -1,4 +1,4 @@
 ---
-title: General
+title: GENERAL
 weight: 80
 ---
