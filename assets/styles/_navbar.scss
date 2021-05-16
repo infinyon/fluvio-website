@@ -103,6 +103,12 @@ $item: $main-med;
 }
 
 @media (max-width: 767px) {
+  .navbar-custom.bb {
+    border-bottom: 1px solid rgba($main-light, 0.3);
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
   .navbar-custom {    
       //background: linear-gradient(180deg, rgb(255, 255, 255), $main-lighter) 0px 0px no-repeat padding-box padding-box transparent;
 
