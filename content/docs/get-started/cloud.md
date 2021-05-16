@@ -37,6 +37,7 @@ All clients require a [Profile](/docs/cli/profiles) to stream data to and from a
 
 The profile is generated during cluster setup and it is available for download in your <a href="https://cloud.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a> account.
 
+
 #### Storage 
 
 When the **1GB** storage limit is reached, older data is purged to make room for new data.
