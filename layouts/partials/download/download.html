@@ -1,0 +1,22 @@
+{{- $title := .Title | safeHTML -}}
+
+<div class="container-fluid site-width min-height">
+  <div class="row">
+    <div class="col">
+      <div class="download-page doc">
+        <h1>{{- $title -}}</h1>   
+
+        <div class="doc-content">
+          <div class="card-wrapper">
+            <div class="card">
+              {{ partial "download/script" | markdownify }}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/copy-code.js"></script>

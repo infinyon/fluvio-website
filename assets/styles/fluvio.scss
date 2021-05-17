@@ -18,6 +18,7 @@
 @import 'toc';
 @import 'social';
 @import 'sidebar';
+@import 'download';
 
 body {
   margin: 0;
@@ -30,7 +31,7 @@ body {
 .mid-width { max-width: $mid-width; }
 .small-width { max-width: $min-width; }
 .blog-width { max-width: $blog-width; }
-.min-height {min-height: calc(100vh - 178px);}
+.min-height {min-height: calc(100vh - 285px);}
 
 // Site-wide
 .font-xxl, .font-xl, .font-lg, .font-md, .font-rg, .font-md-underline .font-sm, .font-xs {

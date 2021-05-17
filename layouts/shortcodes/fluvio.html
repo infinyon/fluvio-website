@@ -1,7 +1,0 @@
-{{- $content := trim .Inner "\n" -}}
-{{- $lines := split $content "\n" -}}
-{{- $indentParams := .Get "indent" | default "false" }}
-
-<pre class="font">
-    {{- partial "fluvio/dispatch.html" (dict "lines" $lines "indent" $indentParams) -}}
-</pre>
