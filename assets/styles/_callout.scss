@@ -1,5 +1,5 @@
 .callout {
-    padding: .7em .5em;
+    padding: 1em .5em;
     border-radius: 7px;
     border-width: 1px;
     border-style: solid;
@@ -9,9 +9,10 @@
 
     margin: .5em 0 .5em 1em;
     max-width: calc(100% - .5em - .5em - 1em);
+
+    a { color:$main-hyperlink }
     
     @media (min-width: 768px) {
-        margin: .5em 0 .5em 1em;
         max-width: calc(100% - .5em - .5em - .5em);
     }
 
@@ -20,23 +21,10 @@
         margin-bottom: 0 !important;
     }
 
-    pre {
-        margin: .6em 0;
-    }
-
-    .font {
-        color: $col-gray-light1;
-        line-height: 1.58em;
-    }
-
     .content {
         margin-left: 1em;
         min-height: 100%;
         line-height: 1.55em;
-
-        .firstLine {
-            font-size: 1em;
-        }
 
         p:first-of-type {
             margin-top: 0;
@@ -47,77 +35,46 @@
         }
     }
 
-    &.code {
-        background-color:$col-callout-bg;
-        border-color:$col-callout-border;
-
-        code[class*="language-"],
-        pre[class*="language-"] {
-            line-height: 1.8;
-            color: $col-gray-dark1;
-        }
-
-        .content {
-            font-family: $font-callout;
-
-            span {
-                font-family: $font-callout;
-            }    
-        }
-
-        pre { margin-bottom: 0.1em; }
-        pre .df { color: #444444; }
-        pre .pt { color: #444444; }
-        pre .fl { color: #cc00ff; }
-        pre .tx { color: #0b5aaa; }
-        pre .md { color: #0b5aaa; }
-        pre .cm { color: #cc3300; }
-        pre .pr { color: $col-flv-green; }
-    }
-    
-    &.text {
-        background-color: $col-callout-bg;
-        border-color: $col-callout-border;
-
-        .content {
-            font-family: $font-callout;
-        }
-    }
-
     &.idea, &.caution {
-        min-height: 3em;
         line-height: 0;
 
         .icon {
-            left: -.75em;
+            left: -10px;
             top: 50%;
             position: absolute;
 
             i {line-height: 0;}
         }
-
-        .content {
-            font-family: $font-paragraph;
-        }
     }
 
     &.idea {
-        background-color: $col-idea-bg;
-        border-color: $col-idea-border;
+        background-color: lighten($accent-green, 57%);
+        border-color:  lighten($accent-green, 20%);
+        color: darken($accent-green, 10%);
+
 
         i {
-            font-size:2.1em; 
-            color: $col-idea-icon;
+            font-size:1.5em;
+            margin-left: 1px;
+            color: $accent-turquoise;
         }
     }
 
     &.caution {
-        background-color: $col-caution-bg;
-        border-color: $col-caution-border;
+        background-color: lighten($accent-orange, 45%);
+        border-color: lighten($accent-orange, 20%);
+        color: darken($accent-orange, 20%);
 
         i {
-            font-size:1.5em; 
-            color: $col-caution-icon;
+            font-size:1.1em; 
+            margin-left: -10px;
+            color: $accent-orange;
         }
+    }
+
+    code {
+        color: inherit;
+        padding: 5px;
+        background: darker(inherit, 15%);
     }
 }

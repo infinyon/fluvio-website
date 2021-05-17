@@ -1,0 +1,33 @@
+<div class="gray-grad-bk">
+  <div class="container-fluid mid-width">
+    <div class="full-width-text pb-5">
+
+      <div class="row">
+        <div class="col text-center header">
+          <div class="title underscore">{{.title }}</div>
+        </div>
+        <d/iv>
+      </div>
+
+      {{- range .items -}}
+      <div class="row per-row">
+        <div class="col-12">
+          <div class="label">
+            <img class="icon"  src="{{.icon }}" alt="{{.title}}">
+            <span>{{.title }}</span>
+          </div>
+          <div class="description">{{.description }}</div>
+          {{- if .examples }}
+          <ul>
+            {{- range .examples -}}
+            <li>{{. | markdownify}}</li>
+            {{- end -}}
+          <ul>
+        {{- end -}}
+        </div>    
+      </div>
+      {{- end -}}
+
+    </div>
+  </div>
+</div>

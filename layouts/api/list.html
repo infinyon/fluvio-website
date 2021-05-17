@@ -1,0 +1,13 @@
+{{ define "menu" }}
+    {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
+    {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio "bottomBorder" true) -}}
+{{ end }}
+
+{{ define "content" }}
+  {{ partial "api/api-overview" . }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer/footer.html" . }}
+  <script src="/js/navbar.js"></script>
+{{ end }}

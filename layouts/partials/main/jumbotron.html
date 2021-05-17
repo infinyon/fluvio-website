@@ -1,0 +1,23 @@
+<div class="jtron-bk gray-grad-bk">
+  <div class="lines">
+    <div class="container-fluid jtron site-width">
+      <div class="row d-flex no-gutters slider-text align-items-center j-row">
+        <img class="j-img-oss lazy"  src="{{ .jumbotron.image }}" alt="{{ .jumbotron.alt }}">
+        <div class="mt-5 pt-xs-7 j-text">
+          <div class="title">{{ .jumbotron.title | markdownify }}</div>
+          <div class="desc oss">{{ .jumbotron.description | markdownify}}</div>
+          <div class="row pt-lg-5 pl-2 d-flex">
+            <div class="px-2">
+              <div class="button inline pr-2 pb-3">
+                  <a href="{{ .jumbotron.get_started_link }}" class="btn btn-light" id="button-cloud">Get Started</a>
+              </div>
+              <div class="button inline">
+                  <a href="{{ .jumbotron.contribute_link }}" class="btn btn-complement" id="button-download" target="_blank">Contribute</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,14 @@ languageCode = "en-us"
 title = "Fluvio"
 
 enableRobotsTXT = true
+<<<<<<< HEAD
 pygmentsUseClasses=true
 enableEmoji=true
 disqusShortname = "fluvio"
+=======
+pygmentsUseClasses = true
+enableEmoji = true
+>>>>>>> 237188025ec11f3213748b5da261877cd49c7858
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -18,72 +23,55 @@ disqusShortname = "fluvio"
     baseName = "rss"  
 
 [params]
-  version = "1.1.1"
-  author = "InfinyOn Inc."
-  blog_time_format = "January 02, 2006"
-  short_time_format = "Jan 02, 2006"
+  version = "2.0.0"
   description = "Real-time Data Streaming Platform"
+  company_url = "https://www.infinyon.com"
+  company_logo = "/images/assets/infinyon-with-text.svg"
+  site_logo = "/images/assets/fluvio-with-text.svg"
 
 [menu]
-  [[menu.main]]
+  [[menu.fluvio]]
     identifier = "docs"
     name = "Docs"
     url = "/docs/"
     weight = 100
 
-  [[menu.main]]
-    identifier = "tutorials"
-    name = "Tutorials"
-    url = "/tutorials/"
+  [[menu.fluvio]]
+    identifier = "cli"
+    name = "CLI"
+    url = "/cli/"
     weight = 101
 
-  [[menu.main]]
-    identifier = "apis"
+  [[menu.fluvio]]
+    identifier = "api"
     name = "APIs"
-    weight = 102
+    url = "/api/"
+    weight = 103
 
-  [[menu.main]]
-    identifier = "rust"
-    name = "Rust API"
-    url = "https://docs.rs/fluvio/"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 110
-
-  [[menu.main]]
-    identifier = "python"
-    name = "Python API"
-    url = "https://infinyon.github.io/fluvio-client-python/fluvio.html"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 120
-
-  [[menu.main]]
-    identifier = "node"
-    name = "Node API"
-    url = "https://infinyon.github.io/fluvio-client-node/"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 130
-
-  [[menu.main]]
-    identifier = "java"
-    name = "Java API"
-    url = "https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html"
-    pre = "fas fa-sm fa-external-link-alt"
-    parent = "apis"
-    weight = 140
-
-  [[menu.main]]
-    identifier = "blog"
-    name = "Blog"
-    url = "/blog/"
-    pre = "fab fab-sm fa-blogger"
-    weight = 130
-
-  [[menu.main]]
+  [[menu.fluvio]]
     identifier = "chat"
-    name = "chat"
     url = "https://discordapp.com/invite/bBG2dTz"
     pre = "fab fa-discord"
     weight = 160
+
+  [[menu.infinyon]]
+    identifier = "blog"
+    name = "Blog"
+    url = "https://www.infinyon.com/blog"
+    pre = "fab fa-blogger"
+    weight = 100
+
+
+  [[menu.infinyon]]
+    identifier = "tutorials"
+    name = "Tutorials"
+    url = "https://www.infinyon.com/tutorials"
+    pre = "fas fa-graduation-cap"
+    weight = 110
+
+  [[menu.infinyon]]
+    identifier = "use-cases"
+    name = "Use Cases"
+    url = "https://www.infinyon.com/use-cases"
+    pre = "fas fa-grip-vertical"
+    weight = 120

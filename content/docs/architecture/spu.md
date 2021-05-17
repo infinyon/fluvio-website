@@ -1,14 +1,13 @@
 ---
 title: Streaming Processing Unit (SPU) Architecture
-menu: SPU
-toc: true
-weight: 20
+weight: 10
 ---
 
 **Streaming Processing Unit (SPU)** is responsible for processing data streams in real-time. The SPUs is designed for **horizontal scale**, where SPUs are gradually added to the cluster to accommodate higher data throughput. Each SPU **manages replicas** which represent the lowest unit of a data stream. Replicas are copies of data streams that are evenly distributed across SPUs. 
 
-{{< image src="architecture/spu-architecture.svg" alt="SPU Architecture" justify="center" width="660" type="scaled-90">}}
-
+<img src="architecture/spu-architecture.svg"
+     alt="SPU Architecture"
+     style="justify: center; max-width: 660px" />
 
 #### Default Ports
 
@@ -30,7 +29,9 @@ The **SPU** is a high performance streaming processing unit that works in unisom
 
 The following diagram describes **SPU** object relationships and workflows:
 
-{{< image src="architecture/spu-workflow.svg" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
+<img src="architecture/spu-workflow.svg"
+     alt="SC Controller"
+     style="justify: center; max-width: 800px" />
 
 1. Leader Controller (LC)
     * receives SPU and Partition specs from SC Dispatcher
@@ -155,12 +156,3 @@ Records in replica are send to consumer using zero copy mechanism. Zero copy mec
 
 
 Records can be batched together to improve performance.
-
-
-#### Related Topics
--------------------
-* [SC Architecture](../sc)
-* [Topic/Partitions](../topics-partitions)
-* [Replica Assignment](../replica-assignment)
-* [Replica Election](../replica-election)
-* [Client Library](../client)

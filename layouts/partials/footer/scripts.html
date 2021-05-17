@@ -1,0 +1,27 @@
+{{- $isProduction := true -}}
+{{- if in (string .Site.BaseURL) "localhost" -}}
+  {{ $isProduction = false }}
+{{- else if in (string .Site.BaseURL) "nightly" -}}
+  {{ $isProduction = false }}
+{{- else if in (string .Site.BaseURL) "fluvio2" -}}
+  {{ $isProduction = false }}  
+{{- end -}}
+
+{{- if $isProduction -}}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147220940-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-147220940-1', {
+      'user_id':  gsc()
+    });    
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>  
+{{- end -}}

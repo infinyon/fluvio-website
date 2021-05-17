@@ -1,40 +1,75 @@
 // --------------
 // Fonts
 // --------------
-
-// Site
-$font-body: "Work Sans", sans-serif; //Futura, Helvetica, sans-serif;
-$font-headers: "Exo", roboto, lato, helvetica, sans-serif;
-$font-paragraph: "Work Sans", sans-serif;
-$font-logo: "Montserrat Alternates", sans-serif;
-
-// Bog
-$font-blog: "Open Sans", sans-serif;
-$font-blog-author: "Titillium SemiBold", helvetica, sans-serif;
-
-// FAQ
-$font-faq-toc: "Open Sans", sans-serif;
-
-// Callout
-$font-callout: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-
-// Button
-.btn-primary, btn-primary:focus, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #4987c6 !important;
-    border-color:#4987c6 !important;
-}
+$main-font: "Rubik", helvetica, sans-serif;
 
 // --------------
-// Colors
+// Width
 // --------------
+$site-width: 1400px;
+$mid-width: 1200px;
+$min-width: 997px;
+$blog-width: 1200px;
+$icon-width: 55px;
 
-// Site
-$col-text: #474747;
-$col-headers: #333;
-$col-footer: #ffffff;
-$col-hyperlink: #0b5aaa;
-$col-footer-bg: #094888; //#042444;
-$col-social-bg: #9c9c9c;
+// --------------
+// Colors (Branding)
+// --------------
+$main-dark: #2a1B3D; //#495890;
+$main-darker: #36234f;
+$main-med: #412E69;
+$main-color: #44318D;
+
+$main-light: #7D67A3;
+$main-lighter: #eae7f0;
+$main-lightest: #f5f3f8;
+$main-light-accent: #5d4d80;
+$main-light-highlight: #ee99ff;
+
+$main-defused: #c6bdd7;
+$main-second: #A4B3B6;
+
+$main-complement: #4a598f;
+$main-complement-defused: #3b4772;
+$main-complement-accent: #3b6372;
+$main-complement-highlight:#44e3ae;
+
+$accent-pink: #D83F87;
+$accent-red: #D54344;
+$accent-pink-defused: #c23879;
+$accent-orange: #eda01e;
+$accent-turquoise: #57BA98;
+$accent-green: #3B945E;
+
+$white: #FFFFFF;
+$light-gray: #f4f6f7;
+
+$gray0: #E9E9E6;
+$gray1: #D9D9D6;
+$gray2: #D0CfCD;
+$gray3: #C8C8C8;
+$gray4: #BBBBBB;
+$gray5: #B1B1B1;
+$gray6: #A7A8A9;
+$gray7: #98989A;
+$gray8: #898A8D;
+$gray9: #76777A;
+$gray10: #636569;
+$gray11: #54565A;
+$gray12: #323438;
+$gray13: #212325;
+$gray14: #101213;
+$black: #000000;
+
+$main-dialog: #634ac0;
+$main-hyperlink: #634ac0;
+$main-hyperlink-hover: #7D67A3;
+
+$pink: #d400ff;
+$pink1: #9400b3;
+
+$code-background: #412E69; // #233559;
+
 $col-twitter: #1da1f2;
 $col-linkedin: #2867b2;
 $col-ycombinator: #f26522;
@@ -42,96 +77,16 @@ $col-reddit: #ff5700;
 $col-rss: #f26522;
 
 // Top Menu
-$col-top-menu: #ffffff;
-$col-top-menu-bg: #0b5aaa;
-$col-top-menu-collaped-sel: #2764d1;
-$col-top-menu-border: #fff;
+$col-top-menu: $white;
+$col-top-menu-bg: $main-dark;
+$col-top-menu-collapsed-sel: $main-light;
+$col-top-menu-border: $main-light;
+$col-top-menu-button-bk: $gray0;
+$col-top-menu-button: $main-light;
 
-// Side Menu
-$col-sidemenu: #555;
-$col-sidemenu-header: #0b5aaa;
-$col-sidemenu-selected: #0b5aaa;
+// Footer
+$bkg-footer-dark: $main-dark;
+$col-footer-dark: $gray1;
 
-// Main
-$col-main-title: #0b5aaa;
-$col-main-desc: #042444;
-
-// Blog
-$col-blog: #555;
-$col-blog-header: #333;
-$col-blog-header-line: #dddddd;
-$col-blog-selected:  #0b5aaa;
-
-// FAQ
-$col-faq-toc: #3371e3;
-
-// Others
-$col-lightgray: #dddddd;
-$col-darkblue: #548bc3;
-$col-lightblue: #79C2FB;
-
-// Callouts
-$col-callout-bg: #f8f8f8;
-$col-callout-border: #ddd;
-$col-idea-bg: #f0fcee;
-$col-idea-border: #a7caa2;
-$col-idea-icon: #79c16c;
-$col-caution-bg: #fbf6e9; //#fae37f;
-$col-caution-border: #ddb05f;
-$col-caution-icon: #ff9966 ;
-
-// Code
-$col-code-bg: #233559;
-
-// Button
-$col-button-base: #4987c6;
-
-// Fluvio Blue
-$col-blue-dark9: #010911;
-$col-blue-dark8: #021222;
-$col-blue-dark7: #031b33;
-$col-blue-dark6: #042444;
-$col-blue-dark5: #052d55;
-$col-blue-dark4: #063666;
-$col-blue-dark3: #073e76;
-$col-blue-dark2: #084888;
-$col-blue-dark1: #095199;
-$col-blue-base: #0b5aaa;
-$col-blue-light1: #236ab2;
-$col-blue-light2: #3b7abb;
-$col-blue-light3: #548bc3;
-$col-blue-light4: #6c9ccc;
-$col-blue-light5: #85acd4;
-$col-blue-light6: #9dbddd;
-$col-blue-light7: #b5cde5;
-$col-blue-light8: #cedeee;
-$col-blue-light9: #e6eef6;
-
-// Fluvio Gray
-$col-gray-dark9: #090909;
-$col-gray-dark8: #121212;
-$col-gray-dark7: #1b1b1b;
-$col-gray-dark6: #242424;
-$col-gray-dark5: #2d2d2d;
-$col-gray-dark4: #363636;
-$col-gray-dark3: #3e3e3e;
-$col-gray-dark2: #484848;
-$col-gray-dark1: #515151;
-$col-gray-base: #5a5a5a;
-$col-gray-light1: #6a6a6a;
-$col-gray-light2: #7a7a7a;
-$col-gray-light3: #8b8b8b;
-$col-gray-light4: #9c9c9c;
-$col-gray-light5: #acacac;
-$col-gray-light6: #bdbdbd;
-$col-gray-light7: #cdcdcd;
-$col-gray-light8: #dedede;
-$col-gray-light9: #eeeeee;
-$col-gray-light10: #f6f6f6;
-$col-gray-light11: #f8f8f8;
-$col-gray-light12: #fafafa;
-
-$col-rust-orange: #f74c00;
-$col-flv-red: #cc3300;
-$col-flv-pink: #cc00ff;
-$col-flv-green: #29904f;
+// Outline
+$outline-col: $accent-pink;

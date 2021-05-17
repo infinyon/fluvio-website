@@ -1,0 +1,45 @@
+$title-color: $gray12;
+$text-color: $gray11;
+
+.header {
+    padding: 50px 20px;
+  
+    .title {
+      font-size: 2.3rem;
+      color: $title-color;
+      display: inline-block;
+    }
+  
+    .title.underscore:after {
+      background: none repeat scroll 0 0 $main-defused;
+      content: "";
+      display: block;
+      position: relative;
+      height: 1px;
+      margin:10px -50px 0;
+    }
+  
+    .description {
+      font-size: 1.2rem;
+    }
+  
+    .tagline {
+      font-size: 1.7em;
+    }
+  
+    .how {
+      font-size: 1.2rem;
+      text-align: left;
+    }
+  
+    .bright {
+      color: $gray0;
+    }
+  }
+
+  @media (max-width: 575px ) {  
+    .header .title.underscore:after {
+      margin: 10px auto;
+    }
+  }
+  

@@ -1,0 +1,49 @@
+.boxes {
+    padding: 20px 5px 50px;
+    text-align: center;
+
+    .box {
+      padding-bottom: 20px;
+    
+      .card {
+        width: 270px;
+        padding: 30px 18px;
+        background: $white;
+        border: 1px solid $gray1;
+        box-shadow: 0 0 1px $gray1;
+        border-radius: 5%;
+    
+        .icon {
+          width: 100%;
+          img {width: $icon-width; }
+        }
+
+        .title {
+          padding: 15px 0 5px;
+          font-style: $main-font;
+          font-size: 1.15em;
+          font-weight: normal;
+          color: $title-color;
+        }
+
+        .description {
+          font-size: .1.0em;
+          color: $text-color;
+        }
+      }
+    }
+}
+
+@media (max-width: 767px) {
+  .boxes .box  {
+    .card {width: auto; border-radius: 2%};
+    .card .icon img { width: $icon-width*1.3 };
+  }
+}
+
+@media (max-width: 575px ) {
+  .boxes .box {
+    padding: 20px 20px;
+    .card .icon img { width: $icon-width*1.5 };
+  }
+}

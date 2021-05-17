@@ -1,0 +1,30 @@
+<div class="container-fluid mid-width">
+  <div class="circle-card-area mt-5">
+
+    <div class="row">
+      <div class="col-12 text-center header">
+        <div class="title underscore">{{.title }}</div>
+      </div>
+      <div class="col-12 text-center content">
+        {{- range .description -}}
+          <p>{{ . | markdownify }}</p>
+        {{- end -}}
+      </div>
+    </div>
+
+    <div class="row">
+      {{- range .items -}}
+        <div class="col-lg-3 col-md-6 col-xs-12">
+          <div class="card circle-card">
+            <div class="circle">
+              <div class="inner"><img src="{{ .icon }}"/ alt="{{ .title }}"></div>
+            </div>
+            <div class="title">{{ .title }}</div>
+            <div class="description">{{ .description }}</div>
+          </div>
+        </div>
+      {{- end -}}
+    </div>
+    
+  </div>
+</div>

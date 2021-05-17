@@ -1,0 +1,41 @@
+{{- $page := .Site.GetPage "/main/_index.md" -}}
+{{- $header := .Site.GetPage "/main/header.md" -}}
+{{- $paragraph1 := .Site.GetPage "/main/paragraph1.md" -}}
+{{- $paragraph2 := .Site.GetPage "/main/paragraph2.md" -}}
+
+<div class="sidebar-nav">
+    <i class="fas fa-sm fa-bars"></i> 
+    {{- with .Site.GetPage .Section -}}{{ .Params.section }} Navigation{{- end -}}
+</div>
+
+<div class="container-fluid site-width min-height">
+    <div class="row">
+        <div class="col-md sidebar-area">
+            <div class="sidebar">
+                <div id="dismiss">
+                    <i class="fas fa-arrow-left"></i>Close
+                </div>
+                {{ partial "docs/sidebar.html" . }}
+            </div>
+        </div>
+        <div class="col-md doc-area">
+            <div class="doc">
+              {{- block "apis-overview" . -}}{{- end }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ define "apis-overview" }}
+  <div class="container main">
+    <div class="desc">
+      <div class="row">
+        <div class="col-12">
+          <div class="right-side">
+            {{- partial "api/code-samples.html" . -}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

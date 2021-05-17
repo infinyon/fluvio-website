@@ -4,7 +4,7 @@
             <i class="far fa-lightbulb"></i>
         </div>
         <div class="content">
-            {{- $text := partial "others/strip_indent.html"  (dict "inner" .Inner "pos" .Position) -}}
+            {{- $text := partial "common/strip_indent.html"  (dict "inner" .Inner "pos" .Position) -}}
             {{- $text | markdownify -}}
         </div>
     </aside>

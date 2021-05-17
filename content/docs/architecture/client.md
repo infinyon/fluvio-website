@@ -1,13 +1,13 @@
 ---
 title: Client Library
-toc: true
-weight: 60
+weight: 10
 ---
-
 
 A Fluvio client communicates with a Fluvio cluster to manage streams and to emit or receive events. The client uses a purpose-built communication protocol that is optimized for maximum performance, scalability, and low latency. Future versions will provide adaptors to standard protocols, such as: HTTP, WebSocket, gRPC, etc.
 
-{{< image src="architecture/fluvio-client.svg" alt="External APIs" justify="center" width="500" type="scaled-75">}}
+<img src="architecture/fluvio-client.svg"
+     alt="Fluvio Client"
+     style="justify: center; max-width: 500px" />
 
 All communication between the clients and the servers is encrypted in <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a> for maximum privacy and security.
 
@@ -161,11 +161,16 @@ The Fluvio client can survive SPU failures. All data streams are replicated acro
 
 When a data stream is created, one of the SPUs is elected as leader and the others become followers. Fluvio clients look-up the SPU leaders to produce or consume records.
 
-{{< image src="architecture/prod-cons-before-failover.svg" alt="Producer/Consumer" justify="center" width="475" type="scaled-75">}}
+<img src="architecture/prod-cons-before-failover.svg"
+     alt="Producer/Consumer"
+     style="justify: center; max-width: 475px" />
+
 
 If the SPU leader becomes unreachable, an election is triggered and one of the SPU followers becomes the leader. The client detects the SPU leader failure and **automatically switches over** to the new leader.
 
-{{< image src="architecture/prod-cons-after-failover.svg" alt="Producer/Consumer Failover" justify="center" width="475" type="scaled-75">}}
+<img src="architecture/prod-cons-after-failover.svg"
+     alt="Producer/Consumer Failover"
+     style="justify: center; max-width: 475px" />
 
 For additional information on the election algorithm, checkout [Election Design](../election).
 
@@ -189,12 +194,3 @@ All client operations follow a similar pattern.
     * Use the [Consumer API](#consumer-api) to retrieve records from a data stream.
 
 The Fluvio Client library is multi-threaded, and it can simultaneously connect to _multiple clusters_, and concurrently _produce and consume_ one or more data streams.
-
-
-#### Related Topics
--------------------
-* [SC Architecture](../sc)
-* [SPU Architecture](../spu)
-* [Topic/Partitions](../topics-partitions)
-* [Replica Assignment](../replica-assignment)
-* [Replica Election](../replica-election)

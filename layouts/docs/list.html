@@ -1,35 +1,13 @@
-{{ define "main" }}
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md sidemenu">
-        {{ partial "docs/side-menu-title.html" . }}
-        {{ partial "docs/side-menu.html" . }}
-      </div>
-      <div class="col-md main-area">
-          {{- block "content" . }}{{- end }}
-      </div>
-      <div class="doc-toc">
-        {{ partial "docs/table-of-contents" . }}
-      </div>
-    </div>
-  </div>
+{{ define "menu" }}
+  {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
+  {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio "bottomBorder" true) -}}
 {{ end }}
 
 {{ define "content" }}
-    {{ $hidden := .Params.hidden | default false}}
-    {{ $hasContent := .IsSection }}
-    {{ with .File }}
-        {{ if and (ne .Filename "") (not $hidden) }}
-            {{ $hasContent = true }}
-        {{ end }}
-    {{ end }}
+  {{ partial "docs/doc-page" . }}
+{{ end }}
 
-	{{ if $hasContent }}
-	    {{ partial "docs/page-content" (dict "page" $ ) }}
-	{{ else }}
-      {{ if ge (len .Pages) 1 }}
-          {{ $page := index .Pages 0 }}
-          {{ partial "docs/page-content" (dict "page" $page) }}
-      {{ end }}
-  {{ end }}
+{{ define "footer" }}
+  {{ partial "footer/footer.html" . }}
+  <script src="/js/navbar.js"></script>
 {{ end }}

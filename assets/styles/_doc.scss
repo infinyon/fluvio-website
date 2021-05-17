@@ -1,0 +1,93 @@
+
+.doc-area {
+  min-width: 300px;
+  margin: 0 15px;
+}
+
+.doc {
+  h1, h2, h3, h4, h5, h6 { 
+    color: $main-color;
+
+    i {
+      font-size: 18px;
+      color: $pink1 !important;
+    }
+
+    &:hover {
+      cursor: pointer;
+      a#link { display: inline; }
+    }
+  }
+
+  h2, h3, h4 {
+    a#link {
+      margin-left: -20px;
+      padding-right: 4px;
+      display: none;
+    }
+  }
+
+  #aof {
+    position: relative;
+
+    a#anchor {
+      position: absolute;
+      left: 0px;
+      top: -80px;
+    }
+  }
+
+  a { 
+    color:$main-dialog;
+    &:hover {
+      color: $main-dialog;
+      text-decoration: underline;
+    }
+  } 
+  
+  li {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    
+    p {
+      margin-top: .2rem;
+      margin-bottom: .2rem;
+    }
+  }
+    
+  img {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .subtitle {
+    padding: 10px 15px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+  }
+  
+  .doc-content {
+    margin: .5em 0 2.5em 0;
+
+    /* code section */
+    .highlight pre {
+      max-height: 800px; 
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+    
+    ::-webkit-scrollbar {
+      -webkit-appearance: none; 
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 4px; 
+      background-color: rgba(255, 255, 255, .5); 
+      box-shadow: 0 0 1px rgba(0, 0, 0, .5)
+    }
+  }
+}

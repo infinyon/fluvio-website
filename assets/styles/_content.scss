@@ -1,0 +1,20 @@
+#content {
+  margin-top: 0;
+}
+
+.page-height {
+  min-height:calc(100vh - 60px - 150px);
+}
+
+footer {
+  background-color: $bkg-footer-dark;
+  color: $col-footer-dark;
+}
+
+.font-footer {
+  font-size: 0.8rem;
+}
+
+a:hover {
+  text-decoration: none;
+}

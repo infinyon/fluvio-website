@@ -1,0 +1,139 @@
+.button {
+  font-size: 1.0em;
+  font-weight: normal;
+
+  .btn-pink {
+    padding:8px 50px;
+    color: $white;
+    border: 2px solid $accent-pink;
+    background-color: $accent-pink;
+    text-transform: uppercase;
+
+    &:hover {
+      border-color:   $main-light-highlight;
+      background-color: $accent-pink-defused;
+    }
+  }
+
+  .btn-light-full {
+    padding:8px 50px;
+    color: $white;
+    border: 2px solid$main-light;
+    background-color: $main-light;
+    text-transform: uppercase;
+
+    &:hover {
+      border: 2px solid $main-light-highlight;
+      background-color:$main-light-accent;
+    }
+  }
+
+  .btn-light {
+    padding:8px 40px;
+    border: 1px solid $white;
+    color: $white;
+    background-color: $main-light;
+    text-transform: uppercase;
+
+    &:hover {
+      padding:7px 39px;
+      border: 2px solid $main-light-highlight;
+      background-color:$main-light-accent;
+    }
+  }
+
+  .btn-complement {
+    padding:8px 40px;
+    border: 1px solid $white;
+    color: $white;
+    background-color: $main-complement-defused;
+    text-transform: uppercase;
+
+    &:hover {
+      padding:7px 39px;
+      border: 2px solid $main-complement-highlight;
+      background-color:$main-complement-accent;
+    }
+  }
+
+  .btn-green {
+    width: 90%;
+    padding:8px 40px;
+    border: 1px solid $accent-green;
+    color: $accent-green;
+    background-color: $white;
+
+    &:hover {
+      padding:7px 39px;
+      border: 2px solid $main-complement-highlight;
+      color: $accent-turquoise !important;
+    }
+  }
+
+  .btn-subscribe {
+    padding:8px 50px;
+    color: $white;
+    border: 2px solid $main-light;
+    background-color: $main-light;
+    border-radius: 0;
+    text-transform: uppercase;
+    
+    &:hover {
+      border-color: $main-light-highlight;
+      background-color: $main-light-accent;
+    }
+  }
+
+  .btn-purple {
+    padding:8px 50px;
+    color: $white;
+    border: 2px solid $main-dialog;
+    background-color: $main-dialog;
+
+    &:hover {
+      border-color: $main-light-highlight;
+    }
+  }
+
+  .btn-tag {
+    margin-left: 2px;
+    padding: 8px 30px;
+    border: 1px solid $white;
+    color: $white;
+    background-color: $main-light;
+    font-weight: normal;
+
+    .fas {vertical-align: middle;}    
+    
+    i { display: none; }
+    &.active {
+      background-color:$main-color;
+      i { display: inline; color: $white;}
+    }
+
+    &:hover {
+      padding:7px 29px;
+      border: 2px solid $main-complement;
+      background-color:$main-color;
+    }
+  }  
+}
+
+.h-40 { height: 40px; }
+
+.tag-button {
+  margin: 5px;
+  padding-right: 15px;
+  padding-left: 10px;
+  box-shadow: none !important;
+}
+
+.tag-button i { display: none; }
+.tag-button.active i { display: inline; }
+
+.tag-button:hover {
+  color: #fff;
+  background-color: rgba(0, 123, 255, 0.6);
+}
+
+.button.no-border { border: 0 !important; }

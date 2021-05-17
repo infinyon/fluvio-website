@@ -1,0 +1,10 @@
+{{- $width := .Get "width" | default 48 -}}
+{{- $link := .Get "link" | default "/api/fluvio/java" -}}
+{{- $target := "_self" -}}
+{{- if (.Get "external") -}}
+    {{- $target := "_blank" -}}
+{{- end -}}
+
+<a href="{{ $link }}" target="{{ $target }}" style="text-decoration: none;">
+    <img src="/images/assets/java.svg" style="display: inline; width: {{ $width}}px" alt="Java" />
+</a>

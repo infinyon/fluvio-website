@@ -1,61 +1,15 @@
-{{ define "main" }}
-{{- $page := .Site.GetPage "/main/_index.md" -}}
-{{- $header := .Site.GetPage "/main/header.md" -}}
-{{- $paragraph1 := .Site.GetPage "/main/paragraph1.md" -}}
-{{- $paragraph2 := .Site.GetPage "/main/paragraph2.md" -}}
+{{ define "menu" }}
+    {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
+    {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio) -}}
+{{ end }}
 
-<div class="jumbotron">
-  <div class="container main">
-    <div class="desc">
-     <div class="row">
-      <div class="col-lg-5 p-0 pt-2">
-        {{- partial "main/description.html" . -}}
-      </div>
-      <div class="col-lg-7">
-        <div class="right-side">
-          {{- partial "main/code-samples.html" . -}}
-          <div class="signup-button pt-2">
-            <a class="btn btn-primary" href="{{ $page.Params.button.link }}" target="_blank">
-              {{ $page.Params.button.label }}
-            </a>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-</div>
+{{ define "content" }}
+  {{- partial "main/jumbotron.html" (dict "jumbotron" .Params.jumbotron) }}
+  {{- partial "main/colored-circles.html" .Params.easy }}
+  {{- partial "main/squared-boxes.html" .Params.technology -}}
+  {{- partial "main/full-width-text.html" .Params.platform -}}
+{{ end }}
 
-<div class="container main">
-  <div class="row">
-    {{- range (where $.Site.RegularPages "Section" "main" ) -}}
-      <div class="col-md-6 col-lg-4 box">
-        <div class="card bg-light">
-          <div class="m-3 align-self-center">
-            <div class="box-header font-xl">
-              {{ .Title}}
-            </div>
-
-            {{/* }}
-            <hr style="margin-right:-2px;"/>
-            {{ */}}
-
-            <a href="{{ .Params.link | relURL}}">
-              <img src="/img/{{.Params.image}}" class="mx-auto d-block" height="150" width="275">
-            </a>
-
-            {{/* }}
-            <hr style="margin-top:20px; margin-bottom: -15px; margin-right:-2px;"/>
-            {{ */}}
-
-            <article class="box-content" style="width: 260px">
-              <p>{{ .Summary }}</p>
-            </article>
-
-          </div>
-        </div>
-      </div>
-    {{- end -}}
-  </div>
-</div>
+{{ define "footer" }}
+  {{ partial "footer/footer.html" . }}
 {{ end }}

@@ -1,0 +1,123 @@
+$sidebar-width: 220px;
+
+.sidebar-area {
+    margin: 20px 0 10px 0;
+    padding-bottom: 10px;
+    min-width: $sidebar-width;
+    max-width: $sidebar-width;
+    border-right: 1px solid $main-lighter;
+}
+
+.sidebar-area.active {
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    margin-left: -10px;
+}
+
+.sidebar {
+    .card {
+        border: none;
+        border-left: 4px solid transparent;
+        border-radius: 0;
+
+        a { 
+            text-decoration: none;
+            color: $gray11;
+            line-height: 1.8em;
+            font-size: .9em;
+            font-weight: normal;
+        }
+        a.first { 
+            font-size: 1.15em; 
+            color: $main-light;
+        }
+    }
+
+    .card.selected {
+        background: $main-lightest;
+        padding-left: 10px;
+        border-left: 4px solid $pink;
+    }
+
+    .card.selected-first {
+        background: $main-lightest;
+    }
+
+    .card:hover {
+        background: $main-lightest;
+    }
+
+    .section {
+        .title {
+            margin: 12px 4px 2px;
+            color: $main-light;
+            //text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        .card {
+            padding-left: 10px;
+        }
+    }
+
+    #dismiss {
+        display: none;
+        text-align: right;
+        margin-right: 5px;
+        i {padding-right: 5px;}
+    }
+}
+
+.sidebar.ontop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: -90px;
+    z-index: 9999;
+    background: white;
+    border: 1px solid $main-light;
+    padding: 10px;
+
+    #dismiss {
+        display: block;
+    }
+}
+
+.sidebar-nav {
+    display: none;
+    text-align: center;
+    //border-top: 1px solid rgba($main-light, 0.3);
+    border-bottom: 1px solid rgba($main-light, 0.3);
+    color: $main-color;
+    padding: 20px 10px;
+    font-size: 1.3em;
+
+    i {padding-right: 10px; }
+}
+
+.page-overlay {
+    display: none;
+    position: fixed;
+    /* full screen */
+    width: 100vw;
+    height: 100vh;
+    /* transparent black */
+    background: black;
+    /* middle layer, i.e. appears below the sidebar */
+    z-index: 998;
+    opacity: 0;
+    /* animate the transition */
+    transition: all 0.5s ease-in-out;
+}
+
+.page-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .sidebar-nav { display: block; }
+    .sidebar-area {display: none;}
+    .sidebar.active {margin-left: 0;}
+}

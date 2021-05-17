@@ -1,0 +1,53 @@
+$background: $main-lightest;
+$item: $main-med;
+
+.top-menu {
+  background: linear-gradient(180deg, rgb(255, 255, 255), $main-lightest) 0px 0px no-repeat padding-box padding-box transparent;
+  padding: 20px 15px 15px 17px;
+  border-bottom: 1px solid rgba($main-light, 0.3);
+
+  .logo {
+    float: left;
+    img { height: 28px; }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 25px;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    font-size: 1.02em;
+    line-height: 1.64em;
+    text-align: center;
+    padding: 2px 16px 0 16px;
+    text-decoration: none;
+    color: $item;
+  }
+  
+  li a:hover {
+    color: $item;
+  }
+
+  li i {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 767px) {
+  .top-menu {
+    padding-left: 1px;
+    li {
+      span {display: none; }
+      i { font-size: 1.4em; line-height: 1.1em;}
+    }
+  }
+}

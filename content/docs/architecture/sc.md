@@ -1,13 +1,13 @@
 ---
 title: Streaming Controller (SC) Architecture
-menu: SC
-toc: true
 weight: 10
 ---
 
 **Streaming Controller (SC)** is the central coordinator and the **authoritative** entity of the cluster. It manages configuration changes, provisions SPUs, performs replica assignment, coordinates communication with external clients, and sends periodic reconciliation updates.
 
-{{< image src="architecture/sc-architecture.svg" alt="SC Coordinator" justify="center" width="530" type="scaled-90">}}
+<img src="architecture/sc-architecture.svg"
+     alt="SC Coordinator"
+     style="justify: center; max-width: 530px" />
 
 The SC leverages a **Key-Value (KV) store** to persist cluster object configurations.
 
@@ -86,8 +86,9 @@ Aside from the differences in installation, all SPU types are treated the same.
 
 Fluvio **SPU-groups** define the configuration parameters used for provisioning groups of **Managed SPUs**. 
 
-{{< image src="architecture/spu-groups.svg" alt="SpuGroups" justify="center" width="740" type="scaled-98">}}
-
+<img src="architecture/spu-groups.svg"
+     alt="SPU Groups"
+     style="justify: center; max-width: 740px" />
 
 **Replica** specifies the number of SPUs in a group and it can be dynamically changed: 
 
@@ -145,7 +146,9 @@ spec:
 
 A topic with *6 partitions* and a *replication factor of 3* on a new cluster generates the following distribution:
 
-{{< image src="architecture/partition-assignment.svg" alt="Partition Assignment" justify="center" width="560" type="scaled-75">}}
+<img src="architecture/partition-assignment.svg"
+     alt="Partition Assignment"
+     style="justify: center; max-width: 560px" />
 
 The algorithm that computes partition/replica distribution is described in the [Replica Assignment](../replica-assignment) section. 
 
@@ -223,7 +226,9 @@ Replica management, election, and all other status fields are documented in the 
 
 **SC** design is an event driven architecture that **captures cluster changes** and keeps the SPUs and the Key-Value store **synchronized**. 
 
-{{< image src="architecture/sc-workflows.svg" alt="SC Controller" justify="center" width="800" type="scaled-98">}}
+<img src="architecture/sc-workflows.svg"
+     alt="SC Controller"
+     style="justify: center; max-width: 800px" />
 
 The SC uses a **common workflow** to process all event types:
 
@@ -255,7 +260,9 @@ SPU, Topic, and Partition Controllers run independently and manage the workflows
 
 SPU Controller listens for SPU events from KV store and events from Connection Manager.
 
-{{< image src="architecture/spu-controller.svg" alt="SPU Controller" justify="center" width="440" type="scaled-60">}}
+<img src="architecture/spu-controller.svg"
+     alt="SPU Controller"
+     style="justify: center; max-width: 440px" />
 
 * **Add SPU**
     
@@ -278,7 +285,9 @@ SPU Controller listens for SPU events from KV store and events from Connection M
 
 Topic Controller listens for Topic and SPU events from KV store.
 
-{{< image src="architecture/topic-controller.svg" alt="Topic Controller" justify="center" width="440" type="scaled-60">}}
+<img src="architecture/topic-controller.svg"
+     alt="Topic Controller"
+     style="justify: center; max-width: 440px" />
 
 * **Add Topic**
 
@@ -314,7 +323,9 @@ Topic Controller listens for Topic and SPU events from KV store.
 
 Partition Controller listens for Partition and SPU events from KV store and events from Connection Manager.
 
-{{< image src="architecture/partition-controller.svg" alt="Partition Controller" justify="center" width="440" type="scaled-60">}}
+<img src="architecture/partition-controller.svg"
+     alt="Partition Controller"
+     style="justify: center; max-width: 440px" />
 
 * **Add Partition**
 
@@ -362,7 +373,9 @@ Partition Controller listens for Partition and SPU events from KV store and even
 
 A connection is established in the following sequence:
 
-{{< image src="architecture/connection-setup.svg" alt="Connection Manager" justify="center" width="780" type="scaled-99">}}
+<img src="architecture/connection-setup.svg"
+     alt="Connection Manager"
+     style="justify: center; max-width: 780px" />
 
 * **SPU Controller** sends **add SPU spec** to **CM**.
 * **Partition Controller** sends **add Partitions** to **CM**
@@ -389,12 +402,3 @@ When the SPU come back online it initiates a new connection as described in the 
 #### Live Replica (LRS) Updates
 
 **Live Replicas (LRS)** are continuous updates sent by **leader SPUs** to the **CM** to report changes in replica status. The **CM** forwards the requests to relevant **Controllers** for processing.
-
-
-#### Related Topics
--------------------
-* [SPU Architecture](../spu)
-* [Topic/Partitions](../topics-partitions)
-* [Replica Assignment](../replica-assignment)
-* [Replica Election](../replica-election)
-* [Client Library](../client)

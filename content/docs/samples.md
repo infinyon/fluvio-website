@@ -1,7 +1,8 @@
 ---
-title: __Samples (fuvio elements)__
+title: Samples (fluvio elements)
 weight: 100000
 hidden: true
+toc: false
 ---
 
 Welcome to the intro guide to Fluvio! The Concepts section helps you learn about all parts of the Fluvio system and to gain deeper understanding of how Fluvio works.
@@ -34,47 +35,6 @@ Welcome to the intro guide to Fluvio! The Concepts section helps you learn about
 {{< /caution >}}
 
 
-{{< fluvio >}}
-$ fluvio auth-token create -h
-fluvio-auth-token-create 0.1.0
-Create auth token
-
-USAGE:
-    fluvio auth-token create [FLAGS] [OPTIONS] --max-spu <integer> --min-spu <integer> --token-name <string> --secret <alpha-numeric>
-
-FLAGS:
-    -g, --generate-secret    Generate a random secret
-    -h, --help               Prints help information
-
-OPTIONS:
-    -n, --token-name <string>        Token name
-    -s, --secret <alpha-numeric>     Token secret of 16 characters in length
-
-SUBCOMMANDS:
-    consume       Read messages from a topic/partition
-{{< /fluvio >}}
-
-```
-$ fluvio auth-token create -h
-fluvio-auth-token-create 0.1.0
-Create auth token
-
-USAGE:
-    fluvio auth-token create [FLAGS] [OPTIONS] --max-spu <integer> --min-spu <integer> --token-name <string> --secret <alpha-numeric>
-
-FLAGS:
-    -g, --generate-secret    Generate a random secret
-    -h, --help               Prints help information
-
-OPTIONS:
-    -n, --token-name <string>        Token name
-    -s, --secret <alpha-numeric>     Token secret of 16 characters in length
-    -m, --min-spu <integer>          First SPU id in the match range (inclusive)
-    -x, --max-spu <integer>          Last SPU id in the match range (inclusive)
-    -t, --token-type <token-type>    Types [possible values: Custom, Managed, Any]
-    -c, --sc <host:port>             Address of Streaming Controller
-    -P, --profile <profile>          Profile name
-```
 
 ```javascript
 var showMessage = function (){
@@ -247,8 +207,10 @@ Some _Numbers_
 
 ### Images
 
-{{< image src="common/rust.svg" alt="Sample Image" justify="center" width="560" type="scaled-90">}}
-
+<img src="/images/assets/external-link.svg"
+     alt="Sample Image"
+     style="justify: center; max-width: 200px" />
+     
 ## Header H2
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. 
 
@@ -268,12 +230,18 @@ Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and p
 ###### Header h6
 Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing ...
 
+## Language Icon Shortcodes
 
-#### Next Steps
----------------
-* [Getting Started](...)
+{{< icon-rust >}}
+{{< icon-python >}}
+{{< icon-node >}}
+{{< icon-java >}}
+{{< icon-gopher >}}
+{{< icon-go >}}
 
+##### Custom Size & Link
 
-#### Related Topics
--------------------
-* [Compare with Other Software](...)
+{{< icon-rust width="32" link="https://docs.rs/fluvio/" external="true">}}
+{{< icon-python width="32" link="https://infinyon.github.io/fluvio-client-python/fluvio.html" external="true" >}}
+{{< icon-node width="32" link="https://infinyon.github.io/fluvio-client-node/" external="true">}}
+{{< icon-java width="38" link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}

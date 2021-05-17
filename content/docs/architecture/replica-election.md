@@ -1,7 +1,6 @@
 ---
 title: Replica Election
-toc: true
-weight: 50
+weight: 10
 ---
 
 [Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set and [Replica Election](#replica-election-algorithm) _coordinates_ their roles. The election algorithm manages replica sets in an attempt to designate one active leader at all times. SPUs have a powerful <ins>multi-threaded engine</ins> that can process a large number of leaders and followers at the same time.
@@ -13,7 +12,9 @@ If an SPU becomes incapacitated, the election algorithm identifies all impacted 
 
 The `Leader` and `Followers` of a **Replica Sets** have different responsibilities.
 
-{{< image src="architecture/election-leader-followers-brief.svg" alt="Leader/Follower" justify="center" width="520" type="scaled-90">}}
+<img src="architecture/election-leader-followers-brief.svg"
+     alt="Leader/Follower"
+     style="justify: center; max-width: 520px" />
 
 `Leader` responsibilities:
 * ingests data from producers
@@ -33,7 +34,9 @@ All followers are in hot-standby and ready to take-over as leader.
 
 Each data stream has a **Live Replica Set (LRS)** that describes the SPUs actively replicating data records in their local data store. **LRS status** can be viewed in `show partitions` CLI command.
 
-{{< image src="architecture/election-overview.svg" alt="Election Overview" justify="center" width="820" type="scaled-98">}}
+<img src="architecture/election-overview.svg"
+     alt="Election Overview"
+     style="justify: center; max-width: 820px" />
 
 Replica election covers two core cases:
 * SPU `goes offline`
@@ -124,7 +127,9 @@ Each **Replica Set** has a communication channel where for the leader and follow
 
 For example, three replica sets **a**, **b**, and **c** that are distributed across `SPU-1`, `SPU-2`, and `SPU-3`: 
 
-{{< image src="architecture/election-connection.svg" alt="Election Overview" justify="center" width="400" type="scaled-75">}}
+<img src="architecture/election-connection.svg"
+     alt="Election Connection"
+     style="justify: center; max-width: 400px" />
 
 The first follower (**b**, or **c**) from `SPU-1` that tries to communicate with its leader in `SPU-2` generates a TCP connection. Then, all subsequent communication from `SPU-1` to `SPU-2`, irrespective of the replica set, will reuse the same connection.
 
@@ -141,7 +146,9 @@ Hence, each SPU pair will have at most 2 connections. For example:
  
  **Synchronization algorithm** collects the **LEOs**, computes the **HW**, and manages the **(LRS)**. 
 
-{{< image src="architecture/election-sync-overview.svg" alt="Election Overview" justify="center" width="480" type="scaled-80">}}
+<img src="architecture/election-sync-overview.svg"
+     alt="Election Overview"
+     style="justify: center; max-width: 480px" />
 
 In this example:
 * LRS = 3
@@ -188,11 +195,3 @@ Replica <ins>leaders</ins> receive data records from producers and sends them to
 Consumers can choose to receive either COMMITTED or UNCOMMITTED records. The second method is discouraged as it cannot deterministically survive various failure scenarios. 
 
 By default only COMMITTED messages are sent to consumers.
-
-#### Related Topics
--------------------
-* [SC Architecture](../sc)
-* [SPU Architecture](../spu)
-* [Topic/Partitions](../topics-partitions)
-* [Replica Assignment](../replica-assignment)
-* [Client Library](../client)
