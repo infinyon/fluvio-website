@@ -3,3 +3,16 @@
 
 [build.environment]
     HUGO_VERSION = "0.68.3"
+
+
+[[redirects]]
+  from = "/blog/2021/01/websocket-glue-for-streaming-apps/"
+  to = "https://www.infinyon.com/blog/2021/01/websocket-glue-for-streaming-apps/"
+  status = 301
+  force = true 
+
+[[redirects]]
+  from = "/blog/2021/02/bot-assistant/"
+  to = "https://www.infinyon.com/blog/2021/02/bot-assistant/"
+  status = 301
+  force = true 
