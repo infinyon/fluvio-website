@@ -6,7 +6,7 @@ weight: 50
 
 The `fluvio cluster` family of commands is used to install and manage your own
 Fluvio cluster. The two primary forms of self-hosted cluster are Kubernetes
-(via Minikube) and Local clusters, both of which can be automatically set up
+(e.g. via Minikube) and Local clusters, both of which can be automatically set up
 by cluster commands. Please make sure you have followed the
 [getting started guide] and installed all the necessary dependencies before
 attempting to install your own cluster.
@@ -16,9 +16,8 @@ attempting to install your own cluster.
 ## `fluvio cluster check`
 
 This command is used to check whether you have all the required dependencies
-set up on your system and whether they are running correctly.
-If this runs and returns successfully, you should be all set to start
-a local or minikube cluster.
+installed correctly. If this runs and returns successfully, you should be all
+set to start a Fluvio cluster.
 
 ```
 fluvio-cluster-check
@@ -197,40 +196,6 @@ To uninstall Fluvio from your local machine:
 %copy first-line%
 ```bash
 $ fluvio cluster delete --local
-```
-
-## `fluvio cluster releases list`
-
-Prints all the published versions of Fluvio that are candidates to
-install on Kubernetes with `fluvio cluster start`.
-
-The Fluvio cluster components are distributed as Helm charts which allow
-them to be installed easily on Kubernetes. This prints all the releases
-that are available.
-
-```
-fluvio-cluster-releases-list
-Show a list of Fluvio release versions
-
-USAGE:
-    fluvio cluster releases list
-
-FLAGS:
-    -h, --help    Prints help information
-```
-
-### Example usage:
-
-%copy first-line%
-```bash
-$ fluvio cluster releases list
-VERSION
-0.6.0-latest
-0.6.0-beta.1-latest
-0.6.0-beta.1
-0.6.0-alpha.8-latest
-0.6.0-alpha.7-latest
-...
 ```
 
 ## `fluvio cluster spu list`
