@@ -3,9 +3,9 @@
   font-weight: normal;
 
   .btn-pink {
-    padding:8px 50px;
+    padding:10px 50px;
     color: $white;
-    border: 2px solid $accent-pink;
+    border: 1px solid $white;
     background-color: $accent-pink;
     text-transform: uppercase;
 
@@ -16,7 +16,7 @@
   }
 
   .btn-light-full {
-    padding:8px 50px;
+    padding:10px 50px;
     color: $white;
     border: 2px solid$main-light;
     background-color: $main-light;
@@ -29,28 +29,28 @@
   }
 
   .btn-light {
-    padding:8px 40px;
+    padding:10px 40px;
     border: 1px solid $white;
     color: $white;
     background-color: $main-light;
     text-transform: uppercase;
 
     &:hover {
-      padding:7px 39px;
+      padding:9px 39px;
       border: 2px solid $main-light-highlight;
       background-color:$main-light-accent;
     }
   }
 
   .btn-complement {
-    padding:8px 40px;
+    padding:10px 40px;
     border: 1px solid $white;
     color: $white;
     background-color: $main-complement-defused;
     text-transform: uppercase;
 
     &:hover {
-      padding:7px 39px;
+      padding:9px 39px;
       border: 2px solid $main-complement-highlight;
       background-color:$main-complement-accent;
     }
@@ -58,20 +58,20 @@
 
   .btn-green {
     width: 90%;
-    padding:8px 40px;
+    padding:10px 40px;
     border: 1px solid $accent-green;
     color: $accent-green;
     background-color: $white;
 
     &:hover {
-      padding:7px 39px;
+      padding:9px 39px;
       border: 2px solid $main-complement-highlight;
       color: $accent-turquoise !important;
     }
   }
 
   .btn-subscribe {
-    padding:8px 50px;
+    padding:10px 50px;
     color: $white;
     border: 2px solid $main-light;
     background-color: $main-light;
@@ -85,7 +85,7 @@
   }
 
   .btn-purple {
-    padding:8px 50px;
+    padding:10px 50px;
     color: $white;
     border: 2px solid $main-dialog;
     background-color: $main-dialog;
@@ -112,7 +112,7 @@
     }
 
     &:hover {
-      padding:7px 29px;
+      padding:9px 29px;
       border: 2px solid $main-complement;
       background-color:$main-color;
     }

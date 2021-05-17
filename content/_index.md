@@ -4,8 +4,8 @@ jumbotron:
   title: "Fluvio SmartStreams&trade;"
   description: "An open-source distributed data streaming platform optimized for speed and flexibility. Use **Connect** to create real-time data streams and **SmartStreams**  to upload your custom logic and modify data while still in-flight."
   image: "/images/assets/fluvio-hero.svg"
-  alt: "Fluvio Community Edition"
-  get_started_link: "/docs/get-started/"
+  alt: "Fluvio SmartStreams"
+  download_link: "/download"
   contribute_link: "https://github.com/infinyon/fluvio/blob/master/CONTRIBUTING.md"
 technology:
   title: "The Technology"
