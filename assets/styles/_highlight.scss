@@ -1,4 +1,4 @@
-/* Background */ .chroma { font-size: .9em; padding-left:10px !important; color: #f8f8f2; box-shadow: 5px 5px 10px lightgrey; border-radius: 5px; background-color: $code-background !important; line-height:1.65em;}
+/* Background */ .chroma { font-size: .9em; padding-left:10px !important; color: #f8f8f2; background-color: $code-background !important; line-height:1.65em;}
 /* Error */ .chroma .err { color: #960050; background-color: #1e0010 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
@@ -57,4 +57,3 @@
 /* GenericInserted */ .chroma .gi { color: #a6e22e }
 /* GenericStrong */ .chroma .gs { font-weight: bold }
 /* GenericSubheading */ .chroma .gu { color: #75715e }
-pre { border-radius: 5px; box-shadow: 5px 5px 10px lightgrey; }
