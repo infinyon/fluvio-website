@@ -23,6 +23,8 @@ USAGE:
     fluvio install <package>
 
 FLAGS:
+    --develop    Install the latest prerelease rather than the latest
+                 release
     -h, --help    Prints help information
 
 OPTIONS:
