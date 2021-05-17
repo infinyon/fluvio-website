@@ -3,8 +3,8 @@ title: Produce
 weight: 10
 ---
 
-The `fluvio produce` command is a way to send messages to a particular topic and partition.
-This can be useful for testing your applications by manually sending specific messages.
+The `fluvio produce` command is a way to send records to the leader of a partition.
+Produce records by specifying the destination Topic
 
 ```
 fluvio-produce

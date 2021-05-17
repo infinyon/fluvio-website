@@ -40,11 +40,11 @@ Running pre-startup checks...
 ✅ ok: Kubernetes config is loadable
 ✅ ok: Supported kubernetes version is installed
 ✅ ok: Supported helm version is installed
-✅ ok: Fluvio system charts are installed
 ✅ ok: Can create service
 ✅ ok: Can create customresourcedefinitions
 ✅ ok: Can create secret
 ✅ ok: Load balancer is up
+✅ ok: Fluvio system charts are installed
 All checks passed!
 You may proceed with cluster startup
 next: run `fluvio cluster start`
@@ -138,23 +138,13 @@ To start a cluster on Minikube:
 %copy first-line%
 ```bash
 $ fluvio cluster start
-"fluvio" has been added to your repositories
-Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "jaegertracing" chart repository
-...Successfully got an update from the "prometheus-community" chart repository
-...Successfully got an update from the "fluvio" chart repository
-Update Complete. ⎈Happy Helming!⎈
-NAME: fluvio
-LAST DEPLOYED: Mon Dec 28 13:12:27 2020
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
 ✅ ok: Kubernetes config is loadable
 ✅ ok: Supported helm version is installed
-✅ ok: Fluvio system charts are installed
-✅ ok: Previous fluvio installation not found
 ✅ ok: Load balancer is up
+✅ ok: Fixed: Missing Fluvio system charts.
+✅ ok: Previous fluvio installation not found
+Waiting up to 120 seconds for Fluvio cluster version check...
+Successfully installed Fluvio!
 ```
 
 To start a cluster locally (as processes on your machine):

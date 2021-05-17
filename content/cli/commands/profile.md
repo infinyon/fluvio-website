@@ -4,7 +4,8 @@ weight: 50
 ---
 
 Fluvio provides support for multiple profiles out of the box, meaning that you can
-communicate with distinct clusters in an isolated and managed way. Each profile
+communicate with distinct clusters in an isolated and managed way. A profile is a
+collection of settings and credentials that are applied to a Fluvio session. Each profile
 defines the means to communicate with a particular Fluvio cluster. One profile
 is active (or "current") at any given time, and all other Fluvio commands will
 interact with the cluster defined by the active profile. Profiles are defined
