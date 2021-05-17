@@ -2,7 +2,7 @@
 {{- $companyURL := .page.Site.Params.company_url }}
 <div id="top-menu" class="top-menu">
   <div class="container-fluid site-width">
-    <a class="logo" href="{{ $companyURL }}"><img src="{{ .page.Site.Params.company_logo }}"></img></a>
+    <a class="logo" href="{{ $companyURL }}"><img src="{{ .page.Site.Params.company_logo_white }}"></img></a>
     <ul>
       {{ range .menu }}
         {{- $active := "" -}}
