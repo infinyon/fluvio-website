@@ -34,6 +34,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio install fluvio/fluvio-cloud
 🎣 Fetching latest version for package: fluvio/fluvio-cloud...
@@ -64,6 +65,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio update
 🎣 Fetching latest version for fluvio/fluvio...

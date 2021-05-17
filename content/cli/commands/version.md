@@ -6,6 +6,7 @@ weight: 90
 The `fluvio version` command prints out useful version and build information about
 the Fluvio executable you're working with, as well as the plugins you have installed.
 
+%copy first-line%
 ```bash
 $ fluvio version
 Fluvio CLI           : 0.8.2

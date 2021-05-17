@@ -6,7 +6,8 @@ weight: 10
 The `fluvio-cloud` plugin is distributed by default when Fluvio is installed
 using the one-liner installation script:
 
-```
+%copy first-line%
+```bash
 $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
@@ -43,7 +44,8 @@ OPTIONS:
 
 Example usage:
 
-```
+%copy first-line%
+```bash
 $ fluvio cloud login
 Fluvio Cloud email: mosher@infinyon.com
 Password: <hidden>
@@ -52,7 +54,8 @@ Password: <hidden>
 After this has completed successfully, you should be able to see your new cloud
 profile using [`fluvio profile view`]:
 
-```
+%copy first-line%
+```bash
 $ fluvio profile view
     PROFILE    CLUSTER    ADDRESS                          TLS
  *  cloud      cloud      router.cloud.fluvio.io:9003      Verified

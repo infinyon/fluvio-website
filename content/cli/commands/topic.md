@@ -40,6 +40,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio topic create greeting
 topic "greeting" created
@@ -68,6 +69,7 @@ OPTIONS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio topic list
  NAME      TYPE      PARTITIONS  REPLICAS  IGNORE-RACK  STATUS                   REASON
@@ -98,6 +100,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio topic describe greeting
  Name                    :  greeting
@@ -131,6 +134,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio topic delete greeting
 topic "greeting" deleted

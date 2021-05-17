@@ -42,6 +42,7 @@ ARGS:
 The quickest way to send a record using the producer is to just type your record
 into standard input:
 
+%copy first-line%
 ```bash
 $ fluvio produce my-topic
 > This is my first record ever
@@ -63,6 +64,7 @@ was sent successfully.
 Fluvio supports key/value records out-of-the-box. In a key/value record, the key is used
 to decide which partition the record is sent to. Let's try sending some simple key/value records:
 
+%copy first-line%
 ```bash
 $ fluvio produce my-topic --key-separator=":"
 > alice:Alice In Wonderland
@@ -76,6 +78,7 @@ So our records are being sent, but how do we know that the producer recognized e
 We can use the `--verbose` (`-v`) flag to tell the producer to print back the keys and values it
 recognizes. That way, we can be confident that our records are being sent the way we want them to be.
 
+%copy first-line%
 ```bash
 $ fluvio produce my-topic -v --key-separator=":"
 > santa:Santa Claus

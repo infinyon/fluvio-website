@@ -31,8 +31,9 @@ FLAGS:
     -h, --help    Prints help information
 ```
 
-Example usage:
+### Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio cluster check
 Running pre-startup checks...
@@ -130,10 +131,11 @@ OPTIONS:
         --authorization-config-map <authorization-config-map>
 ```
 
-Example usage:
+### Example usage:
 
 To start a cluster on Minikube:
 
+%copy first-line%
 ```bash
 $ fluvio cluster start
 "fluvio" has been added to your repositories
@@ -157,6 +159,7 @@ TEST SUITE: None
 
 To start a cluster locally (as processes on your machine):
 
+%copy first-line%
 ```bash
 $ fluvio cluster start --local
 Performing pre-flight checks
@@ -168,8 +171,9 @@ Performing pre-flight checks
 
 ## `fluvio cluster delete`
 
-Deletes a Fluvio cluster and all data associated with it. Be careful, this
-cannot be undone.
+Deletes a Fluvio cluster and all data associated with it. 
+
+~> **CAUTION**: Be careful, this cannot be undone.
 
 ```
 fluvio-cluster-delete
@@ -189,16 +193,18 @@ OPTIONS:
         --name <name>               [default: fluvio]
 ```
 
-Example usage:
+### Example usage:
 
 To uninstall Fluvio from Kubernetes (e.g. Minikube):
 
+%copy first-line%
 ```bash
 $ fluvio cluster delete
 ```
 
 To uninstall Fluvio from your local machine:
 
+%copy first-line%
 ```bash
 $ fluvio cluster delete --local
 ```
@@ -223,8 +229,9 @@ FLAGS:
     -h, --help    Prints help information
 ```
 
-Example usage:
+### Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio cluster releases list
 VERSION
@@ -257,8 +264,9 @@ OPTIONS:
                            yaml, json]
 ```
 
-Example usage:
+### Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio cluster spu list
  ID    NAME             STATUS  TYPE      RACK  PUBLIC          PRIVATE

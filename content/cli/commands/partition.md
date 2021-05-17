@@ -26,6 +26,7 @@ OPTIONS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio partition list
  TOPIC     PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS

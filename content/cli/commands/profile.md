@@ -35,6 +35,7 @@ FLAGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio profile current
 local
@@ -62,6 +63,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio profile delete local
 profile local deleted
@@ -70,6 +72,7 @@ profile local deleted
 If you try to delete the current profile, you will get a warning, because other CLI
 commands depend on having a current profile being set.
 
+%copy first-line%
 ```bash
 $ fluvio profile delete local
 profile local deleted
@@ -101,6 +104,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio profile delete-cluster local
 Cluster local deleted
@@ -128,6 +132,7 @@ ARGS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio profile switch cloud
 ```
@@ -154,6 +159,7 @@ OPTIONS:
 
 Example usage:
 
+%copy first-line%
 ```bash
 $ fluvio profile view
     PROFILE    CLUSTER    ADDRESS                          TLS
