@@ -1,4 +1,12 @@
 $(window).scroll(function () {
+    handleScroll();
+});
+
+$(document).ready(function () {
+    handleScroll();
+});
+
+handleScroll = () => {
     var scrollTop = $(this).scrollTop();
     if (scrollTop > 65) {
         $('#navbar').addClass('fixed-top');
@@ -17,4 +25,4 @@ $(window).scroll(function () {
     } else if (scrollTop >= gradualTo) {
         $('.side-toc .offset').css('marginTop', '87px');
     }
-});
+}
