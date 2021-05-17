@@ -1,6 +1,6 @@
 ---
 title: Topic/Partitions
-weight: 10
+weight: 70
 ---
 
 A **topic** is the basic primitive for data stream and the **partitions** is the unit of parallelism accessed independently by **producers** and **consumers**. A topic may be split in any number of partitions.
@@ -22,7 +22,7 @@ $ fluvio topic create --topic topic-a --partitions 2 --replication 3
 
 **Leaders** maintain the primary data set and **followers** store a copy of the data. Leaders and followers map to independent **SPUs**:
 
-<img src="architecture/assignment-leader-followers.svg"
+<img src="../images/assignment-leader-followers.svg"
      alt="Leader, Followers"
      style="justify: center; max-width: 640px" />
 
@@ -37,7 +37,7 @@ $ fluvio topic create --topic topic-a --partitions 2 --replication 3
 
 **Partition** are configuration objects managed by the system. Topics and partitions are linked through a **parent-child** relationship. Partition generation algorithm is described in the [SC Architecture](../sc/#partitions).
 
-<img src="architecture/topic-2-partitions.svg"
+<img src="../images/topic-2-partitions.svg"
      alt="Topic 2 Assignment"
      style="justify: center; max-width: 680px" />
 

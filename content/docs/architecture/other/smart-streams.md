@@ -1,6 +1,6 @@
 ---
 title: Smart Streams
-weight: 40
+weight: 100
 ---
 
 Smart Streaming (WASM) concepts, etc.

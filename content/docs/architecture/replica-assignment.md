@@ -1,6 +1,6 @@
 ---
 title: Replica Assignment
-weight: 10
+weight: 50
 ---
 
 **Replica assignment** algorithm is triggered by topic creation and it is responsible for a building a **balanced distribution** of replicas across the SPUs in a Fluvio cluster. **Replicas** from different SPUs are grouped in **replica sets**, where each replica saves a copy of a data stream. Each replica set has a leader and one or more followers that are distributed across available SPUs.

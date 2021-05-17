@@ -1,6 +1,6 @@
 ---
 title: Replica Election
-weight: 10
+weight: 60
 ---
 
 [Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set and [Replica Election](#replica-election-algorithm) _coordinates_ their roles. The election algorithm manages replica sets in an attempt to designate one active leader at all times. SPUs have a powerful <ins>multi-threaded engine</ins> that can process a large number of leaders and followers at the same time.
@@ -12,7 +12,7 @@ If an SPU becomes incapacitated, the election algorithm identifies all impacted 
 
 The `Leader` and `Followers` of a **Replica Sets** have different responsibilities.
 
-<img src="architecture/election-leader-followers-brief.svg"
+<img src="../images/election-leader-followers-brief.svg"
      alt="Leader/Follower"
      style="justify: center; max-width: 520px" />
 
@@ -34,7 +34,7 @@ All followers are in hot-standby and ready to take-over as leader.
 
 Each data stream has a **Live Replica Set (LRS)** that describes the SPUs actively replicating data records in their local data store. **LRS status** can be viewed in `show partitions` CLI command.
 
-<img src="architecture/election-overview.svg"
+<img src="../images/election-overview.svg"
      alt="Election Overview"
      style="justify: center; max-width: 820px" />
 
@@ -127,7 +127,7 @@ Each **Replica Set** has a communication channel where for the leader and follow
 
 For example, three replica sets **a**, **b**, and **c** that are distributed across `SPU-1`, `SPU-2`, and `SPU-3`: 
 
-<img src="architecture/election-connection.svg"
+<img src="../images/election-connection.svg"
      alt="Election Connection"
      style="justify: center; max-width: 400px" />
 
@@ -146,7 +146,7 @@ Hence, each SPU pair will have at most 2 connections. For example:
  
  **Synchronization algorithm** collects the **LEOs**, computes the **HW**, and manages the **(LRS)**. 
 
-<img src="architecture/election-sync-overview.svg"
+<img src="../images/election-sync-overview.svg"
      alt="Election Overview"
      style="justify: center; max-width: 480px" />
 

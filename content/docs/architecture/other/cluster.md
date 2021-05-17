@@ -1,6 +1,6 @@
 ---
 title: Cluster
-weight: 20
+weight: 100
 ---
 
 SC/SPU

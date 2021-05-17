@@ -24,7 +24,7 @@ If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**,
 
 Fluvio's architecture centers around **real time streaming**, and the platform can **scale horizontally** to accommodate large volumes of data.
 
-<img src="architecture/sc-spu.svg"
+<img src="../images/sc-spu.svg"
      alt="Architecture Components - SC/SPUs"
      style="justify: center; max-width: 500px" />
 
@@ -37,7 +37,7 @@ SCs and SPUs are **independent**, **loosely coupled** services. Each service can
 
 Fluvio is designed to address a variety of **deployment scenarios** from public clouds to private data centers, edge networks and IOT devices. **SC** maintains the **topology map** of the **SPUs** and serves as the first point of contact for producers and consumers.
 
-<img src="architecture/cloud-edge-iot.svg"
+<img src="../images/cloud-edge-iot.svg"
      alt="DC, Cloud, Edge, IoT"
      style="justify: center; max-width: 580px" />
 
@@ -50,7 +50,7 @@ For a deep dive in the SC design, checkout [SC Architecture](sc) section.
 
 **Streaming Processing Units (SPUs)** are responsible for all data streaming related matters. Each SPU **receives** data from producers, **sends** data to consumers, and **saves** copies of the data to local storage.
 
-<img src="architecture/spus.svg"
+<img src="../images/spus.svg"
      alt="SPU produce/consume & replication"
      style="justify: center; max-width: 330px" />
 
@@ -78,7 +78,7 @@ For example, a configuration with the 2 topics generates the replication map in 
 
 SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for **topic-b/0**.
 
-<img src="architecture/topic-partition.svg"
+<img src="../images/topic-partition.svg"
      alt="Topic/Partitions"
      style="justify: center; max-width: 650px" />
 
@@ -89,7 +89,7 @@ For additional information on partitions and replica assignments, checkout [Repl
 
 SPU leaders **save** all data stream messages received from producers on **local storage**. Based on platform availability, SPUs use **zero-copy IO** to transfer data from disk to network. Messages on local storage are **immutable** and **ordered**. Fluvio guarantees **in-order writes** for all messages received on the same **replica**.
 
-<img src="architecture/storage.svg"
+<img src="../images/storage.svg"
      alt="Data Storage"
      style="justify: center; max-width: 720px" />
 
@@ -105,7 +105,7 @@ The Fluvio architecture places heavy emphasis on clean, **user-friendly APIs**. 
 
 **External APIs** are used by the **Fluvio CLI** and a growing number of programming language interfaces, such as **Node** and **Rust**. There are two categories of APIs, control plane APIs and data plane APIs. **Control Plane APIs** manage the life cycle of the cluster objects such as SPUs, topics, and replicas. **Data Plane APIs** handle data access for producers and consumers.
 
-<img src="architecture/external-api.svg"
+<img src="../images/external-api.svg"
      alt="External APIs"
      style="justify: center; max-width: 500px" />
 
@@ -118,7 +118,7 @@ API reference guides for programming languages are available at:
 
 **Internal APIs** are used by the **SC** communicate with the **SPUs** and for the **SPUs** to communicate with their peers to elect leaders and exchange replica information. 
 
-<img src="architecture/internal-api.svg"
+<img src="../images/internal-api.svg"
      alt="Internal APIs"
      style="justify: center; max-width: 500px" />
 

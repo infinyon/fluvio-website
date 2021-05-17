@@ -1,11 +1,12 @@
 ---
-title: Streaming Controller (SC) Architecture
-weight: 10
+title: Streaming Controller (SC)
+menu: SC
+weight: 20
 ---
 
 **Streaming Controller (SC)** is the central coordinator and the **authoritative** entity of the cluster. It manages configuration changes, provisions SPUs, performs replica assignment, coordinates communication with external clients, and sends periodic reconciliation updates.
 
-<img src="architecture/sc-architecture.svg"
+<img src="../images/sc-architecture.svg"
      alt="SC Coordinator"
      style="justify: center; max-width: 530px" />
 
@@ -86,7 +87,7 @@ Aside from the differences in installation, all SPU types are treated the same.
 
 Fluvio **SPU-groups** define the configuration parameters used for provisioning groups of **Managed SPUs**. 
 
-<img src="architecture/spu-groups.svg"
+<img src="../images/spu-groups.svg"
      alt="SPU Groups"
      style="justify: center; max-width: 740px" />
 
@@ -146,7 +147,7 @@ spec:
 
 A topic with *6 partitions* and a *replication factor of 3* on a new cluster generates the following distribution:
 
-<img src="architecture/partition-assignment.svg"
+<img src="../images/partition-assignment.svg"
      alt="Partition Assignment"
      style="justify: center; max-width: 560px" />
 
@@ -226,7 +227,7 @@ Replica management, election, and all other status fields are documented in the 
 
 **SC** design is an event driven architecture that **captures cluster changes** and keeps the SPUs and the Key-Value store **synchronized**. 
 
-<img src="architecture/sc-workflows.svg"
+<img src="../images/sc-workflows.svg"
      alt="SC Controller"
      style="justify: center; max-width: 800px" />
 
@@ -260,7 +261,7 @@ SPU, Topic, and Partition Controllers run independently and manage the workflows
 
 SPU Controller listens for SPU events from KV store and events from Connection Manager.
 
-<img src="architecture/spu-controller.svg"
+<img src="../images/spu-controller.svg"
      alt="SPU Controller"
      style="justify: center; max-width: 440px" />
 
@@ -285,7 +286,7 @@ SPU Controller listens for SPU events from KV store and events from Connection M
 
 Topic Controller listens for Topic and SPU events from KV store.
 
-<img src="architecture/topic-controller.svg"
+<img src="../images/topic-controller.svg"
      alt="Topic Controller"
      style="justify: center; max-width: 440px" />
 
@@ -323,7 +324,7 @@ Topic Controller listens for Topic and SPU events from KV store.
 
 Partition Controller listens for Partition and SPU events from KV store and events from Connection Manager.
 
-<img src="architecture/partition-controller.svg"
+<img src="../images/partition-controller.svg"
      alt="Partition Controller"
      style="justify: center; max-width: 440px" />
 
@@ -373,7 +374,7 @@ Partition Controller listens for Partition and SPU events from KV store and even
 
 A connection is established in the following sequence:
 
-<img src="architecture/connection-setup.svg"
+<img src="../images/connection-setup.svg"
      alt="Connection Manager"
      style="justify: center; max-width: 780px" />
 
