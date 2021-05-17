@@ -2,14 +2,8 @@ languageCode = "en-us"
 title = "Fluvio"
 
 enableRobotsTXT = true
-<<<<<<< HEAD
-pygmentsUseClasses=true
-enableEmoji=true
-disqusShortname = "fluvio"
-=======
 pygmentsUseClasses = true
 enableEmoji = true
->>>>>>> 237188025ec11f3213748b5da261877cd49c7858
 
 [markup]
   defaultMarkdownHandler = "goldmark"
