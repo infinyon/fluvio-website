@@ -17,7 +17,7 @@ they will interact with your Fluvio Cloud cluster.
 
 [Fluvio Cloud account]: https://cloud.fluvio.io/
 
-# `fluvio cloud login`
+## `fluvio cloud login`
 
 After creating a Fluvio Cloud account, run this command to log in with your
 username and password and download your Fluvio Cloud profile. This will

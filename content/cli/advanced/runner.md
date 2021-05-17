@@ -12,7 +12,7 @@ over the components, then this is the section for you.
 
 [`fluvio cluster`]: /cli/commands/cluster
 
-# `fluvio run sc`
+## `fluvio run sc`
 
 Directly invoke a Streaming Controller (SC) from the command line. 
 An SC hosts a public server for interacting with clients, and a
@@ -20,8 +20,10 @@ private server for interacting with SPUs and other cluster components. Most of
 the CLI options for the SC involve configuring these servers. See the
 [SC Architecture] for more details.
 
+[SC Architecture]: /docs/architecture/sc
+
 ```
-fluvio-cluster-run-sc
+fluvio-run-sc
 Run a new Streaming Controller (SC)
 
 USAGE:
@@ -61,17 +63,17 @@ OPTIONS:
 
 ---
 
-# `fluvio cluster run spu`
+## `fluvio run spu`
 
 Directly invokes a Streaming Processing Unit (SPU) from the command line.
-A SPU has a public server which is used to stream data to and from Fluvio Clients, and
+An SPU has a public server which is used to stream data to and from Fluvio Clients, and
 a private server which is used to communicate with an SC. Most of the CLI options for
 the SPU involve configuring these servers. See the [SPU Architecture] for more details.
 
 [SPU Architecture]: /docs/architecture/spu/
 
 ```
-fluvio-cluster-run-spu
+fluvio-run-spu
 Run a new Streaming Processing Unit (SPU)
 
 USAGE:
