@@ -7,7 +7,7 @@ description: tiled view with a top banner
 
 Fluvio is a high-performance data streaming platform for collaborative apps. Whether you are looking to enhance your app with a custom chat channel, receive real-time events from your legacy database, communicate with other services in real-time, or stitch together a log aggregator for your mobile or IOT devices, Fluvio is the data streaming platform for you. Our focus on speed, scale, multi-platform support, native language APIs, and ease of use removes many barriers to adoption.
 
-<img src="architecture/images/fluvio-overview.svg" alt="Fluvio Cloud" justify="center" width="820" type="scaled-98">}}
+<img src="architecture/images/fluvio-overview.svg" alt="Fluvio Cloud" justify="center" width="820" type="scaled-98">
 
 Fluvio can be installed on your personal computer, in a private data center, or on a public cloud. Virtually anywhere <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> is available.
 
@@ -95,7 +95,7 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 * [Rust] &#10004;
 * [Node.js] &#10004;
 * [Python] &#10004;
-* Java - &#10004;
+* Java &#10004;
 * Go - *Community Supported*
 * Swift - *roadmap*
 
