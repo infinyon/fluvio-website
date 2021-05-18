@@ -1,4 +1,4 @@
 ---
-title: MODULES
+title: PLUGINS
 weight: 20
 ---
