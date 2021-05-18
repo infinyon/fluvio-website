@@ -5,8 +5,8 @@
   right: 0;
   line-height: 14px;
   letter-spacing: 0.5px;
-  color: $black;
-  background-color: $gray9;
+  color: $gray14;
+  background-color: $light-gray;
   border: 1.25px solid $gray8;
   border-radius: 5px;
   white-space: nowrap;
@@ -21,7 +21,7 @@
 .copy-code-button:focus,
 .copy-code-button:active,
 .copy-code-button:active:hover {
-  color: $gray2;
+  color: $gray1;
   background-color:$gray10;
   opacity: 1.0;
 }
