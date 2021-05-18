@@ -7,22 +7,24 @@ $(document).ready(function () {
 });
 
 handleScroll = () => {
+    var topMax = 61;
     var scrollTop = $(this).scrollTop();
-    if (scrollTop > 65) {
+
+    if (scrollTop > topMax) {
         $('#navbar').addClass('fixed-top');
-        $('#content').css('marginTop', '75px');
-        $('.toc-area').css('top', '75px');
-    } else if (scrollTop <= 65) {
+        $('#content').css('marginTop', topMax + 'px');
+        $('.toc-area').css('top', '72px');
+    } else if (scrollTop <= topMax) {
         $('#navbar').removeClass('fixed-top');
         $('#content').css('marginTop', '0');
         $('.toc-area').css('marginTop', '10px');
         $('.side-toc .offset').css('marginTop', '0');
     }
 
-    var gradualTo = 153;
-    if (scrollTop >= 65 && scrollTop < gradualTo) {
-        $('.side-toc .offset').css('marginTop', (scrollTop - 65).toString() + 'px');
+    var gradualTo = 135;
+    if (scrollTop >= topMax && scrollTop < gradualTo) {
+        $('.side-toc .offset').css('marginTop', (scrollTop - topMax).toString() + 'px');
     } else if (scrollTop >= gradualTo) {
-        $('.side-toc .offset').css('marginTop', '87px');
+        $('.side-toc .offset').css('marginTop', '72px');
     }
 }
