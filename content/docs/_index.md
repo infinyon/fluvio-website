@@ -56,7 +56,7 @@ Fluvio is written in **Rust**, a programming language designed for _code safety_
 
 These values are derived from a simple web server implementation and can be significantly higher in large programs with many libraries and dependencies.
 
-Fluvio also takes advantage of other Rust capabilities, such as: 
+Fluvio also takes advantage of other Rust capabilities, such as:
 
 * <a href="https://rust-lang.github.io/async-book/01_getting_started/02_why_async.html" target="_blank">Asynchronous Code</a> to scale out workloads effortlessly
 * <a href="https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html" target="_blank">Fearless Concurrency</a> to leverage the CPU's full power
@@ -95,7 +95,7 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 * [Rust] &#10004;
 * [Node.js] &#10004;
 * [Python] &#10004;
-* Java &#10004;
+* [Java] - &#10004;
 * Go - *Community Supported*
 * Swift - *roadmap*
 
@@ -103,6 +103,7 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 [Rust]: https://docs.rs/fluvio
 [Node.js]: https://infinyon.github.io/fluvio-client-node/
 [Python]: https://infinyon.github.io/fluvio-client-python/fluvio.html
+[Java]: https://infinyon.github.io/fluvio-client-java/
 
 The APIs can be used to manage and operate all areas of the systems:
 
@@ -111,7 +112,7 @@ The APIs can be used to manage and operate all areas of the systems:
 * consumer
 * producers
 
-Fluvio supports polyglot environments where App modules written in different programming languages use native interfaces to access data streams. 
+Fluvio supports polyglot environments where App modules written in different programming languages use native interfaces to access data streams.
 
 
 ### Ease of Use
@@ -130,7 +131,7 @@ A subset of key features are as follows:
 
 * **Declarative Management**: Fluvio allows operators to declare desired state and the system will do the rest. No resource available, no worries, the objects are shown `in progress` until the resource constraints are resolved.
 
-* **Ultra Low Latency**: Fluvio takes advantage of Rust's async runtime to improve system performance and achieve low latency. It utilizes all available cores and interacts directly with hardware I/O. Unlike other streaming platforms where garbage collection adds unpredictable latency, Fluvio latency is constant and predictable. 
+* **Ultra Low Latency**: Fluvio takes advantage of Rust's async runtime to improve system performance and achieve low latency. It utilizes all available cores and interacts directly with hardware I/O. Unlike other streaming platforms where garbage collection adds unpredictable latency, Fluvio latency is constant and predictable.
 
 * **Low Memory Footprint**: Fluvio can be deployed in as little as 100Mb of memory. The deployment is highly optimized machine code and it does not require an intermediary virtual machine. Fluvio can be run on devices such as the Raspberry Pi and are suitable for IOT devices running at the edge.
 
