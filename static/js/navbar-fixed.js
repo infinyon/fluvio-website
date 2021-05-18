@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 handleScroll = () => {
     var topMax = 61;
+    var gradualTo = 135;
     var scrollTop = $(this).scrollTop();
 
     if (scrollTop > topMax) {
@@ -21,7 +22,6 @@ handleScroll = () => {
         $('.side-toc .offset').css('marginTop', '0');
     }
 
-    var gradualTo = 135;
     if (scrollTop >= topMax && scrollTop < gradualTo) {
         $('.side-toc .offset').css('marginTop', (scrollTop - topMax).toString() + 'px');
     } else if (scrollTop >= gradualTo) {
