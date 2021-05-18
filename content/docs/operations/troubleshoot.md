@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot
-weight: 50
+weight: 70
 ---
 
 # Troubleshooting
@@ -23,6 +23,10 @@ kubectl logs -l app=spu
 ### Records logs and create and GitHub Issue
 
 In the event of a bug in Fluvio, we appreciate if you could save the log output to file and create a [GitHub Issue](https://github.com/infinyon/fluvio/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBug%5D%3A).
+
+### Reach out to community
+
+[Discord](https://discord.gg/zHsWBt5Z2n)
 
 ### Restart Pods
 

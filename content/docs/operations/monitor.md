@@ -1,9 +1,10 @@
 ---
 title: Monitor
-weight: 30
+weight: 60
 ---
 
-# Items to check in Kubernetes
+## Objects to monitor in Kubernetes
+These objects represent the state state of the Fluvio cluster.
 
 ## Pods
 `kubectl get pods` should show one for the SC and one for each SPU specified when installing Fluvio.
@@ -30,14 +31,19 @@ fluvio-spu-main-0    LoadBalancer   10.111.223.127   10.111.223.127   9005:30023
 ```
 
 ## CRDs
-Results from 
+Fluvio stores internal metadata in K8s custom resources. [Fluvio CRDs](./crd).
+
+To verify system state you can compare results from 
 ```
+kubectl get spugroups
+kubectl get spu
 kubectl get spu
 kubectl get topics
 kubectl get partitions
 ```
 should match results from 
 ```
+fluvio cluster spg list
 fluvio cluster spu list
 fluvio cluster topics
 fluvio partitions list

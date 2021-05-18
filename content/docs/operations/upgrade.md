@@ -1,6 +1,6 @@
 ---
 title: Upgrade
-weight: 40
+weight: 50
 ---
 
 # Upgrade Fluvio
