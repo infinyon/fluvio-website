@@ -95,9 +95,10 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 * [Rust] &#10004;
 * [Node.js] &#10004;
 * [Python] &#10004;
-* Java - *coming soon*
+* Java - &#10004;
+* Go - *Community Supported*
 * Swift - *roadmap*
-* Go - *roadmap*
+
 
 [Rust]: https://docs.rs/fluvio
 [Node.js]: https://infinyon.github.io/fluvio-client-node/
