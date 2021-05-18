@@ -28,3 +28,9 @@ out with Fluvio:
 - [Create a topic with `fluvio topic create`](/cli/commands/topic#fluvio-topic-create)
 - [Produce data to a topic with `fluvio produce`](/cli/commands/produce#fluvio-produce)
 - [Consume data from a topic with `fluvio consume`](/cli/commands/consume#fluvio-consume)
+
+#### Viewing the status of the cluster
+
+- [See all of your topics with `fluvio topic list`](/cli/commands/topic#fluvio-topic-list)
+- [See your partitions and data replication with `fluvio partition list`](/cli/commands/partition#fluvio-partition-list)
+- [See the status of the SPUs in your cluster with `fluvio cluster spu list`](/cli/commands/cluster#fluvio-cluster-spu-list)
