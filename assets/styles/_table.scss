@@ -27,3 +27,15 @@ td {
 }
 
 //tr:nth-child(even) {background:  #fafafb; }
+
+table.full-width {
+    width: 100%;
+    td, th {
+        &:not(:last-child, :first-child){
+            text-align: center;
+        }
+        &:last-child {
+            width: 100%;
+        }
+    }
+}

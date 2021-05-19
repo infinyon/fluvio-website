@@ -1,5 +1,6 @@
 ---
 title: Custom Resource Definitions
+menu: CRDs
 weight: 30
 ---
 
@@ -14,14 +15,12 @@ weight: 30
 | spec.template.spec.publicEndpoint.encryption | string | PLAINTEXT or SSL |
 | spec.template.spec.privateEndpoint.port | integer | Port of private endpoint |
 | spec.template.spec.privateEndpoint.encryption | string | PLAINTEXT or SSL |
-| spec.template.spec.controllerSvc.host | string | Service controller hostname |
-| spec.template.spec.controllerSvc.encryption | string | PLAINTEXT or SSL |
 | spec.template.spec.replication.inSyncReplicaMin | integer | Is sync replica min? |
 | spec.template.spec.storage.logDir | integer | Path to data directory |
 | spec.template.spec.storage.size | integer | Storage size |
 | spec.template.spec.env[].name | integer | Environment variable name |
 | spec.template.spec.env[].value | integer | Environment variable value |
-
+{.full-width}
 
 ## SPU (spus.fluvio.infinyon.com)
 
@@ -38,6 +37,7 @@ weight: 30
 | spec.privateEndpoint.port | integer | Port of private endpoint |
 | spec.privateEndpoint.encryption | string | PLAINTEXT or SSL |
 | status.resolution | string | SPU status |
+{.full-width}
 
 
 ## Topic (topics.fluvio.infinyon.com)
@@ -51,6 +51,7 @@ weight: 30
 | spec.customReplicaAssignment[].partition.id | integer | Partition ID |
 | spec.customReplicaAssignment[].partition.replicas | integer | Number of replicas |
 | status.resolution | string | Topic status |
+{.full-width}
 
 ## Partition (partitions.fluvio.infinyon.com)
 
@@ -64,3 +65,4 @@ weight: 30
 | status.leader.hw | integer | Leader High Watermark |
 | status.leader.leo | integer | Leader End Offset |
 | status.replicas | integer | Follower Offsets |
+{.full-width}

@@ -1,13 +1,32 @@
 ---
-title: Troubleshoot
+title: Troubleshooting
 weight: 70
 ---
 
-# Troubleshooting
+## Run cluster check
+
+To diagnose abnormal behavior, a good first step is to run `fluvio cluster check`, which checks against common problems and misconfigurations. 
+
+If everything is configured properly, you should see a result like this:
+
+```
+❯ fluvio cluster check
+Running pre-startup checks...
+✅ ok: Kubernetes config is loadable
+✅ ok: Supported kubernetes version is installed
+✅ ok: Supported helm version is installed
+✅ ok: Can create service
+✅ ok: Can create customresourcedefinitions
+✅ ok: Can create secret
+✅ ok: Load balancer is up
+✅ ok: Fluvio system charts are installed
+All checks passed!
+You may proceed with cluster startup
+```
 
 ## Logs
 
-When debuging errors, the first step should be to examle the logs from the following components:
+To discover errors, you should examine logs from the following components:
 
 ### SC
 ```
