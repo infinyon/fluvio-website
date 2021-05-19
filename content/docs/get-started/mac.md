@@ -4,100 +4,93 @@ menu: MacOS
 weight: 10
 ---
 
-
-Welcome! Thanks for your interest in Fluvio, the high-performance, low-latency streaming platform for real-time applications. 
-
-In this guide, we're going to walk through the setup process for getting started with Fluvio.
-To start, we'll show you how to install the [Fluvio CLI](/cli), then later we'll show you how to get access to a Fluvio cluster, either locally or via Fluvio Cloud. Note that both of these options requires you to have the Fluvio CLI installed.
-
 ## Install Fluvio CLI
 
-The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting
-up, managing, and interacting with Fluvio.
+The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, managing, and interacting with Fluvio clusters.
 
-#### Download and Install
+Before getting started, install the [Fluvio CLI]. We'll be using the CLI to interact with your cluster.
 
-Downloading and installing Fluvio is as simple as running the following command!
+[Fluvio CLI]: {{< ref "/download/_index.md" >}}
 
-%copy first-line%
+## Required Packages for Local Fluvio cluster
 
-```bash
-$ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
-```
+1) [Docker](#install-docker)
+2) [Minikube](#install-minikube)
+3) [Kubectl](#install-kubectl)
+4) [Helm](#install-helm)
 
-If everything works successfully, you should see output similar to this:
+If you have `docker`, `kubectl`, `helm`, and `minikube` already set up, then continue to steps for [running a local Fluvio cluster].
 
-```bash
-fluvio: ⏳ Downloading Fluvio 0.8.0 for x86_64-apple-darwin...
-fluvio: ⬇️ Downloaded Fluvio, installing...
-fluvio: ✅ Successfully installed ~/.fluvio/bin/fluvio
-fluvio: ☁️ Installing Fluvio Cloud...
-fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-cloud...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.5...
-fluvio: 🔑 Downloaded and verified package file
-fluvio: ☁️ Installing Fluvio Runner...
-fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-run...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-run:0.8.0...
-fluvio: 🔑 Downloaded and verified package file
-fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-run...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-run:0.8.0...
-fluvio: 🔑 Downloaded and verified package file
-fluvio: 🎉 Install complete!
-fluvio: 💡 You'll need to add '~/.fluvio/bin/' to your PATH variable
-fluvio:     You can run the following to set your PATH on shell startup:
-fluvio:       For bash: echo 'export PATH="${HOME}/.fluvio/bin:${PATH}"' >> ~/.bashrc
-fluvio:       For zsh : echo 'export PATH="${HOME}/.fluvio/bin:${PATH}"' >> ~/.zshrc
-fluvio:
-fluvio:     To use Fluvio you'll need to restart your shell or run the following:
-fluvio:       export PATH="${HOME}/.fluvio/bin:${PATH}"
-```
+[running a local Fluvio cluster]: {{< ref "/docs/get-started/kubernetes.md" >}}
 
-Notice the steps it lists at the bottom. In order to use the `fluvio` command,
-you'll need to make sure that `~/.fluvio/bin/` (the directory where it was installed to)
-is part of your system's PATH - the list of directories where your shell looks for
-executables. Once you've followed those instructions, make sure you can run the following
-commands:
+### Install Docker
+
+Docker is a container engine which is used by Minikube to run a local Kubernetes cluster.
+
+Download and install [Docker Desktop for Mac]. Select the version that matches your chipset (Intel or Apple).
+
+[Docker Desktop for Mac]: https://hub.docker.com/editions/community/docker-ce-desktop-mac 
+
+### Install Minikube
+
+Minikube is a tool for running a local Kubernetes cluster
+
+Install `minikube` with the [Brew Package Manager] by running the following in a terminal window:
 
 %copy first-line%
 
 ```bash
-$ fluvio version
-Fluvio CLI           : 0.8.0
-Fluvio CLI SHA256    : 493abdb87591eb439884b8caf1e103135a30318e3d9d48efab117fb96b35c67b
-Fluvio Platform      : 0.8.0 (local)
-Git Commit           : 2b1b06f27e68a79a58617cc670ff38ef5abe8985
-OS Details           : Darwin 10.16 (kernel 20.3.0)
-=== Plugin Versions ===
-Fluvio Runner (fluvio-run)     : 0.1.0
-Fluvio Cloud CLI (fluvio-cloud) : 0.1.5
+$ brew install minikube
 ```
 
-Fluvio Cloud library is an add-on module that was automatically installed for:
+Or follow the instructions at the [Minikube installation page] to download and install `minikube` on MacOS.
+
+[Brew Package Manager]: https://brew.sh/
+[Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
+
+#### Start a Kubernetes cluster
+Start a Kubernetes cluster locally with minikube by running the following in a terminal window:
+
+%copy first-line%
+```bash
+$ minikube start
+```
+
+### Install Kubectl
+
+`kubectl` is the Kubernetes command-line tool. It is used to run commands against Kubernetes clusters.
+
+Install `kubectl` with the [Brew Package Manager] by running the following in a terminal window:
 
 %copy first-line%
 
 ```bash
-$ fluvio cloud
-fluvio-cloud 0.1.5
-
-USAGE:
-    fluvio-cloud <SUBCOMMAND>
-
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-SUBCOMMANDS:
-    help      Prints this message or the help of the given subcommand(s)
-    login     Log into Fluvio Cloud with a username and password
-    logout    Log out of a Fluvio Cloud account
-    version   Print the current version of fluvio-cloud
+$ brew install kubectl 
 ```
 
-## Next Steps
+Or follow the instructions at the [kubectl installation page] and follow the instructions to download and install `kubectl` on MacOS.
 
-- [Create a free Fluvio Cloud account (Recommended)]
-- [Install a Fluvio cluster locally]
+[kubectl installation page]: https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/ 
 
-[Create a free Fluvio Cloud account (Recommended)]: ./fluvio-cloud
-[Install a Fluvio cluster locally]: ./fluvio-local
+### Install Helm
+
+Helm is the package manager for Kubernetes. 
+
+Install `helm` with the [Brew Package Manager] by running the following in a terminal window:
+
+%copy first-line%
+
+```bash
+$ brew install helm 
+```
+
+Or follow the instructions at the [helm installation page] and follow the instructions to download and install `helm` on MacOS.
+
+[helm installation page]: https://v3.helm.sh/docs/intro/install/ 
+
+Now that we've got all of our tools installed, let's continue on to [running a local Fluvio cluster]!
+
+If you run into any problems along the way, make sure to check out our [troubleshooting]
+page to find a fix.
+
+[troubleshooting]: {{< ref "/docs/operations/troubleshoot.md" >}}
