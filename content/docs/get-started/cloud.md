@@ -11,14 +11,18 @@ Fluvio Cloud is currently in **alpha** and is not suitable for production enviro
 {{</idea>}}
 
 You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> or in <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a>.
-
-## Prerequisites
+## Install Fluvio CLI
 
 The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, managing, and interacting with Fluvio clusters.
 
-Before getting started, install the [Fluvio CLI]. We'll be using the CLI to interact with your cluster.
+Install the Fluvio CLI by running the following command:
 
-[Fluvio CLI]: {{< ref "/download/_index.md" >}}
+%copy first-line%
+```bash
+curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+```
+
+
 
 ## Creating a Fluvio Cloud account
 
@@ -58,4 +62,4 @@ $ fluvio profile view
  *  cloud         cloud         router.cloud.fluvio.io:9003      Verified
 ```
 
--> Use **fluvio profile switch** command to switch between clusters.
+-> Use `fluvio profile switch` command to switch between clusters.
