@@ -13,7 +13,6 @@ Fluvio is a high-performance data streaming platform for collaborative apps. Whe
 
 Fluvio can be installed on your personal computer, in a private data center, or on a public cloud. Virtually anywhere <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> is available.
 
-
 ## Core Capabilities
 
 The key tenets of this architecture are as follows
