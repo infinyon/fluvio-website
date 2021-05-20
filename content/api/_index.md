@@ -1,25 +1,66 @@
 ---
-title: API Reference
+title: API Overview
 menu: Overview
 section: APIs
 ---
 
-API Reference... sample icons & usage:
+This page describes how to generally use any of the fluvie clients.  Each
+client has some differences but these are the general rules about them.
 
-{{< icon-rust >}}
-{{< icon-python >}}
-{{< icon-node >}}
-{{< icon-java >}}
+## Connect to fluvio
 
-<hr />
-{{< icon-gopher >}}
-{{< icon-go >}}
+The first thing you want to do to use a fluvio client is connect to the fluvio
+cluster.
 
-<hr />
+## Producer
 
-Custom (Size & Link)
+Once you've got a connection handler, you will want to create a producer for a
+given topic.
 
-{{< icon-rust width="32" link="https://docs.rs/fluvio/" external="true">}}
+### Sending
+
+When sending into a stream, the general `send` will take a `key` and a `value`.
+The `key` is optional. For clients which don't have `Option` as a feature, this
+is simply an empty array.
+
+Depending on the client, these can be `string` or an array of `bytes`.
+
+## Consumer
+
+Similar to a [producing](#producer), once you've got a connection, you'll need
+to create a consumer for a given topic.
+
+### Streams
+
+Once you've got a consumer, you can create a stream given an [offset](#offsets)
+and listen for new items.
+
+Most of our clients support idiomatic ways of iterating over the items in the stream:
+* The rust client stream uses a [`Stream`](https://docs.rs/futures/0.3.15/futures/stream/trait.Stream.html)
+* The node client stream implements the [`asyncIterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of)
+* The python client stream implements `__next__` making it a [Python Iterator](https://www.programiz.com/python-programming/iterator)
+
+This functionality has not been implemented for the java client yet.
+
+### Offsets
+
+An offset is used when a stream is created to request the stream to start at
+`N` items from the beginning/end of the stream.
+
+### Records
+
+Each item in a [stream](#streams) is a `Record`.
+
+Our clients differ a little bit on this but a `Record` is a wrapper around
+array of bytes with accessor methods of `key` or `value`.
+
+In the python, node and java clients, we have to-string convenience methods.
+
+For generated API Docs visit:
+
+{{< icon-rust   width="32" link="https://docs.rs/fluvio/" external="true">}}
 {{< icon-python width="32" link="https://infinyon.github.io/fluvio-client-python/fluvio.html" external="true" >}}
-{{< icon-node width="32" link="https://infinyon.github.io/fluvio-client-node/" external="true">}}
-{{< icon-java width="38" link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
+{{< icon-node   width="32" link="https://infinyon.github.io/fluvio-client-node/" external="true">}}
+{{< icon-java   width="38" link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
+
+[//]: {{< icon-gopher >}}
