@@ -1,6 +1,6 @@
 ---
 title: Upgrade
-weight: 50
+weight: 30
 ---
 
 You can upgrade your Fluvio cluster using the CLI. Underneath this uses the <a href="https://helm.sh/docs/helm/helm_upgrade/" target="_blank">upgrade function in Helm</a>, therefore similar behavior can be expected.

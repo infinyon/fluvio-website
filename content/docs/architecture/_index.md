@@ -1,4 +1,4 @@
 ---
 title: ARCHITECTURE
-weight: 70
+weight: 80
 ---

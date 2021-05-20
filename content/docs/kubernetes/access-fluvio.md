@@ -1,5 +1,6 @@
 ---
-title: Network Endpoints
+title: Access Fluvio from Outside
+menu: Access Fluvio
 weight: 40
 ---
 

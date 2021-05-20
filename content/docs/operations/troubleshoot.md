@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-weight: 70
+weight: 20
 ---
 
 ## Run cluster check
@@ -9,8 +9,8 @@ To diagnose abnormal behavior, a good first step is to run `fluvio cluster check
 
 If everything is configured properly, you should see a result like this:
 
-```
-❯ fluvio cluster check
+```bash
+$ fluvio cluster check
 Running pre-startup checks...
 ✅ ok: Kubernetes config is loadable
 ✅ ok: Supported kubernetes version is installed
@@ -29,11 +29,11 @@ You may proceed with cluster startup
 To discover errors, you should examine logs from the following components:
 
 ### SC
-```
+```bash
 kubectl logs -l app=fluvio-sc
 ```
 ### SPU
-```
+```bash
 kubectl logs -l app=spu
 ```
 
@@ -51,7 +51,7 @@ In the event of a bug in Fluvio, we appreciate if you could save the log output 
 
 To attempt to recover from the bug, you can try restarting the K8s pods. 
 
-```
+```bash
 kubectl delete pod -l app=fluvio-sc
 kubectl delete pod -l app=spu
 ```
