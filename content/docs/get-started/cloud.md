@@ -1,53 +1,66 @@
 ---
-title: SignUp for Fluvio Cloud
+title: Fluvio Cloud
 menu: Cloud
 weight: 40
 ---
 
-Fluvio Cloud is a fully managed <a href="Github https://github.com/infinyon/fluvio/" target="_blank">Fluvio Open Source</a> provisioned and maintained by InfinyOn team. 
+Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
 
--> Fluvio Cloud is currently in **alpha** and is not suitable for production environments.
+{{<idea>}}
+Fluvio Cloud is currently in **alpha** and is not suitable for production environments.
+{{</idea>}}
 
-Please use the following channels for issues and recommendation:
+You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> or in <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a>.
+## Install Fluvio CLI
 
-* <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> - for chat
-* <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a> - for tracking issues
+The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, managing, and interacting with Fluvio clusters.
 
-For step-by-step instruction, checkout [Getting Started with Fluvio Cloud](/docs/getting-started/fluvio-cloud).
+Install the Fluvio CLI by running the following command:
 
-## Fluvio Cloud
+%copy first-line%
+```bash
+curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+```
 
-Each cloud account receives a dedicated  <a href="https://github.com/infinyon/fluvio" target="_blank">Fluvio Open Source</a> installation provisioned with 1 x [Streaming Controller](/docs/architecture/sc) (SC) and 1 x [Streaming Processing Units](/docs/architecture/spu) (SPU). 
+## Creating a Fluvio Cloud account
 
-<img src="../images/fluvio-cloud.svg"
-     alt="Fluvio Cloud"
-     style="justify: center; max-width: 360px" />
+Head on over to the  <a href="https://cloud.fluvio.io/signup" target="_blank">Fluvio Cloud signup page</a> to create an account.
 
-[Getting Started](/docs/getting-started) provides a step-by-step guide on how to create a Fluvio Cloud account and stream "Hello World". 
+{{<image src="../images/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400">}}
 
+After filling out the form, you'll be greeted with a success message telling you to verify your email. You'll need to complete this step in order to continue.
 
-### Data Streaming to Cloud
+{{<image src="../images/cloud-verification.png" alt="Fluvio Cloud verification" justify="center" width="600">}}
 
-There are currently three interfaces to stream real-time data to Fluvio Cloud:
-* [CLI](/docs/cli-reference)
-* <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API</a>
-* <a href="https://docs.rs/fluvio/" target="_blank">Rust API</a>
+You should get a confirmation that your account is ready to use
 
-All clients require a [Profile](/docs/cli/profiles) to stream data to and from a Fluvio cluster. The profile contains the authorization and access information the client uses to register and communicate with a cluster. All data between clients and Fluvio Cloud is **encrypted** in <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a>.
+{{<image src="../images/cloud-confirmation.png" alt="Fluvio Cloud confirmation" justify="center" width="600">}}
 
-The profile is generated during cluster setup and it is available for download in your <a href="https://cloud.fluvio.io" target="_blank">Fluvio Cloud Dashboard</a> account.
+At this point, we can log in via the Fluvio CLI and start sending and receiving messages to your Fluvio cluster. To log in with the CLI, you'll need to run the `fluvio cloud login` command, then type in your email and password when prompted.
 
+%copy first-line%
+```bash
+$ fluvio cloud login
+Fluvio Cloud email: batman@justiceleague.com
+Password:
+```
 
-#### Storage 
+You'll be able to tell that everything worked if your current profile is set to `cloud`. You can check with this command:
 
-When the **1GB** storage limit is reached, older data is purged to make room for new data.
+%copy first-line%
+```bash
+$ fluvio profile current
+cloud
+```
 
-#### SPUs 
-Cloud environment does not allow changes to the number of SPUs. 
+If you installed fluvio locally it will be listed alongside `cloud`:
 
-Later versions will provide the ability to control **storage** and **SPU** configurations.
+%copy first-line%
+```bash
+$ fluvio profile view
+    PROFILE       CLUSTER       ADDRESS                          TLS 
+    local         local         localhost:9003                   Disabled 
+ *  cloud         cloud         router.cloud.fluvio.io:9003      Verified
+```
 
-
-#### Related Topics
-* [Getting Started](/docs/getting-started)
-* [Fluvio Architecture](/docs/architecture)
+-> Use `fluvio profile switch` command to switch between clusters.

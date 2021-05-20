@@ -4,100 +4,212 @@ menu: MacOS
 weight: 10
 ---
 
-
-Welcome! Thanks for your interest in Fluvio, the high-performance, low-latency streaming platform for real-time applications. 
-
-In this guide, we're going to walk through the setup process for getting started with Fluvio.
-To start, we'll show you how to install the [Fluvio CLI](/cli), then later we'll show you how to get access to a Fluvio cluster, either locally or via Fluvio Cloud. Note that both of these options requires you to have the Fluvio CLI installed.
-
 ## Install Fluvio CLI
 
-The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting
-up, managing, and interacting with Fluvio.
+The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, managing, and interacting with Fluvio clusters.
 
-#### Download and Install
+Install the Fluvio CLI by running the following command:
 
-Downloading and installing Fluvio is as simple as running the following command!
+%copy first-line%
+```bash
+curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+```
+
+## Required Packages for Local Fluvio cluster
+
+1) [Docker](#install-docker)
+2) [Minikube](#install-minikube)
+3) [Kubectl](#install-kubectl)
+4) [Helm](#install-helm)
+
+If you have `docker`, `kubectl`, `helm`, and `minikube` already set up, then continue to steps for [running a local Fluvio cluster].
+
+[running a local Fluvio cluster]: {{< ref "/docs/get-started/mac.md#start-fluvio-cluster" >}}
+
+### Install Docker
+
+Docker is a container engine which is used by Minikube to run a local Kubernetes cluster.
+
+Download and install [Docker Desktop for Mac]. Select the version that matches your chipset (Intel or Apple).
+
+[Docker Desktop for Mac]: https://hub.docker.com/editions/community/docker-ce-desktop-mac 
+
+### Install Minikube
+
+Minikube is a tool for running a local Kubernetes cluster
+
+Install `minikube` with the [Brew Package Manager] by running the following in a terminal window:
 
 %copy first-line%
 
 ```bash
-$ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+$ brew install minikube
 ```
 
-If everything works successfully, you should see output similar to this:
+Or follow the instructions at the [Minikube installation page] to download and install `minikube` on MacOS.
 
+[Brew Package Manager]: https://brew.sh/
+[Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
+
+#### Start a Kubernetes cluster
+Start a Kubernetes cluster locally with minikube by running the following in a terminal window:
+
+%copy first-line%
 ```bash
-fluvio: ⏳ Downloading Fluvio 0.8.0 for x86_64-apple-darwin...
-fluvio: ⬇️ Downloaded Fluvio, installing...
-fluvio: ✅ Successfully installed ~/.fluvio/bin/fluvio
-fluvio: ☁️ Installing Fluvio Cloud...
-fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-cloud...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.5...
-fluvio: 🔑 Downloaded and verified package file
-fluvio: ☁️ Installing Fluvio Runner...
-fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-run...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-run:0.8.0...
-fluvio: 🔑 Downloaded and verified package file
-fluvio: 🎣 Fetching latest version for package: fluvio/fluvio-run...
-fluvio: ⏳ Downloading package with latest version: fluvio/fluvio-run:0.8.0...
-fluvio: 🔑 Downloaded and verified package file
-fluvio: 🎉 Install complete!
-fluvio: 💡 You'll need to add '~/.fluvio/bin/' to your PATH variable
-fluvio:     You can run the following to set your PATH on shell startup:
-fluvio:       For bash: echo 'export PATH="${HOME}/.fluvio/bin:${PATH}"' >> ~/.bashrc
-fluvio:       For zsh : echo 'export PATH="${HOME}/.fluvio/bin:${PATH}"' >> ~/.zshrc
-fluvio:
-fluvio:     To use Fluvio you'll need to restart your shell or run the following:
-fluvio:       export PATH="${HOME}/.fluvio/bin:${PATH}"
+$ minikube start
 ```
 
-Notice the steps it lists at the bottom. In order to use the `fluvio` command,
-you'll need to make sure that `~/.fluvio/bin/` (the directory where it was installed to)
-is part of your system's PATH - the list of directories where your shell looks for
-executables. Once you've followed those instructions, make sure you can run the following
-commands:
+### Install Kubectl
+
+`kubectl` is the Kubernetes command-line tool. It is used to run commands against Kubernetes clusters.
+
+Install `kubectl` with the [Brew Package Manager] by running the following in a terminal window:
 
 %copy first-line%
 
 ```bash
-$ fluvio version
-Fluvio CLI           : 0.8.0
-Fluvio CLI SHA256    : 493abdb87591eb439884b8caf1e103135a30318e3d9d48efab117fb96b35c67b
-Fluvio Platform      : 0.8.0 (local)
-Git Commit           : 2b1b06f27e68a79a58617cc670ff38ef5abe8985
-OS Details           : Darwin 10.16 (kernel 20.3.0)
-=== Plugin Versions ===
-Fluvio Runner (fluvio-run)     : 0.1.0
-Fluvio Cloud CLI (fluvio-cloud) : 0.1.5
+$ brew install kubectl 
 ```
 
-Fluvio Cloud library is an add-on module that was automatically installed for:
+Or follow the instructions at the [kubectl installation page] and follow the instructions to download and install `kubectl` on MacOS.
+
+[kubectl installation page]: https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/ 
+
+### Install Helm
+
+Helm is the package manager for Kubernetes. 
+
+Install `helm` with the [Brew Package Manager] by running the following in a terminal window:
 
 %copy first-line%
 
 ```bash
-$ fluvio cloud
-fluvio-cloud 0.1.5
-
-USAGE:
-    fluvio-cloud <SUBCOMMAND>
-
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-SUBCOMMANDS:
-    help      Prints this message or the help of the given subcommand(s)
-    login     Log into Fluvio Cloud with a username and password
-    logout    Log out of a Fluvio Cloud account
-    version   Print the current version of fluvio-cloud
+$ brew install helm 
 ```
 
-## Next Steps
+Or follow the instructions at the [helm installation page] and follow the instructions to download and install `helm` on MacOS.
 
-- [Create a free Fluvio Cloud account (Recommended)]
-- [Install a Fluvio cluster locally]
+[helm installation page]: https://v3.helm.sh/docs/intro/install/ 
+## Start Fluvio cluster 
 
-[Create a free Fluvio Cloud account (Recommended)]: ./fluvio-cloud
-[Install a Fluvio cluster locally]: ./fluvio-local
+You can start a Fluvio cluster by running `fluvio cluster start`.
+
+If this is your first time starting a cluster in your session, be prepared to enter your password.
+
+%copy first-line%
+```bash
+$ fluvio cluster start
+✅ ok: Kubernetes config is loadable
+✅ ok: Supported helm version is installed
+[sudo] password for user:
+✅ ok: Fixed: Minikube tunnel not found
+✅ ok: Fluvio system charts are installed
+✅ ok: Previous fluvio installation not found
+
+Waiting up to 120 seconds for Fluvio cluster version check...
+Successfully installed Fluvio!
+```
+
+{{< idea >}}
+`minikube tunnel` is used to expose Fluvio's [SC]({{< ref "/docs/architecture/sc.md" >}}) and [SPU]({{< ref "/docs/architecture/spu.md" >}}) services using the Kubernetes service `LoadBalancer` type.
+
+You can avoid entering your password during `fluvio cluster start` by manually opening the minikube tunnel in the background.
+
+%copy first-line%
+```bash
+$ sudo true && (sudo nohup minikube tunnel >/tmp/tunnel.out 2>/tmp/tunnel.out &)
+```
+{{< /idea >}}
+
+### Verify cluster is running
+
+We can verify that our Fluvio components are running with `kubectl`
+
+All Fluvio pods in the `default` namespace should be running.
+
+%copy first-line%
+
+```bash
+$ kubectl get po
+NAME                         READY   STATUS    RESTARTS   AGE
+fluvio-sc-695cfb4cf5-89lss   1/1     Running   0          15s
+fluvio-spg-main-0            1/1     Running   0          9s
+```
+
+Fluvio uses several services, but we should see that the `LoadBalancer` services have an external IP.
+
+%copy first-line%
+
+```bash
+$ kubectl get svc
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)             AGE
+fluvio-sc-internal   ClusterIP      10.103.221.222   <none>          9004/TCP            45s
+fluvio-sc-public     LoadBalancer   10.108.59.158    10.108.59.158   9003:30682/TCP      45s
+fluvio-spg-main      ClusterIP      None             <none>          9005/TCP,9006/TCP   36s
+fluvio-spu-main-0    LoadBalancer   10.109.119.81    10.109.119.81   9005:32297/TCP      36s
+kubernetes           ClusterIP      10.96.0.1        <none>          443/TCP             114s
+```
+
+You can check that everything worked by listing out the cluster's SPUs:
+
+The public endpoint of the SPU should match the External IP and port from the `kubectl` output.
+
+%copy first-line%
+```bash
+$ fluvio cluster spu list
+ ID  NAME    STATUS  TYPE       RACK  PUBLIC              PRIVATE
+  0  main-0  Online  "managed"   -    10.109.119.81:9005  fluvio-spg-main-0.fluvio-spg-main:9006
+```
+
+## Hello, Fluvio!
+
+Congratulations, you've successfully installed Fluvio on your local machine! 
+
+Let's use the Fluvio CLI to play with some basic functionality.
+
+The first thing we need to do is create a [topic]({{< ref "/cli/commands/topic.md" >}}).
+
+%copy first-line%
+```bash
+$ fluvio topic create greetings
+topic "greetings" created
+```
+
+Now that we have a topic, we can [produce]({{< ref "/cli/commands/produce.md" >}}) some messages!
+
+Use the following command to send a message to the `greetings` topic:
+
+%copy first-line%
+```bash
+$ echo "Hello, Fluvio" | fluvio produce greetings
+Ok!
+```
+
+Finally, we can [consume]({{< ref "/cli/commands/consume.md" >}}) messages back from the topic
+
+%copy first-line%
+```bash
+$ fluvio consume greetings -B -d
+Hello, Fluvio
+```
+
+Way to go! You're well on your way to writing real-time distributed apps with Fluvio!
+
+Next, check out our [Tutorials page] to see real-world examples of Fluvio in action.
+
+[Tutorials page]: https://www.infinyon.com/tutorials 
+
+#### Related Topics
+----------------
+
+- ["Hello World" in Java](https://www.infinyon.com/tutorials/java/hello-world/)
+- ["Hello World" in Node.js](https://www.infinyon.com/tutorials/node/hello-world/)
+- ["Hello World" in Python](https://www.infinyon.com/tutorials/python/hello-world/)
+- ["Hello World" in Rust](https://www.infinyon.com/tutorials/rust/hello-world/)
+
+---
+
+If you run into any problems along the way, make sure to check out our [troubleshooting]
+page to find a fix.
+
+[troubleshooting]: {{< ref "/docs/operations/troubleshoot.md" >}}
