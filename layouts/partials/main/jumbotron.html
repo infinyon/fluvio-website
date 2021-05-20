@@ -2,7 +2,8 @@
   <div class="lines">
     <div class="container-fluid jtron site-width">
       <div class="row d-flex no-gutters slider-text align-items-center j-row">
-        <img class="j-img-oss lazy"  src="{{ .jumbotron.image }}" alt="{{ .jumbotron.alt }}">
+        <img class="j-img-large lazy"  src="{{ .jumbotron.imageLarge }}" alt="{{ .jumbotron.alt }}">
+        <img class="j-img-small lazy"  src="{{ .jumbotron.imageSmall }}" alt="{{ .jumbotron.alt }}">
         <div class="mt-5 pt-xs-7 j-text">
           <div class="title">{{ .jumbotron.title | markdownify }}</div>
           <div class="desc oss">{{ .jumbotron.description | markdownify}}</div>

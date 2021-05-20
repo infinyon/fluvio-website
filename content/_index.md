@@ -1,9 +1,10 @@
 ---
 title: "Real-time Data Hub"
 jumbotron:
-  title: "Fluvio SmartStreams"
+  title: "Real-Time SmartStreams"
   description: "An open-source distributed data streaming platform optimized for speed and flexibility. Use **Connect** to create real-time data streams and **SmartStreams**  to upload your custom logic and modify data while still in-flight."
-  image: "/images/assets/fluvio-hero.svg"
+  imageLarge: "/images/assets/fluvio-oss-large.svg"
+  imageSmall: "/images/assets/fluvio-oss-small.svg"
   alt: "Fluvio SmartStreams"
   download_link: "/download"
   contribute_link: "https://github.com/infinyon/fluvio/blob/master/CONTRIBUTING.md"
