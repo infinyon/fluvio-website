@@ -26,4 +26,8 @@ td {
     min-width: 130px;
 }
 
+@media (max-width: 576px ) {
+    th {white-space: normal;}
+}
+
 //tr:nth-child(even) {background:  #fafafb; }
