@@ -29,19 +29,20 @@ FLAGS:
     -d, --disable-continuous    disable continuous processing of messages
     -k, --key-value             Print records in "[key] value" format, with
                                 "[null]" for no key
-    -s, --suppress-unknown      Suppress items items that have an unknown output
+        --suppress-unknown      Suppress items items that have an unknown output
                                 type
     -h, --help                  Prints help information
 
 OPTIONS:
-    -p, --partition <integer>    Partition id [default: 0]
+    -p, --partition <integer>            Partition id [default: 0]
     -o, --offset <integer>
             Offsets can be positive or negative. (Syntax for negative offset:
             --offset="-1")
-    -b, --maxbytes <integer>     Maximum number of bytes to be retrieved
+    -b, --maxbytes <integer>             Maximum number of bytes to be retrieved
     -O, --output <type>
             Output [default: dynamic]  [possible values: dynamic, text, binary,
             json, raw]
+    -s, --smart-stream <smart-stream>    Path to a WASM binary file
 
 ARGS:
     <topic>    Topic name
@@ -89,3 +90,25 @@ $ fluvio consume my-topic -B -d --key-value
 ```
 
 Records that were not given a key are printed with `[null]`.
+
+## Example 3: Consume using a SmartStream
+
+Fluvio SmartStreams are WASM modules that can edit the contents of a stream
+inline, before the records of that stream are delivered to a consumer. In order
+to use SmartStreams, you must supply the WASM module to the `fluvio consume`
+command using the `--smart-stream` option.
+
+The simplest SmartStream is the [filter example from the quick-start], which
+filters records from the stream based on whether they contain the letter `a`
+or not. You can find the full example code [in our GitHub repo] and compile
+it to test out yourself.
+
+[filter example from the quick-start]: /docs/smartstreams/quick-start
+[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples/filter_json 
+
+Once you have compiled your SmartStream and have a `.wasm` file for it, you
+can apply it to the consumer as follows:
+
+```bash
+$ fluvio consume my-topic -B --smart-stream="fluvio_wasm_filter.wasm"
+```
