@@ -22,8 +22,6 @@ Install the Fluvio CLI by running the following command:
 curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
-
-
 ## Creating a Fluvio Cloud account
 
 Head on over to the  <a href="https://cloud.fluvio.io/signup" target="_blank">Fluvio Cloud signup page</a> to create an account.
@@ -40,6 +38,7 @@ You should get a confirmation that your account is ready to use
 
 At this point, we can log in via the Fluvio CLI and start sending and receiving messages to your Fluvio cluster. To log in with the CLI, you'll need to run the `fluvio cloud login` command, then type in your email and password when prompted.
 
+%copy first-line%
 ```bash
 $ fluvio cloud login
 Fluvio Cloud email: batman@justiceleague.com
@@ -48,6 +47,7 @@ Password:
 
 You'll be able to tell that everything worked if your current profile is set to `cloud`. You can check with this command:
 
+%copy first-line%
 ```bash
 $ fluvio profile current
 cloud
@@ -55,6 +55,7 @@ cloud
 
 If you installed fluvio locally it will be listed alongside `cloud`:
 
+%copy first-line%
 ```bash
 $ fluvio profile view
     PROFILE       CLUSTER       ADDRESS                          TLS 
