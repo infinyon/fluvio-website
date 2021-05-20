@@ -236,7 +236,7 @@ $ ls -la target/wasm32-unknown-unknown/release
 .rwxr-xr-x  135Ki user 19 May 13:29   json_filter.wasm
 ```
 
-### Test Drive: Producing and Consuming the Data
+#### Test Drive: Producing and Consuming the Data
 
 Now that we've written our filter, let's play with some data and make sure we
 get the results we expect! We'll start by creating a new topic where we'll
