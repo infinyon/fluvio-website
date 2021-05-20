@@ -29,6 +29,12 @@ out with Fluvio:
 - [Produce data to a topic with `fluvio produce`](/cli/commands/produce#fluvio-produce)
 - [Consume data from a topic with `fluvio consume`](/cli/commands/consume#fluvio-consume)
 
+#### Enriching data with SmartStreams
+
+- [Quick start for building and running SmartStreams](/docs/smartstreams/quick-start)
+- [Write a custom filtering SmartStream](/docs/smartstreams/filter)
+- [Consume enriched data using SmartStreams](/cli/commands/consume#example-3-consume-using-a-smartstream)
+
 #### Viewing the status of the cluster
 
 - [See all of your topics with `fluvio topic list`](/cli/commands/topic#fluvio-topic-list)
