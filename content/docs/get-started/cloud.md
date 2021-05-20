@@ -28,15 +28,15 @@ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 Head on over to the  <a href="https://cloud.fluvio.io/signup" target="_blank">Fluvio Cloud signup page</a> to create an account.
 
-<img src="/docs/get-started/images/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400">
+{{<image src="../images/cloud-signup.png" alt="Fluvio Cloud signup" justify="center" width="400">}}
 
 After filling out the form, you'll be greeted with a success message telling you to verify your email. You'll need to complete this step in order to continue.
 
-<img src="/docs/get-started/images/cloud-verification.png" alt="Fluvio Cloud verification" justify="center" width="600">
+{{<image src="../images/cloud-verification.png" alt="Fluvio Cloud verification" justify="center" width="600">}}
 
 You should get a confirmation that your account is ready to use
 
-<img src="/docs/get-started/images/cloud-confirmation.png" alt="Fluvio Cloud confirmation" justify="center" width="600">
+{{<image src="../images/cloud-confirmation.png" alt="Fluvio Cloud confirmation" justify="center" width="600">}}
 
 At this point, we can log in via the Fluvio CLI and start sending and receiving messages to your Fluvio cluster. To log in with the CLI, you'll need to run the `fluvio cloud login` command, then type in your email and password when prompted.
 
