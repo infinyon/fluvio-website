@@ -39,6 +39,6 @@ $ fluvio topic create --topic topic-a --partitions 2 --replication 3
 
 <img src="../images/topic-2-partitions.svg"
      alt="Topic 2 Assignment"
-     style="justify: center; max-width: 680px" />
+     style="justify: center; max-width: 640px" />
 
 If a topic is deleted, all child partitions are automatically removed.
