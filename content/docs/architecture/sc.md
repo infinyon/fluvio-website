@@ -8,7 +8,7 @@ weight: 20
 
 <img src="../images/sc-architecture.svg"
      alt="SC Coordinator"
-     style="justify: center; max-width: 530px" />
+     style="justify: center; max-width: 580px" />
 
 The SC leverages a **Key-Value (KV) store** to persist cluster object configurations.
 
@@ -149,7 +149,7 @@ A topic with *6 partitions* and a *replication factor of 3* on a new cluster gen
 
 <img src="../images/partition-assignment.svg"
      alt="Partition Assignment"
-     style="justify: center; max-width: 560px" />
+     style="justify: center; max-width: 460px" />
 
 The algorithm that computes partition/replica distribution is described in the [Replica Assignment](../replica-assignment) section. 
 
