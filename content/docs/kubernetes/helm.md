@@ -11,7 +11,7 @@ The CLI takes a `--chart-values` option, during install and upgrade, which accep
 
 Following are the default values:
 
-```
+```yaml
 service:
   type: NodePort # Passed to K8s services
 loadBalancer:

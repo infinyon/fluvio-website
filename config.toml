@@ -5,9 +5,14 @@ enableRobotsTXT = true
 pygmentsUseClasses = true
 enableEmoji = true
 
+disableKinds = ["taxonomyTerm"]
+
 [markup]
   defaultMarkdownHandler = "goldmark"
   [markup.goldmark]
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
     [markup.goldmark.renderer]
       unsafe = true
 
