@@ -118,7 +118,7 @@ API reference guides for programming languages are available at:
 
 **Internal APIs** are used by the **SC** communicate with the **SPUs** and for the **SPUs** to communicate with their peers to elect leaders and exchange replica information. 
 
-<img src="../images/internal-api.svg"
+<img src="../images/internal-apis.svg"
      alt="Internal APIs"
      style="justify: center; max-width: 500px" />
 
