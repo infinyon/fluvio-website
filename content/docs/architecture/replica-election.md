@@ -14,7 +14,7 @@ The `Leader` and `Followers` of a **Replica Sets** have different responsibiliti
 
 <img src="../images/election-leader-followers-brief.svg"
      alt="Leader/Follower"
-     style="justify: center; max-width: 520px" />
+     style="justify: center; max-width: 680px" />
 
 `Leader` responsibilities:
 * ingests data from producers
@@ -129,7 +129,7 @@ For example, three replica sets **a**, **b**, and **c** that are distributed acr
 
 <img src="../images/election-connection.svg"
      alt="Election Connection"
-     style="justify: center; max-width: 400px" />
+     style="justify: center; max-width: 440px" />
 
 The first follower (**b**, or **c**) from `SPU-1` that tries to communicate with its leader in `SPU-2` generates a TCP connection. Then, all subsequent communication from `SPU-1` to `SPU-2`, irrespective of the replica set, will reuse the same connection.
 
