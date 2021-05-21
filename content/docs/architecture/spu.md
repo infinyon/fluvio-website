@@ -32,7 +32,7 @@ The following diagram describes **SPU** object relationships and workflows:
 
 <img src="../images/spu-workflow.svg"
      alt="SC Controller"
-     style="justify: center; max-width: 800px" />
+     style="justify: center; max-width: 740px" />
 
 1. Leader Controller (LC)
     * receives SPU and Partition specs from SC Dispatcher
