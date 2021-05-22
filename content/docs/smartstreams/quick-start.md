@@ -137,6 +137,23 @@ If everything worked as expected, we should see all five records appear in the
 plain consumer, but only `Banana`, `Cabbage`, and `Date` should appear in the
 consumer with our SmartStream filter.
 
+```bash
+$ fluvio consume hello-smartstreams -B
+Apple
+Banana
+Cabbage
+Date
+Egg
+```
+
+```bash
+$ fluvio consume hello-smartstreams -B \
+    --smart-stream="target/wasm32-unknown-unknown/release/example_filter.wasm"
+Banana
+Cabbage
+Date
+```
+
 ### Read next
 
 - [Writing a JSON filter SmartStream](/docs/smartstreams/filter)
