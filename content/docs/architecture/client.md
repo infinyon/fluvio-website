@@ -51,11 +51,8 @@ For additional information, checkout:
 
 Future versions of Fluvio will provide additional programming language bindings, such as: 
 
-* <a href="https://golang.org/" target="_blank">Go</a>
 * <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" target="_blank">Objective-C</a>
-* <a href="https://docs.oracle.com/javase/tutorial/" target="_blank">Java</a>
-* <a href="https://docs.python.org/3/reference/" target="_blank">Python</a>
-* <a href="https://www.cplusplus.com/" target="_blank">C/C++</a>.
+* <a href="https://www.cplusplus.com/" target="_blank">C/C++</a>
 
 
 ## Client API
