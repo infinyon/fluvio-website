@@ -3,7 +3,7 @@ title: Client Library
 weight: 90
 ---
 
-A Fluvio client communicates with a Fluvio cluster to manage streams and to emit or receive events. The client uses a purpose-built communication protocol that is optimized for maximum performance, scalability, and low latency. Future versions will provide adaptors to standard protocols, such as: HTTP, WebSocket, gRPC, etc.
+A Fluvio client communicates with a Fluvio cluster to manage streams and to emit or receive events. The client uses a purpose-built communication protocol that is optimized for maximum performance, scalability, and low latency. Websocket is currently in the works, and future versions will provide adaptors to other protocols, such as: HTTP, gRPC, protobuf and more.
 
 <img src="../images/fluvio-client.svg"
      alt="Fluvio Client"
