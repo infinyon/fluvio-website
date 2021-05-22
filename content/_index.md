@@ -1,8 +1,8 @@
 ---
-title: "Real-time Data Hub"
+title: "Fluvio Data Hub"
 jumbotron:
-  title: "Real-Time SmartStreams"
-  description: "An open-source distributed data streaming platform optimized for speed and flexibility. Use **Connect** to create real-time data streams and **SmartStreams**  to upload your custom logic and modify data while still in-flight."
+  title: "Fluvio Data Hub"
+  description: "A real-time data streaming platform with in-line computation capabilities. Use Fluvio **SmartStreams** to upload your custom logic and modify data as it moves over the network."
   imageLarge: "/images/assets/fluvio-oss-large.svg"
   imageSmall: "/images/assets/fluvio-oss-small.svg"
   alt: "Fluvio SmartStreams"

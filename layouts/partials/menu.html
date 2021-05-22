@@ -67,6 +67,7 @@
           {{- end -}}
         {{- end -}}
         {{- block "stars" . -}}{{- end }}
+        {{- block "try-cloud" . -}}{{- end }}
       </ul>
     </div>
   </div>
@@ -79,5 +80,13 @@
 {{- define "stars" -}}
     <li class="navbar-item stars">
       {{ "[![GitHub stars](https://img.shields.io/github/stars/infinyon/fluvio?style=social)](https://gitHub.com/infinyon/fluvio/stargazers/)" | markdownify }}
+    </li>  
+{{- end -}}
+
+{{- define "try-cloud" -}}
+    <li class="navbar-item">
+      <div class="button inline">
+          <a href="{{ .page.Site.Params.fluvio_cloud }}" class="btn btn-menu" id="button-cloud">Try Cloud</a>
+      </div>
     </li>  
 {{- end -}}

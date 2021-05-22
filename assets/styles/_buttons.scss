@@ -15,7 +15,7 @@
     }
   }
 
-  .btn-light-full {
+  .btn-navy {
     padding:10px 50px;
     color: $white;
     border: 1px solid $white;
@@ -24,7 +24,6 @@
 
     &:hover {
       border-color: $main-light-highlight;
-      background-color:$main-light-accent;
     }
   }
 
@@ -87,11 +86,25 @@
   .btn-purple {
     padding:10px 50px;
     color: $white;
-    border: 2px solid $main-dialog;
+    border: 1px solid $main-dialog;
     background-color: $main-dialog;
+    text-transform: uppercase;
+    &:hover {
+      border-color: $main-light-highlight;
+    }
+  }
+
+  .btn-menu {
+    margin-top: -4px;
+    padding:3px 12px;
+    color: $white;
+    border: 1px solid $white;
+    background-color: $accent-pink;
+    font-size: .85em;
 
     &:hover {
       border-color: $main-light-highlight;
+      background-color: $accent-pink-defused;
     }
   }
 
