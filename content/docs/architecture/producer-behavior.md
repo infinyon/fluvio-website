@@ -1,6 +1,7 @@
 ---
 title: Producer Behavior
-weight: 80
+weight: 10
+hidden: true
 ---
 
 The client should managed send messages with a strong strategy, specially when you  want to send multiple messages at the same time (batch) or on the same connection, without waiting for the ack for each message before sending the next one

@@ -113,7 +113,8 @@ API reference guides for programming languages are available at:
 
 * <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API</a> 
 * <a href="https://docs.rs/fluvio/" target="_blank">Rust API</a>
-* 
+* <a href="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" target="_blank">Java API</a>
+* <a href="https://infinyon.github.io/fluvio-client-python/fluvio.html" target="_blank">Python API</a>
 
 ### Internal APIs
 
