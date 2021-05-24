@@ -7,6 +7,28 @@ section: APIs
 This page describes how to generally use any of the fluvie clients.  Each
 client has some differences but these are the general rules about them.
 
+For generated API Docs visit:
+
+<div style="padding-left: 20px; display: inline">
+{{< icon-rust link="https://docs.rs/fluvio/" external="true">}}
+</div>
+
+<div style="padding-left: 10px; display: inline">
+{{< icon-python link="https://infinyon.github.io/fluvio-client-python/fluvio.html" external="true" >}}
+</div>
+
+<div style="padding-left: 10px; display: inline">
+{{< icon-node  link="https://infinyon.github.io/fluvio-client-node/" external="true">}}
+</div>
+
+<div style="padding-left: 10px; display: inline">
+{{< icon-java link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
+</div>
+
+<div style="padding-left: 12px; display: inline">
+{{< icon-gopher link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
+</div>
+
 ## Connect to fluvio
 
 The first thing you want to do to use a fluvio client is connect to the fluvio
@@ -55,12 +77,3 @@ Our clients differ a little bit on this but a `Record` is a wrapper around
 array of bytes with accessor methods of `key` or `value`.
 
 In the python, node and java clients, we have to-string convenience methods.
-
-For generated API Docs visit:
-
-{{< icon-rust   width="32" link="https://docs.rs/fluvio/" external="true">}}
-{{< icon-python width="32" link="https://infinyon.github.io/fluvio-client-python/fluvio.html" external="true" >}}
-{{< icon-node   width="32" link="https://infinyon.github.io/fluvio-client-node/" external="true">}}
-{{< icon-java   width="38" link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
-
-[//]: {{< icon-gopher >}}

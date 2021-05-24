@@ -35,29 +35,31 @@
 
 <div class=".sidebar">
 <!-- Overview Page -->
-{{- with .Site.GetPage .Section }}
-    {{ if not .Params.hidden }}
+{{- with .Site.GetPage .Section -}}
+    {{- if not .Params.hidden }}
         {{- block "menu-item" (dict "current" $current "page" . "class" "first") -}}{{- end }}
-    {{- end -}}
+    {{ end -}}
 {{ end -}}
 
 <!-- Top Pages -->
-{{ range $all_pages }}
+{{- range $all_pages -}}
     {{ if not .Params.hidden }}
-        {{ if and .IsPage (eq .CurrentSection .FirstSection) }}
+        {{- if and .IsPage (eq .CurrentSection .FirstSection) }}
             {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
-        {{- end -}}
+        {{ end -}}
     {{- end -}}
 {{- end -}}
 
 <!-- Sections -->
 {{- range $all_pages -}}
-    {{ if not .Params.hidden }}
+    {{- if not .Params.hidden }}
         {{- if and .IsSection .Page.Parent.IsSection -}}
             <div class="section">
                 <div class="title">{{.Title}}</div>
-            {{ range .Pages.ByWeight }}
-                {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
+            {{- range .Pages.ByWeight -}}
+                {{- if not .Params.hidden }}
+                    {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
+                {{ end -}}
             {{- end -}}
             </div>
         {{- end -}}
