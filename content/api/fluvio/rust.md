@@ -12,7 +12,7 @@ features before any of the other clients as well as having good support for the
 To get a [fluvio connection] do:
 
 ```rust
-let fluvio : = Fluvio::connect().await.expect("Failed to connect to fluvio");
+let fluvio = Fluvio::connect().await.expect("Failed to connect to fluvio");
 ```
 
 [fluvio connection]: https://docs.rs/fluvio/0.8.0/fluvio/struct.Fluvio.html#method.connect
