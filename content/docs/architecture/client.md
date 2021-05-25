@@ -17,13 +17,15 @@ The Fluvio client library is written in Rust and can be natively embedded into o
 
 ### Node Binding
 
-The first language binding implementation is for `Node.js`. The Node bindings allow web developers to add real-time data streaming to applications in a matter of minutes. No servers to configure, no databases to maintain, just connect your App to [Fluvio Cloud](/docs/getting-started), and you have the <ins>first building block</ins> on the path to a **real-time distributed App**.
+The first language binding implementation is for `Node.js`. The Node bindings allow web developers to add real-time data streaming to applications in a matter of minutes. No servers to configure, no databases to maintain, just connect your App to [Fluvio Cloud], and you have the <ins>first building block</ins> on the path to a **real-time distributed App**.
+
+[Fluvio Cloud]: {{< ref "/docs/get-started/cloud" >}}
 
 * API Reference
     * <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API Reference</a>
 
 * Tutorials
-    * [Hello, World!](/tutorials/hello-world-node/) 
+    * [Hello, World!](https://www.infinyon.com/tutorials/node/hello-world/) 
 
 For additional details on Node binding implementation, checkout <a href="https://github.com/infinyon/node-bindgen" target="_blank">node-bindgen</a> library.
 
@@ -36,7 +38,7 @@ The Rust API is native to the platform and does not require any language binding
     * <a href="https://docs.rs/fluvio/" target="_blank">Rust API Reference</a>
 
 * Demo Apps
-    * [Rust Tutorials](/tutorials/rust/) 
+    * [Rust Tutorials](https://www.infinyon.com/tutorials/rust/hello-world/) 
 
 
 ### Fluvio CLI
@@ -45,7 +47,7 @@ The Fluvio ClI an application written on top of the client library. The CLI can 
 
 For additional information, checkout:
 
-* [Fluvio CLI](/docs/cli-reference/)
+* [Fluvio CLI]({{< ref "/cli" >}})
 
 #### Future Work
 
@@ -130,7 +132,9 @@ Each configuration object goes through its own lifecycle. Object status track th
 
 -> Some configuration objects such as **Partition** and **Managed** SPU are managed objects that are created as part of the parent's lifecycle, and they `cannot be directly modified` by the operator.
 
-For detailed schema definition and object life cycles, checkout the [Reference Guide](../references/#object-lifecycle).
+For detailed schema definition and object life cycles, checkout the [Architecture Overview].
+
+[Architecture Overview]: {{< ref "/docs/architecture/overview" >}}
 
 
 #### Object Outputs
@@ -169,15 +173,17 @@ If the SPU leader becomes unreachable, an election is triggered and one of the S
      alt="Producer/Consumer Failover"
      style="justify: center; max-width: 475px" />
 
-For additional information on the election algorithm, checkout [Election Design](../election).
+For additional information on the election algorithm, checkout [Election Design].
 
+[Election Design]: {{< ref "/docs/architecture/replica-election" >}}
 
 ## Client Profiles
 
 The client library utilizes profiles to hide the complexity associated with the connection configuration. Furthermore, profiles allows the client library to manage multiple Fluvio clusters from the same client instance. Simply switch the profile and all subsequent operations are applied to a different cluster.
 
-For additional information on Profile management, checkout [Fluvio Profiles](/docs/cli/profiles) section.
+For additional information on Profile management, checkout [Fluvio Profiles] section.
 
+[Fluvio Profiles]: {{< ref "/cli/commands/profile" >}}
 
 ## Client Workflow
 
@@ -185,9 +191,13 @@ All client operations follow a similar pattern.
 
 1. Create a profile (one time operation).
 2. Connect to the cluster, using the profile created above.
-3. Use the [Admin API](#admin-api) to configure or retrieve objects (optional).
+3. Use the [Admin API]({{< ref "#admin-api" >}}) to configure or retrieve objects (optional).
 4. Produce or Consume records:
-    * Use the [Producer API](#producer-api) to send records to a data stream.
-    * Use the [Consumer API](#consumer-api) to retrieve records from a data stream.
+    * Use the [Producer API] to send records to a data stream.
+    * Use the [Consumer API] to retrieve records from a data stream.
 
 The Fluvio Client library is multi-threaded, and it can simultaneously connect to _multiple clusters_, and concurrently _produce and consume_ one or more data streams.
+
+[Admin API]: {{< ref "#admin-api" >}}
+[Producer API]: {{< ref "#producer-api" >}}
+[Consumer API]: {{< ref "#consumer-api" >}}

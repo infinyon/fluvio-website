@@ -11,7 +11,7 @@ by cluster commands. Please make sure you have followed the
 [getting started guide] and installed all the necessary dependencies before
 attempting to install your own cluster.
 
-[getting started guide]: /docs/get-started
+[getting started guide]: {{< ref "/docs/get-started" >}}
 
 ## `fluvio cluster check`
 

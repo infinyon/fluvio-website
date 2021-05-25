@@ -130,9 +130,6 @@ status:
 
 SPU-group status has 3 **resolutions**: Init, Invalid, and Reserved. If the group is marked invalid, a **reason** field describes the error.
 
-Checkout the [SPU-groups CLI](/docs/cli/spu-groups) for additional information.
-
-
 ### Topics
 
 **Topics** define configuration parameters for data streams. A topic may have one or more partition and a replication factor. **Partitions** split the data into independent slices that can be managed by different SPUs. **Replication factor** defines the number of copies of data across SPUs.
@@ -151,9 +148,12 @@ A topic with *6 partitions* and a *replication factor of 3* on a new cluster gen
      alt="Partition Assignment"
      style="justify: center; max-width: 460px" />
 
-The algorithm that computes partition/replica distribution is described in the [Replica Assignment](../replica-assignment) section. 
+The algorithm that computes partition/replica distribution is described in the [Replica Assignment] section. 
 
-Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topics CLI](/docs/cli/topics) section.
+Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topics CLI] section.
+
+[Replica Assignment]: {{< ref "./replica-assignment" >}}
+[Topics CLI]: {{< ref "/cli/commands/topic" >}}
 
 ##### Topic Status
 
@@ -191,7 +191,7 @@ In this example, **4: [1, 2, 0]** defines:
 
 ### Partitions
 
-When a new topic is created, the **SC** performs [replica assignment](../replica-assignment) to generate the partitions:
+When a new topic is created, the **SC** performs [Replica Assignment] to generate the partitions:
 
 1. **generate a partition map** and store in the topic status,
 2. **create a partition object** for each row in the partition map,
@@ -220,8 +220,9 @@ status:
 
 **SPU leader** is responsible for managing **Live Replicas (lrs)** and other data streaming related parameters.
 
-Replica management, election, and all other status fields are documented in the [SPU Architecture](../spu) section.
+Replica management, election, and all other status fields are documented in the [SPU Architecture] section.
 
+[SPU Architecture]: {{< ref "./spu" >}}
 
 ## Workflows
 

@@ -49,18 +49,22 @@ Depending on the client, these can be `string` or an array of `bytes`.
 
 ## Consumer
 
-Similar to a [producing](#producer), once you've got a connection, you'll need
+Similar to a [producing]({{< ref "#producer" >}}), once you've got a connection, you'll need
 to create a consumer for a given topic.
 
 ### Streams
 
-Once you've got a consumer, you can create a stream given an [offset](#offsets)
+Once you've got a consumer, you can create a stream given an [offset]({{< ref "#offsets" >}})
 and listen for new items.
 
 Most of our clients support idiomatic ways of iterating over the items in the stream:
-* The rust client stream uses a [`Stream`](https://docs.rs/futures/0.3.15/futures/stream/trait.Stream.html)
-* The node client stream implements the [`asyncIterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of)
-* The python client stream implements `__next__` making it a [Python Iterator](https://www.programiz.com/python-programming/iterator)
+* The rust client stream uses a [`Stream`]
+* The node client stream implements the [`asyncIterator`]
+* The python client stream implements `__next__` making it a [Python Iterator]
+
+[`Stream`]: https://docs.rs/futures/0.3.15/futures/stream/trait.Stream.html
+[`asyncIterator`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
+[Python Iterator]: https://www.programiz.com/python-programming/iterator
 
 This functionality has not been implemented for the java client yet.
 
@@ -71,7 +75,7 @@ An offset is used when a stream is created to request the stream to start at
 
 ### Records
 
-Each item in a [stream](#streams) is a `Record`.
+Each item in a [stream]({{< ref "#streams" >}}) is a `Record`.
 
 Our clients differ a little bit on this but a `Record` is a wrapper around
 array of bytes with accessor methods of `key` or `value`.

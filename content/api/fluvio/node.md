@@ -19,43 +19,52 @@ To see the full docs, visit [our typedoc page].
 
 ## Connect
 
-To [connect to fluvio](https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#connect) do:
+To [connect to fluvio] do:
 
 ```javascript
 import Fluvio from '@fluvio/client';
 const fluvio = await Fluvio.connect();
 ```
 
+[connect to fluvio]: https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#connect
+
 ## Produce
 
-To [create a producer](https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#topicproducer) do:
+To [create a producer] do:
 ```javascript
 const producer = await fluvio.topicProducer("my-topic");
 ```
 
+[create a producer]: https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#topicproducer
+
 ### Send
 
-To [send a record](https://infinyon.github.io/fluvio-client-node/classes/topicproducer.html#send) for a producer do:
+To [send a record] for a producer do:
 ```javascript
 producer.send("my-key", "my-value");
 ```
+
+[send a record]: https://infinyon.github.io/fluvio-client-node/classes/topicproducer.html#send
 
 Note: The `send` call can take either an `ArrayBuffer` or a `string` for the
 key/value fields in `send`.
 
 ## Consume
 
-To [get a consumer](https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#partitionconsumer) do:
+To [get a consumer] do:
 ```javascript
 const partition = 0;
 const consumer = await fluvio.partitionConsumer("my-topic", partition)
 ```
 
+[get a consumer]: https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#partitionconsumer
+
 ### Stream
 
-To iterate over the items in a consumer do [create a
-stream](https://infinyon.github.io/fluvio-client-node/classes/partitionconsumer.html#createstream)
+To iterate over the items in a consumer do [create a stream]
 and iterate over it like this:
+
+[create a stream]: https://infinyon.github.io/fluvio-client-node/classes/partitionconsumer.html#createstream
 
 ```javascript
 const stream = await consumer.createStream(Offset.FromBeginning());

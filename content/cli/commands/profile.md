@@ -21,7 +21,7 @@ you use for development, whose profile name is "local".
 If your current profile is "local", then a command such as [`fluvio topic create greeting`] will
 create a "greeting" topic on your local cluster.
 
-[`fluvio topic create greeting`]: /cli/commands/topic#fluvio-topic-create
+[`fluvio topic create greeting`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
 
 ```
 fluvio-profile-current
@@ -86,7 +86,7 @@ Deletes cluster connection information from your Fluvio configuration. This will
 a cluster itself (for that see [`fluvio cluster delete`]), but it will cause the Fluvio CLI to
 no longer be able to connect to that cluster.
 
-[`fluvio cluster delete`]: /cli/commands/cluster#fluvio-cluster-delete
+[`fluvio cluster delete`]: {{< ref "/cli/commands/cluster#fluvio-cluster-delete" >}}
 
 ```
 fluvio-profile-delete-cluster

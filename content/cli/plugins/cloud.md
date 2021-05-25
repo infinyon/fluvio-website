@@ -65,5 +65,5 @@ At this point, any other `fluvio` commands (such as produce, consume, etc.) will
 interact with your `cloud` cluster. To switch back to a different cluster, use
 [`fluvio profile switch`].
 
-[`fluvio profile view`]: /cli/commands/profile#fluvio-profile-view
-[`fluvio profile switch`]: /cli/commands/profile#fluvio-profile-switch
+[`fluvio profile view`]: {{< ref "/cli/commands/profile#fluvio-profile-view" >}}
+[`fluvio profile switch`]: {{< ref "/cli/commands/profile#fluvio-profile-switch" >}}

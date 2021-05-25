@@ -20,7 +20,7 @@ using arbitrary Rust code, we can also pull in other crates as dependencies. We'
 going to use `serde` and `serde_json` to help us work with our JSON data.
 If you want to jump ahead and see the finished code, [check out our JSON filter example].
 
-[SmartStream quick start]: /docs/smartstreams/quick-start
+[SmartStream quick start]: {{< ref "/docs/smartstreams/quick-start" >}}
 [check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples/filter_json
 
 #### Create a new Project
@@ -28,8 +28,13 @@ If you want to jump ahead and see the finished code, [check out our JSON filter 
 Let's use `cargo-generate` again to set up our new SmartStream project. We'll want
 to give the project a name and choose the "filter" option.
 
+%copy first-line%
 ```bash
 $ cargo install cargo-generate # In case you didn't install it before
+```
+
+%copy first-line%
+```bash
 $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 🤷   Project Name : json-filter
 🔧   Creating project called `json-filter`...
@@ -227,11 +232,15 @@ Let's make sure our code compiles. We'll use release mode in order to get
 the smallest and fastest binary possible. We should be able to see the
 `.wasm` file appear in the target directory.
 
+%copy first-line%
 ```bash
 $ cargo build --release
    Compiling json-filter v0.1.0 (/home/user/json-filter)
     Finished release [optimized] target(s) in 2.33s
-    
+```
+
+%copy first-line%
+```bash    
 $ ls -la target/wasm32-unknown-unknown/release
 .rwxr-xr-x  135Ki user 19 May 13:29   json_filter.wasm
 ```
@@ -242,6 +251,7 @@ Now that we've written our filter, let's play with some data and make sure we
 get the results we expect! We'll start by creating a new topic where we'll
 produce our data.
 
+%copy first-line%
 ```bash
 $ fluvio topic create server-logs
 topic "server-logs" created
@@ -254,12 +264,14 @@ use our filter, so we should only see non-debug logs.
 
 To run the plain consumer, use the following command:
 
+%copy first-line%
 ```bash
 $ fluvio consume server-logs -B
 ```
 
 In the other terminal, run a consumer with the SmartStream filter using this command:
 
+%copy first-line%
 ```bash
 $ fluvio consume server-logs -B --smart-stream="target/wasm32-unknown-unknown/release/json_filter.wasm"
 ```
@@ -268,12 +280,14 @@ Finally, we can take our `server.log` file and use `fluvio produce` to send each
 line of the file as one record to our topic. In a third terminal, run the following
 command to produce the server logs to our topic:
 
+%copy first-line%
 ```bash
 $ fluvio produce server-logs -f server.log
 ```
 
 In the plain consumer, we should see all the records get passed through:
 
+%copy first-line%
 ```bash
 $ fluvio consume server-logs -B
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}
@@ -292,6 +306,7 @@ $ fluvio consume server-logs -B
 But in the consumer with our SmartStream, we'll no longer see any of the records
 whose log level was debug!
 
+%copy first-line%
 ```bash
 $ fluvio consume server-logs -B --smart-stream="target/wasm32-unknown-unknown/release/json_filter.wasm"
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}

@@ -5,13 +5,15 @@ weight: 50
 
 **Replica assignment** algorithm is triggered by topic creation and it is responsible for a building a **balanced distribution** of replicas across the SPUs in a Fluvio cluster. **Replicas** from different SPUs are grouped in **replica sets**, where each replica saves a copy of a data stream. Each replica set has a leader and one or more followers that are distributed across available SPUs.
 
-For additional information on replica sets, checkout [replica election](../replica-election).
+For additional information on replica sets, checkout [replica election].
 
+[replica election]: {{< ref "./replica-election" >}}
 
 ## Replica Assignment Algorithm
 
-Fluvio replica assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment](#manual-replica-assignment) instead.
+Fluvio replica assignment algorithm ensures that the replica leader and followers are evenly distributed across available SPUs. If you'd rather deploy your own replication algorithm, use [Manual Replica Assignment] instead.
 
+[Manual Replica Assignment]: {{< ref "#manual-replica-assignment" >}}
 
 ### Computed Replica Assignment (CRA)
 
@@ -199,10 +201,13 @@ Replicas are evenly distributed across SPUs. Racks with a higher number of SPUs 
 
 ### Manual Replica Assignment
 
-**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status](../sc#topic-status"). In fact, the **replica map** defined as defined in the file is assigned to this field.
+**MRA** is provisioned through a **replica assignment file**. The file defines a **replica map** that is semantically similar to the **replicaMap** defined in [Topic Status]. In fact, the **replica map** defined as defined in the file is assigned to this field.
+
+[Topic Status]: {{< ref "./sc#topics" >}}
 
 The following command creates a topic from a **replica assignment file**:
 
+%copy first-line%
 ```bash
 $ fluvio topic create --topic custom-topic --replica-assignment ./my-assignment
 ```
@@ -239,4 +244,6 @@ The **replica map** definition meet the following criteria:
     - all elements must be unique.
     - all elements must be positive integers.
 
-For additional information on how to check the result of a replica assignment file, checkout [Topics CLI](/docs/cli/topics).
+For additional information on how to check the result of a replica assignment file, checkout [Topics CLI].
+
+[Topics CLI]: {{< ref "/cli/commands/topic" >}}

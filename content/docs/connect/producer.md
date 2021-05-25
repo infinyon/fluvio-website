@@ -12,8 +12,8 @@ producer program would leverage [one of the programmatic APIs]. Let's talk about
 the core concepts that producers deal with in order to better understand how
 they work.
 
-[the Fluvio CLI]: /cli
-[one of the programmatic APIs]: /api
+[the Fluvio CLI]: {{< ref "/cli" >}}
+[one of the programmatic APIs]: {{< ref "/api" >}}
 
 ## Records, Topics, and Partitions
 
@@ -83,12 +83,12 @@ on the properties we just covered:
 
 In order to get started with producing streaming data, you'll need to:
 
-- [Have a Fluvio cluster up and running](/docs/get-started),
-- [Create a Topic to produce data to](/cli/commands/topic#fluvio-topic-create), then
-- Choose one of the following producer interfaces to use:
-  - [Fluvio CLI](/cli/commands/produce)
-  - [Rust](/api/rust)
-  - [Node](/api/node)
-  - [Python](/api/python)
-  - [Java](/api/java)
-  
+- [Have a Fluvio cluster up and running]({{< ref "/docs/get-started" >}}),
+- [Create a Topic to produce data to]({{< ref "/cli/commands/topic#fluvio-topic-create" >}}), then
+- Choose one of the following consumer interfaces to use:
+  - [Fluvio CLI]({{< ref "/cli/commands/consume" >}})
+  - [Rust]({{< ref "/api/fluvio/rust" >}})
+  - [Node]({{< ref "/api/fluvio/node" >}})
+  - [Python]({{< ref "/api/fluvio/python" >}})
+  - [Java]({{< ref "/api/fluvio/java" >}})
+

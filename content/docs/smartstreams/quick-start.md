@@ -24,8 +24,13 @@ by not over-fetching records they don't need.
 We've put together some `cargo-generate` templates for creating SmartStreams. To
 get started with your own SmartStreams, you can run the following:
 
+%copy first-line%
 ```bash
 $ cargo install cargo-generate
+```
+
+%copy first-line%
+```bash
 $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 🤷   Project Name : example-filter
 🔧   Creating project called `example-filter`...
@@ -71,6 +76,10 @@ mode in order to make the binary smaller and faster.
 %copy first-line%
 ```bash
 $ cargo build --release
+```
+
+%copy first-line%
+```bash
 $ ls -la target/wasm32-unknown-unknown/release/your-package-name.wasm
 .rwxr-xr-x  135Ki user 19 May 16:32   example_filter.wasm
 ```
@@ -79,7 +88,7 @@ $ ls -la target/wasm32-unknown-unknown/release/your-package-name.wasm
 
 Let's start by [creating a new topic] to test this SmartStream with.
 
-[creating a new topic]: /cli/commands/topic#fluvio-topic-create
+[creating a new topic]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
 
 %copy first-line%
 ```bash
@@ -108,9 +117,9 @@ This command will stay open while it waits for records to arrive. In the second
 terminal window, run this command in order to set up a consumer with our
 SmartStream.
 
+%copy first-line%
 ```bash
-$ fluvio consume hello-smartstreams -B \
-    --smart-stream="target/wasm32-unknown-unknown/release/example_filter.wasm"
+$ fluvio consume hello-smartstreams -B --smart-stream="target/wasm32-unknown-unknown/release/example_filter.wasm"
 ```
 
 Now, with both of our consumer windows open, let's open one last terminal and
@@ -119,6 +128,7 @@ the filter criteria appear in both consumer windows, and records that don't matc
 the filter criteria should only appear in the plain consumer, not the SmartStream
 consumer. Let's send some records.
 
+%copy first-line%
 ```bash
 $ fluvio produce hello-smartstreams
 > Apple
@@ -156,4 +166,4 @@ Date
 
 ### Read next
 
-- [Writing a JSON filter SmartStream](/docs/smartstreams/filter)
+- [Writing a JSON filter SmartStream]({{< ref "/docs/smartstreams/filter" >}})

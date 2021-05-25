@@ -17,10 +17,9 @@ Fluvio can be installed on your personal computer, in a private data center, or 
 
 The key tenets of this architecture are as follows
 
-* [data streaming](#data-streaming)
-* [language native APIs](#language-native-apis)
-* [ease of use](#ease-of-use)
-
+* [data streaming]({{< ref "#data-streaming" >}})
+* [language native APIs]({{< ref "#language-native-apis" >}})
+* [ease of use]({{< ref "#ease-of-use" >}})
 
 ### Data Streaming
 
@@ -72,7 +71,7 @@ Fluvio is designed for **horizontal scale**, with multiple Streaming Processing 
 
 Fluvio uses **partitioning** to divide data into smaller sub-streams for availability, fault tolerance and manageability. Each partition is an independent data streaming unit that can scale independently. Partitions are distributed evenly across Streaming Processing Units (SPUs) to ensure a balanced system. This architecture choice enables Fluvio clients to write-to or read-from multiple partitions simultaneously.
 
-For additional information, check out the [Topic/Partition](/docs/architecture/topics-partitions/) section in the [Architecture](/docs/architecture) document.
+For additional information, check out the [Topic/Partition]({{< ref "/docs/architecture/topic-partitions" >}}) section.
 
 
 #### Security
@@ -86,8 +85,9 @@ Fluvio is designed for **fault tolerance** and **high availability**. Data strea
 
 All system components have self-healing recovery mechanisms and automatic failover to increase resiliency and simplify usability. Fluvio has built-in eventual consistency to allow recovering SPUs to update their internal state and rejoin the cluster as fully functional units.
 
-For additional information, check out the [Replica Election](/docs/architecture/replica-election/) section in the [Architecture](/docs/architecture) document.
+For additional information, check out the [Replica Election] section.
 
+[Replica Election]: {{< ref "/docs/architecture/replica-election" >}}
 
 ### Language Native APIs
 

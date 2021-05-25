@@ -10,7 +10,9 @@ Installing and uninstalling Fluvio on K8s is mostly handled by our Helm chart, h
 
 The kubernetes installation process requires two steps. Both are performed with the CLI.
 
-First we need to install the "system" chart with sets up the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/" target="_blank">Custom Resource Definitions</a>. Fluvio uses CRDs for storing [system state](../crd).
+First we need to install the "system" chart with sets up the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/" target="_blank">Custom Resource Definitions</a>. Fluvio uses CRDs for storing [system state].
+
+[system state]: {{< ref "./crd" >}}
 
 %copy first-line%
 ```bash
@@ -21,7 +23,9 @@ If installing in K8s environments other than minikube, you need to specify `--cl
 
 ### Options
 
-The CLI takes a `--chart-values` option which accepts a file path to a YAML file with values that are applied to the Fluvio [Helm chart](../helm).
+The CLI takes a `--chart-values` option which accepts a file path to a YAML file with values that are applied to the Fluvio [Helm chart].
+
+[Helm chart]: {{< ref "./helm" >}}
 
 See other options by running 
 

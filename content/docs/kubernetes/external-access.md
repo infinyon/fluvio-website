@@ -6,7 +6,10 @@ weight: 40
 
 By default Fluvio services are exposed via NodePorts.
 
-SCs are exposed via port 9003 and SPUs are exposed via port 9005. Port numbers do not change based on whether TLS is enabled, the same ports are used regardlesss.
+* SCs are exposed via port 9003
+* SPUs are exposed via port 9005.
+
+Port numbers do not change based on whether TLS is enabled, the same ports are used regardless.
 
 Service behavior can be configured at installation by overriding values in the helm charts.
 

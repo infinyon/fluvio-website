@@ -34,20 +34,24 @@ fluvio-spu-main-0    LoadBalancer   10.111.223.127   10.111.223.127   9005:30023
 ```
 
 ## CRDs
-Fluvio stores internal metadata in K8s custom resources. [Fluvio CRDs](../../kubernetes/crd).
+Fluvio stores internal metadata in K8s custom resources. [Fluvio CRDs]({{< ref "../kubernetes/crd" >}}).
 
 To verify system state you can compare results from 
+
+%copy%
 ```bash
-$ kubectl get spugroups
-$ kubectl get spu
-$ kubectl get topics
-$ kubectl get partitions
+kubectl get spugroups
+kubectl get spu
+kubectl get topics
+kubectl get partitions
 ```
-should match results from 
+
+should respectively, match results from 
+
+%copy%
 ```bash
-$ fluvio cluster spg list
-$ fluvio cluster spu list
-$ fluvio cluster topics
-$ fluvio partitions list
+fluvio cluster spg list
+fluvio cluster spu list
+fluvio cluster topics
+fluvio partitions list
 ```
-respectively.
