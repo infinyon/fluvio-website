@@ -17,10 +17,10 @@ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 ## Required Packages for Local Fluvio cluster
 
-1) [Docker](#install-docker)
-2) [Minikube](#install-minikube)
-3) [Kubectl](#install-kubectl)
-4) [Helm](#install-helm)
+1) [Docker]({{< ref "#install-docker" >}})
+2) [Minikube]({{< ref "#install-minikube" >}})
+3) [Kubectl]({{< ref "#install-kubectl" >}})
+4) [Helm]({{< ref "#install-helm" >}})
 
 If you have `docker`, `kubectl`, `helm`, and `minikube` already set up, then continue to steps for [running a local Fluvio cluster].
 
@@ -87,7 +87,10 @@ Successfully installed Fluvio!
 ```
 
 {{< idea >}}
-`minikube tunnel` is used to expose Fluvio's [SC]({{< ref "/docs/architecture/sc.md" >}}) and [SPU]({{< ref "/docs/architecture/spu.md" >}}) services using the Kubernetes service `LoadBalancer` type.
+`minikube tunnel` is used to expose Fluvio's [SC] and [SPU] services using the Kubernetes service `LoadBalancer` type.
+
+[SC]: {{< ref "/docs/architecture/sc.md" >}}
+[SPU]: {{< ref "/docs/architecture/spu.md" >}}
 
 You can avoid entering your password during `fluvio cluster start` by manually opening the minikube tunnel in the background.
 
@@ -143,7 +146,7 @@ Congratulations, you've successfully installed Fluvio on your local machine!
 
 Let's use the Fluvio CLI to play with some basic functionality.
 
-The first thing we need to do is create a [topic]({{< ref "/cli/commands/topic.md" >}}).
+The first thing we need to do is create a [topic].
 
 %copy first-line%
 ```bash
@@ -151,7 +154,7 @@ $ fluvio topic create greetings
 topic "greetings" created
 ```
 
-Now that we have a topic, we can [produce]({{< ref "/cli/commands/produce.md" >}}) some messages!
+Now that we have a topic, we can [produce] some messages!
 
 Use the following command to send a message to the `greetings` topic:
 
@@ -161,7 +164,7 @@ $ echo "Hello, Fluvio" | fluvio produce greetings
 Ok!
 ```
 
-Finally, we can [consume]({{< ref "/cli/commands/consume.md" >}}) messages back from the topic
+Finally, we can [consume] messages back from the topic
 
 %copy first-line%
 ```bash
@@ -173,6 +176,9 @@ Way to go! You're well on your way to writing real-time distributed apps with Fl
 
 Next, check out our [Tutorials page] to see real-world examples of Fluvio in action.
 
+[topic]: {{< ref "/cli/commands/topic.md" >}}
+[produce]: {{< ref "/cli/commands/produce.md" >}}
+[consume]: {{< ref "/cli/commands/consume.md" >}}
 [Tutorials page]: https://www.infinyon.com/tutorials 
 
 #### Related Topics

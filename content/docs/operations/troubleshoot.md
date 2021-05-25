@@ -31,12 +31,10 @@ To discover errors, you should examine logs from the following components:
 
 ### SC
 %copy first-line%
-
 ```bash
 kubectl logs -l app=fluvio-sc
 ```
 ### SPU
-
 %copy first-line%
 ```bash
 kubectl logs -l app=spu
@@ -56,9 +54,10 @@ In the event of a bug in Fluvio, we appreciate if you could save the log output 
 
 To attempt to recover from the bug, you can try restarting the K8s pods. 
 
+%copy%
 ```bash
 kubectl delete pod -l app=fluvio-sc
 kubectl delete pod -l app=spu
 ```
 
-Fluvio pods are created by either Deployments or StatefulSets, therefore deleting them will automatically cause new pods to be started.
+Fluvio pods are created by either `Deployments` or `StatefulSets`. Therefore deleting them will automatically cause new pods to be started.

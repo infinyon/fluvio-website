@@ -20,23 +20,23 @@ out with Fluvio:
 
 #### Setting up a cluster
 
-- [Create your own Fluvio cluster with `fluvio cluster start`](/cli/commands/cluster#fluvio-cluster-start)
-- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`](/cli/plugins/cloud#fluvio-cloud-login)
+- [Create your own Fluvio cluster with `fluvio cluster start`]({{< ref "/cli/commands/cluster#fluvio-cluster-start" >}})
+- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`]({{< ref "/cli/plugins/cloud#fluvio-cloud-login" >}})
   
 #### Sending and Receiving data from Fluvio
 
-- [Create a topic with `fluvio topic create`](/cli/commands/topic#fluvio-topic-create)
-- [Produce data to a topic with `fluvio produce`](/cli/commands/produce#fluvio-produce)
-- [Consume data from a topic with `fluvio consume`](/cli/commands/consume#fluvio-consume)
+- [Create a topic with `fluvio topic create`]({{< ref "/cli/commands/topic#fluvio-topic-create" >}})
+- [Produce data to a topic with `fluvio produce`]({{< ref "/cli/commands/produce#fluvio-produce" >}})
+- [Consume data from a topic with `fluvio consume`]({{< ref "/cli/commands/consume#fluvio-consume" >}})
 
 #### Enriching data with SmartStreams
 
-- [Quick start for building and running SmartStreams](/docs/smartstreams/quick-start)
-- [Write a custom filtering SmartStream](/docs/smartstreams/filter)
-- [Consume enriched data using SmartStreams](/cli/commands/consume#example-3-consume-using-a-smartstream)
+- [Quick start for building and running SmartStreams]({{< ref "/docs/smartstreams/quick-start" >}})
+- [Write a custom filtering SmartStream]({{< ref "/docs/smartstreams/filter" >}})
+- [Consume enriched data using SmartStreams]({{< ref "/cli/commands/consume#example-3-consume-using-a-smartstream" >}})
 
 #### Viewing the status of the cluster
 
-- [See all of your topics with `fluvio topic list`](/cli/commands/topic#fluvio-topic-list)
-- [See your partitions and data replication with `fluvio partition list`](/cli/commands/partition#fluvio-partition-list)
-- [See the status of the SPUs in your cluster with `fluvio cluster spu list`](/cli/commands/cluster#fluvio-cluster-spu-list)
+- [See all of your topics with `fluvio topic list`]({{< ref "/cli/commands/topic#fluvio-topic-list" >}})
+- [See your partitions and data replication with `fluvio partition list`]({{< ref "/cli/commands/partition#fluvio-partition-list" >}})
+- [See the status of the SPUs in your cluster with `fluvio cluster spu list`]({{< ref "/cli/commands/cluster#fluvio-cluster-spu-list" >}})

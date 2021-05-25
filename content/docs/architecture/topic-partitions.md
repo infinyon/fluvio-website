@@ -12,7 +12,9 @@ A **topic** is the basic primitive for data stream and the **partitions** is the
 
 -> **Note**: Replication factor must be less or equal to the number of SPUs.  While topics that exceed the number of available SPUs may be created, they are not provisioned until additional SPUs join the cluster.
 
-Replicas have a leader and one or more followers and distributed across all available SPUs according to the [replica assignment algorithm](../replica-assignment).
+Replicas have a leader and one or more followers and distributed across all available SPUs according to the [replica assignment algorithm].
+
+[replica assignment algorithm]: {{< ref "./replica-assignment" >}}
 
 For example, when provisioning a topic with **2** partitions and **3** replicas:
 
@@ -35,7 +37,9 @@ $ fluvio topic create --topic topic-a --partitions 2 --replication 3
 
 ### Partitions
 
-**Partition** are configuration objects managed by the system. Topics and partitions are linked through a **parent-child** relationship. Partition generation algorithm is described in the [SC Architecture](../sc/#partitions).
+**Partition** are configuration objects managed by the system. Topics and partitions are linked through a **parent-child** relationship. Partition generation algorithm is described in the [SC Architecture].
+
+[SC Architecture]: {{< ref "./sc/#partitions" >}}
 
 <img src="../images/topic-2-partitions.svg"
      alt="Topic 2 Assignment"

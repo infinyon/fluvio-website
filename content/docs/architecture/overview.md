@@ -13,12 +13,14 @@ The choice of programming language makes Fluvio a low memory, high performance p
 
 #### Cloud Native by Design
 
-Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>**. Any infrastructure running **Kubernetes** can install the **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, check out the [Kubernetes integration](k8-integration) section. 
+Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>**. Any infrastructure running **Kubernetes** can install the **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, check out the [Kubernetes install]({{< ref "/docs/kubernetes/install" >}}) section. 
 
 #### Fluvio Cloud
 
-If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud](/docs/fluvio-cloud)**. The cloud installation hides all the complexity associated with the infrastructure and exposes only relevant streaming APIs. Use the **[Getting Started](/docs/getting-started)** guide to set up your dedicated cloud environment.
+If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< ref "/docs/get-started/cloud" >}})**. The cloud installation hides all the complexity associated with the infrastructure and exposes only relevant streaming APIs. Follow our Getting Started guide (for [MacOS] or [Linux]) to set up your dedicated cloud environment.
 
+[MacOS]: {{< ref "/docs/get-started/mac" >}}
+[Linux]: {{< ref "/docs/get-started/linux" >}}
 
 ## High Level Architecture
 
@@ -43,8 +45,9 @@ Fluvio is designed to address a variety of **deployment scenarios** from public 
 
 The **SC** handles **topology map dynamically** to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
-For a deep dive in the SC design, checkout [SC Architecture](sc) section.
+For a deep dive in the SC design, checkout the [SC Architecture] section.
 
+[SC Architecture]: {{< ref "/docs/architecture/sc" >}}
 
 ## Streaming Processing Unit (SPU)
 
@@ -54,12 +57,15 @@ For a deep dive in the SC design, checkout [SC Architecture](sc) section.
      alt="SPU produce/consume & replication"
      style="justify: center; max-width: 330px" />
 
-SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, check out [Replica Election](replica-election).
+SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, check out [Replica Election].
+
+[Replica Election]: {{< ref "replica-election" >}}
 
 Each SPU performs **leader** and **follower** duties **on multiple data streams** in parallel. For optimal performance, Fluvio utilizes all available **CPU cores**. 
 
-For a deep dive into the SPU design, check out the [SPU Architecture](spu) section.
+For a deep dive into the SPU design, check out the [SPU Architecture] section.
 
+[SPU Architecture]: {{< ref "/docs/architecture/spu" >}}
 
 ## Topic/Partitions
 
@@ -82,8 +88,9 @@ SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for *
      alt="Topic/Partitions"
      style="justify: center; max-width: 650px" />
 
-For additional information on partitions and replica assignments, checkout [Replica Assignment](replica-assignment).
+For additional information on partitions and replica assignments, checkout [Replica Assignment].
 
+[Replica Assignment]: {{< ref "replica-assignment" >}}
 
 ## Data Persistence
 

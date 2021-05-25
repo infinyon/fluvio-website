@@ -129,10 +129,15 @@ The **FC** is terminated when the last Follower Spec is removed. Each **FC** is 
 
 Topics are created with a _replication factor_ which defines the number of data copies saved for each data stream. For example, a topic with a replication factor of 3 will generate 3 copies of data, one per SPU. 
 
-[Replica assignment](../replica-assignment) algorithm designates sets of SPUs to store identical copies (_replicas_) of the data for each data stream. [Election algorithm](../replica-election#election-algorithm) assigns one SPU as leader and the others as followers. The leader is responsible for data propagation and the communication with producers and consumers. The followers are responsible with replicating data received from the leader. If the leader goes offline, an `election ensues` and one of the followers becomes the new leader. After the election is completed, [clients automatically reconnect](../client) and operation resumes.
+[Replica assignment] algorithm designates sets of SPUs to store identical copies (_replicas_) of the data for each data stream. [Election algorithm] assigns one SPU as leader and the others as followers. The leader is responsible for data propagation and the communication with producers and consumers. The followers are responsible with replicating data received from the leader. If the leader goes offline, an `election ensues` and one of the followers becomes the new leader. After the election is completed, [clients automatically reconnect] and operation resumes.
 
-Election algorithm and failover scenarios are described in detail in the [Replica Election](../replica-election) section.
+Election algorithm and failover scenarios are described in detail in the [Replica Election] section.
 
+
+[Replica assignment]: {{< ref "./replica-assignment" >}}
+[Election algorithm]: {{< ref "./replica-election#election-algorithm" >}}
+[clients automatically reconnect]: {{< ref "./client" >}}
+[Replica Election]: {{< ref "./replica-election" >}}
 
 ## Replica Storage
 
@@ -142,9 +147,9 @@ New records are appended to files and become immutable.
 
 Records are indexed by offset and time. Each records consists of an arbitrary binary key/value key.
 
-Records are organized in segments of a predefined maximum size. Segments can be purged based on a retention policy. For configuration parameters, checkout [Reference Section](../reference#configuration-options).
+Records are organized in segments of a predefined maximum size. Segments can be purged based on a retention policy.
 
-To allow faster access to records in replica, index files are maintained.  Index file is memory mapped to b-tree structure to allow fast access.   Index files are re-built from records as necessary.
+To allow faster access to records in replica, index files are maintained.  Index file is memory mapped to b-tree structure to allow fast access. Index files are re-built from records as necessary.
 
 Records IO is optimized for each platform designed for high-throughput async IO. There are two factors that determine system performance:
 

@@ -10,9 +10,9 @@ which are simpler to use and invoke these runner commands for you. However, if
 you want to manually administrate your own cluster and have fine-grained control
 over the components, then this is the section for you.
 
-[Streaming Controller (SC)]: /docs/architecture/sc
-[Streaming Processing Unit (SPU)]: /docs/architecture/spu
-[`fluvio cluster`]: /cli/commands/cluster
+[Streaming Controller (SC)]: {{< ref "/docs/architecture/sc" >}}
+[Streaming Processing Unit (SPU)]: {{< ref "/docs/architecture/spu" >}}
+[`fluvio cluster`]: {{< ref "/cli/commands/cluster" >}}
 
 ## `fluvio run sc`
 
@@ -22,7 +22,7 @@ private server for interacting with SPUs and other cluster components. Most of
 the CLI options for the SC involve configuring these servers. See the
 [SC Architecture] for more details.
 
-[SC Architecture]: /docs/architecture/sc
+[SC Architecture]: {{< ref "/docs/architecture/sc" >}}
 
 ```
 fluvio-run-sc
@@ -72,7 +72,7 @@ An SPU has a public server which is used to stream data to and from Fluvio Clien
 a private server which is used to communicate with an SC. Most of the CLI options for
 the SPU involve configuring these servers. See the [SPU Architecture] for more details.
 
-[SPU Architecture]: /docs/architecture/spu/
+[SPU Architecture]: {{< ref "/docs/architecture/spu" >}}
 
 ```
 fluvio-run-spu

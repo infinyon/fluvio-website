@@ -12,7 +12,7 @@ not expire after being consumed.
 
 -> [1] For an overview of Topics and Partitions, see the [Producer documentation]
 
-[Producer documentation]: /docs/connect/producer
+[Producer documentation]: {{< ref "/docs/connect/producer" >}}
 
 ## Offsets
 
@@ -38,10 +38,10 @@ that is still available.
 
 In order to get started with consuming streaming data, you'll need to:
 
-- [Follow the "Start Producing" steps to produce data to a topic](/docs/connect/producer#start-producing)
+- [Follow the "Start Producing" steps to produce data to a topic]({{< ref "/docs/connect/producer#start-producing" >}})
 - Choose one of the following consumer interfaces to use:
-  - [Fluvio CLI](/cli/commands/consume)
-  - [Rust](/api/rust)
-  - [Node](/api/node)
-  - [Python](/api/python)
-  - [Java](/api/java)
+  - [Fluvio CLI]({{< ref "/cli/commands/consume" >}})
+  - [Rust]({{< ref "/api/fluvio/rust" >}})
+  - [Node]({{< ref "/api/fluvio/node" >}})
+  - [Python]({{< ref "/api/fluvio/python" >}})
+  - [Java]({{< ref "/api/fluvio/java" >}})

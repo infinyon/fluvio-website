@@ -3,10 +3,12 @@ title: Replica Election
 weight: 60
 ---
 
-[Replica Assignment](../replica-assignment) _assigns_ SPUs to a replica set and [Replica Election](#replica-election-algorithm) _coordinates_ their roles. The election algorithm manages replica sets in an attempt to designate one active leader at all times. SPUs have a powerful <ins>multi-threaded engine</ins> that can process a large number of leaders and followers at the same time.
+[Replica Assignment] _assigns_ SPUs to a replica set and [Replica Election] _coordinates_ their roles. The election algorithm manages replica sets in an attempt to designate one active leader at all times. SPUs have a powerful <ins>multi-threaded engine</ins> that can process a large number of leaders and followers at the same time.
 
 If an SPU becomes incapacitated, the election algorithm identifies all impacted replica sets and triggers a re-election. The following section describes the algorithm utilized by each replica set as it elects a new leader. 
 
+[Replica Assignment]: {{< ref "./replica-assignment" >}}
+[Replica Election]: {{< ref "#replica-election-algorithm" >}}
 
 ## Roles and Responsibilities
 
@@ -183,10 +185,11 @@ Followers removed from the **LRS** are ineligible for election but continue to r
 
 ###### Leader Failure
 
-If a <ins>leader</ins> goes offline, an [election is triggered](#replica-election-algorithm) and one of the <ins>followers</ins> takes over as <ins>leader</ins>. The rest of the followers connect to the <ins> new leader</ins> and synchronize their data store. 
+If a <ins>leader</ins> goes offline, an [election is triggered] and one of the <ins>followers</ins> takes over as <ins>leader</ins>. The rest of the followers connect to the <ins> new leader</ins> and synchronize their data store. 
 
 When the failed leader rejoins the replica set, it detects the new leader and turns itself into a follower. The replica set continue under the new leadership until a new election is triggered.
 
+[election is triggered]: {{< ref "#replica-election-algorithm" >}}
 
 ### Consumer Consistency Model
 

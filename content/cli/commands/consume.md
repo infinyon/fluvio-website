@@ -51,7 +51,7 @@ ARGS:
 For our consumer examples, we are going to read back the records we sent from the
 [produce command examples].
 
-[produce command examples]: /cli/commands/produce
+[produce command examples]: {{< ref "/cli/commands/produce" >}}
 
 ## Example 1: Consume all records
 
@@ -103,12 +103,13 @@ filters records from the stream based on whether they contain the letter `a`
 or not. You can find the full example code [in our GitHub repo] and compile
 it to test out yourself.
 
-[filter example from the quick-start]: /docs/smartstreams/quick-start
+[filter example from the quick-start]: {{< ref "/docs/smartstreams/quick-start" >}}
 [in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples/filter_json 
 
 Once you have compiled your SmartStream and have a `.wasm` file for it, you
 can apply it to the consumer as follows:
 
+%copy first-line%
 ```bash
 $ fluvio consume my-topic -B --smart-stream="fluvio_wasm_filter.wasm"
 ```

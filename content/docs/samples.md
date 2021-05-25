@@ -9,8 +9,10 @@ Welcome to the intro guide to Fluvio! The Concepts section helps you learn about
 
 ### Inline Highlights
 
--> **Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in [Quick Start](/docs/getting-started/quick-start).
+-> **Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in Get Started for ([MacOS] or [Linux]).
 
+[MacOS]: {{< ref "/docs/get-started/mac" >}}
+[Linux]: {{< ref "/docs/get-started/linux" >}}
 
 ~> **Caution:** Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It’s also called placeholder (or filler) text. It’s a convenient tool for mock-ups. 
 
