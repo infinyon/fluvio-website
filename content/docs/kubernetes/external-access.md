@@ -1,10 +1,8 @@
 ---
-title: Access Fluvio from Outside
-menu: Access Fluvio
+title: Access Fluvio Externally
+menu: External Access
 weight: 40
 ---
-
-## Exposed Services
 
 By default Fluvio services are exposed via NodePorts.
 
@@ -12,7 +10,7 @@ SCs are exposed via port 9003 and SPUs are exposed via port 9005. Port numbers d
 
 Service behavior can be configured at installation by overriding values in the helm charts.
 
-### View Service Enpoint Details
+### Service Enpoint Details
 
 Run `kubectl describe svc fluvio-sc-public` to view address and port information for accessing the SC public endpoint.
 
