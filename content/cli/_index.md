@@ -2,6 +2,7 @@
 title: Fluvio CLI Reference
 menu: Overview
 section: CLI
+toc: false
 ---
 
 The Fluvio CLI is an all-in-one tool for installing and managing Fluvio,
