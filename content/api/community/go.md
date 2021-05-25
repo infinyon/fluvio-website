@@ -8,7 +8,7 @@ project put together by [@avinassh].
 
 It's still under development but still very exciting!
 
-[fluvio-go]: (https://gitlab.com/avinassh/fluvio-go)
+[fluvio-go]: https://github.com/avinassh/fluvio-go 
 [@avinassh]: https://github.com/avinassh
 
 ## Connecting
