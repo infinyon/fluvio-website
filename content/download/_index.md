@@ -20,7 +20,7 @@ Copy the command above into your terminal to install Fluvio CLI
 
 
 #### Next Steps
-* [Getting started - Linux]({{< ref "/docs/get-started/linux" >}})
+* [Get Started - Linux]({{< ref "/docs/get-started/linux" >}})
 {{</download-card>}}
 
 {{< /h-item>}}
@@ -36,7 +36,7 @@ Copy the command above into your terminal to install Fluvio CLI
 </br>
 
 #### Next Steps
-* [Getting started - MacOS]({{< ref "/docs/get-started/mac" >}})
+* [Get Started - MacOS]({{< ref "/docs/get-started/mac" >}})
 {{</download-card>}}
 
 
