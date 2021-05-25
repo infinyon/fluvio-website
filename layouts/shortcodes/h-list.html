@@ -1,0 +1,34 @@
+{{- $tabTotal := .Get "tabTotal" -}}
+{{- $tabID := $.Get "tabID" -}}
+
+<div class="lang-nav">
+    <ul class="nav justify-content-center" id="lang-tab" role="tablist">
+        {{- range $i, $sequence := (seq $tabTotal) -}}
+            {{- $tabName := (print "tabName" $sequence) -}}
+            {{- $tabHREF := (print "tab-" $tabID $sequence) -}}
+            {{- $active := "" }}
+            {{- $selected := "false" }}
+
+            {{- if eq $sequence 1 }}
+                {{- $active = " active" }}
+                {{- $selected = "true" }}
+            {{- end -}}
+
+            <li class="nav-item" role="presentation">
+                <a class="nav-link{{ $active }}" 
+                    id="nav-{{ $tabHREF }}" 
+                    data-toggle="tab" 
+                    href="#{{ $tabHREF | urlize }}" 
+                    role="tab" 
+                    aria-controls="h-list-{{ $tabID }}" 
+                    aria-selected="{{ $selected }}">
+                    {{ $.Get $tabName }}
+                </a>
+            </li>
+        {{ end }}
+    </ul>
+
+    <div class="tab-content" id="h-list-{{ $tabID }}">
+        {{ .Inner }}
+    </div>
+</div>
