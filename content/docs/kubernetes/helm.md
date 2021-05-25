@@ -1,9 +1,7 @@
 ---
-title: Helm Chart Values
+title: Helm Chart
 weight: 20
 ---
-
-## Configuration
 
 The CLI takes a `--chart-values` option, during install and upgrade, which accepts a file path to a YAML file with values that are applied to the Fluvio Helm chart.
 

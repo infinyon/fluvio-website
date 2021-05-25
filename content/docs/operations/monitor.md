@@ -3,13 +3,14 @@ title: Monitor
 weight: 10
 ---
 
-## Objects to monitor in Kubernetes
 These objects represent the state of the Fluvio cluster.
 
 ## Pods
 `kubectl get pods` should show one for the SC and one for each SPU specified when installing Fluvio.
 
 Example:
+
+%copy first-line%
 ```bash
 $ kubectl get pods
 NAME                         READY   STATUS    RESTARTS   AGE
@@ -21,6 +22,8 @@ fluvio-spg-main-0            1/1     Running   0          3m28s
 `kubectl get svc` should show one public and one internal service for the SC and also one public and one internal service for each SPU.
 
 Example:
+
+%copy first-line%
 ```bash
 $ kubectl get svc
 NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)             AGE
@@ -34,18 +37,17 @@ fluvio-spu-main-0    LoadBalancer   10.111.223.127   10.111.223.127   9005:30023
 Fluvio stores internal metadata in K8s custom resources. [Fluvio CRDs](../../kubernetes/crd).
 
 To verify system state you can compare results from 
-```
-kubectl get spugroups
-kubectl get spu
-kubectl get spu
-kubectl get topics
-kubectl get partitions
+```bash
+$ kubectl get spugroups
+$ kubectl get spu
+$ kubectl get topics
+$ kubectl get partitions
 ```
 should match results from 
-```
-fluvio cluster spg list
-fluvio cluster spu list
-fluvio cluster topics
-fluvio partitions list
+```bash
+$ fluvio cluster spg list
+$ fluvio cluster spu list
+$ fluvio cluster topics
+$ fluvio partitions list
 ```
 respectively.

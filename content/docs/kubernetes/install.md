@@ -12,6 +12,7 @@ The kubernetes installation process requires two steps. Both are performed with 
 
 First we need to install the "system" chart with sets up the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/" target="_blank">Custom Resource Definitions</a>. Fluvio uses CRDs for storing [system state](../crd).
 
+%copy first-line%
 ```bash
 fluvio cluster start --sys
 ```
@@ -24,6 +25,7 @@ The CLI takes a `--chart-values` option which accepts a file path to a YAML file
 
 See other options by running 
 
+%copy first-line%
 ```bash
 $ fluvio cluster start -h
 ```

@@ -9,6 +9,7 @@ To diagnose abnormal behavior, a good first step is to run `fluvio cluster check
 
 If everything is configured properly, you should see a result like this:
 
+%copy first-line%
 ```bash
 $ fluvio cluster check
 Running pre-startup checks...
@@ -29,10 +30,14 @@ You may proceed with cluster startup
 To discover errors, you should examine logs from the following components:
 
 ### SC
+%copy first-line%
+
 ```bash
 kubectl logs -l app=fluvio-sc
 ```
 ### SPU
+
+%copy first-line%
 ```bash
 kubectl logs -l app=spu
 ```
