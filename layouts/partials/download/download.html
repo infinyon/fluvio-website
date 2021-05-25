@@ -1,3 +1,12 @@
+{{- $content := .Content -}}
+{{- $content := partial "augment/idea-symbol.html" $content -}}
+{{- $content := partial "augment/caution-symbol.html" $content -}}
+{{- $content := partial "augment/headline-hash.html" $content -}}
+{{- $content := partial "augment/copy-code.html" $content -}}
+{{- if .Params.code.height }}
+    {{- $content = partial "augment/code-box-height.html" (dict "content" $content "height" .Params.code.height) -}}
+{{- end -}}
+
 {{- $title := .Title | safeHTML -}}
 
 <div class="container-fluid site-width min-height">
@@ -7,11 +16,7 @@
         <h1>{{- $title -}}</h1>   
 
         <div class="doc-content">
-          <div class="card-wrapper">
-            <div class="card">
-              {{ partial "download/script" | markdownify }}
-            </div>
-          </div>
+          {{ $content }}
         </div>
 
       </div>
