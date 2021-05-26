@@ -7,7 +7,8 @@ toc: false
 
 SmartStreams are Fluvio data streams that can be customized with user-defined
 functions to perform inline operations such as filtering. SmartStreams are compiled
-WASM modules written in Rust that get uploaded by clients to the Fluvio cluster,
+<a href="https://webassembly.org/" target="_blank">WebAssembly</a>
+modules written in Rust that get uploaded by clients to the Fluvio cluster,
 where they are applied to streams of records.
 
 Currently, SmartStreams are "consumer facing", meaning that all records that are
