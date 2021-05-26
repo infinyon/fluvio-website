@@ -1,0 +1,10 @@
+status = [
+    "Header rules - fluvio-nightly",
+    "Pages changed - fluvio-nightly",
+    "Mixed content - fluvio-nightly",
+    "Redirect rules - fluvio-nightly",
+    "netlify/fluvio-nightly/deploy-preview",
+]
+use_squash_merge = true
+delete_merged_branches = true
+timeout_sec = 1800 # 30 mins
