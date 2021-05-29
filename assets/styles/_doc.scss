@@ -95,18 +95,20 @@
     text-align: right;
     margin: 30px 10px;
   
-    a>img {
-      display: inline;
-      width: 24px;
-    }
-  
-    a, a:hover {
+    a {
       color: $gray8;
-      text-decoration: none;
+      img {
+        display: inline;
+        width: 24px;
+        filter: brightness(6) invert(1);   
+      }      
     }
   
     a:hover {
+      text-decoration: none;
       color: inherit;
+      img { filter: none; }
     }
+
   }  
 }
