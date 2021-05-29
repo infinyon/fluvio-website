@@ -77,8 +77,6 @@ command:
 
 [rustup]: https://rustup.rs
 
-%copy first-line%
-
 ```bash
 $ rustup target add wasm32-unknown-unknown
 ```
@@ -87,15 +85,13 @@ Then, to build the SmartStream, just use `cargo build`. We recommend using relea
 mode in order to make the binary smaller and faster.
 
 %copy first-line%
-
 ```bash
 $ cargo build --release
 ```
 
 %copy first-line%
-
 ```bash
-$ ls -la target/wasm32-unknown-unknown/release/example_filter.wasm
+$ ls -la target/wasm32-unknown-unknown/release/your-package-name.wasm
 .rwxr-xr-x  135Ki user 19 May 16:32   example_filter.wasm
 ```
 

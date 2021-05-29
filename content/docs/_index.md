@@ -97,7 +97,7 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 * [Node.js] &#10004;
 * [Python] &#10004;
 * [Java] - &#10004;
-* Go - *Community Supported*
+* [Go] - *Community Supported*
 * Swift - *roadmap*
 
 
@@ -105,6 +105,7 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 [Node.js]: https://infinyon.github.io/fluvio-client-node/
 [Python]: https://infinyon.github.io/fluvio-client-python/fluvio.html
 [Java]: https://infinyon.github.io/fluvio-client-java/
+[Go]: https://github.com/avinassh/fluvio-go
 
 The APIs can be used to manage and operate all areas of the systems:
 
