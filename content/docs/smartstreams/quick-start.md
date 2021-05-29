@@ -95,7 +95,7 @@ $ cargo build --release
 %copy first-line%
 
 ```bash
-$ ls -la target/wasm32-unknown-unknown/release/your-package-name.wasm
+$ ls -la target/wasm32-unknown-unknown/release/example_filter.wasm
 .rwxr-xr-x  135Ki user 19 May 16:32   example_filter.wasm
 ```
 
