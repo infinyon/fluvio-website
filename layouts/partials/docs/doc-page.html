@@ -16,6 +16,7 @@
         <div class="col-md doc-area">
             <div class="doc">
                 {{ partial "docs/doc-content" (dict "page" .) }}
+                {{ partial "common/edit-page" . }}
             </div>
         </div>
         {{ if .Params.toc | default true -}}

@@ -90,4 +90,23 @@
       box-shadow: 0 0 1px rgba(0, 0, 0, .5)
     }
   }
+
+  .edit-this-page {
+    text-align: right;
+    margin: 30px 10px;
+  
+    a>img {
+      display: inline;
+      width: 24px;
+    }
+  
+    a, a:hover {
+      color: $gray8;
+      text-decoration: none;
+    }
+  
+    a:hover {
+      color: inherit;
+    }
+  }  
 }
