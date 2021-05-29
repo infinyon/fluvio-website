@@ -71,7 +71,17 @@ letter `a`.
 
 #### Building our SmartStream
 
-To build the SmartStream, just use `cargo build`. We recommend using release
+As a one-time setup, we'll need to install the `wasm32-unknown-unknown` target
+for Rust so that it can compile our code to WASM. Use the following [rustup]
+command:
+
+[rustup]: https://rustup.rs
+
+```bash
+$ rustup target add wasm32-unknown-unknown
+```
+
+Then, to build the SmartStream, just use `cargo build`. We recommend using release
 mode in order to make the binary smaller and faster.
 
 %copy first-line%
