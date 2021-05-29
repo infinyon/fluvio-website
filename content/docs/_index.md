@@ -97,7 +97,7 @@ Fluvio is designed to integrate natively with most programming languages.  The f
 * [Node.js] &#10004;
 * [Python] &#10004;
 * [Java] - &#10004;
-* [Go] - *Community Supported*
+* [Go] -  &#10004; - *Community Supported*
 * Swift - *roadmap*
 
 
