@@ -3,14 +3,43 @@ title: Upgrade
 weight: 30
 ---
 
-You can upgrade your Fluvio cluster using the CLI. Underneath this uses the <a href="https://helm.sh/docs/helm/helm_upgrade/" target="_blank">upgrade function in Helm</a>, therefore similar behavior can be expected.
+When upgrading to a new version of Fluvio, the first thing you need to do
+is [update the Fluvio CLI] using the following command:
 
-Note that upgrading is not reversable as downgrading is not supported.
+[update the Fluvio CLI]: /cli/commands/install#fluvio-update
 
-## Upgrade Command
+%copy first-line%
+```bash
+$ fluvio update
+```
 
-Run `fluvio cluster upgrade` to upgrade fluvio the latest version supported by the CLI. The upgrade command supports options similar to the `start` command.
+After updating the CLI, we can upgrade the Fluvio _cluster_ using this command:
 
-Optionally you can specify the target version with `--chart-version <chart-version>`. You can view the list of releases supported by the CLI by running `fluvio cluster releases list`
+%copy first-line%
+```bash
+$ fluvio cluster upgrade
+```
 
-See `fluvio cluster upgrade -h` to see all options.
+Internally, the `fluvio cluster upgrade` command is actually using the
+<a href="https://helm.sh/docs/helm/helm_upgrade/" target="_blank">helm</a>
+package manager to upgrade the Fluvio helm charts installed on
+your Kubernetes cluster.
+
+You may optionally specify a specific Fluvio chart version by adding
+the `--chart-version` argument to the upgrade command, such as the following:
+
+%copy first-line%
+```bash
+$ fluvio cluster upgrade --chart-version=0.8.3
+```
+
+~> Note that upgrading is not reversible, as downgrading is not supported.
+
+The possible versions you may pass to `--chart-version` correspond to the
+available helm charts published on the Fluvio chart museum. You may view
+this list of releases quickly with the command:
+
+%copy first-line%
+```bash
+$ fluvio cluster releases list
+```
