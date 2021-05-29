@@ -1,6 +1,7 @@
 ---
 title: Upgrade
 weight: 30
+toc: false
 ---
 
 When upgrading to a new version of Fluvio, the first thing you need to do
