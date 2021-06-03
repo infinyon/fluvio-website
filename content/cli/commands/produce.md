@@ -23,6 +23,8 @@ USAGE:
 
 FLAGS:
     -v, --verbose    Print progress output when sending records
+        --raw        Send all input as one record. Use this when producing
+                     binary files
     -h, --help       Prints help information
 
 OPTIONS:
