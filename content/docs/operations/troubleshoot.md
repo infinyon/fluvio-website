@@ -19,7 +19,6 @@ Running pre-startup checks...
 ✅ ok: Can create service
 ✅ ok: Can create customresourcedefinitions
 ✅ ok: Can create secret
-✅ ok: Load balancer is up
 ✅ ok: Fluvio system charts are installed
 All checks passed!
 You may proceed with cluster startup
