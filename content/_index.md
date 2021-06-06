@@ -1,7 +1,7 @@
 ---
-title: "Fluvio Data Hub"
+title: "Fluvio - Data Streaming"
 jumbotron:
-  title: "Fluvio Data Hub"
+  title: "Streamline your real-time data"
   description: "A real-time data streaming platform with in-line computation capabilities. Use [Fluvio SmartStreams](/docs/smartstreams/quick-start) to upload your custom logic and modify data as it moves over the network."
   imageLarge: "/images/assets/fluvio-oss-large.svg"
   imageSmall: "/images/assets/fluvio-oss-small.svg"
