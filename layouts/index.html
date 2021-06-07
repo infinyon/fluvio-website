@@ -1,3 +1,7 @@
+{{- define "head-meta" -}}
+  {{ partial "header/page-head-meta.html" (dict "page" .) }}
+{{- end -}}
+
 {{ define "menu" }}
     {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
     {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio) -}}

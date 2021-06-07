@@ -1,5 +1,9 @@
 ---
 title: "Fluvio - Data Streaming"
+author:
+    name: "Fluvio Team"
+img: "images/assets/java-client/fluvio-social.png"
+twitter-card: summary_large_image
 jumbotron:
   title: "Streamline your real-time data"
   description: "A real-time data streaming platform with in-line computation capabilities. Use [Fluvio SmartStreams](/docs/smartstreams/quick-start) to upload your custom logic and modify data as it moves over the network."
