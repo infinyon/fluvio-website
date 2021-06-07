@@ -2,7 +2,7 @@
 title: "Fluvio - Data Streaming"
 author:
     name: "Fluvio Team"
-img: "images/assets/java-client/fluvio-social.png"
+img: "images/assets/fluvio-social.png"
 twitter-card: summary_large_image
 jumbotron:
   title: "Streamline your real-time data"
