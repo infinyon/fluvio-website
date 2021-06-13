@@ -46,7 +46,7 @@ PartitionConsumer consumer = fluvio.partition_consumer("hello-java", 0);
 [create a consumer]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/Fluvio.html#partition_consumer(java.lang.String,int)
 
 ### Stream
-For now useg of the [consumer stream]
+For now usage of the [consumer stream]
 requires calling `next` on the `stream` as seen here:
 
 [consumer stream]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/PartitionConsumer.html#stream(com.infinyon.fluvio.Offset)
