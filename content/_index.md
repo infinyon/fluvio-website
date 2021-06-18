@@ -1,5 +1,5 @@
 ---
-title: "Fluvio - Real-time Data Streaming"
+title: "Fluvio - The programmable data streaming platform"
 description: "A real-time data streaming platform with in-line computation capabilities. Use SmartStreams to upload your custom logic and modify data as it moves over the network."
 author:
     name: "Fluvio Team"
