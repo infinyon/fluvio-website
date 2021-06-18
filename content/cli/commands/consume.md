@@ -185,17 +185,17 @@ To consume from partition 1:
 
 %copy first-line%
 ```bash
-$ fluvio consume "consume-multi" -B --partition 0
+$ fluvio consume "consume-multi" -B --partition 1
 two
 five
 eight
 ```
 
-And from partition 3:
+And from partition 2:
 
 %copy first-line%
 ```bash
-$ fluvio consume "consume-multi" -B --partition 0
+$ fluvio consume "consume-multi" -B --partition 2
 three
 six
 nine
