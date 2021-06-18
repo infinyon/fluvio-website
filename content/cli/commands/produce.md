@@ -88,3 +88,144 @@ Ok!
 ```
 
 The producer splits the key from the value and prints it in a `[key] value` format.
+
+## Example 3: Produce key/value records to multiple partitions
+
+When producing to a topic with multiple partitions, the producer will send
+all records with the same key to the same partition. Let's test this out by making
+a multi-partition topic, then sending some key/value records.
+
+First, we'll use [`fluvio topic create`] to create a topic called `multi` with 5 partitions:
+
+[`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
+
+%copy first-line%
+```bash
+$ fluvio topic create multi-keys -p 5
+```
+
+Next, let's create a text file with the records we want to send:
+
+```bash
+# Put the following records into a text file using your favorite editor
+$ cat records.txt
+rafael:create account
+rafael:validate account
+samuel:create account
+tabitha:create account
+rafael:add item 1234 to cart
+tabitha:validate account
+samuel:validate account
+rafael:add item 2345 to cart
+tabitha:add item 9876 to cart
+rafael:complete purchase
+```
+
+Then, we'll send the key/value records from the file, using the `--key-separator` flag to separate
+our keys from our values. In this example, the keys are unique username.
+
+%copy first-line%
+
+```bash
+$ fluvio produce multi --key-separator=":" -f records.txt
+```
+
+Looking at this sample input, we can see that `rafael` generated 5 events, `samuel`
+generated 2 events, and `tabitha` generated 3 events. When we look at the partitions,
+we should see the records distributed in groups of 5, 2, and 3. We can use the
+[`fluvio partition list`] command to view the distribution of records in our partitions:
+
+[`fluvio partition list`]: {{< ref "/cli/commands/partition#fluvio-partition-list" >}}
+
+%copy first-line%
+
+```bash
+$ fluvio partition list
+ TOPIC  PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
+ multi-keys  0          0       []        Online      0   0    0    []
+ multi-keys  1          0       []        Online      0   0    0    []
+ multi-keys  2          0       []        Online      3   3    0    []
+ multi-keys  3          0       []        Online      5   5    0    []
+ multi-keys  4          0       []        Online      2   2    0    []
+```
+
+By looking at the high watermark (HW) and log-end-offset (LEO) of our partitions,
+we can see how many records have landed in each partition. As we expected, they
+were distributed in groups of 5, 3, and 2. Let's dig a little further, we know that
+`rafael` was the key used by the group of 5 records, so we should be able to see those
+records by using [`fluvio consume`] to consume from partition 3.
+
+[`fluvio consume`]: {{< ref "/cli/commands/consume" >}}
+
+%copy first-line%
+
+```bash
+$ fluvio consume multi-keys -B -p3 --key-value
+[rafael] create account
+[rafael] validate account
+[rafael] add item 1234 to cart
+[rafael] add item 2345 to cart
+[rafael] complete purchase
+```
+
+## Example 4: Producing to multiple partitions using Round-Robin
+
+When we produce to a topic with multiple partitions, records that have no key
+are assigned to partitions in a round-robin fashion. This ensures an even load
+distribution among the partitions.
+
+To see this in action, let's create a topic with multiple partitions using
+[`fluvio topic create`].
+
+%copy first-line%
+```bash
+$ fluvio topic create multi -p 5
+```
+
+Let's produce some data to our topic. We'll use the same data from [Example 3],
+but this time we won't tell the Producer to interpret our input as key-value records
+(we'll do this by omitting the `--key-separator` flag).
+
+[Example 3]: {{< ref "/cli/commands/produce#example-3-produce-keyvalue-records-to-multiple-partitions" >}}
+
+```bash
+# Put the following records into a text file using your favorite editor
+$ cat records.txt
+rafael:create account
+rafael:validate account
+samuel:create account
+tabitha:create account
+rafael:add item 1234 to cart
+tabitha:validate account
+samuel:validate account
+rafael:add item 2345 to cart
+tabitha:add item 9876 to cart
+rafael:complete purchase
+```
+
+Next, we'll produce the records into the `multi` stream.
+
+%copy first-line%
+
+```bash
+$ fluvio produce multi -f records.txt
+```
+
+Since records with no keys use round-robin partitioning, we should expect to see
+the records be evenly distributed among the partitions. This differs from Example 3
+in that the records are not grouped by any kind of key. Let's take a look at our
+partitions using [`fluvio partition list`].
+
+%copy first-line%
+```bash
+$ fluvio partition list
+ TOPIC  PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
+ multi  0          0       []        Online      2   2    0    []
+ multi  1          0       []        Online      2   2    0    []
+ multi  2          0       []        Online      2   2    0    []
+ multi  3          0       []        Online      2   2    0    []
+ multi  4          0       []        Online      2   2    0    []
+```
+
+Notice how the high watermark (HW) and log-end-offset (LEO) tell us that there are
+exactly 2 records in each partition. Our ten records have been evenly distributed!
