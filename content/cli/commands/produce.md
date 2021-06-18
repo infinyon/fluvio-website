@@ -104,7 +104,7 @@ First, we'll use [`fluvio topic create`] to create a topic called `multi` with 5
 $ fluvio topic create multi-keys -p 5
 ```
 
-Let's create a text file with the records we want to send:
+Next, let's create a text file with the records we want to send:
 
 ```bash
 # Put the following records into a text file using your favorite editor
@@ -121,8 +121,10 @@ tabitha:add item 9876 to cart
 rafael:complete purchase
 ```
 
-Then, we'll send some key/value records, using the `--key-separator` flag to separate
-our keys from our values. We can imagine the key as being a unique username.
+Then, we'll send the key/value records from the file, using the `--key-separator` flag to separate
+our keys from our values. In this example, the keys are unique username.
+
+%copy first-line%
 
 ```bash
 $ fluvio produce multi --key-separator=":" -f records.txt
@@ -134,6 +136,8 @@ we should see the records distributed in groups of 5, 2, and 3. We can use the
 [`fluvio partition list`] command to view the distribution of records in our partitions:
 
 [`fluvio partition list`]: {{< ref "/cli/commands/partition#fluvio-partition-list" >}}
+
+%copy first-line%
 
 ```bash
 $ fluvio partition list
@@ -152,6 +156,8 @@ were distributed in groups of 5, 3, and 2. Let's dig a little further, we know t
 records by using [`fluvio consume`] to consume from partition 3.
 
 [`fluvio consume`]: {{< ref "/cli/commands/consume" >}}
+
+%copy first-line%
 
 ```bash
 $ fluvio consume multi-keys -B -p3 --key-value
@@ -182,7 +188,6 @@ but this time we won't tell the Producer to interpret our input as key-value rec
 
 [Example 3]: {{< ref "/cli/commands/produce#example-3-produce-keyvalue-records-to-multiple-partitions" >}}
 
-%copy first-line%
 ```bash
 # Put the following records into a text file using your favorite editor
 $ cat records.txt
@@ -196,7 +201,13 @@ samuel:validate account
 rafael:add item 2345 to cart
 tabitha:add item 9876 to cart
 rafael:complete purchase
+```
 
+Next, we'll produce the records into the `multi` stream.
+
+%copy first-line%
+
+```bash
 $ fluvio produce multi -f records.txt
 ```
 
