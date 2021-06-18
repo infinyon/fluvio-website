@@ -113,3 +113,83 @@ can apply it to the consumer as follows:
 ```bash
 $ fluvio consume my-topic -B --smart-stream="fluvio_wasm_filter.wasm"
 ```
+
+## Example 4: Consume from a topic with multiple partitions
+
+As of today, the Fluvio CLI Consumer can only consume records from a single
+partition at a time. When running `fluvio consume topic-name`, the CLI will
+read records from partition `0` by default. Let's look at how we can read
+records from the different partitions in a topic by using the `--partition (-p)` flag.
+
+Start out by creating a new topic with multiple partitions using [`fluvio topic create`].
+
+[`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
+
+%copy first-line%
+```bash
+$ fluvio topic create consume-multi -p 3
+```
+
+Then, produce some test data to the topic.
+
+%copy first-line%
+```bash
+$ fluvio produce consume-multi
+> one
+> two
+> three
+> four
+> five
+> six
+> seven
+> eight
+> nine
+^C
+```
+
+After producing some data, let's take a look at how the records got distributed
+among our partitions using [`fluvio partition list`].
+
+[`fluvio partition list`]: {{< ref "/cli/commands/partition#fluvio-partition-list" >}}
+
+%copy first-line%
+```bash
+$ fluvio partition list
+ TOPIC          PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
+ consume-multi  0          5001    []        Online      3   3    0    []
+ consume-multi  1          5001    []        Online      3   3    0    []
+ consume-multi  2          5001    []        Online      3   3    0    []
+```
+
+We can see by the high watermark (HW) and log-end-offset (LEO) that 3 records were
+sent to each partition. Let's look at how to consume from each partition.
+
+To consume from a specific partition, use the `--partition (-p)` flag on `fluvio consume`.
+
+%copy first-line%
+```bash
+$ fluvio consume "consume-multi" -B --partition 0
+one
+four
+seven
+```
+
+To consume from partition 1:
+
+%copy first-line%
+```bash
+$ fluvio consume "consume-multi" -B --partition 0
+two
+five
+eight
+```
+
+And from partition 3:
+
+%copy first-line%
+```bash
+$ fluvio consume "consume-multi" -B --partition 0
+three
+six
+nine
+```

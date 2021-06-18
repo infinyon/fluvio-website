@@ -81,3 +81,5 @@ available partitions.
 Currently, consumers are limited to reading from one partition at a time. This means
 that in order to read all records from a given topic, it may be necessary to instantiate
 one consumer per partition in the topic.
+
+- [Check out the multi-consumer example in the CLI reference]({{< ref "cli/commands/consume#example-4-consume-from-a-topic-with-multiple-partitions" >}})
