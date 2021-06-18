@@ -130,21 +130,28 @@ Start out by creating a new topic with multiple partitions using [`fluvio topic 
 $ fluvio topic create consume-multi -p 3
 ```
 
-Then, produce some test data to the topic.
+Let's create a text file with some records we would like to send. Each line of the
+text file will be treated as one record.
+
+```bash
+# Put the following records into a text file using your favorite editor
+$ cat records.txt
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+```
+
+Then, produce the test data to the topic.
 
 %copy first-line%
 ```bash
-$ fluvio produce consume-multi
-> one
-> two
-> three
-> four
-> five
-> six
-> seven
-> eight
-> nine
-^C
+$ fluvio produce "consume-multi" -f records.txt
 ```
 
 After producing some data, let's take a look at how the records got distributed

@@ -104,22 +104,28 @@ First, we'll use [`fluvio topic create`] to create a topic called `multi` with 5
 $ fluvio topic create multi-keys -p 5
 ```
 
+Let's create a text file with the records we want to send:
+
+```bash
+# Put the following records into a text file using your favorite editor
+$ cat records.txt
+rafael:create account
+rafael:validate account
+samuel:create account
+tabitha:create account
+rafael:add item 1234 to cart
+tabitha:validate account
+samuel:validate account
+rafael:add item 2345 to cart
+tabitha:add item 9876 to cart
+rafael:complete purchase
+```
+
 Then, we'll send some key/value records, using the `--key-separator` flag to separate
 our keys from our values. We can imagine the key as being a unique username.
 
-%copy first-line%
 ```bash
-$ fluvio produce multi-keys --key-separator=":"
-> rafael:create account
-> rafael:validate account
-> samuel:create account
-> tabitha:create account
-> rafael:add item 1234 to cart
-> tabitha:validate account
-> samuel:validate account
-> rafael:add item 2345 to cart
-> tabitha:add item 9876 to cart
-> rafael:complete purchase
+$ fluvio produce multi --key-separator=":" -f records.txt
 ```
 
 Looking at this sample input, we can see that `rafael` generated 5 events, `samuel`
@@ -178,17 +184,20 @@ but this time we won't tell the Producer to interpret our input as key-value rec
 
 %copy first-line%
 ```bash
-$ fluvio produce multi
-> rafael:create account
-> rafael:validate account
-> samuel:create account
-> tabitha:create account
-> rafael:add item 1234 to cart
-> tabitha:validate account
-> samuel:validate account
-> rafael:add item 2345 to cart
-> tabitha:add item 9876 to cart
-> rafael:complete purchase
+# Put the following records into a text file using your favorite editor
+$ cat records.txt
+rafael:create account
+rafael:validate account
+samuel:create account
+tabitha:create account
+rafael:add item 1234 to cart
+tabitha:validate account
+samuel:validate account
+rafael:add item 2345 to cart
+tabitha:add item 9876 to cart
+rafael:complete purchase
+
+$ fluvio produce multi -f records.txt
 ```
 
 Since records with no keys use round-robin partitioning, we should expect to see
