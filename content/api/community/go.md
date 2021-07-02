@@ -25,10 +25,28 @@ To create a `TopicProducer` do:
 producer, err := f.TopicProducer("hello-go")
 ```
 
-### Sending
+### Send
 
 To send into a topic do:
 ```go
 val := fmt.Sprintf("(from Go) %d (%s)", i, time.Now().String())
 err = producer.SendString(fmt.Sprintf("%d", i), val)
+```
+
+## Consumer 
+
+To get a consumer, do:
+```go
+partitionConsumer, err := f.PartitionConsumer("hello-go", 0)
+```
+
+### Stream
+
+To get a stream from the consumer do:
+```go
+stream, err := partitionConsumer.Stream(fluvio.NewOffsetFromBeginning(0))
+for {
+     r, err := stream.Next()
+     fmt.Printf("Got record: key=%s, value=%s\n", string(r.Key), string(r.Value))
+}
 ```
