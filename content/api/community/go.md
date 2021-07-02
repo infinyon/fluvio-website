@@ -46,7 +46,7 @@ To get a stream from the consumer do:
 ```go
 stream, err := partitionConsumer.Stream(fluvio.NewOffsetFromBeginning(0))
 for {
-		r, err := stream.Next()
-		fmt.Printf("Got record: key=%s, value=%s\n", string(r.Key), string(r.Value))
-	}
+     r, err := stream.Next()
+     fmt.Printf("Got record: key=%s, value=%s\n", string(r.Key), string(r.Value))
+}
 ```
