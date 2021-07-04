@@ -54,7 +54,8 @@ for {
 ## Smart Streams
 
 ### Filter
-First create a consumer config with the wasm file and use that config to get filtered stream
+
+Create a consumer config with the wasm file and get the filtered stream:
 ```go
 wasmFile := "example/filter.wasm"
 config, err := fluvioClient.ConsumerConfigWithWasmFilter(wasmFile)
