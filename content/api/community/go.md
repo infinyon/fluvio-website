@@ -50,3 +50,19 @@ for {
      fmt.Printf("Got record: key=%s, value=%s\n", string(r.Key), string(r.Value))
 }
 ```
+
+## Smart Streams
+
+### Filter
+
+Create a consumer config with the wasm file and get the filtered stream:
+```go
+wasmFile := "example/filter.wasm"
+config, err := fluvioClient.ConsumerConfigWithWasmFilter(wasmFile)
+stream, err := partitionConsumer.StreamWithConfig(fluvio.NewOffsetFromBeginning(0), config)
+for {
+     r, err := stream.Next()
+     fmt.Printf("Got record: key=%s, value=%s\n", string(r.Key), string(r.Value))
+}
+```
+
