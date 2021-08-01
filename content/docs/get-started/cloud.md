@@ -1,7 +1,7 @@
 ---
 title: Fluvio Cloud
 menu: Cloud
-weight: 40
+weight: 60
 ---
 
 Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
