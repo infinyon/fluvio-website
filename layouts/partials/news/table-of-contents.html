@@ -1,0 +1,32 @@
+ <!-- ignore empty links with + -->
+{{ $headers := findRE "<h[2-3].*?>(.|\n])+?</h[2-3]>" .Content }}
+<!-- at least one header to link to -->
+{{- $has_headers := ge (len $headers) 1 -}}
+<!-- a post can explicitly disable Table of Contents with toc: false -->
+{{- $show_toc := (eq $.Params.toc true) -}}
+<div class="sticky-top">
+    <div class="side-toc">
+        <div class="offset">
+        {{- range $headers -}}
+            {{- $header := . -}}
+            {{- range first 1 (findRE "<h[2-3]" $header 1) -}}
+                {{- range findRE "[2-3]" . 1 -}}
+                    {{- $next_heading := (int .) -}}
+                    <!-- generate li array of the proper depth -->
+                    {{- range seq $next_heading }}
+                        <ul class="text-muted toc-h{{ . }}"> 
+                    {{- end -}}
+                    {{- $anchorId := index (split (index (findRE "id=\"(.+)\"" $header 1) 0) "\"") 1 -}}
+                    <a href="#{{ $anchorId }}">
+                        <li>{{ $header | plainify | htmlUnescape }}</li>
+                    </a>
+                    <!-- close list -->
+                    {{- range seq $next_heading -}}
+                        </ul>
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end }}
+        </div>
+    </div>
+</div>

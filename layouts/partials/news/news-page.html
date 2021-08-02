@@ -1,0 +1,28 @@
+<div class="sidebar-nav">
+    <i class="fas fa-sm fa-bars"></i> 
+    {{- with .Site.GetPage .Section -}}{{ .Params.section }} Navigation{{- end -}}
+</div>
+
+<div class="container-fluid site-width min-height">
+    <div class="row">
+        <div class="col-md sidebar-area">
+            <div class="sidebar">
+                <div id="dismiss">
+                    <i class="fas fa-arrow-left"></i>Close
+                </div>
+                {{ partial "news/sidebar.html" . }}
+            </div>
+        </div>
+        <div class="col-md doc-area">
+            <div class="doc">
+                {{ partial "news/news-content" (dict "page" .) }}
+                {{ partial "common/edit-page" . }}
+            </div>
+        </div>
+        {{ if .Params.toc | default true -}}
+        <div class="doc-toc toc-area">
+            {{ partial "news/table-of-contents" . }}
+        </div>
+        {{ end -}}
+    </div>
+</div>
