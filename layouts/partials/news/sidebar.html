@@ -1,0 +1,70 @@
+{{- $current := .Page -}}
+{{- $all_pages := (where .Site.Pages "Section" .Section).ByWeight -}}
+
+{{/* Params: .current .page .class */}}
+{{ define "menu-item" }}
+    {{- $selected := "" -}}
+    {{- if eq .current .page -}}
+        {{- if .class -}}
+            {{- $selected = " selected-first" -}}
+        {{- else -}}
+            {{- $selected = " selected" -}}
+        {{- end -}}
+    {{- end -}}
+    {{- $menu := .page.Params.menu | default .page.LinkTitle -}}
+    {{- if .page.Params.link.local }}
+        <div class="card item{{ $selected }}"><a href="{{ .page.Params.link.local }}"
+            {{- if .class -}}
+                class="{{ .class }}"
+            {{- end -}}
+        >{{ $menu }}</a></div>
+    {{- else if .page.Params.link.external }}
+        <div class="card item{{ $selected }}"><a href="{{ .page.Params.link.external }}"
+            {{- if .class -}}
+                class="{{ .class }}"
+            {{- end -}} 
+        target="_blank">{{ $menu }}</a></div>
+    {{- else }}
+        <div class="card item{{ $selected }}"><a href="{{ .page.RelPermalink }}"
+            {{- if .class -}}
+                class="{{ .class }}"
+            {{- end -}}
+        >{{ $menu | markdownify}}</a></div>
+    {{- end -}}
+{{ end }}
+
+<div class=".sidebar">
+<!-- Overview Page -->
+{{- with .Site.GetPage .Section -}}
+    {{- if not .Params.hidden }}
+        {{- block "menu-item" (dict "current" $current "page" . "class" "first") -}}{{- end }}
+    {{ end -}}
+{{ end -}}
+
+<!-- Top Pages -->
+{{- range $all_pages -}}
+    {{ if not .Params.hidden }}
+        {{- if and .IsPage (eq .CurrentSection .FirstSection) }}
+            {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
+        {{ end -}}
+    {{- end -}}
+{{- end -}}
+
+<!-- Sections -->
+{{- range $all_pages -}}
+    {{- if not .Params.hidden }}
+        {{- if and .IsSection .Page.Parent.IsSection -}}
+            <div class="section">
+                <div class="title">{{.Title}}</div>
+            {{- range .Pages.ByWeight -}}
+                {{- if not .Params.hidden }}
+                    {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
+                {{ end -}}
+            {{- end -}}
+            </div>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+</div>
+
+<script src="/js/sidebar.js"></script>
