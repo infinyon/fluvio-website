@@ -141,7 +141,57 @@ as an integer.
 <br/>
 <br/>
 
-- [Visit our GitHub for complete code samples of SmartStreams](https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples)
+### SmartStream Maps
+
+Another big feature that we've had in the works for a while is a new type of SmartStream,
+`#[smartstream(map)]`, used to _transform_ the data in each record in a stream. This feature
+has been available in "preview" since 0.8.5, but we did not want to release it until we had
+error-handling ready for SmartStreams, which happened this release! Let's take a look at
+what a SmartStream Map function looks like.
+
+```rust
+use fluvio_smartstream::{smartstream, Record, RecordData, Result};
+
+#[smartstream(map)]
+pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
+  let key = record.key.clone();
+
+  let string = std::str::from_utf8(record.value.as_ref())?;
+  let int = string.parse::<i32>()?;
+  let value = (int * 2).to_string();
+
+  Ok((key, value.into()))
+}
+```
+
+> See the [full source code for this example on GitHub]!
+
+[full source code for this example on GitHub]: https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples/map_double
+
+In this example, we are reading in Records and first parsing them as UTF-8 strings,
+then parsing those strings as integers. If either of those steps fails, 
+the error is returned with `?` and the consumer receives an error item in the stream.
+
+Notice that the return type for Map is different from we have seen before with Filters.
+In order to edit the Records in our stream, we manipulate them in our function and
+then return the transformed output. The successful return value is a tuple of the new
+Key (optional) and Value for the output record. The `RecordData` type may be constructed from
+any type that has `impl Into<Vec<u8>>`, so you can just use `.into()` for a lot of types
+such as String when you want to return them.
+
+Let's take a look at how this example works!
+
+<video controls width="860px" title="Producing integers to the doubling topic, followed by the word nine, results in an error">
+  <source src="/news/images/0001/map-double.mov">
+</video>
+
+<br>
+<br>
+
+As you can see, when we give valid integers, our output comes back transformed as expected -
+the integers have been doubled. However, if we give invalid input, the Consumer CLI prints
+the error that was returned by the user code, along with diagnostic information such as the
+record's offset.
 
 ### Internal improvements
 
