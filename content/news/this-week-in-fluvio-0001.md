@@ -34,26 +34,23 @@ or to stop passing tests. The following executable/target combinations are curre
 considered Tier 1:
 
 - Fluvio CLI (`fluvio`)
-  - `x86_64-unknown-linux-musl`
-  - `x86_64-apple-darwin`
-  - `x86_64-apple-darwin`
-  - `x86_64-pc-windows-msvc`
-  - `aarch64-unknown-linux-musl`
-  - `aarch64-apple-darwin`
-  - `arm-unknown-linux-gnueabihf` (raspberry pi zero)
-  - `armv7-unknown-linux-gnueabihf` (raspberry pi)
+  - `x86_64-unknown-linux-musl` (Linux x86 64-bit)
   
 - Fluvio cluster (`fluvio-run`)
-  - `x86_64-unknown-linux-musl`
+  - `x86_64-unknown-linux-musl` (Linux x86 64-bit)
 
 #### Tier 2
 
-Tier 2 targets are ones that we do our best to keep compiling/passing tests, but
-we do not block progress if new changes happen to break these. Targets that are
-currently considered Tier 2 include:
+Tier 2 targets are those that must _compile_, but for which we don't yet run tests
+or block progress on those tests passing.
 
-- Fluvio cluster (`fluvio-run`)
-  - `x86_64-apple-darwin`
+- Fluvio CLI (`fluvio`)
+  - `aarch64-unknown-linux-musl` (Linux ARM 64-bit)
+  - `x86_64-pc-windows-msvc` (Windows x86 64-bit)
+  - `aarch64-apple-darwin` (Apple M1)
+  - `x86_64-apple-darwin` (Apple x86 64-bit)
+  - `arm-unknown-linux-gnueabihf` (Raspberry Pi zero)
+  - `armv7-unknown-linux-gnueabihf` (Raspberry Pi)
 
 ### Error Handling for SmartStreams ([#1198][1])
 
