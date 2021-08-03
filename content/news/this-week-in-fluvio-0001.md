@@ -1,5 +1,6 @@
 ---
 title: This Week in Fluvio 1
+date: 2021-08-03
 weight: 20
 toc: false
 ---
