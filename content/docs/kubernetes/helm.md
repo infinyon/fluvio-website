@@ -18,7 +18,7 @@ scLog: info # Log level, one of trace, debug, info, warn or error
 tls: false # Enable TLS on SC and SPU endpoints
 image: # Fluvio image to deploy
   registry: infinyon
-  tag: latest
+  tag: ""
   pullPolicy: IfNotPresent
 cert: 
   caCert: fluvio-ca # K8s TLS Secret with CA certificate
@@ -37,7 +37,10 @@ spuPod: # Passed to SPU pod spec
     limits:
       memory: 1Gi
   nodeSelector: {}
+  storageClass: null   # Storage class to use for SPU volume
+rbac:
+  create: true
 serviceAccount: # Service account used by SC for storing metadata and configuring managed SPU groups
   name: fluvio
-spuStorageClass: fluvio-spu # Storage class to use for SPU PVs
+podSecurityContext: {}   # Override 
 ```
