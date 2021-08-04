@@ -15,6 +15,8 @@ Install the Fluvio CLI by running the following command:
 curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
+
+
 ## Required Packages for Local Fluvio cluster
 
 1) [Docker]({{< ref "#install-docker" >}})
