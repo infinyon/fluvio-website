@@ -15,40 +15,39 @@ Install the Fluvio CLI by running the following command:
 curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
-## Required Packages for Local Fluvio cluster
 
-1) [Docker]({{< ref "#install-docker" >}})
-2) [Minikube]({{< ref "#install-minikube" >}})
-3) [Kubectl]({{< ref "#install-kubectl" >}})
-4) [Helm]({{< ref "#install-helm" >}})
+## Setting up a Fluvio cluster on Kubernetes
 
-If you have `docker`, `kubectl`, `helm`, and `minikube` already set up, then continue to steps for [running a local Fluvio cluster].
+With CLI, you can create and manage fluvio clusters on Kubernetes.  Before you can create a Fluvio cluster, you need to have a Kubernetes cluster up and running.
 
-[running a local Fluvio cluster]: {{< ref "/docs/get-started/linux.md#start-fluvio-cluster" >}}
+## Installing Kubernetes cluster
 
-### Install Docker
+Either you can create a cluster on your local machine or you can deploy it to a cloud provider.
 
-Docker is a container engine which is used by Minikube to run a local Kubernetes cluster.
+For installing on your local machine, here are suggested Kubernetes installation options:
 
-Follow the instructions for your Linux distro to install [Docker engine for Linux].
+1) [K3d](https://k3d.io)
+2) [Kind](https://kind.sigs.k8s.io)
+3) [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-[Docker engine for Linux]: https://docs.docker.com/engine/install/#server 
-
-### Install Minikube
-
-Minikube is a tool for running a local Kubernetes cluster
-
-Follow the instructions at the [Minikube installation page] to download and install `minikube` for your Linux distro.
-
-[Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
-
-#### Start a Kubernetes cluster
-Start a Kubernetes cluster locally with minikube by running the following in a terminal window:
-
-%copy first-line%
-```bash
-$ minikube start
+After installing Kubernetes, you can run the following command to check if your Kubernetes cluster is up and running:
 ```
+$ kubectl config current-context
+minikube
+```
+
+Some of Kubernetes installation will install `kubectl` and `helm`.  You can check it by:
+```
+$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.3", GitCommit:"ca643a4d1f7bfe34773c74f79527be4afd95bf39", GitTreeState:"clean", BuildDate:"2021-07-15T21:04:39Z", GoVersion:"go1.16.6", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.2", GitCommit:"092fbfbf53427de67cac1e9fa54aaa09a28371d7", GitTreeState:"clean", BuildDate:"2021-06-16T12:53:14Z", GoVersion:"go1.16.5", Compiler:"gc", Platform:"linux/amd64"}
+
+$ helm version
+version.BuildInfo{Version:"v3.6.2", GitCommit:"ee407bdf364942bcb8e8c665f82e15aa28009b71", GitTreeState:"clean", GoVersion:"go1.16.5"}
+
+```
+
+If you didn't install `kubectl` and `helm`, you can install them in the following way:
 
 ### Install Kubectl
 
@@ -66,84 +65,42 @@ Follow the instructions at the [helm installation page] and follow the instructi
 
 [helm installation page]: https://v3.helm.sh/docs/intro/install/ 
 
-## Start Fluvio cluster 
+
+
+## Start Fluvio cluster on Kubernetes
 
 You can start a Fluvio cluster by running `fluvio cluster start`.
 
-If this is your first time starting a cluster in your session, be prepared to enter your password.
 
 %copy first-line%
 ```bash
 $ fluvio cluster start
 ✅ ok: Kubernetes config is loadable
 ✅ ok: Supported helm version is installed
-✅ ok: Fluvio system charts are installed
+✅ ok: Fixed: Missing Fluvio system charts.
 ✅ ok: Previous fluvio installation not found
+installing fluvio chart
+Fluvio SC is up at: 192.168.49.2:30525
 Waiting up to 120 seconds for Fluvio cluster version check...
+0 of 1 spu are ready, sleeping 10 seconds...
+All SPUs(1) are ready
 Successfully installed Fluvio!
 ```
 
 ### Verify cluster is running
 
-You can start a Fluvio cluster by running `fluvio cluster start`.
-
-If this is your first time starting a cluster in your session, be prepared to enter your password.
-
-%copy first-line%
-```bash
-$ fluvio cluster start
-✅ ok: Kubernetes config is loadable
-✅ ok: Supported helm version is installed
-✅ ok: Fluvio system charts are installed
-✅ ok: Previous fluvio installation not found
-Waiting up to 120 seconds for Fluvio cluster version check...
-Successfully installed Fluvio!
+You can start a Fluvio cluster by running:
 ```
-### Verify cluster is running
-
-We can verify that our Fluvio components are running with `kubectl`
-
-All Fluvio pods in the `default` namespace should be running.
-
-%copy first-line%
-
-```bash
-$ kubectl get po
-NAME                         READY   STATUS    RESTARTS   AGE
-fluvio-sc-695cfb4cf5-89lss   1/1     Running   0          15s
-fluvio-spg-main-0            1/1     Running   0          9s
+$ fluvio version
+Fluvio CLI           : 0.9.0
+Fluvio CLI SHA256    : 170c6d4bad98e961b1f14d0fd052900dcbc92d736757bad3c7dcae2095151861
+Fluvio Platform      : 0.9.0 (minikube)
+Git Commit           : 5ff06169660c2f111bde3bdfcab9b83f569f9960
+OS Details           : Ubuntu 18.04 (kernel 5.4.0-1054-aws)
+=== Plugin Versions ===
+Fluvio Cloud CLI (fluvio-cloud) : 0.1.5
+Fluvio Runner (fluvio-run)     : 0.2.1
 ```
-
-
-You can check that everything worked by listing out the cluster's [SPUs]({{< ref "/docs/architecture/spu">}}):
-
-%copy first-line%
-```bash
-$ fluvio cluster spu list
- ID  NAME    STATUS  TYPE       RACK  PUBLIC                PRIVATE
-  0  main-0  Online  "managed"   -    192.168.99.103:31314  fluvio-spg-main-0.fluvio-spg-main:9006
-```
-
-The public address of the cluster's [SPU]({{< ref "/docs/architecture/spu">}}) should match the IP from `minikube ip` and the NodePort for the `fluvio-spu-main-0` kubernetes service.
-
-%copy first-line%
-```bash
-$ minikube ip
-192.168.99.103
-```
-
-%copy first-line%
-```bash
-$ kubectl get svc
-NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-fluvio-sc-internal   ClusterIP   10.99.183.216   <none>        9004/TCP            58s
-fluvio-sc-public     NodePort    10.109.6.50     <none>        9003:30763/TCP      58s
-fluvio-spg-main      ClusterIP   None            <none>        9005/TCP,9006/TCP   52s
-fluvio-spu-main-0    NodePort    10.100.254.17   <none>        9005:31314/TCP      52s
-kubernetes           ClusterIP   10.96.0.1       <none>        443/TCP             15h
-```
-
-
 
 ## Hello, Fluvio!
 

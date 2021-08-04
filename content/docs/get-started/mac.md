@@ -98,56 +98,17 @@ If this is your first time starting a cluster in your session, be prepared to en
 
 %copy first-line%
 ```bash
-$ fluvio cluster start
-✅ ok: Kubernetes config is loadable
-✅ ok: Supported helm version is installed
-✅ ok: Fluvio system charts are installed
-✅ ok: Previous fluvio installation not found
-Waiting up to 120 seconds for Fluvio cluster version check...
-Successfully installed Fluvio!
+$ fluvio cluster start --local
 ```
+
 ### Verify cluster is running
 
-We can verify that our Fluvio components are running with `kubectl`
+We can check the status of the SPUs in the cluster with the following command:
 
-All Fluvio pods in the `default` namespace should be running.
-
-%copy first-line%
-
-```bash
-$ kubectl get po
-NAME                         READY   STATUS    RESTARTS   AGE
-fluvio-sc-695cfb4cf5-89lss   1/1     Running   0          15s
-fluvio-spg-main-0            1/1     Running   0          9s
-```
-
-
-You can check that everything worked by listing out the cluster's [SPUs]({{< ref "/docs/architecture/spu">}}):
-
-%copy first-line%
 ```bash
 $ fluvio cluster spu list
- ID  NAME    STATUS  TYPE       RACK  PUBLIC                PRIVATE
-  0  main-0  Online  "managed"   -    192.168.99.103:31314  fluvio-spg-main-0.fluvio-spg-main:9006
-```
-
-The public address of the cluster's [SPU]({{< ref "/docs/architecture/spu">}}) should match the IP from `minikube ip` and the NodePort for the `fluvio-spu-main-0` kubernetes service.
-
-%copy first-line%
-```bash
-$ minikube ip
-192.168.99.103
-```
-
-%copy first-line%
-```bash
-$ kubectl get svc
-NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-fluvio-sc-internal   ClusterIP   10.99.183.216   <none>        9004/TCP            58s
-fluvio-sc-public     NodePort    10.109.6.50     <none>        9003:30763/TCP      58s
-fluvio-spg-main      ClusterIP   None            <none>        9005/TCP,9006/TCP   52s
-fluvio-spu-main-0    NodePort    10.100.254.17   <none>        9005:31314/TCP      52s
-kubernetes           ClusterIP   10.96.0.1       <none>        443/TCP             15h
+ ID    NAME             STATUS  TYPE      RACK  PUBLIC          PRIVATE
+ 5001  custom-spu-5001  Online  "custom"   -    localhost:9010  localhost:9011
 ```
 
 ## Hello, Fluvio!

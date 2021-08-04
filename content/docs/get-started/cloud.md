@@ -1,14 +1,11 @@
 ---
 title: Fluvio Cloud
 menu: Cloud
-weight: 40
+weight: 60
 ---
 
 Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
 
-{{<idea>}}
-Fluvio Cloud is currently in **alpha** and is not suitable for production environments.
-{{</idea>}}
 
 You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> or in <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a>.
 ## Install Fluvio CLI
@@ -22,24 +19,24 @@ Install the Fluvio CLI by running the following command:
 curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
-## Creating a Fluvio Cloud account
+## Creating an InfinyOn Cloud account
 
-Head on over to the  <a href="https://cloud.fluvio.io/signup" target="_blank">Fluvio Cloud signup page</a> to create an account.
+Head on over to the <a href="https://infinyon.cloud" target="_blank">InfinyOn Cloud signup page</a> to create an account.
 
 <img src="../images/cloud-signup.png"
-     alt="Fluvio Cloud signup"
+     alt="A screenshot of the InfinyOn new account form, with Name, Organization, Email, and Password fields"
      style="justify: center; max-width: 400px" />
 
 After filling out the form, you'll be greeted with a success message telling you to verify your email. You'll need to complete this step in order to continue.
 
 <img src="../images/cloud-verification.png"
-     alt="Fluvio Cloud verification"
+     alt="A screenshot of the verification email received after completing the signup form, including a verification link"
      style="justify: center; max-width: 600px" />
 
 You should get a confirmation that your account is ready to use
 
 <img src="../images/cloud-confirmation.png"
-     alt="Fluvio Cloud confirmation"
+     alt="A screenshot of the prompt received after clicking the verification link, saying the account is ready to use"
      style="justify: center; max-width: 600px" />
 
 
