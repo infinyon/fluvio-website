@@ -2,7 +2,7 @@
 title: Download Fluvio
 ---
 
-{{< h-list tabTotal="4" tabID="1" tabName1="Linux" tabName2="MacOS" tabName3="Windows" tabName4="Raspberry Pi">}}
+{{< h-list tabTotal="4" tabID="1" tabName1="Linux" tabName2="MacOS" tabName3="Raspberry Pi">}}
 
 {{< h-item tabNum="1">}}
 {{<download-card>}}
@@ -43,15 +43,23 @@ Copy the command above into your terminal to install Fluvio CLI
 {{< /h-item>}}
 
 {{< h-item tabNum="3">}}
+{{<download-card>}}
 
-Windows installation goes here.
+%copy first-line%
+```bash
+$ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+```
 
-{{< /h-item>}}
+#### Raspberry Pi
 
-{{< h-item tabNum="4">}}
+Copy the command above into your terminal to install Fluvio CLI
 
-Raspberry Pi installation goes here.
+</br>
 
+#### Next Steps
+* [Get Started - Raspberry Pi]({{< ref "/docs/get-started/raspberry" >}})
+
+{{</download-card>}}
 {{< /h-item>}}
 
 {{< /h-list>}}
