@@ -53,6 +53,29 @@ or block progress on those tests passing.
   - `arm-unknown-linux-gnueabihf` (Raspberry Pi zero)
   - `armv7-unknown-linux-gnueabihf` (Raspberry Pi)
 
+### Better Kubernetes Support
+
+With 0.9.0, Fluvio now supports any standards compliant Kubernetes distribution.  It defaults to standard storage drivers, but can be configured to use different drivers.  We have tested with the following Kubernetes distributions:
+- Minikube
+- Kind
+- K3d
+- AWS EKS
+
+
+Please see Fluvio's [Kubernetes documentation](https://fluv.io/docs/kubernetes.html) for more information. 
+
+#### Helm changes
+
+Fluvio's CLI bundles helm charts for easy installation.  Fluvio's charts are no longer published to the Fluvio registry. 
+
+Please use following commands to update your Fluvio installation:
+
+```
+fluvio cluster upgrade --sys      # upgrade CRD
+fluvio cluster upgrade            # upgrade rest 
+```
+
+
 ### Error Handling for SmartStreams ([#1198][1])
 
 One of Fluvio's premiere features is SmartStreams, which allow users to write
