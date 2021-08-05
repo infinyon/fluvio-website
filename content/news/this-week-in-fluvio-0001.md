@@ -2,7 +2,6 @@
 title: This Week in Fluvio 1
 date: 2021-08-04
 weight: 20
-toc: false
 ---
 
 Welcome to the very first edition of This Week in Fluvio, our weekly newsletter
