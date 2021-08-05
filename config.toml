@@ -50,6 +50,12 @@ disableKinds = ["taxonomyTerm"]
     weight = 103
 
   [[menu.fluvio]]
+    identifier = "news"
+    name = "News"
+    url = "/news/"
+    weight = 104
+
+  [[menu.fluvio]]
     identifier = "chat"
     url = "https://discordapp.com/invite/bBG2dTz"
     pre = "fab fa-discord"
@@ -61,7 +67,6 @@ disableKinds = ["taxonomyTerm"]
     url = "https://www.infinyon.com/blog"
     pre = "fab fa-blogger"
     weight = 100
-
 
   [[menu.infinyon]]
     identifier = "tutorials"
