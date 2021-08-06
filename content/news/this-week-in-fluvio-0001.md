@@ -61,7 +61,7 @@ With 0.9.0, Fluvio now supports any standards compliant Kubernetes distribution.
 - AWS EKS
 
 
-Please see Fluvio's [Kubernetes documentation](https://fluv.io/docs/kubernetes.html) for more information. 
+Please see Fluvio's [Kubernetes documentation]({{< ref "/docs/kubernetes/install" >}}) for more information. 
 
 #### Helm changes
 
