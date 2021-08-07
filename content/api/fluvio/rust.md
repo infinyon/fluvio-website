@@ -11,6 +11,7 @@ features before any of the other clients as well as having good support for the
 
 To get a [fluvio connection] do:
 
+%copy%
 ```rust
 let fluvio = Fluvio::connect().await.expect("Failed to connect to fluvio");
 ```
@@ -20,6 +21,8 @@ let fluvio = Fluvio::connect().await.expect("Failed to connect to fluvio");
 ## Produce
 
 To [create a producer] do:
+
+%copy%
 ```rust
 let producer = fluvio.topic_producer("my-fluvio-topic").await.expect("Failed to create a producer");
 ```
@@ -29,6 +32,8 @@ let producer = fluvio.topic_producer("my-fluvio-topic").await.expect("Failed to 
 ### Send
 
 Once you've got a producer, [send to this topic] via:
+
+%copy%
 ```rust
 producer.send("my-key", "my-value").await.expect("Failed to send into a record");
 ```
@@ -38,6 +43,8 @@ producer.send("my-key", "my-value").await.expect("Failed to send into a record")
 ## Consume
 
 To [create a consumer] do:
+
+%copy%
 ```rust
 let consumer = fluvio.partition_consumer("my-topic", 0).await.expect("failed to create consumer");
 ```
@@ -47,6 +54,8 @@ let consumer = fluvio.partition_consumer("my-topic", 0).await.expect("failed to 
 ### Stream
 
 To [create a stream] do:
+
+%copy%
 ```rust
 let mut stream = consumer.stream(Offset::beginning()).await.expect("Failed to create stream");
 ```
@@ -54,6 +63,8 @@ let mut stream = consumer.stream(Offset::beginning()).await.expect("Failed to cr
 [create a stream]: https://docs.rs/fluvio/0.8.0/fluvio/consumer/struct.PartitionConsumer.html#method.stream
 
 To use the stream do:
+
+%copy%
 ```rust
 use futures::StreamExt;
 while let Some(Ok(record)) = stream.next().await {

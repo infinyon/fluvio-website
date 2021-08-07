@@ -21,6 +21,7 @@ To see the full docs, visit [our typedoc page].
 
 To [connect to fluvio] do:
 
+%copy%
 ```javascript
 import Fluvio from '@fluvio/client';
 const fluvio = await Fluvio.connect();
@@ -31,6 +32,8 @@ const fluvio = await Fluvio.connect();
 ## Produce
 
 To [create a producer] do:
+
+%copy%
 ```javascript
 const producer = await fluvio.topicProducer("my-topic");
 ```
@@ -40,6 +43,8 @@ const producer = await fluvio.topicProducer("my-topic");
 ### Send
 
 To [send a record] for a producer do:
+
+%copy%
 ```javascript
 producer.send("my-key", "my-value");
 ```
@@ -52,6 +57,8 @@ key/value fields in `send`.
 ## Consume
 
 To [get a consumer] do:
+
+%copy%
 ```javascript
 const partition = 0;
 const consumer = await fluvio.partitionConsumer("my-topic", partition)
@@ -66,6 +73,7 @@ and iterate over it like this:
 
 [create a stream]: https://infinyon.github.io/fluvio-client-node/classes/partitionconsumer.html#createstream
 
+%copy%
 ```javascript
 const stream = await consumer.createStream(Offset.FromBeginning());
 for await (const record of stream) {
