@@ -17,6 +17,7 @@ To see the full docs, visit [our pdoc page].
 
 To [connect to fluvio] do:
 
+%copy%
 ```python
 from fluvio import Fluvio
 fluvio = Fluvio.connect()
@@ -26,6 +27,8 @@ fluvio = Fluvio.connect()
 ## Produce
 
 To [get a producer] do:
+
+%copy%
 ```python
 producer = fluvio.topic_producer("my-topic")
 ```
@@ -34,9 +37,10 @@ producer = fluvio.topic_producer("my-topic")
 
 ### Send
 To [send a record] for the producer do:
+
+%copy%
 ```python
-partition = 0
-producer.send_record_string("my-record", partition)
+producer.send_string("my-record")
 ```
 
 [`send`] is also available. You will need to convert your key/value into a byte array
@@ -48,6 +52,8 @@ first to use it.
 ## Consumer
 
 To [get a consumer], do:
+
+%copy%
 ```python
 partition = 0
 consumer = fluvio.partition_consumer("my-topic", partition)
@@ -61,7 +67,9 @@ To [get a stream] from the consumer do:
 
 [get a stream]: https://infinyon.github.io/fluvio-client-python/fluvio.html#PartitionConsumer.stream
 
+%copy%
 ```python
+from fluvio import Offset
 stream = consumer.stream(Offset.beginning())
 for i in stream:
     key = i.key_string()

@@ -13,12 +13,16 @@ To see the full docs, visit [our javadoc page].
 
 ## Connect
 To get a connection to fluvio do:
+
+%copy%
 ```java
 Fluvio fluvio = Fluvio.connect();
 ```
 
 ## Producer
 To [create a producer] do:
+
+%copy%
 ```java
 TopicProducer producer = fluvio.topic_producer("hello-java");
 ```
@@ -28,6 +32,8 @@ TopicProducer producer = fluvio.topic_producer("hello-java");
 ### Send
 
 To [send to the topic] do:
+
+%copy%
 ```java
 for (int i = 0; i < 10; i++) {
     producer.send(String.valueOf(i).getBytes(), ("Hello " + i).getBytes());
@@ -39,6 +45,8 @@ for (int i = 0; i < 10; i++) {
 ## Consumer
 
 To [create a consumer] do:
+
+%copy%
 ```java
 PartitionConsumer consumer = fluvio.partition_consumer("hello-java", 0);
 ```
@@ -51,7 +59,7 @@ requires calling `next` on the `stream` as seen here:
 
 [consumer stream]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/PartitionConsumer.html#stream(com.infinyon.fluvio.Offset)
 
-
+%copy%
 ```java
 PartitionConsumerStream stream = consumer.stream(Offset.beginning());
 for (int i = 0; i < 10; i++) {
