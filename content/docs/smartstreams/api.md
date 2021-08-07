@@ -26,7 +26,9 @@ use fluvio::{Fluvio, Offset, PartitionConsumer};
 // create consumer config
 
 let buffer = std::fs::read("/my_projects/example_filter/target/wasm32-unknown-unknown/release/example_filter.wasm").expect("wasm file is missing");
-let filter_config = ConsumerConfig::default().with_wasm_filter(buffer);
+let mut builder = ConsumerConfig::builder();
+builder.wasm_filter(buffer);
+let filter_config = builder.build().expect("Failed to create config");
 
 // create partition consumer
 let consumer = fluvio.partition_consumer("my-topic", 0).await.expect("failed to create consumer");
