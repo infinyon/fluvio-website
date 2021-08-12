@@ -21,12 +21,14 @@ example looks like.
 Let's use `cargo-generate` to set up a blank SmartStream Map project. If you
 don't have it yet, run the following command to install it:
 
+%copy first-line%
 ```bash
 $ cargo install cargo-generate
 ```
 
 Then, run the following command and be sure to select the `map` option.
 
+%copy first-line%
 ```bash
 $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 🤷   Project Name : map-example
@@ -43,6 +45,7 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 We should see a new folder has been created for our project, `map-example`. We
 can go inside and take a look at the sample Map generated for us by the template:
 
+%copy%
 ```rust
 use fluvio_smartstream::{smartstream, Result, Record, RecordData};
 
@@ -82,6 +85,7 @@ follow the instructions in the next section:
 
 Create a new Topic:
 
+%copy first-line%
 ```bash
 $ fluvio topic create map-double
 topic "map-double" created
@@ -89,12 +93,18 @@ topic "map-double" created
 
 Build the SmartStream WASM module. In your project folder, run:
 
+%copy first-line%
 ```bash
 $ cargo build --release
 ```
 
+Your WASM binary is not ready to use.
+
+-> You may need to run **rustup target add wasm32-unknown-unknown***"
+
 Now, open a consumer and use the `--map` flag to point it to your WASM module:
 
+%copy first-line%
 ```bash
 $ fluvio consume map-double -B --map=target/wasm32-unknown-unknown/release/map_example.wasm
 Consuming records from the beginning of topic 'map-double'
@@ -105,6 +115,7 @@ Now let's open a new terminal and produce some data to watch this work end-to-en
 
 In a new terminal, run the following:
 
+%copy first-line%
 ```bash
 $ fluvio produce map-double
 > 1
@@ -118,6 +129,7 @@ $ fluvio produce map-double
 When the prompt `>` appears, the data you type on each line will be sent to the topic.
 If we check on our consumer window, we should see each record get doubled and printed out:
 
+%copy first-line%
 ```bash
 $ fluvio consume map-double -B --map=target/wasm32-unknown-unknown/release/map_example.wasm
 Consuming records from the beginning of topic 'map-double'

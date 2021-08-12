@@ -239,6 +239,11 @@ $ cargo build --release
     Finished release [optimized] target(s) in 2.33s
 ```
 
+Your WASM binary is not ready to use.
+
+-> You may need to run **rustup target add wasm32-unknown-unknown***"
+
+
 %copy first-line%
 ```bash    
 $ ls -la target/wasm32-unknown-unknown/release
