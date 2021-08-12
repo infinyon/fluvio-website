@@ -239,7 +239,7 @@ $ cargo build --release
     Finished release [optimized] target(s) in 2.33s
 ```
 
-Your WASM binary is now ready to use.
+Your WASM binary is now ready for use.
 
 -> You may need to run **% rustup target add wasm32-unknown-unknown**
 
