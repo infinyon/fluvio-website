@@ -98,7 +98,7 @@ Build the SmartStream WASM module. In your project folder, run:
 $ cargo build --release
 ```
 
-Your WASM binary is not ready to use.
+Your WASM binary is now ready to use.
 
 -> You may need to run **% rustup target add wasm32-unknown-unknown**
 
