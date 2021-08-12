@@ -127,3 +127,7 @@ Consuming records from the beginning of topic 'map-double'
 8
 10
 ```
+
+### Read next
+
+- [Writing a JSON filter SmartStream]({{< ref "/docs/smartstreams/filter" >}})

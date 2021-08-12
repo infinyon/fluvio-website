@@ -178,3 +178,4 @@ Date
 ### Read next
 
 - [Writing a JSON filter SmartStream]({{< ref "/docs/smartstreams/filter" >}})
+- [Writing a map SmartStream to transform records]({{< ref "/docs/smartstreams/map" >}})

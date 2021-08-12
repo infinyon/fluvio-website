@@ -315,3 +315,7 @@ $ fluvio consume server-logs -B --smart-stream="target/wasm32-unknown-unknown/re
 {"level":"info","message":"Accepted incoming connection"}
 {"level":"error","message":"Unable to connect to database"}
 ```
+
+### Read next
+
+- [Writing a map SmartStream to transform records]({{< ref "/docs/smartstreams/map" >}})
