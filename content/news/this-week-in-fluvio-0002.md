@@ -21,6 +21,7 @@ Kubernetes instance somewhere.
 On M1, you can now run the standard `install.sh` script and get both the
 Fluvio CLI and the `fluvio-run` cluster binary:
 
+%copy first-line%
 ```bash
 $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
@@ -28,7 +29,8 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 After this has run (and you've set up your PATH), you can now run a local
 cluster on M1 with the following command:
 
-```
+%copy first-line%
+```bash
 $ fluvio cluster start --local
 ```
 
