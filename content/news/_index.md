@@ -13,4 +13,5 @@ features and development updates in the [Open Source Fluvio project].
 
 #### Newsletters
 
+- [2021-08-12: This Week in Fluvio &#x23;2](/news/this-week-in-fluvio-0002/)
 - [2021-08-04: This Week in Fluvio &#x23;1](/news/this-week-in-fluvio-0001/)
