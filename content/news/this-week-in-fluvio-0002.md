@@ -55,6 +55,10 @@ not have any code changes to the SC for `0.9.1` or `0.9.2`, so it actually did n
 recompiled with the new version number baked in. All this to say, we are now back on
 track with matching versions in the client/server builds.
 
+In addition to these compatibility fixes, `0.9.2` also included some internal fixes
+to the Streaming Processing Units (SPUs) that should make them more reliable when being
+deployed in a Kubernetes cluster.
+
 ## Conclusion
 
 That's it for this week, short and sweet! If you have any questions or would like
