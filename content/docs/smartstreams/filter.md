@@ -38,9 +38,13 @@ $ cargo install cargo-generate # In case you didn't install it before
 $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 🤷   Project Name : json-filter
 🔧   Creating project called `json-filter`...
-🤷   Which type of SmartStream would you like? [filter] [default: filter]: filter
-✨   Done! New project created /home/user/json-filter
-```
+✔ 🤷   Which type of SmartStream would you like? · filter
+[1/5]   Done: .cargo/config.toml
+[2/5]   Done: .gitignore
+[3/5]   Done: Cargo.toml
+[4/5]   Done: README.md
+[5/5]   Done: src/lib.rs
+✨   Done! New project created json-filter```
 
 In the new project, let's add the `serde` and `serde_json` dependencies:
 
@@ -224,8 +228,8 @@ $ cargo build --release
 
 Your WASM binary is now ready for use.
 
--> You may need to run **% rustup target add wasm32-unknown-unknown**
-
+-> If this is your first time building WASM, you may need to run **% rustup target add wasm32-unknown-unknown**
+ 
 %copy first-line%
 ```bash    
 $ ls -la target/wasm32-unknown-unknown/release
@@ -260,7 +264,7 @@ In the other terminal, run a consumer with the SmartStream filter using this com
 
 %copy first-line%
 ```bash
-$ fluvio consume server-logs -B --smart-stream="target/wasm32-unknown-unknown/release/json_filter.wasm"
+$ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/json_filter.wasm"
 ```
 
 Finally, we can take our `server.log` file and use `fluvio produce` to send each
@@ -295,7 +299,7 @@ whose log level was debug!
 
 %copy first-line%
 ```bash
-$ fluvio consume server-logs -B --smart-stream="target/wasm32-unknown-unknown/release/json_filter.wasm"
+$ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/json_filter.wasm"
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}
 {"level":"info","message":"Accepted incoming connection"}
 {"level":"warn","message":"Client dropped connnection"}
