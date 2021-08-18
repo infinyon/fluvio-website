@@ -35,8 +35,13 @@ $ cargo install cargo-generate
 $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 🤷   Project Name : example-filter
 🔧   Creating project called `example-filter`...
-🤷   Which type of SmartStream would you like? [filter] [default: filter]: filter
-✨   Done! New project created /home/user/example-filter
+✔ 🤷   Which type of SmartStream would you like? · filter
+[1/5]   Done: .cargo/config.toml
+[2/5]   Done: .gitignore
+[3/5]   Done: Cargo.toml
+[4/5]   Done: README.md
+[5/5]   Done: src/lib.rs
+✨   Done! New project created example-filter
 ```
 
 The `cargo generate` command prompts you about which type of SmartStream you'd
@@ -48,23 +53,18 @@ help with building for WASM and integrating with the SmartStream system.
 Let's look at the sample code that the template generated for us.
 
 ```rust
-use fluvio_smartstream::{smartstream, Record};
+use fluvio_smartstream::{smartstream, Record, Result};
 
 #[smartstream(filter)]
-pub fn filter(record: &Record) -> bool {
-    let str_result = std::str::from_utf8(record.value.as_ref());
-    let string = match str_result {
-        Ok(s) => s,
-        _ => return false,
-    };
-
-    string.contains('a')
+pub fn filter(record: &Record) -> Result<bool>7 {
+    let string = std::str::from_utf8(record.value.as_ref())?;
+    Ok(string.contains('a'))
 }
 ```
 
-The function with the `#[smartstream(filter)]` tag is the entrypoint to the
+The function with the `#[smartstream(filter)]` attribute is the entrypoint to the
 SmartStream. The SPU that processes our stream will send each Record to this
-function and, based on whether the function returns true or false, either send
+function and, based on whether the function returns Ok(true) or not, either send
 the record to our consumer or not. This sample SmartStream will check whether
 the record's contents are a UTF-8 string and whether that string contains the
 letter `a`.
@@ -91,7 +91,7 @@ $ cargo build --release
 
 %copy first-line%
 ```bash
-$ ls -la target/wasm32-unknown-unknown/release/your-package-name.wasm
+$ ls -la target/wasm32-unknown-unknown/release/example_filter.wasm
 .rwxr-xr-x  135Ki user 19 May 16:32   example_filter.wasm
 ```
 
@@ -130,7 +130,7 @@ SmartStream.
 
 %copy first-line%
 ```bash
-$ fluvio consume hello-smartstreams -B --smart-stream="target/wasm32-unknown-unknown/release/example_filter.wasm"
+$ fluvio consume hello-smartstreams -B --filter="target/wasm32-unknown-unknown/release/example_filter.wasm"
 ```
 
 Now, with both of our consumer windows open, let's open one last terminal and
@@ -169,7 +169,7 @@ Egg
 
 ```bash
 $ fluvio consume hello-smartstreams -B \
-    --smart-stream="target/wasm32-unknown-unknown/release/example_filter.wasm"
+    --filter="target/wasm32-unknown-unknown/release/example_filter.wasm"
 Banana
 Cabbage
 Date
