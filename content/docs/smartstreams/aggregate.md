@@ -70,4 +70,5 @@ to convert the String to a `RecordData`.
 
 ### Read next
 
-- [Writing a JSON filter SmartStream]({{< ref "/docs/smartstreams/filter" >}})
+- [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
+- [Writing a map to transform records]({{< ref "/docs/smartstreams/map" >}})
