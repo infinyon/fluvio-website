@@ -142,4 +142,5 @@ Consuming records from the beginning of topic 'map-double'
 
 ### Read next
 
-- [Writing a JSON filter SmartStream]({{< ref "/docs/smartstreams/filter" >}})
+- [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})

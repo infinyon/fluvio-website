@@ -177,5 +177,6 @@ Date
 
 ### Read next
 
-- [Writing a JSON filter SmartStream]({{< ref "/docs/smartstreams/filter" >}})
-- [Writing a map SmartStream to transform records]({{< ref "/docs/smartstreams/map" >}})
+- [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
+- [Writing a map to transform records]({{< ref "/docs/smartstreams/map" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})
