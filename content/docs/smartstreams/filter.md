@@ -309,4 +309,5 @@ $ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/
 
 ### Read next
 
-- [Writing a map SmartStream to transform records]({{< ref "/docs/smartstreams/map" >}})
+- [Writing a map to transform records]({{< ref "/docs/smartstreams/map" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})
