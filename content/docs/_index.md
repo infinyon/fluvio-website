@@ -2,7 +2,8 @@
 title: Introduction to Fluvio
 menu: Overview
 section: Docs
-description: Introduction to Fluvio Data Hub
+description: "Fluvio is an open source streaming platform that aggregates, correlates,
+and applies programmable intelligence to data in motion"
 img: docs/architecture/images/fluvio-stack.svg
 twitter-card: summary_large_image
 ---
