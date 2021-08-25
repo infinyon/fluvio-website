@@ -3,6 +3,8 @@ title: Introduction to Fluvio
 menu: Overview
 section: Docs
 description: Introduction to Fluvio Data Hub
+img: docs/architecture/images/fluvio-stack.svg
+twitter-card: summary_large_image
 ---
 
 Fluvio is a high-performance data streaming platform for collaborative apps. Whether you are looking to enhance your app with a custom chat channel, receive real-time events from your legacy database, communicate with other services in real-time, or stitch together a log aggregator for your mobile or IOT devices, Fluvio is the data streaming platform for you. Our focus on speed, scale, multi-platform support, native language APIs, and ease of use removes many barriers to adoption.
