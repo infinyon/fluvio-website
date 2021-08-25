@@ -7,7 +7,7 @@ description: Introduction to Fluvio Data Hub
 
 Fluvio is a high-performance data streaming platform for collaborative apps. Whether you are looking to enhance your app with a custom chat channel, receive real-time events from your legacy database, communicate with other services in real-time, or stitch together a log aggregator for your mobile or IOT devices, Fluvio is the data streaming platform for you. Our focus on speed, scale, multi-platform support, native language APIs, and ease of use removes many barriers to adoption.
 
-<img src="architecture/images/fluvio-solution.svg" alt="Fluvio Cloud" justify="center" height="440">
+<img src="architecture/images/fluvio-stack.svg" alt="Fluvio Stack" justify="center" height="440">
 
 Fluvio can be installed on your personal computer, in a private data center, or on a public cloud. Virtually anywhere <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> is available.
 
