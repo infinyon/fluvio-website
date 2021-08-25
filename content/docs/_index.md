@@ -5,7 +5,8 @@ section: Docs
 description: Introduction to Fluvio Data Hub
 ---
 
-Fluvio is a high-performance data streaming platform for collaborative apps.
+Fluvio is an open source streaming platform that aggregates, correlates,
+and applies programmable intelligence to data in motion.
 
 <img src="architecture/images/fluvio-solution.svg" alt="Fluvio Cloud" justify="center" height="440">
 
