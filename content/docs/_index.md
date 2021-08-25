@@ -3,7 +3,7 @@ title: Introduction to Fluvio
 menu: Overview
 section: Docs
 description: "Fluvio is an open source streaming platform that aggregates, correlates, and applies programmable intelligence to data in motion"
-img: docs/architecture/images/fluvio-stack.svg
+img: docs/architecture/images/fluvio-stack-social.png
 twitter-card: summary_large_image
 ---
 
