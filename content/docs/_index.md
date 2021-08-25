@@ -2,14 +2,27 @@
 title: Introduction to Fluvio
 menu: Overview
 section: Docs
-description: Introduction to Fluvio Data Hub
+description: "Fluvio is an open source streaming platform that aggregates, correlates, and applies programmable intelligence to data in motion"
+img: docs/architecture/images/fluvio-stack.svg
+twitter-card: summary_large_image
 ---
 
-Fluvio is a high-performance data streaming platform for collaborative apps. Whether you are looking to enhance your app with a custom chat channel, receive real-time events from your legacy database, communicate with other services in real-time, or stitch together a log aggregator for your mobile or IOT devices, Fluvio is the data streaming platform for you. Our focus on speed, scale, multi-platform support, native language APIs, and ease of use removes many barriers to adoption.
+Fluvio is an open source streaming platform that aggregates, correlates,
+and applies programmable intelligence to data in motion.
 
-<img src="architecture/images/fluvio-solution.svg" alt="Fluvio Cloud" justify="center" height="440">
+<img src="architecture/images/fluvio-stack.svg" alt="Fluvio Stack" justify="center" height="440">
 
-Fluvio can be installed on your personal computer, in a private data center, or on a public cloud. Virtually anywhere <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> is available.
+At the base level, Fluvio has a distributed, immutable, persistent log store
+written from the ground up in Rust. At the next level up is an asynchronous
+and horizontally scalable data streaming layer for low-latency delivery of
+stream events. Built on this streaming layer is Fluvio's programmable
+SmartStreams, which allow users to perform inline computations on streaming
+data without leaving the cluster. SmartStreams are powered by WebAssembly
+modules containing custom user-written code, which are granted access to
+filter, transform, and otherwise modify the data flowing from the stream.
+Fluvio provides client libraries for several popular programming languages
+as a means to easily integrate these real-time streaming capabilities into
+third-party applications.
 
 ## Core Capabilities
 
