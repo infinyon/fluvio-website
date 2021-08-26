@@ -70,5 +70,6 @@ to convert the String to a `RecordData`.
 
 ### Read next
 
+- [Explore aggregate use-cases](https://www.infinyon.com/blog/2021/08/smartstream-aggregates/)
 - [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
 - [Writing a map to transform records]({{< ref "/docs/smartstreams/map" >}})

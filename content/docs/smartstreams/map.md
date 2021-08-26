@@ -142,5 +142,6 @@ Consuming records from the beginning of topic 'map-double'
 
 ### Read next
 
+- [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
 - [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
 - [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})
