@@ -99,7 +99,7 @@ Consuming records starting 10 from the end of topic 'ints'
 
 ## Conclusion
 
-For the full list of changes, be sure to check out [out CHANGELOG]. If you have any
+For the full list of changes, be sure to check out [our CHANGELOG]. If you have any
 questions or are interested in contributing, be sure to [join our Discord channel] and
 come say hello!
 
@@ -109,4 +109,5 @@ Until next week!
 [sums]: https://github.com/infinyon/fluvio/blob/master/src/smartstream/examples/aggregate-sum/src/lib.rs
 [averages]: https://github.com/infinyon/fluvio/blob/master/src/smartstream/examples/aggregate-average/src/lib.rs
 [combining structural key-value data]: https://github.com/infinyon/fluvio/blob/master/src/smartstream/examples/aggregate-json/src/lib.rs
+[our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [join our Discord channel]: https://discordapp.com/invite/bBG2dTz
