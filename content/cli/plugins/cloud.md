@@ -52,11 +52,11 @@ Password: <hidden>
 ```
 
 After this has completed successfully, you should be able to see your new cloud
-profile using [`fluvio profile view`]:
+profile using [`fluvio profile list`]:
 
 %copy first-line%
 ```bash
-$ fluvio profile view
+$ fluvio profile list
     PROFILE    CLUSTER    ADDRESS                          TLS
  *  cloud      cloud      router.cloud.fluvio.io:9003      Verified
 ```
@@ -65,5 +65,5 @@ At this point, any other `fluvio` commands (such as produce, consume, etc.) will
 interact with your `cloud` cluster. To switch back to a different cluster, use
 [`fluvio profile switch`].
 
-[`fluvio profile view`]: {{< ref "/cli/commands/profile#fluvio-profile-view" >}}
+[`fluvio profile list`]: {{< ref "/cli/commands/profile#fluvio-profile-list" >}}
 [`fluvio profile switch`]: {{< ref "/cli/commands/profile#fluvio-profile-switch" >}}

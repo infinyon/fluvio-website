@@ -25,7 +25,6 @@ USAGE:
     fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -B, --from-beginning        Start reading from beginning
     -d, --disable-continuous    disable continuous processing of messages
     -k, --key-value             Print records in "[key] value" format, with
                                 "[null]" for no key
@@ -34,15 +33,35 @@ FLAGS:
     -h, --help                  Prints help information
 
 OPTIONS:
-    -p, --partition <integer>            Partition id [default: 0]
+    -p, --partition <integer>
+        Partition id [default: 0]
+
+    -B <integer>
+            Consume records starting X from the beginning of the log (default:
+            0)
+
     -o, --offset <integer>
             Offsets can be positive or negative. (Syntax for negative offset:
             --offset="-1")
-    -b, --maxbytes <integer>             Maximum number of bytes to be retrieved
+
+    -T, --tail <integer>
+            Consume records starting X from the end of the log (default: 10)
+
+    -b, --maxbytes <integer>
+            Maximum number of bytes to be retrieved
+
     -O, --output <type>
             Output [default: dynamic]  [possible values: dynamic, text, binary,
             json, raw]
-    -s, --smart-stream <smart-stream>    Path to a WASM binary file
+
+        --filter <filter>
+            Path to SmartStream filter wasm file
+
+        --map <map>
+            Path to SmartStream map wasm file
+
+        --aggregate <aggregate>
+            Path to SmartStream aggregate wasm file
 
 ARGS:
     <topic>    Topic name
@@ -96,7 +115,7 @@ Records that were not given a key are printed with `[null]`.
 Fluvio SmartStreams are WASM modules that can edit the contents of a stream
 inline, before the records of that stream are delivered to a consumer. In order
 to use SmartStreams, you must supply the WASM module to the `fluvio consume`
-command using the `--smart-stream` option.
+command using the SmartStream options: `--filter`, `--map`, `--aggregate`.
 
 The simplest SmartStream is the [filter example from the quick-start], which
 filters records from the stream based on whether they contain the letter `a`
@@ -104,14 +123,14 @@ or not. You can find the full example code [in our GitHub repo] and compile
 it to test out yourself.
 
 [filter example from the quick-start]: {{< ref "/docs/smartstreams/quick-start" >}}
-[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples/filter_json 
+[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartstream/examples/filter_json
 
-Once you have compiled your SmartStream and have a `.wasm` file for it, you
+Once you have compiled your SmartStream Filter and have a `.wasm` file for it, you
 can apply it to the consumer as follows:
 
 %copy first-line%
 ```bash
-$ fluvio consume my-topic -B --smart-stream="fluvio_wasm_filter.wasm"
+$ fluvio consume my-topic -B --filter="fluvio_wasm_filter.wasm"
 ```
 
 ## Example 4: Consume from a topic with multiple partitions

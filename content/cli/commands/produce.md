@@ -97,7 +97,7 @@ When producing to a topic with multiple partitions, the producer will send
 all records with the same key to the same partition. Let's test this out by making
 a multi-partition topic, then sending some key/value records.
 
-First, we'll use [`fluvio topic create`] to create a topic called `multi` with 5 partitions:
+First, we'll use [`fluvio topic create`] to create a topic called `multi-keys` with 5 partitions:
 
 [`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
 
@@ -129,7 +129,7 @@ our keys from our values. In this example, the keys are unique username.
 %copy first-line%
 
 ```bash
-$ fluvio produce multi --key-separator=":" -f records.txt
+$ fluvio produce multi-keys --key-separator=":" -f records.txt
 ```
 
 Looking at this sample input, we can see that `rafael` generated 5 events, `samuel`
@@ -143,7 +143,7 @@ we should see the records distributed in groups of 5, 2, and 3. We can use the
 
 ```bash
 $ fluvio partition list
- TOPIC  PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
+ TOPIC       PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
  multi-keys  0          0       []        Online      0   0    0    []
  multi-keys  1          0       []        Online      0   0    0    []
  multi-keys  2          0       []        Online      3   3    0    []
@@ -181,7 +181,7 @@ To see this in action, let's create a topic with multiple partitions using
 
 %copy first-line%
 ```bash
-$ fluvio topic create multi -p 5
+$ fluvio topic create multi-no-keys -p 5
 ```
 
 Let's produce some data to our topic. We'll use the same data from [Example 3],
@@ -205,12 +205,12 @@ tabitha:add item 9876 to cart
 rafael:complete purchase
 ```
 
-Next, we'll produce the records into the `multi` stream.
+Next, we'll produce the records into the `multi-no-keys` stream.
 
 %copy first-line%
 
 ```bash
-$ fluvio produce multi -f records.txt
+$ fluvio produce multi-no-keys -f records.txt
 ```
 
 Since records with no keys use round-robin partitioning, we should expect to see
@@ -221,12 +221,12 @@ partitions using [`fluvio partition list`].
 %copy first-line%
 ```bash
 $ fluvio partition list
- TOPIC  PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
- multi  0          0       []        Online      2   2    0    []
- multi  1          0       []        Online      2   2    0    []
- multi  2          0       []        Online      2   2    0    []
- multi  3          0       []        Online      2   2    0    []
- multi  4          0       []        Online      2   2    0    []
+ TOPIC          PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
+ multi-no-keys  0          0       []        Online      2   2    0    []
+ multi-no-keys  1          0       []        Online      2   2    0    []
+ multi-no-keys  2          0       []        Online      2   2    0    []
+ multi-no-keys  3          0       []        Online      2   2    0    []
+ multi-no-keys  4          0       []        Online      2   2    0    []
 ```
 
 Notice how the high watermark (HW) and log-end-offset (LEO) tell us that there are

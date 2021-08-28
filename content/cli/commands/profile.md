@@ -138,17 +138,17 @@ Example usage:
 $ fluvio profile switch cloud
 ```
 
-## `fluvio profile view`
+## `fluvio profile list`
 
 Prints a table of your profiles, including the address of the associated
 cluster and which profile is active.
 
 ```
-fluvio-profile-view
+fluvio-profile-list
 Display all Fluvio profiles
 
 USAGE:
-    fluvio profile view
+    fluvio profile list
 
 FLAGS:
     -h, --help    Prints help information
@@ -162,7 +162,7 @@ Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio profile view
+$ fluvio profile list
     PROFILE    CLUSTER    ADDRESS                          TLS
  *  minikube   minikube   10.99.16.213:9003                Disabled
     local      local      localhost:9003                   Disabled
