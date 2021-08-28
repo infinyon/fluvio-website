@@ -21,7 +21,7 @@ going to use `serde` and `serde_json` to help us work with our JSON data.
 If you want to jump ahead and see the finished code, [check out our JSON filter example].
 
 [SmartStream quick start]: {{< ref "/docs/smartstreams/quick-start" >}}
-[check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples/filter_json
+[check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartstream/examples/filter_json
 
 #### Create a new Project
 
