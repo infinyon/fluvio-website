@@ -9,7 +9,6 @@
 
 {{ define "content" }}
   {{- partial "main/jumbotron.html" (dict "jumbotron" .Params.jumbotron) }}
-  {{- partial "main/colored-circles.html" .Params.easy }}
   {{- partial "main/squared-boxes.html" .Params.technology -}}
   {{- partial "main/full-width-text.html" .Params.platform -}}
 {{ end }}
