@@ -78,7 +78,7 @@ platform:
       description: "Fluvio uses WebAssembly(WASM) to extend real-time stateful computation to a countless number of use cases. Custom modules are loaded dynamically and applied to any number of data streams. For example:"
       examples:
         - "**Filter** patients with high blood sugar in real-time."
-        - "**Count** all users that have a declined credit card transaction from offset 0."
+        - "**Count** all users that have a declined credit card transactions."
         - "**Transcode** video file when played to a mobile device with insufficient network bandwidth."
       icon: "/images/icons/extensible.svg"
     - title: "Efficient"
