@@ -51,16 +51,28 @@ technology:
       icon: "/images/icons/immutable-store.svg"
     - title: "Self Service"
       description: "Powerful CLI with built-in cluster management for hands free opertions."
-      icon: "/images/icons/self-service.svg"      
+      icon: "/images/icons/self-service.svg"  
+stack:
+  title: "The Stack"
+  image: "images/assets/fluvio-stack.svg"
+  items:
+    - title: "Immutable Store"
+      description: "Long-lived immutable storage layer that persists data without compromising latency."
+    - title: "Data Streams"
+      description: "Distribured stream processing with redundancy and failover to prevent data loss and minimize downtime."
+    - title: "Smart Streams"
+      description: "Programmable stream processing to clean, transform, correlate, and derive insights from data in real-time."
+    - title: "Connectors"
+      description: "Native API support to most popular programming languages & connector catalog (in preview)."
 platform:
   title: "The Platform"
   items:
     - title: "Unified Cluster"
       description: "A unified cluster for streaming and stateful computation minimizes delay, reduces operational complexity, and boosts security. When streaming and stateful computation are combined, it sets the foundation for a new class of real-time streaming use cases unique to Fluvio. For example:"
       examples:
-        - "**Security**: strip out personally identifiable information (PII), and encrypt fields." 
-        - "**Cleanse**: map and transform fields, or filter records." 
-        - "**Analytics**: compute values, deriving composites, and more."
+        - "**Normalize**: remove null values, map invalid fields, filter out records, and more." 
+        - "**Protect**: strip out personally identifiable information (PII), and encrypt fields." 
+        - "**Refine**: compute aggregates, derive substreams, and more."
       icon: "/images/icons/unified-connected.svg"
     - title: "Extensible"
       description: "Fluvio uses WebAssembly(WASM) to extend real-time stateful computation to a countless number of use cases. Custom modules are loaded dynamically and applied to any number of data streams. For example:"
@@ -90,11 +102,6 @@ platform:
         - "**Simple CLI**: provision streams, apply stateful computations, produce, consume and more."
         - "**Native APIs**: support for `Rust`, `Node.js`, `Python`, and `Java` with other languages coming soon." 
       icon: "/images/icons/dev-friendly.svg"
-    - title: "Batteries Included"
-      description: "Fluvio platform has all the necessary components to deploy and run a data streaming cluster. The platform has built-in connectors and stateful computation modules to cover general use cases right out of the box. These connectors and stateful computations can be augmented as needed. We invite and appreciate help from the community to expand our collection of connectors and WASM stateful computation modules."
-      icon: "/images/icons/batteries-included-vertical.svg"
-      examples:
-        - "**Runs on Kubernetes**: use helm charts to install and provision Fluvio cluster." 
 ---
 
 ### Taglines

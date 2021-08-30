@@ -1,0 +1,26 @@
+<div class="text-with-img gray-grad-bk pb-5">
+  <div class="container-fluid site-width stack">
+
+    <div class="row">
+      <div class="col text-center header">
+        <div class="title underscore">{{ .title }}</div>
+      </div>
+    </div>
+
+    <div class="row s-row">
+      <div class="col-md-8 col-sm-12 text-center left">
+        <img src="{{.image }}" alt="{{.title}}" class="shadow rounded">
+      </div>         
+      <div class="col-md-4 col-sm-12 right">
+        {{- range $index, $element := .items -}}
+          <div class="label">
+            <div class="circled">{{ add $index 1 }}</div>
+            {{ $element.title | markdownify }}
+          </div>
+          <div class="description">{{ $element.description }}</div>
+        {{- end -}}
+      </div>
+    </div>
+
+  </div>
+</div>
