@@ -20,7 +20,7 @@ technology:
       description: "Blazing fast and memory-efficient, no runtime or garbage collector."
       icon: "/images/icons/powered-by-rust.svg"
     - title: "Async End-to-End"
-      description: "Perform concurrent operations without the penalty of threads."
+      description: "Scales to many concurrent clients without blocking threads."
       icon: "/images/icons/async.svg"
     - title: "Cloud Native"
       description: "Native integration with Kubernetes, to start small and scale on demand."

@@ -14,7 +14,7 @@
       <div class="col-md-5 col-sm-12 right">
         {{- range $index, $element := .items -}}
           <div class="label">
-            <div class="circled">{{ add $index 1 }}</div>
+            <div class="circled"><i class="fa fa-check" aria-hidden="true"></i></div>
             {{ $element.title | markdownify }}
           </div>
           <div class="description">{{ $element.description }}</div>
