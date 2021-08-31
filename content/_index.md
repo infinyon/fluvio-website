@@ -1,13 +1,13 @@
 ---
 title: "Fluvio - The programmable data streaming platform"
-description: "A real-time data streaming platform with in-line computation capabilities. Use SmartStreams to upload your custom logic and modify data as it moves over the network."
+description: "An open source data streaming platform with in-line computation capabilities. Use SmartStreams to upload your custom logic and modify data as it moves over the network."
 author:
     name: "Fluvio Team"
 img: "images/assets/fluvio-social.png"
 twitter-card: summary_large_image
 jumbotron:
   title: "Programmable platform for data in motion"
-  description: "A real-time data streaming platform with in-line computation capabilities. Use [Fluvio SmartStreams](/docs/smartstreams/quick-start) to upload your custom logic and modify data as it moves over the network."
+  description: "An open source data streaming platform with in-line computation capabilities. Use [Fluvio SmartStreams](/docs/smartstreams/quick-start) to upload your custom logic and modify data as it moves over the network."
   imageLarge: "/images/assets/fluvio-oss-large.svg"
   imageSmall: "/images/assets/fluvio-oss-small.svg"
   alt: "Fluvio SmartStreams"
