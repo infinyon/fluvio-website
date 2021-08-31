@@ -62,7 +62,7 @@ stack:
       description: "Distribured stream processing with redundancy and failover to prevent data loss and minimize downtime."
     - title: "Smart Streams"
       description: "Programmable stream processing to clean, transform, correlate, and derive insights from data in real-time."
-    - title: "Connectors"
+    - title: "Clients & Connectors"
       description: "Native API support to most popular programming languages & connector catalog (in preview)."
 platform:
   title: "The Platform"
