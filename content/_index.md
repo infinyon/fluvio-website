@@ -56,12 +56,12 @@ stack:
   title: "The Stack"
   image: "images/assets/fluvio-stack.svg"
   items:
-    - title: "Immutable Store"
-      description: "Long-lived immutable storage layer that persists data without compromising latency."
-    - title: "Data Streams"
-      description: "Distribured stream processing with redundancy and failover to prevent data loss and minimize downtime."
     - title: "Smart Streams"
       description: "Programmable stream processing to clean, transform, correlate, and derive insights from data in real-time."
+    - title: "Data Streams"
+      description: "Distribured stream processing with redundancy and failover to prevent data loss and minimize downtime."
+    - title: "Immutable Store"
+      description: "Long-lived immutable storage layer that persists data without compromising latency."
     - title: "Clients & Connectors"
       description: "Native API support to most popular programming languages & connector catalog (in preview)."
 platform:
