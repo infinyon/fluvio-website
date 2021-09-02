@@ -29,8 +29,8 @@ Let's dive in and take a look at each of Fluvio's layers more closely.
 ## Immutable Data Store
 
 Fluvio's storage layer is an immutable data store. As records are
-streamed to Fluvio, they get written to disk and have a unique log offset. New
-logs begin at offset 0, and each new record is assigned offsets in increasing
+streamed to Fluvio, they get written to disk and have a unique record offset. New
+records begin at offset 0, and each new record is assigned offsets in increasing
 order. Once a record is written and given an offset, that record's contents and
 offset will never change (the record is immutable).
 
@@ -95,3 +95,21 @@ provide:
 [**Filter**]: /docs/smartstreams/filter
 [**Map**]: /docs/smartstreams/map
 [**Aggregate**]: /docs/smartstreams/aggregate
+
+### Producers and Consumers
+
+Fluvio is designed to integrate natively with most programming languages.  Producers and consumers can be implemented in any of the following native languages:
+
+* [Rust] &#10004;
+* [Node.js] &#10004;
+* [Python] &#10004;
+* [Java] - &#10004;
+* [Go] -  &#10004; - *Community Supported*
+
+[Rust]: https://docs.rs/fluvio
+[Node.js]: https://infinyon.github.io/fluvio-client-node/
+[Python]: https://infinyon.github.io/fluvio-client-python/fluvio.html
+[Java]: https://infinyon.github.io/fluvio-client-java/
+[Go]: https://github.com/avinassh/fluvio-go
+
+The APIs can be used to manage and operate all areas of the systems: clusters, data streams, consumers,and producers. Hence, Fluvio supports polyglot environments where App modules written in different programming languages use native interfaces to access data streams.
