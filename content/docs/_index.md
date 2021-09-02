@@ -74,4 +74,24 @@ SPU, providing a natural mechanism for horizontal scaling.
 
 ## Programmable SmartStreams
 
+One of Fluvio's premiere features is the ability to perform custom inline computation on
+streaming data, a feature called [SmartStreams]. This allows users to write arbitrary
+WebAssembly code and upload it to Fluvio's SPUs, where that code will be granted access
+to the records in a consumer stream, and may filter, transform, aggregate, or otherwise
+edit the contents of the stream. This inline processing helps to keep latency low since
+data doesn't leave the cluster, and can help with traffic to clients by e.g. filtering
+unneeded data from a stream and preventing overfetching.
 
+[SmartStreams]: /docs/smartstreams/quick-start
+
+Fluvio's SmartStreams follow some patterns that may be familiar from the world of functional
+programming. Here are the currently supported SmartStreams and the capabilities they
+provide:
+
+- [**Filter**]: Examine a record and determine whether it should be kept or discarded from a stream
+- [**Map**]: Transform a record's contents and send the new record down the stream
+- [**Aggregate**]: Incorporate record data into some long-running state, such as a sum or average
+
+[**Filter**]: /docs/smartstreams/filter
+[**Map**]: /docs/smartstreams/map
+[**Aggregate**]: /docs/smartstreams/aggregate
