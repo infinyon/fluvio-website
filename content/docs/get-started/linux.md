@@ -15,7 +15,6 @@ Install the Fluvio CLI by running the following command:
 curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
-
 ## Setting up a Fluvio cluster on Kubernetes
 
 With CLI, you can create and manage fluvio clusters on Kubernetes.  Before you can create a Fluvio cluster, you need to have a Kubernetes cluster up and running.
@@ -31,20 +30,26 @@ For installing on your local machine, here are suggested Kubernetes installation
 3) [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 After installing Kubernetes, you can run the following command to check if your Kubernetes cluster is up and running:
-```
+
+%copy first-line%
+```bash
 $ kubectl config current-context
 minikube
 ```
 
 Some of Kubernetes installation will install `kubectl` and `helm`.  You can check it by:
-```
+
+%copy first-line%
+```bash
 $ kubectl version
 Client Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.3", GitCommit:"ca643a4d1f7bfe34773c74f79527be4afd95bf39", GitTreeState:"clean", BuildDate:"2021-07-15T21:04:39Z", GoVersion:"go1.16.6", Compiler:"gc", Platform:"linux/amd64"}
 Server Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.2", GitCommit:"092fbfbf53427de67cac1e9fa54aaa09a28371d7", GitTreeState:"clean", BuildDate:"2021-06-16T12:53:14Z", GoVersion:"go1.16.5", Compiler:"gc", Platform:"linux/amd64"}
+```
 
+%copy first-line%
+```bash
 $ helm version
 version.BuildInfo{Version:"v3.6.2", GitCommit:"ee407bdf364942bcb8e8c665f82e15aa28009b71", GitTreeState:"clean", GoVersion:"go1.16.5"}
-
 ```
 
 If you didn't install `kubectl` and `helm`, you can install them in the following way:
@@ -65,12 +70,9 @@ Follow the instructions at the [helm installation page] and follow the instructi
 
 [helm installation page]: https://v3.helm.sh/docs/intro/install/ 
 
-
-
 ## Start Fluvio cluster on Kubernetes
 
 You can start a Fluvio cluster by running `fluvio cluster start`.
-
 
 %copy first-line%
 ```bash
@@ -90,7 +92,9 @@ Successfully installed Fluvio!
 ### Verify cluster is running
 
 You can start a Fluvio cluster by running:
-```
+
+%copy first-line%
+```bash
 $ fluvio version
 Fluvio CLI           : 0.9.0
 Fluvio CLI SHA256    : 170c6d4bad98e961b1f14d0fd052900dcbc92d736757bad3c7dcae2095151861
@@ -123,7 +127,6 @@ Use the following command to send a message to the `greetings` topic:
 %copy first-line%
 ```bash
 $ echo "Hello, Fluvio" | fluvio produce greetings
-Ok!
 ```
 
 Finally, we can [consume] messages back from the topic
@@ -131,6 +134,7 @@ Finally, we can [consume] messages back from the topic
 %copy first-line%
 ```bash
 $ fluvio consume greetings -B -d
+Consuming records from the beginning of topic 'greetings'
 Hello, Fluvio
 ```
 

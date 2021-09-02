@@ -132,7 +132,6 @@ Use the following command to send a message to the `greetings` topic:
 %copy first-line%
 ```bash
 $ echo "Hello, Fluvio" | fluvio produce greetings
-Ok!
 ```
 
 Finally, we can [consume] messages back from the topic
@@ -140,6 +139,7 @@ Finally, we can [consume] messages back from the topic
 %copy first-line%
 ```bash
 $ fluvio consume greetings -B -d
+Consuming records from the beginning of topic 'greetings'
 Hello, Fluvio
 ```
 

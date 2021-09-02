@@ -56,13 +56,20 @@ cloud
 
 At this point, you should be able to create a topic and produce and consume data!
 
+%copy first-line%
 ```bash
 $ fluvio topic create greetings
 topic "greetings" created
+```
 
+%copy first-line%
+```bash
 $ echo "Hello, Fluvio" | fluvio produce greetings
-Ok!
+```
 
+%copy first-line%
+```bash
 $ fluvio consume greetings -B -d
+Consuming records from the beginning of topic 'greetings'
 Hello, Fluvio
 ```
