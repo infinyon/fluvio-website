@@ -26,9 +26,9 @@ third-party applications.
 
 Let's dive in and take a look at each of Fluvio's layers more closely.
 
-## Immutable Log Store
+## Immutable Data Store
 
-Fluvio's storage layer is an immutable log store. As records are
+Fluvio's storage layer is an immutable data store. As records are
 streamed to Fluvio, they get written to disk and have a unique log offset. New
 logs begin at offset 0, and each new record is assigned offsets in increasing
 order. Once a record is written and given an offset, that record's contents and
