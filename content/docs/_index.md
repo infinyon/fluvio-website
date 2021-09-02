@@ -7,8 +7,7 @@ img: docs/architecture/images/social/fluvio-stack-social.png
 twitter-card: summary_large_image
 ---
 
-Fluvio is an open source streaming platform that aggregates, correlates,
-and applies programmable intelligence to data in motion.
+Fluvio is an open-source data streaming platform that aggregates, correlates, and applies programmable intelligence to data in motion.  Powered by Rust, Fluvio provides low-latency, high-performance programmable streaming on cloud-native architecture.
 
 <img src="architecture/images/fluvio-stack.svg" alt="Fluvio Stack" justify="center" height="440">
 
