@@ -105,6 +105,19 @@ For the full list of changes this week, be sure to check out [our CHANGELOG]. If
 questions or are interested in contributing, be sure to [join our Discord channel] and
 come say hello!
 
+### Shoutout to the Rustconf shoutout!
+
+Thanks [`@nellshamrell`] for the project updates shoutout for This Week in Fluvio!
+This-Week-in-Rust was a huge inspiration for this newsletter, and we thank you for
+your tireless work assembling great Rust content and for helping us spread the word
+about Fluvio!
+
+<a href="https://youtu.be/OZPXhmy-wVw?t=761">
+<img src="/news/images/0006/rustconf.png" style="width:600px" />
+</a>
+
+[`@nellshamrell`]: https://github.com/nellshamrell
+
 Until next week!
 
 [Fluvio open source]: https://github.com/infinyon/fluvio
