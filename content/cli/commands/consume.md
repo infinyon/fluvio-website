@@ -17,32 +17,48 @@ partition you want to read messages from using the `-p` option.
 fluvio-consume
 Read messages from a topic/partition
 
-By default, consume operates in "streaming" mode, where the command will remain
-active and wait for new messages, printing them as they arrive. You can use the
-'-d' flag to exit after consuming all available messages.
+By default, consume operates in "streaming" mode, where the command will remain active and wait for
+new messages, printing them as they arrive. You can use the '-d' flag to exit after consuming all
+available messages.
 
 USAGE:
     fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -d, --disable-continuous    disable continuous processing of messages
-    -k, --key-value             Print records in "[key] value" format, with
-                                "[null]" for no key
-        --suppress-unknown      Suppress items items that have an unknown output
-                                type
-    -h, --help                  Prints help information
+    -d, --disable-continuous
+            disable continuous processing of messages
+
+    -k, --key-value
+            Print records in "[key] value" format, with "[null]" for no key
+
+        --suppress-unknown
+            Suppress items items that have an unknown output type
+
+    -h, --help
+            Prints help information
+
 
 OPTIONS:
     -p, --partition <integer>
-        Partition id [default: 0]
+            Partition id [default: 0]
 
+    -F, --format <format>
+            Provide a template string to print records with a custom format. See --help for details.
+
+            Template strings may include the variables {{key}}, {{value}}, and {{offset}} which will
+            have each record's contents substituted in their place. For example, the following
+            template string:
+
+            Offset {{offset}} has key {{key}} and value {{value}}
+
+            Would produce a printout where records might look like this:
+
+            Offset 0 has key A and value Apple
     -B <integer>
-            Consume records starting X from the beginning of the log (default:
-            0)
+            Consume records starting X from the beginning of the log (default: 0)
 
     -o, --offset <integer>
-            Offsets can be positive or negative. (Syntax for negative offset:
-            --offset="-1")
+            The offset of the first record to begin consuming from
 
     -T, --tail <integer>
             Consume records starting X from the end of the log (default: 10)
@@ -51,20 +67,24 @@ OPTIONS:
             Maximum number of bytes to be retrieved
 
     -O, --output <type>
-            Output [default: dynamic]  [possible values: dynamic, text, binary,
-            json, raw]
+            Output [possible values: dynamic, text, binary, json, raw]
 
         --filter <filter>
-            Path to SmartStream filter wasm file
+            Path to a SmartStream filter wasm file
 
         --map <map>
-            Path to SmartStream map wasm file
+            Path to a SmartStream map wasm file
 
         --aggregate <aggregate>
-            Path to SmartStream aggregate wasm file
+            Path to a WASM file for aggregation
+
+        --initial <initial>
+            (Optional) Path to a file to use as an initial accumulator value with --aggregate
+
 
 ARGS:
-    <topic>    Topic name
+    <topic>
+            Topic name
 ```
 
 For our consumer examples, we are going to read back the records we sent from the
@@ -218,4 +238,23 @@ $ fluvio consume "consume-multi" -B --partition 2
 three
 six
 nine
+```
+
+## Example 5: Print consumed records with custom formatting
+
+Sometimes, the default Consumer printout might not work for your needs. As of Fluvio `0.9.6`
+you can now use the `--format` string to describe how the Consumer should print your records!
+
+The format string will replace placeholders such as `{{key}}`, `{{value}}`, and `{{offset}}`
+with the actual contents for each record. One possible use for this is formatting each record
+as a CSV row:
+
+%copy first-line%
+```bash
+$ fluvio consume my-topic -B --format="{{offset}},{{key}},{{value}}"
+0,null,This is my first record ever
+1,null,This is my second record ever
+2,alice,Alice In Wonderland
+3,batman,Bruce Wayne
+4,santa,Santa Claus
 ```
