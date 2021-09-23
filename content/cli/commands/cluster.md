@@ -36,15 +36,14 @@ FLAGS:
 ```bash
 $ fluvio cluster check
 Running pre-startup checks...
-✅ ok: Kubernetes config is loadable
-✅ ok: Supported kubernetes version is installed
-✅ ok: Supported helm version is installed
-✅ ok: Can create service
-✅ ok: Can create customresourcedefinitions
-✅ ok: Can create secret
-✅ ok: Load balancer is up
-✅ ok: Fluvio system charts are installed
-All checks passed!
+     ✅ Kubernetes config is loadable
+     ✅ Supported kubernetes version is installed
+     ✅ Supported helm version is installed
+     ✅ Can create service
+     ✅ Can create customresourcedefinitions
+     ✅ Can create secret
+     ✅ Fluvio system charts are installed
+🎉 All checks passed!
 You may proceed with cluster startup
 next: run `fluvio cluster start`
 ```
@@ -137,13 +136,18 @@ To start a cluster on Minikube:
 %copy first-line%
 ```bash
 $ fluvio cluster start
-✅ ok: Kubernetes config is loadable
-✅ ok: Supported helm version is installed
-✅ ok: Load balancer is up
-✅ ok: Fixed: Missing Fluvio system charts.
-✅ ok: Previous fluvio installation not found
-Waiting up to 120 seconds for Fluvio cluster version check...
-Successfully installed Fluvio!
+📝 Running pre-flight checks
+     ✅ Kubernetes config is loadable
+     ✅ Supported helm version is installed
+     ✅ Fixed: Missing Fluvio system charts.
+     ✅ Previous fluvio installation not found
+🛠️  Installing Fluvio
+     ✅ Fluvio app chart has been installed
+🔎 Found SC service addr: 172.19.0.2:30814
+👤 Profile set
+🤖 SPU group launched (1)
+     ✅ All SPUs confirmed
+🎯 Successfully installed Fluvio!
 ```
 
 To start a cluster locally (as processes on your machine):
@@ -151,11 +155,15 @@ To start a cluster locally (as processes on your machine):
 %copy first-line%
 ```bash
 $ fluvio cluster start --local
-Performing pre-flight checks
-✅ ok: Supported helm version is installed
-✅ ok: Supported kubernetes version is installed
-✅ ok: Kubernetes config is loadable
-✅ ok: Fluvio system charts are installed
+📝 Running pre-flight checks
+     ✅ Supported helm version is installed
+     ✅ Supported kubernetes version is installed
+     ✅ Kubernetes config is loadable
+     ✅ Fixed: Missing Fluvio system charts.
+🖥️  SC Launched
+🤖 SPU group launched (1)
+👤 Profile set
+🎯 Successfully installed Fluvio!
 ```
 
 ## `fluvio cluster delete`
