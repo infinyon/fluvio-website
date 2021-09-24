@@ -77,16 +77,18 @@ You can start a Fluvio cluster by running `fluvio cluster start`.
 %copy first-line%
 ```bash
 $ fluvio cluster start
-✅ ok: Kubernetes config is loadable
-✅ ok: Supported helm version is installed
-✅ ok: Fixed: Missing Fluvio system charts.
-✅ ok: Previous fluvio installation not found
-installing fluvio chart
-Fluvio SC is up at: 192.168.49.2:30525
-Waiting up to 120 seconds for Fluvio cluster version check...
-0 of 1 spu are ready, sleeping 10 seconds...
-All SPUs(1) are ready
-Successfully installed Fluvio!
+📝 Running pre-flight checks
+     ✅ Kubernetes config is loadable
+     ✅ Supported helm version is installed
+     ✅ Fixed: Missing Fluvio system charts.
+     ✅ Previous fluvio installation not found
+🛠️  Installing Fluvio
+     ✅ Fluvio app chart has been installed
+🔎 Found SC service addr: 172.19.0.2:30814
+👤 Profile set
+🤖 SPU group launched (1)
+     ✅ All SPUs confirmed
+🎯 Successfully installed Fluvio!
 ```
 
 ### Verify cluster is running
