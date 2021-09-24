@@ -13,15 +13,16 @@ If everything is configured properly, you should see a result like this:
 ```bash
 $ fluvio cluster check
 Running pre-startup checks...
-✅ ok: Kubernetes config is loadable
-✅ ok: Supported kubernetes version is installed
-✅ ok: Supported helm version is installed
-✅ ok: Can create service
-✅ ok: Can create customresourcedefinitions
-✅ ok: Can create secret
-✅ ok: Fluvio system charts are installed
-All checks passed!
+     ✅ Kubernetes config is loadable
+     ✅ Supported kubernetes version is installed
+     ✅ Supported helm version is installed
+     ✅ Can create service
+     ✅ Can create customresourcedefinitions
+     ✅ Can create secret
+     ✅ Fluvio system charts are installed
+🎉 All checks passed!
 You may proceed with cluster startup
+next: run `fluvio cluster start`
 ```
 
 ## Logs
