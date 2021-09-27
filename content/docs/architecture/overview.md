@@ -57,7 +57,7 @@ For a deep dive in the SC design, checkout the [SC Architecture] section.
      alt="SPU produce/consume & replication"
      style="justify: center; max-width: 330px" />
 
-SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from consumers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, check out [Replica Election].
+SPUs are also responsible for **data replication**. Data streams that are created with a __replication factor__ of 2 or more are managed by __a cluster__ of SPUs. One SPU is elected as leader and all others are followers. The leader receives the data from producers and forwards a copy to followers. Followers save a copy in their local storage. If the leader goes offline, one of the followers takes over as leader. For additional information, check out [Replica Election].
 
 [Replica Election]: {{< ref "replica-election" >}}
 
