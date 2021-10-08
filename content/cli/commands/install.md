@@ -1,9 +1,8 @@
 ---
-title: Install and Update
+title: Install
 weight: 70
+toc: false
 ---
-
-## `fluvio install`
 
 Some Fluvio CLI commands are distributed as separate executables that we call
 "extensions". This command installs and updates extensions by name, placing
@@ -43,34 +42,3 @@ $ fluvio install fluvio/fluvio-cloud
 ⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.0...
 🔑 Downloaded and verified package file
 ```
-
-## `fluvio update`
-
-This command performs a self-update for the Fluvio CLI. It takes no arguments,
-and just simply downloads the latest version of `fluvio` and overwrites itself.
-
-```
-fluvio-update 0.6.0
-Update the Fluvio CLI
-
-USAGE:
-    fluvio update [FLAGS] [plugins]...
-
-FLAGS:
-        --develop    Update to the latest prerelease rather than the latest
-                     release
-    -h, --help       Prints help information
-
-ARGS:
-    <plugins>...    (Optional) the name of one or more plugins to update
-```
-
-Example usage:
-
-%copy first-line%
-```bash
-$ fluvio update
-🎣 Fetching latest version for fluvio/fluvio...
-⏳ Downloading Fluvio CLI with latest version: fluvio/fluvio:0.6.0-beta.1...
-🔑 Downloaded and verified package file
-✅ Successfully installed ~/.fluvio/bin/fluvio

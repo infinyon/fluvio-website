@@ -1,6 +1,7 @@
 ---
 title: Version
 weight: 90
+toc: false
 ---
 
 The `fluvio version` command prints out useful version and build information about

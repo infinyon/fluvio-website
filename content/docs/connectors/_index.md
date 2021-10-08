@@ -1,7 +1,6 @@
 ---
-title: SmartStreams
-weight: 50
+title: CONNECTORS
+weight: 40
 _build:
   render: never
 ---
-
