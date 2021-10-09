@@ -25,66 +25,30 @@ USAGE:
     fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -d, --disable-continuous
-            disable continuous processing of messages
-
-    -k, --key-value
-            Print records in "[key] value" format, with "[null]" for no key
-
-        --suppress-unknown
-            Suppress items items that have an unknown output type
-
-    -h, --help
-            Prints help information
-
+    -A, --all-partitions        Consume records from all partitions
+    -d, --disable-continuous    disable continuous processing of messages
+    -k, --key-value             Print records in "[key] value" format, with "[null]" for no key
+        --suppress-unknown      Suppress items items that have an unknown output type
+    -h, --help                  Prints help information
 
 OPTIONS:
-    -p, --partition <integer>
-            Partition id [default: 0]
-
-    -F, --format <format>
-            Provide a template string to print records with a custom format. See --help for details.
-
-            Template strings may include the variables {{key}}, {{value}}, and {{offset}} which will
-            have each record's contents substituted in their place. For example, the following
-            template string:
-
-            Offset {{offset}} has key {{key}} and value {{value}}
-
-            Would produce a printout where records might look like this:
-
-            Offset 0 has key A and value Apple
-    -B <integer>
-            Consume records starting X from the beginning of the log (default: 0)
-
-    -o, --offset <integer>
-            The offset of the first record to begin consuming from
-
-    -T, --tail <integer>
-            Consume records starting X from the end of the log (default: 10)
-
-    -b, --maxbytes <integer>
-            Maximum number of bytes to be retrieved
-
-    -O, --output <type>
-            Output [possible values: dynamic, text, binary, json, raw]
-
-        --filter <filter>
-            Path to a SmartStream filter wasm file
-
-        --map <map>
-            Path to a SmartStream map wasm file
-
-        --aggregate <aggregate>
-            Path to a WASM file for aggregation
-
-        --initial <initial>
-            (Optional) Path to a file to use as an initial accumulator value with --aggregate
-
+    -p, --partition <integer>      Partition id [default: 0]
+    -F, --format <format>          Provide a template string to print records with a custom format.
+                                   See --help for details
+    -B <integer>                   Consume records starting X from the beginning of the log
+                                   (default: 0)
+    -o, --offset <integer>         The offset of the first record to begin consuming from
+    -T, --tail <integer>           Consume records starting X from the end of the log (default: 10)
+    -b, --maxbytes <integer>       Maximum number of bytes to be retrieved
+    -O, --output <type>            Output [possible values: dynamic, text, binary, json, raw]
+        --filter <filter>          Path to a SmartStream filter wasm file
+        --map <map>                Path to a SmartStream map wasm file
+        --aggregate <aggregate>    Path to a WASM file for aggregation
+        --initial <initial>        (Optional) Path to a file to use as an initial accumulator value
+                                   with --aggregate
 
 ARGS:
-    <topic>
-            Topic name
+    <topic>    Topic name
 ```
 
 For our consumer examples, we are going to read back the records we sent from the
@@ -240,7 +204,40 @@ six
 nine
 ```
 
-## Example 5: Print consumed records with custom formatting
+## Example 5: Consume from all partitions
+
+At times, it is useful to see all records from all partitions from a single consumer. 
+Using the example above:
+
+%copy first-line%
+```bash
+$ fluvio partition list
+ TOPIC          PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
+ consume-multi  0          5001    []        Online      3   3    0    []
+ consume-multi  1          5001    []        Online      3   3    0    []
+ consume-multi  2          5001    []        Online      3   3    0    []
+```
+
+Each partition has 3 records. Now let's consume from all partitions:
+
+%copy first-line%
+```bash
+$ fluvio consume "consume-multi" -B -A           
+one
+four
+seven
+two
+three
+five
+six
+eight
+nine
+```
+
+-> Note: There is no order guarantee between partitions.
+
+
+## Example 6: Print consumed records with custom formatting
 
 Sometimes, the default Consumer printout might not work for your needs. As of Fluvio `0.9.6`
 you can now use the `--format` string to describe how the Consumer should print your records!

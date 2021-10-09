@@ -82,7 +82,7 @@ FLAGS:
 
 OPTIONS:
         --chart-version <chart-version>
-            k8: use specific chart version [default: 0.6.0-beta.1]
+            k8: use specific chart version [default: x.x.x-beta.1]
 
         --image-version <image-version>
             k8: use specific image version
