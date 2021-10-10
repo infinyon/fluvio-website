@@ -12,19 +12,17 @@ them in the `~/.fluvio/extensions/` directory.
 fluvio-install
 Install Fluvio plugins
 
-The Fluvio CLI considers any executable with the prefix `fluvio-` to be a CLI
-plugin. For example, an executable named `fluvio-foo` in your PATH may be
-invoked by running `fluvio foo`.
+The Fluvio CLI considers any executable with the prefix `fluvio-` to be a CLI plugin. For example,
+an executable named `fluvio-foo` in your PATH may be invoked by running `fluvio foo`.
 
 This command allows you to install plugins from Fluvio's package registry.
 
 USAGE:
-    fluvio install <package>
+    fluvio install [FLAGS] <package>
 
 FLAGS:
-    --develop    Install the latest prerelease rather than the latest
-                 release
-    -h, --help    Prints help information
+        --develop    Install the latest prerelease rather than the latest release
+    -h, --help       Prints help information
 
 OPTIONS:
 
@@ -39,6 +37,6 @@ Example usage:
 ```bash
 $ fluvio install fluvio/fluvio-cloud
 🎣 Fetching latest version for package: fluvio/fluvio-cloud...
-⏳ Downloading package with latest version: fluvio/fluvio-cloud:0.1.0...
+⏳ Downloading package with latest version: fluvio/fluvio-cloud:x.y.z...
 🔑 Downloaded and verified package file
 ```
