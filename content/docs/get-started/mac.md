@@ -24,7 +24,6 @@ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 If you have `kubectl`, `helm`, and `minikube` already set up, then continue to steps for [running a local Fluvio cluster].
 
 
-
 ### Install Minikube
 
 Minikube is a tool for running a local Kubernetes cluster.
@@ -37,7 +36,7 @@ Install `minikube` package:
 $ brew install minikube
 ```
 
-Install `virtualbox` driver:
+Install `hyperkit` driver:
 
 %copy first-line%
 
