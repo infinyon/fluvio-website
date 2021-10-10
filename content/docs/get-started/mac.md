@@ -27,26 +27,30 @@ If you have `kubectl`, `helm`, and `minikube` already set up, then continue to s
 
 ### Install Minikube
 
-Minikube is a tool for running a local Kubernetes cluster
+Minikube is a tool for running a local Kubernetes cluster.
 
-Install `minikube` with following command:
+Install `minikube` package:
 
 %copy first-line%
 
 ```bash
-$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
-$ sudo install minikube-darwin-amd64 /usr/local/bin/minikube
+$ brew install minikube
 ```
 
-For detail instruction see:
-[Minikube installation page]: https://minikube.sigs.k8s.io/docs/start/
+Install `virtualbox` driver:
+
+%copy first-line%
+
+```bash
+$ brew install hyperkit
+```
 
 #### Start a Kubernetes cluster
 Start a Kubernetes cluster locally with minikube by running the following in a terminal window:
 
 %copy first-line%
 ```bash
-$ minikube start --driver=virtualbox
+$ minikube start --driver=hyperkit
 ```
 
 Other minikube driver may work but we have not tested them.  Please open issue if need to support other drivers.

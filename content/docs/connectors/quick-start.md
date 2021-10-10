@@ -3,22 +3,27 @@ menu: Quick Start
 title: Connectors Overview
 weight: 10
 ---
-Fluvio connectors built from the [fluvio-connectors
-repository](https://github.com/infinyon/fluvio-connectors) are ran on the
-fluvio platform and are ran from Docker images hosted on docker hub. At the
-moment we have two official connectors - [A Source mqtt
-connector](https://github.com/infinyon/fluvio-connectors/tree/main/mqtt) and a
-[test-connector](https://github.com/infinyon/fluvio-connectors/tree/main/test-connector).
 
-These connectors run parallel to the fluvio cluster. Management is done via
-kubernetes and so you will need to have a fluvio cluster in either minikube or
-in k3d. **A local cluster deployment will not work.**
+Fluvio stores the source code for its connectors in the [fluvio-connectors
+repository].  When a new connector is released, it is packaged in a Docker container and published on Dockerhub. In addition, the connector catalog list all available source or sink connectors. 
 
-The `test-connector` isn't very interesting as it simply produces a new record
-every 10ms to the topic of your choice. This is an important connector because
-it helps with CI to verify the management of a connector is handled correctly.
+At the moment, Fluvio has two official connectors:
+* [test-connector (source)]
+* [mqtt-connector (source)]
 
-The `mqtt` connector is something that's far more interesting.
+[Test source connector] produces a new record every 10ms to the topic of your choice. Use this connector to test the infrastructure and create your custom connectors.
+
+[MQTT source connector] is a client implementation of an MQTT protocol, and it reads messages from an MQTT server and produces them to a fluvio topic.
+
+Fluvio cluster offers a connector command-line interface (CLI) to start, stop and get the status of a container. A cluster may run many instances of the same or different connectors simultaneously.  Fluvio manages the connector infrastructure through Kubernetes. If you run a local installation of Fluvio, make sure it runs `minikube` or `k3d`.
+
+-> Note: Fluvio local clusters installed outside of Kubernetes are not supported.
+
+[fluvio-connectors repository]: https://github.com/infinyon/fluvio-connectors
+[test-connector (source)]: https://github.com/infinyon/fluvio-connectors/tree/main/test-connector
+[mqtt-connector (source)]: https://github.com/infinyon/fluvio-connectors/tree/main/mqtt
+[Test source connector]:  https://github.com/infinyon/fluvio-connectors/tree/main/test-connector
+[MQTT source connector]: https://github.com/infinyon/fluvio-connectors/tree/main/mqtt
 
 # Commands
 
