@@ -1,7 +1,7 @@
 ---
 title: Connectors Overview
 menu: Overview
-section: connectors
+section: Connectors
 toc: false
 ---
 
