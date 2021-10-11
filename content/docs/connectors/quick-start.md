@@ -111,11 +111,10 @@ create_topic: true
 direction: source
 parameters:
   topic: my-test-connector
-  timeout: 1000
 ```
 
 The `connector definition` section is defined above and not repeated here. The test connector specific parameters are:
-* `timeout` connection times out after 1000 miliseconds.
+* `timeout` interval for sending records (default: 1000)
 * `count` the number of records to produce (defaults to i64 max).
 
 For additional information, checkout test connector in [github](https://github.com/infinyon/fluvio-connectors/blob/main/test-connector/src/main.rs).
