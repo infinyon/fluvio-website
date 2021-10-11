@@ -11,7 +11,7 @@ At the moment, Fluvio has two official connectors:
 * [test-connector (source)]
 * [mqtt-connector (source)]
 
-[Test source connector] produces a new record every 10ms to the topic of your choice. Use this connector to test the infrastructure and create your custom connectors.
+[Test source connector] produces a new record every 1000ms to the topic of your choice. Use this connector to test the infrastructure and create your custom connectors.
 
 [MQTT source connector] is a client implementation of an MQTT protocol, and it reads messages from an MQTT server and produces them to a fluvio topic.
 
