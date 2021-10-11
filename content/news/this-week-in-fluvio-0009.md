@@ -11,9 +11,9 @@ programmable streaming platform written in Rust.
 
 ### Fluvio v0.9.10
 
-#### SmartStream error handling improvements
+#### SmartStreams error handling improvements
 
-SmartStream users will now see error messages if there any problems loading their WASM modules.
+SmartStreams users will now see error messages if there any problems loading their WASM modules.
 
 Previously, these errors would occur within the Fluvio cluster while trying to consume from a topic, and the connection would abruptly close without an explanation.
 
