@@ -44,6 +44,12 @@ disableKinds = ["taxonomyTerm"]
     weight = 101
 
   [[menu.fluvio]]
+    identifier = "connectors"
+    name = "Connectors"
+    url = "/connectors/"
+    weight = 102
+
+  [[menu.fluvio]]
     identifier = "api"
     name = "APIs"
     url = "/api/"

@@ -1,7 +1,8 @@
 ---
-menu: Quick Start
 title: Connectors Overview
-weight: 10
+menu: Overview
+section: connectors
+toc: false
 ---
 
 Fluvio stores the source code for its connectors in the [fluvio-connectors
