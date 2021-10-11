@@ -17,7 +17,7 @@ At the moment, Fluvio has two official connectors:
 
 Fluvio cluster offers a connector command-line interface (CLI) to start, stop and get the status of a container. A cluster may run many instances of the same or different connectors simultaneously.  Fluvio manages the connector infrastructure through Kubernetes. If you run a local installation of Fluvio, make sure it runs `minikube` or `k3d`.
 
--> Note: Fluvio local clusters installed outside of Kubernetes are not supported.
+-> Fluvio **local clusters** installed outside of Kubernetes are not supported at this time.
 
 [fluvio-connectors repository]: https://github.com/infinyon/fluvio-connectors
 [test-connector (source)]: https://github.com/infinyon/fluvio-connectors/tree/main/test-connector
@@ -25,63 +25,79 @@ Fluvio cluster offers a connector command-line interface (CLI) to start, stop an
 [Test source connector]:  https://github.com/infinyon/fluvio-connectors/tree/main/test-connector
 [MQTT source connector]: https://github.com/infinyon/fluvio-connectors/tree/main/mqtt
 
-# Commands
 
-The connector CLI commands are a subcommand to [`fluvio cluster`](/cli/commands/cluster/).
+## Connector Configuration
 
-## Create a connector
-Creating a connector is a bit complicated. You will need to give the connector
-CLI a config yaml.
+Fluvio uses configuration files to instantiate connectors. The configuration file has two sections:
 
-%copy first-line%
-```bash
-$ fluvio cluster connector create --config my-connector-config.yaml
-```
+* connector definition
+* connector properties
 
-### The Connector Config
-All connector configs require the following:
+The `connector definition` section has the following parameters:
+
 ```yaml
-version: v1
+version: v1                     
 name: unique_identifying_name
-type: official_connector_type # currently either mqtt or test-connector
+type: official_connector_type   # pick from connector catalog
+direction: source_or_sink
 topic: my_fluvio_topic
+create_topic: true              # optional
 ```
-with optional arguments of:
+
+The `connector properties` are fields required by the external service.
+
 ```yaml
-create_topic: true
-direction: source
 parameters:
   connector_arg_key1: connector_arg_val1
   connector_arg_key2: connector_arg_val2
-secrets:
-  secret_1_key: secret_1_val
 ```
 
-Additionally, a given connector will have certain `parameters` that are
-required. In the future, our catalog will describe and verify the arguments
-before connector creation. For now, you must know that:
-* The `mqtt` connector requires parameters of `mqtt-url`, `mqtt-topic` and
-`fluvio-topic` with optional parameters of `timeout` and `qos`.
-* The test connector requires parameters of `topic` with optional parameters of
-`timeout` and `count`.
+For a list of parameters, check connector properties in the connector catalog.
 
-#### Mqtt Example
+
+## Define a Connector
+
+Starting a connector is a two-step process: create the `configuration fil`e, run the `create connector` command.
+
+
+### Mqtt Example
+
+An sample `configuration file` for an mqtt connector:
+
 %copy%
 ```yaml
-version: v1
+version: latest
 name: my-test-mqtt
 type: mqtt
+direction: source
 topic: my-mqtt
 create_topic: true
-direction: source
 parameters:
   mqtt-url: "mqtt.hsl.fi"
   mqtt-topic: "/hfp/v2/journey/#"
-  fluvio-topic: "my-mqtt"
 ```
 
+In the future, Fluvio connector catalog will describe and verify the arguments
+before connector creation. For now you must ensure the configuration parameters are accurate:
 
-#### test-connector example
+* `version` is the version of the connector from connector catalog.
+* `name` is the connector name as defined in the connector catalog.
+* `type` is the unique identifier of the connector.
+* `direction` defines if the connector is sink or source.
+* `topic` is the fluvio topic the connetor will publish to.
+* `parameters` is the list of parameters as defined by the connector.
+  * `mqtt-url` defines the mqtt server url.
+  * `mqtt-topic` defines the mqtt topic.
+  * `timeout` controls reconnection logic (optional).
+  * `qos` manages quality of service (optional).
+
+For additional information, checkout mqtt connector in [github](https://github.com/infinyon/fluvio-connectors/blob/main/mqtt/src/main.rs).
+
+
+### Test-connector Example
+
+An sample `configuration file` for a test connector:
+
 %copy%
 ```yaml
 version: v1
@@ -95,10 +111,37 @@ parameters:
   timeout: 1000
 ```
 
-If the `creat_topic` key is true, the tool will create a the topic specified or
-fail if it already exists.
+The `connector definition` section is defined above and not repeated here. The test connector specific parameters are:
+* `timeout` connection times out after 1000 miliseconds.
+* `count` the number of records to produce (defaults to i64 max).
 
-## List connectors and their statuses
+For additional information, checkout test connector in [github](https://github.com/infinyon/fluvio-connectors/blob/main/test-connector/src/main.rs).
+
+## Connector Commands
+
+To show a list of available connector commands, run the following CLI:
+
+%copy first-line%
+```bash
+$ fluvio cluster connector -h
+```
+
+### Create a Connector
+
+Use the following cli command to create a connector:
+
+%copy first-line%
+```bash
+$ fluvio cluster connector create --config my-connector-config.yaml
+```
+
+If the `create_topic` is configured, a topic is created. If the topic already exists, the command is ignored. If `create_topic` is not configured, and the topic does not exist, the connector returns an error.
+
+
+## List all Connectors
+
+Use the following cli command to retrieve the status of the connectors:
+
 %copy first-line%
 ```bash
 $ fluvio cluster connector list
@@ -107,8 +150,14 @@ $ fluvio cluster connector list
  my-test-connector  Running
       my-test-mqtt  Running
 ```
-## Delete a connector
+
+## Delete a Connector
+
+Use the following cli command to delete a connector:
+
 %copy first-line%
 ```bash
 $ fluvio cluster connector delete my-test-connector
 ```
+
+Deleting a connector does not impact the topic. Hence, the records are available for reading after the connector is deleted. Recreating the same connector will resume publishing to the same topic.

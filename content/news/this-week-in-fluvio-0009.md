@@ -19,16 +19,21 @@ Previously, these errors would occur within the Fluvio cluster while trying to c
 
 Before
 
-```
+%copy first-line%
+
+```bash
 $ fluvio consume my-topic -B --filter=invalid-smartstream.wasm
 Consuming records from the beginning of topic 'echo'
 Consumer stream has closed
 ```
+
 from: https://github.com/infinyon/fluvio/issues/1143#issuecomment-873432660
 
 Now the client will report a more helpful error message
 
-```
+%copy first-line%
+
+```bash
 $ fluvio consume my-topic -B --filter=invalid-smartstream.wasm
 Consuming records from the beginning of topic 'echo'
 Error:
@@ -44,7 +49,9 @@ Producer connection errors that occur within the Fluvio cluster will also report
 
 Before
 
-```
+%copy first-line%
+
+```bash
 $ fluvio produce my-topic
 [...]
 Error: 
@@ -56,7 +63,10 @@ Error:
 ```
 
 After
-```
+
+%copy first-line%
+
+```bash
 $ fluvio produce topic
 [...]
 Timed out while waiting on socket response
@@ -91,8 +101,16 @@ parameters:
   topic: my-test-connector
 ```
 
-```
+
+%copy first-line%
+
+```bash
 $ fluvio cluster connector create --config config.yaml
+```
+
+%copy first-line%
+
+```bash
 $ fluvio cluster connector list
 
 -------------
@@ -102,7 +120,9 @@ $ fluvio cluster connector list
 
 The test connector produces to a topic `my-test-connector`, where each record says `Hello, Fluvio! - #` where `#` is a number that counts up.
 
-```
+%copy first-line%
+
+```bash
  $ fluvio consume --tail 10 -d my-test-connector
 Consuming records starting 10 from the end of topic 'my-test-connector'
 Hello, Fluvio! - 166
