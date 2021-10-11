@@ -138,7 +138,7 @@ $ fluvio cluster connector create --config my-connector-config.yaml
 If the `create_topic` is configured, a topic is created. If the topic already exists, the command is ignored. If `create_topic` is not configured, and the topic does not exist, the connector returns an error.
 
 
-## List all Connectors
+### List all Connectors
 
 Use the following cli command to retrieve the status of the connectors:
 
@@ -151,7 +151,7 @@ $ fluvio cluster connector list
       my-test-mqtt  Running
 ```
 
-## Delete a Connector
+### Delete a Connector
 
 Use the following cli command to delete a connector:
 
