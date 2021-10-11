@@ -145,9 +145,7 @@ To stop the connector, you need to delete it:
 $ fluvio cluster connector delete my-test-connector
 ```
 
-The more details about connectors and documentation for creating your own connectors are coming soon!
-
-In the future we'll also share our connectors built for a wider audience to use.
+The details about connectors and documentation for creating your own connectors are coming soon! We've created the section dedicated to [connectors].
 
 If you would like to help us prioritize what connectors to create, or if this sounds interesting and you'd like to talk to us about connectors then please get in touch with us!
 
@@ -163,3 +161,4 @@ Until next week!
 [our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [our Discord channel]: https://discordapp.com/invite/bBG2dTz
 [Github Discussions]: https://github.com/infinyon/fluvio/discussions
+[connectors]: /connectors
