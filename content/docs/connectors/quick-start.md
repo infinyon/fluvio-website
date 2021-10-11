@@ -57,7 +57,7 @@ For a list of parameters, check connector properties in the connector catalog.
 
 ## Define a Connector
 
-Starting a connector is a two-step process: create the `configuration fil`e, run the `create connector` command.
+Starting a connector is a two-step process: create the `configuration file`, run the `create connector` command.
 
 
 ### Mqtt Example
