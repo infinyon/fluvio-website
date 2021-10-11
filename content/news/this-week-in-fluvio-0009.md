@@ -88,9 +88,9 @@ The rest of this post is first look at a connector in action.
 
 We create a new connector, with configurable details stored in a this example config file `config.yaml`. 
 
+%copy%
 
 ```yaml
-# config.yaml
 version: v1
 name: my-test-connector
 type: test-connector

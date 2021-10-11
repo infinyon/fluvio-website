@@ -65,6 +65,7 @@ Starting a connector is a two-step process: create the `configuration file`, run
 An sample `configuration file` for an mqtt connector:
 
 %copy%
+
 ```yaml
 version: latest
 name: my-test-mqtt
@@ -100,6 +101,7 @@ For additional information, checkout mqtt connector in [github](https://github.c
 An sample `configuration file` for a test connector:
 
 %copy%
+
 ```yaml
 version: v1
 name: my-test-connector
