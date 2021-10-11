@@ -75,6 +75,7 @@ create_topic: true
 parameters:
   mqtt-url: "mqtt.hsl.fi"
   mqtt-topic: "/hfp/v2/journey/#"
+  topic: my-mqtt
 ```
 
 In the future, Fluvio connector catalog will describe and verify the arguments
