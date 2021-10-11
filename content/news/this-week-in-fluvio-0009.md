@@ -137,6 +137,14 @@ Hello, Fluvio! - 174
 Hello, Fluvio! - 175
 ```
 
+To stop the connector, you need to delete it:
+
+%copy first-line%
+
+```bash
+$ fluvio cluster connector delete my-test-connector
+```
+
 The more details about connectors and documentation for creating your own connectors are coming soon!
 
 In the future we'll also share our connectors built for a wider audience to use.
