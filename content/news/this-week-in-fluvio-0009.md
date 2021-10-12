@@ -19,8 +19,6 @@ Previously, these errors would occur within the Fluvio cluster while trying to c
 
 Before
 
-%copy first-line%
-
 ```bash
 $ fluvio consume my-topic -B --filter=invalid-smartstream.wasm
 Consuming records from the beginning of topic 'echo'
@@ -30,8 +28,6 @@ Consumer stream has closed
 from: https://github.com/infinyon/fluvio/issues/1143#issuecomment-873432660
 
 Now the client will report a more helpful error message
-
-%copy first-line%
 
 ```bash
 $ fluvio consume my-topic -B --filter=invalid-smartstream.wasm
@@ -49,8 +45,6 @@ Producer connection errors that occur within the Fluvio cluster will also report
 
 Before
 
-%copy first-line%
-
 ```bash
 $ fluvio produce my-topic
 [...]
@@ -63,8 +57,6 @@ Error:
 ```
 
 After
-
-%copy first-line%
 
 ```bash
 $ fluvio produce topic
@@ -123,7 +115,7 @@ The test connector produces to a topic `my-test-connector`, where each record sa
 %copy first-line%
 
 ```bash
- $ fluvio consume --tail 10 -d my-test-connector
+$ fluvio consume my-test-connector --tail -d
 Consuming records starting 10 from the end of topic 'my-test-connector'
 Hello, Fluvio! - 166
 Hello, Fluvio! - 167
@@ -145,9 +137,7 @@ To stop the connector, you need to delete it:
 $ fluvio cluster connector delete my-test-connector
 ```
 
-The more details about connectors and documentation for creating your own connectors are coming soon!
-
-In the future we'll also share our connectors built for a wider audience to use.
+The details about connectors and documentation for creating your own connectors are coming soon! We've created the section dedicated to [connectors].
 
 If you would like to help us prioritize what connectors to create, or if this sounds interesting and you'd like to talk to us about connectors then please get in touch with us!
 
@@ -163,3 +153,4 @@ Until next week!
 [our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [our Discord channel]: https://discordapp.com/invite/bBG2dTz
 [Github Discussions]: https://github.com/infinyon/fluvio/discussions
+[connectors]: /connectors

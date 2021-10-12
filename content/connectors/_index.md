@@ -1,7 +1,8 @@
 ---
-menu: Quick Start
 title: Connectors Overview
-weight: 10
+menu: Overview
+section: Connectors
+toc: false
 ---
 
 Fluvio stores the source code for its connectors in the [fluvio-connectors
@@ -103,7 +104,7 @@ An sample `configuration file` for a test connector:
 %copy%
 
 ```yaml
-version: v1
+version: latest
 name: my-test-connector
 type: test-connector
 topic: my-test-connector
@@ -114,7 +115,7 @@ parameters:
 ```
 
 The `connector definition` section is defined above and not repeated here. The test connector specific parameters are:
-* `timeout` interval for sending records (default: 1000)
+* `timeout` interval for sending records in miliseconds (default: 1000 miliseconds).
 * `count` the number of records to produce (defaults to i64 max).
 
 For additional information, checkout test connector in [github](https://github.com/infinyon/fluvio-connectors/blob/main/test-connector/src/main.rs).
