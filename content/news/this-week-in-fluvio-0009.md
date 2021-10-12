@@ -115,7 +115,7 @@ The test connector produces to a topic `my-test-connector`, where each record sa
 %copy first-line%
 
 ```bash
-$ fluvio consume --tail 10 -d my-test-connector
+$ fluvio consume my-test-connector --tail -d
 Consuming records starting 10 from the end of topic 'my-test-connector'
 Hello, Fluvio! - 166
 Hello, Fluvio! - 167
