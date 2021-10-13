@@ -1,6 +1,6 @@
 ---
 title: "This Week in Fluvio &#x23;7"
-date: 2021-09-16
+date: 2021-09-23
 weight: 20
 ---
 
