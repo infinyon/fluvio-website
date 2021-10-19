@@ -9,7 +9,13 @@ programmable streaming platform written in Rust.
 
 ## No new release
 
-We didn't have a new release this week. Instead the team met up in person for the first time.
+We didn't have a new release this week.
+
+Instead the team met up in person for the first time!
+
+<img src="/news/images/0010/team-at-alcatraz.jpg" style="width:600px" />
+
+> This is us trying to not look overheated after the audio tour at Alactraz.
 
 ## New managed connector
 ### MQTT
@@ -24,16 +30,15 @@ We have a new connector for the MQTT protocol available.
 version: v1
 name: my-test-mqtt
 type: mqtt
-topic: my-mqtt
+topic: public-mqtt
 create_topic: true
 direction: source
 parameters:
-  mqtt-url: "mqtt.hsl.fi" #Figure out another mqtt source that isn't this
-  mqtt-topic: "/hfp/v2/journey/#"
-  fluvio-topic: "my-mqtt"
+  mqtt-url: "broker.hivemq.com"
+  mqtt-topic: "testtopic/#"
+  fluvio-topic: "public-mqtt"
 secrets:
   foo: bar
-
 ```
 
 
@@ -53,18 +58,28 @@ $ fluvio cluster connector list
  my-test-mqtt  Running
 ```
 
-The test connector produces to a topic `my-mqtt`, where each record is an mqtt record corresponding to our configured mqtt topic.
+The test connector produces to a topic `public-mqtt`, where each record is an mqtt record corresponding to our configured mqtt topic.
+
+The `testtopic/fluvio` payload, for example, says "hello world"
 
 %copy first-line%
 
 ```bash
-$ fluvio consume my-mqtt --tail -d
-Consuming records starting 10 from the end of topic 'my-mqtt'
-
-#
-# Paste real output here pls
-#
+$ fluvio consume public-mqtt --tail -d
+Consuming records starting 10 from the end of topic 'public-mqtt'
+{"mqtt_topic":"testtopic/fluvio","payload":[104,101,108,108,111,32,119,111,114,108,100]}
+{"mqtt_topic":"testtopic/a_home/temp","payload":[50,54]}
+{"mqtt_topic":"testtopic/a_home/menu/reg","payload":[49]}
+{"mqtt_topic":"testtopic/a_home/menu/rele1","payload":[48]}
+{"mqtt_topic":"testtopic/a_home/menu/rele2","payload":[48]}
+{"mqtt_topic":"testtopic/a_home/menu/pwm1","payload":[51,48]}
+{"mqtt_topic":"testtopic/a_home/menu/pwm2","payload":[51,48]}
+{"mqtt_topic":"testtopic/a_home/menu/tc","payload":[49,48,48]}
+{"mqtt_topic":"testtopic/a_home/menu/tzad","payload":[50,49,52,55,52,56,51,54,52,55]}
 ```
+
+> In order to keep this connector generic, the payload is encoded as bytes.
+> Rest assured that we'll provide more documentation for best practice in the future.
 
 To stop the connector, you need to delete it:
 
@@ -76,30 +91,20 @@ $ fluvio cluster connector delete my-test-mqtt
 
 ## Features coming soon
 
-### Smart Modules
-
-Smart Modules will be an alternative way to use the SmartStreams feature for both consumers and producers. You will be able to upload a Smart Module prior to instantiating a consumer or producer, and reference the Smart Module.
-
-// How much more can I say about this? What's in the codebase at the moment? Is there a CLI?
-
 ### Table
 
-Tables will enable material views with your structured JSON/YAML/TOML data. You will be able to select specific keys for display into a tabular format.
+Tables will enable materialized views with your structured JSON/YAML/TOML data. You will be able to select and format specific keys for display into a table.
 
-// More? I don't have much other than the original idea in the CLI
-
-This feature is not yet ready to use, but you'll use the CLI.
+This feature is not yet ready to use, but you may notice this command available CLI.
 
 %copy%
 ```shell
 $ fluvio table
 ```
 
-
-
-Communicate with us on [Github Discussions] or join [our Discord channel] and come say hello!
-
 ---
+
+Get in touch with us on [Github Discussions] or join [our Discord channel] and come say hello!
 
 For the full list of changes this week, be sure to check out [our CHANGELOG].
 
