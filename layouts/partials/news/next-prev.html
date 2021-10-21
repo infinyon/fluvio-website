@@ -1,0 +1,37 @@
+<div class="container-fluid blog-nav mb-4">
+  <div class="row"><div class="col line"></div></div>
+  <div class="row">
+    <div class="col no-padding">
+      {{- template "next_page" (dict "next_page" .page.NextInSection) -}}
+    </div>
+    <div class="col no-padding text-right">
+      {{- template "prev_page" (dict "prev_page" .page.PrevInSection) -}}
+    </div>
+  </div>
+</div>
+
+{{- define "prev_page" -}}
+  {{ if .prev_page }}
+      {{ $hidden := .prev_page.Params.hidden | default false}}
+      {{ if eq $hidden true }}
+        {{- template "prev_page" (dict "prev_page" .prev_page.PrevInSection) -}}
+      {{ else }}
+        <a class="button next-prev" href="{{ .prev_page.RelPermalink }}">
+          {{ .prev_page.Title | markdownify }}<i class="fa fa-arrow-right ml-2"></i>
+        </a>
+      {{ end }}
+  {{ end }}
+{{- end -}}
+
+{{- define "next_page" -}}
+  {{ if .next_page }}
+      {{ $hidden := .next_page.Params.hidden | default false}}
+      {{ if eq $hidden true }}
+        {{- template "next_page" (dict "next_page" .next_page.NextInSection) -}}
+      {{ else }}
+        <a class="button next-prev" href="{{ .next_page.RelPermalink }}">
+          <i class="fa fa-arrow-left mr-2"></i>{{ .next_page.Title | markdownify}}
+      </a>
+      {{ end }}
+  {{ end }}
+{{- end -}}

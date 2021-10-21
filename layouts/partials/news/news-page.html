@@ -3,6 +3,7 @@
         <div class="col doc-area">
             <div class="doc">
                 {{ partial "news/news-content" (dict "page" .) }}
+                {{ partial "news/next-prev" (dict "page" .) }}
                 {{ partial "common/edit-page" . }}
             </div>
         </div>
