@@ -59,7 +59,7 @@ Fluvio is written in **Rust**, a programming language designed for _code safety_
 | Performance Test        |   Java   |   Rust   | Improvement |
 | ----------------------- | :------: | :------: | :---------: |
 | **Latency** (Fibonacci) | 1,900 ms | 57.71 ms |  **~30x**   |
-| **Memory**              | 1,498 ms | 16.94 ms |  **~25x**   |
+| **Memory**              | 1,498 ms | 16.94 ms |  **~80x**   |
 | **Idle Memory**         |  162 Mb  | 0.36 Mb  |  **~450x**  |
 | **CPU Utilization**     |   73%    |   24%    |   **~3x**   |
 | **Program Size**        |  27 Mb   |  3.7 Mb  |   **~8x**   |
