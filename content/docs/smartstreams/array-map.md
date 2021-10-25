@@ -14,24 +14,19 @@ the smaller units of data that we want to work with.
 For example, suppose that each element in our Topic is a JSON array. We
 might want to interact with the _elements_ of these arrays rather than
 the arrays themselves. Using an ArrayMap, we could transform a Topic whose
-records look like this:
+records look like this (where this line is a single record):
 
 ```bash
-["a", "b"]
-["c", "d"]
-["e", "f"]
+["a", "b", "c"]
 ```
 
 Into a topic that contains each of those elements as a distinct record,
-like this:
+like this (where each line is a distinct record):
 
 ```bash
 "a"
 "b"
 "c"
-"d"
-"e"
-"f"
 ```
 
 > If you'd like to see a practical example of ArrayMap in action,
@@ -151,11 +146,7 @@ Now we can produce some test data to our topic.
 %copy first-line%
 ```bash
 $ fluvio produce array-map
-> ["a", "b"]
-Ok!
-> ["c", "d"]
-Ok!
-> ["e", "f"]
+> ["a", "b", "c"]
 Ok!
 > ^C
 ```
@@ -169,9 +160,6 @@ $ fluvio consume array-map -B --array-map=target/wasm32-unknown-unknown/release/
 "a"
 "b"
 "c"
-"d"
-"e"
-"f"
 ```
 
 Congratulations, you just completed your first ArrayMap example! You can find the
