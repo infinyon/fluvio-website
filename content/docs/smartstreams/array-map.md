@@ -34,14 +34,8 @@ like this:
 "f"
 ```
 
-A good practical example of when you might want to use ArrayMap might be with API
-pagination. In this scenario, each record in our topic would represent a "page" of
-data from an API, but we would like to analyze and operate on just the elements
-we find in those pages. For example, if we perform an image search and receive
-pages of search results, we probably only care about the search results themselves
-and what order they were received in, we don't necessarily care about how many
-results landed in each page. By using ArrayMap to put each search result into a
-distinct record, we can simplify our data processing and analysis later in the stream.
+> If you'd like to see a practical example of ArrayMap in action,
+> check out our blog on [using ArrayMap to break apart paginated API requests].
 
 Let's take a look at an example ArrayMap and walk through how it works and
 what some sample input and output data might look like. The ArrayMap we'll look
@@ -191,4 +185,5 @@ other SmartStreams examples.
 - [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})
 
 [downloaded the Fluvio CLI]: https://www.fluvio.io/download/
+[using ArrayMap to break apart paginated API requests]: https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/
 [full source code for this example on GitHub]:
