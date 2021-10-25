@@ -186,4 +186,4 @@ other SmartStreams examples.
 
 [downloaded the Fluvio CLI]: https://www.fluvio.io/download/
 [using ArrayMap to break apart paginated API requests]: https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/
-[full source code for this example on GitHub]:
+[full source code for this example on GitHub]: https://github.com/infinyon/fluvio/blob/095d8f0cbbcc79ebc71cea464cd653ffde7af4e0/crates/fluvio-smartstream/examples/array_map_json_array/src/lib.rs
