@@ -21,7 +21,7 @@ Using SmartStreams is a little more flexible now. Previously, a SmartStream filt
 
 However we've added the capability to pass in user inputs at the time of execution.
 
-#### SmartStreams Array Map 
+#### SmartStreams ArrayMap 
 This is a new type of SmartStream API that will make it easier to chunk up large datasets into smaller pieces. For a more hands-on explanation with real data, please read our [blog post](https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/) that demonstrates the capabilities of `#[smartstream(array_map)]`.
 
 
