@@ -1,13 +1,13 @@
 ---
-title: Fluvio Cloud
+title: InfinyOn Cloud
 menu: Cloud
 weight: 60
 ---
 
-Fluvio Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
-
+InfinyOn Cloud is the fastest and easiest way to get started with Fluvio. We'll walk you through the steps of creating a free account and connecting to it with a Fluvio client.
 
 You can reach us on <a href="https://discordapp.com/invite/bBG2dTz" target="_blank">Discord</a> or in <a href="https://github.com/infinyon/fluvio/issues" target="_blank">Github</a>.
+
 ## Install Fluvio CLI
 
 The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, managing, and interacting with Fluvio clusters.
@@ -45,7 +45,7 @@ At this point, we can log in via the Fluvio CLI and start sending and receiving 
 %copy first-line%
 ```bash
 $ fluvio cloud login
-Fluvio Cloud email: batman@justiceleague.com
+InfinyOn Cloud email: batman@justiceleague.com
 Password:
 ```
 
