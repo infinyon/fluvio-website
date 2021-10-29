@@ -1,5 +1,5 @@
 ---
-title: "This Week in Fluvio &#x23;3"
+title: "This Week in Fluvio #3"
 date: 2021-08-19
 weight: 20
 ---
