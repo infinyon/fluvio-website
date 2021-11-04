@@ -8,6 +8,14 @@
                 <h1>{{ $title }}</h1>
                 <div class="doc-content">
                     {{ $content }}
+                    <h4 id="newsletters">Newsletters</h4>
+                    <ul>
+                        {{ range .Pages }}
+                        <li>
+                            <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}}: {{.Title}}</a>
+                        </li>
+                        {{ end }}
+                    </ul>
                 </div>
             </div>
         </div>
