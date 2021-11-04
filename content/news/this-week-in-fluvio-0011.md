@@ -30,13 +30,13 @@ This is an example filter that takes in a parameter. Our named parameter is `key
 use fluvio_smartstream::{smartstream, SmartOpt, Record, Result};
 
 #[derive(SmartOpt)]
-pub struct FilterOpt{
+pub struct FilterOpt {
     key: String
 }
 
-impl Default for FilterOpt{
-    fn default() -> Self{
-        Self{
+impl Default for FilterOpt {
+    fn default() -> Self {
+        Self {
             key: "a".to_string()
         }
     }
