@@ -2,9 +2,9 @@
 title: Postgres Connector
 menu: "Source: Postgres"
 section: Source
-toc: false
+toc: true
 code:
-    heigt: 9000
+    height: 9000
 ---
 
 The Postgres connector is a Source which reads events from a Postgres
@@ -22,9 +22,46 @@ applications that react to changes in real-time.
 
 In this documentation, we'll walk through the process of preparing a
 Postgres database for CDC, launching the Fluvio Postgres connector, and
-observing change events in our Fluvio Topic.
+observing change events in our Fluvio Topic. To see the connector in
+action, jump to one of the walkthrough examples:
+
+- [Using a Local Connector with InfinyOn Cloud](#example-use-case-using-a-local-connector-with-infinyon-cloud)
+- [Using a Managed Connector with Minikube](#example-use-case-using-a-managed-connector-with-minikube)
 
 ## Configuration Options
+
+Fluvio Connectors may be launched as a "Managed connector" when running Fluvio
+in Kubernetes, or as a "Local connector" which may connect to Fluvio anywhere.
+When using Fluvio Postgres as a Managed Connector, you'll need to provide a
+configuration file that looks like the following:
+
+%copy%
+```yaml
+# connect.yml
+version: v1
+name: my-postgres
+type: postgres
+topic: postgres
+create_topic: true
+direction: source
+parameters:
+  url: postgres://postgres:mysecretpassword@localhost:5432/postgres
+  publication: fluvio
+  slot: fluvio
+  topic: postgres
+```
+
+This configuration file is used together with the `fluvio connector create` command, like so:
+
+%copy first-line%
+```bash
+$ fluvio connector create --config=./connect.yml
+```
+
+When using Fluvio Postgres as a Local Connector, these parameters may instead be provided
+as command-line arguments, such as `--url`, `--publication`, `--slot`, and `--topic`.
+
+Below are descriptions of the purpose of each parameter.
 
 - `url` (required): The login URL for your Postgres database. This should contain
   your username, password, database hostname, and port.
@@ -41,33 +78,223 @@ observing change events in our Fluvio Topic.
   produce CDC events to.
   - Example: `postgres-topic`
 
-These configuration options are specified via the `parameters` section in the `config.yml`
-used to launch this connector. Below is an example `config.yml` for this connector:
-
-```yaml
-# config.yml
-version: v1
-name: my-postgres
-type: postgres
-topic: postgres
-create_topic: true
-direction: source
-parameters:
-  url: postgres://postgres:mysecretpassword@localhost:5432/postgres  
-  publication: fluvio
-  slot: fluvio
-  topic: postgres
-```
-
 ## Data Events
 
-- When this connector produces to a topic, what do the events look like?
-- Give one or a few examples of pieces of data as they would appear in the topic.
-- If there is any relevant documentation for the data format, link to it.
-- If the data has a clear choice of Record Key, explain how the key is selected.
-- Give an example of a record and show what the corresponding key looks like.
+The Fluvio Postgres connector emits events that closely represent
+the [logical replication message format] from Postgres, but formatted in JSON.
+There are nine different types of messages, each of which share some common
+metadata, but then contain different inner contents.
 
-# Example Use-Case: Using a Local Connector with InfinyOn Cloud
+The properties shared by all messages include the following:
+
+- `wal_start`: The Log Sequence Number (LSN) of the replication slot _before_ this event
+- `wal_end`: The LSN of the slot _after_ this event
+- `timestamp`: The timestamp of the event, in microseconds since the "Postgres Epoch" (midnight on 2000-01-01)
+- `message`: A JSON object containing the event-specific contents
+
+The following are the nine types of messages, which may be identified by the `type`
+field in the top-level `message` field:
+
+- `begin`: Indicates the beginning of a transaction. All subsequent messages until a `commit`
+  are part of this transaction.
+- `commit`: Indicates the successful end of a transaction.
+- `origin`: Denotes the name of the true upstream database. This may be relevant if the
+  Postgres instance the Fluvio connector is communicating with is actually following a
+  different Postgres leader. In that case, `origin` communicates the identity of the leader
+  where the subsequent messages originated.
+- `relation`: Whenever a data change occurs in a table that has not been seen by the connector
+  before, Postgres sends a `relation` event that describes the ID, schema, table name, and column
+  types of the table the data belongs to. The connector will remember the column layout from each
+  relation event and use it to apply appropriate types to subsequent data messages (insert, update, delete).
+- `type`: Communicates data types from the leader database.
+- `insert`: Indicates that a new row has been inserted to a table. Includes the ID of the table
+  as well as the contents of the new row.
+- `update`: Indicates that an existing row has been updated in a table. Includes the ID of the table
+  as well as the columns belonging to the row's key and the updated data in the row.
+- `delete`: Indicates that an existing row has been deleted from a table. Includes the ID of the table
+  and the columns belonging to the row's key that was deleted.
+- `truncate`: Indicates that one or more tables has been truncated. Includes a list of table IDs
+  that have been truncated.
+
+Below are some samples of some of the different types of events:
+
+**Begin**:
+
+```json
+{
+  "wal_start": 24095704,
+  "wal_end": 24095704,
+  "timestamp": 689713875500731,
+  "message": {
+    "type": "begin",
+    "final_lsn": 24096336,
+    "timestamp": 689713834266075,
+    "xid": 734
+  }
+}
+```
+
+Commit:
+
+```json
+{
+  "wal_start": 24096440,
+  "wal_end": 24096440,
+  "timestamp": 689713875500960,
+  "message": {
+    "type": "commit",
+    "flags": 0,
+    "commit_lsn": 24096336,
+    "end_lsn": 24096440,
+    "timestamp": 689713834266075
+  }
+}
+```
+
+Relation:
+
+```json
+{
+  "wal_start": 0,
+  "wal_end": 0,
+  "timestamp": 689716528859099,
+  "message": {
+    "type": "relation",
+    "rel_id": 16385,
+    "namespace": "public",
+    "name": "dog",
+    "replica_identity": "Default",
+    "columns": [
+      {
+        "flags": 0,
+        "name": "name",
+        "type_id": 1043,
+        "type_modifier": 24
+      },
+      {
+        "flags": 0,
+        "name": "species",
+        "type_id": 1043,
+        "type_modifier": 24
+      },
+      {
+        "flags": 0,
+        "name": "state",
+        "type_id": 1043,
+        "type_modifier": 24
+      },
+      {
+        "flags": 0,
+        "name": "sex",
+        "type_id": 1042,
+        "type_modifier": 5
+      }
+    ]
+  }
+}
+```
+
+Insert:
+
+```json
+{
+  "wal_start": 24202800,
+  "wal_end": 24202800,
+  "timestamp": 689716528859294,
+  "message": {
+    "type": "insert",
+    "rel_id": 16385,
+    "tuple": [
+      {
+        "String": "Lucy"
+      },
+      {
+        "String": "chihuahua"
+      },
+      {
+        "String": "TX"
+      },
+      {
+        "String": "f"
+      }
+    ]
+  }
+}
+```
+
+Update:
+
+```json
+{
+  "wal_start": 24206136,
+  "wal_end": 24206136,
+  "timestamp": 689721572251776,
+  "message": {
+    "type": "update",
+    "rel_id": 16385,
+    "old_tuple": [
+      {
+        "String": "Wiggles"
+      },
+      {
+        "String": "terrier"
+      },
+      {
+        "String": "DC"
+      },
+      {
+        "String": "f"
+      }
+    ],
+    "key_tuple": null,
+    "new_tuple": [
+      {
+        "String": "Wiggles"
+      },
+      {
+        "String": "terrier"
+      },
+      {
+        "String": "VA"
+      },
+      {
+        "String": "f"
+      }
+    ]
+  }
+}
+```
+
+Delete
+
+```json
+{
+  "wal_start": 24205576,
+  "wal_end": 24205576,
+  "timestamp": 689721489186984,
+  "message": {
+    "type": "delete",
+    "rel_id": 16385,
+    "old_tuple": [
+      {
+        "String": "Piper"
+      },
+      {
+        "String": "shih-tzu"
+      },
+      {
+        "String": "NY"
+      },
+      {
+        "String": "f"
+      }
+    ],
+    "key_tuple": null
+  }
+}
+```
+
+## Example Use-Case: Using a Local Connector with InfinyOn Cloud
 
 The quickest and easiest way to get started using Fluvio is via a free
 [Infinyon Cloud account]. In this example, we'll demonstrate how to run the
@@ -296,7 +523,7 @@ using InfinyOn Cloud! In this example, we covered:
 Read on to the next example to learn how to set up a Managed Connector using
 Kubernetes in minikube!
 
-# Example Use-Case: Using a Managed Connector with Minikube
+## Example Use-Case: Using a Managed Connector with Minikube
 
 For this example, we're going to set up Postgres and Fluvio together in Kubernetes,
 then launch a managed Fluvio Postgres connector to continuously produce CDC
@@ -664,6 +891,7 @@ more details on how to use the Postgres Connector and what to expect from the da
 - Version + highlights (link to ..?)
 
 [a free InfinyOn Cloud account]: https://infinyon.cloud/signup
+[logical replication message format]: https://www.postgresql.org/docs/10/protocol-logicalrep-message-formats.html
 [how to set up Fluvio and Postgres in minikube]: #example-use-case-using-a-managed-connector-with-minikube
 [read the documentation on them here]: https://www.postgresql.org/docs/10/logical-replication-publication.html
 [Data Events section]: #data-events
