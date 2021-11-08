@@ -118,7 +118,7 @@ field in the top-level `message` field:
 
 Below are some samples of some of the different types of events:
 
-**Begin**:
+### Begin
 
 ```json
 {
@@ -134,7 +134,7 @@ Below are some samples of some of the different types of events:
 }
 ```
 
-Commit:
+### Commit
 
 ```json
 {
@@ -151,7 +151,7 @@ Commit:
 }
 ```
 
-Relation:
+### Relation
 
 ```json
 {
@@ -194,7 +194,7 @@ Relation:
 }
 ```
 
-Insert:
+### Insert
 
 ```json
 {
@@ -222,7 +222,7 @@ Insert:
 }
 ```
 
-Update:
+### Update
 
 ```json
 {
@@ -265,7 +265,7 @@ Update:
 }
 ```
 
-Delete
+### Delete
 
 ```json
 {
