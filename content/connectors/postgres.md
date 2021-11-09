@@ -523,7 +523,7 @@ using InfinyOn Cloud! In this example, we covered:
 Read on to the next example to learn how to set up a Managed Connector using
 Kubernetes in minikube!
 
-## Example Use-Case: Using a Managed Connector with Minikube
+## Advanced Use-Case: Using a Managed Connector with Minikube
 
 For this example, we're going to set up Postgres and Fluvio together in Kubernetes,
 then launch a managed Fluvio Postgres connector to continuously produce CDC
