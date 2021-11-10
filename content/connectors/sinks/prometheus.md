@@ -1,4 +1,4 @@
 ---
-title: Prometheus
-weight: 10
+title: Prometheus (preview)
+menu: Prometheus
 ---
