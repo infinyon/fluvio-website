@@ -3,6 +3,7 @@ public
 resources
 node_modules
 generated
+.hugo_build.lock
 
 ## OS Files
 # Windows
