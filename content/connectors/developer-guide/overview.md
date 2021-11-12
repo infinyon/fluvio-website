@@ -9,7 +9,14 @@ any language which has a [fluvio client library](/api). You should simply
 follow a few conventions and will gladly add and maintain a connector in our
 official catalog.
 
-## Adding a new connector
+To do so you'll need to following steps:
+
+1) [Create a new directory in the repository.](#1-adding-a-new-connector-to-the-repository)
+2) [Adding metadata to the connector](#2-connector-metadata)
+3) [Integration tests](#3-integration-tests)
+4) [Custom build steps](#4-custom-build-steps)
+
+## 1. Adding a new connector to the repository
 
 A new connector should work as a stand alone program in development but when
 merged into the [`fluvio-connectors`
@@ -21,7 +28,7 @@ in the
 [`rust-connectors/sources`](https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources)
 or `rust-connectors/sinks` directories.
 
-### `metadata` subcommand
+## 2. Connector Metadata
 
 A connector should have a `metadata` command which prints a [json
 schema](https://json-schema.org/) of the commandline arguments. This is the
@@ -83,7 +90,7 @@ If you'd like to write to do something other than a `metadata` subcommand in
 the executable having a `metadata` make rule in the connector directory is also
 fine.
 
-### Integration tests
+## 3. Integration tests
 
 A given connector must have a `Makefile` and at least have a `test` rule in it.
 How integration tests are done, is up to the author of the connector however
@@ -94,7 +101,7 @@ Our continuous integration will run `make -C ./path-to-your-connector/Makefile
 test` on each pull request.
 
 
-### Custom build steps
+## 4. Custom build steps
 
 Should your connector require special build steps such as depending on a C
 static library, we'd ask you to have `build` make rule which handles these
