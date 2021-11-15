@@ -12,9 +12,10 @@ official catalog.
 To do so you'll need to following steps:
 
 1) [Create a new directory in the repository.](#1-adding-a-new-connector-to-the-repository)
-2) [Adding metadata to the connector](#2-connector-metadata)
-3) [Integration tests](#3-integration-tests)
-4) [Custom build steps](#4-custom-build-steps)
+2) [Add common CLI arguments to your connector](#2-add-commonly-used-arguments)
+2) [Adding metadata to the connector](#3-connector-metadata)
+3) [Integration tests](#4-integration-tests)
+4) [Custom build steps](#5-custom-build-steps)
 
 ## 1. Adding a new connector to the repository
 
@@ -55,7 +56,7 @@ crate](https://github.com/infinyon/fluvio-connectors/blob/c674c960cb3ddef265c7ff
 As the author of the connector, you'll be responsible for applying the
 smartmodule to the stream before it's sent to the cluster.
 
-## 2. Connector Metadata
+## 3. Connector Metadata
 
 A connector should have a `metadata` command which prints a [json
 schema](https://json-schema.org/) of the commandline arguments. This is the
@@ -118,7 +119,7 @@ If you'd like to write to do something other than a `metadata` subcommand in
 the executable having a `metadata` make rule in the connector directory is also
 fine.
 
-## 3. Integration tests
+## 4. Integration tests
 
 A given connector must have a `Makefile` and at least have a `test` rule in it.
 How integration tests are done, is up to the author of the connector however
@@ -129,7 +130,7 @@ Our continuous integration will run `make -C ./path-to-your-connector/Makefile
 test` on each pull request.
 
 
-## 4. Custom build steps
+## 5. Custom build steps
 
 Should your connector require special build steps such as depending on a C
 static library, we'd ask you to have `build` make rule which handles these
