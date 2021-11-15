@@ -28,6 +28,33 @@ in the
 [`rust-connectors/sources`](https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources)
 or `rust-connectors/sinks` directories.
 
+## 2. Add commonly used arguments
+
+With our rust connectors, we have [common options that we use across the
+connectors](https://github.com/infinyon/fluvio-connectors/blob/main/rust-connectors/common/src/opt.rs).
+
+The base requirement is the need for a [`--fluvio-topic` commandline
+argument](https://github.com/infinyon/fluvio-connectors/blob/c674c960cb3ddef265c7ff34afc0ec8bfc4adb47/rust-connectors/common/src/opt.rs#L12).
+
+We encourgage use of `rust_log` (or similar) and
+use of [`smartmodules`](https://github.com/infinyon/fluvio-connectors/blob/c674c960cb3ddef265c7ff34afc0ec8bfc4adb47/rust-connectors/common/src/opt.rs#L23-L35)
+
+### Using Smartmodules
+
+One of the cool features of Fluvio is that you can apply a smartmodule to a
+stream before sending to the fluvio cluster. To take advantage of these you should have
+commandline arguments of:
+* `--smartstream-map`
+* `--smartstream-filter`
+* `--smartstream-arraymap`
+
+It's recommended to take advantage of the common utilities in the
+[`fluvio-connectors-common`
+crate](https://github.com/infinyon/fluvio-connectors/blob/c674c960cb3ddef265c7ff34afc0ec8bfc4adb47/rust-connectors/common/src/opt.rs#L45-L114).
+
+As the author of the connector, you'll be responsible for applying the
+smartmodule to the stream before it's sent to the cluster.
+
 ## 2. Connector Metadata
 
 A connector should have a `metadata` command which prints a [json
@@ -36,7 +63,8 @@ command we use to build our connectors library and validate arguments passed to
 a connector.
 
 This `metadata` subcommand should print to stdout something of the following:
-```json
+```bash
+$ test-connector metadata | jq
 {
     "name": "test-connector",
     "direction": "Source",
@@ -106,3 +134,5 @@ test` on each pull request.
 Should your connector require special build steps such as depending on a C
 static library, we'd ask you to have `build` make rule which handles these
 parts.
+
+
