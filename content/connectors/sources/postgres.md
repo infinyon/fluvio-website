@@ -1,6 +1,6 @@
 ---
 title: Postgres Connector
-menu: "Source: Postgres"
+menu: PostgreSQL
 section: Source
 toc: true
 code:
