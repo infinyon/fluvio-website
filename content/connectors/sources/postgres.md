@@ -41,14 +41,13 @@ configuration file that looks like the following:
 version: v1
 name: my-postgres
 type: postgres
-topic: postgres
+topic: postgres-topic
 create_topic: true
 direction: source
 parameters:
   url: postgres://postgres:mysecretpassword@localhost:5432/postgres
   publication: fluvio
   slot: fluvio
-  topic: postgres
 ```
 
 This configuration file is used together with the `fluvio connector create` command, like so:
@@ -59,7 +58,9 @@ $ fluvio connector create --config=./connect.yml
 ```
 
 When using Fluvio Postgres as a Local Connector, these parameters may instead be provided
-as command-line arguments, such as `--url`, `--publication`, `--slot`, and `--topic`.
+as command-line arguments, such as `--url`, `--publication`, and `--slot`. The Fluvio
+Topic is specified with the `--fluvio-topic` argument, despite being named `topic` in the
+configuration.
 
 Below are descriptions of the purpose of each parameter.
 
