@@ -173,7 +173,7 @@ $ fluvio connector list
  cat-facts  Running
 ```
 
-
+## Connectors with SmartModules
 
 
 ---
