@@ -1,5 +1,5 @@
 ---
-title: Smart Connectors
+title: Fluvio Connectors
 menu: Overview
 section: Connectors
 toc: true
@@ -42,7 +42,7 @@ In this overview, we'll cover the two deployment styles for connectors, how to a
 configurations for connectors, and how to use SmartModule capabilities for custom processing
 in Smart Connectors.
 
-## Deploying Local Connectors
+## Local Connectors
 
 Local Connectors are deployed using Docker running locally. Each connector is packaged into
 a container, allowing for easy and portable execution. When running a local connector, configurations
@@ -131,7 +131,7 @@ $ fluvio consume cat-facts -B
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
-## Deploying Managed Connectors
+## Managed Connectors
 
 Managed Connectors are deployed within the Fluvio cluster itself, and therefore are not
 available when using a local cluster (i.e. when using `fluvio cluster start --local`).
@@ -173,7 +173,167 @@ $ fluvio connector list
  cat-facts  Running
 ```
 
-## Connectors with SmartModules
+## Smart Connectors
+
+Fluvio's official connectors have support for applying SmartModules to perform inline
+compute on the data passing through - when used together this way, we call them
+"Smart Connectors". One of the reasons Smart Connectors are so beneficial is because
+they can help save streaming costs. For example, when using a Source connector to
+stream data from a third-party data platform, you may only be interested in receiving
+a subset of the available data. With Smart Connectors, you can write custom logic to
+filter out irrelevant data _before_ it gets sent over the network and persisted in
+your topic, saving on bandwidth and storage.
+
+Let's create a new SmartModule that we can use with the Http Connector to pre-process
+our Cat Facts. From the examples above, we know our raw input records from the API look
+like this:
+
+```json
+{"length":116,"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats."}
+```
+
+It would be nice to remove the `length` field since it is redundant, and make our fact
+a top-level string, like this:
+
+```json
+"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats."
+```
+
+To create this SmartModule, we can use `cargo-generate` to start a project with a template
+to help us get started. You can install `cargo-generate` with the following command:
+
+%copy first-line%
+```bash
+$ cargo install cargo-generate
+```
+
+Once we have it, we can use it as follows to create our SmartModule:
+
+%copy first-line%
+```bash
+$ cargo generate --git="https://github.com/infinyon/fluvio-smartstream-template"
+⚠️   Unable to load config file: ~/.cargo/cargo-generate.toml
+🤷   Project Name : catfact-map
+🔧   Generating template ...
+✔ 🤷   Which type of SmartStream would you like? · map
+[1/7]   Done: .cargo/config.toml
+[2/7]   Done: .cargo
+[3/7]   Done: .gitignore
+[4/7]   Done: Cargo.toml
+[5/7]   Done: README.md
+[6/7]   Done: src/lib.rs
+[7/7]   Done: src
+🔧   Moving generated files into: `catfact-map`...
+✨   Done! New project created catfact-map
+```
+
+Make sure to navigate into the project directory:
+
+%copy first-line%
+```bash
+$ cd catfact-map
+```
+
+Next, we'll want to add `serde_json` to our dependencies, so we can manipulate the
+JSON objects that our connector fetches for us. Add the following line to the
+`Cargo.toml` file:
+
+{{< highlight bash "hl_lines=3" >}}
+[dependencies]
+fluvio-smartstream = { version = "0.3" }
+serde_json = "1"
+{{</ highlight >}}
+
+Now, let's write the actual body of the SmartModule. Edit your `src/lib.rs` file
+to have the following contents:
+
+%copy%
+```rust
+use fluvio_smartstream::{smartstream, Result, Record, RecordData};
+use serde_json::Value;
+
+#[smartstream(map)]
+pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
+    let input: Value = serde_json::from_slice(record.value.as_ref())?;
+    let fact = &input["fact"];
+    let output = serde_json::to_string(fact)?;
+
+    Ok((record.key.clone(), output.into()))
+}
+```
+
+Here, we're simply parsing the input as JSON and extracting the `fact` field from
+the object.
+
+Next, we need to build the SmartModule and register it with Fluvio so that our
+connector will be able to find it. To build it, use the following command:
+
+%copy first-line%
+```bash
+$ cargo build --release
+```
+
+Then to register the SmartModule with Fluvio, use this command:
+
+%copy first-line%
+```bash
+$ fluvio smartmodule create catfact-map --wasm-file=target/wasm32-unknown-unknown/release/catfact_map.wasm
+```
+
+The last step is to launch our connector using the SmartModule we just built.
+This step is different for Local Connectors and Managed Connectors, so check out
+the relevant section for you below.
+
+### Smart Local Connectors
+
+Launching a Smart Connector locally is as easy as adding one additional argument to the docker command.
+Depending on which SmartModule type you're using, you'll choose one of the following arguments:
+
+- `--smartstream-filter`
+- `--smartstream-map`
+- `--smartstream-arraymap`
+
+For this example, we'll be using `--smartstream-map`, and providing the name of the
+SmartModule we just created, like so:
+
+%copy%
+```bash
+docker run \
+    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
+    -t infinyon/fluvio-connect-http \
+    -- \
+    --endpoint="https://catfact.ninja/fact" \
+    --fluvio-topic="cat-facts" \
+    --interval=10 \
+    --smartstream-map="catfact-map"
+```
+
+### Smart Managed Connectors
+
+Launching a Smart Managed Connector is as simple as updating the `connect.yml` configuration.
+For this example, we would add `smartstream-map` to the `parameters` section, like so:
+
+%copy%
+```yaml
+# connect.yml
+version: v1
+name: cat-facts
+type: http
+topic: cat-facts
+create_topic: true
+direction: source
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 10
+  smartstream-map: "catfact-map"
+```
+
+Followed by launching it with `fluvio connector`:
+
+%copy first-line%
+```bash
+$ fluvio connector create --config=./connect.yml
+```
 
 
 ---
