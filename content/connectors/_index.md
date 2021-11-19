@@ -164,7 +164,7 @@ $ fluvio consume cat-facts -B
 
 When you launch a Local connector, it will use the active profile at the time of startup
 in order to determine which Fluvio cluster to connect to. If you switch active profiles,
-running connectors will remain connected to the same connector, they will not automatically
+running connectors will remain connected to the same cluster, they will not automatically
 switch over. This is a good thing, because it prevents you from accidentally mixing up your
 data sources and destinations by just changing profiles.
 
