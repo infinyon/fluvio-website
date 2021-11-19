@@ -255,11 +255,11 @@ the relevant section for you below.
 Launching a Smart Connector locally is as easy as adding one additional argument to the docker command.
 Depending on which SmartModule type you're using, you'll choose one of the following arguments:
 
-- `--smartstream-filter`
-- `--smartstream-map`
-- `--smartstream-arraymap`
+- `--filter`
+- `--map`
+- `--arraymap`
 
-For this example, we'll be using `--smartstream-map`, and providing the name of the
+For this example, we'll be using `--map`, and providing the name of the
 SmartModule we just created, like so:
 
 %copy%
@@ -271,13 +271,13 @@ docker run \
     --endpoint="https://catfact.ninja/fact" \
     --fluvio-topic="cat-facts" \
     --interval=10 \
-    --smartstream-map="catfact-map"
+    --map="catfact-map"
 ```
 
 ### Apply to Managed Connectors
 
 Launching a Smart Managed Connector is as simple as updating the `connect.yml` configuration.
-For this example, we would add `smartstream-map` to the `parameters` section, like so:
+For this example, we would add `map` to the `parameters` section, like so:
 
 %copy%
 ```yaml
@@ -291,7 +291,7 @@ direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
   interval: 10
-  smartstream-map: "catfact-map"
+  map: "catfact-map"
 ```
 
 Followed by launching it with `fluvio connector`:
