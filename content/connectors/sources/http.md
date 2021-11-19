@@ -16,9 +16,9 @@ periodically sends HTTP requests and collects the response body as an event.
 The HTTP connector supports the following configuration options:
 
 - `endpoint` (required): The HTTP endpoint to send requests to
-- `method`: The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE`
+- `method`: The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE` (default: `GET`)
 - `body`: The body to use in the HTTP request to the endpoint
-- `interval`: The period (in seconds) between sending requests to the endpoint
+- `interval`: The period (in seconds) between sending requests to the endpoint (default: `300`)
 
 Additionally, the HTTP connector supports the following "Smart Connector" options:
 
@@ -74,7 +74,7 @@ parameters:
   interval: 10
 ```
 
-To run as a Managed Connector, use the `fluivo connector` command:
+To run as a Managed Connector, use the `fluvio connector` command:
 
 %copy first-line%
 ```bash
