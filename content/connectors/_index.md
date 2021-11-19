@@ -42,55 +42,6 @@ In this overview, we'll cover the two deployment styles for connectors, how to a
 configurations for connectors, and how to use SmartModule capabilities for custom processing
 in Smart Connectors.
 
-## Local Connectors
-
-Local Connectors are deployed using Docker running locally. Each connector is packaged into
-a container, allowing for easy and portable execution. When running a local connector, configurations
-are passed to it using command-line arguments, given at the end of the `docker run` command.
-
-If you have a Fluvio cluster running, we can test this out using the `http` connector in
-a local deployment. Let's create a new topic for our connector to feed with data:
-
-%copy first-line%
-```bash
-$ fluvio topic create cat-facts
-```
-
-Now, we can run the connector in a docker container using the following one-line command:
-
-%copy%
-```bash
-docker run -d \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http:latest \
-    -- \
-    --endpoint="https://catfact.ninja/fact" \
-    --fluvio-topic="cat-facts" \
-    --interval=10
-```
-
-(Add rundown of what we are accomplishing here, e.g. picking up user profile from config)
-
-(tell story of what will happen, e.g. makes a request every 10 seconds)
-
-Here, we're doing a bit of setup for the container, then passing arguments to the connector
-itself. Here's what the arguments are doing:
-
-- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`:
-  - Mounts your `~/.fluvio/config` into the container so the connector can use it to connect to your Fluvio cluster
-- `-t infinyon/fluvio-connect-http`:
-  - Specifies which docker image should be used to launch this connector
-
-You should be able to see the cat facts start rolling in, we can check this
-by opening a consumer in another terminal window.
-
-```bash
-$ fluvio consume cat-facts -B
-{"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
-{"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
-{"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
-```
-
 ## Managed Connectors
 
 (say what we _do_ support. leave out local cluster because we don't push that)
@@ -135,6 +86,55 @@ the `list` command.
 $ fluvio connector list
  NAME       STATUS
  cat-facts  Running
+```
+
+## Local Connectors
+
+Local Connectors are deployed using Docker running locally. Each connector is packaged into
+a container, allowing for easy and portable execution. When running a local connector, configurations
+are passed to it using command-line arguments, given at the end of the `docker run` command.
+
+If you have a Fluvio cluster running, we can test this out using the `http` connector in
+a local deployment. Let's create a new topic for our connector to feed with data:
+
+%copy first-line%
+```bash
+$ fluvio topic create cat-facts
+```
+
+Now, we can run the connector in a docker container using the following one-line command:
+
+%copy%
+```bash
+docker run -d \
+    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
+    -t infinyon/fluvio-connect-http:latest \
+    -- \
+    --endpoint="https://catfact.ninja/fact" \
+    --fluvio-topic="cat-facts" \
+    --interval=10
+```
+
+(Add rundown of what we are accomplishing here, e.g. picking up user profile from config)
+
+(tell story of what will happen, e.g. makes a request every 10 seconds)
+
+Here, we're doing a bit of setup for the container, then passing arguments to the connector
+itself. Here's what the arguments are doing:
+
+- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`:
+    - Mounts your `~/.fluvio/config` into the container so the connector can use it to connect to your Fluvio cluster
+- `-t infinyon/fluvio-connect-http`:
+    - Specifies which docker image should be used to launch this connector
+
+You should be able to see the cat facts start rolling in, we can check this
+by opening a consumer in another terminal window.
+
+```bash
+$ fluvio consume cat-facts -B
+{"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
+{"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
+{"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
 ## SmartModules
