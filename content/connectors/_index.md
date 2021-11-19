@@ -1,5 +1,5 @@
 ---
-title: Fluvio Connectors
+title: Smart Connectors
 menu: Overview
 section: Connectors
 toc: true
@@ -56,61 +56,22 @@ a local deployment. Let's create a new topic for our connector to feed with data
 $ fluvio topic create cat-facts
 ```
 
-A good way to get started with a new connector is to check out its help menu, so we can see
-the arguments that are available and/or required.
+Now, we can run the connector in a docker container using the following one-line command:
 
 %copy%
 ```bash
-docker run \
+docker run -d \
     -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http \
-    -- \
-    --help
-```
-
-```bash
-http 0.1.0
-
-USAGE:
-    http [OPTIONS] --endpoint <endpoint> --fluvio-topic <fluvio-topic>
-
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-OPTIONS:
-        --body <body>                                    HTTP body for the request
-        --endpoint <endpoint>                            Endpoint for the http connector
-        --fluvio-topic <fluvio-topic>                    The topic where all things should go
-        --interval <interval>                            Interval between each request [default: 300]
-        --method <method>
-            HTTP method used in the request. Eg. GET, POST, PUT... [default: GET]
-
-        --rust-log <rust-log>                            The rust log level
-        --smartstream-arraymap <smartstream-arraymap>
-            Path of arraymap smartstream used as a pre-produce step If not found file in that path, it will be fetch the
-            smartmodule with that name if present
-        --smartstream-filter <smartstream-filter>
-            Path of filter smartstream used as a pre-produce step If not found file in that path, it will be fetch the
-            smartmodule with that name if present
-        --smartstream-map <smartstream-map>
-            Path of map smartstream used as a pre-produce step If not found file in that path, it will be fetch the
-            smartmodule with that name if present
-```
-
-We can see here that we need to include at least `--endpoint` and `--fluvio-topic`, and that
-the other arguments are optional. Let's try out the connector with the following command:
-
-%copy%
-```bash
-docker run \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http \
+    -t infinyon/fluvio-connect-http:latest \
     -- \
     --endpoint="https://catfact.ninja/fact" \
     --fluvio-topic="cat-facts" \
     --interval=10
 ```
+
+(Add rundown of what we are accomplishing here, e.g. picking up user profile from config)
+
+(tell story of what will happen, e.g. makes a request every 10 seconds)
 
 Here, we're doing a bit of setup for the container, then passing arguments to the connector
 itself. Here's what the arguments are doing:
@@ -119,7 +80,6 @@ itself. Here's what the arguments are doing:
   - Mounts your `~/.fluvio/config` into the container so the connector can use it to connect to your Fluvio cluster
 - `-t infinyon/fluvio-connect-http`:
   - Specifies which docker image should be used to launch this connector
-- `--`: Denotes the end of docker arguments and the beginning of the connector's arguments
 
 You should be able to see the cat facts start rolling in, we can check this
 by opening a consumer in another terminal window.
@@ -132,6 +92,10 @@ $ fluvio consume cat-facts -B
 ```
 
 ## Managed Connectors
+
+(say what we _do_ support. leave out local cluster because we don't push that)
+
+(this connector is preferred in Cloud)
 
 Managed Connectors are deployed within the Fluvio cluster itself, and therefore are not
 available when using a local cluster (i.e. when using `fluvio cluster start --local`).
@@ -173,7 +137,7 @@ $ fluvio connector list
  cat-facts  Running
 ```
 
-## Smart Connectors
+## SmartModules
 
 Fluvio's official connectors have support for applying SmartModules to perform inline
 compute on the data passing through - when used together this way, we call them
@@ -183,6 +147,8 @@ stream data from a third-party data platform, you may only be interested in rece
 a subset of the available data. With Smart Connectors, you can write custom logic to
 filter out irrelevant data _before_ it gets sent over the network and persisted in
 your topic, saving on bandwidth and storage.
+
+### Create a SmartModule
 
 Let's create a new SmartModule that we can use with the Http Connector to pre-process
 our Cat Facts. From the examples above, we know our raw input records from the API look
@@ -284,7 +250,7 @@ The last step is to launch our connector using the SmartModule we just built.
 This step is different for Local Connectors and Managed Connectors, so check out
 the relevant section for you below.
 
-### Smart Local Connectors
+### Apply to Local Connectors
 
 Launching a Smart Connector locally is as easy as adding one additional argument to the docker command.
 Depending on which SmartModule type you're using, you'll choose one of the following arguments:
@@ -308,7 +274,7 @@ docker run \
     --smartstream-map="catfact-map"
 ```
 
-### Smart Managed Connectors
+### Apply to Managed Connectors
 
 Launching a Smart Managed Connector is as simple as updating the `connect.yml` configuration.
 For this example, we would add `smartstream-map` to the `parameters` section, like so:
