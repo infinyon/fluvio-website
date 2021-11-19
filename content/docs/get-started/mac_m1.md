@@ -1,6 +1,6 @@
 ---
-title: MacOS Installation
-menu: MacOS
+title: MacOS/M1 Installation
+menu: MacOS on M1
 weight: 10
 ---
 
@@ -17,42 +17,57 @@ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 ## Required Packages for Local Fluvio cluster
 
-1) [Minikube]({{< ref "#install-minikube" >}})
+1) [Kind]({{< ref "#install-kind" >}})
 2) [Kubectl]({{< ref "#install-kubectl" >}})
 3) [Helm]({{< ref "#install-helm" >}})
 
-If you have `kubectl`, `helm`, and `minikube` already set up, then continue to steps for [running a local Fluvio cluster].
+If you have `kubectl`, `helm`, and `kind` already set up, then continue to steps for [running a local Fluvio cluster].
 
 
-### Install Minikube
+### Install Kind
 
-Minikube is a tool for running a local Kubernetes cluster.
+Kind is a tool for running a local Kubernetes cluster.
 
-Install `minikube` package:
-
-%copy first-line%
-
-```bash
-$ brew install minikube
-```
-
-Install `hyperkit` driver:
+Install `kind` package:
 
 %copy first-line%
 
 ```bash
-$ brew install hyperkit
+$ brew install kind
 ```
 
 #### Start a Kubernetes cluster
-Start a Kubernetes cluster locally with minikube by running the following in a terminal window:
+
+To configure kind cluster creation, you will need to create a YAML config file. This file follows Kubernetes conventions for versioning etc.
+Create a file named: `config.yaml` with the following content:
+
+```yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    # port forward 80 on the host to 80 on this node
+    extraPortMappings:
+      - containerPort: 31003 #sc
+        hostPort: 31003
+        protocol: TCP
+      - containerPort: 31004 #spu 1
+        hostPort: 31004
+        protocol: TCP
+      - containerPort: 31005 #spu 2
+        hostPort: 31005
+        protocol: TCP
+      - containerPort: 31006 #spu 3
+        hostPort: 31006
+        protocol: TCP
+
+```
+Start a Kubernetes cluster locally with by running the following in a terminal window:
 
 %copy first-line%
 ```bash
-$ minikube start --driver=hyperkit
+$ kind create cluster --config k8-util/cluster/kind.yaml 
 ```
-
-Other minikube driver may work but we have not tested them.  Please open issue if need to support other drivers.
 
 ### Install Kubectl
 
@@ -87,12 +102,26 @@ Or follow the instructions at the [helm installation page] and follow the instru
 [helm installation page]: https://v3.helm.sh/docs/intro/install/ 
 ## Start Fluvio cluster 
 
-You can start a Fluvio cluster by running `fluvio cluster start`.
+You can start a Fluvio cluster by running following command:
 
 
 %copy first-line%
 ```bash
-$ fluvio cluster start
+$ fluvio cluster start --proxy-addr  127.0.0.1
+
+📝 Running pre-flight checks
+     ✅ Kubernetes config is loadable
+     ✅ Supported helm version is installed
+     ✅ Fluvio system charts are installed
+     ✅ Previous fluvio installation not found
+🛠️  Installing Fluvio
+     ✅ Fluvio app chart has been installed
+🔎 Found SC service addr: 127.0.0.1:31003
+ -
+👤 Profile set
+🤖 SPU group launched (1)
+     ✅ All SPUs confirmed
+🎯 Successfully installed Fluvio!
 ```
 
 ### Verify cluster is running
@@ -102,11 +131,12 @@ We can check the fluvio cluster by checking version and status with the followin
 ```bash
 $ fluvio version
 
-Fluvio CLI           : 0.9.10
-Fluvio CLI SHA256    : a2d5cdd58511c94ee35963acc6b9b7d334d2bbc2571663d958a8e0db7d1af37c
-Fluvio Platform      : 0.9.10 (minikube)
-Git Commit           : c00a1ee2cd28545443f9a7cbf2ca9d053e67845b
-OS Details           : Darwin 10.16 (kernel 20.6.0)
+fluvio version
+Fluvio CLI           : 0.9.13
+Fluvio CLI SHA256    : de53060048aa7a10def4940741e25c8ddefdcdc3ef511562ec915bdb456e1770
+Fluvio Platform      : 0.9.13 (kind-kind)
+Git Commit           : 88b0d793f3143af3eb0c57bda3bc3b4cf44fd741
+OS Details           : Darwin 10.16 (kernel 21.1.0)
 === Plugin Versions ===
 Fluvio Runner (fluvio-run)     : 0.0.0
 Infinyon Cloud CLI (fluvio-cloud) : 0.1.6
