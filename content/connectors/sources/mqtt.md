@@ -18,9 +18,9 @@ The MQTT connector supports the following configuration options:
 
 As well as the following Smart Connector options:
 
-- `smartstream-filter`: The name of a SmartModule to use as a filter
-- `smartstream-map`: The name of a SmartModule to use as a map
-- `smartstream-arraymap`: The name of a SmartModule to use as an arraymap
+- `filter`: The name of a SmartModule to use as a filter
+- `map`: The name of a SmartModule to use as a map
+- `arraymap`: The name of a SmartModule to use as an arraymap
 
 The MQTT connector may be deployed as a Local Connector or a Managed Connector.
 See the following sections to learn how to declare the configuration options

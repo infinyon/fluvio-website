@@ -22,9 +22,9 @@ The HTTP connector supports the following configuration options:
 
 Additionally, the HTTP connector supports the following "Smart Connector" options:
 
-- `smartstream-filter`: The name of a SmartModule to use as a filter
-- `smartstream-map`: The name of a SmartModule to use as a map
-- `smartstream-arraymap`: The name of a SmartModule to use as an arraymap
+- `filter`: The name of a SmartModule to use as a filter
+- `map`: The name of a SmartModule to use as a map
+- `arraymap`: The name of a SmartModule to use as an arraymap
 
 ### As a Local Connector
 
@@ -33,7 +33,7 @@ launch it with the following command:
 
 %copy%
 ```bash
-docker run \
+docker run -d --name="my-http" \
     -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
     -t infinyon/fluvio-connect-http \
     -- \
