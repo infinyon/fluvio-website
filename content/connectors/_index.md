@@ -160,6 +160,21 @@ $ fluvio consume cat-facts -B
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
+If we want to view the logs of our local connector to ensure it's running properly, we can
+use the `docker logs` command, like so:
+
+%copy first-line%
+```bash
+$ docker logs -f my-http
+```
+
+And finally, when we're done with our connector, we can stop it from running using `docker kill`:
+
+%copy first-line%
+```bash
+$ docker kill my-http
+```
+
 ### About Switching Profiles
 
 When you launch a Local connector, it will use the active profile at the time of startup
