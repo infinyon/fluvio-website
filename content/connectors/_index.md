@@ -1,5 +1,5 @@
 ---
-title: Fluvio Connectors
+title: Smart Connectors
 menu: Overview
 section: Connectors
 toc: true
@@ -42,107 +42,18 @@ In this overview, we'll cover the two deployment styles for connectors, how to a
 configurations for connectors, and how to use SmartModule capabilities for custom processing
 in Smart Connectors.
 
-## Local Connectors
-
-Local Connectors are deployed using Docker running locally. Each connector is packaged into
-a container, allowing for easy and portable execution. When running a local connector, configurations
-are passed to it using command-line arguments, given at the end of the `docker run` command.
-
-If you have a Fluvio cluster running, we can test this out using the `http` connector in
-a local deployment. Let's create a new topic for our connector to feed with data:
-
-%copy first-line%
-```bash
-$ fluvio topic create cat-facts
-```
-
-A good way to get started with a new connector is to check out its help menu, so we can see
-the arguments that are available and/or required.
-
-%copy%
-```bash
-docker run \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http \
-    -- \
-    --help
-```
-
-```bash
-http 0.1.0
-
-USAGE:
-    http [OPTIONS] --endpoint <endpoint> --fluvio-topic <fluvio-topic>
-
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-OPTIONS:
-        --body <body>                                    HTTP body for the request
-        --endpoint <endpoint>                            Endpoint for the http connector
-        --fluvio-topic <fluvio-topic>                    The topic where all things should go
-        --interval <interval>                            Interval between each request [default: 300]
-        --method <method>
-            HTTP method used in the request. Eg. GET, POST, PUT... [default: GET]
-
-        --rust-log <rust-log>                            The rust log level
-        --smartstream-arraymap <smartstream-arraymap>
-            Path of arraymap smartstream used as a pre-produce step If not found file in that path, it will be fetch the
-            smartmodule with that name if present
-        --smartstream-filter <smartstream-filter>
-            Path of filter smartstream used as a pre-produce step If not found file in that path, it will be fetch the
-            smartmodule with that name if present
-        --smartstream-map <smartstream-map>
-            Path of map smartstream used as a pre-produce step If not found file in that path, it will be fetch the
-            smartmodule with that name if present
-```
-
-We can see here that we need to include at least `--endpoint` and `--fluvio-topic`, and that
-the other arguments are optional. Let's try out the connector with the following command:
-
-%copy%
-```bash
-docker run \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http \
-    -- \
-    --endpoint="https://catfact.ninja/fact" \
-    --fluvio-topic="cat-facts" \
-    --interval=10
-```
-
-Here, we're doing a bit of setup for the container, then passing arguments to the connector
-itself. Here's what the arguments are doing:
-
-- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`:
-  - Mounts your `~/.fluvio/config` into the container so the connector can use it to connect to your Fluvio cluster
-- `-t infinyon/fluvio-connect-http`:
-  - Specifies which docker image should be used to launch this connector
-- `--`: Denotes the end of docker arguments and the beginning of the connector's arguments
-
-You should be able to see the cat facts start rolling in, we can check this
-by opening a consumer in another terminal window.
-
-```bash
-$ fluvio consume cat-facts -B
-{"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
-{"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
-{"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
-```
-
 ## Managed Connectors
 
-Managed Connectors are deployed within the Fluvio cluster itself, and therefore are not
-available when using a local cluster (i.e. when using `fluvio cluster start --local`).
-They _are_ available when using Fluvio via [InfinyOn Cloud] or when running in Kubernetes
-(e.g. via `fluvio cluster start`).
+Managed Connectors are deployed within the Fluvio cluster, and are available when
+using Fluvio via [InfinyOn Cloud] or when running in Kubernetes (e.g. via `fluvio cluster start`).
+When using InfinyOn Cloud, Managed Connectors are recommended over Local Connectors.
 
 When we launch a Managed Connector, we must define a configuration file (usually called
 `connect.yml`), which gives all the required options for the connector instance.
-A sample `connect.yml` that behaves equivalently to the connector shown in the Local Connectors
-section would look like this:
+Here's a sample `connect.yml` that will launch an HTTP connector that fetches cat facts
+from a JSON API.
 
+%copy%
 ```yaml
 # connect.yml
 version: v1
@@ -156,7 +67,7 @@ parameters:
   interval: 10
 ```
 
-We can launch this Managed Connector with the following command:
+We can run this Managed Connector with the following command:
 
 %copy first-line%
 ```bash
@@ -173,7 +84,121 @@ $ fluvio connector list
  cat-facts  Running
 ```
 
-## Smart Connectors
+Now that our connector us up, we can check on the traffic coming into our topic!
+Use the `fluvio consume` command to look at the `cat-facts` topic:
+
+%copy first-line%
+```bash
+$ fluvio consume cat-facts -B
+{"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
+{"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
+{"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
+```
+
+To stop a connector, we can use `fluvio connector delete` and give it the name
+of the connector we created, which in this case was "cat-facts".
+
+%copy first-line%
+```bash
+$ fluvio connector delete cat-facts
+```
+
+## Local Connectors
+
+Local Connectors are deployed using Docker. Each connector is packaged into
+a container, allowing for easy and portable execution. When running a local connector, configurations
+are passed to it using command-line arguments, given at the end of the `docker run` command.
+
+One of the primary ways Local connectors are different from Managed connectors is that
+we have to manually set up our Fluvio profile for Local connectors. Fluvio profiles live
+in the `~/.fluvio/config` file, and each profile describes how to connect to a specific
+Fluvio cluster. Therefore, in order to use a Local connector, we need to give it access to
+our `~/.fluvio/config` file.
+
+Let's go ahead and check out what this looks like. First, create a topic for our connector
+to pump data into.
+
+%copy first-line%
+```bash
+$ fluvio topic create cat-facts
+```
+
+Now, let's try running the `http` connector in a docker container using the following command:
+
+%copy%
+```bash
+docker run -d --name="my-http" \
+    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
+    -t infinyon/fluvio-connect-http:latest \
+    -- \
+    --endpoint="https://catfact.ninja/fact" \
+    --fluvio-topic="cat-facts" \
+    --interval=10
+```
+
+What we're doing here is setting up the HTTP connector to fetch a new cat fact every 10
+seconds and produce it to our Fluvio topic `cat-facts`. Here are some important points to
+understand about this command:
+
+- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`
+  - This part of the command is what shares our `~/.fluvio/config` file with the connector
+    so that it has access to our Fluvio profiles. The connector will connect using the "active"
+    profile in the config, which you can view using `fluvio profile`
+- `-t infinyon/fluvio-connect-http:latest`
+  - Specifies which docker image should be used to launch this connector. Since we're using
+    the HTTP connector, we give it the full name of the container on Docker Hub.
+- The rest of the arguments are specific to the HTTP connector, and you can read more about
+  them on [the HTTP connector docs page][1].
+
+You should be able to see the cat facts start rolling in, we can check this
+by opening a consumer in another terminal window.
+
+```bash
+$ fluvio consume cat-facts -B
+{"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
+{"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
+{"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
+```
+
+If we want to view the logs of our local connector to ensure it's running properly, we can
+use the `docker logs` command, like so:
+
+%copy first-line%
+```bash
+$ docker logs -f my-http
+```
+
+And finally, when we're done with our connector, we can stop it from running using `docker kill`:
+
+%copy first-line%
+```bash
+$ docker kill my-http
+```
+
+### About Switching Profiles
+
+When you launch a Local connector, it will use the active profile at the time of startup
+in order to determine which Fluvio cluster to connect to. If you switch active profiles,
+running connectors will remain connected to the same cluster, they will not automatically
+switch over. This is a good thing, because it prevents you from accidentally mixing up your
+data sources and destinations by just changing profiles.
+
+However, if you _do_ want to change the Fluvio cluster that a Local connector is using,
+you'll need to stop the connector, switch profiles, then re-start the connector:
+
+```bash
+$ docker kill my-http
+$ fluvio profile switch other-profile
+$ docker run -d --name="my-http" \
+    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
+    -t infinyon/fluvio-connect-http:latest \
+    -- \
+    --endpoint="https://catfact.ninja/fact" \
+    --fluvio-topic="cat-facts" \
+    --interval=10
+```
+
+## SmartModules
 
 Fluvio's official connectors have support for applying SmartModules to perform inline
 compute on the data passing through - when used together this way, we call them
@@ -183,6 +208,8 @@ stream data from a third-party data platform, you may only be interested in rece
 a subset of the available data. With Smart Connectors, you can write custom logic to
 filter out irrelevant data _before_ it gets sent over the network and persisted in
 your topic, saving on bandwidth and storage.
+
+### Create a SmartModule
 
 Let's create a new SmartModule that we can use with the Http Connector to pre-process
 our Cat Facts. From the examples above, we know our raw input records from the API look
@@ -284,16 +311,16 @@ The last step is to launch our connector using the SmartModule we just built.
 This step is different for Local Connectors and Managed Connectors, so check out
 the relevant section for you below.
 
-### Smart Local Connectors
+### Apply to Local Connectors
 
 Launching a Smart Connector locally is as easy as adding one additional argument to the docker command.
 Depending on which SmartModule type you're using, you'll choose one of the following arguments:
 
-- `--smartstream-filter`
-- `--smartstream-map`
-- `--smartstream-arraymap`
+- `--filter`
+- `--map`
+- `--arraymap`
 
-For this example, we'll be using `--smartstream-map`, and providing the name of the
+For this example, we'll be using `--map`, and providing the name of the
 SmartModule we just created, like so:
 
 %copy%
@@ -305,13 +332,13 @@ docker run \
     --endpoint="https://catfact.ninja/fact" \
     --fluvio-topic="cat-facts" \
     --interval=10 \
-    --smartstream-map="catfact-map"
+    --map="catfact-map"
 ```
 
-### Smart Managed Connectors
+### Apply to Managed Connectors
 
 Launching a Smart Managed Connector is as simple as updating the `connect.yml` configuration.
-For this example, we would add `smartstream-map` to the `parameters` section, like so:
+For this example, we would add `map` to the `parameters` section, like so:
 
 %copy%
 ```yaml
@@ -325,7 +352,7 @@ direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
   interval: 10
-  smartstream-map: "catfact-map"
+  map: "catfact-map"
 ```
 
 Followed by launching it with `fluvio connector`:
@@ -335,4 +362,5 @@ Followed by launching it with `fluvio connector`:
 $ fluvio connector create --config=./connect.yml
 ```
 
+[1]: sources/http
 [InfinyOn Cloud]: https://infinyon.cloud/signup
