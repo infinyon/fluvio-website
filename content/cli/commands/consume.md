@@ -32,20 +32,36 @@ FLAGS:
     -h, --help                  Prints help information
 
 OPTIONS:
-    -p, --partition <integer>      Partition id [default: 0]
-    -F, --format <format>          Provide a template string to print records with a custom format.
-                                   See --help for details
-    -B <integer>                   Consume records starting X from the beginning of the log
-                                   (default: 0)
-    -o, --offset <integer>         The offset of the first record to begin consuming from
-    -T, --tail <integer>           Consume records starting X from the end of the log (default: 10)
-    -b, --maxbytes <integer>       Maximum number of bytes to be retrieved
-    -O, --output <type>            Output [possible values: dynamic, text, binary, json, raw]
-        --filter <filter>          Path to a SmartStream filter wasm file
-        --map <map>                Path to a SmartStream map wasm file
-        --aggregate <aggregate>    Path to a WASM file for aggregation
-        --initial <initial>        (Optional) Path to a file to use as an initial accumulator value
-                                   with --aggregate
+    -p, --partition <integer>               Partition id [default: 0]
+    -F, --format <format>
+            Provide a template string to print records with a custom format. See --help for details
+
+    -B <integer>
+            Consume records starting X from the beginning of the log (default: 0)
+
+    -o, --offset <integer>                  The offset of the first record to begin consuming from
+    -T, --tail <integer>
+            Consume records starting X from the end of the log (default: 10)
+
+    -b, --maxbytes <integer>                Maximum number of bytes to be retrieved
+    -O, --output <type>
+            Output [possible values: dynamic, text, binary, json, raw, table, full_table]
+
+        --smartstream <smartstream>         Path to a SmartStream filter wasm file
+        --filter <filter>                   Path to a SmartStream filter wasm file
+        --map <map>                         Path to a SmartStream map wasm file
+        --filter-map <filter-map>           Path to a SmartStream filter_map wasm file
+        --array-map <array-map>             Path to a SmartStream array_map wasm file
+        --join <join>                       Path to a SmartStream join wasm filee
+        --aggregate <aggregate>             Path to a WASM file for aggregation
+        --join-topic <join-topic>
+        --initial <initial>
+            (Optional) Path to a file to use as an initial accumulator value with --aggregate
+
+    -e, --extra-params <extra-params>...
+            (Optional) Extra input parameters passed to the smartmodule module. They should be
+            passed using key=value format Eg. fluvio consume topic-name --filter filter.wasm -E
+            foo=bar -E key=value -E one=1
 
 ARGS:
     <topic>    Topic name
