@@ -13,7 +13,7 @@ We didn't have a new release this week.
 
 ### Coming soon: SmartConnectors
 
-Last week we teased SmartModules. One of the things we've been able to do with SmartModules is integrate them with our Connectors. We're calling our data Connectors + SmartModules: SmartConnectors.
+Last week we teased SmartModules. One of the things we've been able to do with SmartModules is integrate them with our Connectors. We're calling our data Connectors + SmartModules: **SmartConnectors**.
 
 Using SmartConnectors is easy if you're already using SmartModules. You only need to add a reference to the SmartModule in your source or sink Connector config.
 
@@ -33,9 +33,9 @@ parameters:
   map: "example-parse-mqtt-map"
 ```
 
-In this example, we're using the `my-test-mqtt` connector we introduced in [TWiF #10] to get a live bytestream from an MQTT broker and store it in a topic. But before we store it, we want to parse and transform the raw bytestream into our own types with a SmartModule.
+In this example, we're using the `my-test-mqtt` connector we introduced in [a previous TWiF] to get a live bytestream from an MQTT broker and store it in a topic. But before we store it, we want to parse and transform the raw bytestream into our own types with a SmartModule.
 
-[TWiF #10]: https://www.fluvio.io/news/this-week-in-fluvio-0010/#new-managed-connector
+[a previous TWiF]: {{< ref "/news/this-week-in-fluvio-0010.md#new-managed-connector">}}
 
 Here's the SmartModule Map we're going to use to transform the connector output.
 
@@ -152,4 +152,3 @@ Until next week!
 [our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [our Discord channel]: https://discordapp.com/invite/bBG2dTz
 [Github Discussions]: https://github.com/infinyon/fluvio/discussions
-[connectors]: /connectors
