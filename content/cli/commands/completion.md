@@ -4,7 +4,7 @@ weight: 80
 toc: false
 ---
 
-This command generates CLI completions for bash and fish, by specifying either bash or fish as a subcommand.
+This command generates CLI completions for bash and fish, by specifying either bash or fish as a subcommand. Adding the output of this script to your `~/.bashrc` file will enable the use of the [TAB] key to auto-complete fluvio commands. 
 
 ```
 fluvio completions
@@ -30,3 +30,5 @@ $ fluvio completions bash > ~/fluvio_completions.sh
 
 $ echo "source ~/fluvio_completions.sh" >> ~/.bashrc
 ```
+
+Once complete, you can use the [TAB] key to auto-complete fluvio commands. For example, typing `flu[TAB] comp[TAB]` will yield `fluvio completions` in your bash terminal.
