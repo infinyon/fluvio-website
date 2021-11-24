@@ -1,7 +1,7 @@
 ---
-title: Overview
+title: Developer Guide
 weight: 10
-hidden: true
+hidden: false
 ---
 
 Writing a new connector is meant to be easy. You may write your connector in
@@ -45,16 +45,16 @@ use of [`smartmodules`](https://github.com/infinyon/fluvio-connectors/blob/c674c
 One of the cool features of Fluvio is that you can apply a smartmodule to a
 stream before sending to the fluvio cluster. To take advantage of these you should have
 commandline arguments of:
-* `--smartstream-map`
-* `--smartstream-filter`
-* `--smartstream-arraymap`
+* `--map`
+* `--filter`
+* `--arraymap`
 
 It's recommended to take advantage of the common utilities in the
 [`fluvio-connectors-common`
-crate](https://github.com/infinyon/fluvio-connectors/blob/c674c960cb3ddef265c7ff34afc0ec8bfc4adb47/rust-connectors/common/src/opt.rs#L45-L114).
+crate](https://github.com/infinyon/fluvio-connectors/blob/1cde0a8d17dd1ae18ea8b2209c8f353cb708db80/rust-connectors/common/src/opt.rs#L12-L43).
 
-As the author of the connector, you'll be responsible for applying the
-smartmodule to the stream before it's sent to the cluster.
+The `fluvio-connectors-common` crate also has a produce function that looks for
+a smartmodule and creates a fluvio producer that applies the smartmodules.
 
 ## 3. Connector Metadata
 
