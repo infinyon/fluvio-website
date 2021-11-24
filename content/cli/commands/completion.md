@@ -22,7 +22,7 @@ SUBCOMMANDS:
     help    Prints this message or the help of the given subcommand(s)
 ```
 
-Example usage for bash shell. Note that we are piping the output of the command to a shell script. We then add the script to the ~/.bashrc file. One must open a new terminal for the changes to take effect:
+Example usage for bash shell. Note that we are piping the output of the command to a shell script. We then add the script to the ~/.bashrc file. One must open a new terminal for the changes to take effect.
 
 %copy first-line%
 ```bash
