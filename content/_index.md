@@ -54,7 +54,7 @@ technology:
       icon: "/images/icons/self-service.svg"  
 stack:
   title: "The Stack"
-  image: "images/assets/fluvio-stack.svg"
+  image: "./docs/architecture/images/fluvio-stack.svg"
   items:
     - title: "Smart Streams"
       description: "Programmable stream processing to clean, transform, correlate, and derive insights from data in real-time."
