@@ -1,15 +1,15 @@
 ---
-title: Developer Guide
+title: Overview
 weight: 10
 hidden: false
 ---
 
 Writing a new connector is meant to be easy. You may write your connector in
 any language which has a [fluvio client library](/api). You should simply
-follow a few conventions and will gladly add and maintain a connector in our
+follow a few conventions and we will gladly add and maintain a connector in our
 official catalog.
 
-To do so you'll need to following steps:
+To do so you'll need to do following steps:
 
 1) [Create a new directory in the repository.](#1-adding-a-new-connector-to-the-repository)
 2) [Add common CLI arguments to your connector](#2-add-commonly-used-arguments)
@@ -133,7 +133,7 @@ test` on each pull request.
 ## 5. Custom build steps
 
 Should your connector require special build steps such as depending on a C
-static library, we'd ask you to have `build` make rule which handles these
+static library, we'd ask you to have a `make build` make rule which handles these
 parts.
 
 
