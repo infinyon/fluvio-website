@@ -40,7 +40,7 @@ Then, we can execute the connector with the following command:
 
 %copy%
 ```bash
-docker run \
+docker run -d --name="my-mqtt" \
     -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
     -t infinyon/fluvio-connect-mqtt \
     -- \
