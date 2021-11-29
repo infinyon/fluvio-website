@@ -19,7 +19,7 @@ Additionally, connectors conceptually have four stages, where each stage has dis
 These stages are the same for sources and sinks, but in reverse order. For a source connector,
 the stages are as follows:
 
-<img src="./images/smart-connectors.svg"
+<img src="./images/smart-connectors-extra.svg"
      alt="Smart Connectors"
      style="justify: center; max-width: 600px" />
 
