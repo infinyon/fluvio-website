@@ -174,7 +174,7 @@ And finally, when we're done with our connector, we can stop it from running usi
 
 %copy first-line%
 ```bash
-$ docker kill my-http
+$ docker kill my-http; docker rm my-http
 ```
 
 ### About Switching Profiles
@@ -240,11 +240,11 @@ Once we have it, we can use it as follows to create our SmartModule:
 
 %copy first-line%
 ```bash
-$ cargo generate --git="https://github.com/infinyon/fluvio-smartstream-template"
+$ cargo generate --git="https://github.com/infinyon/fluvio-smartmodule-template"
 ⚠️   Unable to load config file: ~/.cargo/cargo-generate.toml
 🤷   Project Name : catfact-map
 🔧   Generating template ...
-✔ 🤷   Which type of SmartStream would you like? · map
+✔ 🤷   Which type of SmartModule would you like? · map
 [1/7]   Done: .cargo/config.toml
 [2/7]   Done: .cargo
 [3/7]   Done: .gitignore
@@ -278,10 +278,10 @@ to have the following contents:
 
 %copy%
 ```rust
-use fluvio_smartstream::{smartstream, Result, Record, RecordData};
+use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
 use serde_json::Value;
 
-#[smartstream(map)]
+#[smartmodule(map)]
 pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
     let input: Value = serde_json::from_slice(record.value.as_ref())?;
     let fact = &input["fact"];
@@ -327,7 +327,7 @@ SmartModule we just created, like so:
 
 %copy%
 ```bash
-docker run \
+docker run -d --name="my-http" \
     -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
     -t infinyon/fluvio-connect-http \
     -- \
