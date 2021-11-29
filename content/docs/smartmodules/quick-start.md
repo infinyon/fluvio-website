@@ -1,29 +1,27 @@
 ---
-title: Fluvio SmartStreams
+title: Fluvio SmartModules
 menu: Quick start
 weight: 10
 toc: false
 ---
 
-SmartStreams are Fluvio data streams that can be customized with user-defined
-functions to perform inline operations such as filtering. SmartStreams are compiled
+SmartModules are user-defined functions that can perform
+inline operations such as filtering and mapping. SmartModules are compiled
 <a href="https://webassembly.org/" target="_blank">WebAssembly</a>
 modules written in Rust that get uploaded by clients to the Fluvio cluster,
 where they are applied to streams of records.
 
-Currently, SmartStreams are "consumer facing", meaning that all records that are
-produced to a topic are stored as-is, and SmartStreams may be applied by consumers.
-When a consumer applies a SmartStream to a topic, they receive a stream of records
-that have been processed by the SmartStream on the server side (however, the records
+When a consumer applies a SmartModule to a topic, they receive a stream of records
+that have been processed by the SmartModule on the server side (however, the records
 persisted in the Topic are not modified). For use-cases like
 filtering, this means that consumers can define functions to select only particular
 records from the topic that they are interested in, and save bandwidth and latency
 by not over-fetching records they don't need.
 
-#### Create a new SmartStream
+#### Create a new SmartModule
 
-We've put together some `cargo-generate` templates for creating SmartStreams. To
-get started with your own SmartStreams, you can run the following:
+We've put together some `cargo-generate` templates for creating SmartModules. To
+get started with your own SmartModule, you can run the following:
 
 %copy first-line%
 ```bash
@@ -32,10 +30,10 @@ $ cargo install cargo-generate
 
 %copy first-line%
 ```bash
-$ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
+$ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 🤷   Project Name : example-filter
 🔧   Creating project called `example-filter`...
-✔ 🤷   Which type of SmartStream would you like? · filter
+✔ 🤷   Which type of SmartModule would you like? · filter
 [1/5]   Done: .cargo/config.toml
 [2/5]   Done: .gitignore
 [3/5]   Done: Cargo.toml
@@ -44,32 +42,32 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 ✨   Done! New project created example-filter
 ```
 
-The `cargo generate` command prompts you about which type of SmartStream you'd
-like to create. Start by selecting "filter", the simplest type of Smartstream.
+The `cargo generate` command prompts you about which type of SmartModule you'd
+like to create. Start by selecting "filter", the simplest type of SmartModule.
 After the command completes, you will have a new project folder with a Rust
 project set up. This project folder contains some special configurations that
-help with building for WASM and integrating with the SmartStream system.
+help with building for WASM and integrating with the SmartModule system.
 
 Let's look at the sample code that the template generated for us.
 
 ```rust
-use fluvio_smartstream::{smartstream, Record, Result};
+use fluvio_smartmodule::{smartmodule, Record, Result};
 
-#[smartstream(filter)]
+#[smartmodule(filter)]
 pub fn filter(record: &Record) -> Result<bool>7 {
     let string = std::str::from_utf8(record.value.as_ref())?;
     Ok(string.contains('a'))
 }
 ```
 
-The function with the `#[smartstream(filter)]` attribute is the entrypoint to the
-SmartStream. The SPU that processes our stream will send each Record to this
+The function with the `#[smartmodule(filter)]` attribute is the entrypoint to the
+SmartModule. The SPU that processes our stream will send each Record to this
 function and, based on whether the function returns Ok(true) or not, either send
-the record to our consumer or not. This sample SmartStream will check whether
+the record to our consumer or not. This sample SmartModule will check whether
 the record's contents are a UTF-8 string and whether that string contains the
 letter `a`.
 
-#### Building our SmartStream
+#### Building our SmartModule
 
 As a one-time setup, we'll need to install the `wasm32-unknown-unknown` target
 for Rust so that it can compile our code to WASM. Use the following [rustup]
@@ -81,7 +79,7 @@ command:
 $ rustup target add wasm32-unknown-unknown
 ```
 
-Then, to build the SmartStream, just use `cargo build`. We recommend using release
+Then, to build the SmartModule, just use `cargo build`. We recommend using release
 mode in order to make the binary smaller and faster.
 
 %copy first-line%
@@ -95,16 +93,16 @@ $ ls -la target/wasm32-unknown-unknown/release/example_filter.wasm
 .rwxr-xr-x  135Ki user 19 May 16:32   example_filter.wasm
 ```
 
-#### Running our SmartStream
+#### Running our SmartModule
 
-Let's start by [creating a new topic] to test this SmartStream with.
+Let's start by [creating a new topic] to test this SmartModule with.
 
 [creating a new topic]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
 
 %copy first-line%
 ```bash
-$ fluvio topic create hello-smartstreams
-topic "hello-smartstreams" created
+$ fluvio topic create hello-smartmodules
+topic "hello-smartmodules" created
 ```
 
 {{<idea>}}
@@ -114,34 +112,34 @@ followed the Getting Started guide for your OS to set up a Fluvio cluster.
 
 In order to see our filter in effect, we're going to want to open two terminal
 windows and run consumers in them. One will be a plain consumer that streams all
-the records, and the other will use our SmartStream to filter the records before
+the records, and the other will use our SmartModule to filter the records before
 it receives them.
 
 In the first terminal window, run the following:
 
 %copy first-line%
 ```bash
-$ fluvio consume hello-smartstreams -B
+$ fluvio consume hello-smartmodules -B
 ```
 
 This command will stay open while it waits for records to arrive. In the second
 terminal window, run this command in order to set up a consumer with our
-SmartStream.
+SmartModule.
 
 %copy first-line%
 ```bash
-$ fluvio consume hello-smartstreams -B --filter="target/wasm32-unknown-unknown/release/example_filter.wasm"
+$ fluvio consume hello-smartmodules -B --filter="target/wasm32-unknown-unknown/release/example_filter.wasm"
 ```
 
 Now, with both of our consumer windows open, let's open one last terminal and
 produce some records to our topic. As we send data, we should see records matching
 the filter criteria appear in both consumer windows, and records that don't match
-the filter criteria should only appear in the plain consumer, not the SmartStream
+the filter criteria should only appear in the plain consumer, not the SmartModule
 consumer. Let's send some records.
 
 %copy first-line%
 ```bash
-$ fluvio produce hello-smartstreams
+$ fluvio produce hello-smartmodules
 > Apple
 Ok!
 > Banana
@@ -156,10 +154,10 @@ Ok!
 
 If everything worked as expected, we should see all five records appear in the
 plain consumer, but only `Banana`, `Cabbage`, and `Date` should appear in the
-consumer with our SmartStream filter.
+consumer with our SmartModule filter.
 
 ```bash
-$ fluvio consume hello-smartstreams -B
+$ fluvio consume hello-smartmodules -B
 Apple
 Banana
 Cabbage
@@ -168,7 +166,7 @@ Egg
 ```
 
 ```bash
-$ fluvio consume hello-smartstreams -B \
+$ fluvio consume hello-smartmodules -B \
     --filter="target/wasm32-unknown-unknown/release/example_filter.wasm"
 Banana
 Cabbage
@@ -177,6 +175,6 @@ Date
 
 ### Read next
 
-- [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
-- [Writing a map to transform records]({{< ref "/docs/smartstreams/map" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/docs/smartmodules/filter" >}})
+- [Writing a map to transform records]({{< ref "/docs/smartmodules/map" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/docs/smartmodules/aggregate" >}})

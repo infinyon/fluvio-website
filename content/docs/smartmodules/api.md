@@ -4,13 +4,13 @@ weight: 40
 toc: false
 ---
 
-You can pass the SmartStream filter when creating consumer thru API.  Here, we are using the Rust client library.
+You can pass the SmartModule filter when creating consumer thru API.  Here, we are using the Rust client library.
 
 This guide assumes you are familiar with [Rust Client API]({{< ref "/docs/interfaces/apis" >}})
 
 ### Write Filter
 
-Follow steps in [filter]({{< ref "/docs/smartstreams/filter" >}}) guide to write your own SmartStream filter.
+Follow steps in [filter]({{< ref "/docs/smartmodules/filter" >}}) guide to write your own SmartModule filter.
 
 
 ### Create Partition Consumer with filter

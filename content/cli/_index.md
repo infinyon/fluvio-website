@@ -32,8 +32,8 @@ out with Fluvio:
 
 #### Enriching data with SmartStreams
 
-- [Quick start for building and running SmartStreams]({{< ref "/docs/smartstreams/quick-start" >}})
-- [Write a custom filtering SmartStream]({{< ref "/docs/smartstreams/filter" >}})
+- [Quick start for building and running SmartStreams]({{< ref "/docs/smartmodules/quick-start" >}})
+- [Write a custom filtering SmartStream]({{< ref "/docs/smartmodules/filter" >}})
 - [Consume enriched data using SmartStreams]({{< ref "/cli/commands/consume#example-3-consume-using-a-smartstream" >}})
 
 #### Viewing the status of the cluster
