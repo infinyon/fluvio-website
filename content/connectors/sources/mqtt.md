@@ -1,5 +1,5 @@
 ---
-title: Mqtt Connector
+title: MQTT Connector
 menu: MQTT
 ---
 

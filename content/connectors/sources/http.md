@@ -1,5 +1,5 @@
 ---
-title: Http Connector
+title: HTTP Connector
 menu: HTTP
 ---
 
