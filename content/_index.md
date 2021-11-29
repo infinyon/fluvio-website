@@ -1,6 +1,6 @@
 ---
 title: "Fluvio - The programmable data streaming platform"
-description: "An open-source data streaming platform with in-line computation capabilities. Use SmartStreams to upload your custom logic and modify data as it moves over the network."
+description: "An open-source data streaming platform with in-line computation capabilities. Use SmartModules to upload your custom logic and modify data as it moves over the network."
 author:
     name: "Fluvio Team"
 img: "images/assets/fluvio-social.png"
@@ -10,7 +10,7 @@ jumbotron:
   description: "An open source-data streaming platform with in-line computation capabilities. Apply your [custom programs](/docs/smartstreams/quick-start) to aggregate, correlate, and transform data records in real-time as they move over the network."
   imageLarge: "/images/assets/fluvio-oss-large.svg"
   imageSmall: "/images/assets/fluvio-oss-small.svg"
-  alt: "Fluvio SmartStreams"
+  alt: "Fluvio SmartModules"
   download_link: "/download"
   contribute_link: "https://github.com/infinyon/fluvio/blob/master/CONTRIBUTING.md"
 technology:
@@ -56,7 +56,7 @@ stack:
   title: "The Stack"
   image: "./docs/architecture/images/fluvio-stack.svg"
   items:
-    - title: "Smart Streams"
+    - title: "SmartModules"
       description: "Programmable stream processing to clean, transform, correlate, and derive insights from data in real-time."
     - title: "Data Streams"
       description: "Distribured stream processing with redundancy and failover to prevent data loss and minimize downtime."
