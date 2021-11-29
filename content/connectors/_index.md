@@ -244,7 +244,7 @@ $ cargo generate --git="https://github.com/infinyon/fluvio-smartmodule-template"
 ⚠️   Unable to load config file: ~/.cargo/cargo-generate.toml
 🤷   Project Name : catfact-map
 🔧   Generating template ...
-✔ 🤷   Which type of SmartStream would you like? · map
+✔ 🤷   Which type of SmartModule would you like? · map
 [1/7]   Done: .cargo/config.toml
 [2/7]   Done: .cargo
 [3/7]   Done: .gitignore
