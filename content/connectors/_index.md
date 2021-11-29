@@ -19,7 +19,9 @@ Additionally, connectors conceptually have four stages, where each stage has dis
 These stages are the same for sources and sinks, but in reverse order. For a source connector,
 the stages are as follows:
 
-![Connector stages](./connector-stages.png)
+<img src="./images/smart-connectors.svg"
+     alt="Smart Connectors"
+     style="justify: center; max-width: 600px" />
 
 - **Protocol**: Parses input data according to the wire format of the connected data platform.
 - **Extract**: Extracts raw data from the protocol format and packages it neatly into data structures
