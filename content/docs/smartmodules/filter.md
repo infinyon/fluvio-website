@@ -44,11 +44,12 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 [3/5]   Done: Cargo.toml
 [4/5]   Done: README.md
 [5/5]   Done: src/lib.rs
-✨   Done! New project created json-filter```
+✨   Done! New project created json-filter
+```
 
 In the new project, let's add the `serde` and `serde_json` dependencies:
 
-```toml
+{{< highlight bash "hl_lines=13-14" >}}
 # Cargo.toml
 [package]
 name = "json-filter"
@@ -60,16 +61,16 @@ edition = "2018"
 crate-type = ['cdylib']
 
 [dependencies]
+fluvio-smartmodule = { version = "0.1" }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-fluvio-smartmodule = { version = "0.1" }
 
 [workspace]
 members = ["."]
 
 [profile.release]
 lto = true
-```
+{{</ highlight >}}
 
 Alright, now that we have our setup all ready, let's talk about what we're going to
 be filtering.
@@ -187,6 +188,7 @@ In other words, we actually want to keep the records that are "more important" o
 "greater than" `LogLevel::Debug`. Since we have implemented `Ord` for `LogLevel`, this
 will be a piece of cake! Let's look at all the code for the finished filter.
 
+%copy%
 ```rust
 use fluvio_smartmodule::{smartmodule, Record, Result};
 

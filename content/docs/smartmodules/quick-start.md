@@ -62,7 +62,7 @@ pub fn filter(record: &Record) -> Result<bool>7 {
 
 The function with the `#[smartmodule(filter)]` attribute is the entrypoint to the
 SmartModule. The SPU that processes our stream will send each Record to this
-function and, based on whether the function returns Ok(true) or not, either send
+function and, based on whether the function returns `Ok(true)` or not, either send
 the record to our consumer or not. This sample SmartModule will check whether
 the record's contents are a UTF-8 string and whether that string contains the
 letter `a`.
@@ -75,6 +75,7 @@ command:
 
 [rustup]: https://rustup.rs
 
+%copy first-line%
 ```bash
 $ rustup target add wasm32-unknown-unknown
 ```
@@ -156,6 +157,7 @@ If everything worked as expected, we should see all five records appear in the
 plain consumer, but only `Banana`, `Cabbage`, and `Date` should appear in the
 consumer with our SmartModule filter.
 
+%copy first-line%
 ```bash
 $ fluvio consume hello-smartmodules -B
 Apple
