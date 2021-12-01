@@ -101,12 +101,12 @@ inline, before the records of that stream are delivered to a consumer. In order
 to use SmartModules, you must supply the WASM module to the `fluvio consume`
 command using the SmartModule options: `--filter`, `--map`, `--aggregate`.
 
-The simplest SmartModule is the [filter example from the quick-start], which
+The simplest SmartModule is the [filter example], which
 filters records from the stream based on whether they contain the letter `a`
 or not. You can find the full example code [in our GitHub repo] and compile
 it to test out yourself.
 
-[filter example from the quick-start]: {{< ref "/docs/smartmodules/quick-start" >}}
+[filter example]: {{< ref "/docs/smartmodules/filter" >}}
 [in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
 Once you have compiled your SmartModule Filter and have a `.wasm` file for it, you
