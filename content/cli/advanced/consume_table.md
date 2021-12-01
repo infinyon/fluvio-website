@@ -30,6 +30,7 @@ By default the top-level object keys will be used as the column names, sorted by
 [`full_table`]: {{< ref "#full_table" >}}
 
 Example command:
+
 %copy%
 ```shell
 fluvio consume example-topic --output table
@@ -52,6 +53,7 @@ Example output:
 By default the top-level object keys will be used as the column names, sorted by alphabetical order.
 
 Example command:
+
 %copy%
 ```shell
 fluvio consume example-topic --output full_table
