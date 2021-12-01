@@ -30,11 +30,11 @@ out with Fluvio:
 - [Produce data to a topic with `fluvio produce`]({{< ref "/cli/commands/produce#fluvio-produce" >}})
 - [Consume data from a topic with `fluvio consume`]({{< ref "/cli/commands/consume#fluvio-consume" >}})
 
-#### Enriching data with SmartStreams
+#### Enriching data with SmartModules
 
-- [Quick start for building and running SmartStreams]({{< ref "/docs/smartstreams/quick-start" >}})
-- [Write a custom filtering SmartStream]({{< ref "/docs/smartstreams/filter" >}})
-- [Consume enriched data using SmartStreams]({{< ref "/cli/commands/consume#example-3-consume-using-a-smartstream" >}})
+- [Quick start for building and running SmartModules]({{< ref "/docs/smartmodules/quick-start" >}})
+- [Write a custom filtering SmartModule]({{< ref "/docs/smartmodules/filter" >}})
+- [Consume enriched data using SmartModules]({{< ref "/cli/commands/consume#example-3-consume-using-a-smartstream" >}})
 
 #### Viewing the status of the cluster
 

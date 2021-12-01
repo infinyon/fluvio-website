@@ -4,21 +4,21 @@ weight: 40
 toc: false
 ---
 
-SmartStream Aggregates are functions that define how to combine each record
+SmartModule Aggregates are functions that define how to combine each record
 in a stream with some accumulated value. In the functional programming world,
 this type of operation is also known as `folding`, since the function "folds"
 each new value into the accumulator.
 
-Let's set up a new SmartStream project so that we can look at some code while
-introducing aggregators. Use `cargo-generate` to create a new SmartStream project,
+Let's set up a new SmartModule project so that we can look at some code while
+introducing aggregators. Use `cargo-generate` to create a new SmartModule project,
 and be sure to select the "aggregate" type during setup.
 
 ```bash
 $ cargo install cargo-generate
-$ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
+$ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 🤷   Project Name : example-aggregate
 🔧   Creating project called `example-aggregate`...
-✔ 🤷   Which type of SmartStream would you like? · aggregate
+✔ 🤷   Which type of SmartModule would you like? · aggregate
 [1/5]   Done: .cargo/config.toml
 [2/5]   Done: .gitignore
 [3/5]   Done: Cargo.toml
@@ -30,9 +30,9 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 Let's take a look at the starter code from the template, located in `src/lib.rs`.
 
 ```rust
-use fluvio_smartstream::{smartstream, Result, Record, RecordData};
+use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
 
-#[smartstream(aggregate)]
+#[smartmodule(aggregate)]
 pub fn aggregate(accumulator: RecordData, current: &Record) -> Result<RecordData> {
   // Parse the accumulator and current record as strings
   let accumulator_string = std::str::from_utf8(accumulator.as_ref())?;
@@ -71,5 +71,5 @@ to convert the String to a `RecordData`.
 ### Read next
 
 - [Explore aggregate use-cases](https://www.infinyon.com/blog/2021/08/smartstream-aggregates/)
-- [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
-- [Writing a map to transform records]({{< ref "/docs/smartstreams/map" >}})
+- [Writing a JSON filter]({{< ref "/docs/smartmodules/filter" >}})
+- [Writing a map to transform records]({{< ref "/docs/smartmodules/map" >}})
