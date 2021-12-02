@@ -24,6 +24,8 @@ We can launch the HTTP Connector as a Managed Connector (preferred for [InfinyOn
 or as a Local Connector. If you don't know which one to pick, we recommend sticking
 with a Managed Connector.
 
+You can find the full code for this example in [the fluvio-smartmodule-examples][2] repository.
+
 #### Connect to GitHub using HTTP as a Managed Connector
 
 To set up our use-case using a managed connector, we'll need to create a connector
@@ -373,5 +375,5 @@ Consuming records from the end of topic 'github-repo'. This will wait for new re
 Now we can see that our topic contains just the data we selected!
 
 [1]: https://infinyon.cloud/signup
-[2]: https://github.com/infinyon/fluvio-smartmodule-examples/tree/master/crates/github-stars-smartmodule
+[2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
 [3]: /docs/smartmodules/map
