@@ -13,7 +13,7 @@ to match our exact needs.
 
 ### Counting Stars and Forks
 
-Using the GitHub API, we can check on the number of Stars, Watchers, and Forks that
+Using the GitHub API, we can check on the number of Stars and Forks that
 any repository has. We can use the HTTP Smart Connector to create a stream from this
 API endpoint, where each record in our stream will be an HTTP response from the API!
 Let's look at how to set up the HTTP connector _without_ a SmartModule first, then
