@@ -44,12 +44,12 @@ direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 120
+  interval: 30
 ```
 
 This configuration is using the `http` connector type, will produce events to a topic
 called `github-repo` (creating the topic if it does not exist), and will send HTTP
-requests to `https://api.github.com/repos/infinyon/fluvio` every 120 seconds.
+requests to `https://api.github.com/repos/infinyon/fluvio` every 30 seconds.
 
 To use this configuration, run the following command:
 
@@ -79,7 +79,7 @@ docker run -d --name="github-repo" \
     -- \
     --endpoint="https://api.github.com/repos/infinyon/fluvio" \
     --fluvio-topic="github-repo" \
-    --interval=120 \
+    --interval=30 \
     --header="User-Agent:fluvio-http-example"
 ```
 
@@ -326,7 +326,7 @@ direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 120
+  interval: 30
   map: github-smartmodule
 {{</ highlight >}}
 
@@ -358,7 +358,7 @@ docker run -d --name="github-repo" \
     -- \
     --endpoint="https://api.github.com/repos/infinyon/fluvio" \
     --fluvio-topic="github-repo" \
-    --interval=120 \
+    --interval=30 \
     --header="User-Agent:fluvio-http-example" \
     --map="github-smartmodule"
 {{</ highlight >}}
