@@ -114,7 +114,7 @@ For a deeper dive into FilterMap, check out our [blog post](https://www.infinyon
 
 #### Join SmartModule (Experimental)
 
-(Join is an experimental feature to solicit feedback from the community. Try it out and let us know what you think)
+-> **Experimental**: try it out and let us know what you think.
 
 The Join SmartModule uses the stream you are consuming and the value at the end of another topic and allows you to return a new value 
 
