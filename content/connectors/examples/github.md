@@ -15,7 +15,7 @@ to match our exact needs.
 
 Using the GitHub API, we can check on the number of Stars and Forks that
 any repository has. We can use the HTTP Smart Connector to create a stream from this
-API endpoint, where each record in our stream will be an HTTP response from the API!
+API endpoint, where each record in our stream will be an HTTP response from the API.
 Let's look at how to set up the HTTP connector _without_ a SmartModule first, then
 we'll look at the fields available, decide which fields we want to keep, then finally
 write a SmartModule to help us extract those fields.
@@ -44,12 +44,12 @@ direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 10
+  interval: 120
 ```
 
 This configuration is using the `http` connector type, will produce events to a topic
 called `github-repo` (creating the topic if it does not exist), and will send HTTP
-requests to `https://api.github.com/repos/infinyon/fluvio` every 10 seconds.
+requests to `https://api.github.com/repos/infinyon/fluvio` every 120 seconds.
 
 To use this configuration, run the following command:
 
@@ -79,7 +79,7 @@ docker run -d --name="github-repo" \
     -- \
     --endpoint="https://api.github.com/repos/infinyon/fluvio" \
     --fluvio-topic="github-repo" \
-    --interval=10 \
+    --interval=120 \
     --header="User-Agent:fluvio-http-example"
 ```
 
@@ -300,11 +300,16 @@ return to our connector setup and re-launch the HTTP Connector with our SmartMod
 #### With Managed Connector
 
 If you're following along with a Managed Connector, the first thing we need to do is stop the
-connector we started previously:
+connector we started previously, and delete the topic since it contains old data.
 
 %copy first-line%
 ```bash
 $ fluvio connector delete github-repo
+```
+
+%copy first-line%
+```bash
+$ fluvio topic delete github-repo
 ```
 
 Then, we can edit the `connect.yml` file and tell it to use our SmartModule as a Map:
@@ -320,7 +325,7 @@ direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 10
+  interval: 120
   map: github-smartmodule
 {{</ highlight >}}
 
@@ -352,7 +357,7 @@ docker run -d --name="github-repo" \
     -- \
     --endpoint="https://api.github.com/repos/infinyon/fluvio" \
     --fluvio-topic="github-repo" \
-    --interval=10 \
+    --interval=120 \
     --header="User-Agent:fluvio-http-example" \
     --map="github-smartmodule"
 {{</ highlight >}}
