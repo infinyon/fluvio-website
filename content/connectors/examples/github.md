@@ -263,6 +263,7 @@ fn shaper(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
     let shaped = json!({
         "stars": repo["stargazers_count"],
         "forks": repo["forks_count"],
+        "timestamp": repo["updated_at"],
     });
 
     let output = serde_json::to_vec(&shaped)?;
