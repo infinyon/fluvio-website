@@ -41,8 +41,8 @@ OPTIONS:
     -T, --tail <integer>           Consume records starting X from the end of the log (default: 10)
     -b, --maxbytes <integer>       Maximum number of bytes to be retrieved
     -O, --output <type>            Output [possible values: dynamic, text, binary, json, raw]
-        --filter <filter>          Path to a SmartStream filter wasm file
-        --map <map>                Path to a SmartStream map wasm file
+        --filter <filter>          Path to a SmartModule filter wasm file
+        --map <map>                Path to a SmartModule map wasm file
         --aggregate <aggregate>    Path to a WASM file for aggregation
         --initial <initial>        (Optional) Path to a file to use as an initial accumulator value
                                    with --aggregate
@@ -94,22 +94,22 @@ $ fluvio consume my-topic -B -d --key-value
 
 Records that were not given a key are printed with `[null]`.
 
-## Example 3: Consume using a SmartStream
+## Example 3: Consume using a SmartModule
 
-Fluvio SmartStreams are WASM modules that can edit the contents of a stream
+Fluvio SmartModules are WASM modules that can edit the contents of a stream
 inline, before the records of that stream are delivered to a consumer. In order
-to use SmartStreams, you must supply the WASM module to the `fluvio consume`
-command using the SmartStream options: `--filter`, `--map`, `--aggregate`.
+to use SmartModules, you must supply the WASM module to the `fluvio consume`
+command using the SmartModule options: `--filter`, `--map`, `--aggregate`.
 
-The simplest SmartStream is the [filter example from the quick-start], which
+The simplest SmartModule is the [filter example from the quick-start], which
 filters records from the stream based on whether they contain the letter `a`
 or not. You can find the full example code [in our GitHub repo] and compile
 it to test out yourself.
 
-[filter example from the quick-start]: {{< ref "/docs/smartstreams/quick-start" >}}
-[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartstream/examples/filter_json
+[filter example from the quick-start]: {{< ref "/docs/smartmodules/quick-start" >}}
+[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
-Once you have compiled your SmartStream Filter and have a `.wasm` file for it, you
+Once you have compiled your SmartModule Filter and have a `.wasm` file for it, you
 can apply it to the consumer as follows:
 
 %copy first-line%

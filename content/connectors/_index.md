@@ -269,7 +269,7 @@ JSON objects that our connector fetches for us. Add the following line to the
 
 {{< highlight bash "hl_lines=3" >}}
 [dependencies]
-fluvio-smartstream = { version = "0.3" }
+fluvio-smartmodule = { version = "0.3" }
 serde_json = "1"
 {{</ highlight >}}
 

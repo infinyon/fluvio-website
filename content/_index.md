@@ -7,7 +7,7 @@ img: "images/assets/fluvio-social.png"
 twitter-card: summary_large_image
 jumbotron:
   title: "Programmable platform for data in motion"
-  description: "An open source-data streaming platform with in-line computation capabilities. Apply your [custom programs](/docs/smartstreams/quick-start) to aggregate, correlate, and transform data records in real-time as they move over the network."
+  description: "An open source-data streaming platform with in-line computation capabilities. Apply your [custom programs](/docs/smartmodules/quick-start) to aggregate, correlate, and transform data records in real-time as they move over the network."
   imageLarge: "/images/assets/fluvio-oss-large.svg"
   imageSmall: "/images/assets/fluvio-oss-small.svg"
   alt: "Fluvio SmartModules"

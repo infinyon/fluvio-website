@@ -74,6 +74,33 @@ while let Some(Ok(record)) = stream.next().await {
 }
 ```
 
+### Using a SmartModule with the Rust Consumer
+
+Below is an example of how to use a SmartModule filter with the Rust
+programmatic consumer.
+
+```rust
+use fluvio::{Fluvio, Offset, PartitionConsumer};
+use futures::StreamExt;
+
+// create consumer config
+let buffer = std::fs::read("/my_projects/example_filter/target/wasm32-unknown-unknown/release/example_filter.wasm").expect("wasm file is missing");
+let mut builder = ConsumerConfig::builder();
+builder.wasm_filter(buffer);
+let filter_config = builder.build().expect("Failed to create config");
+
+// create partition consumer
+let consumer = fluvio.partition_consumer("my-topic", 0).await.expect("failed to create consumer");
+// stream from beginning
+let mut stream = consumer.stream_with_config(Offset::beginning(),filter_config).await.expect("Failed to create stream");
+
+while let Some(Ok(record)) = stream.next().await {
+    let key = record.key().map(|key| String::from_utf8_lossy(key).to_string());
+    let value = String::from_utf8_lossy(record.value()).to_string();
+    println!("Got filter event: key={:?}, value={}", key, value);
+}
+```
+
 Refer to the [fluvio docs.rs page] for full detail.
 
 [Admin Api]: https://docs.rs/fluvio/0.8.0/fluvio/struct.FluvioAdmin.html
