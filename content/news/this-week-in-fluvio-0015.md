@@ -112,7 +112,9 @@ Consuming records from the end of topic 'filter-map-topic'. This will wait for n
 
 For a deeper dive into FilterMap, check out our [blog post](https://www.infinyon.com/blog/2021/11/filter-map/) which covers a use-case.
 
-#### Join SmartModule 
+#### Join SmartModule (Experimental)
+
+(Join is an experimental feature to solicit feedback from the community. Try it out and let us know what you think)
 
 The Join SmartModule uses the stream you are consuming and the value at the end of another topic and allows you to return a new value 
 
