@@ -301,9 +301,9 @@ $ fluvio smartmodule create github-smartmodule --wasm-file=target/wasm32-unknown
 At this point, our SmartModule has been registered and named `github-smartmodule`. Now, we can
 return to our connector setup and re-launch the HTTP Connector with our SmartModule!
 
-#### With Managed Connector
+#### Restarting the Managed Connector
 
-If you're following along with a Managed Connector, the first thing we need to do is stop the
+Now that we have a SmartModule to plug into our Managed Connector, the first thing we need to do is stop the
 connector we started previously, and delete the topic since it contains old data.
 
 %copy first-line%
@@ -612,14 +612,26 @@ $ fluvio smartmodule create github-smartmodule --wasm-file=target/wasm32-unknown
 At this point, our SmartModule has been registered and named `github-smartmodule`. Now, we can
 return to our connector setup and re-launch the HTTP Connector with our SmartModule!
 
-#### With Local Connector
+#### Restarting the Local Connector
 
-Using a Local Connector, we'll need to stop and restart the connector as well.
-To stop the connector, run the following command:
+Now that we have a SmartModule to plug into our Local Connector, the next thing we need to do
+is stop the connector we started previously, and delete the topic since it contains old data.
 
 %copy first-line%
 ```bash
 $ docker kill github-repo; docker rm github-repo
+```
+
+%copy first-line%
+```bash
+$ fluvio topic delete github-repo
+```
+
+We'll want to re-create the topic so we can send our new data to it:
+
+%copy first-line%
+```bash
+$ fluvio topic create github-repo
 ```
 
 Then, we can re-launch it with a new command that also specifies the SmartModule we'd like
