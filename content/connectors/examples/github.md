@@ -342,6 +342,8 @@ transformed!
 $ fluvio connector create --config=./connect.yml
 ```
 
+[2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
+[3]: /docs/smartmodules/map
 
 {{</ tab >}}
 
@@ -635,6 +637,9 @@ docker run -d --name="github-repo" \
     --header="User-Agent:fluvio-http-example" \
     --map="github-smartmodule"
 {{</ highlight >}}
+
+[2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
+[3]: /docs/smartmodules/map
 
 {{</ tab >}}
 
