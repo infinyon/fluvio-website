@@ -1,6 +1,7 @@
 ---
-title: Completion
-weight: 80
+title: Generate Command Completion
+menu: Completion
+weight: 10
 toc: false
 ---
 
