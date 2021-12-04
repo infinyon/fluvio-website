@@ -263,16 +263,6 @@ Make sure to navigate into the project directory:
 $ cd catfact-map
 ```
 
-Next, we'll want to add `serde_json` to our dependencies, so we can manipulate the
-JSON objects that our connector fetches for us. Add the following line to the
-`Cargo.toml` file:
-
-{{< highlight bash "hl_lines=3" >}}
-[dependencies]
-fluvio-smartmodule = { version = "0.3" }
-serde_json = "1"
-{{</ highlight >}}
-
 Now, let's write the actual body of the SmartModule. Edit your `src/lib.rs` file
 to have the following contents:
 
