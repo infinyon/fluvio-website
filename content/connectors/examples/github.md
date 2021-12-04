@@ -2,6 +2,7 @@
 title: Reading GitHub API data with a SmartModule
 menu: GitHub Stars
 weight: 20
+toc: false
 ---
 
 We can use the HTTP Connector to continuously stream data from the GitHub API,
@@ -26,9 +27,9 @@ with a Managed Connector.
 
 You can find the full code for this example in [the fluvio-smartmodule-examples][2] repository.
 
-{{< h-list tabTotal="2" tabID="1" tabName1="Managed Connector" tabName2="Local Connector">}}
+{{< tabs tabTotal="2" tabID="1" tabName1="Managed Connector" tabName2="Local Connector">}}
 
-{{< h-item tabNum="1">}}
+{{< tab tabNum="1">}}
 #### Connect to GitHub using HTTP as a Managed Connector
 
 To set up our use-case using a managed connector, we'll need to create a connector
@@ -342,9 +343,9 @@ $ fluvio connector create --config=./connect.yml
 ```
 
 
-{{</ h-item >}}
+{{</ tab >}}
 
-{{< h-item tabNum="2">}}
+{{< tab tabNum="2">}}
 #### Connect to GitHub using HTTP as a Local Connector
 
 Local connectors are run using `docker`. Unlike Managed Connectors, they do not
@@ -635,9 +636,9 @@ docker run -d --name="github-repo" \
     --map="github-smartmodule"
 {{</ highlight >}}
 
-{{</ h-item >}}
+{{</ tab >}}
 
-{{</ h-list >}}
+{{</ tabs >}}
 
 ### Checking the Topic Data
 
