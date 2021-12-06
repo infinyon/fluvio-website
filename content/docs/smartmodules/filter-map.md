@@ -212,6 +212,31 @@ Congratulations, you just completed your first FilterMap example! You can find t
 [full source code for this example on GitHub][1], along with the full sources for many
 other SmartModules examples.
 
+### Register the SmartModule with Fluvio
+
+After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
+
+%copy first-line%
+```bash
+$ fluvio smart-module create filter-groceries --wasm-file target/wasm32-unknown-unknown/release/filter_map.wasm
+```
+
+Use the `fluvio smart-module list` command to see all available SmartModules:
+
+%copy first-line%
+```bash
+$ fluvio smart-module list
+ NAME             STATUS             SIZE
+filter-groceries  SmartModuleStatus  178931 
+```
+
+Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume filter-map -B --filter-map=filter-groceries
+```
+
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
