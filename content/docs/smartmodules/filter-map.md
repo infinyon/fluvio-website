@@ -16,6 +16,8 @@ FilterMap functions work by returning an `Option` of a new record. To discard a
 record from the stream, return `None`. Otherwise, transform
 the record according to your needs and return it as `Some(record)`.
 
+<img src="/docs/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="180">
+
 Let's dive in and see how to use this in practice. You can find the full code
 for this doc's example [in the fluvio-smartmodule-examples repository][1].
 
