@@ -4,22 +4,13 @@ weight: 20
 toc: false
 ---
 
-The simplest type of SmartModule is a filter, which can examine each record in
-a stream and decide whether to accept or reject it. All records that are accepted
-by a filter will be delivered down the pipeline to the consumer, but records that
-are rejected will be discarded from the stream. Note that this does not mean that
-records are deleted from the partition they are persisted in, it simply means that
-those records are not delivered to the consumer.
+The simplest type of SmartModule is a filter, which can examine each record in a stream and decide whether to accept or reject it. All accepted records are delivered down the pipeline, and rejected records are discarded. SmartModule applied in consumers or sink connectors filter records after they are stored in a topic, and will not impact persistence - it simply means that records filtered out are not delivered to the consumer. However, SmartModule filters applied to source connectors discard packets before they are stored in the topic and should be used with care. 
 
 <img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="200">
 
 ### Getting Practical: Filter Records by JSON fields
 
-In this example, we're going to filter
-records based on the contents of their JSON fields. Since SmartModules are written
-using arbitrary Rust code, we can also pull in other crates as dependencies. We're
-going to use `serde` and `serde_json` to help us work with our JSON data.
-If you want to jump ahead and see the finished code, [check out our JSON filter example].
+In this example, we're going to filter records based on the contents of their JSON fields. Since SmartModules are written using arbitrary Rust code, we can also pull in other crates as dependencies. If you want to jump ahead and see the finished code, [check out our JSON filter example].
 
 [check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
@@ -47,32 +38,7 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 ✨   Done! New project created json-filter
 ```
 
-In the new project, let's add the `serde` and `serde_json` dependencies:
-
-{{< highlight bash "hl_lines=13-14" >}}
-# Cargo.toml
-[package]
-name = "json-filter"
-version = "0.1.0"
-authors = ["Your name"]
-edition = "2018"
-
-[lib]
-crate-type = ['cdylib']
-
-[dependencies]
-fluvio-smartmodule = { version = "0.1" }
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-
-[workspace]
-members = ["."]
-
-[profile.release]
-lto = true
-{{</ highlight >}}
-
-Alright, now that we have our setup all ready, let's talk about what we're going to
+Alright, now that we have a setup, let's talk about what we're going to
 be filtering.
 
 #### The Data: Server Logs
@@ -117,6 +83,11 @@ platform for inspection.
 #### The Code: Writing our Filter
 
 Let's look at the starter code that we got when we created our Filter template.
+
+%copy first-line%
+```bash
+cd json-filter && cat ./src/lib.rs
+```
 
 ```rust
 // src/lib.rs

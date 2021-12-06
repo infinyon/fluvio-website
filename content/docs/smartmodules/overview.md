@@ -17,8 +17,7 @@ being integrated at many points in a streaming pipeline. They enhance the
 entire streaming platform: reducing network costs by allowing precision 
 filtering along the stream and encouraging code-reuse and collaboration.
 
-The following
-diagram shows common components which may be configured with SmartModules
+The following diagram shows common components which may be configured with SmartModules
 performing inline computation.
 
 <img src="/docs/smartmodules/images/smartmodule-overview.svg" alt="SmartModule Overview" justify="center" height="480">
@@ -88,7 +87,7 @@ use-cases, it typically becomes much easier to register the SmartModule and late
 #### Registering SmartModules
 
 After building a SmartModule as a WASM binary, it may be registered with Fluvio using
-the `fluvio smartmodule` command, providing a name and a path to the binary.
+the `fluvio smartmodule` command, providing a name and a path to the binary. Use [SmartModule filters](/docs/smartmodules/filter/) to build a WASM file.
 
 %copy first-line%
 ```bash
