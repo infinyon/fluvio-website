@@ -47,6 +47,11 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 We should see a new folder has been created for our project, `map-example`. We
 can go inside and take a look at the sample Map generated for us by the template:
 
+%copy first-line%
+```bash
+cd map-example && cat ./src/lib.rs
+```
+
 %copy%
 ```rust
 use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
@@ -141,6 +146,33 @@ Consuming records from the beginning of topic 'map-double'
 8
 10
 ```
+
+### Register the SmartModule with Fluvio
+
+After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smartm-odule` command:
+
+%copy first-line%
+```bash
+$ fluvio smart-module create map-double-sm --wasm-file target/wasm32-unknown-unknown/release/map_example.wasm
+```
+
+After creating one or more SmartModules, one may use the `fluvio smart-module list` command
+to see the available SmartModules:
+
+%copy first-line%
+```bash
+$ fluvio smart-module list
+ NAME          STATUS             SIZE
+map-double-sm  SmartModuleStatus  111280 
+```
+
+Once the SmartModule is created, it can be referenced across the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume map-double -B --map=map-double-sm
+```
+
 
 ### Read next
 

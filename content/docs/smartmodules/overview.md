@@ -87,29 +87,29 @@ use-cases, it typically becomes much easier to register the SmartModule and late
 #### Registering SmartModules
 
 After building a SmartModule as a WASM binary, it may be registered with Fluvio using
-the `fluvio smartmodule` command, providing a name and a path to the binary. Use [SmartModule filters](/docs/smartmodules/filter/) to build a WASM file.
+the `fluvio smart-module` command, providing a name and a path to the binary. Use [SmartModule filters](/docs/smartmodules/filter/) to build a WASM file.
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule create my-filter --wasm-file=target/wasm32-unknown-unknown/release/my_filter.wasm
+$ fluvio smart-module create my-filter --wasm-file=target/wasm32-unknown-unknown/release/my_filter.wasm
 ```
 
-After creating one or more SmartModules, one may use the `fluvio smartmodule list` command
+After creating one or more SmartModules, one may use the `fluvio smart-module list` command
 to see the available SmartModules:
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule list
+$ fluvio smart-module list
  NAME       STATUS             SIZE
  my-filter  SmartModuleStatus  108754
 ```
 
-Finally, to delete a SmartModule, use `fluvio smartmodule delete` and provide the name of the
+Finally, to delete a SmartModule, use `fluvio smart-module delete` and provide the name of the
 SmartModule to delete.
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule delete my-filter
+$ fluvio smart-module delete my-filter
 ```
 
 #### Using Registered SmartModules
