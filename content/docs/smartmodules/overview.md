@@ -2,6 +2,8 @@
 title: Fluvio SmartModules
 menu: Overview
 weight: 10
+aliases:
+    - /docs/smartmodules
 toc: false
 ---
 
