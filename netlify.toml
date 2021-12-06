@@ -105,3 +105,9 @@ from = "/docs/smartstreams/api/"
 to = "/docs/smartmodules/api/"
 status = 301
 force = true
+
+[[redirects]]
+from = "/docs/smartstreams/quick-start/"
+to = "/docs/smartmodules/overview/"
+status = 301
+force = true
