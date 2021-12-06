@@ -16,7 +16,7 @@ may be used for many use-cases, such as:
 Let's create a brand-new SmartModule Map to see what a minimal working
 example looks like.
 
-<img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="330">
+<img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="200">
 
 ### Create a new Project
 

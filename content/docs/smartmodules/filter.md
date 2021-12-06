@@ -11,7 +11,7 @@ are rejected will be discarded from the stream. Note that this does not mean tha
 records are deleted from the partition they are persisted in, it simply means that
 those records are not delivered to the consumer.
 
-<img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="330">
+<img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="200">
 
 ### Getting Practical: Filter Records by JSON fields
 
