@@ -70,17 +70,15 @@ $ cargo generate --git="https://github.com/infinyon/fluvio-smartmodule-template"
 ✨   Done! New project created array-map-array
 ```
 
-We'll want to `cd` into the project directory for the rest of the commands
-to work:
-
-```bash
-$ cd array-map-array
-```
-
 The code in this generated project takes JSON arrays as input records and
 returns the _elements_ of those arrays as output records. Let's take a look
 at the full source, then we'll cover it piece by piece. Let's look at
 `src/lib.rs`:
+
+%copy first-line%
+```bash
+$ cd array-map-array && cat src/lib.rs 
+```
 
 %copy%
 ```rust
@@ -164,9 +162,35 @@ $ fluvio consume array-map -B --array-map=target/wasm32-unknown-unknown/release/
 "c"
 ```
 
+### Register the SmartModule with Fluvio
+
+After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
+
+%copy first-line%
+```bash
+$ fluvio smart-module create record-to-array --wasm-file target/wasm32-unknown-unknown/release/array_map_array.wasm
+```
+
+Use the `fluvio smart-module list` command to see all available SmartModules:
+
+%copy first-line%
+```bash
+$ fluvio smart-module list
+ NAME             STATUS             SIZE
+ record-to-array  SmartModuleStatus  178373 
+```
+
+Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume array-map -B --array-map=record-to-array
+```
+
 Congratulations, you just completed your first ArrayMap example! You can find the
 [full source code for this example on GitHub], along with the full sources for many
 other SmartModules examples.
+
 
 ### Read next
 
