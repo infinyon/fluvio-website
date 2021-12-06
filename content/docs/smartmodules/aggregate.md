@@ -9,6 +9,8 @@ in a stream with some accumulated value. In the functional programming world,
 this type of operation is also known as `folding`, since the function "folds"
 each new value into the accumulator.
 
+<img src="/docs/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="330">
+
 Let's set up a new SmartModule project so that we can look at some code while
 introducing aggregators. Use `cargo-generate` to create a new SmartModule project,
 and be sure to select the "aggregate" type during setup.

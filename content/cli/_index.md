@@ -32,7 +32,7 @@ out with Fluvio:
 
 #### Enriching data with SmartModules
 
-- [Quick start for building and running SmartModules]({{< ref "/docs/smartmodules/quick-start" >}})
+- [Overview for SmartModules]({{< ref "/docs/smartmodules/overview" >}})
 - [Write a custom filtering SmartModule]({{< ref "/docs/smartmodules/filter" >}})
 - [Consume enriched data using SmartModules]({{< ref "/cli/commands/consume#example-3-consume-using-a-smartstream" >}})
 

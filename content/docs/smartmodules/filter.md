@@ -11,16 +11,16 @@ are rejected will be discarded from the stream. Note that this does not mean tha
 records are deleted from the partition they are persisted in, it simply means that
 those records are not delivered to the consumer.
 
+<img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="330">
+
 ### Getting Practical: Filter Records by JSON fields
 
-Since we already had a quick introduction to Filters in the [SmartModule quick start]
-guide, let's try something a little fancier. In this example, we're going to filter
+In this example, we're going to filter
 records based on the contents of their JSON fields. Since SmartModules are written
 using arbitrary Rust code, we can also pull in other crates as dependencies. We're
 going to use `serde` and `serde_json` to help us work with our JSON data.
 If you want to jump ahead and see the finished code, [check out our JSON filter example].
 
-[SmartModule quick start]: {{< ref "/docs/smartmodules/quick-start" >}}
 [check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
 #### Create a new Project
