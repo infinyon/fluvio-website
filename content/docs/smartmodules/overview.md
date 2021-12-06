@@ -53,7 +53,7 @@ new record that is sent downstream.
 
 <img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="180">
 
-#### Filter-Map
+#### FilterMap
 
 A FilterMap SmartModule takes one input record and returns zero or one output record.
 This effectively means that it may decide to discard or "filter" any input records, or
@@ -61,7 +61,7 @@ to keep them and apply a transformation to them at the same time.
 
 <img src="/docs/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="180">
 
-#### Array Map
+#### ArrayMap
 
 An ArrayMap SmartModule takes one input record and returns zero or many output records.
 This means that the output stream may have more records than the input stream.
