@@ -280,6 +280,32 @@ $ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/
 {"level":"error","message":"Unable to connect to database"}
 ```
 
+### Register the SmartModule with Fluvio
+
+After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
+
+%copy first-line%
+```bash
+$ fluvio smart-module create log-filter --wasm-file target/wasm32-unknown-unknown/release/json_filter.wasm
+```
+
+Use `fluvio smart-module list` command to see the available SmartModules:
+
+%copy first-line%
+```bash
+$ fluvio smart-module list
+ NAME        STATUS             SIZE
+ log-filter  SmartModuleStatus  161916
+```
+
+Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume server-logs -B --filter=log-filter
+```
+
+
 ### Read next
 
 - [Explore filter use-cases](https://www.infinyon.com/blog/2021/06/smartstream-filters/)

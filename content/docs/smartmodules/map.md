@@ -149,15 +149,14 @@ Consuming records from the beginning of topic 'map-double'
 
 ### Register the SmartModule with Fluvio
 
-After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smartm-odule` command:
+After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
 
 %copy first-line%
 ```bash
 $ fluvio smart-module create map-double-sm --wasm-file target/wasm32-unknown-unknown/release/map_example.wasm
 ```
 
-After creating one or more SmartModules, one may use the `fluvio smart-module list` command
-to see the available SmartModules:
+Use the `fluvio smart-module list` command to see all available SmartModules:
 
 %copy first-line%
 ```bash
@@ -166,7 +165,7 @@ $ fluvio smart-module list
 map-double-sm  SmartModuleStatus  111280 
 ```
 
-Once the SmartModule is created, it can be referenced across the system (consumers, producers, connectors, etc):
+Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
 
 %copy first-line%
 ```bash
