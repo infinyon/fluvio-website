@@ -56,6 +56,8 @@ Here's a description of the available options:
   - `map`: The name of a Map SmartModule to apply
   - `arraymap`: The name of an ArrayMap SmartModule to apply
 
+-> **Note**: Currently, `aggregate` and `filter-map` SmartModules are not supported in connectors.
+
 When running `fluvio connector create`, pass the path to this file using the `--config`
 option.
 
