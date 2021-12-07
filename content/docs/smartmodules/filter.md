@@ -8,13 +8,13 @@ The simplest type of SmartModule is a filter, which can examine each record in a
 
 <img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="200">
 
-### Getting Practical: Filter Records by JSON fields
+## Getting Practical: Filter Records by JSON fields
 
 In this example, we're going to filter records based on the contents of their JSON fields. Since SmartModules are written using arbitrary Rust code, we can also pull in other crates as dependencies. If you want to jump ahead and see the finished code, [check out our JSON filter example].
 
 [check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
-#### Create a new Project
+### Create a new Project
 
 Let's use `cargo-generate` again to set up our new SmartModule project. We'll want
 to give the project a name and choose the "filter" option.
@@ -41,7 +41,7 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 Alright, now that we have a setup, let's talk about what we're going to
 be filtering.
 
-#### The Data: Server Logs
+### The Data: Server Logs
 
 Suppose we have a web server that accepts HTTP requests from clients, does some
 stuff, and then returns a response. It is common for such servers to have an
@@ -80,7 +80,7 @@ logs. In a real-world scenario, this could dramatically help reduce the traffic
 and noise in the logs if we were to consume these records into an analytics
 platform for inspection.
 
-#### The Code: Writing our Filter
+### The Code: Writing our Filter
 
 Let's look at the starter code that we got when we created our Filter template.
 
@@ -209,7 +209,7 @@ $ ls -la target/wasm32-unknown-unknown/release
 .rwxr-xr-x  135Ki user 19 May 13:29   json_filter.wasm
 ```
 
-#### Test Drive: Producing and Consuming the Data
+### Test Drive: Producing and Consuming the Data
 
 Now that we've written our filter, let's play with some data and make sure we
 get the results we expect! We'll start by creating a new topic where we'll
@@ -280,7 +280,7 @@ $ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/
 {"level":"error","message":"Unable to connect to database"}
 ```
 
-### Register the SmartModule with Fluvio
+## Register the SmartModule with Fluvio
 
 After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
 

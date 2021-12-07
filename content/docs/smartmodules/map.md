@@ -18,7 +18,7 @@ example looks like.
 
 <img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="200">
 
-### Create a new Project
+## Create a new Project
 
 Let's use `cargo-generate` to set up a blank SmartModule Map project. If you
 don't have it yet, run the following command to install it:
@@ -88,7 +88,7 @@ multiply that value by 2. To test it out, make sure you are connected to an
 active Fluvio Cluster (see the getting started sections in the top left), then
 follow the instructions in the next section:
 
-### How to run a SmartModule Map with a consumer
+## How to run a SmartModule Map with a consumer
 
 Create a new Topic:
 
@@ -147,7 +147,7 @@ Consuming records from the beginning of topic 'map-double'
 10
 ```
 
-### Register the SmartModule with Fluvio
+## Register the SmartModule with Fluvio
 
 After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
 

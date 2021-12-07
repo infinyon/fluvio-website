@@ -39,7 +39,7 @@ what some sample input and output data might look like. The ArrayMap we'll look
 at will simply read a topic full of JSON arrays and produce a stream of the
 elements of those arrays, similar to the input and output we saw above.
 
-### Create a new Project
+## Create a new Project
 
 We can use the `cargo-generate` tool to create a new SmartModules project that
 is ready to go. If you don't already have it, you can install `cargo-generate`
@@ -112,7 +112,7 @@ This ArrayMap essentially has three steps it takes:
 
 Let's take this for a test drive and see it in action.
 
-### Running the ArrayMap
+## Running the ArrayMap
 
 Before getting started, make sure you have [downloaded the Fluvio CLI] and followed
 the getting started guide to get up and running with a Fluvio cluster. Then, if you
@@ -162,7 +162,7 @@ $ fluvio consume array-map -B --array-map=target/wasm32-unknown-unknown/release/
 "c"
 ```
 
-### Register the SmartModule with Fluvio
+## Register the SmartModule with Fluvio
 
 After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
 

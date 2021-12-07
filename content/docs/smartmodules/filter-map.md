@@ -21,7 +21,7 @@ the record according to your needs and return it as `Some(record)`.
 Let's dive in and see how to use this in practice. You can find the full code
 for this doc's example [in the fluvio-smartmodule-examples repository][1].
 
-### Example project
+## Example project
 
 For this example, we'll write a simplified version of the [online grocery-notifications
 example we blogged about][2]. In this simplified example, we'll consider a stream that
@@ -47,7 +47,7 @@ The output records in this stream should look like this:
 {"number":"1-222-222-2222","message":"Hello Mary, your groceries have been collected and are ready to pick up!"}
 ```
 
-### Create a new Project
+## Create a new Project
 
 We can use the `cargo-generate` tool to create a new SmartModules project that
 is ready to go. If you don't already have it, you can install `cargo-generate`
@@ -149,7 +149,7 @@ If it is any other event type, we filter it out by returning `Ok(None)`.
 
 Let's take a look at how we can run this SmartModule with our sample data!
 
-### Running the FilterMap
+## Running the FilterMap
 
 Before getting started, make sure you have [downloaded the Fluvio CLI] and followed
 the getting started guide to get up and running with a Fluvio cluster. Then, if you
@@ -212,7 +212,7 @@ Congratulations, you just completed your first FilterMap example! You can find t
 [full source code for this example on GitHub][1], along with the full sources for many
 other SmartModules examples.
 
-### Register the SmartModule with Fluvio
+## Register the SmartModule with Fluvio
 
 After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
 

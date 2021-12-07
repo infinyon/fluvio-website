@@ -42,21 +42,21 @@ Fluvio features the following types of SmartModules:
 
 #### Filter
 
-A Filter SmartModule takes an input record and returns `false` if the record should
+A [Filter SmartModule](../filter) takes an input record and returns `false` if the record should
 be discarded, or `true` if the record should be kept and sent downstream.
 
 <img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="180">
 
 #### Map
 
-A Map SmartModule takes an input record and may edit and transform it, returning a
+A [Map SmartModule](../map) takes an input record and may edit and transform it, returning a
 new record that is sent downstream.
 
 <img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="180">
 
 #### FilterMap
 
-A FilterMap SmartModule takes one input record and returns zero or one output record.
+A [FilterMap SmartModule](../filter-map) takes one input record and returns zero or one output record.
 This effectively means that it may decide to discard or "filter" any input records, or
 to keep them and apply a transformation to them at the same time.
 
@@ -64,14 +64,14 @@ to keep them and apply a transformation to them at the same time.
 
 #### ArrayMap
 
-An ArrayMap SmartModule takes one input record and returns zero or many output records.
+An [ArrayMap SmartModule](../array-map) takes one input record and returns zero or many output records.
 This means that the output stream may have more records than the input stream.
 
 <img src="/docs/smartmodules/images/smartmodule-arraymap.svg" alt="SmartModule ArrayMap" justify="center" height="180">
 
 #### Aggregate
 
-An Aggregate SmartModule takes input records and "accumulates" them, essentially adding
+An [Aggregate SmartModule](../aggregate) takes input records and "accumulates" them, essentially adding
 each input record to a rolling sum. Each input record gets "added" to the sum after the
 previous record, and the output stream is full of the "summed" records.
 
