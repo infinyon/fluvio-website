@@ -41,6 +41,21 @@ parameters:
   interval: 10
 ```
 
+Here's a description of the available options:
+
+- `version`: The published version of the connector
+- `name`: The name given to the instance of the connector when it is created
+- `type`: The type of connector. This corresponds to the name of the docker image
+  that this connector is published in, e.g. `infinyon/fluvio-connect-<type>`
+- `topic`: The name of the Fluvio topic that this connector will produce to
+- `create_topic`: Whether to create the topic if it does not exist
+- `direction`: Whether the connector is a `source` or a `sink` connector
+- `parameters`: An object that contains connector-specific parameters.
+  Also, connectors that support SmartModules specify their SmartModule names here:
+  - `filter`: The name of a Filter SmartModule to apply
+  - `map`: The name of a Map SmartModule to apply
+  - `arraymap`: The name of an ArrayMap SmartModule to apply
+
 When running `fluvio connector create`, pass the path to this file using the `--config`
 option.
 
