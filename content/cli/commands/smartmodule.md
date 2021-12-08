@@ -3,21 +3,21 @@ title: SmartModule
 weight: 30
 ---
 
-The `fluvio smartmodule` family of commands is used to create and delete SmartModules,
+The `fluvio smart-module` family of commands is used to create and delete SmartModules,
 as well as to view basic information about existing SmartModules.
 
-## `fluvio smartmodule create`
+## `fluvio smart-module create`
 
 This command is used to create new Fluvio SmartModules. A SmartModule must be given
 a name and provided with a path to a WASM binary which will be uploaded and used for
 the SmartModule.
 
 ```
-fluvio-smartmodule-create
+fluvio-smart-module-create
 Create a new SmartModule with a given name
 
 USAGE:
-    fluvio smartmodule create [OPTIONS] <name> --wasm-file <wasm-file>
+    fluvio smart-module create [OPTIONS] <name> --wasm-file <wasm-file>
 
 FLAGS:
     -h, --help    Prints help information
@@ -33,21 +33,21 @@ Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule create json-filter --wasm-file=target/wasm32-unknown-unknown/release/json_filter.wasm
+$ fluvio smart-module create json-filter --wasm-file=target/wasm32-unknown-unknown/release/json_filter.wasm
 ```
 
 ---
 
-## `fluvio smartmodule list`
+## `fluvio smart-module list`
 
 This command shows all the registered SmartModules in your cluster.
 
 ```
-fluvio-smartmodule-list
+fluvio-smart-module-list 0.0.0
 List all existing SmartModules
 
 USAGE:
-    fluvio smartmodule list [OPTIONS]
+    fluvio smart-module list [OPTIONS]
 
 FLAGS:
     -h, --help    Prints help information
@@ -60,23 +60,23 @@ Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule list
+$ fluvio smart-module list
  NAME          STATUS             SIZE
  json-filter   SmartModuleStatus  142843
 ```
 
 ---
 
-## `fluvio smartmodule delete`
+## `fluvio smart-module delete`
 
 This command will delete an existing SmartModule by name.
 
 ```
-fluvio-smartmodule-delete 0.0.0
+fluvio-smart-module-delete 0.0.0
 Delete an existing SmartModule with the given name
 
 USAGE:
-    fluvio smartmodule delete <name>
+    fluvio smart-module delete <name>
 
 FLAGS:
     -h, --help    Prints help information
@@ -89,5 +89,5 @@ Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule delete json-filter
+$ fluvio smart-module delete json-filter
 ```
