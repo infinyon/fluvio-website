@@ -20,6 +20,10 @@ Example initial topic input
 [{"key1":"x","key2":"10","key3":"Alice","id":123},{"key1":"y","key2":"20","key3":"Bob","id":456},{"key1":"c","key2":"30","key3":"Carol","id":789}]
 ```
 
+The expected shape of the data is either:
+* a JSON object
+* a JSON array of objects
+
 ## table
 
 By default the top-level object keys will be used as the column names, sorted by alphabetical order. For more customizability, please use the [`full_table`] output
