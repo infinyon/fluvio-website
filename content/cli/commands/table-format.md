@@ -1,5 +1,5 @@
 ---
-title: Table Format 
+title: TableFormat 
 weight: 20
 ---
 
@@ -7,15 +7,16 @@ Table Format is used to customize the behavior of the Fluvio consumer output typ
 
 [`full_table`]: {{< ref "#full_table" >}}
 
-With `tableformat`, you can control the column labels, column ordering and control which keys are primary for displaying your live event data as row updates.
+With `table-format`, you can control the column labels, column ordering and control which keys are primary for displaying your live event data as row updates.
 
+%copy first-line%
 ```
-$ fluvio tableformat -h
-fluvio-tableformat 0.0.0
-Create a tableformat display specification
+$ fluvio table-format -h
+fluvio-table-format 0.0.0
+Create a table-format display specification
 
 USAGE:
-    fluvio tableformat <SUBCOMMAND>
+    fluvio table-format <SUBCOMMAND>
 
 FLAGS:
     -h, --help    Prints help information
@@ -27,11 +28,16 @@ SUBCOMMANDS:
     help      Prints this message or the help of the given subcommand(s)
 ```
 
-This is the schema for the Table Format yaml config used by `fluvio tableformat create`
+This is the schema for the Table Format yaml config used by `fluvio table-format create`
 
 You only need to give your Table Format a name, and an input format (currently only JSON is supported)
 
-### Table Format Config schema
+### TableFormat Config schema
+
+This is a definition of the TableFormat config schema. Below are the descriptions of each field of the config file.
+
+Check out the [examples](#examples) section below to see a few different config files and their resulting table views.
+
 ```yaml
 type: object
 required: ["name"]
@@ -61,7 +67,7 @@ columns:
 ##### name
 Required
 
-This is the name of your Table Format. You'll see this name when you run `fluvio tableformat list`, and you'll use this name with `fluvio consume topic-name --tableformat <name>`
+This is the name of your Table Format. You'll see this name when you run `fluvio table-format list`, and you'll use this name with `fluvio consume topic-name --table-format <name>`
 
 ##### inputFormat
 Required
@@ -92,20 +98,18 @@ For the following examples, we'll start off with our topic data arriving in this
 {"key1":"a","key2":"1","key3":"Alice","id":123}
 {"key1":"b","key2":"2","key3":"Bob","id":456}
 {"key1":"c","key2":"3","key3":"Carol","id":789}
-{"key1":"x","key2":"10","key3":"Alice","id":123}
-{"key1":"y","key2":"20","key3":"Bob","id":456}
-{"key1":"c","key2":"30","key3":"Carol","id":789}
+[{"key1":"x","key2":"10","key3":"Alice","id":123},{"key1":"y","key2":"20","key3":"Bob","id":456},{"key1":"c","key2":"30","key3":"Carol","id":789}]
 ```
 
 ##### Example 0
 
-**No tableformat**
+**No table-format**
 
-Using the [`full_table`] output without using a tableformat print each key into a column in alphabetical order from left to right.
+Using the [`full_table`] output without using a table-format print each key into a column in alphabetical order from left to right.
 
-%copy%
+%copy first-line%
 ```shell
-fluvio consume event-data -B --output full_table
+$ fluvio consume event-data -B --output full_table
 ```
 
 Output:
@@ -133,6 +137,7 @@ Config:
 
 %copy%
 ```yaml
+# exampleformat1.yaml
 name: "exampleformat1"
 inputFormat: "JSON"
 columns:
@@ -140,11 +145,18 @@ columns:
   - keyPath: "key2"
 ```
 
-Command:
+Create the `table-format`:
 
-%copy%
+%copy first-line%
 ```shell
-fluvio consume event-data -B --output full_table --tableformat exampleformat1
+$ fluvio table-format create --config exampleformat1.yaml
+```
+
+Display your table:
+
+%copy first-line%
+```shell
+$ fluvio consume event-data -B --output full_table --table-format exampleformat1
 ```
 
 Output:
@@ -171,6 +183,7 @@ Config:
 
 %copy%
 ```yaml
+# exampleformat2.yaml
 name: "exampleformat2"
 inputFormat: "JSON"
 columns:
@@ -180,11 +193,18 @@ columns:
   - keyPath: "key2"
 ```
 
-Command:
+Create the `table-format`:
 
-%copy%
+%copy first-line%
 ```shell
-fluvio consume event-data -B --output full_table --tableformat exampleformat2
+$ fluvio table-format create --config exampleformat2.yaml
+```
+
+Display your table:
+
+%copy first-line%
+```shell
+$ fluvio consume event-data -B --output full_table --table-format exampleformat2
 ```
 
 Output:
@@ -211,6 +231,7 @@ Config:
 
 %copy%
 ```yaml
+# exampleformat3.yaml
 name: "exampleformat3"
 inputFormat: "JSON"
 columns:
@@ -224,11 +245,18 @@ columns:
     headerLabel: "Letter"
 ```
 
-Command:
+Create the `table-format`:
 
-%copy%
+%copy first-line%
 ```shell
-fluvio consume event-data -B --output full_table --tableformat exampleformat3
+$ fluvio table-format create --config exampleformat3.yaml
+```
+
+Display your table:
+
+%copy first-line%
+```shell
+$ fluvio consume event-data -B --output full_table --table-format exampleformat3
 ```
 
 Output:
@@ -255,6 +283,7 @@ Config:
 
 %copy%
 ```yaml
+# exampleformat4.yaml
 name: "exampleformat4"
 inputFormat: "JSON"
 columns:
@@ -269,9 +298,16 @@ columns:
 
 Command:
 
-%copy%
+%copy first-line%
 ```shell
-fluvio consume event-data -B --output full_table --tableformat exampleformat4
+$ fluvio table-format create --config exampleformat4.yaml
+```
+
+Display your table:
+
+%copy first-line%
+```shell
+$ fluvio consume event-data -B --output full_table --table-format exampleformat4
 ```
 
 Output:
