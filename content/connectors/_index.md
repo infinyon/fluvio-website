@@ -58,7 +58,7 @@ from a JSON API.
 %copy%
 ```yaml
 # connect.yml
-version: v1
+api_version: v1
 name: cat-facts
 type: http
 topic: cat-facts
@@ -335,7 +335,7 @@ For this example, we would add `map` to the `parameters` section, like so:
 %copy%
 ```yaml
 # connect.yml
-version: v1
+api_version: v1
 name: cat-facts
 type: http
 topic: cat-facts
