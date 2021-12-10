@@ -34,7 +34,7 @@ typically called `connect.yml`. The config file might look like the following:
 %copy%
 ```yaml
 # connect.yml
-version: v1
+api_version: v1
 name: my-mqtt
 type: mqtt
 topic: mqtt-topic

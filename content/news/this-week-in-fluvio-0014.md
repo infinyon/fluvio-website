@@ -21,7 +21,7 @@ Let's look at an example. We're going to look at a SmartConnector from the persp
 
 ```yaml
 # config.yaml
-version: v1
+api_version: v1
 name: my-test-mqtt
 type: mqtt
 topic: public-mqtt
