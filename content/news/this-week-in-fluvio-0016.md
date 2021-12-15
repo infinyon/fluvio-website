@@ -39,7 +39,6 @@ Here's a short clip of the spinner in action with streaming data.
 
 <script id="asciicast-pxtVvacxOTE3XWCQFzTCW3DLy" src="https://asciinema.org/a/pxtVvacxOTE3XWCQFzTCW3DLy.js" async></script>
 
-#### CLI updates
 ##### Change to multi-word subcommands
 
 Given that these are still long commands, we've added aliases too
