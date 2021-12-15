@@ -12,7 +12,11 @@ programmable streaming platform written in Rust.
 ### Fluvio v0.9.14
 
 #### Connector logs
+<<<<<<< HEAD
 Logs from connectors are now accessible from the CLI
+=======
+Logs from [connectors](/connectors) are now accessible from the CLI
+>>>>>>> master
 
 %copy first-line%
 ```shell
@@ -49,7 +53,11 @@ Given that these are still long commands, we've added aliases too
 |---------------------|----------------|-----------|
 | smartmodule         | smart-module   | sm        |
 | tableformat         | table-format   | tf        |
+<<<<<<< HEAD
 | derivedstream       | derived-stream | df        |
+=======
+| derivedstream       | derived-stream | ds        |
+>>>>>>> master
 
 ##### CLI shell autocompletions
 This actually isn't new, but it was hidden. Thanks to [bohlmannc](https://github.com/bohlmannc) for helping us resolve this!
