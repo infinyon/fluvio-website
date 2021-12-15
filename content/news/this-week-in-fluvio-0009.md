@@ -83,7 +83,7 @@ We create a new connector, with configurable details stored in a this example co
 %copy%
 
 ```yaml
-version: v1
+api_version: v1
 name: my-test-connector
 type: test-connector
 topic: my-test-connector

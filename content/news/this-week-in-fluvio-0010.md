@@ -27,7 +27,7 @@ We have a new connector for the MQTT protocol available.
 
 ```yaml
 # config.yaml
-version: v1
+api_version: v1
 name: my-test-mqtt
 type: mqtt
 topic: public-mqtt

@@ -30,7 +30,7 @@ An example connector config file might look like this:
 %copy%
 ```yaml
 # connect.yml
-version: v1
+api_version: v1
 name: cat-facts
 type: http
 topic: cat-facts

@@ -80,13 +80,29 @@ Below is an example of how to use a SmartModule filter with the Rust
 programmatic consumer.
 
 ```rust
+use std::io::Read;
+use flate2::bufread::GzEncoder;
+use flate2::Compression;
 use fluvio::{Fluvio, Offset, PartitionConsumer};
+use fluvio::consumer::{
+    SmartModuleInvocation,
+    SmartModuleInvocationWasm,
+    SmartModuleKind,
+    ConsumerConfig
+};
 use futures::StreamExt;
 
-// create consumer config
-let buffer = std::fs::read("/my_projects/example_filter/target/wasm32-unknown-unknown/release/example_filter.wasm").expect("wasm file is missing");
+let raw_buffer = std::fs::read("/my_projects/example_filter/target/wasm32-unknown-unknown/release/example_filter.wasm").expect("wasm file is missing");
+let mut encoder = GzEncoder::new(raw_buffer.as_slice(), Compression::default());
+let mut buffer = Vec::with_capacity(raw_buffer.len());
+encoder.read_to_end(&mut buffer);
+
 let mut builder = ConsumerConfig::builder();
-builder.wasm_filter(buffer);
+builder.smartmodule(Some(SmartModuleInvocation {
+    wasm: SmartModuleInvocationWasm::AdHoc(buffer),
+    kind: SmartModuleKind::Filter,
+    params: Default::default()
+}));
 let filter_config = builder.build().expect("Failed to create config");
 
 // create partition consumer

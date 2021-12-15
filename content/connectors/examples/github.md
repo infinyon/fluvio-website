@@ -39,7 +39,7 @@ the file:
 %copy%
 ```yaml
 # connect.yml
-version: v1
+api_version: v1
 name: github-repo
 type: http
 topic: github-repo
@@ -321,7 +321,7 @@ Then, we can edit the `connect.yml` file and tell it to use our SmartModule as a
 %copy%
 {{< highlight yaml "hl_lines=12" >}}
 # connect.yml
-version: v1
+api_version: v1
 name: github-repo
 type: http
 topic: github-repo
