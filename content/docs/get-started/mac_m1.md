@@ -1,6 +1,6 @@
 ---
 title: MacOS/M1 Installation
-menu: MacOS on M1
+menu: MacOS (M1)
 weight: 10
 ---
 
