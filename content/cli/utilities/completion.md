@@ -1,6 +1,6 @@
 ---
 title: Generate Command Completion
-menu: Completion
+menu: Command Completion
 weight: 10
 toc: false
 ---

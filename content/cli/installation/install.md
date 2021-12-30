@@ -1,6 +1,6 @@
 ---
 title: Install
-weight: 70
+weight: 10
 toc: false
 ---
 
