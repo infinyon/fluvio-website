@@ -1,6 +1,6 @@
 ---
 title: COMMANDS
-weight: 10
+weight: 20
 _build:
   render: never
 ---

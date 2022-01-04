@@ -1,6 +1,6 @@
 ---
 title: Profile
-weight: 60
+weight: 30
 ---
 
 Fluvio provides support for multiple profiles out of the box, meaning that you can

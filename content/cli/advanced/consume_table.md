@@ -1,5 +1,6 @@
 ---
-title: Consume output table formatting
+title: Consumer output table formatting
+menu: Consumer Table Format
 weight: 10
 ---
 
