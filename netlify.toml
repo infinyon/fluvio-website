@@ -68,4 +68,46 @@
   from = "/blog/"
   to = "https://www.infinyon.com/blog/"
   status = 301
-  force = true 
+  force = true
+
+[[redirects]]
+from = "/docs/smartstreams/quick-start/"
+to = "/docs/smartmodules/quick-start/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/smartstreams/filter/"
+to = "/docs/smartmodules/filter/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/smartstreams/map/"
+to = "/docs/smartmodules/map/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/smartstreams/array-map/"
+to = "/docs/smartmodules/array-map/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/smartstreams/aggregate/"
+to = "/docs/smartmodules/aggregate/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/smartstreams/api/"
+to = "/docs/smartmodules/api/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/smartstreams/quick-start/"
+to = "/docs/smartmodules/overview/"
+status = 301
+force = true

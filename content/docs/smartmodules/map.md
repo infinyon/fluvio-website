@@ -4,21 +4,23 @@ weight: 30
 toc: false
 ---
 
-SmartStream Maps are used to transform or edit each Record in a stream.
-We say that these SmartStreams "map" each input record into a new output
-record by applying a function to the input data. This type of SmartStream
+SmartModule Maps are used to transform or edit each Record in a stream.
+We say that these SmartModules "map" each input record into a new output
+record by applying a function to the input data. This type of SmartModule
 may be used for many use-cases, such as:
 
 - Narrowing large records into a smaller subset of important fields
 - Scrubbing sensitive fields of data to be invisible to downstream consumers
 - Computing rich, derived fields from simple raw data
 
-Let's create a brand-new SmartStream Map to see what a minimal working
+Let's create a brand-new SmartModule Map to see what a minimal working
 example looks like.
 
-### Create a new Project
+<img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="200">
 
-Let's use `cargo-generate` to set up a blank SmartStream Map project. If you
+## Create a new Project
+
+Let's use `cargo-generate` to set up a blank SmartModule Map project. If you
 don't have it yet, run the following command to install it:
 
 %copy first-line%
@@ -30,10 +32,10 @@ Then, run the following command and be sure to select the `map` option.
 
 %copy first-line%
 ```bash
-$ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
+$ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 🤷   Project Name : map-example
 🔧   Creating project called `map-example`...
-🤷   Which type of SmartStream would you like? [filter, map] [default: filter]: map
+🤷   Which type of SmartModule would you like? [filter, map] [default: filter]: map
 [1/5]   Done: .cargo/config.toml
 [2/5]   Done: .gitignore
 [3/5]   Done: Cargo.toml
@@ -45,11 +47,16 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 We should see a new folder has been created for our project, `map-example`. We
 can go inside and take a look at the sample Map generated for us by the template:
 
+%copy first-line%
+```bash
+cd map-example && cat ./src/lib.rs
+```
+
 %copy%
 ```rust
-use fluvio_smartstream::{smartstream, Result, Record, RecordData};
+use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
 
-#[smartstream(map)]
+#[smartmodule(map)]
 pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
     let key = record.key.clone();
 
@@ -63,7 +70,7 @@ pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
 
 Let's break down what's happening here:
 
-- Firstly, `#[smartstream(map)]` marks the entry point for this SmartStream Map.
+- Firstly, `#[smartmodule(map)]` marks the entry point for this SmartModule Map.
   There may only be one of these in the project, and it is called once for each
   record in the data stream.
 - The annotated function `fn map` may be named anything, but it must take a
@@ -73,15 +80,15 @@ Let's break down what's happening here:
   The Key is the `Option<RecordData>` and the Value is the `RecordData` in the
   return type. `RecordData` is a helper type that may be constructed from any
   type that has `impl Into<Vec<u8>>` such as `String`, by using `.into()`.
-- At any point in the SmartStream, errors may be returned using `?` or via
+- At any point in the SmartModule, errors may be returned using `?` or via
   `Err(e.into())`. This works for any error type that has `impl std::error::Error`.
 
-This template SmartStream will parse each record as an `i32` integer, then
+This template SmartModule will parse each record as an `i32` integer, then
 multiply that value by 2. To test it out, make sure you are connected to an
 active Fluvio Cluster (see the getting started sections in the top left), then
 follow the instructions in the next section:
 
-### How to run a SmartStream Map with a consumer
+## How to run a SmartModule Map with a consumer
 
 Create a new Topic:
 
@@ -91,7 +98,7 @@ $ fluvio topic create map-double
 topic "map-double" created
 ```
 
-Build the SmartStream WASM module. In your project folder, run:
+Build the SmartModule WASM module. In your project folder, run:
 
 %copy first-line%
 ```bash
@@ -140,8 +147,34 @@ Consuming records from the beginning of topic 'map-double'
 10
 ```
 
+## Register the SmartModule with Fluvio
+
+After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
+
+%copy first-line%
+```bash
+$ fluvio smart-module create map-double-sm --wasm-file target/wasm32-unknown-unknown/release/map_example.wasm
+```
+
+Use the `fluvio smart-module list` command to see all available SmartModules:
+
+%copy first-line%
+```bash
+$ fluvio smart-module list
+ NAME          STATUS             SIZE
+map-double-sm  SmartModuleStatus  111280 
+```
+
+Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume map-double -B --map=map-double-sm
+```
+
+
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/docs/smartstreams/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/docs/smartmodules/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/docs/smartmodules/aggregate" >}})

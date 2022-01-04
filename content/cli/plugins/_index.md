@@ -1,4 +1,4 @@
 ---
 title: PLUGINS
-weight: 20
+weight: 40
 ---

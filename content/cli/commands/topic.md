@@ -34,6 +34,12 @@ OPTIONS:
 
     -f, --replica-assignment <file.json>    Replica assignment file
 
+    --retention-time <time>
+            Retention time (round to seconds) Ex: '1h', '2d 10s', '7 days' (default)
+
+    --segment-size <bytes>              
+        Segment size in bytes
+
 ARGS:
     <name>    The name of the Topic to create
 ```
@@ -45,6 +51,12 @@ Example usage:
 $ fluvio topic create greeting
 topic "greeting" created
 ```
+
+### Retention
+
+If  you want to set a retention time for the topic, you can use the `--retention-time` flag.
+The records are fluvio are organized in terms fo segments.  Each segment is a fixed size which can be configured with the `--segment-size` flag.
+Any segments which are older than the retention time will be deleted.
 
 ---
 

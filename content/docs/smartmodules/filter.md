@@ -4,28 +4,19 @@ weight: 20
 toc: false
 ---
 
-The simplest type of SmartStream is a filter, which can examine each record in
-a stream and decide whether to accept or reject it. All records that are accepted
-by a filter will be delivered down the pipeline to the consumer, but records that
-are rejected will be discarded from the stream. Note that this does not mean that
-records are deleted from the partition they are persisted in, it simply means that
-those records are not delivered to the consumer.
+The simplest type of SmartModule is a filter, which can examine each record in a stream and decide whether to accept or reject it. All accepted records are delivered down the pipeline, and rejected records are discarded. SmartModule applied in consumers or sink connectors filter records after they are stored in a topic, and will not impact persistence - it simply means that records filtered out are not delivered to the consumer. However, SmartModule filters applied to source connectors discard packets before they are stored in the topic and should be used with care. 
 
-### Getting Practical: Filter Records by JSON fields
+<img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="200">
 
-Since we already had a quick introduction to Filters in the [SmartStream quick start]
-guide, let's try something a little fancier. In this example, we're going to filter
-records based on the contents of their JSON fields. Since SmartStreams are written
-using arbitrary Rust code, we can also pull in other crates as dependencies. We're
-going to use `serde` and `serde_json` to help us work with our JSON data.
-If you want to jump ahead and see the finished code, [check out our JSON filter example].
+## Getting Practical: Filter Records by JSON fields
 
-[SmartStream quick start]: {{< ref "/docs/smartstreams/quick-start" >}}
-[check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartstream/examples/filter_json
+In this example, we're going to filter records based on the contents of their JSON fields. Since SmartModules are written using arbitrary Rust code, we can also pull in other crates as dependencies. If you want to jump ahead and see the finished code, [check out our JSON filter example].
 
-#### Create a new Project
+[check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
-Let's use `cargo-generate` again to set up our new SmartStream project. We'll want
+### Create a new Project
+
+Let's use `cargo-generate` again to set up our new SmartModule project. We'll want
 to give the project a name and choose the "filter" option.
 
 %copy first-line%
@@ -35,46 +26,22 @@ $ cargo install cargo-generate # In case you didn't install it before
 
 %copy first-line%
 ```bash
-$ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
+$ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 🤷   Project Name : json-filter
 🔧   Creating project called `json-filter`...
-✔ 🤷   Which type of SmartStream would you like? · filter
+✔ 🤷   Which type of SmartModule would you like? · filter
 [1/5]   Done: .cargo/config.toml
 [2/5]   Done: .gitignore
 [3/5]   Done: Cargo.toml
 [4/5]   Done: README.md
 [5/5]   Done: src/lib.rs
-✨   Done! New project created json-filter```
-
-In the new project, let's add the `serde` and `serde_json` dependencies:
-
-```toml
-# Cargo.toml
-[package]
-name = "json-filter"
-version = "0.1.0"
-authors = ["Your name"]
-edition = "2018"
-
-[lib]
-crate-type = ['cdylib']
-
-[dependencies]
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-fluvio-smartstream = { version = "0.2.0" }
-
-[workspace]
-members = ["."]
-
-[profile.release]
-lto = true
+✨   Done! New project created json-filter
 ```
 
-Alright, now that we have our setup all ready, let's talk about what we're going to
+Alright, now that we have a setup, let's talk about what we're going to
 be filtering.
 
-#### The Data: Server Logs
+### The Data: Server Logs
 
 Suppose we have a web server that accepts HTTP requests from clients, does some
 stuff, and then returns a response. It is common for such servers to have an
@@ -85,7 +52,7 @@ the event that occurred.
 
 For the purposes of this exercise, let's say we have a file that we've stored our logs
 into, so that we can manually produce them to a Fluvio topic and consume them back
-using our JSON SmartStream. Create a file called `server.log` with the following
+using our JSON SmartModule. Create a file called `server.log` with the following
 contents:
 
 ```bash
@@ -113,15 +80,20 @@ logs. In a real-world scenario, this could dramatically help reduce the traffic
 and noise in the logs if we were to consume these records into an analytics
 platform for inspection.
 
-#### The Code: Writing our Filter
+### The Code: Writing our Filter
 
 Let's look at the starter code that we got when we created our Filter template.
 
+%copy first-line%
+```bash
+cd json-filter && cat ./src/lib.rs
+```
+
 ```rust
 // src/lib.rs
-use fluvio_smartstream::{smartstream, Record, Result};
+use fluvio_smartmodule::{smartmodule, Record, Result};
 
-#[smartstream(filter)]
+#[smartmodule(filter)]
 pub fn filter(record: &Record) -> Result<bool> {
     let string = std::str::from_utf8(record.value.as_ref())?;
     Ok(string.contains('a'))
@@ -170,9 +142,9 @@ Now, let's write the logic for our filter. We'll start by parsing our raw data i
 instances of `StructuredLog`.
 
 ```rust
-use fluvio_smartstream::{smartstream, Record, Result};
+use fluvio_smartmodule::{smartmodule, Record, Result};
 
-#[smartstream(filter)]
+#[smartmodule(filter)]
 fn filter(record: &Record) -> Result<bool> {
     let log: StructuredLog = serde_json::from_slice(record.value.as_ref())?;
     
@@ -180,15 +152,16 @@ fn filter(record: &Record) -> Result<bool> {
 }
 ```
 
-For `fluvio_smartstream::Result`, we can bubble-up Results using the `?` operator.
+For `fluvio_smartmodule::Result`, we can bubble-up Results using the `?` operator.
 
 Now for the final step, we want our filter to accept all records except for "debug" logs.
 In other words, we actually want to keep the records that are "more important" or
 "greater than" `LogLevel::Debug`. Since we have implemented `Ord` for `LogLevel`, this
 will be a piece of cake! Let's look at all the code for the finished filter.
 
+%copy%
 ```rust
-use fluvio_smartstream::{smartstream, Record, Result};
+use fluvio_smartmodule::{smartmodule, Record, Result};
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, serde::Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -206,7 +179,7 @@ struct StructuredLog {
     _message: String,
 }
 
-#[smartstream(filter)]
+#[smartmodule(filter)]
 fn filter(record: &Record) -> Result<bool> {
     let log: StructuredLog = serde_json::from_slice(record.value.as_ref())?;
 
@@ -236,7 +209,7 @@ $ ls -la target/wasm32-unknown-unknown/release
 .rwxr-xr-x  135Ki user 19 May 13:29   json_filter.wasm
 ```
 
-#### Test Drive: Producing and Consuming the Data
+### Test Drive: Producing and Consuming the Data
 
 Now that we've written our filter, let's play with some data and make sure we
 get the results we expect! We'll start by creating a new topic where we'll
@@ -248,7 +221,7 @@ $ fluvio topic create server-logs
 topic "server-logs" created
 ```
 
-In order to see the impact of our SmartStream filter, let's open two terminals,
+In order to see the impact of our SmartModule filter, let's open two terminals,
 with each running a consumer that watches our `server-logs` topic. One of these
 will be a plain consumer that consumes _all_ the records, and the other one will
 use our filter, so we should only see non-debug logs.
@@ -260,7 +233,7 @@ To run the plain consumer, use the following command:
 $ fluvio consume server-logs -B
 ```
 
-In the other terminal, run a consumer with the SmartStream filter using this command:
+In the other terminal, run a consumer with the SmartModule filter using this command:
 
 %copy first-line%
 ```bash
@@ -294,7 +267,7 @@ $ fluvio consume server-logs -B
 {"level":"error","message":"Unable to connect to database"}
 ```
 
-But in the consumer with our SmartStream, we'll no longer see any of the records
+But in the consumer with our SmartModule, we'll no longer see any of the records
 whose log level was debug!
 
 %copy first-line%
@@ -307,8 +280,34 @@ $ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/
 {"level":"error","message":"Unable to connect to database"}
 ```
 
+## Register the SmartModule with Fluvio
+
+After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
+
+%copy first-line%
+```bash
+$ fluvio smart-module create log-filter --wasm-file target/wasm32-unknown-unknown/release/json_filter.wasm
+```
+
+Use `fluvio smart-module list` command to see the available SmartModules:
+
+%copy first-line%
+```bash
+$ fluvio smart-module list
+ NAME        STATUS             SIZE
+ log-filter  SmartModuleStatus  161916
+```
+
+Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume server-logs -B --filter=log-filter
+```
+
+
 ### Read next
 
 - [Explore filter use-cases](https://www.infinyon.com/blog/2021/06/smartstream-filters/)
-- [Writing a map to transform records]({{< ref "/docs/smartstreams/map" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/docs/smartstreams/aggregate" >}})
+- [Writing a map to transform records]({{< ref "/docs/smartmodules/map" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/docs/smartmodules/aggregate" >}})

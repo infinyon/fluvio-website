@@ -15,8 +15,8 @@ At the base level, Fluvio has a distributed, immutable, persistent log store
 written from the ground up in Rust. At the next level up is an asynchronous
 and horizontally scalable data streaming layer for low-latency delivery of
 stream events. Built on this streaming layer is Fluvio's programmable
-SmartStreams, which allow users to perform inline computations on streaming
-data without leaving the cluster. SmartStreams are powered by WebAssembly
+SmartModules, which allow users to perform inline computations on streaming
+data without leaving the cluster. SmartModules are powered by WebAssembly
 modules containing custom user-written code, which are granted access to
 filter, transform, and otherwise modify the data flowing from the stream.
 Fluvio provides client libraries for several popular programming languages

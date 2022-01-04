@@ -25,43 +25,48 @@ USAGE:
     fluvio consume [FLAGS] [OPTIONS] <topic>
 
 FLAGS:
-    -A, --all-partitions        Consume records from all partitions
-    -d, --disable-continuous    disable continuous processing of messages
-    -k, --key-value             Print records in "[key] value" format, with "[null]" for no key
-        --suppress-unknown      Suppress items items that have an unknown output type
-    -h, --help                  Prints help information
+    -A, --all-partitions         Consume records from all partitions
+    -d, --disable-continuous     disable continuous processing of messages
+        --disable-progressbar    disable the progress bar and wait spinner
+    -k, --key-value              Print records in "[key] value" format, with "[null]" for no key
+        --suppress-unknown       Suppress items items that have an unknown output type
+    -h, --help                   Prints help information
 
 OPTIONS:
-    -p, --partition <integer>               Partition id [default: 0]
+    -p, --partition <integer>                Partition id [default: 0]
     -F, --format <format>
             Provide a template string to print records with a custom format. See --help for details
+
+        --table-format <table-format>
+            Consume records using the formatting rules defined by TableFormat name
 
     -B <integer>
             Consume records starting X from the beginning of the log (default: 0)
 
-    -o, --offset <integer>                  The offset of the first record to begin consuming from
+    -o, --offset <integer>                   The offset of the first record to begin consuming from
     -T, --tail <integer>
             Consume records starting X from the end of the log (default: 10)
 
-    -b, --maxbytes <integer>                Maximum number of bytes to be retrieved
+        --end-offset <integer>               Consume records until end offset
+    -b, --maxbytes <integer>                 Maximum number of bytes to be retrieved
     -O, --output <type>
             Output [possible values: dynamic, text, binary, json, raw, table, full_table]
 
-        --smartstream <smartstream>         Path to a SmartStream filter wasm file
-        --filter <filter>                   Path to a SmartStream filter wasm file
-        --map <map>                         Path to a SmartStream map wasm file
-        --filter-map <filter-map>           Path to a SmartStream filter_map wasm file
-        --array-map <array-map>             Path to a SmartStream array_map wasm file
-        --join <join>                       Path to a SmartStream join wasm filee
-        --aggregate <aggregate>             Path to a WASM file for aggregation
-        --join-topic <join-topic>
+        --derived-stream <derived-stream>    Name of DerivedStream
+        --filter <filter>                    Path to a SmartModule filter wasm file
+        --map <map>                          Path to a SmartModule map wasm file
+        --filter-map <filter-map>            Path to a SmartModule filter_map wasm file
+        --array-map <array-map>              Path to a SmartModule array_map wasm file
+        --join <join>                        Path to a SmartModule join wasm filee
+        --aggregate <aggregate>              Path to a WASM file for aggregation
+        --join-topic <join-topic>            
         --initial <initial>
             (Optional) Path to a file to use as an initial accumulator value with --aggregate
 
     -e, --extra-params <extra-params>...
             (Optional) Extra input parameters passed to the smartmodule module. They should be
-            passed using key=value format Eg. fluvio consume topic-name --filter filter.wasm -E
-            foo=bar -E key=value -E one=1
+            passed using key=value format Eg. fluvio consume topic-name --filter filter.wasm -e
+            foo=bar -e key=value -e one=1
 
 ARGS:
     <topic>    Topic name
@@ -110,22 +115,22 @@ $ fluvio consume my-topic -B -d --key-value
 
 Records that were not given a key are printed with `[null]`.
 
-## Example 3: Consume using a SmartStream
+## Example 3: Consume using a SmartModule
 
-Fluvio SmartStreams are WASM modules that can edit the contents of a stream
+Fluvio SmartModules are WASM modules that can edit the contents of a stream
 inline, before the records of that stream are delivered to a consumer. In order
-to use SmartStreams, you must supply the WASM module to the `fluvio consume`
-command using the SmartStream options: `--filter`, `--map`, `--aggregate`.
+to use SmartModules, you must supply the WASM module to the `fluvio consume`
+command using the SmartModule options: `--filter`, `--map`, `--aggregate`.
 
-The simplest SmartStream is the [filter example from the quick-start], which
+The simplest SmartModule is the [filter example], which
 filters records from the stream based on whether they contain the letter `a`
 or not. You can find the full example code [in our GitHub repo] and compile
 it to test out yourself.
 
-[filter example from the quick-start]: {{< ref "/docs/smartstreams/quick-start" >}}
-[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartstream/examples/filter_json
+[filter example]: {{< ref "/docs/smartmodules/filter" >}}
+[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
-Once you have compiled your SmartStream Filter and have a `.wasm` file for it, you
+Once you have compiled your SmartModule Filter and have a `.wasm` file for it, you
 can apply it to the consumer as follows:
 
 %copy first-line%

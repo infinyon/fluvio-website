@@ -1,6 +1,6 @@
 ---
-title: COMMANDS
-weight: 20
+title: SMARTMODULES
+weight: 50
 _build:
   render: never
 ---

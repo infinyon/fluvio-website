@@ -1,5 +1,5 @@
 ---
-title: Http Connector
+title: HTTP Connector
 menu: HTTP
 ---
 
@@ -22,37 +22,9 @@ The HTTP connector supports the following configuration options:
 
 Additionally, the HTTP connector supports the following "Smart Connector" options:
 
-- `smartstream-filter`: The name of a SmartModule to use as a filter
-- `smartstream-map`: The name of a SmartModule to use as a map
-- `smartstream-arraymap`: The name of a SmartModule to use as an arraymap
-
-### As a Local Connector
-
-When using the HTTP Connector locally, it is deployed as a Docker container. You may
-launch it with the following command:
-
-%copy%
-```bash
-docker run \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http \
-    -- \
-    --endpoint="https://catfact.ninja/fact" \
-    --fluvio-topic="cat-facts" \
-    --interval=10
-```
-
-As you can see, when passing config options to a Local Connector, we use command-line
-arguments. In the above `docker` command, all arguments before the `--` are used by
-Docker itself, and all arguments after the `--` are passed to the connector.
-
-Importantly, when using a Local Connector, you _must_ include the first two arguments,
-otherwise it will not work. They are used for the following:
-
-- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`
-  - Puts your `~/.fluvio/config` into the container, so the connector can reach your Fluvio cluster
-- `-t infinyon/fluvio-connect-http`
-  - Tells docker which image to use for the connector
+- `filter`: The name of a SmartModule to use as a filter
+- `map`: The name of a SmartModule to use as a map
+- `arraymap`: The name of a SmartModule to use as an arraymap
 
 ### As a Managed Connector
 
@@ -63,7 +35,7 @@ something like this:
 %copy%
 ```yaml
 # connect.yml
-version: v1
+api_version: v1
 name: cat-facts
 type: http
 topic: cat-facts
@@ -80,6 +52,34 @@ To run as a Managed Connector, use the `fluvio connector` command:
 ```bash
 $ fluvio connector create --config=./connect.yml
 ```
+
+### As a Local Connector
+
+When using the HTTP Connector locally, it is deployed as a Docker container. You may
+launch it with the following command:
+
+%copy%
+```bash
+docker run -d --name="my-http" \
+    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
+    -t infinyon/fluvio-connect-http \
+    -- \
+    --endpoint="https://catfact.ninja/fact" \
+    --fluvio-topic="cat-facts" \
+    --interval=10
+```
+
+As you can see, when passing config options to a Local Connector, we use command-line
+arguments. In the above `docker` command, all arguments before the `--` are used by
+Docker itself, and all arguments after the `--` are passed to the connector.
+
+Importantly, when using a Local Connector, you _must_ include the first two arguments,
+otherwise it will not work. They are used for the following:
+
+- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`
+    - Puts your `~/.fluvio/config` into the container, so the connector can reach your Fluvio cluster
+- `-t infinyon/fluvio-connect-http`
+    - Tells docker which image to use for the connector
 
 ## Data Events
 

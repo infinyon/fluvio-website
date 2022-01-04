@@ -1,6 +1,6 @@
 ---
-title: SmartStreams
-weight: 50
+title: EXAMPLES
+weight: 20
 _build:
   render: never
 ---

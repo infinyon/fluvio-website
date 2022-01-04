@@ -1,5 +1,5 @@
 ---
-title: Mqtt Connector
+title: MQTT Connector
 menu: MQTT
 ---
 
@@ -18,39 +18,13 @@ The MQTT connector supports the following configuration options:
 
 As well as the following Smart Connector options:
 
-- `smartstream-filter`: The name of a SmartModule to use as a filter
-- `smartstream-map`: The name of a SmartModule to use as a map
-- `smartstream-arraymap`: The name of a SmartModule to use as an arraymap
+- `filter`: The name of a SmartModule to use as a filter
+- `map`: The name of a SmartModule to use as a map
+- `arraymap`: The name of a SmartModule to use as an arraymap
 
 The MQTT connector may be deployed as a Local Connector or a Managed Connector.
 See the following sections to learn how to declare the configuration options
 for each mode.
-
-### As a Local Connector
-
-To deploy MQTT as a Local Connector, we execute it via the published Docker image
-for the connector. We'll first need to make sure we have a Fluvio topic ready.
-
-%copy first-line%
-```bash
-$ fluvio topic create mqtt
-```
-
-Then, we can execute the connector with the following command:
-
-%copy%
-```bash
-docker run \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-mqtt \
-    -- \
-    --fluvio-topic=mqtt \
-    --mqtt-url=mqtt.hsl.fi \
-    --mqtt-topic=/hfp/v2/journey/#
-```
-
-Here, everything before the `--` is a docker argument, and everything after
-`--` is an argument to the connector.
 
 ### As a Managed Connector
 
@@ -60,7 +34,7 @@ typically called `connect.yml`. The config file might look like the following:
 %copy%
 ```yaml
 # connect.yml
-version: v1
+api_version: v1
 name: my-mqtt
 type: mqtt
 topic: mqtt-topic
@@ -78,6 +52,32 @@ like this:
 ```bash
 $ fluvio connector create --config=./connect.yml
 ```
+
+### As a Local Connector
+
+To deploy MQTT as a Local Connector, we execute it via the published Docker image
+for the connector. We'll first need to make sure we have a Fluvio topic ready.
+
+%copy first-line%
+```bash
+$ fluvio topic create mqtt
+```
+
+Then, we can execute the connector with the following command:
+
+%copy%
+```bash
+docker run -d --name="my-mqtt" \
+    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
+    -t infinyon/fluvio-connect-mqtt \
+    -- \
+    --fluvio-topic=mqtt \
+    --mqtt-url=mqtt.hsl.fi \
+    --mqtt-topic=/hfp/v2/journey/#
+```
+
+Here, everything before the `--` is a docker argument, and everything after
+`--` is an argument to the connector.
 
 ## Data Events
 

@@ -1,6 +1,6 @@
 ---
-title: MacOS Installation
-menu: MacOS
+title: MacOS/Intel Installation
+menu: MacOS (Intel)
 weight: 10
 ---
 
