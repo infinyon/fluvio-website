@@ -75,7 +75,7 @@ New Fluvio installations support the ability to switch back and forth between th
 
 CLI channels will be especially useful for the current users who have reached out to us on Discord. Now we can more easily work together to quickly validate fixes to issues without the need to build the Fluvio code locally.
 
-To try out channels now, you will need to re-install Fluvio with the [instructions on the download page]({{<ref "/download">}}). This will download the channel-enabled frontend, and 
+To try out channels now, you will need to re-install Fluvio with the [instructions on the download page]({{<ref "/download">}}). This will download the channel-enabled frontend and the most recent `stable` release.
 
 %copy%
 ```bash
