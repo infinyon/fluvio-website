@@ -56,9 +56,18 @@ topic "greeting" created
 
 If  you want to set a retention time for the topic, you can use the `--retention-time` flag.
 The records are fluvio are organized in terms fo segments.  Each segment is a fixed size which can be configured with the `--segment-size` flag.
+
 Any segments which are older than the retention time will be deleted.
 
----
+Example usage:
+
+%copy first-line%
+```bash
+$ fluvio topic create my-topic --retention-time '30 days' --segment-size 500000  
+topic "my-topic" created
+```
+
+In this example, the last segment of 500k will be deleted after 30 days.
 
 ## `fluvio topic list`
 
