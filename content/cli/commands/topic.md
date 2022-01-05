@@ -54,7 +54,7 @@ topic "greeting" created
 
 ### Retention
 
-If  you want to set a retention time for the topic, you can use the `--retention-time` flag. In fluvio, the records are organized in segments. Each segment has a fixed size, and it can be configured with the `--segment-size` flag. Any segments older than the retention time will be deleted.
+If  you want to set a retention time for the topic, you can use the `--retention-time` parameter. In fluvio, the records are organized in segments. Each segment has a fixed size, and it can be configured with the `--segment-size` param. Any segments older than the retention time will be deleted.
 
 Example usage:
 
