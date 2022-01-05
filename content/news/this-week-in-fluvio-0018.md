@@ -61,9 +61,47 @@ For more detail on the available config options, see the [Rust docs](https://doc
 
 #### Support for 3rd-Party Connectors
 
-We've improved the experience for running connectors. Previously, the only options for connectors were to run our officially built connectors, or to locally build your own. In this new release, users can set up their connector pipelines and allow for others to use unofficial Fluvio connectors in their own Fluvio clusters.
+We've improved the experience for running connectors. Previously, the connectors available to run were to run our officially built connectors, or you could [build your own]( {{<ref "/connectors/developer-guide/overview">}}). In this new release, users who have built their own connectors and published the image(s) to Docker Hub can share those **pre-built** connector images with others.
 
-More information about this feature will be documented soon! Until then, please reach out on our Discord for assistance getting started.
+We'll walk through an example scenario [from our tests](https://github.com/infinyon/fluvio/blob/master/tests/cli/smoke_tests/connector-3rd-party.bats).
+
+First You need to start your cluster with the **HTTP URL prefix** where the YAML config for your the 3rd party image source is located.
+
+We'll be using the URL "[https://raw.githubusercontent.com/infinyon/fluvio-connectors](https://raw.githubusercontent.com/infinyon/fluvio-connectors)" (Github's HTTP source to raw content of our repo, [fluvio-connectors](https://github.com/infinyon/fluvio-connectors)).
+
+%copy%
+```bash
+$ fluvio cluster start --connector-prefix "https://raw.githubusercontent.com/infinyon/fluvio-connectors"
+```
+
+For our connectors to use an arbitrary image location, we specify a URL to a YAML config in the `type` field of in our connector config `3rd-party-test-connector-config.yaml`. Notice that the start of the URL matches the `--connector-prefix` we defined when we started the cluster.
+
+%copy%
+```yaml
+# 3rd-party-test-connector-config.yaml
+version: v1
+name: my-third-party-connector
+type: "https://raw.githubusercontent.com/infinyon/fluvio-connectors/main/rust-connectors/utils/test-connector/connector.yaml"
+topic: my-test-connector-topic
+create_topic: true
+direction: source
+```
+
+The YAML config at the URL only has one field `image`. The value is the docker hub image name.
+
+%copy%
+```yaml
+image: infinyon/fluvio-connect-test-connector
+```
+
+So when we create a connector with the `3rd-party-test-connector-config.yaml` config, it will use the image `infinyon/fluvio-connect-test-connector`
+
+%copy%
+```bash
+$ fluvio connector create --config 3rd-party-test-connector-config.yaml
+```
+
+This feature experimental, but ready for feedback. More information about this feature will be documented soon! Until then, please reach out on our Discord for assistance getting started.
 
 #### CLI Release Channel
 
@@ -83,6 +121,72 @@ To try out channels now, you will need to re-install Fluvio with the [instructio
 $ fluvio version switch latest
 # Switch to the `stable` channel
 $ fluvio version switch stable 
+```
+
+#### Consume to end offset (CLI)
+
+In the CLI, to start consuming records for a specific starting offset, you would use the `--offset` flag. Now you can also provide a final offset to close the Consumer stream when reached with the `--end-offset` flag.
+
+Example:
+
+In one terminal, we create a topic `twif` and open a consumer stream with an ending offset of `5`. In another terminal, we use `fluvio produce` to send over `10` records, which we will show first.
+
+Producer:
+```bash
+$ fluvio produce twif
+> 0   
+Ok!
+> 1
+Ok!
+> 2
+Ok!
+> 3
+Ok!
+> 4
+Ok!
+> 5
+Ok!
+> 6
+Ok!
+> 7
+Ok!
+> 8
+Ok!
+> 9
+Ok!
+> 10
+Ok!
+```
+
+Record indexing is 0-based, so we expect the stream to close when we receive the 6th record.
+
+```bash
+$ fluvio consume --end-offset 5 twif
+Consuming records starting from the end until record 5 in topic 'twif'
+0
+1
+2
+3
+4
+5
+⠋
+Consumer stream has closed
+```
+
+Also using a starting offset and ending offset together, you can now capture continuous blocks of records.
+
+Here we use the existing `twif` topic, and consume a small subset of the records we produced earlier between offset 3-7, inclusive.
+
+```bash
+$ fluvio consume --offset 3 --end-offset 7 twif
+Consuming records from offset 3 in topic 'twif'
+3
+4
+5
+6
+7
+⠁
+Consumer stream has closed
 ```
 
 ---
