@@ -27,7 +27,7 @@ Docs about retention policy coming soon.
 
 ### Auto-batching producer
 
-For processing live data, using a batching workflow for sending records improves the efficiency of your data transfers by increasing throughput and reducing latency for each producer send.
+For processing live data, using a batching workflow for sending records improves the efficiency of your data transfers by increasing throughput and reducing latency for each producer send. (As opposed to sending records individually)
 
 Producer batch support already exists in the CLI using `fluvio produce`, but you can realistically only use this CLI feature if you produce with the `--file` option. 
 
