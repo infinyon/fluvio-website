@@ -7,16 +7,23 @@
         <div class="mt-5 pt-xs-7 j-text">
           <div class="title">{{ .jumbotron.title | markdownify }}</div>
           <div class="desc oss">{{ .jumbotron.description | markdownify}}</div>
-          <div class="row pt-lg-5 pl-2 d-flex">
+          <div class="row pt-lg-4 pl-2 d-flex">
             <div class="px-2">
               <div class="button inline pr-2 pb-3">
-                  <a href="{{ .jumbotron.download_link }}" class="btn btn-purple" id="button-cloud">Download</a>
+                <a href="{{ .jumbotron.download_link }}" class="btn btn-purple" id="button-cloud">Download</a>
               </div>
               <div class="button inline">
-                  <a href="{{ .jumbotron.contribute_link }}" class="btn btn-navy" id="button-download" target="_blank">Contribute</a>
+                <a href="{{ .jumbotron.contribute_link }}" class="btn btn-navy" id="button-download" target="_blank">Contribute</a>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="hiring">
+              <a href="https://infinyon.com/careers" target="_blank">
+                We are hiring! Appy here.
+              </a> 
+            </div>  
+          </div>          
         </div>
       </div>
     </div>
