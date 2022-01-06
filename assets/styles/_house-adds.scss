@@ -1,0 +1,15 @@
+.house-adds {
+  text-align: center;
+  background: $main-dialog;
+  height: 35px;
+  
+  .content {
+    color: $light;
+    padding-top: 5px;
+
+    a {
+      color: $light;
+      text-decoration: underline;
+    }  
+  }
+}

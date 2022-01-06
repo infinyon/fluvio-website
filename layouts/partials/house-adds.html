@@ -1,0 +1,11 @@
+{{- $globalPage := site.GetPage "/_globals.html" -}}
+{{- $houseAdd := $globalPage.Params.houseAdd -}}
+{{- if $houseAdd -}}
+<div id="house-adds">
+  <div class="container-fluid house-adds">
+    <div class="content">
+      {{ $houseAdd | markdownify }}
+    </div>
+  </div>
+</div>
+{{- end }}

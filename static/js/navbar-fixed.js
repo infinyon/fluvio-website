@@ -7,23 +7,23 @@ $(document).ready(function () {
 });
 
 handleScroll = () => {
-    var topMax = 61;
-    var gradualTo = 135;
+    var swap = 96;
+    var gradualTo = 167;
     var scrollTop = $(this).scrollTop();
 
-    if (scrollTop > topMax) {
+    if (scrollTop > swap) {
         $('#navbar').addClass('fixed-top');
-        $('#content').css('marginTop', topMax + 'px');
+        $('#content').css('marginTop', '62px');
         $('.toc-area').css('top', '72px');
-    } else if (scrollTop <= topMax) {
+    } else if (scrollTop <= swap) {
         $('#navbar').removeClass('fixed-top');
         $('#content').css('marginTop', '0');
         $('.toc-area').css('marginTop', '10px');
         $('.side-toc .offset').css('marginTop', '0');
     }
 
-    if (scrollTop >= topMax && scrollTop < gradualTo) {
-        $('.side-toc .offset').css('marginTop', (scrollTop - topMax).toString() + 'px');
+    if (scrollTop >= swap && scrollTop < gradualTo) {
+        $('.side-toc .offset').css('marginTop', (scrollTop - swap).toString() + 'px');
     } else if (scrollTop >= gradualTo) {
         $('.side-toc .offset').css('marginTop', '72px');
     }
