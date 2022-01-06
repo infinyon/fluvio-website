@@ -10,7 +10,9 @@ programmable streaming platform written in Rust.
 
 [Fluvio open source]: https://github.com/infinyon/fluvio
 
-## Release of Fluvio `0.9.3`
+{{< banner >}}
+
+## New Release - Fluvio v0.9.3
 
 ### SmartStreams Aggregates
 

@@ -10,7 +10,9 @@ programmable streaming platform written in Rust.
 
 [Fluvio open source]: https://github.com/infinyon/fluvio
 
-## Release of Fluvio `0.9.0`
+{{< banner >}}
+
+## New Release - Fluvio v0.9.0
 
 Today we're releasing a new "major version" of Fluvio, which includes crate-level
 and protocol-level breaking changes from the `0.8.x` line of releases. Note that

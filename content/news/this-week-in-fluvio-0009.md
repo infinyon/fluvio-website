@@ -7,11 +7,11 @@ Welcome to This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
-## New Release
+{{< banner >}}
 
-### Fluvio v0.9.10
+## New Release - Fluvio v0.9.10
 
-#### SmartStreams error handling improvements
+### SmartStreams error handling improvements
 
 SmartStreams users will now see error messages if there any problems loading their WASM modules.
 
@@ -39,7 +39,7 @@ Error:
 
 ```
 
-#### Producer error handling improvements
+### Producer error handling improvements
 
 Producer connection errors that occur within the Fluvio cluster will also report a more user friendly error message.
 
@@ -65,6 +65,7 @@ Timed out while waiting on socket response
 ```
 
 ## New feature
+
 ### Managed Connectors
 
 We have always wanted to provide our users with the capability to work with their data (wherever it is) in a meaningful way without the need to write and maintain custom code. Our new feature (which we've been calling `Managed Connectors` or `connectors` for short) provides the structure to accomplish this feat.
@@ -75,7 +76,8 @@ The idea is that a developer can create a custom connector that will do the foll
 
 These connectors can then be re-used by anyone without the need to maintain custom code.
 
-#### First look 
+### First look 
+
 The rest of this post is first look at a connector in action.
 
 We create a new connector, with configurable details stored in a this example config file `config.yaml`. 

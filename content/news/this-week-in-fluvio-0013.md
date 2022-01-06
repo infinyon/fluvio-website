@@ -7,6 +7,8 @@ Welcome to This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
+{{< banner >}}
+
 ## No new release
 
 We didn't have a new release this week.

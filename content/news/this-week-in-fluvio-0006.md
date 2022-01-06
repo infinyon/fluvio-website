@@ -8,7 +8,9 @@ Welcome to the sixth edition of This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
-## Release of Fluvio `0.9.6` and `0.9.7`
+{{< banner >}}
+
+## New Releases - Fluvio v0.9.6 and v9.9.7
 
 ### Custom record formatting for Consumer
 

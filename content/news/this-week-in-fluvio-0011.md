@@ -7,16 +7,16 @@ Welcome to This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
-## New Release
+{{< banner >}}
 
-### Fluvio v0.9.11
+## New Release - Fluvio v0.9.11
 
-#### Producer Auto-reconnect
+### Producer Auto-reconnect
 Prior to this release, if a client encountered any network hiccups that caused a disconnection during a Producer session, the Producer would experience an error.
 
 Now the Producer will try to reconnect automatically.
 
-#### SmartStreams w/ inputs
+### SmartStreams w/ inputs
 Using SmartStreams is a little more flexible now.
 
 Previously, a SmartStream filter only supported logic with inputs that were hardcoded and compiled before using. This meant that we needed a separate filter per pattern we wanted to match on.
@@ -85,7 +85,7 @@ strawberry
 raspberry
 ```
 
-#### SmartStreams ArrayMap 
+### SmartStreams ArrayMap 
 This is a new type of SmartStream API that will make it easier to chunk up large datasets into smaller pieces. 
 
 Here's an example that shows what an `array_map` SmartStream looks like:
