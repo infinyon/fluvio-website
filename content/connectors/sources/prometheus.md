@@ -1,5 +1,4 @@
 ---
-title: Prometheus (preview)
-menu: Prometheus
+title: Prometheus
 hidden: true
 ---
