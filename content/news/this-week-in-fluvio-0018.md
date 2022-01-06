@@ -57,52 +57,6 @@ let producer: TopicProducer = fluvio_client
 
 For more detail on the available config options, see the [Rust docs](https://docs.rs/fluvio/0.12.0/fluvio/struct.TopicProducerConfigBuilder.html)
 
-### Support for 3rd-Party Connectors
-
-We've improved the experience for running connectors. Previously, the only connectors to run were our officially built connectors, or you could [build and run your own local connectors]( {{<ref "/connectors/developer-guide/overview">}}).
-
-In this new release, users who have built their own connectors and published the image(s) to Docker Hub can share those **pre-built** connector images with others.
-
-We'll walk through an example scenario [from our tests](https://github.com/infinyon/fluvio/blob/master/tests/cli/smoke_tests/connector-3rd-party.bats).
-
-First You need to start your cluster with the **HTTP URL prefix** where the YAML config for your the 3rd party image source is located.
-
-We'll be using the URL "[https://raw.githubusercontent.com/infinyon/fluvio-connectors](https://raw.githubusercontent.com/infinyon/fluvio-connectors)" (Github's HTTP source to raw content of our repo, [fluvio-connectors](https://github.com/infinyon/fluvio-connectors)).
-
-%copy%
-```bash
-$ fluvio cluster start --connector-prefix "https://raw.githubusercontent.com/infinyon/fluvio-connectors"
-```
-
-For our connectors to use an arbitrary image location, we specify a URL to a YAML config in the `type` field of in our connector config `3rd-party-test-connector-config.yaml`. Notice that the start of the URL matches the `--connector-prefix` we defined when we started the cluster.
-
-%copy%
-```yaml
-# 3rd-party-test-connector-config.yaml
-version: v1
-name: my-third-party-connector
-type: "https://raw.githubusercontent.com/infinyon/fluvio-connectors/main/rust-connectors/utils/test-connector/connector.yaml"
-topic: my-test-connector-topic
-create_topic: true
-direction: source
-```
-
-The following is the contents of the `connector.yaml` config which we reference at the URL in `3rd-party-test-connector-config.yaml`. It only has one field `image`. The value is the name of the [Docker Hub image](https://hub.docker.com/r/infinyon/fluvio-connect-test-connector). 
-
-```yaml
-# connector.yaml
-image: infinyon/fluvio-connect-test-connector
-```
-
-So when we create a connector with the `3rd-party-test-connector-config.yaml` config, it will use the image `infinyon/fluvio-connect-test-connector`
-
-%copy%
-```bash
-$ fluvio connector create --config 3rd-party-test-connector-config.yaml
-```
-
-This feature experimental, but ready for feedback. More information about this feature will be documented soon! Until then, please reach out on our Discord for assistance getting started.
-
 ### CLI Release Channel
 
 The ability to test pre-release changes in CLI is now easier to do with CLI channels.
