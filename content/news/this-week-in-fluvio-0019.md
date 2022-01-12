@@ -14,11 +14,11 @@ programmable streaming platform written in Rust.
 This is a small change to the default auto-batching producer configuration linger and batch size.
 
 * Linger time was set to `250ms` but now it is `100ms`.
-* Batch size was `16000` but now is `16384` (That's 2<sup>128</sup>)
+* Batch size was `16000` but now is `16384` (That's 2<sup>14</sup>)
 
 If you want to configure your producer to something other than the defaults, you can set a different value for your producer when you create the config.
 
-Example of auto-batching producer w/ linger of `1 second` and a batch size of `100` records.
+Example of auto-batching producer w/ linger of `1 second` and a batch size of `100` bytes.
 
 %copy%
 ```rust
