@@ -9,7 +9,7 @@ programmable streaming platform written in Rust.
 
 ## New Release - Fluvio v0.9.17
 
-### Tune defaults to produce auto-batching
+### Tune configuration defaults to Producer auto-batching
 
 This is a small change to the default auto-batching producer configuration linger and batch size.
 
