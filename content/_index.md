@@ -1,5 +1,5 @@
 ---
-title: "Fluvio - The programmable data streaming platform"
+title: "The programmable data streaming platform"
 description: "An open-source data streaming platform with in-line computation capabilities. Use SmartModules to upload your custom logic and modify data as it moves over the network."
 author:
     name: "Fluvio Team"
