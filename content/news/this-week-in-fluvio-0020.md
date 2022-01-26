@@ -35,7 +35,8 @@ Our simple data connector is written in Python.
 ```python
 #!/usr/bin/env python3
 #
-# get-fact-facts.py
+# get-cat-facts.py
+# An example Python-based Fluvio connector
 
 from fluvio import Fluvio
 import requests
@@ -97,6 +98,7 @@ This is **required** for all connectors. The Fluvio cluster shares information w
 
 %copy%
 ```Dockerfile
+# Dockerfile
 FROM python
 
 # This is required to connect to a cluster
