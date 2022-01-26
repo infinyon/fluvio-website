@@ -13,7 +13,6 @@ programmable streaming platform written in Rust.
 
 This week we wanted to walkthrough the process of developing a connector. 
 
-
 We'll approach connector development in this order:
 1. [Build and run your data connector locally]({{<ref "#build-and-run-your-data-connector-locally">}})
 2. [Package Your Data Connector into Docker Image]({{<ref "#package-your-data-connector-into-docker-image">}})
@@ -28,7 +27,7 @@ You'll need the following tools installed
 - one of our supported Kubernetes distros  (We'll cover k3d + minikube)
 - docker-compose (optional)
 
-## Build and Run your Data Connector Locally
+## Build and Run Your Data Connector Locally
 
 Our simple data connector is written in Python. 
 
@@ -197,11 +196,11 @@ For minikube:
 $ minikube image load infinyon/fluvio-connect-cat-facts
 ```
 
-## Create Connector in Fluvio
+## Create a new Connector in Fluvio
 
 Last step for testing our connector is verifying that it runs in the Fluvio cluster. We will create the config file and run the CLI command
 
-### Create the Connector config
+### The Connector config
 
 ```yaml
 # connector-config.yml
