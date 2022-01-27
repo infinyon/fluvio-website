@@ -14,10 +14,10 @@ programmable streaming platform written in Rust.
 This week we wanted to walkthrough the process of developing a connector. 
 
 We'll approach connector development in this order:
-1. [Build and run your data connector locally]({{<ref "#build-and-run-your-data-connector-locally">}})
-2. [Package Your Data Connector into Docker Image]({{<ref "#package-your-data-connector-into-docker-image">}})
-3. [Load Your Connector Image into Kubernetes Cluster]({{<ref "#load-your-connector-image-into-kubernetes-cluster">}})
-4. [Create Connector in Fluvio]({{<ref "#create-connector-in-fluvio">}})
+1. [Build and run your client locally]({{<ref "#build-and-run-your-client-locally">}})
+2. [Package your Client into Docker Image]({{<ref "#package-your-client-into-docker-image">}})
+3. [Load your Connector image into Kubernetes Cluster]({{<ref "#load-your-connector-image-into-kubernetes-cluster">}})
+4. [Create a new Connector in Fluvio]({{<ref "#create-a-new-connector-in-fluvio">}})
 
 ### Tools needed to follow this guide
 
@@ -27,9 +27,11 @@ You'll need the following tools installed
 - one of our supported Kubernetes distros  (We'll cover k3d + minikube)
 - docker-compose (optional)
 
-## Build and Run Your Data Connector Locally
+## Build and Run Your Client Locally
 
-Our simple data connector is written in Python. 
+Let's start with building a simple client.
+
+This client is written in Python, but we have client libraries for Rust, Javascript, Java and Go.
 
 %copy%
 ```python
@@ -86,9 +88,9 @@ Consuming records from the beginning of topic 'cat-facts-random'
 {"fact":"Cats step with both left legs, then both right legs when they walk or run.","length":74}
 ```
 
-## Package Your Data Connector into Docker Image
+## Package Your Client into Docker Image
 
-Now that we have verfied that our data connector works locally, we need to package it for Kubernetes. We do that by defining our data connector runtime environment with a Dockerfile.
+Now that we have verfied that our client works locally, we need to package it for Kubernetes. We do that by defining our data connector runtime environment with a Dockerfile.
 
 We use the `python` base image to keep things simple. 
 
@@ -182,7 +184,7 @@ Creating pyconnect_pyconnector_run ... done
 
 ## Load Your Connector Image into Kubernetes Cluster
 
-By default, connectors will attempt to pull images. However, during development images won't be available publicly. So we preload the connector images.
+By default, connectors will attempt to pull images from the internet. However, development images need to be testable locally before making them available publicly. So we pre-load the connector images.
 
 For k3d:
 
