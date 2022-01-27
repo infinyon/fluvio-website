@@ -22,10 +22,10 @@ We'll approach connector development in this order:
 ### Tools needed to follow this guide
 
 You'll need the following tools installed
-- Python 3.x
-- Docker
-- one of our supported Kubernetes distros  (We'll cover k3d + minikube)
-- docker-compose (optional)
+- [Python 3.x](https://www.python.org/downloads/)
+- [Docker](https://www.docker.com/get-started)
+- one of our supported Kubernetes distros  (We'll cover [k3d](https://k3d.io/) + [minikube](https://minikube.sigs.k8s.io/docs/start/))
+- [docker-compose](https://github.com/docker/compose) (optional)
 
 ## Build and Run Your Client Locally
 
@@ -67,6 +67,13 @@ if __name__ == '__main__':
 
         # Be polite and control the rate we send requests to external API
         time.sleep(WAIT_SECONDS)
+```
+
+Before we run this code, we need to create the fluvio topic that our client produces data to
+
+%copy first-line%
+```shell
+$ fluvio topic create cat-facts-random
 ```
 
 Running the Python code prints out a new cat fact every 10 seconds
