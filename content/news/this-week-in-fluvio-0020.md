@@ -193,6 +193,8 @@ Last step for testing our connector is verifying that it runs in the Fluvio clus
 
 ### The Connector config
 
+%copy%
+
 ```yaml
 # connector-config.yml
 version: dev
