@@ -23,9 +23,11 @@ We'll approach connector development in this order:
 
 You'll need the following tools installed
 - [Python 3.x](https://www.python.org/downloads/)
+- [pip](https://pip.pypa.io/en/stable/installation/)
+- [python-fluvio](https://github.com/infinyon/fluvio-client-python)
+- [python-requests](https://docs.python-requests.org/en/latest/)
 - [Docker](https://www.docker.com/get-started)
 - one of our supported Kubernetes distros  (We'll cover [k3d](https://k3d.io/) + [minikube](https://minikube.sigs.k8s.io/docs/start/))
-- [docker-compose](https://github.com/docker/compose) (optional)
 
 ## Build and Run Your Client Locally
 
@@ -110,6 +112,10 @@ This is **required** for all connectors. The Fluvio cluster shares information w
 # Dockerfile
 FROM python
 
+# Copy our python script into the connector image
+COPY get-cat-facts.py /usr/local/sbin/get-cat-facts.py
+RUN chmod +x /usr/local/sbin/get-cat-facts.py
+
 # This is required to connect to a cluster
 # Connectors run as the `fluvio` user
 ENV USER=fluvio
@@ -119,17 +125,14 @@ USER $USER
 # Install dependencies
 RUN pip install fluvio requests
 
-# Copy our python script into the connector image
-COPY get-cat-facts.py /usr/local/sbin/get-cat-facts.py
-
 # Start script on start
-ENTRYPOINT /usr/local/sbin/get-cat-facts.py
+ENTRYPOINT get-cat-facts.py
 ```
 
-### Option 1: Build and Test the Container
+### Build and Test the Container
 You can build the Docker image with this command.
 
-%copy%
+%copy first-line%
 ```shell
 $ docker build -t infinyon/fluvio-connect-cat-facts .
 ```
@@ -143,8 +146,7 @@ Start a the container with this `docker` command
 
 %copy first-line%
 ```shell
-$ docker run -it --rm -v $HOME/.fluvio:/home/fluvio/.fluvio --network host infinyon/fluvio-connect
--cat-facts
+$ docker run -it --rm -v $HOME/.fluvio:/home/fluvio/.fluvio --network host infinyon/fluvio-connect-cat-facts
 ```
 
 You can check out `docker run --help` if you want a description of what these do, so I'll describe why you want to use them instead.
@@ -156,51 +158,29 @@ You can check out `docker run --help` if you want a description of what these do
 | `-v $HOME/.fluvio:/home/fluvio/.fluvio` | Share existing Fluvio config - This is *effectively* what `fluvio connector create` does    |
 | `--network host`                        | The default docker network can't reach the host's Fluvio cluster                            |
 
-### Option 2: Build and Test the Container
-
-Alternatively, you can use `docker-compose` to save on typing while you iterate. Below I create a service `pyconnector` with the same details we used for `docker build` and `docker run`.
-
-%copy%
-```yaml
-# docker-compose.yml
-services:
-  pyconnector:
-    build: .
-    image: infinyon/fluvio-connect-cat-facts
-    network_mode: host
-    volumes:
-      - $HOME/.fluvio:/home/fluvio/.fluvio
-```
-
-Build the docker image with this command
-
-%copy first-line%
-```shell
-$ docker-compose build 
-```
-
-Run the `docker-compose` service `pyconnector`.
-
-%copy first-line%
-```shell
-$ docker-compose run --rm pyconnector
-Creating pyconnect_pyconnector_run ... done
-{"fact":"Cats can jump up to 7 times their tail length.","length":46}
-{"fact":"A cat can jump 5 times as high as it is tall.","length":45}
-```
-
 ## Load Your Connector Image into Kubernetes Cluster
 
 By default, connectors will attempt to pull images from the internet. However, development images need to be testable locally before making them available publicly. So we pre-load the connector images.
 
-For k3d:
+### For k3d
+
+Get the name of your k3d cluster
 
 %copy first-line%
 ```shell
-$ k3d image import infinyon/fluvio-connect-cat-facts
+$ k3d cluster list
+NAME     SERVERS   AGENTS   LOADBALANCER
+fluvio   1/1       0/0      true
 ```
 
-For minikube:
+And import the image (use the name of your cluster)
+
+%copy first-line%
+```shell
+$ k3d image import infinyon/fluvio-connect-cat-facts --cluster fluvio
+```
+
+### For minikube
 
 %copy first-line%
 ```shell
