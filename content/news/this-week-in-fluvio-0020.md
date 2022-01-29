@@ -182,7 +182,9 @@ You can check out `docker run --help` if you want a description of what these do
 
 By default, connectors will attempt to pull images from the internet. However, development images need to be testable locally before making them available publicly. So we pre-load the connector images.
 
-### For k3d
+{{< tabs tabTotal="2" tabID="1" tabName1="k3d" tabName2="minikube">}}
+
+{{< tab tabNum="1">}}
 
 Let's create a cluster called `fluvio`
 
@@ -207,12 +209,23 @@ docker.io/infinyon/fluvio-connect-cat-facts:latest
 ...
 ```
 
-### For minikube
+{{</ tab >}}
+
+{{< tab tabNum="2">}}
+
+Load image to `minikube`:
 
 %copy first-line%
 ```shell
 $ minikube image load infinyon/fluvio-connect-cat-facts
 ```
+
+{{</ tab >}}
+
+{{</ tabs >}}
+
+
+
 
 ## Create a new Connector in Fluvio
 
