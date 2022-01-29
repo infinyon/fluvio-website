@@ -27,7 +27,7 @@ You'll need the following tools installed
 - [python-fluvio](https://github.com/infinyon/fluvio-client-python)
 - [python-requests](https://docs.python-requests.org/en/latest/)
 - [Docker](https://www.docker.com/get-started)
-- one of our supported Kubernetes distros  (We'll cover [k3d](https://k3d.io/) + [minikube](https://minikube.sigs.k8s.io/docs/start/))
+- Kubernetes distros ([k3d](https://k3d.io/) or [minikube](https://minikube.sigs.k8s.io/docs/start/))
 
 ## Build and Run Your Client Locally
 
