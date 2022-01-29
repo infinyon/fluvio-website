@@ -196,7 +196,7 @@ Last step for testing our connector is verifying that it runs in the Fluvio clus
 %copy%
 
 ```yaml
-# example-connector.yml
+# example-connector.yaml
 version: dev
 name: cat-facts-connector
 type: cat-facts
