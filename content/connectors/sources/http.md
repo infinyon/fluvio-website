@@ -100,7 +100,7 @@ $ fluvio consume cat-facts -B -d
 ```
 
 Alternatively data events can be set to carry the full HTTP response when 
-`output_format` is set to `full`:
+the `output_format` configuration option is set to `full`:
 
 ```bash
 $ fluvio consume cat-facts -B -d
