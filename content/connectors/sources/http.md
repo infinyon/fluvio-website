@@ -99,8 +99,8 @@ $ fluvio consume cat-facts -B -d
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
-Alternatively the events can be set to carry the full HTTP response when 
-`output_format` set to `full`:
+Alternatively data events can be set to carry the full HTTP response when 
+`output_format` is set to `full`:
 
 ```bash
 $ fluvio consume cat-facts -B -d
