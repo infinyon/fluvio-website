@@ -84,7 +84,7 @@ otherwise it will not work. They are used for the following:
 
 ## Data Events
 
-The data events by default from the HTTP connector are the contents of the HTTP body
+By default data events from the HTTP connector are the contents of the HTTP body
 of each response. Therefore, the format will be different depending on what
 endpoint you specify and the type of content that endpoint returns.
 
