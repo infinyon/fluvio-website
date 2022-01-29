@@ -137,6 +137,16 @@ You can build the Docker image with this command.
 $ docker build -t infinyon/fluvio-connect-cat-facts .
 ```
 
+The image should have been created
+
+%copy first-line%
+```shell
+$ docker images
+REPOSITORY                          TAG            IMAGE ID       CREATED         SIZE
+infinyon/fluvio-connect-cat-facts   latest         08ced64017f0   5 seconds ago   936MB
+...
+```
+
 {{< caution >}}
 The image name `infinyon/fluvio-connect-cat-facts` will be significant when we create the connector in the Fluvio cluster with `fluvio connector create`.
 {{< /caution >}}
@@ -147,6 +157,9 @@ Start a the container with this `docker` command
 %copy first-line%
 ```shell
 $ docker run -it --rm -v $HOME/.fluvio:/home/fluvio/.fluvio --network host infinyon/fluvio-connect-cat-facts
+{"fact":"In the 1750s, Europeans introduced cats into the Americas to control pests.","length":75}
+...
+<CTRL>-C
 ```
 
 You can check out `docker run --help` if you want a description of what these do, so I'll describe why you want to use them instead.
@@ -180,6 +193,15 @@ And import the image (use the name of your cluster)
 $ k3d image import infinyon/fluvio-connect-cat-facts --cluster fluvio
 ```
 
+The image should have been created
+
+%copy first-line%
+```shell
+$ docker exec k3d-mycluster-server-0 sh -c "ctr image list -q"
+docker.io/infinyon/fluvio-connect-cat-facts:latest
+...
+```
+
 ### For minikube
 
 %copy first-line%
@@ -192,6 +214,8 @@ $ minikube image load infinyon/fluvio-connect-cat-facts
 Last step for testing our connector is verifying that it runs in the Fluvio cluster. We will create the config file and run the CLI command
 
 ### The Connector config
+
+Create a connector configuration file `example-connector.yaml`:
 
 %copy%
 
@@ -208,17 +232,17 @@ direction: source
 | Connector config option | Description                                                                                                                                                              |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `version`               | This value must be  `dev`  for local development.                                                                                                                        |
-| `name`                  | This value is the name you see in  `fluvio connector list`                                                                                                               |
-| `type`                  | The value of this name will be used for tagging image before loading into Kubernetes <br><br> Connector image names follow the pattern: `infinyon/fluvio-connect-{type}` |
-| `create_topic`          | Set this `true`/`false` based on whether you want a topic automatically created for your connector                                                                       |
-| `topic`                 | A topic will be created with this value When `create_topic` is `true`                                                                                                    |
-| `direction`             | This is some metadata about the direction of data flow. Currently the only option is `source`.    
+| `name`                  | A unique name for this connector. <br><br> It will be displayed in `fluvio connector list`                                                                                                               |
+| `type`                  | The value of this name will be used for tagging image before loading into Kubernetes. <br><br> Connector image names follow the pattern: `infinyon/fluvio-connect-{type}` |
+| `create_topic`          | Set this `true`/`false` based on whether you want a topic automatically created for your connector. (Ignored if topic already created)                                                                       |
+| `topic`                 | The name of the `topic` where the connector will publish the data records. .                                                                            |
+| `direction`             | The metadata that defines the direction of data flow (`source` or `sink`).<br><br> This is a `source` connector.
 
 Lastly, create the connector
 
 %copy first-line%
 ```shell
-$ fluvio connector create --config example-connector.yml
+$ fluvio connector create --config example-connector.yaml
 ```
 
 %copy first-line%
