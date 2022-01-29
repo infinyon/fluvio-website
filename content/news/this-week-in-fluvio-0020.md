@@ -177,13 +177,11 @@ By default, connectors will attempt to pull images from the internet. However, d
 
 ### For k3d
 
-Get the name of your k3d cluster
+Let's create a cluster called `fluvio`
 
 %copy first-line%
 ```shell
-$ k3d cluster list
-NAME     SERVERS   AGENTS   LOADBALANCER
-fluvio   1/1       0/0      true
+$ k3d cluster create fluvio
 ```
 
 And import the image (use the name of your cluster)
@@ -197,7 +195,7 @@ The image should have been created
 
 %copy first-line%
 ```shell
-$ docker exec k3d-mycluster-server-0 sh -c "ctr image list -q"
+$ docker exec k3d-fluvio-server-0 sh -c "ctr image list -q"
 docker.io/infinyon/fluvio-connect-cat-facts:latest
 ...
 ```
