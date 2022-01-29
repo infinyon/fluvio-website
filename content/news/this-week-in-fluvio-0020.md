@@ -78,6 +78,13 @@ Before we run this code, we need to create the fluvio topic that our client prod
 $ fluvio topic create cat-facts-random
 ```
 
+Install fluvio package:
+
+%copy first-line%
+```shell
+$ pip install fluvio requests
+```
+
 Running the Python code prints out a new cat fact every 10 seconds
 
 %copy first-line%
