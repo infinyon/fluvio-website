@@ -29,6 +29,9 @@ You'll need the following tools installed
 - [Docker](https://www.docker.com/get-started)
 - Kubernetes distros ([k3d](https://k3d.io/) or [minikube](https://minikube.sigs.k8s.io/docs/start/))
 
+#### Note
+At the time of this writing, Apple M1 (aarch64) is not supported due to lack of build support, and will be unable to follow this walkthrough. See https://github.com/pypa/cibuildwheel/issues/598
+
 ## Build and Run Your Client Locally
 
 Let's start with building a simple client.
