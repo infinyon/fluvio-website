@@ -19,6 +19,7 @@ The HTTP connector supports the following configuration options:
 - `method`: The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE` (default: `GET`)
 - `body`: The body to use in the HTTP request to the endpoint
 - `interval`: The period (in seconds) between sending requests to the endpoint (default: `300`)
+- `output_format`: HTTP Response output format - body | full (default: `body`)
 
 Additionally, the HTTP connector supports the following "Smart Connector" options:
 
@@ -83,7 +84,7 @@ otherwise it will not work. They are used for the following:
 
 ## Data Events
 
-The data events from the HTTP connector are the contents of the HTTP body
+By default data events from the HTTP connector are the contents of the HTTP body
 of each response. Therefore, the format will be different depending on what
 endpoint you specify and the type of content that endpoint returns.
 
@@ -96,4 +97,29 @@ $ fluvio consume cat-facts -B -d
 {"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
 {"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
+```
+
+Alternatively data events can be set to carry the full HTTP response when 
+the `output_format` configuration option is set to `full`:
+
+```bash
+$ fluvio consume cat-facts -B -d
+HTTP/1.1 200 OK
+server: nginx
+date: Fri, 28 Jan 2022 19:29:38 GMT
+content-type: application/json
+transfer-encoding: chunked
+connection: keep-alive
+vary: Accept-Encoding
+cache-control: no-cache, private
+x-ratelimit-limit: 100
+x-ratelimit-remaining: 78
+access-control-allow-origin: *
+set-cookie: XSRF-TOKEN=zz; expires=Fri, 28-Jan-2022 21:29:38 GMT; path=/; samesite=lax
+set-cookie: cat_facts_session=zz; expires=Fri, 28-Jan-2022 21:29:38 GMT; path=/; httponly; samesite=lax
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+
+{"fact":"In relation to their body size, cats have the largest eyes of any mammal.","length":73}
 ```
