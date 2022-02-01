@@ -19,6 +19,8 @@ We'll approach connector development in this order:
 3. [Load your Connector image into Kubernetes Cluster]({{<ref "#load-your-connector-image-into-kubernetes-cluster">}})
 4. [Create a new Connector in Fluvio]({{<ref "#create-a-new-connector-in-fluvio">}})
 
+The code and configuration for this are available in the [fluvio-connectors examples](https://github.com/infinyon/fluvio-connectors/tree/main/examples/python-client-connector).
+
 ### Tools needed to follow this guide
 
 You'll need the following tools installed
@@ -223,6 +225,13 @@ Load image to `minikube`:
 $ minikube image load infinyon/fluvio-connect-cat-facts
 ```
 
+You can verify the image has been loaded into minikube
+
+%copy first-line%
+```shell
+$ minikube image ls
+docker.io/infinyon/fluvio-connect-cat-facts:latest
+```
 {{</ tab >}}
 
 {{</ tabs >}}
