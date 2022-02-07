@@ -39,6 +39,14 @@ cluster.
 Once you've got a connection handler, you will want to create a producer for a
 given topic.
 
+The producer could be created with the following configurations: `batch_size`, `linger` and `partitioner`.
+
+These configurations control the behavior of the producer in the following way:
+
+* `batch_size`: Maximum amount of bytes accumulated by the records before sending the batch. Defaults to 16384 bytes.
+* `linger`: Time to wait before sending messages to the server. Defaults to 100 ms.
+* `partitioner`: custom class/struct that assigns the partition to each record that needs to be send. Defaults to Siphash Round Robin partitioner.
+
 ### Sending
 
 When sending into a stream, the general `send` will take a `key` and a `value`.
@@ -46,6 +54,8 @@ The `key` is optional. For clients which don't have `Option` as a feature, this
 is simply an empty array.
 
 Depending on the client, these can be `string` or an array of `bytes`.
+
+Depending on the producer configuration, a `send` call will not send immediately the record to the SPU. `flush` is used to immediately send all the queued records in the producer batches.
 
 ## Consumer
 
