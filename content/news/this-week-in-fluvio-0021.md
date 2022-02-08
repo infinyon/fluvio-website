@@ -31,6 +31,21 @@ infinyon/fluvio-connect-<your connector name>:<version>
 ### Connector config parameter behavior change
 Connector key parameters that include underscores in their name will covert the underscores into hyphens.
 
+For example, in this example config
+
+```yaml
+# example-connector-config.yml
+[...]
+parameters:
+  some_parameter: foo
+```
+
+The keys under `parameters` are used as CLI arguments to your connector config.
+
+Prior to this release, the argument would render as `--some_parameter=foo`. 
+
+Now the `some_parameter` key will will render as `--some-parameter=foo`
+
 ---
 
 Get in touch with us on [Github Discussions] or join [our Discord channel] and come say hello!
