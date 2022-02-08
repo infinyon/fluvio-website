@@ -50,10 +50,14 @@ To switch to the `latest` channel:
 $ fluvio version switch latest 
 ```
 
+The first time you switch to this channel, the binary will be downloaded.
+
 ### Version
 This is a specific version.
 
 To switch to a version channel, you need to create it first.
+
+At this step the binary will get downloaded.
 
 %copy first-line%
 ```shell
