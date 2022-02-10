@@ -1,10 +1,7 @@
 ---
-title: Postgres Connector
-menu: PostgreSQL
+title: Postgres
 section: Source
 toc: true
-code:
-    height: 9000
 ---
 
 The Postgres connector is a Source which reads events from a Postgres
@@ -12,13 +9,21 @@ database and produces them into a Fluvio Topic.
 
 ## Overview
 
-The Fluvio Postgres connector allows you to connect to a Postgres database
+The Fluvio Postgres Source connector allows you to connect to a Postgres database
 and perform Data Change Capture (CDC) on it. Whenever data is inserted,
 updated, or deleted in the connected database, this connector will capture
 an event that describes the change that took place, and emit a record
 describing the event into a Fluvio Topic. This can be incredibly
 useful for monitoring activity in your database, and for writing
 applications that react to changes in real-time.
+
+This connector uses [logical
+replication](https://www.postgresql.org/docs/14/logical-replication.html) which
+has some
+[restrictions](https://www.postgresql.org/docs/14/logical-replication-restrictions.html).
+The main of which is that existing tables and rows will not be copied over when
+the connector starts. The postgres documentation recomends using `pg_dump` on
+the source and then `psql` on the postgres sink.
 
 In this documentation, we'll walk through the process of preparing a
 Postgres database for CDC, launching the Fluvio Postgres connector, and
@@ -38,16 +43,16 @@ configuration file that looks like the following:
 %copy%
 ```yaml
 # connect.yml
-version: v1
-name: my-postgres
-type: postgres
+version: 0.1.0
+name: my-postgres-source
+type: postgres-source
 topic: postgres-topic
 create_topic: true
-direction: source
 parameters:
-  url: postgres://postgres:mysecretpassword@localhost:5432/postgres
   publication: fluvio
   slot: fluvio
+secrets:
+  FLUVIO_PG_DATABASE_URL: postgres://postgres:mysecretpassword@localhost:5432/postgres
 ```
 
 This configuration file is used together with the `fluvio connector create` command, like so:
@@ -65,7 +70,8 @@ configuration.
 Below are descriptions of the purpose of each parameter.
 
 - `url` (required): The login URL for your Postgres database. This should contain
-  your username, password, database hostname, and port.
+  your username, password, database hostname, and port. This key can also be specified
+ via the `FLUVIO_PG_DATABASE_URL` in the `secrets` sections like above.
   - Example: `postgres://user:password@hostname:port/database_name`
 - `publication` (required): The name of the PUBLICATION in the leader database that
   this connector should watch for CDC. A publication describes which
@@ -78,6 +84,9 @@ Below are descriptions of the purpose of each parameter.
 - `topic` (required): The name of the Fluvio Topic that the connector should
   produce CDC events to.
   - Example: `postgres-topic`
+- `skip_setup` (optional): If you'd like the connector to not to automatically create
+    the `slot` and a `publication` in your postgres database.
+  - Example: `true`, `false`
 
 ## Data Events
 
@@ -366,7 +375,11 @@ Briefly, here's what this command is doing:
 - Placing the `postgres.conf` file we just created into the Postgres container and telling Postgres to use it
 - Setting the Postgres superuser password to `mysecretpassword`
 
-### Connecting to Postgres using `psql`
+### Manually Setting Replication and Publication with `psql`
+
+In your `connector.yaml` args if you opt to `skip_setup`, the postgres source
+connector will assume you have created a logical replication slot and a
+publication. You can do this via `psql`.
 
 Now we should be able to connect to Postgres at `localhost:5432` using the `psql`
 command. At this point, we need to run some one-time setup commands using `psql`.
