@@ -16,7 +16,7 @@ To get a [fluvio connection] do:
 let fluvio = Fluvio::connect().await.expect("Failed to connect to fluvio");
 ```
 
-[fluvio connection]: https://docs.rs/fluvio/0.8.0/fluvio/struct.Fluvio.html#method.connect
+[fluvio connection]: https://docs.rs/fluvio/0.12.3/fluvio/struct.Fluvio.html#method.connect
 
 ## Produce
 
@@ -27,7 +27,19 @@ To [create a producer] do:
 let producer = fluvio.topic_producer("my-fluvio-topic").await.expect("Failed to create a producer");
 ```
 
-[create a producer]: https://docs.rs/fluvio/0.8.0/fluvio/struct.Fluvio.html#method.topic_producer
+Alternatively, we can [create a producer with custom configuration] with:
+
+%copy%
+```rust
+let config = TopicProducerConfigBuilder::default()
+    		.batch_size(500)
+    		.linger(std::time::Duration::from_millis(500)
+    		.build().expect("Failed to create topic producer config");
+let producer = fluvio.topic_producer_with_config("my-fluvio-topic", config).await.expect("Failed to create a producer");
+```
+
+[create a producer]: https://docs.rs/fluvio/0.12.3/fluvio/struct.Fluvio.html#method.topic_producer
+[create a producer with custom configuration]: https://docs.rs/fluvio/0.12.3/fluvio/struct.Fluvio.html#method.topic_producer_with_config
 
 ### Send
 
@@ -36,9 +48,10 @@ Once you've got a producer, [send to this topic] via:
 %copy%
 ```rust
 producer.send("my-key", "my-value").await.expect("Failed to send into a record");
+producer.flush().await.expect("Flush failed");
 ```
 
-[send to this topic]: https://docs.rs/fluvio/0.8.0/fluvio/struct.TopicProducer.html#method.send
+[send to this topic]: https://docs.rs/fluvio/0.12.3/fluvio/struct.TopicProducer.html#method.send
 
 ## Consume
 
@@ -49,7 +62,7 @@ To [create a consumer] do:
 let consumer = fluvio.partition_consumer("my-topic", 0).await.expect("failed to create consumer");
 ```
 
-[create a consumer]: https://docs.rs/fluvio/0.8.0/fluvio/struct.Fluvio.html#method.partition_consumer
+[create a consumer]: https://docs.rs/fluvio/0.12.3/fluvio/struct.Fluvio.html#method.partition_consumer
 
 ### Stream
 
@@ -60,7 +73,7 @@ To [create a stream] do:
 let mut stream = consumer.stream(Offset::beginning()).await.expect("Failed to create stream");
 ```
 
-[create a stream]: https://docs.rs/fluvio/0.8.0/fluvio/consumer/struct.PartitionConsumer.html#method.stream
+[create a stream]: https://docs.rs/fluvio/0.12.3/fluvio/consumer/struct.PartitionConsumer.html#method.stream
 
 To use the stream do:
 
@@ -119,6 +132,6 @@ while let Some(Ok(record)) = stream.next().await {
 
 Refer to the [fluvio docs.rs page] for full detail.
 
-[Admin Api]: https://docs.rs/fluvio/0.8.0/fluvio/struct.FluvioAdmin.html
+[Admin Api]: https://docs.rs/fluvio/0.12.3/fluvio/struct.FluvioAdmin.html
 [async rust]: https://rust-lang.github.io/async-book/
 [fluvio docs.rs page]: https://docs.rs/fluvio/
