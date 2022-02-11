@@ -375,58 +375,6 @@ Briefly, here's what this command is doing:
 - Placing the `postgres.conf` file we just created into the Postgres container and telling Postgres to use it
 - Setting the Postgres superuser password to `mysecretpassword`
 
-### Manually Setting Replication and Publication with `psql`
-
-In your `connector.yaml` args if you opt to `skip_setup`, the postgres source
-connector will assume you have created a logical replication slot and a
-publication. You can do this via `psql`.
-
-Now we should be able to connect to Postgres at `localhost:5432` using the `psql`
-command. At this point, we need to run some one-time setup commands using `psql`.
-Use the following command to open the `psql` prompt:
-
-%copy first-line%
-```bash
-$ psql -h localhost -U postgres
-Password for user postgres: mysecretpassword
-psql (14.0)
-Type "help" for help.
-
-postgres=#
-```
-
-> For the next two commands, be sure not to copy the `postgres=#` prompt itself, only the
-text that follows.
-
-There are two setup commands we need to run. The first one creates a "logical replication slot"
-which is what allows the Fluvio Postgres Connector to stream the change events from Postgres.
-The second command creates what's called a "publication", which is used as a way to choose
-_which_ of the tables in your database will have changes captured.
-
-To create the logical replication slot, run the following command:
-
-```bash
-postgres=# SELECT pg_create_logical_replication_slot('fluvio', 'pgoutput');
- pg_create_logical_replication_slot
-------------------------------------
- (fluvio,0/1715178)
-(1 row)
-```
-
-Next, we'll create a publication that captures all tables in the database.
-If you're interested in learning more about publications, you can
-[read the documentation on them here].
-
-```bash
-postgres=# CREATE PUBLICATION fluvio FOR ALL TABLES;
-CREATE PUBLICATION
-```
-
-Now that our Postgres database is configured properly, we can move on and
-launch our Fluvio Postgres connector! I recommend leaving the `psql` window open
-and continuing the next steps in a new terminal, we will be coming back to `psql`
-after the connector is running.
-
 ### Launching the Fluvio Postgres Connector
 
 Next, we'll set up another Docker container to run the Fluvio Postgres Connector.
@@ -892,6 +840,59 @@ Consuming records from the beginning of topic 'postgres'
 {"wal_start":24203656,"wal_end":24203656,"timestamp":689717372850406,"message":{"type":"commit","flags":0,"commit_lsn":24203608,"end_lsn":24203656,"timestamp":689717372848903}}
 ```
 
+### Manually Setting Replication and Publication with `psql`
+
+In your `connector.yaml` args if you opt to `skip_setup`, the postgres source
+connector will assume you have created a logical replication slot and a
+publication. You can do this via `psql`.
+
+Now we should be able to connect to Postgres at `localhost:5432` using the `psql`
+command. At this point, we need to run some one-time setup commands using `psql`.
+Use the following command to open the `psql` prompt:
+
+%copy first-line%
+```bash
+$ psql -h localhost -U postgres
+Password for user postgres: mysecretpassword
+psql (14.0)
+Type "help" for help.
+
+postgres=#
+```
+
+> For the next two commands, be sure not to copy the `postgres=#` prompt itself, only the
+text that follows.
+
+There are two setup commands we need to run. The first one creates a "logical replication slot"
+which is what allows the Fluvio Postgres Connector to stream the change events from Postgres.
+The second command creates what's called a "publication", which is used as a way to choose
+_which_ of the tables in your database will have changes captured.
+
+To create the logical replication slot, run the following command:
+
+```bash
+postgres=# SELECT pg_create_logical_replication_slot('fluvio', 'pgoutput');
+ pg_create_logical_replication_slot
+------------------------------------
+ (fluvio,0/1715178)
+(1 row)
+```
+
+Next, we'll create a publication that captures all tables in the database.
+If you're interested in learning more about publications, you can
+[read the documentation on them here].
+
+```bash
+postgres=# CREATE PUBLICATION fluvio FOR ALL TABLES;
+CREATE PUBLICATION
+```
+
+Now that our Postgres database is configured properly, we can move on and
+launch our Fluvio Postgres connector! I recommend leaving the `psql` window open
+and continuing the next steps in a new terminal, we will be coming back to `psql`
+after the connector is running.
+
+
 ### Summary
 
 Congratulations! You've just learned how to launch and configure Postgres in minikube,
@@ -899,10 +900,6 @@ as well as use Fluvio's Managed Connectors to capture the activity in the databa
 Be sure to check out [Data Events section] and the [Configuration Options section] for
 more details on how to use the Postgres Connector and what to expect from the data stream.
 
-## Versions
-
-- A table listing all versions of this connector in reverse chronological order (latest on top)
-- Version + highlights (link to ..?)
 
 [a free InfinyOn Cloud account]: https://infinyon.cloud/signup
 [logical replication message format]: https://www.postgresql.org/docs/10/protocol-logicalrep-message-formats.html
