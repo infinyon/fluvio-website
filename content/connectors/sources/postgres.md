@@ -390,7 +390,7 @@ Now, we can use the following command to launch the connector itself:
 
 %copy first-line%
 ```bash
-$ docker run -d --name fluvio-connect-postgres --net postgres-net -v "$HOME/.fluvio/config:/home/fluvio/.fluvio/config" infinyon/fluvio-connect-postgres -- --url=postgres://postgres:mysecretpassword@postgres-leader:5432 --publication=fluvio --slot=fluvio --topic=postgres
+$ docker run -d --name fluvio-connect-postgres --net postgres-net -v "$HOME/.fluvio/config:/home/fluvio/.fluvio/config" infinyon/fluvio-connect-postgres-source -- --url=postgres://postgres:mysecretpassword@postgres-leader:5432 --publication=fluvio --slot=fluvio --fluvio-topic=postgres
 ```
 
 This command does the following:
