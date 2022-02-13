@@ -6,10 +6,10 @@ menu: HTTP
 ## Overview
 
 Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint,
-feeding the response body into a Fluvio topic. This is useful for monitoring APIs
+feeding the response into a Fluvio topic. This is useful for monitoring APIs
 continuously, and building streaming applications that react to new or updated info.
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead
-periodically sends HTTP requests and collects the response body as an event.
+periodically sends HTTP requests and collects the response as an event.
 
 ## Configuration Options
 
@@ -19,6 +19,11 @@ The HTTP connector supports the following configuration options:
 - `method`: The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE` (default: `GET`)
 - `body`: The body to use in the HTTP request to the endpoint
 - `interval`: The period (in seconds) between sending requests to the endpoint (default: `300`)
+<<<<<<< HEAD
+=======
+- `output_type`: Record output format - text | json (default: `text`)
+- `output_parts`: HTTP Response output format - body | full (default: `body`)
+>>>>>>> aeb03f9... feat(http): json documentation
 
 Additionally, the HTTP connector supports the following "Smart Connector" options:
 
@@ -83,8 +88,13 @@ otherwise it will not work. They are used for the following:
 
 ## Data Events
 
+<<<<<<< HEAD
 The data events from the HTTP connector are the contents of the HTTP body
 of each response. Therefore, the format will be different depending on what
+=======
+By default data events from the HTTP connector are the contents of the HTTP body
+text type of each response. Therefore, the format will be different depending on what
+>>>>>>> aeb03f9... feat(http): json documentation
 endpoint you specify and the type of content that endpoint returns.
 
 In our running example with CatFacts, the data events that are sent to the
@@ -97,3 +107,73 @@ $ fluvio consume cat-facts -B -d
 {"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
+<<<<<<< HEAD
+=======
+
+Alternatively data events can be set to carry the full HTTP text response.
+
+When the `output_parts` configuration option is set to `full` with the default `output_type` set to `text`:
+
+```bash
+$ fluvio consume cat-facts -B -d
+HTTP/1.1 200 OK
+server: nginx
+date: Fri, 28 Jan 2022 19:29:38 GMT
+content-type: application/json
+transfer-encoding: chunked
+connection: keep-alive
+vary: Accept-Encoding
+cache-control: no-cache, private
+x-ratelimit-limit: 100
+x-ratelimit-remaining: 78
+access-control-allow-origin: *
+set-cookie: XSRF-TOKEN=zz; expires=Fri, 28-Jan-2022 21:29:38 GMT; path=/; samesite=lax
+set-cookie: cat_facts_session=zz; expires=Fri, 28-Jan-2022 21:29:38 GMT; path=/; httponly; samesite=lax
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+
+{"fact":"In relation to their body size, cats have the largest eyes of any mammal.","length":73}
+```
+
+Or we can use the `output_type` option as `json` together with `output_parts` as `full`:
+
+```json
+{
+  "status": {
+    "version": "HTTP/1.1",
+    "code": 200,
+    "string": "OK"
+  },
+  "header": {
+    "date": "Sun, 13 Feb 2022 08:12:18 GMT",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding",
+    "x-ratelimit-limit": "100",
+    "access-control-allow-origin": "*",
+    "set-cookie": [
+      "XSRF-TOKEN=xx; expires=Sun, 13-Feb-2022 10:12:18 GMT; path=/; samesite=lax",
+      "cat_facts_session=yy; expires=Sun, 13-Feb-2022 10:12:18 GMT; path=/; httponly; samesite=lax"
+    ],
+    "content-type": "application/json",
+    "x-ratelimit-remaining": "97",
+    "x-xss-protection": "1; mode=block",
+    "server": "nginx",
+    "x-frame-options": "SAMEORIGIN",
+    "x-content-type-options": "nosniff",
+    "cache-control": "no-cache, private",
+    "connection": "keep-alive"
+  },
+  "body": "{\"fact\":\"The chlorine in fresh tap water irritates sensitive parts of the cat's nose. Let tap water sit for 24 hours before giving it to a cat.\",\"length\":134}"
+}
+```
+_Notice that the "body" part above (and below) is encoded as JSON where the original HTTP response body contained JSON itself_
+
+Or we can use the `output_type` option as `json` together with `output_parts` default `body`:
+
+```json
+{
+  "body": "{\"fact\":\"A cat\\u2019s nose pad is ridged with a unique pattern, just like the fingerprint of a human.\",\"length\":87}"
+}
+```
+>>>>>>> aeb03f9... feat(http): json documentation
