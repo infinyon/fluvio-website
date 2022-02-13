@@ -101,9 +101,11 @@ $ fluvio consume cat-facts -B -d
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
+## Full HTTP Response
+
 Alternatively the events can be set to carry the full HTTP response
 
-When `output_parts` set to `full` while the `output_type` is kept as the default `text`:
+This can be done with `output_parts` set to `full` whilst in this example the `output_type` is kept the default `text`:
 
 %copy first-line%
 ```bash
@@ -130,7 +132,7 @@ x-content-type-options: nosniff
 
 ## JSON Record Output
 
-To get a `full` JSON `output_parts` we set `output_type` as `json`:
+To get a `full` JSON `output_parts` we set `output_type` instead as `json` and get the below:
 
 ```json
 {
