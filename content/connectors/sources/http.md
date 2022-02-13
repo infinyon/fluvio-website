@@ -84,7 +84,7 @@ otherwise it will not work. They are used for the following:
 
 ## Data Events
 
-By default data events from the HTTP connector are the contents of the HTTP body
+The data events by default from the HTTP connector are the contents of the HTTP body
 of each response. Therefore, the format will be different depending on what
 endpoint you specify and the type of content that endpoint returns.
 
@@ -99,9 +99,10 @@ $ fluvio consume cat-facts -B -d
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
-Alternatively data events can be set to carry the full HTTP response when 
-the `output_format` configuration option is set to `full`:
+Alternatively the events can be set to carry the full HTTP response when 
+`output_format` set to `full`:
 
+%copy first-line%
 ```bash
 $ fluvio consume cat-facts -B -d
 HTTP/1.1 200 OK
