@@ -134,7 +134,7 @@ x-content-type-options: nosniff
 
 To get a JSON Record output representation of the above.
 
-We set `output_type` as `json` and when we keep the `output_parts` as `full` we get:
+We set the `output_type` as `json` whilst keeping the `output_parts` as `full` we instead get:
 
 ```json
 {
@@ -170,7 +170,7 @@ _Note: JSON Output "body" is encoded (\" quotes) as JSON String within due to HT
 
 And to only get `body` of the HTTP Response part as `output_parts` in JSON,
 
-We set the `output_parts` as the default `body` and keep the `output_type` as `json`:
+We set the `output_parts` as the default `body` and keep the `output_type` as previously set as `json`:
 
 ```json
 {
