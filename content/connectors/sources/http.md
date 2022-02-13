@@ -19,7 +19,7 @@ The HTTP connector supports the following configuration options:
 - `method`: The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE` (default: `GET`)
 - `body`: The body to use in the HTTP request to the endpoint
 - `interval`: The period (in seconds) between sending requests to the endpoint (default: `300`)
-- `output_parts`: HTTP Response output parts - body | full (default: `body`)
+- `output_parts`: HTTP Response output Record parts - body | full (default: `body`)
 - `output_type`: HTTP Response output Record type - text | json (default: `text`)
 
 Additionally, the HTTP connector supports the following "Smart Connector" options:
@@ -132,7 +132,9 @@ x-content-type-options: nosniff
 
 ## JSON Record Output
 
-To get a `full` JSON `output_parts` we set `output_type` instead as `json` and get the below:
+To get a JSON Record output representation of the above.
+
+We set `output_type` as `json` and when we keep the `output_parts` as `full` we get:
 
 ```json
 {
@@ -168,7 +170,7 @@ _Note: JSON Output "body" is encoded (\" quotes) as JSON String within due to HT
 
 And to only get `body` of the HTTP Response part as `output_parts` in JSON,
 
-We set `output_parts` to `body` and `output_type` to `json`:
+We set the `output_parts` as the default `body` and keep the `output_type` as `json`:
 
 ```json
 {
