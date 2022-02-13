@@ -105,7 +105,7 @@ $ fluvio consume cat-facts -B -d
 
 Alternatively the events can be set to carry the full HTTP response
 
-This can be done with `output_parts` set to `full` whilst in this example the `output_type` is kept the default `text`:
+This can be done with `output_parts` set to `full` whilst in this example the `output_type` is kept as the default `text`:
 
 %copy first-line%
 ```bash
