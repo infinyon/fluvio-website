@@ -19,7 +19,8 @@ The HTTP connector supports the following configuration options:
 - `method`: The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE` (default: `GET`)
 - `body`: The body to use in the HTTP request to the endpoint
 - `interval`: The period (in seconds) between sending requests to the endpoint (default: `300`)
-- `output_format`: HTTP Response output format - body | full (default: `body`)
+- `output_parts`: HTTP Response output Record parts - body | full (default: `body`)
+- `output_type`: HTTP Response output Record type - text | json (default: `text`)
 
 Additionally, the HTTP connector supports the following "Smart Connector" options:
 
@@ -56,8 +57,9 @@ $ fluvio connector create --config=./connect.yml
 
 ### As a Local Connector
 
-When using the HTTP Connector locally, it is deployed as a Docker container. You may
-launch it with the following command:
+When using the HTTP Connector locally, it is deployed as a Docker container.
+
+You may launch it with the following command:
 
 %copy%
 ```bash
@@ -84,7 +86,7 @@ otherwise it will not work. They are used for the following:
 
 ## Data Events
 
-By default data events from the HTTP connector are the contents of the HTTP body
+The data events by default from the HTTP connector are the contents of the HTTP body
 of each response. Therefore, the format will be different depending on what
 endpoint you specify and the type of content that endpoint returns.
 
@@ -99,9 +101,13 @@ $ fluvio consume cat-facts -B -d
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
-Alternatively data events can be set to carry the full HTTP response when 
-the `output_format` configuration option is set to `full`:
+## Full HTTP Response
 
+Alternatively the events can be set to carry the full HTTP response
+
+This can be done with `output_parts` set to `full`:
+
+%copy first-line%
 ```bash
 $ fluvio consume cat-facts -B -d
 HTTP/1.1 200 OK
@@ -123,3 +129,51 @@ x-content-type-options: nosniff
 
 {"fact":"In relation to their body size, cats have the largest eyes of any mammal.","length":73}
 ```
+
+## JSON Record Output
+
+To get a JSON Record output representation of the above.
+
+We set the `output_type` as `json` whilst keeping the `output_parts` as `full` we instead get:
+
+```json
+{
+  "status": {
+    "version": "HTTP/1.1",
+    "code": 200,
+    "string": "OK"
+  },
+  "header": {
+    "date": "Sun, 13 Feb 2022 08:12:18 GMT",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding",
+    "x-ratelimit-limit": "100",
+    "access-control-allow-origin": "*",
+    "set-cookie": [
+      "XSRF-TOKEN=xx; expires=Sun, 13-Feb-2022 10:12:18 GMT; path=/; samesite=lax",
+      "cat_facts_session=yy; expires=Sun, 13-Feb-2022 10:12:18 GMT; path=/; httponly; samesite=lax"
+    ],
+    "content-type": "application/json",
+    "x-ratelimit-remaining": "97",
+    "x-xss-protection": "1; mode=block",
+    "server": "nginx",
+    "x-frame-options": "SAMEORIGIN",
+    "x-content-type-options": "nosniff",
+    "cache-control": "no-cache, private",
+    "connection": "keep-alive"
+  },
+  "body": "{\"fact\":\"The chlorine in fresh tap water irritates sensitive parts of the cat's nose. Let tap water sit for 24 hours before giving it to a cat.\",\"length\":134}"
+}
+```
+
+_Note: JSON Output "body" is encoded (\" quotes) as JSON String within due to HTTP Response in this example containing application/json body itself_
+
+And to only get `body` of the HTTP Response part as `output_parts` in JSON,
+
+We set the `output_parts` as the default `body` and keep the `output_type` as previously set as `json`:
+
+```json
+{
+  "body": "{\"fact\":\"A cat\\u2019s nose pad is ridged with a unique pattern, just like the fingerprint of a human.\",\"length\":87}"
+}
+````
