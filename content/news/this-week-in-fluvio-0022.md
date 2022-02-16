@@ -28,8 +28,13 @@ create_topic: true
 direction: source
 ```
 
+%copy first-line%
 ```bash
 $ fluvio connector create --config test-connector-config.yaml
+```
+
+%copy first-line%
+```bash
 $ fluvio connector list
  NAME               VERSION  STATUS 
  my-test-connector  0.1.1    Running 
