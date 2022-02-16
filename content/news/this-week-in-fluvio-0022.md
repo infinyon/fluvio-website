@@ -55,19 +55,17 @@ $ DEBUG_SMARTMODULE=true make build_k8_image
 ```
 
 Build the development Fluvio CLI.<br>
-(Optional, but for this example I also create an alias to the development Fluvio CLI `flvd` to minimize confusion)
 
 %copy first-line%
 ```shell
 $ make build-cli
-$ alias flvd=$(pwd)/target/debug/fluvio
 ```
 
 Start our development Fluvio cluster with WASI support
 
 %copy first-line%
 ```shell
-$ flvd cluster start --develop
+$ ./target/debug/fluvio cluster start --develop
 ```
 
 Here's our example SmartModule. It is a slight modification of [our filter example](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/filter/src/lib.rs). For debugging purposes, we print the record to stdout before checking the contents of the record and applying filtering.
@@ -102,22 +100,22 @@ Load the WASI SmartModule into the cluster as `wasi-sm`
 
 %copy first-line%
 ```shell
-$ flvd smart-module create wasi-sm --wasm-file ./target/wasm32-wasi/release/fluvio_wasm_filter.wasm
+$ ./target/debug/fluvio smart-module create wasi-sm --wasm-file ./target/wasm32-wasi/release/fluvio_wasm_filter.wasm
 ```
 
 Create the testing topic `twif-22`
 
 %copy first-line%
 ```shell
-$ flvd topic create twif-22
+$ ./target/debug/fluvio topic create twif-22
 topic "twif-22" created
 ```
 
-For our example producer input, we'll send 2 records (A positive and negative example)
+For our example producer input, we'll send 2 records to demonstrate the SmartModule output.
 
 %copy first-line%
 ```shell
-$ flvd produce twif-22
+$ ./target/debug/fluvio produce twif-22
 > a
 Ok!
 > b
@@ -128,7 +126,7 @@ In the consumer output using our WASI SmartModule, only the first record prints,
 
 %copy first-line%
 ```shell
-$ flvd consume twif-22 --filter wasi-sm
+$ ./target/debug/fluvio consume twif-22 --filter wasi-sm
 Consuming records from the end of topic 'twif-22'. This will wait for new records
 a
 ⠴
@@ -165,45 +163,141 @@ DEBUG: Record {
 
 ## Connectors
 
-### Postgres Source + Sink
+### Postgres
+
+We will provide a more hands-on blog post in the future, but for now we'll summarize the release.
+
+#### Postgres Source connector
+
+The Fluvio source connector allows you to connect to an external Postgres database and implement [Change Data Capture (CDC)](https://en.wikipedia.org/wiki/Change_data_capture) patterns by recording all database updates into a Fluvio topic.
+
+There is a little bit of [required configuration on the Postgres database side](https://www.fluvio.io/connectors/sources/postgres/#create-a-postgres-server-using-docker), but the Postgres source connector config looks like this:
+
+```yaml
+# example-pg-source-connect.yml
+version: 0.1.0
+name: my-postgres-source
+type: postgres-source
+topic: postgres-topic
+create_topic: true
+parameters:
+  publication: fluvio
+  slot: fluvio
+secrets:
+  FLUVIO_PG_DATABASE_URL: postgres://postgres:mysecretpassword@localhost:5432/postgres
+```
+
+#### Postgres Sink connector
+The Postgres sink connector consumes the CDC event data from the Postgres source connector and runs the corresponding SQL against the sink connector's Postgres database.
+
+The Postgres sink connector looks like this:
+
+```yaml
+# connect.yml
+version: 0.1.0
+name: my-postgres-sink
+type: postgres-sink
+topic: postgres-topic
+create_topic: true
+parameters:
+  url: postgres://postgres:mysecretpassword@localhost:5432/postgres
+secrets:
+  FLUVIO_PG_DATABASE_URL: postgres://postgres:mysecretpassword@localhost:5432/postgres
+```
+
+#### Postgres Connector Docs available now
+
+A lot of work went into the release of our new Postgres connectors that we couldn't cover in depth here.
+
+We encourage you to visit the docs, and expect a walkthrough using the Source and Sink connectors together in the future.
 
 * [Docs for Postgres Source connector]({{<ref "/connectors/sources/postgres">}})
 * [Docs for Postgres Sink connector]({{<ref "/connectors/sinks/postgres">}})
 
 
-
 ### HTTP
 
-Our http connector has new options available to format its output.
+Our HTTP source connector has new options available `output_type` and `output_parts` to format its output.
 
-We provide HTTP response information in a JSON format.
+Example HTTP connector config
 
-config
+%copy%
 ```yaml
+# connect.yml
+api_version: v1
+name: cat-facts
+type: http
+topic: cat-facts
+create_topic: true
+direction: source
 parameters:
-  output_type: json
-  output_parts: body 
+  endpoint: https://catfact.ninja/fact
+  interval: 10
+  output_parts: body # default
+  output_type: text  # default
 ```
 
-This output returns the body content as a single JSON string.
+For example, our endpoint returns a JSON object in the body of the HTTP response.
 
-```json
-{"body":"{\"fact\":\"The largest breed of cat is the Ragdoll with males weighing in at 1 5 to 20 lbs. The heaviest domestic cat on record was a neutered male tabby named Himmy from Queensland, Australia who weighed 46 lbs. 1 5 oz.\",\"length\":209}"}
+%copy first-line%
+```shell
+$ fluvio consume cat-facts
+Consuming records from the end of topic 'cat-facts'. This will wait for new records
+{"fact":"In 1987 cats overtook dogs as the number one pet in America.","length":60}
 ```
 
-If you need all of the header information, you can request the full response 
+If you want the full HTTP response, you can use `output_parts: full`
 
-config
-```yaml
-parameters:
-  output_type: json
+```diff
+# connect.yml
+[...]
+- output_parts: body # default
++ output_parts: full
+  output_type: text  # default
+```
+
+
+%copy first-line%
+```shell
+$ fluvio consume cat-facts
+Consuming records from the end of topic 'cat-facts'. This will wait for new records
+HTTP/1.1 200 OK
+server: nginx
+date: Wed, 16 Feb 2022 00:53:04 GMT
+content-type: application/json
+transfer-encoding: chunked
+connection: keep-alive
+vary: Accept-Encoding
+cache-control: no-cache, private
+x-ratelimit-limit: 100
+x-ratelimit-remaining: 96
+access-control-allow-origin: *
+set-cookie: XSRF-TOKEN=REDACTED expires=Wed, 16-Feb-2022 02:53:04 GMT; path=/; samesite=lax
+set-cookie: cat_facts_session=REDACTED expires=Wed, 16-Feb-2022 02:53:04 GMT; path=/; httponly; samesite=lax
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+
+{"fact":"Cats only use their meows to talk to humans, not each other. The only time they meow to communicate with other felines is when they are kittens to signal to their mother.","length":170}
+```
+
+If you plan to process the HTTP response details, it might be more useful to use `output_type: json`.
+
+```diff
+# connect.yml
+[...]
   output_parts: full
+- output_type: text  # default
++ output_type: json
 ```
 
-```json
-{"version":"HTTP/1.1","status_code":200,"status_string":"OK","headers":{"server":"nginx","transfer-encoding":"chunked","date":"Sat, 05 Feb 2022 12:15:01 GMT","x-content-type-options":"nosniff","access-control-allow-origin":"*","set-cookie":["XSRF-TOKEN=eyJpdiI6IlB5T1FVNXNDR3NvMlgrQzQ3TEJ4dGc9PSIsInZhbHVlIjoiKzRuckJrTU16SG9ycFk4L0w1QjYvdWQ1MDdJZGZZNURZSW9jQkN4RnlmMEcyMUo0TWVCSjE2SFJJblVrVWtTM05QOTE1VEdpOWlaTFlWMlFISEhSS0FRWThJMGNOaWpLOGFWTXVMRklWTzZ3dDJvSUxQTW5qeDdVNTYvV1M4ek8iLCJtYWMiOiJkOWE4NDQwZTIyOTdlZDAyMmU4OGQ5YTBkOWMzNjY1YmY0NDU5Y2RhOTZlNDg0NGI1YTdjMTE0ZTRkM2U2ZGJkIiwidGFnIjoiIn0%3D; expires=Sat, 05-Feb-2022 14:15:01 GMT; path=/; samesite=lax","cat_facts_session=eyJpdiI6IkNMWWxZLzFFL21wODdmanAyWjk0cFE9PSIsInZhbHVlIjoiNG1OTEZlKzhxVW9YaXBsbzl4TCtrVjJvQjBjWmdUYkg0VWtoVEgycVhGMWduUThNekNBQ0hxVFpCaG5PdHc3NnZsbWVhUHI2NU5Yem9mU1pxbk1CcDFLYUNIbkw1M2EzN1IrNTFlbDFkbG9YMjUyRUkrQnJ3OGR6NEdscVZpRnAiLCJtYWMiOiJlMWJlNTZmYzU1MmY2M2U1YjliMjEyMjFmZTcwM2FiOWI0MzEwM2M5YmM4ZDFiZjhkZTg5NDNmNGMwMmUzOTg5IiwidGFnIjoiIn0%3D; expires=Sat, 05-Feb-2022 14:15:01 GMT; path=/; httponly; samesite=lax"],"connection":"keep-alive","vary":"Accept-Encoding","cache-control":"no-cache, private","content-type":"application/json","x-ratelimit-limit":"100","x-xss-protection":"1; mode=block","x-frame-options":"SAMEORIGIN","x-ratelimit-remaining":"98"},"body":"{\"fact\":\"The first official cat show in the UK was organised at Crystal Palace in 1871.\",\"length\":78}"}
+```shell
+$ fluvio consume cat-facts
+Consuming records from the end of topic 'cat-facts'. This will wait for new records
+{"status":{"version":"HTTP/1.1","code":200,"string":"OK"},"header":{"set-cookie":["XSRF-TOKEN=REDACTED expires=Wed, 16-Feb-2022 02:56:22 GMT; path=/; samesite=lax","cat_facts_session=REDACTED expires=Wed, 16-Feb-2022 02:56:22 GMT; path=/; httponly; samesite=lax"],"content-type":"application/json","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","x-xss-protection":"1; mode=block","vary":"Accept-Encoding","server":"nginx","x-ratelimit-remaining":"94","date":"Wed, 16 Feb 2022 00:56:22 GMT","transfer-encoding":"chunked","cache-control":"no-cache, private","x-ratelimit-limit":"100","access-control-allow-origin":"*","connection":"keep-alive"},"body":"{\"fact\":\"There are more than 500 million domestic cats in the world, with approximately 40 recognized breeds.\",\"length\":100}"}
 ```
 
+[Updated docs for the HTTP Connector are available]({{<ref "/connectors/sources/http">}})
 
 ---
 
