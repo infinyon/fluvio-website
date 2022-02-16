@@ -88,6 +88,7 @@ Before you build the SmartModule, you need to add the `wasm32-wasi` target with 
 %copy first-line%
 ```shell
 $ rustup target add wasm32-wasi
+```
 
 Build SmartModule using the `wasm32-wasi` target to use it against our WASI-enabled cluster.  
 
