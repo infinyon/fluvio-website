@@ -15,7 +15,7 @@ This release was heavily focused on stability improvements
 
 ### Local Connector development fix
 
-Previously, if you were [developing your own connector](), creating connectors would fail because during the creation of the connector pod, Kubernetes would always try to pull from Docker Hub.
+Previously, if you were [developing your own connector]({{<ref "/connectors/developer-guide/overview">}}), creating connectors would fail because during the creation of the connector pod, Kubernetes would always try to pull from Docker Hub.
 
 You can control this behavior in your connector config through the `version` key. 
 

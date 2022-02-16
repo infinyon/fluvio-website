@@ -10,7 +10,7 @@ database and produces them into a Fluvio Topic.
 ## Overview
 
 The Fluvio Postgres Source connector allows you to connect to a Postgres database
-and perform Data Change Capture (CDC) on it. Whenever data is inserted,
+and perform Change Data Capture (CDC) on it. Whenever data is inserted,
 updated, or deleted in the connected database, this connector will capture
 an event that describes the change that took place, and emit a record
 describing the event into a Fluvio Topic. This can be incredibly
