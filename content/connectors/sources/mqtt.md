@@ -34,14 +34,15 @@ typically called `connect.yml`. The config file might look like the following:
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+version: 0.2.0
 name: my-mqtt
 type: mqtt
 topic: mqtt-topic
 direction: source
 parameters:
-  mqtt-url: "mqtt.hsl.fi"
-  mqtt-topic: "/hfp/v2/journey/#"
+  mqtt_topic: "/hfp/v2/journey/#"
+secrets:
+  MQTT_URL: mqtts://mqtt.hsl.fi:8883/
 ```
 
 The way we use this configuration is by passing it to the `fluvio connector` command,

@@ -31,7 +31,7 @@ Show an example configuration, such as:
 
 ```yaml
 # config.yml
-version: v1
+version: 0.1.0
 name: my-prometheus
 type: prometheus
 topic: prometheus-topic

@@ -39,7 +39,7 @@ the file:
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+version: 0.2.0
 name: github-repo
 type: http
 topic: github-repo
@@ -289,12 +289,12 @@ Since we're using a SmartModule from source, the next thing we need to do is com
 $ cargo build --release
 ```
 
-Next, we need to register this SmartModule using the `fluvio smartmodule` command, giving it a
+Next, we need to register this SmartModule using the `fluvio smart-module` command, giving it a
 name that we can use to refer to it later.
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule create github-smartmodule --wasm-file=target/wasm32-unknown-unknown/release/github_stars.wasm
+$ fluvio smart-module create github-smartmodule --wasm-file=target/wasm32-unknown-unknown/release/github_stars.wasm
 ```
 
 At this point, our SmartModule has been registered and named `github-smartmodule`. Now, we can
@@ -320,7 +320,7 @@ Then, we can edit the `connect.yml` file and tell it to use our SmartModule as a
 %copy%
 {{< highlight yaml "hl_lines=12" >}}
 # connect.yml
-api_version: v1
+version: 0.2.0
 name: github-repo
 type: http
 topic: github-repo
