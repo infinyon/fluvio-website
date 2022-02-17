@@ -55,6 +55,7 @@ Here's a description of the available options:
   - `arraymap`: The name of an ArrayMap SmartModule to apply
 
 -> **Note**: Currently, `aggregate` and `filter-map` SmartModules are not supported in connectors.
+
 -> **Note**: The Fluvio topic set in `topic` will be automatically created if the Fluvio `topic` does not exist.
 
 When running `fluvio connector create`, pass the path to this file using the `--config`
