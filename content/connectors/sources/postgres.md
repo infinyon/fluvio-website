@@ -47,7 +47,6 @@ version: 0.1.0
 name: my-postgres-source
 type: postgres-source
 topic: postgres-topic
-create_topic: true
 parameters:
   publication: fluvio
   slot: fluvio

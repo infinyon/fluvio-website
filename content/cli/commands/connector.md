@@ -34,7 +34,6 @@ api_version: v1
 name: cat-facts
 type: http
 topic: cat-facts
-create_topic: true
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
@@ -48,7 +47,6 @@ Here's a description of the available options:
 - `type`: The type of connector. This corresponds to the name of the docker image
   that this connector is published in, e.g. `infinyon/fluvio-connect-<type>`
 - `topic`: The name of the Fluvio topic that this connector will produce to
-- `create_topic`: Whether to create the topic if it does not exist
 - `direction`: Whether the connector is a `source` or a `sink` connector
 - `parameters`: An object that contains connector-specific parameters.
   Also, connectors that support SmartModules specify their SmartModule names here:

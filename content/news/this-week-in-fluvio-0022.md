@@ -24,7 +24,6 @@ version: 0.1.1
 name: my-test-connector
 type: test-connector
 topic: my-test-connector-topic
-create_topic: true 
 direction: source
 ```
 
@@ -185,7 +184,6 @@ version: 0.1.0
 name: my-postgres-source
 type: postgres-source
 topic: postgres-topic
-create_topic: true
 parameters:
   publication: fluvio
   slot: fluvio
@@ -204,7 +202,6 @@ version: 0.1.0
 name: my-postgres-sink
 type: postgres-sink
 topic: postgres-topic
-create_topic: true
 parameters:
   url: postgres://postgres:mysecretpassword@localhost:5432/postgres
 secrets:
@@ -234,7 +231,6 @@ api_version: v1
 name: cat-facts
 type: http
 topic: cat-facts
-create_topic: true
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact

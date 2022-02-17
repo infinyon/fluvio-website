@@ -27,7 +27,6 @@ version: 0.1.0
 name: my-postgres-sink
 type: postgres-sink
 topic: postgres-topic
-create_topic: true
 parameters:
   url: postgres://postgres:mysecretpassword@localhost:5432/postgres
 secrets:

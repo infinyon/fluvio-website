@@ -38,7 +38,6 @@ api_version: v1
 name: my-mqtt
 type: mqtt
 topic: mqtt-topic
-create_topic: true
 direction: source
 parameters:
   mqtt-url: "mqtt.hsl.fi"

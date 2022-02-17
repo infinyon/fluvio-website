@@ -43,7 +43,6 @@ api_version: v1
 name: github-repo
 type: http
 topic: github-repo
-create_topic: true
 direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
@@ -325,7 +324,6 @@ api_version: v1
 name: github-repo
 type: http
 topic: github-repo
-create_topic: true
 direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio

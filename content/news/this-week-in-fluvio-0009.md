@@ -89,7 +89,6 @@ api_version: v1
 name: my-test-connector
 type: test-connector
 topic: my-test-connector
-create_topic: true 
 direction: source
 parameters:
   topic: my-test-connector
