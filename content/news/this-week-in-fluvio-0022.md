@@ -227,7 +227,7 @@ Example HTTP connector config
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+version: 0.2.0
 name: cat-facts
 type: http
 topic: cat-facts
