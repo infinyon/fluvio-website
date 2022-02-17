@@ -33,7 +33,6 @@ api_version: v1
 name: my-test-mqtt
 type: mqtt
 topic: public-mqtt
-create_topic: true
 direction: source
 parameters:
   mqtt-url: "broker.hivemq.com"

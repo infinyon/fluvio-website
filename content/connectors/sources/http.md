@@ -41,7 +41,6 @@ api_version: v1
 name: cat-facts
 type: http
 topic: cat-facts
-create_topic: true
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact

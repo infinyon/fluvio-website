@@ -35,7 +35,6 @@ version: v1
 name: my-prometheus
 type: prometheus
 topic: prometheus-topic
-create_topic: true
 direction: source
 parameters:
 endpoints:
