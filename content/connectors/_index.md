@@ -58,11 +58,10 @@ from a JSON API.
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+version: 0.2.0
 name: cat-facts
 type: http
 topic: cat-facts
-create_topic: true
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
@@ -335,11 +334,10 @@ For this example, we would add `map` to the `parameters` section, like so:
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+version: 0.2.0
 name: cat-facts
 type: http
 topic: cat-facts
-create_topic: true
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact

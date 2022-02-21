@@ -242,7 +242,6 @@ Create a connector configuration file `example-connector.yaml`:
 version: dev
 name: cat-facts-connector
 type: cat-facts
-create_topic: true
 topic: cat-facts-random
 direction: source
 ```
@@ -252,8 +251,7 @@ direction: source
 | `version`               | This value must be  `dev`  for local development.                                                                                                                        |
 | `name`                  | A unique name for this connector. <br><br> It will be displayed in `fluvio connector list`                                                                                                               |
 | `type`                  | The value of this name will be used for tagging image before loading into Kubernetes. <br><br> Connector image names follow the pattern: `infinyon/fluvio-connect-{type}` |
-| `create_topic`          | Set this `true`/`false` based on whether you want a topic automatically created for your connector. (Ignored if topic already created)                                                                       |
-| `topic`                 | The name of the `topic` where the connector will publish the data records. .                                                                            |
+| `topic`                 | The name of the Fluvio `topic` where the connector will publish the data records. The Fluvio `topic` will be automatically created if the Fluvio topic does not exist. |
 | `direction`             | The metadata that defines the direction of data flow (`source` or `sink`).<br><br> This is a `source` connector.
 
 Lastly, create the connector

@@ -29,17 +29,15 @@ We have a new connector for the MQTT protocol available.
 
 ```yaml
 # config.yaml
-api_version: v1
+version: 0.2.0
 name: my-test-mqtt
 type: mqtt
 topic: public-mqtt
-create_topic: true
 direction: source
 parameters:
-  mqtt-url: "broker.hivemq.com"
-  mqtt-topic: "testtopic/#"
-  fluvio-topic: "public-mqtt"
+  mqtt_topic: "testtopic/#"
 secrets:
+  MQTT_URL: "mqtts://broker.hivemq.com:8883"
   foo: bar
 ```
 

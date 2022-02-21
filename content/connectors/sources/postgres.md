@@ -47,7 +47,6 @@ version: 0.1.0
 name: my-postgres-source
 type: postgres-source
 topic: postgres-topic
-create_topic: true
 parameters:
   publication: fluvio
   slot: fluvio
@@ -703,7 +702,7 @@ thing we'll do is set up the Fluvio Postgres connector, but I recommend you keep
 `psql` window open. We'll eventually want to come back to it in order to add some tables
 and data to the database and see the activity in the connector.
 
-### Launching the Fluvio Postgres connector
+### Launching the Fluvio Postgres Source connector
 
 To launch our Fluvio Postgres connector, we'll be using the `fluvio connector create` command.
 To use this, we first need to create a configuration file that describes the connector's
@@ -714,9 +713,9 @@ settings. The full set of options for the Fluvio Postgres connector can be found
 %copy%
 ```yml
 # connect.yml
-version: v1
+version: 0.1.0
 name: fluvio-postgres
-type: postgres
+type: postgres-source
 topic: postgres
 parameters:
   url: postgres://postgres:mysecretpassword@postgres-leader-service:5432

@@ -85,11 +85,10 @@ We create a new connector, with configurable details stored in a this example co
 %copy%
 
 ```yaml
-api_version: v1
+version: 0.1.0
 name: my-test-connector
 type: test-connector
 topic: my-test-connector
-create_topic: true 
 direction: source
 parameters:
   topic: my-test-connector
