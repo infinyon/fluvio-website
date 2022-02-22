@@ -103,5 +103,7 @@ image_tag_strategy = "VersionGit"
 When you run `fluvio update`, the Fluvio binary of your current channel will update to the newest version of the channel.
 
 {{<caution>}}
-At the moment, due to https://github.com/infinyon/fluvio/issues/2155 version channels can be updated to a newer version than intended.
+Only the `stable` and `latest` channels can be updated. Version channels don't support `fluvio update`  because those binaries will always be pinned to its version.
+<br><br>
+Follow the [version channel]({{<ref "#version">}}) steps to switch to a different version.
 {{</caution>}}
