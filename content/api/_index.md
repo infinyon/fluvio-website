@@ -4,7 +4,7 @@ menu: Overview
 section: APIs
 ---
 
-This page describes how to generally use any of the fluvie clients.  Each
+This page describes how to generally use any of the Fluvio clients.  Each
 client has some differences but these are the general rules about them.
 
 For generated API Docs visit:
