@@ -17,7 +17,7 @@ This release deprecates the `create_topic` key from the connectors config. You c
 
 ```diff
 # connect.yml
-api_version: v1
+version: 0.2.0
 name: cat-facts
 type: http
 topic: cat-facts
@@ -40,7 +40,7 @@ Let's work through an example using the following config.
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+api_version: 0.2.0
 name: cat-facts
 type: http
 topic: cat-facts
