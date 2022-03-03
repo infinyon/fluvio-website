@@ -176,7 +176,8 @@ We will provide a more hands-on blog post in the future, but for now we'll summa
 
 The Fluvio source connector allows you to connect to an external Postgres database and implement [Change Data Capture (CDC)](https://en.wikipedia.org/wiki/Change_data_capture) patterns by recording all database updates into a Fluvio topic.
 
-There is a little bit of [required configuration on the Postgres database side](https://www.fluvio.io/connectors/sources/postgres/#create-a-postgres-server-using-docker), but the Postgres source connector config looks like this:
+
+There is a little bit of [required configuration on the Postgres database side]({{<ref "/connectors/sources/postgres#create-a-postgres-server-using-docker">}}), but the Postgres source connector config looks like this:
 
 ```yaml
 # example-pg-source-connect.yml

@@ -1,6 +1,8 @@
 ---
 title: Overview
 weight: 10
+aliases:
+    - /docs/architecture
 ---
 
 **Fluvio Data Streaming** is a modern Cloud Native software stack designed for **high speed, real-time data** processing. Fluvio is _fast_, _scalable_, _self-healing_, _pluggable_, and _user-friendly_.
