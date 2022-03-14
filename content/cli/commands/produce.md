@@ -299,3 +299,7 @@ $ fluvio partition list
 ```
 
 Notice how the SIZE field tell us that the `compressed` topic is using less disk space than the `uncompressed` topic for the same amount of records.
+
+Also note that, [`consuming`] from topics is done at the same way for both compressed and uncompressed data.
+
+[`consuming`]: {{< ref "/cli/commands/consume" >}}
