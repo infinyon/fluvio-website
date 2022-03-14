@@ -39,11 +39,12 @@ cluster.
 Once you've got a connection handler, you will want to create a producer for a
 given topic.
 
-The producer could be created with the following configurations: `batch_size`, `linger` and `partitioner`.
+The producer could be created with the following configurations: `batch_size`, `compression`, `linger` and `partitioner`.
 
 These configurations control the behavior of the producer in the following way:
 
 * `batch_size`: Maximum amount of bytes accumulated by the records before sending the batch. Defaults to 16384 bytes.
+* `compression`: Compression algorithm used by the producer to compress each batch before sending to the SPU. Supported compression algorithms are `none`, `gzip`, `snappy` and `lz4`.
 * `linger`: Time to wait before sending messages to the server. Defaults to 100 ms.
 * `partitioner`: custom class/struct that assigns the partition to each record that needs to be send. Defaults to Siphash Round Robin partitioner.
 
