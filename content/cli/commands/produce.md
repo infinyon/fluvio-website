@@ -13,10 +13,12 @@ Write messages to a topic/partition
 When no '--file' is provided, the producer will read from 'stdin' and send each
 line of input as one record.
 
-If a file is given with '--file', the file is sent as one entire record.
+If a file is given with '--file', each line of file is sent as a record, unless also using `--raw` flag.
 
 If '--key-separator' is used, records are sent as key/value pairs, and the keys
 are used to determine which partition the records are sent to.
+
+Use `--compression` to specify compression algorithm used when sending records. Default value is `none`, other options are `gzip`, `snappy` and `lz4`.
 
 USAGE:
     fluvio produce [FLAGS] [OPTIONS] <topic>
@@ -31,9 +33,12 @@ OPTIONS:
         --key-separator <key-separator>
             Sends key/value records split on the first instance of the separator
 
+        --compression <compression>
+            Compression algorithm to use when sending records. Supported values: none, gzip, snappy
+            and lz4
+
     -f, --file <file>
-            Path to a file to produce to the topic. If absent, producer will
-            read stdin
+            Path to a file to produce to the topic. If absent, producer will read stdin
 
 ARGS:
     <topic>    The name of the Topic to produce to
@@ -143,12 +148,12 @@ we should see the records distributed in groups of 5, 2, and 3. We can use the
 
 ```bash
 $ fluvio partition list
- TOPIC       PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
- multi-keys  0          0       []        Online      0   0    0    []
- multi-keys  1          0       []        Online      0   0    0    []
- multi-keys  2          0       []        Online      3   3    0    []
- multi-keys  3          0       []        Online      5   5    0    []
- multi-keys  4          0       []        Online      2   2    0    []
+ TOPIC       PARTITION  LEADER  REPLICAS  RESOLUTION  SIZE   HW  LEO  LRS  FOLLOWER OFFSETS 
+ multi-keys  0          0       []        Online      0 B    0   0    0    [] 
+ multi-keys  1          0       []        Online      0 B    0   0    0    [] 
+ multi-keys  2          0       []        Online      157 B  3   3    0    [] 
+ multi-keys  3          0       []        Online      220 B  5   5    0    [] 
+ multi-keys  4          0       []        Online      119 B  2   2    0    [] 
 ```
 
 By looking at the high watermark (HW) and log-end-offset (LEO) of our partitions,
@@ -221,13 +226,71 @@ partitions using [`fluvio partition list`].
 %copy first-line%
 ```bash
 $ fluvio partition list
- TOPIC          PARTITION  LEADER  REPLICAS  RESOLUTION  HW  LEO  LSR  FOLLOWER OFFSETS
- multi-no-keys  0          0       []        Online      2   2    0    []
- multi-no-keys  1          0       []        Online      2   2    0    []
- multi-no-keys  2          0       []        Online      2   2    0    []
- multi-no-keys  3          0       []        Online      2   2    0    []
- multi-no-keys  4          0       []        Online      2   2    0    []
+ TOPIC          PARTITION  LEADER  REPLICAS  RESOLUTION  SIZE   HW  LEO  LRS  FOLLOWER OFFSETS 
+ multi-no-keys  0          0       []        Online      120 B  2   2    0    [] 
+ multi-no-keys  1          0       []        Online      121 B  2   2    0    [] 
+ multi-no-keys  2          0       []        Online      124 B  2   2    0    [] 
+ multi-no-keys  3          0       []        Online      126 B  2   2    0    [] 
+ multi-no-keys  4          0       []        Online      127 B  2   2    0    [] 
 ```
 
 Notice how the high watermark (HW) and log-end-offset (LEO) tell us that there are
 exactly 2 records in each partition. Our ten records have been evenly distributed!
+
+## Example 4: Producing using a compression algorithm (GZIP)
+
+Fluvio support different types of compression algorithms to send records. 
+Compression, in general, improves throughput in exchange of some CPU cost to compress/uncompress the data.
+
+Let's try to use `gzip` algorithm in the CLI.
+
+First, we'll use [`fluvio topic create`] to create a topic called `gzip` and other topic called `none`:
+
+[`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
+
+%copy first-line%
+```bash
+$ fluvio topic create gzip
+```
+
+Next, let's create a text file with the records we want to send:
+
+```bash
+# Put the following records into a text file using your favorite editor
+$ cat records.txt
+{"ts":"2020-06-18T10:44:12","started":{"pid":45678}}
+{"ts":"2020-06-18T10:44:13","logged_in":{"username":"foo"},"connection":{"addr":"1.2.3.4","port":5678}}
+{"ts":"2020-06-18T10:44:15","registered":{"username":"bar","email":"bar@example.com"},"connection":{"addr":"2.3.4.5","port":6789}}
+{"ts":"2020-06-18T10:44:16","logged_out":{"username":"foo"},"connection":{"addr":"1.2.3.4","port":5678}}
+{"ts":"2020-06-18T10:49:29","logged_in":{"username":"foo"},"connection":{"addr":"1.2.3.4","port":5678}}
+{"ts":"2020-06-18T10:50:13","logged_in":{"username":"bar"},"connection":{"addr":"2.3.4.5","port":6789}}
+{"ts":"2020-06-18T10:51:13","logged_out":{"username":"bar"},"connection":{"addr":"2.3.4.5","port":6789}}
+```
+
+Next, we'll produce the records into the `gzip` stream using the `--compression gzip` option.
+
+%copy first-line%
+
+```bash
+$ fluvio produce gzip -f records.txt --compression gzip
+```
+
+Let's produce also the same to the `none` stream using no compression.
+
+%copy first-line%
+
+```bash
+$ fluvio produce none -f records.txt # when no --compression flag is passed, it used `none` as compression algorithm
+```
+
+Since records are compressed in the producer before are sent to the SPU, their disk usage on the SPU should be lower than without compression. Let's take a look at the disk usage by the partitions using [`fluvio partition list`].
+
+%copy first-line%
+```bash
+$ fluvio partition list
+ TOPIC  PARTITION  LEADER  REPLICAS  RESOLUTION  SIZE   HW  LEO  LRS  FOLLOWER OFFSETS 
+ gzip   0          0       []        Online      328 B  7   7    0    [] 
+ none   0          0       []        Online      821 B  7   7    0    [] 
+```
+
+Notice how the SIZE field tell us that the `gzip` topic is using less disk space than the `none` topic for the same amount of records.
