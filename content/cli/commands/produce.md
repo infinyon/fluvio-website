@@ -244,13 +244,18 @@ Compression, in general, improves throughput in exchange of some CPU cost to com
 
 Let's try to use `gzip` algorithm in the CLI.
 
-First, we'll use [`fluvio topic create`] to create a topic called `gzip` and other topic called `none`:
+First, we'll use [`fluvio topic create`] to create a topic called `compressed` and other topic called `uncompressed`:
 
 [`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
 
 %copy first-line%
 ```bash
-$ fluvio topic create gzip
+$ fluvio topic create compressed
+```
+
+%copy first-line%
+```bash
+$ fluvio topic create uncompressed
 ```
 
 Next, let's create a text file with the records we want to send:
@@ -267,20 +272,20 @@ $ cat records.txt
 {"ts":"2020-06-18T10:51:13","logged_out":{"username":"bar"},"connection":{"addr":"2.3.4.5","port":6789}}
 ```
 
-Next, we'll produce the records into the `gzip` stream using the `--compression gzip` option.
+Next, we'll produce the records into the `compressed` stream using the `--compression gzip` option.
 
 %copy first-line%
 
 ```bash
-$ fluvio produce gzip -f records.txt --compression gzip
+$ fluvio produce compressed -f records.txt --compression gzip
 ```
 
-Let's produce also the same to the `none` stream using no compression.
+Let's produce also the same to the `uncompressed` stream using no compression.
 
 %copy first-line%
 
 ```bash
-$ fluvio produce none -f records.txt # when no --compression flag is passed, it used `none` as compression algorithm
+$ fluvio produce uncompressed -f records.txt # when no --compression flag is passed, it used `none` as compression algorithm
 ```
 
 Since records are compressed in the producer before are sent to the SPU, their disk usage on the SPU should be lower than without compression. Let's take a look at the disk usage by the partitions using [`fluvio partition list`].
@@ -288,9 +293,9 @@ Since records are compressed in the producer before are sent to the SPU, their d
 %copy first-line%
 ```bash
 $ fluvio partition list
- TOPIC  PARTITION  LEADER  REPLICAS  RESOLUTION  SIZE   HW  LEO  LRS  FOLLOWER OFFSETS 
- gzip   0          0       []        Online      328 B  7   7    0    [] 
- none   0          0       []        Online      821 B  7   7    0    [] 
+ TOPIC          PARTITION  LEADER  REPLICAS  RESOLUTION  SIZE   HW  LEO  LRS  FOLLOWER OFFSETS 
+ compressed     0          0       []        Online      328 B  7   7    0    [] 
+ uncompressed   0          0       []        Online      821 B  7   7    0    [] 
 ```
 
-Notice how the SIZE field tell us that the `gzip` topic is using less disk space than the `none` topic for the same amount of records.
+Notice how the SIZE field tell us that the `compressed` topic is using less disk space than the `uncompressed` topic for the same amount of records.
