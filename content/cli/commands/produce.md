@@ -258,11 +258,10 @@ $ fluvio topic create compressed
 $ fluvio topic create uncompressed
 ```
 
-Next, let's create a text file with the records we want to send:
+Next, let's create a text file called `records.txt` with the following contents:
 
+%copy%
 ```bash
-# Put the following records into a text file using your favorite editor
-$ cat records.txt
 {"ts":"2020-06-18T10:44:12","started":{"pid":45678}}
 {"ts":"2020-06-18T10:44:13","logged_in":{"username":"foo"},"connection":{"addr":"1.2.3.4","port":5678}}
 {"ts":"2020-06-18T10:44:15","registered":{"username":"bar","email":"bar@example.com"},"connection":{"addr":"2.3.4.5","port":6789}}
@@ -272,7 +271,7 @@ $ cat records.txt
 {"ts":"2020-06-18T10:51:13","logged_out":{"username":"bar"},"connection":{"addr":"2.3.4.5","port":6789}}
 ```
 
-Next, we'll produce the records into the `compressed` stream using the `--compression gzip` option.
+Next, we'll produce the records from that file into the `compressed` stream using the `--compression gzip` option.
 
 %copy first-line%
 
