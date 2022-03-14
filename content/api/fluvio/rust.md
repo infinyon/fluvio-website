@@ -33,7 +33,8 @@ Alternatively, we can [create a producer with custom configuration] with:
 ```rust
 let config = TopicProducerConfigBuilder::default()
     		.batch_size(500)
-    		.linger(std::time::Duration::from_millis(500)
+    		.linger(std::time::Duration::from_millis(500))
+    		.compression(Compression::Gzip)
     		.build().expect("Failed to create topic producer config");
 let producer = fluvio.topic_producer_with_config("my-fluvio-topic", config).await.expect("Failed to create a producer");
 ```
