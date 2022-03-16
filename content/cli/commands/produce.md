@@ -237,7 +237,7 @@ $ fluvio partition list
 Notice how the high watermark (HW) and log-end-offset (LEO) tell us that there are
 exactly 2 records in each partition. Our ten records have been evenly distributed!
 
-## Example 4: Producing using a compression algorithm (GZIP)
+## Example 5: Producing using a compression algorithm (GZIP)
 
 Fluvio support different types of compression algorithms to send records. 
 Compression, in general, improves throughput in exchange of some CPU cost to compress/uncompress the data.
