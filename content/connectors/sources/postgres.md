@@ -306,9 +306,9 @@ Below are some samples of some of the different types of events:
 ## Example Use-Case: Using a Local Connector with InfinyOn Cloud
 
 The quickest and easiest way to get started using Fluvio is via
-[a free Infinyon Cloud account]. In this example, we'll demonstrate how to run the
+[a free InfinyOn Cloud account]. In this example, we'll demonstrate how to run the
 Fluvio Postgres Connector locally, capture changes from a local Postgres
-database, and produce those change events to Infinyon Cloud. You can also
+database, and produce those change events to InfinyOn Cloud. You can also
 read about [how to set up Fluvio and Postgres in minikube] if you're interested
 in the end-to-end deployment.
 

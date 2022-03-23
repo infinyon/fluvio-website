@@ -50,7 +50,7 @@ technology:
       description: "All records are written in the order received and cannot be altered."
       icon: "/images/icons/immutable-store.svg"
     - title: "Self Service"
-      description: "Powerful CLI with built-in cluster management for hands free opertions."
+      description: "Powerful CLI with built-in cluster management for hands-off operations."
       icon: "/images/icons/self-service.svg"  
 stack:
   title: "The Stack"
