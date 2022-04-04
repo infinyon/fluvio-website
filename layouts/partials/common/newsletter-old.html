@@ -1,0 +1,74 @@
+
+<div class="newsletter" style="max-width: 600px; margin: auto;">
+    <div class="content newsletter-header">
+      <h2 class="newsletter-title">Subscribe to our newsletter</h2>
+      <p><span class="newsletter-tagline">Receive updates and insights, right in your mailbox.</span><br>
+        <span class="newsletter-small"> No spam. Unsubscribe anytime.</span></p>
+    </div>
+
+    <form class="newsForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input
+      class="form-control valid"
+      name="name"
+      id="name"
+      type="text"
+      onfocus="this.placeholder = ''"
+      onblur="this.placeholder = 'Enter your Name'"
+      placeholder="Enter your Name"
+    />
+      <input
+        class="form-control valid"
+        name="email"
+        id="email"
+        type="email"
+        onfocus="this.placeholder = ''"
+        onblur="this.placeholder = 'Enter your Email'"
+        placeholder="Enter your Email"
+      />
+  
+      <input
+        class="d-none"
+        name="bot-field"
+        placeholder="This is a spam detector, don't fill this out if you're a human."
+      />
+  
+      <button type="submit" class="button">
+        Yes, I'm in !
+      </button>
+    </form>
+
+  </div> 
+
+<script>
+const processForm = (event) => {
+  event.preventDefault();
+
+  console.log(emailForm.elements["name"]);
+  const data = new FormData(emailForm);
+  console.log(data);
+  alert(data);
+  data.append('form-name', 'newsletter');
+  fetch("http://localhost:9999/.netlify/functions/newsletter", {
+    method: 'POST',
+    mode: 'no-cors', // no-cors, *cors, same-origin
+    headers: {
+      'Content-Type': 'application/json'
+    },    
+    body: data,
+  })
+  .then(data => {
+    //console.log(JSON.stringify(data));
+    emailForm.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
+  })
+  .catch(error => {
+    console.log("error");
+    emailForm.innerHTML = `<div class="form--error">Error: ${error}</div>`;
+  })
+}
+
+const emailForm = document.querySelector(".newsForm");
+if (emailForm) {
+  emailForm.addEventListener('submit', processForm, false)
+}
+
+</script>

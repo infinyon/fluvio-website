@@ -7,6 +7,8 @@ toc: false
 
 Welcome to the intro guide to Fluvio! The Concepts section helps you learn about all parts of the Fluvio system and to gain deeper understanding of how Fluvio works.
 
+{{< signup-newsletter >}}
+
 ### Inline Highlights
 
 -> **Prerequisites:** Examples in this section require an existing Fluvio cluster and a topic named "my-topic".<br> Step-by-step instructions are available in Get Started for ([MacOS] or [Linux]).
