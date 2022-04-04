@@ -1,6 +1,9 @@
-<form name="simpleContactForm"
+<form 
+    name="simpleContactForm"
     method="POST"
+    action="/response/thankyou"
     data-netlify="true"
+    data-netlify-recaptcha="true"
     id="simple-contact-form" 
     class="contact-form"
 >
@@ -21,6 +24,9 @@
             class="form-textarea"
             rows="7"
         ></textarea>
+    </p>
+    <p class ="form-row">
+        <div data-netlify-recaptcha="true" class="form-row"></div>
     </p>
     <p class="form-row form-submit">
         <button type="submit" class="button">Send Message</button>
