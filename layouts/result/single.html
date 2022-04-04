@@ -1,0 +1,15 @@
+{{ define "menu" }}
+    {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
+{{ end }}
+
+{{ define "content" }}
+  <h1>{{ .Title }}</h1>
+  <div class="doc-content">
+      {{ .Content}}
+  </div>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer/footer.html" . }}
+  <script src="/js/navbar-fixed.js"></script>
+{{ end }}
