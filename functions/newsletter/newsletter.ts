@@ -1,6 +1,10 @@
 import { Handler } from '@netlify/functions'
 import fetch from 'node-fetch'
-import 'dotenv/config'
+
+if (!process.env.NETLIFY) {
+    import 'dotenv/config'
+   // get local env vars if not in Netlify
+}
 
 const  BUTTONDOWN_API_KEY = process.env.BUTTONDOWN_API_KEY
 interface User {
