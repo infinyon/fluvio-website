@@ -26,4 +26,4 @@ $RECYCLE.BIN/
 .idea/
 
 ## Netlify (functions)
-functions/.netlify
+.netlify
