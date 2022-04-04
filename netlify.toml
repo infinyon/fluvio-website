@@ -4,6 +4,9 @@
 [build.environment]
     HUGO_VERSION = "0.81.0"
 
+[functions]
+  directory = "./functions"
+
 [[redirects]]
   from = "/blog/2021/01/websocket-glue-for-streaming-apps/"
   to = "https://www.infinyon.com/blog/2021/01/websocket-glue-for-streaming-apps/"
