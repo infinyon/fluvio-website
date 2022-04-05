@@ -46,21 +46,15 @@
     const processForm = (event) => {
         event.preventDefault();
 
-        let values = {
-            "form-name": "simpleContactForm",
-            "name": emailForm.elements["name"].value,
-            "email": emailForm.elements["email"].value,
-            "message": emailForm.elements["message"].value,
-        };
+        let formData = new FormData(emailForm);
+        const values = formToJSON(emailForm);
 
         console.log(JSON.stringify(values));
 
         fetch("/.netlify/functions/newsletter", {
             method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values)
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString(),
         })
         .then(data => {
             //console.log(JSON.stringify(data));

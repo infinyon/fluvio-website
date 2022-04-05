@@ -15,11 +15,9 @@ export const handler: Handler = async (event, context) => {
   }
 
   try {
-    const payload = JSON.parse(event.body)
-    console.log(payload)
-    //const user:User = JSON.parse(JSON.stringify(querystring.parse(event.body)));
-
-    //console.log(user);
+    const user:User = JSON.parse(JSON.stringify(querystring.parse(event.body)));
+    console.log(user);
+    
     return {
         statusCode: 200,
         body: JSON.stringify({
