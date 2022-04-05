@@ -47,9 +47,6 @@
         event.preventDefault();
 
         let formData = new FormData(emailForm);
-        const values = formToJSON(emailForm);
-
-        console.log(JSON.stringify(values));
 
         fetch("/.netlify/functions/newsletter", {
             method: 'POST',
@@ -57,7 +54,7 @@
             body: new URLSearchParams(formData).toString(),
         })
         .then(data => {
-            //console.log(JSON.stringify(data));
+            console.log(JSON.stringify(data));
             emailForm.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
         })
         .catch(error => {
