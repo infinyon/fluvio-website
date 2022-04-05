@@ -13,11 +13,13 @@ export const handler: Handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
-  
-  try {
-    const user:User = JSON.parse(JSON.stringify(querystring.parse(event.body)));
 
-    console.log(user);
+  try {
+    const payload = JSON.parse(event.body)
+    console.log(payload)
+    //const user:User = JSON.parse(JSON.stringify(querystring.parse(event.body)));
+
+    //console.log(user);
     return {
         statusCode: 200,
         body: JSON.stringify({

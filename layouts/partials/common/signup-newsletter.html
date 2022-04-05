@@ -1,12 +1,11 @@
 <form 
-    name="simpleContactForm"
+    class="newsForm"
     method="POST"
-    action="/.netlify/functions/newsletter"
     data-netlify="true"
     data-netlify-recaptcha="true"
     id="simple-contact-form" 
-    class="contact-form"
 >
+    <input type='hidden' name='form-name' value='simpleContactForm' />
     <p class="form-row">
         <label id="contact-form-name-label" for="contact-form-name" class="form-label">Name</label>
         <input type="text" name="name" id="contact-form-name" aria-labelledby="contact-form-name-label" class="form-input" />
@@ -32,3 +31,51 @@
         <button type="submit" class="button">Send Message</button>
     </p>
 </form>
+
+<script>
+    const formToJSON = (elements) =>
+        [].reduce.call(
+            elements,
+            (data, element) => {
+                data[element.name] = element.value;
+                return data;
+            },
+            {},
+        );
+
+    const processForm = (event) => {
+        event.preventDefault();
+
+        let values = {
+            "form-name": "simpleContactForm",
+            "name": emailForm.elements["name"].value,
+            "email": emailForm.elements["email"].value,
+            "message": emailForm.elements["message"].value,
+        };
+
+        console.log(JSON.stringify(values));
+
+        fetch("/.netlify/functions/newsletter", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values)
+        })
+        .then(data => {
+            //console.log(JSON.stringify(data));
+            emailForm.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
+        })
+        .catch(error => {
+            console.log("error");
+            emailForm.innerHTML = `<div class="form--error">Error: ${error}</div>`;
+        })
+    }
+    
+    const emailForm = document.querySelector(".newsForm");
+    if (emailForm) {
+      emailForm.addEventListener('submit', processForm, false)
+    }
+    
+    </script>
+    
