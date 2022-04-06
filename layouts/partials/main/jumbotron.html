@@ -13,7 +13,7 @@
                 <a href="{{ .jumbotron.download_link }}" class="btn btn-purple" id="button-cloud">Download</a>
               </div>
               <div class="button inline">
-                <a href="{{ .jumbotron.contribute_link }}" class="btn btn-navy" id="button-download" target="_blank">Contribute</a>
+                {{ partial "common/newsletter-modal" (dict "btnName" "Subscribe" "dialogId" "newsletterDlg" "title" "Subscribe to Newsletter") }}
               </div>
             </div>
           </div>      

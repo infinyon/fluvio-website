@@ -2,7 +2,7 @@
   <div class="btn btn-navy" data-toggle="modal" data-target="#{{.dialogId}}">{{.btnName}}</div>
 </div>
 
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none; z-index:1000"></iframe>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none; z-index:1050"></iframe>
 
 <div class="modal fade" id="{{.dialogId}}" tabindex="-1" aria-labelledby="{{.dialogId}}Modal" aria-hidden="true">
   <div class="modal-dialog">
@@ -97,6 +97,10 @@
 </div>
 
 <script>
+  $('#{{.dialogId}}').on('show.bs.modal', function(e){        
+    $(e.relatedTarget.attributes['data-target'].value).appendTo('body');
+  });
+  
   $('#{{.dialogId}}').on('hidden.bs.modal', function () {
     location.reload();
   });
