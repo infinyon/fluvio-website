@@ -7,7 +7,12 @@ toc: false
 
 Welcome to the intro guide to Fluvio! The Concepts section helps you learn about all parts of the Fluvio system and to gain deeper understanding of how Fluvio works.
 
-{{< signup-newsletter >}}
+### Subscribe button
+
+This button is used to subscribe to our newsletter.
+
+{{< subscribe-button >}}
+
 
 ### Inline Highlights
 

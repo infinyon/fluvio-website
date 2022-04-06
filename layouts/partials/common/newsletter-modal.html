@@ -1,0 +1,175 @@
+<div class="button">
+  <div class="btn btn-navy" data-toggle="modal" data-target="#{{.dialogId}}">{{.btnName}}</div>
+</div>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none; z-index:1000"></iframe>
+
+<div class="modal fade" id="{{.dialogId}}" tabindex="-1" aria-labelledby="{{.dialogId}}Modal" aria-hidden="true">
+  <div class="modal-dialog">
+
+    <form 
+      class="newsletterDlg"
+      method="POST"
+      data-netlify="true"
+      data-netlify-recaptcha="true"
+      id="subscribe-newsletter"
+      target="hidden_iframe"
+    >
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="{{.dialogId}}Modal">{{.title}}</div>
+        <a href="#" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <img src="/images/assets/close.png" alt="Close">
+        </a>
+      </div>
+
+      <div id="editMode">
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <input name="email" type="text" class="form-control field" id="email" placeholder="Email address*" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <input name="name" type="text" class="form-control field" id="name" placeholder="Name*" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div data-netlify-recaptcha="true" class="form-row"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="modal-footer justify-content-center">
+          <button id="submitButton" class="button no-border p-0" type="submit">
+            <div class="btn btn-purple" id="modal-submit">Subscribe</div>
+          </button>
+          <div id="spinner" class="spinner-border text-dark" role="status" style="display:none"></div>
+        </div>
+      </div>
+  
+      <div id="resultMode" style="display:none;">
+        <div class="modal-body">
+          <div class="container-fluid">
+
+            <div id="resultSuccess" style="display:none;">
+              <div class="row p-2">
+                <div class="col-2 my-auto">
+                  <img class="result" src="/images/assets/check-circle.svg" alt="Success">
+                </div>
+                <div class="col-10 my-auto">
+                  <p>Congratulations! You are enrolled to receive our newsletter.</p>
+                  <p>Please check your email to confirm your account.</p>
+                </div>              
+              </div>
+            </div>
+
+            <div id="resultError" style="display:none;">
+              <div class="row p-2">
+                <div class="col-2 my-auto">
+                  <img class="result" src="/images/assets/exclamation-triangle.svg" alt="Error">
+                </div>
+                <div class="col-10 my-auto">
+                  <p>Registration failed for the following reason:</p>
+                  <p id="errorReason"></p>
+                </div>              
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="modal-footer justify-content-center">
+          <button class="button no-border p-0" data-dismiss="modal">
+            <div class="btn btn-purple" id="close">Close</div>
+          </button>        
+        </div>
+      </div>
+
+    </div>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  $('#{{.dialogId}}').on('hidden.bs.modal', function () {
+    document.getElementById("editMode").style.display = 'block';
+    document.getElementById("spinner").style.display = 'none';
+    document.getElementById("submitButton").disabled = false;
+    document.getElementById("name").value = "";
+    document.getElementById("name").disabled = false;
+    document.getElementById("email").value = "";
+    document.getElementById("email").disabled = false;
+
+    // result area
+    document.getElementById("resultMode").style.display = 'none';
+    document.getElementById("resultError").style.display = 'none';
+    document.getElementById("resultSuccess").style.display = 'none';
+    const reasonArea = document.getElementById("errorReason");
+      if (reasonArea) {
+        reasonArea.innerHTML = "";
+      }
+  });
+
+  const setLoading = () => {
+    document.getElementById("spinner").style.display = 'block';
+    document.getElementById("submitButton").disabled = true;
+    document.getElementById("name").disabled = true;
+    document.getElementById("email").disabled = true;
+  }
+
+  const showResult = (success, value) => {
+    document.getElementById("editMode").style.display = 'none';
+    document.getElementById("resultMode").style.display = 'block';
+
+    if (success) {
+      document.getElementById("resultError").style.display = 'none';
+      document.getElementById("resultSuccess").style.display = 'block';
+    } else {
+      document.getElementById("resultSuccess").style.display = 'none';
+      document.getElementById("resultError").style.display = 'block';
+      const reasonArea = document.getElementById("errorReason");
+      if (reasonArea) {
+        reasonArea.innerHTML = value;
+      }
+    }
+  }
+
+  const processDlg = async (event) => {
+      event.preventDefault();
+      let formData = new FormData(theDialog);
+
+      try {
+          setLoading();
+          const response = await fetch("/.netlify/functions/newsletter", {
+              method: 'POST',
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(formData).toString(),
+          });
+          const message = await response.text();
+
+          console.log(` Response (${response.status}): ${message}`)
+          if (response.ok) {
+            showResult(true);
+          } else {
+            showResult(false, message);
+          }
+
+      } catch (err) {
+          console.log(`Error: ${err}`);
+          showResult();
+      }
+  }
+  
+  const theDialog = document.querySelector(".newsletterDlg");
+  if (theDialog) {
+    theDialog.addEventListener('submit', processDlg, false)
+  }
+  
+</script>
+  
