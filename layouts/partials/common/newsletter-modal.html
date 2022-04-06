@@ -38,7 +38,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-12 mx-auto p-3">
                 <div data-netlify-recaptcha="true" class="form-row"></div>
               </div>
             </div>
@@ -98,22 +98,7 @@
 
 <script>
   $('#{{.dialogId}}').on('hidden.bs.modal', function () {
-    document.getElementById("editMode").style.display = 'block';
-    document.getElementById("spinner").style.display = 'none';
-    document.getElementById("submitButton").disabled = false;
-    document.getElementById("name").value = "";
-    document.getElementById("name").disabled = false;
-    document.getElementById("email").value = "";
-    document.getElementById("email").disabled = false;
-
-    // result area
-    document.getElementById("resultMode").style.display = 'none';
-    document.getElementById("resultError").style.display = 'none';
-    document.getElementById("resultSuccess").style.display = 'none';
-    const reasonArea = document.getElementById("errorReason");
-      if (reasonArea) {
-        reasonArea.innerHTML = "";
-      }
+    location.reload();
   });
 
   const setLoading = () => {
