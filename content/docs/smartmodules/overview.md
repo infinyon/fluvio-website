@@ -77,6 +77,49 @@ previous record, and the output stream is full of the "summed" records.
 
 <img src="/docs/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="220">
 
+
+## Building SmartModules
+
+Fluvio SmartModule generator creates a Cargo project with all the necessary boilerplate to get you up and running quickly. 
+
+Install `cargo-generate` if you didn't install before (one time operation):
+
+%copy first-line%
+```bash
+$ cargo install cargo-generate 
+```
+
+Run SmartModule template generator:
+
+%copy first-line%
+```bash
+$ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
+⚠️   Unable to load config file: /.cargo/cargo-generate.toml
+🤷   Project Name : my-smartmodule
+🔧   Generating template ...
+✔ 🤷   Which type of SmartModule would you like? · filter
+✔ 🤷   Want to use SmartModule parameters? · true
+[1/7]   Done: .cargo/config.toml
+[2/7]   Done: .cargo
+[3/7]   Done: .gitignore
+[4/7]   Done: Cargo.toml
+[5/7]   Done: README.md
+[6/7]   Done: src/lib.rs
+[7/7]   Done: src
+🔧   Moving generated files into: `/my-smartmodule`...
+💡   Initializing a fresh Git repository
+✨   Done! New project created /my-smartmodule
+```
+
+Navigate to your SmartModule directory, make your changes, then compile:
+
+%copy first-line%
+```bash
+$ cargo build --release
+```
+
+Now that we have the SmartModule binary compiled, let's see it in action.
+
 ## Using SmartModules
 
 SmartModules may be used in two ways: by registering them by name with the Fluvio cluster, or by
