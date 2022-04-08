@@ -118,7 +118,7 @@ Navigate to your SmartModule directory, make your changes, then compile:
 $ cargo build --release
 ```
 
-Now that we have the SmartModule binary compiled, let's see it in action.
+Now that we have the SmartModule binary compiled let's see it in action.
 
 ## Using SmartModules
 
