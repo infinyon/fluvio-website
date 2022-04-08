@@ -177,7 +177,7 @@ $ fluvio consume my-topic -B --filter=target/wasm32-unknown-unknown/release/my_f
 
 #### Using SmartModules in Connectors
 
-SmartModules can be applied to any `source` or `sink` connector.  A SmartConnector devides the collector logic from the data logic. For example, the [http source](connectors/sources/http/) connector, can filter or map data fields before publishing to the topic:
+SmartModules can be applied to any `source` or `sink` connector.  A SmartConnector devides the collector logic from the data logic. For example, the [http source](/connectors/sources/http/) connector, can filter or map data fields before publishing to the topic:
 
 %copy%
 ```yaml
