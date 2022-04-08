@@ -95,7 +95,7 @@ Run SmartModule template generator:
 ```bash
 $ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 ⚠️   Unable to load config file: /.cargo/cargo-generate.toml
-🤷   Project Name : my-smartmodule
+🤷   Project Name : my-filter
 🔧   Generating template ...
 ✔ 🤷   Which type of SmartModule would you like? · filter
 ✔ 🤷   Want to use SmartModule parameters? · true
@@ -106,9 +106,9 @@ $ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 [5/7]   Done: README.md
 [6/7]   Done: src/lib.rs
 [7/7]   Done: src
-🔧   Moving generated files into: `/my-smartmodule`...
+🔧   Moving generated files into: `/my-filter`...
 💡   Initializing a fresh Git repository
-✨   Done! New project created /my-smartmodule
+✨   Done! New project created /my-filter
 ```
 
 Navigate to your SmartModule directory, make your changes, then compile:
@@ -147,19 +147,14 @@ $ fluvio smart-module list
  my-filter  SmartModuleStatus  108754
 ```
 
-Finally, to delete a SmartModule, use `fluvio smart-module delete` and provide the name of the
-SmartModule to delete.
+-> **Note**: The following section assumes that a topic called `my-topic` has been created.
 
-%copy first-line%
-```bash
-$ fluvio smart-module delete my-filter
-```
-
-#### Using Registered SmartModules
+#### Using Registered SmartModules in Consumers
 
 You may use a Registered SmartModule anywhere that SmartModules may be used. To use them,
-you'll need to provide the name of the SmartModule as well as its type. For example, when
-using a registered filter SmartModule with the Fluvio CLI Consumer, provide its name
+you'll need to provide the name of the SmartModule as well as its type. 
+
+For example, when using a registered filter SmartModule with the Fluvio CLI Consumer, provide its name
 to the `--filter` argument, like so:
 
 %copy first-line%
@@ -167,7 +162,7 @@ to the `--filter` argument, like so:
 $ fluvio consume my-topic -B --filter=my-filter
 ```
 
-#### Using Ad-hoc SmartModules
+#### Using Ad-hoc SmartModules in Consumers
 
 You may still use SmartModules even without registering them with Fluvio. When using
 SmartModules this way, you simply provide a path to the WASM file directly when you
@@ -179,3 +174,23 @@ like this:
 ```bash
 $ fluvio consume my-topic -B --filter=target/wasm32-unknown-unknown/release/my_filter.wasm
 ```
+
+#### Using SmartModules in Connectors
+
+SmartModules can be applied to any `source` or `sink` connector.  A SmartConnector devides the collector logic from the data logic. For example, the [http source](connectors/sources/http/) connector, can filter or map data fields before publishing to the topic:
+
+%copy%
+```yaml
+# connect.yml
+name: my-sink-connector
+type: http
+topic: my-topic
+create_topic: true
+direction: source
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 30
+  filter: my-filter 
+```
+
+In this example, the connector reads cat facts and filters out cat statements based on the criteria defined in the SmartModule. For additional information, check out the [SmartConnectors](/connectors/) section.
