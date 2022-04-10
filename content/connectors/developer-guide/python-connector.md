@@ -1,6 +1,6 @@
 ---
 title: How to Create a Python Connector
-menu: Python Connectors
+menu: Python Connector
 weight: 20
 ---
 
