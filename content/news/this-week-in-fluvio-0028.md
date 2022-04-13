@@ -3,12 +3,12 @@ title: "This Week in Fluvio #28"
 date: 2022-04-13
 weight: 20
 ---
+Fluvio is a distributed, programmable streaming platform written in Rust.
+
 This Week in Fluvio is our weekly newsletter for development updates to [Fluvio open source].
 
 Please subscribe to This Week in Fluvio to receive new posts in your inbox
 {{< subscribe-button >}}
-
-Fluvio is a distributed, programmable streaming platform written in Rust.
 
 {{< banner >}}
 
