@@ -5,9 +5,12 @@ weight: 20
 
 ## Overview
 
-Topic data is automatically pruned when following criteria is true:
-1. The segment is not the current active
+Topic data is automatically pruned when **any** of following criteria is true:
+1. Partition size exceeds the configured max partition size
 2. Elapsed time since the last write to segment has passed the configured retention time
+
+-> Data eviction operates on the segment level. If any above conditions are met, the entire segment gets removed. Only previous segments can be pruned. If your data resides in the active segment, it won't be evicted unless the segment turns to a historical (read-only) segment.
+
 
 ## Configuring retention
 
@@ -22,7 +25,11 @@ fluvio-stable topic create [FLAGS] [OPTIONS] <name>
         --retention-time <time>
             Retention time (round to seconds) Ex: '1h', '2d 10s', '7 days' (default)
 
-        --segment-size <bytes>              Segment size in bytes
+        --segment-size <bytes>
+            Segment size (by default measured in bytes) Ex: `2048`, '2 Ki', '10 MiB', `1 GB`
+
+        --max-partition-size <bytes>
+            Max partition size (by default measured in bytes) Ex: `2048`, '2 Ki', '10 MiB', `1 GB`
 
 ARGS:
     <name>    The name of the Topic to create
@@ -30,7 +37,7 @@ ARGS:
 
 ## Retention time
 
-Retention time duration can be provided as a free form string. Check out the [`humantime` docs](https://docs.rs/humantime/2.1.0/humantime/fn.parse_duration.html) for the supported time suffixes.
+Retention time duration can be provided as a free-form string. Check out the [`humantime` docs](https://docs.rs/humantime/2.1.0/humantime/fn.parse_duration.html) for the supported time suffixes.
 
 The default retention time is `7 days`
 
@@ -83,7 +90,10 @@ Produced records persist on the SPU in file chunks that cannot exceed the segmen
 
 If adding a new record to the active segment will would result in exceeding the segment size, it is saved into a new segment.
 
-Older segments are still available for consumption until they get pruned when the retention time is met.
+Older segments are still available for consumption until they get pruned when the eviction condition is met.
+
+Segment size can be provided as a free form string. Check out the [`bytesize` docs](https://github.com/hyunsik/bytesize/) 
+for the supported size suffixes.
 
 The default segment size is `1 GB`
 
@@ -99,7 +109,31 @@ $ fluvio topic create test4 --segment-size 25000000
 
 %copy first-line%
 ```bash
-$ fluvio topic create test5 --segment-size 36000000000 --retention-time 12h
+$ fluvio topic create test5 --segment-size "36 GB" --retention-time 12h
+```
+
+## Max partition size
+
+Fluvio keeps tracking all memory that a partition occupies on **SPU** node. It includes the payload and all bookkeeping data.
+If partition size exceeds the max partition size property Fluvio triggers segments eviction. The oldest segment is deleted first. 
+The size enforcing operation provides `best-effort` guarantee. There might be time windows when the actual partition size may
+exceed the configured max partition size. It is recommended to configure max partitions sizes to cover up to 80% of the disk size.
+If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system 
+may be compromised.
+
+Max partition can be provided as a free-form string. Check out the [`bytesize` docs](https://github.com/hyunsik/bytesize/) 
+for the supported size suffixes.
+
+The default max partition size is `100 GB`.  
+The max partition size must not be less than segment size. 
+
+### Example retention configurations
+
+* 10 GB max partition size w/ 1 GB segment size (only 10 segments are allowed at any time)
+
+%copy first-line%
+```bash
+fluvio topic create test6 --max-partition-size '10 GB' --segment-size '1 GB'
 ```
 
 ## Example data lifecycle
@@ -140,3 +174,19 @@ For a given topic with a retention of `7 days` using `1 GB` segments
 
 The newest segment is left alone and only begins to age once a new segment is being written to.
 
+For a given topic with max partition size is `3 GB` and `1 GB` segments
+* 2.5 GB is written (total partition data: 2.5 GB)
+
+| Topic Segment # | Segment size |
+|-----------------|--------------|
+| 0               | 1 GB         |
+| 1               | 1 GB         |
+| 2               | 0.5 GB       |
+
+* 600 MB is written. The total size becomes 3.1 GB. The first segment is pruned.
+
+| Topic Segment #     | Segment size |
+|---------------------|--------------|
+| 1                   | 1 GB         |
+| 2                   | 1 GB         |
+| 3                   | 0.1 GB       |
