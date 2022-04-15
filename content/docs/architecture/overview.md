@@ -104,7 +104,22 @@ SPU leaders **save** all data stream messages received from producers on **local
 
 SPU persistence is designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.  
 
-Fluvio adds messages local storage until the **retention period** is met. The retention periods should be set to cover **up to 80%** of the disk size. If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system may be compromised.
+Fluvio persists messages in the local storage until any eviction condition is met. It supports **time-based** and 
+**size-based** conditions. Both always are checked and do not exclude each other. The time-based condition 
+is specified by using `retention-time` property of the topic. The retention time is an **age** after which older 
+segments will be **deleted** from the partition. The size-based condition allows setting max size per partition. 
+If **partition size** exceeds the configured max size, Fluvio **deletes the oldest segment** in the partition.
+
+The data eviction operates on a **segments level**. Hence, the frequency and accuracy depend on the **granularity** of 
+segments. The higher the segment size, the less often it is **evicted**, and the longer the records stay alive. 
+The **real retention period** of all records within a segment will be the age of **the latest record** in the segment.
+
+Fluvio provides the **best-effort** guarantee of size-based and time-based eviction. For short periods of time these 
+rules may be violated. The retention periods and max partition size should be set to cover **up to 80%** of the disk size.
+If the disk is full before the eviction is triggered, the SPU stops accepting messages and the overall health of the 
+system may be compromised.
+
+For additional information on retention conditions, checkout [Data Retention]({{< ref "/docs/operations/retention" >}}).
 
 ## APIs
 
