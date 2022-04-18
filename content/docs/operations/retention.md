@@ -114,18 +114,20 @@ $ fluvio topic create test5 --segment-size "36 GB" --retention-time 12h
 
 ## Max partition size
 
-Fluvio keeps tracking all memory that a partition occupies on **SPU** node. It includes the payload and all bookkeeping data.
+Fluvio keeps tracking the disk size that a partition occupies on **SPU** node. It includes the payload and all bookkeeping data.
 If partition size exceeds the max partition size property Fluvio triggers segments eviction. The oldest segment is deleted first. 
 The size enforcing operation provides `best-effort` guarantee. There might be time windows when the actual partition size may
 exceed the configured max partition size. It is recommended to configure max partitions sizes to cover up to 80% of the disk size.
 If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system 
-may be compromised.
+may be compromised. The max partition size is applied to every partition in a topic. If a topic has 3 partitions 
+and `--max-partition-size '10 GB'` is set, Fluvio controls the topic to not exceed 30 GB disk usage for the topic.
 
 Max partition can be provided as a free-form string. Check out the [`bytesize` docs](https://github.com/hyunsik/bytesize/) 
 for the supported size suffixes.
 
 The default max partition size is `100 GB`.  
 The max partition size must not be less than segment size. 
+
 
 ### Example retention configurations
 
