@@ -13,7 +13,7 @@ programmable streaming platform written in Rust.
 
 ### TableFormat improvements
 
-Prior to this release, rendering events with `fluvio consume --output=full_table` required events to arrive as individual JSON objects. But now we can additionally accept a list of events as an array of JSON objects.
+Prior to this release, rendering events with `fluvio consume --output=full-table` required events to arrive as individual JSON objects. But now we can additionally accept a list of events as an array of JSON objects.
 
 Example topic data. Mix of JSON objects, and an array of objects.
 

@@ -50,7 +50,7 @@ OPTIONS:
         --end-offset <integer>               Consume records until end offset
     -b, --maxbytes <integer>                 Maximum number of bytes to be retrieved
     -O, --output <type>
-            Output [possible values: dynamic, text, binary, json, raw, table, full_table]
+            Output [possible values: dynamic, text, binary, json, raw, table, full-table]
 
         --derived-stream <derived-stream>    Name of DerivedStream
         --filter <filter>                    Path to a SmartModule filter wasm file

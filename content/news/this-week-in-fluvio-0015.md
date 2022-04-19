@@ -231,9 +231,9 @@ Create the `tableformat`
 $ fluvio tableformat create --config tableformat-config.yaml
 ```
 
-Consuming from the topic using the `full_table` output, and our `tableformat`
+Consuming from the topic using the `full-table` output, and our `tableformat`
 ```shell
-$ fluvio consume request-events --output full_table --tableformat current-requests 
+$ fluvio consume request-events --output full-table --tableformat current-requests
 ```
 
 Output:
