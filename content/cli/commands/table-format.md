@@ -3,9 +3,9 @@ title: TableFormat
 weight: 20
 ---
 
-Table Format is used to customize the behavior of the Fluvio consumer output type [`full_table`]. 
+Table Format is used to customize the behavior of the Fluvio consumer output type [`full-table`].
 
-[`full_table`]: {{< ref "#full_table" >}}
+[`full-table`]: {{< ref "#full-table" >}}
 
 With `table-format`, you can control the column labels, column ordering and control which keys are primary for displaying your live event data as row updates.
 
@@ -109,11 +109,11 @@ The expected shape of the data is either:
 
 **No table-format**
 
-Using the [`full_table`] output without using a table-format print each key into a column in alphabetical order from left to right.
+Using the [`full-table`] output without using a table-format print each key into a column in alphabetical order from left to right.
 
 %copy first-line%
 ```shell
-$ fluvio consume event-data -B --output full_table
+$ fluvio consume event-data -B --output full-table
 ```
 
 Output:
@@ -160,7 +160,7 @@ Display your table:
 
 %copy first-line%
 ```shell
-$ fluvio consume event-data -B --output full_table --table-format exampleformat1
+$ fluvio consume event-data -B --output full-table --table-format exampleformat1
 ```
 
 Output:
@@ -208,7 +208,7 @@ Display your table:
 
 %copy first-line%
 ```shell
-$ fluvio consume event-data -B --output full_table --table-format exampleformat2
+$ fluvio consume event-data -B --output full-table --table-format exampleformat2
 ```
 
 Output:
@@ -260,7 +260,7 @@ Display your table:
 
 %copy first-line%
 ```shell
-$ fluvio consume event-data -B --output full_table --table-format exampleformat3
+$ fluvio consume event-data -B --output full-table --table-format exampleformat3
 ```
 
 Output:
@@ -311,7 +311,7 @@ Display your table:
 
 %copy first-line%
 ```shell
-$ fluvio consume event-data -B --output full_table --table-format exampleformat4
+$ fluvio consume event-data -B --output full-table --table-format exampleformat4
 ```
 
 Output:

@@ -6,7 +6,7 @@ weight: 10
 
 This document covers two of the the CLI Consumer's output types.
 * [`--output table`]({{< ref "#table" >}}) which is a simple formatted table
-* [`--output full_table`]({{< ref "#full_table" >}}) which is a text-based user interface, with features such as live row-based updates, and column customization via [`table-format`]
+* [`--output full-table`]({{< ref "#full-table" >}}) which is a text-based user interface, with features such as live row-based updates, and column customization via [`table-format`]
 
 
 To demonstrate the table output, we're going to use the following input
@@ -27,9 +27,9 @@ The expected shape of the data is either:
 
 ## table
 
-By default the top-level object keys will be used as the column names, sorted by alphabetical order. For more customizability, please use the [`full_table`] output
+By default the top-level object keys will be used as the column names, sorted by alphabetical order. For more customizability, please use the [`full-table`] output
 
-[`full_table`]: {{< ref "#full_table" >}}
+[`full-table`]: {{< ref "#full-table" >}}
 
 Example command:
 
@@ -50,7 +50,7 @@ Example output:
 ```
 
 
-## full_table
+## full-table
 
 By default the top-level object keys will be used as the column names, sorted by alphabetical order.
 
@@ -58,7 +58,7 @@ Example command:
 
 %copy first-line%
 ```shell
-$ fluvio consume example-topic --output full_table -B
+$ fluvio consume example-topic --output full-table -B
 ```
 
 Example output:
@@ -82,13 +82,13 @@ You can scroll with
 * `c` to clear the table state
 * `q` or `ESC` to exit the table
 
-### Customize the `full_table` table
+### Customize the `full-table` table
 You may have json data that isn't most effectively displayed with the keys ordered alphabetically. Or your data is event sourced, and you only want to see the most recent data organized by one or more primary keys.
 
-In that case, to customize the `full_table` output, you can provide the name of your [`table-format`].
+In that case, to customize the `full-table` output, you can provide the name of your [`table-format`].
 
 [`table-format`]: {{< ref "/cli/commands/table-format.md" >}}
 
-`fluvio consume <topic-name> --output full_table --table-format <table-format name>`
+`fluvio consume <topic-name> --output full-table --table-format <table-format name>`
 
 For more information about how to use `table-format` to customize your table display (including how to rename and/or rearrange columns, or how to configure primary keys for row updating)
