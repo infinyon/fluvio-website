@@ -1,6 +1,6 @@
 ---
 title: "This Week in Fluvio #29"
-date: 2022-05-01
+date: 2022-04-20
 weight: 20
 ---
 Fluvio is a distributed, programmable streaming platform written in Rust.
@@ -10,28 +10,31 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
 Please subscribe to This Week in Fluvio to receive new posts in your inbox
 {{< subscribe-button >}}
 
+This Week in Fluvio is our weekly newsletter for development updates to [Fluvio open source].
+
 {{< banner >}}
 
+
 ## New release
+* We have a new [Swift Fluvio client preview](https://github.com/infinyon/fluvio-client-swift) 
+  * Only supports `produce` for iOS projects
+  * Uses [swift-bridge](https://github.com/chinedufn/swift-bridge) to interop between Rust and Swift
+  * Looking for contributors!
 
+## New video
+Here is the recording of the webinar we held on April 12 for Real-time Event Streaming and Data Transformation for Financial Services.
 
-## New features
-* Storage: Enforce size based retention for topic ([#2179](https://github.com/infinyon/fluvio/issues/2179))  
-Previously, Fluvio supported only a time-based retention policy for data in a topic. For some workloads, it was 
-inconvenient as it was needed to consider the incoming data pace to properly calculate retention time to fit the 
-data into the available storage size. With this new feature, you can tell Fluvio what is the maximum size of the 
-partition you want, and it will control it for you. Check out the details in
-[Data Retention]({{< ref "/docs/operations/retention#max-partition-size" >}}).
+<iframe width="640" height="480" src="https://www.youtube.com/embed/wAvyB8367g4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Performance improvements
-
-
-## Bug fixes
-
-
-
+Thanks again for those who showed up and an extra thanks to those who participated in the Q&A!
 ## Recent events
+Fluvio just reached [1000 stars on Github](https://github.com/infinyon/fluvio/stargazers)!
 
+Thanks to everyone in the community who were generous enough to  <img src="/news/images/0029/1k-star-button-unclicked.png" style="width:156px; display: inline-block" alt="Unclicked Github Star button"/>
+
+And turn it into this: <img src="/news/images/0029/1k-star-button-clicked.png" style="width:175px; display: inline-block"  alt="Clicked Github Star button"/>
+
+We really appreciate the support!
 
 ## Open positions
 * [Sr Rust Engineer (Frontend)](https://www.infinyon.com/careers/cloud-ui-engineer-senior-level) [Remote - Global]
@@ -41,11 +44,7 @@ partition you want, and it will control it for you. Check out the details in
 * [Developer Advocate](https://www.infinyon.com/careers/developer-advocate-mid-senior-level) [Remote - US timezones +/- 5hr]
 * [Solutions Architect](https://www.infinyon.com/careers/solutions-architect) [Remote - US timezones +/- 5hr]
 
-
-
-
 ---
-
 
 Get in touch with us on [Github Discussions] or join [our Discord channel] and come say hello!
 
