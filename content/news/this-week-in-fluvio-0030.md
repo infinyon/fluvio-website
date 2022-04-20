@@ -16,6 +16,7 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
 
 
 ## New release
+* [Fluvio v0.9.24](https://github.com/infinyon/fluvio/releases/tag/v0.9.24)
 
 ## New features
 * Storage: Enforce size based retention for topic ([#2179](https://github.com/infinyon/fluvio/issues/2179))
