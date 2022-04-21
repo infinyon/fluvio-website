@@ -40,6 +40,12 @@ OPTIONS:
     --segment-size <bytes>              
         Segment size in bytes
 
+    --compression-type <compression>
+        Compression configuration for topic
+
+    --max-partition-size <bytes>
+        Max partition size (by default measured in bytes) Ex: `2048`, '2 Ki', '10 MiB', `1 GB`
+
 ARGS:
     <name>    The name of the Topic to create
 ```
@@ -65,6 +71,22 @@ topic "my-topic" created
 ```
 
 In this example, the last segment of 500k will be deleted after 30 days.
+
+### Compression
+
+If you want to set topic level compression, you can use the `--compression-type` parameter, possible values are `any`(default), `none`, `gzip`, `lz4` and `snappy`.
+This configuration will enforce producers to use a compression algorithm that matches with the topic configuration. The SPU will reject any Produce request
+that does not match with the topic configuration. If `--compression-type any` is used, SPU will accept any compression algorithm.
+
+Example usage:
+
+%copy first-line%
+```bash
+$ fluvio topic create my-topic --compression-type gzip
+topic "my-topic" created
+```
+
+In this example, the topic `my-topic` will be created with compression type `gzip`.
 
 ## `fluvio topic list`
 
