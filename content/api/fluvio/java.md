@@ -12,12 +12,14 @@ To see the full docs, visit [our javadoc page].
 [our javadoc page]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html
 
 ## Connect
-To get a connection to fluvio do:
+To get a [connection to fluvio] do:
 
 %copy%
 ```java
 Fluvio fluvio = Fluvio.connect();
 ```
+
+[connection to fluvio]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/Fluvio.html#connect()
 
 ## Producer
 To [create a producer] do:
