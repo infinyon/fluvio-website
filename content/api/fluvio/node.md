@@ -27,7 +27,7 @@ import Fluvio from '@fluvio/client';
 const fluvio = await Fluvio.connect();
 ```
 
-[connect to fluvio]: https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#connect
+[connect to fluvio]: https://infinyon.github.io/fluvio-client-node/interfaces/FluvioClient.html#connect
 
 ## Produce
 
@@ -38,7 +38,7 @@ To [create a producer] do:
 const producer = await fluvio.topicProducer("my-topic");
 ```
 
-[create a producer]: https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#topicproducer
+[create a producer]: https://infinyon.github.io/fluvio-client-node/interfaces/FluvioClient.html#topicProducer
 
 ### Send
 
@@ -49,7 +49,7 @@ To [send a record] for a producer do:
 producer.send("my-key", "my-value");
 ```
 
-[send a record]: https://infinyon.github.io/fluvio-client-node/classes/topicproducer.html#send
+[send a record]: https://infinyon.github.io/fluvio-client-node/classes/TopicProducer.html#send
 
 Note: The `send` call can take either an `ArrayBuffer` or a `string` for the
 key/value fields in `send`.
@@ -64,14 +64,14 @@ const partition = 0;
 const consumer = await fluvio.partitionConsumer("my-topic", partition)
 ```
 
-[get a consumer]: https://infinyon.github.io/fluvio-client-node/interfaces/fluvioclient.html#partitionconsumer
+[get a consumer]: https://infinyon.github.io/fluvio-client-node/interfaces/FluvioClient.html#partitionConsumer
 
 ### Stream
 
 To iterate over the items in a consumer do [create a stream]
 and iterate over it like this:
 
-[create a stream]: https://infinyon.github.io/fluvio-client-node/classes/partitionconsumer.html#createstream
+[create a stream]: https://infinyon.github.io/fluvio-client-node/classes/PartitionConsumer.html#createStream
 
 %copy%
 ```javascript
