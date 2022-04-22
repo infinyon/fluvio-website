@@ -2,7 +2,7 @@
     publish = "public"
 
 [build.environment]
-    HUGO_VERSION = "0.81.0"
+    HUGO_VERSION = "0.97.3"
 
 [functions]
   directory = "./functions"
