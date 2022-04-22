@@ -32,7 +32,11 @@ secrets:
 
 * `table-name` - The name of the [dynamodb table name]
 * `column-names` - A comma separated list of the keys. **The first key is the partition key**
-* `column-types` - A comma separated list of the types for the keys.
+* `column-types` - A comma separated list of the [attribute types of the keys].
+These are `N` for number, `S` for String, and `B` for Binary.
+
+These keys are used for table creation. The incoming json is converted to the
+[Dynamodb data types] on insert.
 
 
 ### Secrets
@@ -40,6 +44,8 @@ secrets:
 * `AWS_ACCESS_KEY_ID` - The [AWS Access Key Id]
 * `AWS_SECRET_ACCESS_KEY` - The [AWS Secret Access Key]
 
+[Dynamodb data types]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html
+[attribute types of the keys]: https://docs.aws.amazon.com/cli/latest/reference/dynamodb/create-table.html#options
 [AWS Secret Access Key]: https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html
 [AWS Access Key Id]: https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html
 [AWS Region]: https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
