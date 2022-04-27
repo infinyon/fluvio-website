@@ -1,6 +1,6 @@
 ---
 title: "This Week in Fluvio #30"
-date: 2022-04-21
+date: 2022-04-27
 weight: 20
 ---
 Fluvio is a distributed, programmable streaming platform written in Rust.
@@ -17,6 +17,10 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
 
 ## New release
 * [Fluvio v0.9.24](https://github.com/infinyon/fluvio/releases/tag/v0.9.24)
+* [DynamoDB Sink connector](https://www.fluvio.io/connectors/sinks/dynamodb/)
+  * The Dynamodb Sink Connector is a sink connector which reads events from a Fluvio topic, deserializes them as json and inserts those key value pairs based on the columns in the config.
+* [Slack Sink connector](https://www.fluvio.io/connectors/sinks/slack/)
+  * The Slack Connector is quite simple. It will stringify any record coming from a Fluvio stream and POST it to the slack via a slack webhook url
 
 ## New features
 * Storage: Enforce size based retention for topic ([#2179](https://github.com/infinyon/fluvio/issues/2179))
@@ -24,24 +28,12 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
   data into the available storage size. With this new feature, you can tell Fluvio what is the maximum size of the
   partition you want, and it will control it for you. Check out the details in
   [Data Retention]({{< ref "/docs/operations/retention#max-partition-size" >}}).
+* CLI: Profile export ([#2327](https://github.com/infinyon/fluvio/issues/2327))
 
-## Performance improvements
 
 ## Bug fixes
 * Don't try to use directories as smartmodule if passed as argument ([#2292](https://github.com/infinyon/fluvio/issues/2292))
 * CLI: Migrate all fluvio crates to `comfy-table` from `prettytable-rs` ([#2285](https://github.com/infinyon/fluvio/issues/2263))
-
-## Team updates
-
-## Tips
-
-## New blog post
-
-## New video
-
-## Recent events
-
-## Upcoming events
 
 ## Open positions
 * [Sr Rust Engineer (Frontend)](https://www.infinyon.com/careers/cloud-ui-engineer-senior-level) [Remote - Global]
