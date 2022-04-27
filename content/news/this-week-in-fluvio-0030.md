@@ -31,10 +31,17 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
 * Export cluster profile to a file ([#2327](https://github.com/infinyon/fluvio/issues/2327))
   * Can be used to initialize the connection to a Fluvio cluster via client APIs.
 
-
 ## Bug fixes
 * Don't try to use directories as smartmodule if passed as argument ([#2292](https://github.com/infinyon/fluvio/issues/2292))
 * CLI: Migrate all fluvio crates to `comfy-table` from `prettytable-rs` ([#2285](https://github.com/infinyon/fluvio/issues/2263))
+
+## New blog post
+* [Real-time Gaining Momentum in the Enterprise](https://www.infinyon.com/blog/2022/02/real-time-gaining-momentum/)
+  * Grant shares how legacy data infrastructures operate and how Infinyon with Fluvio's community are positioned to leverage modern technology for faster and higher quality data infrastructures. 
+
+## Recent events
+* Infinyon was featured as a one of [The 18 Most Exciting Startups Building with Wasm](https://amplifypartners.com/industry-trends/how-webassembly-gets-used-the-18-most-exciting-startups-building-with-wasm/)
+  * Our CEO, A.J. Hunyady, answered questions about our decision to use WebAssembly, and how we use it in Fluvio and Infinyon Cloud.
 
 ## Open positions
 * [Sr Rust Engineer (Frontend)](https://www.infinyon.com/careers/cloud-ui-engineer-senior-level) [Remote - Global]
