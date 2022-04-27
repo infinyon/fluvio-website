@@ -28,7 +28,8 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
   data into the available storage size. With this new feature, you can tell Fluvio what is the maximum size of the
   partition you want, and it will control it for you. Check out the details in
   [Data Retention]({{< ref "/docs/operations/retention#max-partition-size" >}}).
-* CLI: Profile export ([#2327](https://github.com/infinyon/fluvio/issues/2327))
+* Export cluster profile to a file ([#2327](https://github.com/infinyon/fluvio/issues/2327))
+  * Can be used to initialize the connection to a Fluvio cluster via client APIs.
 
 
 ## Bug fixes
