@@ -9,7 +9,7 @@ continuously, and building streaming applications that react to new or updated i
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead
 periodically sends HTTP requests and collects the response body as an event.
 
-**Connector Name** - <a href="https://hub.docker.com/r/infinyon/fluvio-connect-http">infinyon/fluvio-connect-http</a>
+**Connector Name** - {{<link "https://hub.docker.com/r/infinyon/fluvio-connect-http" "infinyon/fluvio-connect-http" >}}
 
 | Version   | Change Log                                                               |
 |:---------:|--------------------------------------------------------------------------|
