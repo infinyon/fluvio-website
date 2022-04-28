@@ -42,7 +42,7 @@ Getting started with InfinyOn Cloud is a simple:
 
 #### Deploy an HTTP connector
 
-Connectors are configured through confguration files. For example, an HTTP connector that reads periodically from the <a href="https://catfact.ninja/fact" target="_blank">https://catfact.ninja</a> website has the following configuration parameters:
+Connectors are configured through confguration files. For example, an HTTP connector that reads periodically from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website has the following configuration parameters:
 
 %copy%
 ```yaml
@@ -70,7 +70,7 @@ Once provisioned, the connector will run continuously and produce data records t
 
 The HTTP connector generates one data event per HTTP response. The data depends on the endpoint you are accessing and can be formatted in multiple ways, as described below. 
 
-### HTTP Response - Body (default)
+### HTTP Response - Body
 
 By default, the HTTP connector produces the `body` of the HTTP response in JSON format:
 
@@ -153,14 +153,14 @@ To convert only the body of the HTTP Response and ignore the header, set `output
 }
 ```
 
-## Event Transformations
+## Data Transformations
 
-Use [SmartModules](/docs/smartmodules/overview/) to apply event transformations, such as:
+Use [SmartModules](/docs/smartmodules/overview/) to apply transformations, such as:
 * **filter** to eliminate invalid records
 * **map** to correct or transform data formats
 * **filtermap** to apply both, filter and map.
 
-Once a SmartModule is uploaded on the cluster, it can be referenced in the `parameters` section. In this example the http connector applies `catfacts-map`.
+Once a SmartModule is uploaded on the cluster, it can be referenced in the `parameters` section. In this example the http connector applies `catfact-map`.
 
 {{< highlight yaml "hl_lines=10" >}}
 # connect.yml
