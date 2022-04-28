@@ -9,7 +9,7 @@ table {
     margin-bottom: 1.5em;
 
     code {
-        color: $main-dark;
+        color: $black;
         padding: 5px;
         background: $main-lightest;
         border-radius: 5px;
@@ -18,7 +18,7 @@ table {
 
 th {
     background: $main-lighter;
-    border-bottom: 1px solid $main-med;
+    border: 1px solid $main-defused;
     padding: 0.5rem;
     line-height: 2em;
     font-weight: normal;
@@ -28,7 +28,7 @@ th {
 }
 
 td {
-    border-top: 1px solid $main-defused;
+    border: 1px solid $main-defused;
     padding: 0.6rem;
     min-width: 130px;
 }

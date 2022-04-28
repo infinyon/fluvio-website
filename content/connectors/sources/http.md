@@ -1,6 +1,9 @@
 ---
 title: HTTP Connector
 menu: HTTP
+connector: 
+  name: "infinyon/fluvio-connect-http"
+  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/http"
 ---
 
 Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint,
@@ -9,12 +12,6 @@ continuously, and building streaming applications that react to new or updated i
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead
 periodically sends HTTP requests and collects the response body as an event.
 
-**Connector Name** - {{<link "https://hub.docker.com/r/infinyon/fluvio-connect-http" "infinyon/fluvio-connect-http" >}}
-
-| Version   | Change Log                                                               |
-|:---------:|--------------------------------------------------------------------------|
-|  0.2.0    | Add formatting parameters `output_parts` and `output_type`.              |
-|  0.1.0    | Initial implementation.                                                  |
 
 ## Configuration Options
 
@@ -154,7 +151,7 @@ $ fluvio connector delete cat-facts-parts
 $ fluvio topic delete cat-facts-parts
 ```
 
-### HTTP Response - Format
+### HTTP Response - JSON
 
 Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format. Note, that this field is only relevant when used in combination with `output_parts: full`. 
 
@@ -237,10 +234,12 @@ $ fluvio topic delete cat-facts-json
 
 ## Data Transformations
 
-Use [SmartModules](/docs/smartmodules/overview/) to apply transformations, such as:
-* **filter** to eliminate invalid records
-* **map** to correct or transform data formats
-* **filtermap** to apply both, filter and map.
+The HTTP connector supports the following [SmartModules](/docs/smartmodules/overview/) for data transforamtions:
+
+- `filter`: to eliminate invalid records
+- `map`: to correct or transform data formats
+- `filtermap`: to apply both, filter and map.
+- `arraymap`: to divide a composite object into individual records.
 
 Once a SmartModule is uploaded on the cluster, it can be referenced in the `parameters` section. In this example the http connector applies `catfact-map`.
 
@@ -296,3 +295,12 @@ Importantly, when using a Local Connector, you _must_ include the first two argu
 
 [Fluvio CLI]: /download
 [free InfinyOn Cloud account]: https://infinyon.cloud/signup
+
+## Changelog
+
+| Version | Date       | PR                                                               | Subject                                           |
+|:-------:|:----------:|:----------------------------------------------------------------:| ------------------------------------------------- |
+| 0.2.0   | 2022-02-01 | [141](https://github.com/infinyon/fluvio-connectors/pull/141)    | <ul><li>Feature json Response Type Record</li><li>Deprecate metadata output_format in favor of `output_parts` [ body (default)</li><li>Add Metadata `output_type` [ text (default) | json ] | full ]</li><ul> |
+| 0.2.0   | 2022-01-31 | [127](https://github.com/infinyon/fluvio-connectors/pull/127)    | <ul><li>Feature full Response Parts Record</li><li>Add Metadata `output_format` [ body (default) | full ]</li><ul> |
+| 0.1.0   | 2021-11-09 | -   | <ul><li>Initial version with text/body Response (default) Record</li></ul> |
+
