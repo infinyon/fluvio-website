@@ -3,8 +3,6 @@ title: MQTT Connector
 menu: MQTT
 ---
 
-## Overview
-
 MQTT is a publish/subscribe protocol that allows clients to listen to a stream
 of events produced to a server. It is widely used in real-time and IoT applications
 since it is lightweight and easy to use.
