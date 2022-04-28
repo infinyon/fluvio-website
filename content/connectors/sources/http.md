@@ -11,9 +11,9 @@ periodically sends HTTP requests and collects the response body as an event.
 
 **Connector Name** - <a href="https://hub.docker.com/r/infinyon/fluvio-connect-http">infinyon/fluvio-connect-http</a>
 
-| Versions  | Definition                                                               |
+| Version   | Change Log                                                               |
 |:---------:|--------------------------------------------------------------------------|
-|  0.2.0    | Add formatting parameter `output_parts` and `output_type`                |
+|  0.2.0    | Add formatting parameters `output_parts` and `output_type`               |
 |  0.1.0    | Initial implementation                                                   |
 
 ## Configuration Options
@@ -152,6 +152,31 @@ To convert only the body of the HTTP Response and ignore the header, set `output
   "body": "{\"fact\":\"A cat\\u2019s nose pad is ridged with a unique pattern, just like the fingerprint of a human.\",\"length\":87}"
 }
 ```
+
+## Event Transformations
+
+Use [SmartModules](/docs/smartmodules/overview/) to apply event transformations, such as:
+* **filter** to eliminate invalid records
+* **map** to correct or transform data formats
+* **filtermap** to apply both, filter and map.
+
+Once a SmartModule is uploaded on the cluster, it can be referenced in the `parameters` section. In this example the http connector applies `catfacts-map`.
+
+{{< highlight yaml "hl_lines=10" >}}
+# connect.yml
+version: 0.2.0
+name: cat-facts
+type: http
+topic: cat-facts
+direction: source
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 10
+  map: "catfact-map"
+{{< /highlight >}}
+
+For additional information checkout [Connector SmartModules](/connectors/#smartmodules).
+
 
 ## Deploy Locally (Advanced)
 
