@@ -7,10 +7,10 @@ connector:
 ---
 
 Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint,
-feeding the response body into a Fluvio topic. This is useful for monitoring APIs
+feeding the HTTP response into a Fluvio topic. This is useful for monitoring APIs
 continuously, and building streaming applications that react to new or updated info.
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead
-periodically sends HTTP requests and collects the response body as an event.
+periodically sends HTTP requests and collects the response as an event.
 
 
 ## Configuration Options
@@ -26,9 +26,10 @@ The HTTP connector supports the following configuration options:
 
 Additionally, the HTTP connector supports the following [SmartModules](/docs/smartmodules/overview) options:
 
-- `filter`: The name of a SmartModule to use as a filter
-- `map`: The name of a SmartModule to use as a map
-- `arraymap`: The name of a SmartModule to use as an arraymap
+- `filter`: The name of the _filter_ SmartModule
+- `map`: The name of the _map_ SmartModule
+- `filter-map`: The name of the _filter-map_ SmartModule
+- `arraymap`: The name of the _arraymap_ SmartModule
 
 ## Deploy on InfinyOn Cloud
 
@@ -39,11 +40,10 @@ Getting started with InfinyOn Cloud is a simple:
 
 #### Deploy an HTTP connector
 
-Connectors are configured through confguration files. For example, an HTTP connector that reads periodically from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website has the following configuration parameters:
+Connectors are defiend through configuration files. Create a `connect.yml` HTTP configuration file that instructs the **source connector** to read periodically from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website:
 
 %copy%
 ```yaml
-# connect.yml
 version: 0.2.0
 name: cat-facts
 type: http
@@ -67,7 +67,7 @@ Once provisioned, the connector will run continuously and produce data records t
 
 The HTTP connector generates one data event per HTTP response. The data depends on the endpoint you are accessing and can be formatted in multiple ways, as described below. 
 
-### HTTP Response - Body
+### HTTP - Body
 
 By default, the HTTP connector produces the `body` of the HTTP response in JSON format:
 
@@ -79,29 +79,18 @@ $ fluvio consume cat-facts -T -d
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
-#### Cleanup
 
-Connectors run continuously until deleted. To clean-up remove connector and topic:
+### HTTP - Header/Body
 
-%copy multi-line%
-```bash
-$ fluvio connector delete cat-facts
-$ fluvio topic delete cat-facts
-```
-
-
-### HTTP Response - Full
-
-Use the `output_parts` parameter to produce full HTTP responses. See `connect-parts.yaml` below:
+Use the `output_parts` parameter to produce full HTTP responses:
 
 %copy%
 
-{{< highlight yaml "hl_lines=10" >}}
-# connect-parts.yml
+{{< highlight yaml "hl_lines=9" >}}
 version: 0.2.0
-name: cat-facts-parts
+name: cat-facts
 type: http
-topic: cat-facts-parts
+topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
@@ -109,20 +98,12 @@ parameters:
   output_parts: full
 {{</ highlight >}}
 
-
-Create a new connector that writes to `cat-facts-parts`:
-
-%copy first-line%
-```bash
-$ fluvio connector create --config=./connect-parts.yml
-```
-
-The header and the body are joined in a single record, where the`header` is captured as text and `body` as JSON:
+This configruation, instructs the connector to product `header` and `body` to `cat-facts` topic.
 
 %copy first-line%
 ```bash
-$ fluvio consume cat-facts-parts -T=1 -d
-Consuming records starting 1 from the end of topic 'cat-facts-parts'
+$ fluvio consume cat-facts -T=1 -d
+Consuming records starting 1 from the end of topic 'cat-facts'
 HTTP/1.1 200 OK
 server: nginx
 date: Thu, 28 Apr 2022 14:05:43 GMT
@@ -143,26 +124,19 @@ x-content-type-options: nosniff
 {"fact":"There are more than 500 million domestic cats in the world, with approximately 40 recognized breeds.","length":100}
 ```
 
-#### Cleanup
+Note, the `header` is text and `body` is JSON.
 
-%copy multi-line%
-```bash
-$ fluvio connector delete cat-facts-parts
-$ fluvio topic delete cat-facts-parts
-```
+### HTTP - JSON
 
-### HTTP Response - JSON
-
-Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format. Note, that this field is only relevant when used in combination with `output_parts: full`. 
+Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format. 
 
 %copy%
 
-{{< highlight yaml "hl_lines=10-11" >}}
-# connect-json.yml
+{{< highlight yaml "hl_lines=9-10" >}}
 version: 0.2.0
-name: cat-facts-json
+name: cat-facts
 type: http
-topic: cat-facts-json
+topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
@@ -171,20 +145,11 @@ parameters:
   output_type: json
 {{</ highlight >}}
 
-Create a new connector that writes to `cat-facts-json`:
+Create a new connector that writes to `cat-facts`:
 
 %copy first-line%
 ```bash
-$ fluvio connector create --config=./connect-json.yml
-```
-
-The header and the body are joined in a single record, and `header` with `body` are captured as JSON:
-
-See below:
-
-%copy first-line%
-```bash
-$ http % fluvio consume cat-facts-json -T=1 -d | jq
+$ http % fluvio consume cat-facts -T=1 -d | jq
 {
   "status": {
     "version": "HTTP/1.1",
@@ -224,49 +189,18 @@ To convert only the body of the HTTP Response and ignore the header, set `output
 }
 ```
 
-#### Cleanup
-
-%copy multi-line%
-```bash
-$ fluvio connector delete cat-facts-json
-$ fluvio topic delete cat-facts-json
-```
-
-## Data Transformations
-
-The HTTP connector supports the following [SmartModules](/docs/smartmodules/overview/) for data transforamtions:
-
-- `filter`: to eliminate invalid records
-- `map`: to correct or transform data formats
-- `filtermap`: to apply both, filter and map.
-- `arraymap`: to divide a composite object into individual records.
-
-Once a SmartModule is uploaded on the cluster, it can be referenced in the `parameters` section. In this example the http connector applies `catfact-map`.
-
-{{< highlight yaml "hl_lines=10" >}}
-# connect.yml
-version: 0.2.0
-name: cat-facts
-type: http
-topic: cat-facts
-direction: source
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10
-  map: "catfact-map"
-{{< /highlight >}}
-
-For additional information checkout [Connector SmartModules](/connectors/#smartmodules).
-
 
 ## Deploy Locally (Advanced)
 
-In a local environment, you have the option to delop a `Managed connector` or `Local connector`.
+In a local environment, you have the option to delop a **Managed Connector** or **Local Connector**.
 
-* `Managed connector`: follow the same instructions as in [Deploy on InfinyOn Cloud](#deploy-on-infinyon-cloud), and ensure that `fluvio profile` points to a local cluster.
-* `Local Connector`: follow the instructions in the [next section](#deploy-local-connector).
+* **Managed Connector**
+  * ensure your [fluvio profile](/cli/installation/profile) points to your local cluster.
+  * follow the same instructions as in [Deploy on InfinyOn Cloud](#deploy-on-infinyon-cloud).
+* **Local Connector** (for connector developers)
+  * follow the instructions in the [next section](#deploy-local-connector).
 
-### Deploy Local connector
+#### Deploy Local connector
 
 Local connectors are deployed as Docker containers. You may launch a local connector with the following command:
 
@@ -292,7 +226,6 @@ Importantly, when using a Local Connector, you _must_ include the first two argu
 - `-t infinyon/fluvio-connect-http`
     - Tells docker which image to use for the connector
 
-
 [Fluvio CLI]: /download
 [free InfinyOn Cloud account]: https://infinyon.cloud/signup
 
@@ -301,6 +234,5 @@ Importantly, when using a Local Connector, you _must_ include the first two argu
 | Version | Date       | PR                                                               | Subject                                           |
 |:-------:|:----------:|:----------------------------------------------------------------:| ------------------------------------------------- |
 | 0.2.0   | 2022-02-01 | [141](https://github.com/infinyon/fluvio-connectors/pull/141)    | <ul><li>Feature json Response Type Record</li><li>Deprecate metadata output_format in favor of `output_parts` [ body (default)</li><li>Add Metadata `output_type` [ text (default) | json ] | full ]</li><ul> |
-| 0.2.0   | 2022-01-31 | [127](https://github.com/infinyon/fluvio-connectors/pull/127)    | <ul><li>Feature full Response Parts Record</li><li>Add Metadata `output_format` [ body (default) | full ]</li><ul> |
+| 0.1.1   | 2022-01-31 | [127](https://github.com/infinyon/fluvio-connectors/pull/127)    | <ul><li>Feature full Response Parts Record</li><li>Add Metadata `output_format` [ body (default) | full ]</li><ul> |
 | 0.1.0   | 2021-11-09 | -   | <ul><li>Initial version with text/body Response (default) Record</li></ul> |
-

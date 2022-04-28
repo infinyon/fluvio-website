@@ -1,6 +1,6 @@
 ---
-title: EXAMPLES
-weight: 40
+title: SMARTMODULES
+weight: 30
 _build:
   render: never
 ---
