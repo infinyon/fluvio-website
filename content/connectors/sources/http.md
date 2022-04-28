@@ -3,13 +3,18 @@ title: HTTP Connector
 menu: HTTP
 ---
 
-## Overview
-
 Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint,
 feeding the response body into a Fluvio topic. This is useful for monitoring APIs
 continuously, and building streaming applications that react to new or updated info.
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead
 periodically sends HTTP requests and collects the response body as an event.
+
+**Connector Name** - <a href="https://hub.docker.com/r/infinyon/fluvio-connect-http">infinyon/fluvio-connect-http</a>
+
+| Versions  | Definition                                                               |
+|:---------:|--------------------------------------------------------------------------|
+|  0.2.0    | Add formatting parameter `output_parts` and `output_type`                |
+|  0.1.0    | Initial implementation                                                   |
 
 ## Configuration Options
 
