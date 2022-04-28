@@ -13,8 +13,8 @@ periodically sends HTTP requests and collects the response body as an event.
 
 | Version   | Change Log                                                               |
 |:---------:|--------------------------------------------------------------------------|
-|  0.2.0    | Add formatting parameters `output_parts` and `output_type`               |
-|  0.1.0    | Initial implementation                                                   |
+|  0.2.0    | Add formatting parameters `output_parts` and `output_type`.              |
+|  0.1.0    | Initial implementation.                                                  |
 
 ## Configuration Options
 
@@ -27,7 +27,7 @@ The HTTP connector supports the following configuration options:
 - `output_parts`: HTTP Response output Record parts - body | full (default: `body`)
 - `output_type`: HTTP Response output Record type - text | json (default: `text`)
 
-Additionally, the HTTP connector supports the following "Smart Connector" options:
+Additionally, the HTTP connector supports the following [SmartModules](/docs/smartmodules/overview) options:
 
 - `filter`: The name of a SmartModule to use as a filter
 - `map`: The name of a SmartModule to use as a map
@@ -76,37 +76,71 @@ By default, the HTTP connector produces the `body` of the HTTP response in JSON 
 
 %copy first-line%
 ```bash
-$ fluvio consume cat-facts -B -d
+$ fluvio consume cat-facts -T -d
 {"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
 {"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
+#### Cleanup
+
+Connectors run continuously until deleted. To clean-up:
+
+%copy multi-line%
+```bash
+$ fluvio connector delete cat-facts
+$ fluvio topic delete cat-facts
+```
+
 ### HTTP Response - Full
 
-Use the `output-parts` parameter in `connect.yaml` to produce full HTTP responses. The header and the body are joined in a single record, where the`header is captured as text and body as JSON. See example:
+Use the `output-parts` parameter to produce full HTTP responses. See `connect-parts.yaml` below:
+
+%copy%
+```yaml
+# connect-parts.yml
+version: 0.2.0
+name: cat-facts-parts
+type: http
+topic: cat-facts-parts
+direction: source
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 10
+  output-parts: full
+```
+
+Create a new connector that writes to `cat-facts-parts`:
 
 %copy first-line%
 ```bash
-$ fluvio consume cat-facts -B -d
+$ fluvio connector create --config=./connect-parts.yml
+```
+
+The header and the body are joined in a single record, where the`header` is captured as text and `body` as JSON:
+
+%copy first-line%
+```bash
+$ fluvio consume cat-facts-parts -T=1 -d
+Consuming records starting 1 from the end of topic 'cat-facts-parts'
 HTTP/1.1 200 OK
 server: nginx
-date: Fri, 28 Jan 2022 19:29:38 GMT
+date: Thu, 28 Apr 2022 14:05:43 GMT
 content-type: application/json
 transfer-encoding: chunked
 connection: keep-alive
 vary: Accept-Encoding
 cache-control: no-cache, private
 x-ratelimit-limit: 100
-x-ratelimit-remaining: 78
+x-ratelimit-remaining: 98
 access-control-allow-origin: *
-set-cookie: XSRF-TOKEN=zz; expires=Fri, 28-Jan-2022 21:29:38 GMT; path=/; samesite=lax
-set-cookie: cat_facts_session=zz; expires=Fri, 28-Jan-2022 21:29:38 GMT; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IkgvdngxWVlsRUpiaXN2WFJnQTZyU1E9PSIsInZhbHVlIjoiMlVhQThFZmxCLzFnbVBrYWVubjBqS29TUENydkNibFp1bS9CajJtQkZvdk8vWHoxNFV2YmlZbVZIeU5JRDltWHU1ekRFamtrc2Mya0JGdGtuZlFkTFlHcmIwUTFCWURBOTlJZ1dHcld0VjlJcVp3cW1LZ2Z4RU8vTVRLS0FRVWMiLCJtYWMiOiI1ZTAwZTEwODkzMjRiNzFmNWU5YzJmZDVlNTgzZmI5Y2VkZDY4ZDMyOGU2MjNmZjEwZmJkZjMzZmI0NTI1YjgwIiwidGFnIjoiIn0%3D; expires=Thu, 28-Apr-2022 16:05:43 GMT; path=/; samesite=lax
+set-cookie: cat_facts_session=eyJpdiI6ImF4c0p2aWM4TkJnUXdnK2psRUlyVWc9PSIsInZhbHVlIjoiR0Rkc3NjTU45cnpUc09pdHNEWk5kOW9BRFNTWVVUWDI2bE9yWWM2TDh2OW5LS0Uwbks2cXluR2R0QnEyYmMreWJYMlorb09WNjVEMkZSRGF5NGhYUDF6WjBac2lwYTJ3dVhlV3o1bXpsMGNoZ1hvcXo0YTNRczNqM1pheVR6ZHAiLCJtYWMiOiJiYTc1ZjA3NWEwY2IzYzkyZmIxNzdiOGY1YjQxZGNlMzU2ZjdiMjYwYzhkZjI0ZWJhNjkxZTY4NWExMDg3NzgxIiwidGFnIjoiIn0%3D; expires=Thu, 28-Apr-2022 16:05:43 GMT; path=/; httponly; samesite=lax
 x-frame-options: SAMEORIGIN
 x-xss-protection: 1; mode=block
 x-content-type-options: nosniff
 
-{"fact":"In relation to their body size, cats have the largest eyes of any mammal.","length":73}
+{"fact":"There are more than 500 million domestic cats in the world, with approximately 40 recognized breeds.","length":100}
 ```
 
 ### HTTP Response - Format
