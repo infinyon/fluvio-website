@@ -98,7 +98,8 @@ $ fluvio topic delete cat-facts
 Use the `output-parts` parameter to produce full HTTP responses. See `connect-parts.yaml` below:
 
 %copy%
-```yaml
+
+{{< highlight yaml "hl_lines=10" >}}
 # connect-parts.yml
 version: 0.2.0
 name: cat-facts-parts
@@ -109,7 +110,8 @@ parameters:
   endpoint: https://catfact.ninja/fact
   interval: 10
   output-parts: full
-```
+{{</ highlight >}}
+
 
 Create a new connector that writes to `cat-facts-parts`:
 
@@ -144,11 +146,48 @@ x-content-type-options: nosniff
 {"fact":"There are more than 500 million domestic cats in the world, with approximately 40 recognized breeds.","length":100}
 ```
 
+#### Cleanup
+
+%copy multi-line%
+```bash
+$ fluvio connector delete cat-facts-parts
+$ fluvio topic delete cat-facts-parts
+```
+
 ### HTTP Response - Format
 
-Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format. Note, that this field is only relevant when used in combination with `output_parts: full`. See below:
+Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format. Note, that this field is only relevant when used in combination with `output_parts: full`. 
 
-```json
+%copy%
+
+{{< highlight yaml "hl_lines=10-11" >}}
+# connect-json.yml
+version: 0.2.0
+name: cat-facts-json
+type: http
+topic: cat-facts-json
+direction: source
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 10
+  output_parts: full
+  output_type: json
+{{</ highlight >}}
+
+Create a new connector that writes to `cat-facts-json`:
+
+%copy first-line%
+```bash
+$ fluvio connector create --config=./connect-json.yml
+```
+
+The header and the body are joined in a single record, and `header` with `body` are captured as JSON:
+
+See below:
+
+%copy first-line%
+```bash
+$ http % fluvio consume cat-facts-json -T=1 -d | jq
 {
   "status": {
     "version": "HTTP/1.1",
@@ -156,25 +195,25 @@ Set the `output_type` parameter to `json` if you want to convert the full HTTP r
     "string": "OK"
   },
   "header": {
-    "date": "Sun, 13 Feb 2022 08:12:18 GMT",
-    "transfer-encoding": "chunked",
+    "server": "nginx",
+    "date": "Thu, 28 Apr 2022 15:53:48 GMT",
     "vary": "Accept-Encoding",
+    "cache-control": "no-cache, private",
     "x-ratelimit-limit": "100",
-    "access-control-allow-origin": "*",
-    "set-cookie": [
-      "XSRF-TOKEN=xx; expires=Sun, 13-Feb-2022 10:12:18 GMT; path=/; samesite=lax",
-      "cat_facts_session=yy; expires=Sun, 13-Feb-2022 10:12:18 GMT; path=/; httponly; samesite=lax"
-    ],
     "content-type": "application/json",
     "x-ratelimit-remaining": "97",
+    "connection": "keep-alive",
+    "set-cookie": [
+      "XSRF-TOKEN=eyJpdiI6IlFnMHN0UzFpMlBEaDhjdjBaRzNoN1E9PSIsInZhbHVlIjoibElGczZPaUFBdDc4eDhiT3N5bkJxZkRVOFpVTjdJaXI0VFFGS1dkU1ZodDV5SGVHOEF6bkhVWjFjTEduMWpuRU50WkV2WURML0JyWWdqWnBtWFpyUXJRU1BBU2Q1cTA1YmdMaWp4TGViRjJnVzNaMFFFdDBaVDhPOHVlRTQxTXUiLCJtYWMiOiJmMGJmY2Q1YmJmYjAwNTQ4NzM0ZmU0MzUxMGEzYzNiMDQ4NGIyOTE1ZjJiY2NkZjFlOWQzZGZmMDBiMWMwMmUwIiwidGFnIjoiIn0%3D; expires=Thu, 28-Apr-2022 17:53:48 GMT; path=/; samesite=lax",
+      "cat_facts_session=eyJpdiI6IklxdW1obmdqSFFSZ2ZRTmZGRnFNbXc9PSIsInZhbHVlIjoiSHJEQUJvZVVQbmJDNm9WaG5rbzNtYzBKZVN6Q0UwSGpXQTBRRHNxWGtVeVQ4bGxjU0lSZlhxa3g4SW0yS0k3bXpqNTIrK3R5K1Z3Vms5ck80dkdQWnlJWHhqWGpIY1R3Z25MWTBqTHAwZFlpQURGZUNFb2xRdmMwajVMaXV1TWkiLCJtYWMiOiJiN2Q3Yjk5MWE3Y2Q4ZWRkODk4MjM3YmM2NWJhZDI1MmY3ZmU0MDlkOWIyYzM0Zjg3YmE1NjdhNGMwZjliNjcyIiwidGFnIjoiIn0%3D; expires=Thu, 28-Apr-2022 17:53:48 GMT; path=/; httponly; samesite=lax"
+    ],
     "x-xss-protection": "1; mode=block",
-    "server": "nginx",
-    "x-frame-options": "SAMEORIGIN",
     "x-content-type-options": "nosniff",
-    "cache-control": "no-cache, private",
-    "connection": "keep-alive"
+    "transfer-encoding": "chunked",
+    "access-control-allow-origin": "*",
+    "x-frame-options": "SAMEORIGIN"
   },
-  "body": "{\"fact\":\"The chlorine in fresh tap water irritates sensitive parts of the cat's nose. Let tap water sit for 24 hours before giving it to a cat.\",\"length\":134}"
+  "body": "{\"fact\":\"Most cats had short hair until about 100 years ago, when it became fashionable to own cats and experiment with breeding.\",\"length\":120}"
 }
 ```
 
@@ -184,8 +223,16 @@ To convert only the body of the HTTP Response and ignore the header, set `output
 
 ```json
 {
-  "body": "{\"fact\":\"A cat\\u2019s nose pad is ridged with a unique pattern, just like the fingerprint of a human.\",\"length\":87}"
+  "body": "{\"fact\":\"Most cats had short hair until about 100 years ago, when it became fashionable to own cats and experiment with breeding.\",\"length\":120}"
 }
+```
+
+#### Cleanup
+
+%copy multi-line%
+```bash
+$ fluvio connector delete cat-facts-json
+$ fluvio topic delete cat-facts-json
 ```
 
 ## Data Transformations
