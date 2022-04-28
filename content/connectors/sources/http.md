@@ -84,13 +84,14 @@ $ fluvio consume cat-facts -T -d
 
 #### Cleanup
 
-Connectors run continuously until deleted. To clean-up:
+Connectors run continuously until deleted. To clean-up remove connector and topic:
 
 %copy multi-line%
 ```bash
 $ fluvio connector delete cat-facts
 $ fluvio topic delete cat-facts
 ```
+
 
 ### HTTP Response - Full
 

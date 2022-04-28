@@ -31,18 +31,16 @@ function addCopyButtons(clipboard) {
             while ((index = str.indexOf('$', currentIndex)) > -1) {
                 currentIndex = index + '$'.length;
 
-                var endIndex = str.indexOf('\n');
-                result += str.substr(currentIndex, endIndex);
-                currentIndex = index + endIndex;
+                var endIndex = str.indexOf('\n', currentIndex);
+                result += str.substr(currentIndex, endIndex - currentIndex + 1).trim() + '\n';
+                currentIndex = index + endIndex;    
 
                 if (copy == FirstLine) {
                     break;
                 }
             }
         }
-
-        console.log(result);
-
+        
         return result;
     }
 
