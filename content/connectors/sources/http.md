@@ -42,7 +42,7 @@ Getting started with InfinyOn Cloud is a simple:
 
 #### Deploy an HTTP connector
 
-Connectors are configured through confguration files. For example an HTTP connector that reads periodically from the <a href="https://catfact.ninja/fact" target="_blank">https://catfact.ninja</a> website has the following configuration parameters:
+Connectors are configured through confguration files. For example, an HTTP connector that reads periodically from the <a href="https://catfact.ninja/fact" target="_blank">https://catfact.ninja</a> website has the following configuration parameters:
 
 %copy%
 ```yaml
