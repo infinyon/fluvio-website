@@ -7,6 +7,13 @@ table {
     margin: auto;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+
+    code {
+        color: $main-dark;
+        padding: 5px;
+        background: $main-lightest;
+        border-radius: 5px;
+    }
 }
 
 th {

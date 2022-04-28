@@ -95,7 +95,7 @@ $ fluvio topic delete cat-facts
 
 ### HTTP Response - Full
 
-Use the `output-parts` parameter to produce full HTTP responses. See `connect-parts.yaml` below:
+Use the `output_parts` parameter to produce full HTTP responses. See `connect-parts.yaml` below:
 
 %copy%
 
@@ -109,7 +109,7 @@ direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
   interval: 10
-  output-parts: full
+  output_parts: full
 {{</ highlight >}}
 
 
