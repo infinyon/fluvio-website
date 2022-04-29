@@ -6,7 +6,7 @@ toc: false
 
 The simplest type of SmartModule is a filter, which can examine each record in a stream and decide whether to accept or reject it. All accepted records are delivered down the pipeline, and rejected records are discarded. SmartModule applied in consumers or sink connectors filter records after they are stored in a topic, and will not impact persistence - it simply means that records filtered out are not delivered to the consumer. However, SmartModule filters applied to source connectors discard packets before they are stored in the topic and should be used with care. 
 
-<img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="200">
+<img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="190">
 
 ## Getting Practical: Filter Records by JSON fields
 
@@ -309,5 +309,5 @@ $ fluvio consume server-logs -B --filter=log-filter
 ### Read next
 
 - [Explore filter use-cases](https://www.infinyon.com/blog/2021/06/smartstream-filters/)
-- [Writing a map to transform records]({{< ref "/docs/smartmodules/map" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/docs/smartmodules/aggregate" >}})
+- [Writing a map to transform records]({{< ref "/smartmodules/transform/map" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})

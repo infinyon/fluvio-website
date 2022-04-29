@@ -9,7 +9,7 @@ in a stream with some accumulated value. In the functional programming world,
 this type of operation is also known as `folding`, since the function "folds"
 each new value into the accumulator.
 
-<img src="/docs/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="250">
+<img src="/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="230">
 
 Let's set up a new SmartModule project so that we can look at some code while
 introducing aggregators. 
@@ -186,5 +186,5 @@ $ fluvio consume aggregate-ints -B --aggregate=aggregate-sm
 ### Read next
 
 - [Explore aggregate use-cases](https://www.infinyon.com/blog/2021/08/smartstream-aggregates/)
-- [Writing a JSON filter]({{< ref "/docs/smartmodules/filter" >}})
-- [Writing a map to transform records]({{< ref "/docs/smartmodules/map" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
+- [Writing a map to transform records]({{< ref "/smartmodules/transform/map" >}})

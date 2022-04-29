@@ -1,7 +1,8 @@
 ---
-title: SmartModule - Filter 
-menu: filter
-weight: 10
+title: ANALYTICS
+weight: 20
+_build:
+  render: never
 ---
 
 ## Data Transformations
@@ -29,4 +30,3 @@ parameters:
 {{< /highlight >}}
 
 For additional information checkout [Connector SmartModules](/connectors/#smartmodules).
-

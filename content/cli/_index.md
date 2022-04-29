@@ -32,8 +32,8 @@ out with Fluvio:
 
 #### Enriching data with SmartModules
 
-- [Overview for SmartModules]({{< ref "/docs/smartmodules/overview" >}})
-- [Write a custom filtering SmartModule]({{< ref "/docs/smartmodules/filter" >}})
+- [Overview for SmartModules]({{< ref "/smartmodules" >}})
+- [Write a custom filtering SmartModule]({{< ref "/smartmodules/transform/filter" >}})
 - [Consume enriched data using SmartModules]({{< ref "/cli/commands/consume#example-3-consume-using-a-smartstream" >}})
 
 #### Viewing the status of the cluster

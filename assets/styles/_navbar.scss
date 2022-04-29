@@ -102,11 +102,27 @@ $item: $main-med;
   }
 }
 
+@media (max-width: 900px) {
+  .navbar-custom.bb {
+    .navbar-item {
+      &.stars, &.try-cloud {
+        display: none;
+      }
+    }  
+  }
+}
+
 @media (max-width: 767px) {
   .navbar-custom.bb {
     border-bottom: 1px solid rgba($main-light, 0.3);
     padding-top: 15px;
     padding-bottom: 15px;
+
+    .navbar-item {
+      &.stars, &.try-cloud {
+        display: block;
+      }
+    }  
   }
 
   .navbar-custom {    

@@ -11,7 +11,7 @@ we'd like to be able to analyze and manipulate those data points independently.
 ArrayMap allows us to dig in and break apart these composite records into
 the smaller units of data that we want to work with.
 
-<img src="/docs/smartmodules/images/smartmodule-arraymap.svg" alt="SmartModule ArrayMap" justify="center" height="200">
+<img src="/smartmodules/images/smartmodule-arraymap.svg" alt="SmartModule ArrayMap" justify="center" height="190">
 
 For example, suppose that each element in our Topic is a JSON array. We
 might want to interact with the _elements_ of these arrays rather than
@@ -195,8 +195,8 @@ other SmartModules examples.
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/docs/smartmodules/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/docs/smartmodules/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 [downloaded the Fluvio CLI]: https://www.fluvio.io/download/
 [using ArrayMap to break apart paginated API requests]: https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/
