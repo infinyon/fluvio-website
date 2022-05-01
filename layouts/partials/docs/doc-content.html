@@ -8,8 +8,16 @@
 {{- end -}}
 
 {{- $title := .page.Title | safeHTML -}}
+{{- $connector := .page.Params.Connector -}}
 
-<h1>{{ $title }}</h1>
+<div class="font-xxl pt-3">{{ $title }}</div>
+{{- if $connector -}}
+    {{- $name := $connector.name | default "" -}}
+    {{- $link := $connector.link | default "#" -}}
+    <div class="subtitle">
+        <a href="{{ $link }}" target="_blank">{{$name}}</a>
+    </div>
+{{- end -}}
 <div class="doc-content">
     {{ $content }}
 </div>

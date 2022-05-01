@@ -1,10 +1,7 @@
 ---
-title: Fluvio SmartModules
+title: SmartModules
 menu: Overview
-weight: 10
-aliases:
-    - /docs/smartmodules
-toc: false
+toc: true
 ---
 
 SmartModules are one of Fluvio's premiere features, allowing users to have
@@ -20,7 +17,7 @@ filtering along the stream and encouraging code-reuse and collaboration.
 The following diagram shows common components which may be configured with SmartModules
 performing inline computation.
 
-<img src="/docs/smartmodules/images/smartmodule-overview.svg" alt="SmartModule Overview" justify="center" height="480">
+<img src="/smartmodules/images/smartmodule-overview.svg" alt="SmartModule Overview" justify="center" height="480">
 
 The diagram shows five places where SmartModules may currently be used:
 
@@ -40,19 +37,21 @@ overcome "Data Gravity" by moving only the most minimal amount of data necessary
 
 Fluvio features the following types of SmartModules:
 
+### Transform
+
 #### Filter
 
 A [Filter SmartModule](../filter) takes an input record and returns `false` if the record should
 be discarded, or `true` if the record should be kept and sent downstream.
 
-<img src="/docs/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="180">
+<img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="180">
 
 #### Map
 
 A [Map SmartModule](../map) takes an input record and may edit and transform it, returning a
 new record that is sent downstream.
 
-<img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="180">
+<img src="/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="180">
 
 #### FilterMap
 
@@ -60,14 +59,16 @@ A [FilterMap SmartModule](../filter-map) takes one input record and returns zero
 This effectively means that it may decide to discard or "filter" any input records, or
 to keep them and apply a transformation to them at the same time.
 
-<img src="/docs/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="180">
+<img src="/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="180">
 
 #### ArrayMap
 
 An [ArrayMap SmartModule](../array-map) takes one input record and returns zero or many output records.
 This means that the output stream may have more records than the input stream.
 
-<img src="/docs/smartmodules/images/smartmodule-arraymap.svg" alt="SmartModule ArrayMap" justify="center" height="180">
+<img src="/smartmodules/images/smartmodule-arraymap.svg" alt="SmartModule ArrayMap" justify="center" height="180">
+
+### Analytics
 
 #### Aggregate
 
@@ -75,12 +76,14 @@ An [Aggregate SmartModule](../aggregate) takes input records and "accumulates" t
 each input record to a rolling sum. Each input record gets "added" to the sum after the
 previous record, and the output stream is full of the "summed" records.
 
-<img src="/docs/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="220">
+<img src="/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="220">
 
 
 ## Building SmartModules
 
 Fluvio SmartModule generator creates a Cargo project with all the necessary boilerplate to get you up and running quickly. 
+
+### In Rust
 
 Install `cargo-generate` if you didn't install before (one time operation):
 
@@ -120,17 +123,14 @@ $ cargo build --release
 
 Now that we have the SmartModule binary compiled let's see it in action.
 
-## Using SmartModules
+### Other Languages
 
-SmartModules may be used in two ways: by registering them by name with the Fluvio cluster, or by
-providing them "ad hoc" right when you want to use them. In development, it is useful to use ad-hoc
-SmartModules, since the compiled WASM code is changing between each run. However, for most actual
-use-cases, it typically becomes much easier to register the SmartModule and later refer to them by name.
+We are currently evaluating... 
 
-#### Registering SmartModules
+## Registering SmartModules
 
 After building a SmartModule as a WASM binary, it may be registered with Fluvio using
-the `fluvio smart-module` command, providing a name and a path to the binary. Use [SmartModule filters](/docs/smartmodules/filter/) to build a WASM file.
+the `fluvio smart-module` command, providing a name and a path to the binary. Use [SmartModule filters](/smartmodules/transform/filter/) to build a WASM file.
 
 %copy first-line%
 ```bash
@@ -149,8 +149,17 @@ $ fluvio smart-module list
 
 -> **Note**: The following section assumes that a topic called `my-topic` has been created.
 
-#### Using Registered SmartModules in Consumers
+## Using SmartModules
 
+SmartModules may be used in two ways: by registering them by name with the Fluvio cluster, or by
+providing them "ad hoc" right when you want to use them. In development, it is useful to use ad-hoc
+SmartModules, since the compiled WASM code is changing between each run. However, for most actual
+use-cases, it typically becomes much easier to register the SmartModule and later refer to them by name.
+
+
+### In Consumers
+
+#### Using Registered SmartModules
 You may use a Registered SmartModule anywhere that SmartModules may be used. To use them,
 you'll need to provide the name of the SmartModule as well as its type. 
 
@@ -162,7 +171,7 @@ to the `--filter` argument, like so:
 $ fluvio consume my-topic -B --filter=my-filter
 ```
 
-#### Using Ad-hoc SmartModules in Consumers
+#### Using Inline SmartModules
 
 You may still use SmartModules even without registering them with Fluvio. When using
 SmartModules this way, you simply provide a path to the WASM file directly when you
@@ -175,7 +184,7 @@ like this:
 $ fluvio consume my-topic -B --filter=target/wasm32-unknown-unknown/release/my_filter.wasm
 ```
 
-#### Using SmartModules in Connectors
+### In Connectors
 
 SmartModules can be applied to any `source` or `sink` connector.  A SmartConnector devides the collector logic from the data logic. For example, the [http source](/connectors/sources/http/) connector, can filter or map data fields before publishing to the topic:
 

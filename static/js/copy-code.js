@@ -1,17 +1,50 @@
 function addCopyButtons(clipboard) {
+    const All = 0;
+    const FirstLine = 1;
+    const MultiLine = 2;
+
     document.querySelectorAll('.copy-code').forEach(function (copyCode) {
         var codeBlock = copyCode.nextElementSibling;
-        var button = buildButton(codeBlock.innerHTML, false);
+        var button = buildButton(codeBlock.innerHTML, All);
         codeBlock.parentNode.insertBefore(button, codeBlock);
     });
 
-    document.querySelectorAll('.copy-first-line').forEach(function (copyFirstLine) {
-        var codeBlock = copyFirstLine.nextElementSibling;
-        var button = buildButton(codeBlock.innerHTML, true);
+    document.querySelectorAll('.copy-first-line').forEach(function (copyCode) {
+        var codeBlock = copyCode.nextElementSibling;
+        var button = buildButton(codeBlock.innerHTML, FirstLine);
         codeBlock.parentNode.insertBefore(button, codeBlock);
     });
 
-    function buildButton(html, firstLine) {
+    document.querySelectorAll('.copy-multi-line').forEach(function (copyCode) {
+        var codeBlock = copyCode.nextElementSibling;
+        var button = buildButton(codeBlock.innerHTML, MultiLine);
+        codeBlock.parentNode.insertBefore(button, codeBlock);
+    });
+
+    function copyContent(str, copy) {
+        var result = "";
+
+        if (copy == All) {
+            result = str;
+        } else {
+            var currentIndex = 0;
+            while ((index = str.indexOf('$', currentIndex)) > -1) {
+                currentIndex = index + '$'.length;
+
+                var endIndex = str.indexOf('\n', currentIndex);
+                result += str.substr(currentIndex, endIndex - currentIndex + 1).trim() + '\n';
+                currentIndex = index + endIndex;    
+
+                if (copy == FirstLine) {
+                    break;
+                }
+            }
+        }
+        
+        return result;
+    }
+
+    function buildButton(html, copy) {
         var button = document.createElement('button');
         button.className = 'copy-code-button';
         button.type = 'button';
@@ -20,14 +53,7 @@ function addCopyButtons(clipboard) {
         button.addEventListener('click', function () {
             var div = document.createElement("div");
             div.innerHTML += html.replaceAll('class="hl">\n', 'class="hl">');
-            var copyText = "";
-
-            if (firstLine) {
-                copyText = div.innerText.substr(0, div.innerText.indexOf('\n'));
-                copyText = copyText.indexOf('$') > -1 ? copyText.substr(copyText.indexOf('$') + 2) : copyText;
-            } else {
-                var copyText = div.innerText;
-            }
+            var copyText = copyContent(div.innerText, copy);
 
             clipboard.writeText(copyText).then(function () {
                 button.blur();

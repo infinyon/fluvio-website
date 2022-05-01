@@ -102,6 +102,16 @@ $item: $main-med;
   }
 }
 
+@media (max-width: 900px) {
+  .navbar-custom {
+    .navbar-item {
+      &.stars, &.try-cloud {
+        display: none;
+      }
+    }  
+  }
+}
+
 @media (max-width: 767px) {
   .navbar-custom.bb {
     border-bottom: 1px solid rgba($main-light, 0.3);
@@ -152,6 +162,12 @@ $item: $main-med;
       .navbar-nav .nav-link-rev {
         line-height: 3em;
       }
+
+      .navbar-item {
+        &.stars, &.try-cloud {
+          display: block;
+        }
+      }    
     }
 
 }

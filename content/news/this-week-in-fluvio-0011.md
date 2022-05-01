@@ -129,7 +129,7 @@ Consuming records from the end of topic 'array-map-array'. This will wait for ne
 "Cranberry"
 ```
 
-Docs for ArrayMap are [available here]({{< ref "/docs/smartmodules/array-map.md" >}}). For a more hands-on explanation with a real-world example, please read our [blog post](https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/) demonstrating the capabilities of `#[smartstream(array_map)]`.
+Docs for ArrayMap are [available here]({{< ref "/smartmodules/transform/array-map" >}}). For a more hands-on explanation with a real-world example, please read our [blog post](https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/) demonstrating the capabilities of `#[smartstream(array_map)]`.
 
 
 ---

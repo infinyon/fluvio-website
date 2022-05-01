@@ -39,12 +39,21 @@
     {{- if not .Params.hidden }}
         {{- block "menu-item" (dict "current" $current "page" . "class" "first") -}}{{- end }}
     {{ end -}}
+    {{ range .FirstSection.Pages }}
+        <div class="section">
+            {{ if not .Params.hidden }}
+                {{- if and .IsPage .CurrentSection }}
+                    {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
+                {{ end -}}
+            {{- end -}}    
+        </div>
+    {{ end -}}    
 {{ end -}}
 
 <!-- Top Pages -->
 {{- range $all_pages -}}
     {{ if not .Params.hidden }}
-        {{- if and .IsPage (eq .CurrentSection .FirstSection) }}
+        {{- if and .IsPage (eq .CurrentSection .FirstSection) (eq .Section .FirstSection) }}
             {{- block "menu-item" (dict "current" $current "page" .) -}}{{- end }}
         {{ end -}}
     {{- end -}}

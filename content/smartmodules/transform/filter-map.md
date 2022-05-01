@@ -16,7 +16,7 @@ FilterMap functions work by returning an `Option` of a new record. To discard a
 record from the stream, return `None`. Otherwise, transform
 the record according to your needs and return it as `Some(record)`.
 
-<img src="/docs/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="200">
+<img src="/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="190">
 
 Let's dive in and see how to use this in practice. You can find the full code
 for this doc's example [in the fluvio-smartmodule-examples repository][1].
@@ -240,8 +240,8 @@ $ fluvio consume filter-map -B --filter-map=filter-groceries
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/docs/smartmodules/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/docs/smartmodules/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 [1]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/grocery-notifications-simple/src/lib.rs
 [2]: https://www.infinyon.com/blog/2021/11/filter-map/

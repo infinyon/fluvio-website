@@ -1,6 +1,6 @@
 ---
 title: DEVELOPER GUIDE
-weight: 40
+weight: 50
 _build:
   render: never
 ---

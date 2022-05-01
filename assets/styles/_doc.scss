@@ -2,6 +2,19 @@
 .doc-area {
   min-width: 300px;
   margin: 0 15px;
+
+  .subtitle {
+    margin-left: -14px !important;
+    margin-bottom: 5px !important;
+    padding-top: 18px !important;
+
+    a {
+      font-weight: 400; 
+      color: $main-color;
+    }
+
+  }
+
 }
 
 .doc {

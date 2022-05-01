@@ -16,7 +16,7 @@ may be used for many use-cases, such as:
 Let's create a brand-new SmartModule Map to see what a minimal working
 example looks like.
 
-<img src="/docs/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="200">
+<img src="/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="190">
 
 ## Create a new Project
 
@@ -176,5 +176,5 @@ $ fluvio consume map-double -B --map=map-double-sm
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/docs/smartmodules/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/docs/smartmodules/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})

@@ -38,28 +38,34 @@ disableKinds = ["taxonomyTerm"]
     weight = 100
 
   [[menu.fluvio]]
-    identifier = "cli"
-    name = "CLI"
-    url = "/cli/"
-    weight = 101
-
-  [[menu.fluvio]]
     identifier = "connectors"
     name = "Connectors"
     url = "/connectors/"
+    weight = 101
+
+  [[menu.fluvio]]
+    identifier = "smartmodules"
+    name = "SmartModules"
+    url = "/smartmodules/"
     weight = 102
+
+  [[menu.fluvio]]
+    identifier = "cli"
+    name = "CLI"
+    url = "/cli/"
+    weight = 103
 
   [[menu.fluvio]]
     identifier = "api"
     name = "APIs"
     url = "/api/"
-    weight = 103
+    weight = 104
 
   [[menu.fluvio]]
     identifier = "news"
     name = "News"
     url = "/news/"
-    weight = 104
+    weight = 105
 
   [[menu.fluvio]]
     identifier = "chat"
