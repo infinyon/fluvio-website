@@ -8,109 +8,49 @@
   directory = "./functions"
 
 [[redirects]]
-  from = "/blog/2021/01/websocket-glue-for-streaming-apps/"
-  to = "https://www.infinyon.com/blog/2021/01/websocket-glue-for-streaming-apps/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/02/bot-assistant/"
-  to = "https://www.infinyon.com/blog/2021/02/bot-assistant/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/03/announcing-fluvio-cloud-platform/"
-  to = "https://www.infinyon.com/blog/2021/03/announcing-fluvio-cloud-platform/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/03/python-client/"
-  to = "https://www.infinyon.com/blog/2021/03/python-client/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/03/key-value-records/"
-  to = "https://www.infinyon.com/blog/2021/03/key-value-records/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/04/node-bindgen-tuples/"
-  to = "https://www.infinyon.com/blog/2021/04/node-bindgen-tuples/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/04/github-actions-best-practices/"
-  to = "https://www.infinyon.com/blog/2021/04/github-actions-best-practices/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/04/rust-custom-test-harness/"
-  to = "https://www.infinyon.com/blog/2021/04/rust-custom-test-harness/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/05/java-client/"
-  to = "https://www.infinyon.com/blog/2021/05/java-client/"
-  status = 301
-  force = true 
-
-[[redirects]]
-  from = "/blog/2021/05/bors-confident-merges/"
-  to = "https://www.infinyon.com/blog/2021/05/bors-confident-merges/"
-  status = 301
-  force = true 
-
-[[redirects]]
   from = "/blog/"
   to = "https://www.infinyon.com/blog/"
   status = 301
   force = true
 
 [[redirects]]
-from = "/docs/smartstreams/quick-start/"
+from = "/docs/smartmodules/"
+to = "/smartmodules/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/smartmodules/quick-start/"
 to = "/smartmodules/"
 status = 301
 force = true
 
 [[redirects]]
 from = "/docs/smartstreams/filter/"
-to = "/smartmodules/"
+to = "/smartmodules/transform/filter/"
 status = 301
 force = true
 
 [[redirects]]
 from = "/docs/smartstreams/map/"
-to = "/smartmodules/"
+to = "/smartmodules/transform/map/"
 status = 301
 force = true
 
 [[redirects]]
 from = "/docs/smartstreams/array-map/"
-to = "/smartmodules/"
+to = "/smartmodules/transform/array-map/"
 status = 301
 force = true
 
 [[redirects]]
 from = "/docs/smartstreams/aggregate/"
-to = "/smartmodules/"
+to = "/smartmodules/analytics/aggregate/"
 status = 301
 force = true
 
 [[redirects]]
 from = "/docs/smartstreams/api/"
-to = "/smartmodules/"
-status = 301
-force = true
-
-[[redirects]]
-from = "/docs/smartstreams/quick-start/"
 to = "/smartmodules/"
 status = 301
 force = true
