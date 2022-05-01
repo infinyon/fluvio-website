@@ -26,31 +26,25 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/docs/smartstreams/filter/"
+from = "/docs/smartmodules/filter/"
 to = "/smartmodules/transform/filter/"
 status = 301
 force = true
 
 [[redirects]]
-from = "/docs/smartstreams/map/"
+from = "/docs/smartmodules/map/"
 to = "/smartmodules/transform/map/"
 status = 301
 force = true
 
 [[redirects]]
-from = "/docs/smartstreams/array-map/"
+from = "/docs/smartmodules/array-map/"
 to = "/smartmodules/transform/array-map/"
 status = 301
 force = true
 
 [[redirects]]
-from = "/docs/smartstreams/aggregate/"
+from = "/docs/smartmodules/aggregate/"
 to = "/smartmodules/analytics/aggregate/"
-status = 301
-force = true
-
-[[redirects]]
-from = "/docs/smartstreams/api/"
-to = "/smartmodules/"
 status = 301
 force = true
