@@ -92,3 +92,7 @@ Our clients differ a little bit on this but a `Record` is a wrapper around
 array of bytes with accessor methods of `key` or `value`.
 
 In the python, node and java clients, we have to-string convenience methods.
+
+### Timestamps
+
+Fluvio `Records` contain timestamp information. As of Fluvio `0.9.25`, the timestamp of each record is set by Fluvio Producer on creation, previously the timestamp fields were uninitialized. This information is available to the consumer using the respective API call `timestamp()`.
