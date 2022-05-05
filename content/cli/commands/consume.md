@@ -263,16 +263,16 @@ nine
 Sometimes, the default Consumer printout might not work for your needs. As of Fluvio `0.9.6`
 you can now use the `--format` string to describe how the Consumer should print your records!
 
-The format string will replace placeholders such as `{{key}}`, `{{value}}`, and `{{offset}}`
+The format string will replace placeholders such as `{{key}}`, `{{value}}`, `{{partition}}`(added in Fluvio `0.9.9` ), `{{offset}}` and `{{time}}` (added in Fluvio `0.9.25`)
 with the actual contents for each record. One possible use for this is formatting each record
 as a CSV row:
 
 %copy first-line%
 ```bash
-$ fluvio consume my-topic -B --format="{{offset}},{{key}},{{value}}"
-0,null,This is my first record ever
-1,null,This is my second record ever
-2,alice,Alice In Wonderland
-3,batman,Bruce Wayne
-4,santa,Santa Claus
+$ fluvio consume my-topic -B --format="{{time}},{{partition}},{{offset}},{{key}},{{value}}"
+2022-05-04T15:35:49.244Z,0,0,null,This is my first record ever
+2022-05-04T15:35:49.244Z,0,1,null,This is my second record ever
+2022-05-04T15:52:19.963Z,0,2,alice,Alice In Wonderland
+2022-05-04T15:52:28.875Z,0,3,batman,Bruce Wayne
+2022-05-04T15:53:37.099Z,0,4,santa,Santa Claus
 ```
