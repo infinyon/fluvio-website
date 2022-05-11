@@ -26,10 +26,10 @@ To [create a producer] do:
 
 %copy%
 ```java
-TopicProducer producer = fluvio.topic_producer("hello-java");
+TopicProducer producer = fluvio.producer("hello-java");
 ```
 
-[create a producer]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/Fluvio.html#topic_producer(java.lang.String)
+[create a producer]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/Fluvio.html#producer(java.lang.String)
 
 ### Send
 
@@ -50,10 +50,10 @@ To [create a consumer] do:
 
 %copy%
 ```java
-PartitionConsumer consumer = fluvio.partition_consumer("hello-java", 0);
+PartitionConsumer consumer = fluvio.consumer("hello-java", 0);
 ```
 
-[create a consumer]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/Fluvio.html#partition_consumer(java.lang.String,int)
+[create a consumer]: https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/Fluvio.html#consumer(java.lang.String,int)
 
 ### Stream
 For now usage of the [consumer stream]
