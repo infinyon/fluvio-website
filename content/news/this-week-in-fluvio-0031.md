@@ -10,8 +10,6 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
 Please subscribe to This Week in Fluvio to receive new posts in your inbox
 {{< subscribe-button >}}
 
-This Week in Fluvio is our weekly newsletter for development updates to [Fluvio open source].
-
 {{< banner >}}
 
 ## New release

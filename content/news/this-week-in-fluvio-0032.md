@@ -1,6 +1,6 @@
 ---
 title: "This Week in Fluvio #32"
-date: 2022-05-31
+date: 2022-05-11
 weight: 20
 ---
 Fluvio is a distributed, programmable streaming platform written in Rust.
@@ -15,9 +15,7 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
 {{< banner >}}
 
 ## New release
-
-
-## New features
+* [Fluvio v0.9.26](https://github.com/infinyon/fluvio/releases/tag/v0.9.26)
 
 
 ## Performance improvements
@@ -28,6 +26,7 @@ needs low latency, but you can tolerate some losses, `ReadUncommitted` is recomm
 [Data Consistency]({{< ref "/docs/architecture/data-consistency" >}}) for more details.
 
 ## Bug fixes
+* Increase default `STORAGE_MAX_BATCH_SIZE` ([#2342](https://github.com/infinyon/fluvio/issues/2342))
 
 ## Open positions
 * [Sr Rust Engineer (Frontend)](https://www.infinyon.com/careers/cloud-ui-engineer-senior-level) [Remote - Global]
