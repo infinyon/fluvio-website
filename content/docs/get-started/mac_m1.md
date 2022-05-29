@@ -39,7 +39,7 @@ $ brew install kind
 #### Start a Kubernetes cluster
 
 To configure kind cluster creation, you will need to create a YAML config file. This file follows Kubernetes conventions for versioning etc.
-Create a file named: `config.yaml` with the following content:
+Create a file named: `config.yaml` in a directory `k8-util/cluster` with the following content:
 
 ```yaml
 kind: Cluster
@@ -66,7 +66,7 @@ Start a Kubernetes cluster locally with by running the following in a terminal w
 
 %copy first-line%
 ```bash
-$ kind create cluster --config k8-util/cluster/kind.yaml 
+$ kind create cluster --config k8-util/cluster/config.yaml 
 ```
 
 ### Install Kubectl
