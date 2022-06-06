@@ -44,11 +44,11 @@ This helps to overcome "**Data Gravity**" by moving only the minimum amount of d
 
 Fluvio supports the following types of SmartModules:
 
-* [Filter](#filter)
-* [Map](#map)
-* [FilterMap](#filtermap)
-* [ArrayMap](#arraymap)
-* [Aggregate](#aggregate)
+* [Filter]({{<ref "#filter" >}})
+* [Map]({{<ref "#map" >}})
+* [FilterMap]({{<ref "#filtermap" >}})
+* [ArrayMap]({{<ref "#arraymap" >}})
+* [Aggregate]({{<ref "#aggregate" >}})
 
 ### Transform
 
@@ -72,7 +72,7 @@ A [Map SmartModule]({{<ref "transform/map" >}}) takes an input record allows you
 
 A [FilterMap SmartModule]({{<ref "transform/filter-map" >}}) takes one input record and returns zero or one output record.
 
-As the name may imply, FilterMap is the combination of [filter](#filter) and [map](#map)
+As the name may imply, FilterMap is the combination of [filter]({{<ref "#filter" >}}) and [map]({{<ref "#map" >}})
 
 You can check for conditions in the data and if met, apply transformations. Or if the conditions are not met, discard the record.
 
