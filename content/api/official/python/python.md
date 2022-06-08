@@ -1,5 +1,6 @@
 ---
 title: Python
+menu: SDK
 weight: 20
 ---
 

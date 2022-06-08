@@ -1,5 +1,6 @@
 ---
-title: Java
+title: Java SDK
+menu: SDK
 weight: 40
 ---
 

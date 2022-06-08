@@ -23,7 +23,7 @@
             {{- if .class -}}
                 class="{{ .class }}"
             {{- end -}} 
-        target="_blank">{{ $menu }}</a></div>
+        target="_blank">{{ $menu }} <i class="fas fa-external-link-alt"></i></a></div>
     {{- else }}
         <div class="card item{{ $selected }}"><a href="{{ .page.RelPermalink }}"
             {{- if .class -}}
@@ -34,6 +34,7 @@
 {{ end }}
 
 <div class=".sidebar">
+    
 <!-- Overview Page -->
 {{- with .Site.GetPage .Section -}}
     {{- if not .Params.hidden }}

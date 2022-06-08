@@ -29,9 +29,9 @@ For generated API Docs visit:
 {{< icon-gopher link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
 </div>
 
-## Connect to fluvio
+## Connect to Fluvio
 
-The first thing you want to do to use a fluvio client is connect to the fluvio
+The first thing you want to do to use a Fluvio client is connect to the Fluvio
 cluster.
 
 ## Producer

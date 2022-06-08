@@ -1,5 +1,6 @@
 ---
 title: Node.js
+menu: SDK
 weight: 30
 ---
 

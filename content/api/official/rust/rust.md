@@ -1,5 +1,6 @@
 ---
 title: Rust
+menu: SDK
 weight: 10
 ---
 
