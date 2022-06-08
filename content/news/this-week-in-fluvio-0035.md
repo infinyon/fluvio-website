@@ -1,6 +1,6 @@
 ---
 title: "This Week in Fluvio #35"
-date: 2022-06-01
+date: 2022-06-08
 weight: 20
 ---
 Fluvio is a distributed, programmable streaming platform written in Rust.
@@ -15,12 +15,20 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 ## New blog post
 * [Handling XML data in Fluvio SmartModules](https://www.infinyon.com/blog/2022/06/smartmodule-xml/)
+  * Luis Moreno ([@morenol](https://github.com/morenol)) walks us through writing a SmartModule using [Serde](https://serde.rs/) and [quick-xml](https://crates.io/crates/quick-xml) to transform XML values into JSON.
 
 ## Recent events
 
-We held a 30 minute webinar for "How to power event-driven applications with InfinyOn Cloud". Thanks to everyone who attended!
+Last week We held a 30 minute webinar for "How to power event-driven applications with InfinyOn Cloud".
 
-We'll share the link to the recording when it is available!
+Thanks to everyone who attended!
+
+## New video
+
+
+[How to power event driven applications with InfinyOn Cloud](https://www.youtube.com/watch?v=o6sVgSXrOXk) 
+
+<iframe width="640" height="480" src="https://www.youtube.com/embed/o6sVgSXrOXk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Open positions
 * [Sr Rust Engineer (Frontend)](https://www.infinyon.com/careers/cloud-ui-engineer-senior-level) [Remote - Global]
