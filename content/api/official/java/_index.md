@@ -1,6 +1,6 @@
 ---
 title: Java SDK
-weight: 10
+weight: 40
 _build:
   render: never
 ---

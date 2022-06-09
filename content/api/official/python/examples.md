@@ -1,6 +1,6 @@
 ---
-title: Python
-menu: SDK
+title: Python Examples
+menu: Examples 
 weight: 20
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: Node.js
-menu: SDK
+title: Node.js Examples
+menu: Examples 
 weight: 30
 ---
 
