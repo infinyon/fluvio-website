@@ -69,7 +69,7 @@ interact with your `cloud` cluster. To switch back to a different cluster, use
 [`fluvio profile switch`]: {{< ref "/cli/installation/profile#fluvio-profile-switch" >}}
 
 
-## `fluvio cloud usage`
+## `fluvio cloud usage` (since version 0.1.7)
 
 After logging in you are able to query the CPU and memory usage of your SPUs with this command.
 
