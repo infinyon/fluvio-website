@@ -67,3 +67,19 @@ interact with your `cloud` cluster. To switch back to a different cluster, use
 
 [`fluvio profile list`]: {{< ref "/cli/installation/profile#fluvio-profile-list" >}}
 [`fluvio profile switch`]: {{< ref "/cli/installation/profile#fluvio-profile-switch" >}}
+
+
+## `fluvio cloud usage`
+
+After logging in you are able to query the CPU and memory usage of your SPUs with this command.
+
+Example usage:
+
+%copy first-line%
+```bash
+$ fluvio cloud usage 
+ SPU     CPU       Memory 
+ main-0  1066037n  3168Ki 
+
+Note: CPU usage is expressed in nanocores. 1 nanocore is equal to 1 billionth of 1 core.
+```
