@@ -81,13 +81,6 @@ disableKinds = ["taxonomyTerm"]
     weight = 100
 
   [[menu.infinyon]]
-    identifier = "tutorials"
-    name = "Tutorials"
-    url = "https://www.infinyon.com/tutorials"
-    pre = "fas fa-graduation-cap"
-    weight = 110
-
-  [[menu.infinyon]]
     identifier = "use-cases"
     name = "Use Cases"
     url = "https://www.infinyon.com/use-cases"
