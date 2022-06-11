@@ -1,11 +1,15 @@
-import Fluvio, { Offset, Record } from "@fluvio/client";
+/**
+ * This is an example of a basic Fluvio workflow in Typescript
+ *
+ * 1. Establish a connection to the Fluvio cluster
+ * 2. Create a topic to store data in
+ * 3. Create a producer and send some bytes
+ * 4. Create a consumer, and stream the data back
+ */
 import { createInterface } from "readline";
 
 const TOPIC_NAME = "hello-node";
 const PARTITION = 0;
-
-// Create Fluvio Client Instance
-const fluvio = new Fluvio();
 
 async function createTopic() {
   try {
@@ -31,7 +35,7 @@ const produce = async () => {
 
   // Create a topic producer;
   const producer = await fluvio.topicProducer(TOPIC_NAME);
-  await producer.send("example-key", "Hello World!  - Time is " + Date.now());
+  await producer.send("example-key", "Hello World!  - Time is ");
 };
 
 const consume = async () => {
@@ -53,6 +57,8 @@ const consume = async () => {
   }
 };
 
+// Create Fluvio Client Instance
+const fluvio = new Fluvio();
 createTopic();
 produce();
 consume();

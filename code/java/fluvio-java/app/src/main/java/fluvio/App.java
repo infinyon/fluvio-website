@@ -9,10 +9,18 @@ import com.infinyon.fluvio.Record;
 import java.text.MessageFormat;
 import java.util.*;
 
+/**
+ * This is an example of a basic Fluvio workflow in Java 
+ *
+ * 1. Create a topic to store data in via CLI
+ * 2. Establish a connection to the Fluvio cluster
+ * 3. Create a producer and send some bytes
+ * 4. Create a consumer, and stream the data back
+ */
 public class App {
     public static final String TOPIC_NAME = "hello-java";
     public static final int PARTITION = 0;
-    public static final int NUM_MESSAGES = 10;
+    public static final int NUM_MESSAGES = 1;
 
     public static void main(String[] args) throws Exception {
         // Currently the Java client does not support creating topics

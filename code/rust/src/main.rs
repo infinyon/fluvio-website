@@ -8,6 +8,12 @@ const PARTITION_NUM: i32 = 0;
 const PARTITIONS: i32 = 1;
 const REPLICAS: i32 = 1;
 
+/// This is an example of a basic Fluvio workflow in Rust
+///  
+/// 1. Establish a connection to the Fluvio cluster
+/// 2. Create a topic to store data in
+/// 3. Create a producer and send some bytes
+/// 4. Create a consumer, and stream the data back
 #[async_std::main]
 async fn main() {
     // Connect to Fluvio cluster
@@ -20,11 +26,12 @@ async fn main() {
         .create(TOPIC_NAME.to_string(), false, topic_spec)
         .await;
 
+    // Create a record
+    let record = format!("Hello World! - Time is {}", Local::now().to_rfc2822());
+
     // Produce to a topic
-    let value = format!("Hello World! - Time is {}", Local::now().to_rfc2822());
     let producer = fluvio::producer(TOPIC_NAME).await.unwrap();
-    producer.send(RecordKey::NULL, value).await.unwrap();
-    producer.flush().await.unwrap();
+    producer.send(RecordKey::NULL, record).await.unwrap();
 
     // Consume last record from topic
     let consumer = fluvio::consumer(TOPIC_NAME, PARTITION_NUM).await.unwrap();

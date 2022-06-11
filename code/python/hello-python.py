@@ -6,6 +6,12 @@ from fluvio import Fluvio, Offset
 TOPIC_NAME = "hello-python"
 PARTITION = 0
 
+# This is an example of a basic Fluvio workflow in Python
+# 
+# 1. Create a topic to store data in via CLI
+# 2. Establish a connection to the Fluvio cluster
+# 3. Create a producer and send some bytes
+# 4. Create a consumer, and stream the data back
 if __name__ == "__main__":
     # Currently the Python client does not support creating topics
     # Using the fluvio CLI
