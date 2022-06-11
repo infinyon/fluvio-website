@@ -1,8 +1,0 @@
-[package]
-name = "hello-fluvio"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-fluvio = "0.12"
-async-std = { version = "1", features = ["attributes"] }

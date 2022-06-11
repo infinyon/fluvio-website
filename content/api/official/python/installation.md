@@ -8,9 +8,9 @@ weight: 10
 * https://wiki.python.org/moin/BeginnersGuide/Download
 * https://pip.pypa.io/en/stable/installation/
 
-## Install `fluvio` with `pip`
+## Install [`fluvio`](https://pypi.org/project/fluvio/) with `pip`
 
 %copy first-line%
 ```shell
-$ pip3 install fluvio
+$ pip install fluvio
 ```

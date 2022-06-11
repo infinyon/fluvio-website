@@ -4,10 +4,13 @@ menu: Examples
 weight: 20
 ---
 
-The python client [wraps the rust client] and uses nearly the exact same
-function definitions. It currently does not support the administrator features
-that the rust client does. Handling async runners across the rust FFI is a bit
-tricky so for now, this client does not support [async python].
+{{< caution >}}
+
+Only Producers and consumers support. No cluster administration support.
+
+Also client does not support [async python].
+
+{{</ caution >}}
 
 The [`PartitionConsumer.stream`] returns an object which implements [python
 iterator convention] to allow for iterating over the stream in a for-loop.

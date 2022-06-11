@@ -1,0 +1,59 @@
+name: Test client examples
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - staging
+      - trying
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  examples:
+    name: Run all client examples
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        client-type:
+          - rust
+          - python
+          - node
+          - java
+    steps:
+      - uses: actions/checkout@v2
+
+      # Start k3d
+      - name: Setup K3d
+        run: curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+      - name: Create K3d cluster
+        run: |
+          k3d cluster start fluvio
+
+      # Install Fluvio
+      - name: Install Fluvio CLI and start cluster
+        run: |
+          curl -fsS https://packages.fluvio.io/v1/install.sh | VERSION=latest bash
+          echo "$HOME/.fluvio/bin" >> $GITHUB_PATH
+
+      # Start cluster
+      - name: Start Fluvio Cluster
+        run: |
+          fluvio version
+          fluvio cluster start
+
+      # Run docker build
+      - name: Build and test clients
+        run: |
+          cd code/${{ matrix.client-type }}
+          docker-compose build
+          docker-compose run ${{ matrix.client-type }}_example
+
+
