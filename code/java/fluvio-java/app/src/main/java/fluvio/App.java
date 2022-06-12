@@ -44,7 +44,7 @@ public class App {
 
         // Consume from topic
         PartitionConsumer consumer = fluvio.consumer(TOPIC_NAME, PARTITION);
-        PartitionConsumerStream stream = consumer.stream(Offset.from_end(NUM_MESSAGES));
+        PartitionConsumerStream stream = consumer.stream(Offset.from_end(NUM_MESSAGES - 1));
         for (int i = 0; i < NUM_MESSAGES; i++) {
             Record record = stream.next();
             System.out.printf("Consumed record, key=%s, value=%s\n", record.key_string(), record.value_string());

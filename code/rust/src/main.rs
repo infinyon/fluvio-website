@@ -35,7 +35,7 @@ async fn main() {
 
     // Consume last record from topic
     let consumer = fluvio::consumer(TOPIC_NAME, PARTITION_NUM).await.unwrap();
-    let mut stream = consumer.stream(fluvio::Offset::from_end(1)).await.unwrap();
+    let mut stream = consumer.stream(fluvio::Offset::from_end(0)).await.unwrap();
     if let Some(Ok(record)) = stream.next().await {
         let string = String::from_utf8_lossy(record.value());
         println!("{}", string);

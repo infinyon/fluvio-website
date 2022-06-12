@@ -54,6 +54,6 @@ jobs:
         run: |
           cd code/${{ matrix.client-type }}
           docker-compose build
-          docker-compose run ${{ matrix.client-type }}_example
+          docker-compose run example
 
 

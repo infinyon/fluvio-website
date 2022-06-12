@@ -1,11 +1,9 @@
 version: "3"
 services:
-  python_example:
+  example:
     build: .
     network_mode: "host"
-    environment:
-      - PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.fluvio/bin
     volumes:
-      - $HOME/.fluvio:/root/.fluvio:ro
-      - $HOME/telant/.kube:/root/.kube:ro
+      - $HOME/.fluvio/config:/root/.fluvio/config:ro
+      - $HOME/.kube:/root/.kube:ro
 #   command: bash

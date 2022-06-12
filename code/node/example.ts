@@ -6,7 +6,7 @@
  * 3. Create a producer and send some bytes
  * 4. Create a consumer, and stream the data back
  */
-import { createInterface } from "readline";
+import Fluvio, { Offset, Record } from "@fluvio/client";
 
 const TOPIC_NAME = "hello-node";
 const PARTITION = 0;
@@ -35,7 +35,7 @@ const produce = async () => {
 
   // Create a topic producer;
   const producer = await fluvio.topicProducer(TOPIC_NAME);
-  await producer.send("example-key", "Hello World!  - Time is ");
+  await producer.send("example-key", "Hello World!  - Time is " + Date());
 };
 
 const consume = async () => {

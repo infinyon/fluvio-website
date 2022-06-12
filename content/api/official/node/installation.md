@@ -4,6 +4,15 @@ menu: Installation guide
 weight: 10
 ---
 
+
+## Install Node tools
+
+Install [Node.js](https://nodejs.org/en/) (v**16.11.0** or above)
+
+We are using [`npm`](https://nodejs.dev/learn/an-introduction-to-the-npm-package-manager) as package manager and [`npx`](https://nodejs.dev/learn/the-npx-nodejs-package-runner) to execute our example Fluvio scripts.
+
+## Create New Node project for Fluvio development
+
 Run the following commands to set up your project for development:
 
 %copy%
@@ -13,19 +22,8 @@ mkdir fluvio-demo && cd fluvio-demo
 npm init -y
 npm install -D typescript ts-node @types/node
 npm install -S @fluvio/client
-touch producer.ts consumer.ts
 ```
 
-Your working directory should now contain the following files:
+And your `package.json` should look similar to the following:
 
-%copy first-line%
-
-```bash
-$ ls
-consumer.ts  node_modules  package-lock.json  package.json  producer.ts
-```
-
-And your `package.json` should have the following:
-
-{{<code file="code/node/package.json" firstLine="cat package.json" copy=true >}}
-
+{{<code file="code/node/package.json" lang="json" copy=true >}}

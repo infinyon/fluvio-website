@@ -84,3 +84,64 @@ to download and install it. When you're done, you should be able to run the
 `gradle --version` command.
 
 [Visit the gradle website](https://gradle.org/)
+
+## Setting up the project for Fluvio development
+
+Now we're going to use `gradle` to help us set up the project. Let's create a
+new directory for the project:
+
+%copy first-line%
+
+```bash
+$ mkdir fluvio-java-app && cd fluvio-java-app
+```
+
+Run `gradle init` inside the directory:
+
+%copy first-line%
+
+```bash
+$ gradle init
+
+Select type of project to generate:
+  1: basic
+  2: application
+  3: library
+  4: Gradle plugin
+Enter selection (default: basic) [1..4] 2
+
+Select implementation language:
+  1: C++
+  2: Groovy
+  3: Java
+  4: Kotlin
+  5: Scala
+  6: Swift
+Enter selection (default: Java) [1..6] 3
+
+Split functionality across multiple subprojects?:
+  1: no - only one application project
+  2: yes - application and library projects
+Enter selection (default: no - only one application project) [1..2] 1
+
+Select build script DSL:
+  1: Groovy
+  2: Kotlin
+Enter selection (default: Groovy) [1..2] 1
+
+Select test framework:
+  1: JUnit 4
+  2: TestNG
+  3: Spock
+  4: JUnit Jupiter
+Enter selection (default: JUnit 4) [1..4] 1
+
+Project name (default: java): fluvio-java-app
+Source package (default: fluvio.java.app):
+
+> Task :init
+Get more help with your project: https://docs.gradle.org/7.0/samples/sample_building_java_applications.html
+
+BUILD SUCCESSFUL in 31m 43s
+2 actionable tasks: 2 executed
+```

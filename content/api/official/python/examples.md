@@ -8,81 +8,32 @@ weight: 20
 
 Only Producers and consumers support. No cluster administration support.
 
-Also client does not support [async python].
+Also client does not support [async python](https://docs.python.org/3/library/asyncio.html).
 
 {{</ caution >}}
 
-The [`PartitionConsumer.stream`] returns an object which implements [python
-iterator convention] to allow for iterating over the stream in a for-loop.
+* The Python client [wraps the rust client](https://www.infinyon.com/blog/2021/03/python-client/).
+* It currently does not support the administrator features that the rust client does.
+* The [PartitionConsumer.stream](https://infinyon.github.io/fluvio-client-python/fluvio.html#PartitionConsumer.stream) returns an object which implements [python iterator convention](https://www.programiz.com/python-programming/iterator) to allow for iterating over the stream in a for-loop.
 
-To see the full docs, visit [our pdoc page].
+To see the full docs, visit our [pdoc page](https://infinyon.github.io/fluvio-client-python/fluvio.html).
+## Example Workflow
 
-## Connect
+Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-To [connect to fluvio] do:
+[Download hello-python.py](/python/hello-python.py)
+{{<code file="code/python/hello-python.py" lang="python" copy=true >}}
 
-%copy%
-```python
-from fluvio import Fluvio
-fluvio = Fluvio.connect()
+### Run
+
+%copy first-line%
+```shell
+$ python hello-python.py
 ```
 
-[connect to fluvio]: https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.connect
-## Produce
-
-To [get a producer] do:
-
-%copy%
-```python
-producer = fluvio.topic_producer("my-topic")
-```
-
-[get a producer]: https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.topic_producer
-
-### Send
-To [send a record] for the producer do:
-
-%copy%
-```python
-producer.send_string("my-record")
-```
-
-[`send`] is also available. You will need to convert your key/value into a byte array
-first to use it.
-
-[send a record]: https://infinyon.github.io/fluvio-client-python/fluvio.html#TopicProducer.send
-[`send`]: https://infinyon.github.io/fluvio-client-python/fluvio.html#TopicProducer.send
-
-## Consumer
-
-To [get a consumer], do:
-
-%copy%
-```python
-partition = 0
-consumer = fluvio.partition_consumer("my-topic", partition)
-```
-
-[get a consumer]: https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.partition_consumer
-
-### Stream
-
-To [get a stream] from the consumer do:
-
-[get a stream]: https://infinyon.github.io/fluvio-client-python/fluvio.html#PartitionConsumer.stream
-
-%copy%
-```python
-from fluvio import Offset
-stream = consumer.stream(Offset.beginning())
-for i in stream:
-    key = i.key_string()
-    value = i.value_string()
-    print("%s - %s" % (key, value))
-```
-
-[wraps the rust client]: https://www.infinyon.com/blog/2021/03/python-client/
-[our pdoc page]: https://infinyon.github.io/fluvio-client-python/fluvio.html
-[async python]: https://docs.python.org/3/library/asyncio.html
-[`PartitionConsumer.stream`]: https://infinyon.github.io/fluvio-client-python/fluvio.html#PartitionConsumer.stream
-[python iterator convention]: https://www.programiz.com/python-programming/iterator
+## Links to Docs:
+* [Connect to Fluvio](https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.connect)
+* [Get a Producer](https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.topic_producer)
+* [Send to Topic](https://infinyon.github.io/fluvio-client-python/fluvio.html#TopicProducer.send)
+* [Get a Consumer](https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.partition_consumer)
+* [Get a Stream](https://infinyon.github.io/fluvio-client-python/fluvio.html#PartitionConsumer.stream)
