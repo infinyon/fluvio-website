@@ -85,7 +85,7 @@ $ fluvio connector list
  cat-facts  Running
 ```
 
-Now that our connector us up, we can check on the traffic coming into our topic!
+Now that our connector is up, we can check on the traffic coming into our topic!
 Use the `fluvio consume` command to look at the `cat-facts` topic:
 
 %copy first-line%
