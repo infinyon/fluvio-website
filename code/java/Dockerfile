@@ -1,3 +1,4 @@
+# This image is for CI testing purposes only
 FROM openjdk:11
 # Installing Fluvio CLI for creating topics in example
 RUN curl -fsS https://packages.fluvio.io/v1/install.sh | bash

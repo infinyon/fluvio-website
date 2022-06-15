@@ -1,0 +1,38 @@
+version: 2
+updates:
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      # Check for updates to GitHub Actions every weekday
+      interval: "daily"
+
+  # Maintain dependencies for Gradle
+  - package-ecosystem: "gradle"
+    directory: "/code/java/fluvio-java"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/code/node"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"] # ignore patch updates
+
+  # Maintain dependencies for pip
+  - package-ecosystem: "pip"
+    directory: "/code/python"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Cargo
+  - package-ecosystem: "cargo"
+    directory: "/code/rust"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"] # ignore patch updates

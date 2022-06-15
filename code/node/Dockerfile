@@ -1,3 +1,4 @@
+# This image is for CI testing purposes only
 FROM node:18
 WORKDIR /root
 COPY *.ts ./

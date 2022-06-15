@@ -1,3 +1,4 @@
+# This image is for CI testing purposes only
 FROM rust:1.61
 WORKDIR /root
 COPY Cargo.toml .
