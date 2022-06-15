@@ -354,3 +354,19 @@ $ fluvio connector create --config=./connect.yml
 
 [1]: sources/http
 [InfinyOn Cloud]: https://infinyon.cloud/signup
+
+
+### Common Connector Arguments
+
+For our rust connectors we have a set of parameters that are the same for all connectors. Below are the keys and their descriptions:
+
+* `aggregate` - Path of aggregate smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
+* `aggregate-initial-value` - The initial value for the aggregate smartmodule
+* `arraymap` - Path of arraymap smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
+* `filter` -  Path of filter smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
+* `filter-map` - Path of `filter-map` smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
+* `fluvio-partition` - The fluvio partition to consume with
+* `map` - Path of map smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
+* `rust-log` - The rust log level. If it is not defined, `RUST_LOG` environment variable will be used. If environment variable is not defined, then INFO level will be used.
+* `source-batch-size` - Max amount of bytes accumulated before sending
+* `source-linger` -  Time to wait before sending Ex: '150ms', '20s'
