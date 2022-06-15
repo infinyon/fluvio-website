@@ -1,6 +1,7 @@
 ---
-title: FLUVIO
-weight: 10
+title: Java SDK
+weight: 40
 _build:
   render: never
 ---
+

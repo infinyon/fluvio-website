@@ -87,8 +87,8 @@ In order to get started with producing streaming data, you'll need to:
 - [Create a Topic to produce data to]({{< ref "/cli/commands/topic#fluvio-topic-create" >}}), then
 - Choose one of the following producer interfaces to use:
   - [Fluvio CLI]({{< ref "/cli/commands/produce" >}})
-  - [Rust]({{< ref "/api/fluvio/rust" >}})
-  - [Node]({{< ref "/api/fluvio/node" >}})
-  - [Python]({{< ref "/api/fluvio/python" >}})
-  - [Java]({{< ref "/api/fluvio/java" >}})
+  - [Rust]({{< ref "/api/official/rust" >}})
+  - [Node]({{< ref "/api/official/node" >}})
+  - [Python]({{< ref "/api/official/python" >}})
+  - [Java]({{< ref "/api/official/java" >}})
 
