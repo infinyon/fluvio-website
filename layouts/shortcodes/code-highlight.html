@@ -1,0 +1,10 @@
+{{ $file := .Get "file" }}
+{{ $lines := (print "hl_lines=" (.Get "lines")) }}
+{{ $copy := .Get "copy" | default false }}
+{{ $lang := .Get "lang" | default "bash" }}
+{{- $content := "" -}}
+{{- if $copy -}}
+    {{- $content = (println "%copy%") -}}
+{{- end -}}
+{{- $content = (println $content (highlight (os.ReadFile $file) $lang $lines)) -}}
+{{ $content | markdownify }}

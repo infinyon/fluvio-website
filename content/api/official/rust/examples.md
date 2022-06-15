@@ -1,33 +1,39 @@
 ---
-title: Rust
-weight: 10
+title: Rust Examples
+menu: Examples 
+weight: 20
 ---
 
-The rust client is the core client for all language clients. It has all the
-features before any of the other clients as well as having good support for the
-[Admin API]. This client uses [async rust] for all blocking calls.
+* The Rust client is the core client for all language clients.
+  * New features arrive in the Rust client before any of the other clients
+* Full support for the [Admin API](https://docs.rs/fluvio/latest/fluvio/struct.FluvioAdmin.html).
+* This client uses [async Rust](https://rust-lang.github.io/async-book/) for all blocking calls.
 
-## Connect
+Refer to the [fluvio docs.rs page] for full detail.
+## Example Workflow
 
-To get a [fluvio connection] do:
+Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-%copy%
-```rust
-let fluvio = Fluvio::connect().await.expect("Failed to connect to fluvio");
+[Download Cargo.toml](/rust/Cargo.toml)
+{{<code file="code/rust/Cargo.toml" lang="toml" copy=true >}}
+
+[Download main.rs](/rust/src/main.rs)
+{{<code file="code/rust/src/main.rs" lang="rust" copy=true >}}
+
+### Run
+
+%copy first-line%
+```shell
+$ cargo run
 ```
+## Additional Producer options
 
-[fluvio connection]: https://docs.rs/fluvio/latest/fluvio/struct.Fluvio.html#method.connect
+Alternatively, we can [create a producer with custom configuration]:
 
-## Produce
+Example:
 
-To [create a producer] do:
-
-%copy%
-```rust
-let producer = fluvio.topic_producer("my-fluvio-topic").await.expect("Failed to create a producer");
-```
-
-Alternatively, we can [create a producer with custom configuration] with:
+This is how to configure a Producer with a 
+`batch_size` of `500 bytes`, linger of `500ms` , and `Gzip` type compression.
 
 %copy%
 ```rust
@@ -39,59 +45,11 @@ let config = TopicProducerConfigBuilder::default()
 let producer = fluvio.topic_producer_with_config("my-fluvio-topic", config).await.expect("Failed to create a producer");
 ```
 
-[create a producer]: https://docs.rs/fluvio/latest/fluvio/struct.Fluvio.html#method.topic_producer
 [create a producer with custom configuration]: https://docs.rs/fluvio/latest/fluvio/struct.Fluvio.html#method.topic_producer_with_config
 
-### Send
+## Using a SmartModule with the Rust Consumer
 
-Once you've got a producer, [send to this topic] via:
-
-%copy%
-```rust
-producer.send("my-key", "my-value").await.expect("Failed to send into a record");
-producer.flush().await.expect("Flush failed");
-```
-
-[send to this topic]: https://docs.rs/fluvio/latest/fluvio/struct.TopicProducer.html#method.send
-
-## Consume
-
-To [create a consumer] do:
-
-%copy%
-```rust
-let consumer = fluvio.partition_consumer("my-topic", 0).await.expect("failed to create consumer");
-```
-
-[create a consumer]: https://docs.rs/fluvio/latest/fluvio/struct.Fluvio.html#method.partition_consumer
-
-### Stream
-
-To [create a stream] do:
-
-%copy%
-```rust
-let mut stream = consumer.stream(Offset::beginning()).await.expect("Failed to create stream");
-```
-
-[create a stream]: https://docs.rs/fluvio/latest/fluvio/consumer/struct.PartitionConsumer.html#method.stream
-
-To use the stream do:
-
-%copy%
-```rust
-use futures::StreamExt;
-while let Some(Ok(record)) = stream.next().await {
-    let key = record.key().map(|key| String::from_utf8_lossy(key).to_string());
-    let value = String::from_utf8_lossy(record.value()).to_string();
-    println!("Got event: key={:?}, value={}", key, value);
-}
-```
-
-### Using a SmartModule with the Rust Consumer
-
-Below is an example of how to use a SmartModule filter with the Rust
-programmatic consumer.
+Below is an example of how to use a SmartModule filter with the Rust consumer.
 
 ```rust
 use std::io::Read;
@@ -136,3 +94,12 @@ Refer to the [fluvio docs.rs page] for full detail.
 [Admin Api]: https://docs.rs/fluvio/latest/fluvio/struct.FluvioAdmin.html
 [async rust]: https://rust-lang.github.io/async-book/
 [fluvio docs.rs page]: https://docs.rs/fluvio/
+
+
+
+## Links to Docs:
+* [Connect to Fluvio](https://docs.rs/fluvio/0.12.12/fluvio/struct.Fluvio.html#method.connect)
+* [Get a Producer](https://docs.rs/fluvio/latest/fluvio/struct.Fluvio.html#method.topic_producer)
+* [Send to Topic](https://docs.rs/fluvio/latest/fluvio/struct.TopicProducer.html#method.send)
+* [Get a Consumer](https://docs.rs/fluvio/latest/fluvio/struct.Fluvio.html#method.partition_consumer)
+* [Get a Stream](https://docs.rs/fluvio/latest/fluvio/consumer/struct.PartitionConsumer.html#method.stream)

@@ -1,6 +1,7 @@
 ---
-title: COMMUNITY
-weight: 90
+title: Python SDK
+weight: 20
 _build:
   render: never
 ---
+

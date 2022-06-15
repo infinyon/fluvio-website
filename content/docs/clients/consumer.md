@@ -41,7 +41,7 @@ In order to get started with consuming streaming data, you'll need to:
 - [Follow the "Start Producing" steps to produce data to a topic]({{< ref "/docs/clients/producer#start-producing" >}})
 - Choose one of the following consumer interfaces to use:
   - [Fluvio CLI]({{< ref "/cli/commands/consume" >}})
-  - [Rust]({{< ref "/api/fluvio/rust" >}})
-  - [Node]({{< ref "/api/fluvio/node" >}})
-  - [Python]({{< ref "/api/fluvio/python" >}})
-  - [Java]({{< ref "/api/fluvio/java" >}})
+  - [Rust]({{< ref "/api/official/rust" >}})
+  - [Node]({{< ref "/api/official/node" >}})
+  - [Python]({{< ref "/api/official/python" >}})
+  - [Java]({{< ref "/api/official/java" >}})

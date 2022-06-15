@@ -1,0 +1,19 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+     // Fluvio Java client
+     implementation 'com.infinyon:fluvio:0.12.12'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'fluvio.App'
+}
