@@ -28,26 +28,24 @@ jobs:
           - node
           - java
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: AbsaOSS/k3d-action@v2
+        name: "Create fluvio k3d Cluster"
+        with:
+          cluster-name: "fluvio"
+      - name: Sleep 20 to ensure k3d cluster is ready
+        run: sleep 20
+      - name: Install Fluvio Local Cluster
+        uses: infinyon/fluvio@master
+        with:
+          cluster-type: local
+          version: latest
 
-      # Start k3d
-      - name: Setup K3d
-        run: curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-      - name: Create K3d cluster
-        run: |
-          k3d cluster start fluvio
-
-      # Install Fluvio
-      - name: Install Fluvio CLI and start cluster
-        run: |
-          curl -fsS https://packages.fluvio.io/v1/install.sh | VERSION=latest bash
-          echo "$HOME/.fluvio/bin" >> $GITHUB_PATH
-
-      # Start cluster
-      - name: Start Fluvio Cluster
+      # Ensure cluster is started
+      - name: Ensure Fluvio Cluster is up
         run: |
           fluvio version
-          fluvio cluster start
+          fluvio topic create foobar
 
       # Run docker build
       - name: Build and test clients
