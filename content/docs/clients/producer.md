@@ -79,6 +79,16 @@ on the properties we just covered:
   Since records with the same key are always assigned to the same partition, any records that
   share a key will always be totally ordered with respect to each other.
 
+## Producer Configuration
+
+Fluvio producers have some configurations that can be used to tune the performance for a specific use case. For instance, they can be used to reduce disk usage, reduce latency, improve throughput, among other reasons.
+
+As of today, Fluvio Producer can be created with the following configurations:
+
+  - `batch_size`: Indicates the maximum amount of bytes that can be accumulated in a batch.
+  - `compression`: Compression algorithm used by the producer to compress each batch before sending to the SPU. Supported compression algorithms are none, gzip, snappy and lz4. The larger the payload, the better the compression ratio. This is trade off between disk usage in the server and CPU usage in producer and consumer for compression and decompression.
+  - `linger`: Time to wait before sending messages to the server. Defaults to 100 ms. A `linger` equals to `0` means that each record is sent as soon as possible. On the other hand, a larger value, allows the producer to send more records per request, which takes full advantage of batching and compression.
+
 ## Start Producing
 
 In order to get started with producing streaming data, you'll need to:
