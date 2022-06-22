@@ -45,7 +45,12 @@ jobs:
       - name: Ensure Fluvio Cluster is up
         run: |
           fluvio version
+          fluvio topic list
           fluvio topic create foobar
+          sleep 30
+          echo foo | fluvio produce foobar
+          fluvio consume foobar -o 0 -d
+          fluvio topic delete foobar;
 
       # Run docker build
       - name: Build and test clients
