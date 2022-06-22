@@ -79,15 +79,17 @@ on the properties we just covered:
   Since records with the same key are always assigned to the same partition, any records that
   share a key will always be totally ordered with respect to each other.
 
-## Producer Configuration
+## Batching
 
-Fluvio producers have some configurations that can be used to tune the performance for a specific use case. For instance, they can be used to reduce disk usage, reduce latency, improve throughput, among other reasons.
+Fluvio producer tries to send records in batches to reduce the number of messages sent and improve throughput. A producer has a number of configurations that can be set in order to improve performance for a specific use case. For instance, they can be used to reduce disk usage, reduce latency, improve throughput, among other reasons.
 
-As of today, Fluvio Producer can be created with the following configurations:
+As of today, batching behavior of Fluvio Producer can be modified with the following configurations:
 
   - `batch_size`: Indicates the maximum amount of bytes that can be accumulated in a batch.
-  - `compression`: Compression algorithm used by the producer to compress each batch before sending to the SPU. Supported compression algorithms are none, gzip, snappy and lz4. The larger the payload, the better the compression ratio. This is trade off between disk usage in the server and CPU usage in producer and consumer for compression and decompression.
-  - `linger`: Time to wait before sending messages to the server. Defaults to 100 ms. A `linger` equals to `0` means that each record is sent as soon as possible. On the other hand, a larger value, allows the producer to send more records per request, which takes full advantage of batching and compression.
+  - `linger`: Time to wait before sending messages to the server. Defaults to 100 ms.
+  - `compression`: Compression algorithm used by the producer to compress each batch before sending to the SPU. Supported compression algorithms are none, gzip, snappy and lz4.
+
+In general, each one of these configurations have their own drawbacks. For instance, with the compression algorithm, we are making a trade off between disk usage in the server and CPU usage in producer and consumer for compression and decompression. Typically, compression ratio is improved when the payload is large, therefore a larger batch size could be used to improve compression ratio. A `linger` equals to `0` means that each record is sent as soon as possible. A `linger` time larger than zero introduces latency but as opossition, producer fills batches with more records, therefore, it takes full advantage of batching and compression.
 
 ## Start Producing
 
