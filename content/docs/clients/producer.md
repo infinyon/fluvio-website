@@ -89,7 +89,9 @@ As of today, batching behavior of Fluvio Producer can be modified with the follo
   - `linger`: Time to wait before sending messages to the server. Defaults to 100 ms.
   - `compression`: Compression algorithm used by the producer to compress each batch before sending to the SPU. Supported compression algorithms are none, gzip, snappy and lz4.
 
-In general, each one of these configurations have their own drawbacks. For instance, with the compression algorithm, we are making a trade off between disk usage in the server and CPU usage in producer and consumer for compression and decompression. Typically, compression ratio is improved when the payload is large, therefore a larger batch size could be used to improve compression ratio. A `linger` equals to `0` means that each record is sent as soon as possible. A `linger` time larger than zero introduces latency but as opossition, producer fills batches with more records, therefore, it takes full advantage of batching and compression.
+In general, each one of these configurations have their own drawbacks. For instance, with the compression algorithm, it is trade off between disk usage in the server and CPU usage in producer and consumer for compression and decompression. Typically, compression ratio is improved when the payload is large, therefore a larger `batch_size` could be used to improve compression ratio. A `linger` equals to `0` means that each record is sent as soon as possible. A `linger` time larger than zero introduces latency but improves throughput as collecting multiple records in a batch, it takes full advantage of batching and compression.
+
+The ideal parameters for the `batch_size`, `linger` and `compression` depend on your application needs.
 
 ## Start Producing
 
