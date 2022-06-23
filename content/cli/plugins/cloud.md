@@ -43,7 +43,7 @@ OPTIONS:
         --profile <profile>      The name of the Profile to save
 ```
 
-Example usage with email and password:
+Example login with email and password:
 
 %copy first-line%
 ```bash
@@ -52,11 +52,12 @@ Fluvio Cloud email: batman@justiceleague.com
 Password: <hidden>
 ```
 
-Example usage with OAuth2:
+Example login with OAuth2:
+
 %copy first-line%
 ```bash
 $ fluvio cloud login --use-oauth2
-A web browser has been opened at https://OAUTH_SERVER_DOMAIN/activate?user_code=<CODE>.
+A web browser has been opened at https://<OAUTH2_SERVER_DOMAIN>/activate?user_code=<CODE>.
 Please proceed with authentication.
 ```
 
