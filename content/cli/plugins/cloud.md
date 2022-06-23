@@ -52,7 +52,7 @@ Fluvio Cloud email: batman@justiceleague.com
 Password: <hidden>
 ```
 
-Example login with OAuth2:
+Example login with OAuth2 (Since version 0.1.8):
 
 %copy first-line%
 ```bash
