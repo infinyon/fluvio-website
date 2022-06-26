@@ -23,7 +23,7 @@ configuration file that looks like the following:
 %copy%
 ```yaml
 # connect.yml
-version: 0.1.0
+version: 0.2.0
 name: my-postgres-sink
 type: postgres-sink
 topic: postgres-topic

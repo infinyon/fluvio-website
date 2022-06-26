@@ -43,7 +43,7 @@ configuration file that looks like the following:
 %copy%
 ```yaml
 # connect.yml
-version: 0.1.0
+version: 0.2.0
 name: my-postgres-source
 type: postgres-source
 topic: postgres-topic
@@ -713,7 +713,7 @@ settings. The full set of options for the Fluvio Postgres connector can be found
 %copy%
 ```yml
 # connect.yml
-version: 0.1.0
+version: 0.2.0
 name: fluvio-postgres
 type: postgres-source
 topic: postgres
