@@ -58,14 +58,14 @@ from a JSON API.
 %copy%
 ```yaml
 # connect.yml
-version: 0.2.0
+version: 0.3.0
 name: cat-facts
 type: http
 topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 10
+  interval: 10s
 ```
 
 We can run this Managed Connector with the following command:
@@ -196,7 +196,7 @@ $ docker run -d --name="my-http" \
     -- \
     --endpoint="https://catfact.ninja/fact" \
     --fluvio-topic="cat-facts" \
-    --interval=10
+    --interval=10s
 ```
 
 ## SmartModules
@@ -322,7 +322,7 @@ docker run -d --name="my-http" \
     -- \
     --endpoint="https://catfact.ninja/fact" \
     --fluvio-topic="cat-facts" \
-    --interval=10 \
+    --interval=10s \
     --map="catfact-map"
 ```
 
@@ -334,14 +334,14 @@ For this example, we would add `map` to the `parameters` section, like so:
 %copy%
 ```yaml
 # connect.yml
-version: 0.2.0
+version: 0.3.0
 name: cat-facts
 type: http
 topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 10
+  interval: 10s
   map: "catfact-map"
 ```
 
@@ -368,5 +368,41 @@ For our rust connectors we have a set of parameters that are the same for all co
 * `fluvio-partition` - The fluvio partition to consume with
 * `map` - Path of map smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
 * `rust-log` - The rust log level. If it is not defined, `RUST_LOG` environment variable will be used. If environment variable is not defined, then INFO level will be used.
-* `source-batch-size` - Max amount of bytes accumulated before sending
-* `source-linger` -  Time to wait before sending Ex: '150ms', '20s'
+
+
+### Producer Options
+
+Adding a top level `producer` section to a given yaml has the following key options:
+* `linger` - the amount of time a source connector should wait before publishing
+to a fluvio topic. This is of the form `1s`, `1m`, `1 ms`, etc.
+* `batch-size` - the size of the batches for the source connector. This is of the
+form `1B`, `2KB`, `3MB`, etc. This allows for more throughput into a fluvio
+topic.
+* `compression` - This is an enum with options of `bzip`, `snappy`, or `lz4`
+for the different compression types that fluvio supports.
+
+These fields are all optional as well as the `producer` field itself.
+
+%copy%
+```yaml
+# connect.yml
+version: 0.3.0
+name: cat-facts
+type: http
+topic: cat-facts
+direction: source
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 10s
+  map: "catfact-map"
+producer:
+  linger: 1ms
+  compression: bzip
+  batch-size: 1 MB
+```
+
+### Consumer Options
+
+Adding a top level `consumer` section to a given yaml has the following options:
+
+* `partition` - The fluvio partition that a sink connector uses.

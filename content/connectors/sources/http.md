@@ -1,7 +1,7 @@
 ---
 title: HTTP Connector
 menu: HTTP
-connector: 
+connector:
   name: "infinyon/fluvio-connect-http"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/http"
 ---
@@ -35,7 +35,7 @@ Additionally, the HTTP connector supports the following [SmartModules](/docs/sma
 
 Getting started with InfinyOn Cloud is a simple:
 1. Download [Fluvio CLI]
-2. Sign-up for a [free InfinyOn Cloud account]. 
+2. Sign-up for a [free InfinyOn Cloud account].
 3. Login to InfinyOn Cloud via CLI: `fluvio cloud login`
 
 #### Deploy an HTTP connector
@@ -44,14 +44,14 @@ Connectors are defiend through configuration files. Create a `connect.yml` HTTP 
 
 %copy%
 ```yaml
-version: 0.2.0
+version: 0.3.0
 name: cat-facts
 type: http
 topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 10
+  interval: 10s
 ```
 
 Use the CLI command to deploy the connector on InfinyOn Cloud:
@@ -65,7 +65,7 @@ Once provisioned, the connector will run continuously and produce data records t
 
 ## Data Events
 
-The HTTP connector generates one data event per HTTP response. The data depends on the endpoint you are accessing and can be formatted in multiple ways, as described below. 
+The HTTP connector generates one data event per HTTP response. The data depends on the endpoint you are accessing and can be formatted in multiple ways, as described below.
 
 ### HTTP - Body
 
@@ -87,14 +87,14 @@ Use the `output_parts` parameter to produce full HTTP responses:
 %copy%
 
 {{< highlight yaml "hl_lines=9" >}}
-version: 0.2.0
+version: 0.3.0
 name: cat-facts
 type: http
 topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 10
+  interval: 10s
   output_parts: full
 {{</ highlight >}}
 
@@ -128,19 +128,19 @@ Note, the `header` is text and `body` is JSON.
 
 ### HTTP - JSON
 
-Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format. 
+Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format.
 
 %copy%
 
 {{< highlight yaml "hl_lines=9-10" >}}
-version: 0.2.0
+version: 0.3.0
 name: cat-facts
 type: http
 topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 10
+  interval: 10s
   output_parts: full
   output_type: json
 {{</ highlight >}}
@@ -215,7 +215,7 @@ docker run -d --name="my-http" \
     --interval=10
 ```
 
-Passing config options to a Local Connector, requires command-line arguments. 
+Passing config options to a Local Connector, requires command-line arguments.
 In the above `docker` command, all arguments before the `--` are used by
 Docker itself, and all arguments after the `--` are passed to the connector.
 
@@ -233,6 +233,7 @@ Importantly, when using a Local Connector, you _must_ include the first two argu
 
 | Version | Date       | PR                                                               | Subject                                           |
 |:-------:|:----------:|:----------------------------------------------------------------:| ------------------------------------------------- |
+| 0.3.0   | 2022-02-01 | [278](https://github.com/infinyon/fluvio-connectors/pull/278)    | <ul><li>Add interval times in human readable times</li><li>Support for producer and consumer top level config options</li><ul> |
 | 0.2.0   | 2022-02-01 | [141](https://github.com/infinyon/fluvio-connectors/pull/141)    | <ul><li>Feature json Response Type Record</li><li>Deprecate metadata output_format in favor of `output_parts` [ body (default)</li><li>Add Metadata `output_type` [ text (default) | json ] | full ]</li><ul> |
 | 0.1.1   | 2022-01-31 | [127](https://github.com/infinyon/fluvio-connectors/pull/127)    | <ul><li>Feature full Response Parts Record</li><li>Add Metadata `output_format` [ body (default) | full ]</li><ul> |
 | 0.1.0   | 2021-11-09 | -   | <ul><li>Initial version with text/body Response (default) Record</li></ul> |

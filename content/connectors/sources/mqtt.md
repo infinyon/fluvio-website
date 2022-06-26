@@ -32,7 +32,7 @@ typically called `connect.yml`. The config file might look like the following:
 %copy%
 ```yaml
 # connect.yml
-version: 0.2.0
+version: 0.3.0
 name: my-mqtt
 type: mqtt
 topic: mqtt-topic
