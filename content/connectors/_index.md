@@ -378,7 +378,7 @@ to a fluvio topic. This is of the form `1s`, `1m`, `1 ms`, etc.
 * `batch-size` - the size of the batches for the source connector. This is of the
 form `1B`, `2KB`, `3MB`, etc. This allows for more throughput into a fluvio
 topic.
-* `compression` - This is an enum with options of `bzip`, `snappy`, or `lz4`
+* `compression` - This is an enum with options of `gzip`, `snappy`, or `lz4`
 for the different compression types that fluvio supports.
 
 These fields are all optional as well as the `producer` field itself.
@@ -397,7 +397,7 @@ parameters:
   map: "catfact-map"
 producer:
   linger: 1ms
-  compression: bzip
+  compression: gzip
   batch-size: 1 MB
 ```
 
