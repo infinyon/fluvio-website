@@ -81,10 +81,17 @@ staticDir = ["static", "code"]
     url = "https://www.infinyon.com/blog"
     pre = "fab fa-blogger"
     weight = 100
+  
+  [[menu.infinyon]]
+    identifier = "webinars"
+    name = "Webinars"
+    url = "https://www.infinyon.com/webinars"
+    pre = "fas fa-desktop"
+    weight = 110
 
   [[menu.infinyon]]
     identifier = "use-cases"
     name = "Use Cases"
     url = "https://www.infinyon.com/use-cases"
-    pre = "fas fa-grip-vertical"
+    pre = "fas fa-tools"
     weight = 120
