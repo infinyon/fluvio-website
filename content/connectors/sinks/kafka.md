@@ -28,7 +28,7 @@ parameters:
 * `kafka-topic` is optional and will default to the top level `topic` which is
 the topic used on the fluvio side of things.
 * `kafka-partition` is option and will default to `0` unless specified.
-* `kafka-option` is an option that is specified as a dictoryary. The [Configuration
+* `kafka-option` is an option that is specified as a dictonary. The [Configuration
 properties are from the rdkafka
 options](https://github.com/edenhill/librdkafka/blob/b171d8f411a981c7604a79777ce10245f05280dd/CONFIGURATION.md).
 
