@@ -16,35 +16,21 @@ name: my-kafka-sink
 type: kafka-sink
 topic: fluvio-output-topic
 parameters:
-  kafka-url: "localhost:9092" # or something
+  kafka-url: "localhost:9092"
   kafka-topic: kafka-input-topic
   kafka-option:
-     linger.ms: 10
+    linger.ms: 10
+    topic.metadata.refresh.fast.interval.ms: 10
+    topic.metadata.refresh.fast.cnt: 10
 ```
 
 * `kakfa-url` is required
 * `kafka-topic` is optional and will default to the top level `topic` which is
 the topic used on the fluvio side of things.
 * `kafka-partition` is option and will default to `0` unless specified.
-
-### Kafka Options
-* `kafka-option` is an option that can be specified as three ways. A
-dictionary, a sequence or a string as shown here respectively. The [Configuration properties are from the rdkafka options](https://github.com/edenhill/librdkafka/blob/b171d8f411a981c7604a79777ce10245f05280dd/CONFIGURATION.md).
-
-```yaml
-paramaters:
-  kafka-option:
-     linger.ms: 10
-```
-```yaml
-paramaters:
-  kafka-option:
-     - "linger.ms:10"
-```
-```yaml
-paramaters:
-  kafka-option: "linger.ms:10"
-```
+* `kafka-option` is an option that is specified as a dictonary. The [Configuration
+properties are from the rdkafka
+options](https://github.com/edenhill/librdkafka/blob/b171d8f411a981c7604a79777ce10245f05280dd/CONFIGURATION.md).
 
 This configuration file is used together with the `fluvio connector create` command, like so:
 
