@@ -96,6 +96,27 @@ $ fluvio consume cat-facts -B
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
+To describe a connector, use `fluvio connector describe <connector-name>`.
+Don't be alarmed if the described connector yaml doesn't match identically.
+Integer values may turn into Strings and values may lose their quotes if it's
+not required. The `---` is [a yaml directive used to denote the start of the
+document](https://yaml.org/spec/1.1/#YAML%20directive/). It's not needed but is
+added by default when the connector is serialized.
+
+%copy first-line%
+```bash
+$ fluvio connector describe cat-facts
+---
+name: cat-facts
+type: http
+topic: cat-facts
+version: 0.3.0
+parameters:
+  endpoint: "https://catfact.ninja/fact"
+  interval: 10s
+```
+
+
 To stop a connector, we can use `fluvio connector delete` and give it the name
 of the connector we created, which in this case was "cat-facts".
 
