@@ -1,5 +1,5 @@
 
-name: 
+name: CI
 
 permissions:
   contents: read
@@ -19,15 +19,9 @@ on:
 
 jobs:
   examples:
-    name: Run all client examples
+    name: Build site
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        client-type:
-          - rust
-          - python
-          - node
-          - java
     steps:
       - uses: actions/checkout@v3
       - name: Setup Hugo
