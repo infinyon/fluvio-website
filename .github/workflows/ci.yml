@@ -35,4 +35,4 @@ jobs:
         with:
           name: hugo build 
           path: public
-          retention-days: 14
+          retention-days: 7
