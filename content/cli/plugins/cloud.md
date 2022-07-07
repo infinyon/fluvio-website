@@ -48,7 +48,7 @@ Example login with email and password:
 %copy first-line%
 ```bash
 $ fluvio cloud login
-Fluvio Cloud email: batman@justiceleague.com
+InfinyOn Cloud email: example@infinyon.com
 Password: <hidden>
 ```
 
