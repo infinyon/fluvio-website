@@ -21,7 +21,6 @@ jobs:
   examples:
     name: Build site
     runs-on: ubuntu-latest
-    strategy:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Hugo
