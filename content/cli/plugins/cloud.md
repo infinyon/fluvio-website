@@ -38,7 +38,7 @@ FLAGS:
         --use-oauth2   Authenticate using OAuth 2.0 Device Code Flow
 
 OPTIONS:
-        --email <email>          Fluvio Cloud email to use for logging in
+        --email <email>          InfinyOn Cloud email to use for logging in
         --password <password>    Password to use when logging in (not recommended)
         --profile <profile>      The name of the Profile to save
 ```
