@@ -96,8 +96,8 @@ $ fluvio consume cat-facts -B
 {"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
 ```
 
-To describe a connector, use `fluvio connector describe <connector-name> [-o file-name.yaml]`.
-Don't be alarmed if the described connector yaml doesn't match identically.
+To get a connector's config, use `fluvio connector config <connector-name> [-o file-name.yaml]`.
+Don't be alarmed if the output connector config yaml doesn't match identically.
 Integer values may turn into Strings and values may lose their quotes if it's
 not required. The `---` is [a yaml directive used to denote the start of the
 document](https://yaml.org/spec/1.1/#YAML%20directive/). It's not needed but is
@@ -107,7 +107,7 @@ is safe to be copied and used in a `fluvio connector create --config
 
 %copy first-line%
 ```bash
-$ fluvio connector describe cat-facts
+$ fluvio connector config cat-facts
 ---
 name: cat-facts
 type: http
