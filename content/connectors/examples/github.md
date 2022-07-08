@@ -39,15 +39,15 @@ the file:
 %copy%
 ```yaml
 # connect.yml
-version: 0.2.0
+version: 0.3.0
 name: github-repo
-type: http
+type: http-source
 topic: github-repo
 direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 30
+  interval: 30s
 ```
 
 This configuration is using the `http` connector type, will produce events to a topic
@@ -320,15 +320,15 @@ Then, we can edit the `connect.yml` file and tell it to use our SmartModule as a
 %copy%
 {{< highlight yaml "hl_lines=12" >}}
 # connect.yml
-version: 0.2.0
+version: 0.3.0
 name: github-repo
-type: http
+type: http-source
 topic: github-repo
 direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 30
+  interval: 30s
   map: github-smartmodule
 {{</ highlight >}}
 

@@ -46,7 +46,7 @@ Connectors are defiend through configuration files. Create a `connect.yml` HTTP 
 ```yaml
 version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:
@@ -89,7 +89,7 @@ Use the `output_parts` parameter to produce full HTTP responses:
 {{< highlight yaml "hl_lines=9" >}}
 version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:
@@ -135,7 +135,7 @@ Set the `output_type` parameter to `json` if you want to convert the full HTTP r
 {{< highlight yaml "hl_lines=9-10" >}}
 version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:
