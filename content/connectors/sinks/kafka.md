@@ -12,6 +12,7 @@ The Kafka Connector is quite simple. It will send every record of a fluvio topic
 %copy%
 ```yaml
 # kafka-sink-connector.yml
+version: 0.2.0
 name: my-kafka-sink
 type: kafka-sink
 topic: fluvio-output-topic
