@@ -7,6 +7,6 @@ publish = false
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fluvio = "0.12"
+fluvio = "0.13"
 async-std = { version = "1", features = ["attributes"] }
 chrono = "0.4"
