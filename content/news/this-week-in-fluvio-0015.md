@@ -15,9 +15,9 @@ This is a big release
 
 ### Apple M1 support
 
-This is the first release with official Apple M1 support. If you have an Apple M1 machine and you'd like to try out Fluvio, please read our [Getting Started] page for MacOS on M1.
+This is the first release with official Apple M1 support. If you have an Apple M1 machine and you'd like to try out Fluvio, please read our [Getting Started] page for MacOS.
 
-[Getting Started]: {{< ref "/docs/get-started/mac_m1.md">}}
+[Getting Started]: {{< ref "/docs/get-started/mac.md">}}
 
 ### SmartModules
 
