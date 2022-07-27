@@ -40,6 +40,8 @@ $ fluvio produce greetings --isolation read_uncommitted
 
 If not specified, `ReadUncommitted` isolation is used by default.
 
+-> Producer Isolation has no effect if **at-most-once** delivery semantic is used. [Read details]({{< ref "/docs/clients/producer#at-most-once" >}}).
+
 ## Consumer Isolation
 Isolation is a configuration parameter of Consumer that has two values:
 
