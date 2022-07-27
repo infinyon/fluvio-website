@@ -1,6 +1,6 @@
 ---
-title: MacOS/Intel Installation
-menu: MacOS (Intel)
+title: MacOS (Intel and Apple Silicon)
+menu: MacOS
 weight: 10
 ---
 
@@ -17,78 +17,28 @@ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 ## Required Packages for Local Fluvio cluster
 
-1) [Minikube]({{< ref "#install-minikube" >}})
-2) [Kubectl]({{< ref "#install-kubectl" >}})
-3) [Helm]({{< ref "#install-helm" >}})
+1) [Rancher Desktop]({{< ref "#install-Rancher-Desktop" >}})
 
-If you have `kubectl`, `helm`, and `minikube` already set up, then continue to steps for [running a local Fluvio cluster].
+`helm` and `kubectl` are also required but installing `Rancher Desktop` provide access to them.
+
+If you have `Rancher Desktop` already set up, then continue to steps for [running a local Fluvio cluster](#start-fluvio-cluster).
 
 
-### Install Minikube
+### Install Rancher Desktop
 
-Minikube is a tool for running a local Kubernetes cluster.
+Rancher Desktop is a tool for running a local Kubernetes cluster.
 
-Install `minikube` package:
+In order to install Rancher Desktop go to the [rancher desktop installation page] and follow the instructions. Rancher Desktop will provide access to other utilities needed to run Fluvio such as `kubectl` and `helm`.
 
-%copy first-line%
+Please make sure that the container runtime is `dockerd (moby)`. That configuration can be changed in the `Kubernetes Settings` section on the sidebar.
 
-```bash
-$ brew install minikube
-```
+<img src="../images/rancher-desktop.png"
+     alt="A screenshot of the Rancher Desktop using dockerd as container runtime"
+     style="justify: center; max-width: 1000px" />
 
-Install `hyperkit` driver:
-
-%copy first-line%
-
-```bash
-$ brew install hyperkit
-```
-
-#### Start a Kubernetes cluster
-Start a Kubernetes cluster locally with minikube by running the following in a terminal window:
-
-%copy first-line%
-```bash
-$ minikube start --driver=hyperkit
-```
-
-Other minikube driver may work but we have not tested them.  Please open issue if need to support other drivers.
-
-### Install Kubectl
-
-`kubectl` is the Kubernetes command-line tool. It is used to run commands against Kubernetes clusters.
-
-Install `kubectl` with the [Brew Package Manager] by running the following in a terminal window:
-
-%copy first-line%
-
-```bash
-$ brew install kubectl 
-```
-
-Or follow the instructions at the [kubectl installation page] and follow the instructions to download and install `kubectl` on MacOS.
-
-[kubectl installation page]: https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/ 
-
-### Install Helm
-
-Helm is the package manager for Kubernetes. 
-
-Install `helm` with the [Brew Package Manager] by running the following in a terminal window:
-
-%copy first-line%
-
-```bash
-$ brew install helm 
-```
-
-Or follow the instructions at the [helm installation page] and follow the instructions to download and install `helm` on MacOS.
-
-[helm installation page]: https://v3.helm.sh/docs/intro/install/ 
 ## Start Fluvio cluster 
 
-You can start a Fluvio cluster by running `fluvio cluster start`.
-
+You can start a Fluvio cluster by running `fluvio cluster start`. 
 
 %copy first-line%
 ```bash
@@ -102,14 +52,16 @@ We can check the fluvio cluster by checking version and status with the followin
 ```bash
 $ fluvio version
 
-Fluvio CLI           : 0.9.10
-Fluvio CLI SHA256    : a2d5cdd58511c94ee35963acc6b9b7d334d2bbc2571663d958a8e0db7d1af37c
-Fluvio Platform      : 0.9.10 (minikube)
-Git Commit           : c00a1ee2cd28545443f9a7cbf2ca9d053e67845b
-OS Details           : Darwin 10.16 (kernel 20.6.0)
+Release Channel      : stable
+Fluvio CLI           : 0.9.31
+Fluvio CLI SHA256    : aa2c91656c492cbb2700fca622633bc4ad03b64d8a45ba0f2b39ed0c05ca84b0
+Fluvio channel frontend SHA256 : 068b910b0082ec30fcb9ae210d8f73f3109ca3fe854b6f7864992f5b7524bd82
+Fluvio Platform      : 0.9.31 (rancher-desktop)
+Git Commit           : e9cf0a7e2096758dc37031ea2d99023b4b968182
+OS Details           : Darwin 12.4 (kernel 21.5.0)
 === Plugin Versions ===
 Fluvio Runner (fluvio-run)     : 0.0.0
-Infinyon Cloud CLI (fluvio-cloud) : 0.1.6
+Infinyon Cloud CLI (fluvio-cloud) : 0.1.8
 
 ```
 
