@@ -1,12 +1,12 @@
 [package]
-name = "fluvio-rust-example"
-version = "0.0.0"
 edition = "2021"
+name = "fluvio-rust-example"
 publish = false
+version = "0.0.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fluvio = "0.12"
-async-std = { version = "1", features = ["attributes"] }
+async-std = {version = "1", features = ["attributes"]}
 chrono = "0.4"
+fluvio = "0.13"
