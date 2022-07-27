@@ -1,6 +1,6 @@
 ---
-title: "This Week in Fluvio #39"
-date: 2022-07-13
+title: "This Week in Fluvio #40"
+date: 2022-07-27
 weight: 20
 ---
 Fluvio is a distributed, programmable streaming platform written in Rust.
@@ -16,19 +16,26 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 ---
 
 ## New release
-* [Fluvio v0.9.31](https://github.com/infinyon/fluvio/releases/tag/v0.9.31)
+* [Fluvio v0.9.32](https://github.com/infinyon/fluvio/releases/tag/v0.9.32)
 
 ## New features
-* Add `fluvio connector config <connector-name>`  ([#2464](https://github.com/infinyon/fluvio/pull/2464))
-* Add performance counters to producer ([#2424](https://github.com/infinyon/fluvio/issues/2424))
+* Support async response in multiplexed socket. ([#2488](https://github.com/infinyon/fluvio/pull/2488))
+* Rename `--smartmodule` option in `fluvio consume` to `--smart-module`. `--smartmodule is still an alias for backward compatibility. ([#2485](https://github.com/infinyon/fluvio/issues/2485))
 
 ## Performance improvements
-* Prefer ExternalIP to InternalIP if configured in kubernetes ([#2448](https://github.com/infinyon/fluvio/pull/2448))
-* Move stream publishers to connection-level context ([#2452](https://github.com/infinyon/fluvio/pull/2452))
-* Upgrade to fluvio-future 0.4.0 ([#2470](https://github.com/infinyon/fluvio/pull/2470))
+* Drop write lock before async IO operations. ([#2490](https://github.com/infinyon/fluvio/pull/2490))
+* Add `Clone` trait to `DefaultProduceRequest`. ([#2501](https://github.com/infinyon/fluvio/pull/2501))
+* Add `AtMostOnce` and `AtLeastOnce` delivery semantics. ([#2503](https://github.com/infinyon/fluvio/pull/2503))
+
+## Bug fixes
+* Restrict usage of `--initial`, `--extra-params` and `--join-topic` in `fluvio consume`. Those options only should be accepted when using specific smartmodules. ([#2476](https://github.com/infinyon/fluvio/pull/2476))
+* Keep serving incoming requests even if socket closed to write. ([#2484](https://github.com/infinyon/fluvio/pull/2484))
+
+## Developer experience improvements
+* Measure latency for stats using macro. ([#2483](https://github.com/infinyon/fluvio/pull/2483))
 
 ## Upcoming events
-* The date of our webinar has changed. It is now at Thu, Jul 28, 2022 10:00 AM - 10:30 AM PDT 
+* The date of our webinar has changed. It is now at Tue, Aug 16, 2022 10:00 AM - 10:30 AM PDT 
     * [Enhance your Kafka Infrastructure with Fluvio](https://register.gotowebinar.com/register/7829882206451748624)
 
 ## Open positions
