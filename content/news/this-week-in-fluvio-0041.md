@@ -24,8 +24,8 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
   * JSON to JSON transformation where the "specification" for the transform is itself a JSON document
   * Compatible for use in SmartModules
 
-## Upcoming features
-This is a feature highlight for what is included in the next Fluvio release
+## Feature Highlight
+This feature was added included in the previous release but was not mentioned in [last week's issue]({{<ref "news/this-week-in-fluvio-0040">}}).
 
 * Support for `at-least-once` and `at-most-once` in the Producer Client. ([#2481](https://github.com/infinyon/fluvio/issues/2481))
   * This feature introduces the notion of **Delivery Semantic** to Fluvio Producer. From now, you can choose in which manner you want
