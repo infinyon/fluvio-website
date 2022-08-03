@@ -25,7 +25,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
   * Compatible for use in SmartModules
 
 ## Feature Highlight
-This feature was added included in the previous release but was not mentioned in [last week's issue]({{<ref "news/this-week-in-fluvio-0040">}}).
+This feature was added in the previous release but was not mentioned in [last week's issue]({{<ref "news/this-week-in-fluvio-0040">}}).
 
 * Support for `at-least-once` and `at-most-once` in the Producer Client. ([#2481](https://github.com/infinyon/fluvio/issues/2481))
   * This feature introduces the notion of **Delivery Semantic** to Fluvio Producer. From now, you can choose in which manner you want
