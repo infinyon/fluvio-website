@@ -1,4 +1,3 @@
-
 name: CI
 
 permissions:
@@ -26,23 +25,34 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.92.2'
+          hugo-version: "0.92.2"
           extended: true
       - name: Build
         run: hugo -v
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.5.0
+        with:
+          # Check all html files in repo (default)
+          args: --verbose --no-progress './public/*.html'
+          # Use json as output format (instead of markdown)
+          format: markdown
+          # Use different output file path
+          output: results.md
+          # Fail action on broken links
+          fail: true
+
+      - name: Save Link Checker results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: link-check-report
+          path: results.md
+          retention-days: 7
+
       - name: Save hugo build
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: hugo build
           path: public
           retention-days: 7
-  broken-link-check:
-    runs-on: ubuntu-latest
-    name: Check for broken links
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 1
-    - name: Hugo Broken Link Check
-      uses: marccampbell/hugo-linkcheck-action@v0.1.3
