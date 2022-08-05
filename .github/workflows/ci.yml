@@ -44,7 +44,5 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 1
-    - name: Check for broken Links
-      uses: marojor/hugo-broken-link-checker@v1.0.5
-      with:
-        skip-file: 'skip-rules-for-broken-links-check.txt'
+    - name: Hugo Broken Link Check
+      uses: marccampbell/hugo-linkcheck-action@v0.1.3
