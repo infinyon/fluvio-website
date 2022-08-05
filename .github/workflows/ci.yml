@@ -30,9 +30,21 @@ jobs:
           extended: true
       - name: Build
         run: hugo -v
-      - name: Save hugo build 
+      - name: Save hugo build
         uses: actions/upload-artifact@v3
         with:
-          name: hugo build 
+          name: hugo build
           path: public
           retention-days: 7
+  broken-link-check:
+    runs-on: ubuntu-latest
+    name: Check for broken links
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+    - name: Check for broken Links
+      uses: marojor/hugo-broken-link-checker@v1.0.5
+      with:
+        skip-file: 'skip-rules-for-broken-links-check.txt'
