@@ -17,39 +17,62 @@ on:
   workflow_dispatch:
 
 jobs:
-  examples:
-    name: Build site and validate links
+  build-unminified-site:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: "Build Site with Hugo and Audit"
+        uses: danielfdickinson/build-audit-action-hugo-dfd@v0.2
         with:
-          hugo-version: "0.92.2"
-          extended: true
-      - name: Build and start Hugo in the background
-        run: |
-          ./hugo-start.sh &
-          sleep 5
-      - name: Link Checker
-        uses: lycheeverse/lychee-action@v1.5.0
+          upload-site-as: unminified-site
+          use-lfs: false
+          hugo-extended: true
+          hugo-version: 0.92.2
+  check-links:
+    needs: build-unminified-site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run DFD Hugo Check Links
+        uses: danielfdickinson/link-check-action-hugo-dfd@v0.2
         with:
-          # Check all html files in repo (default)
-          args: --verbose --no-progress 'http://localhost:1313'
-          # Use json as output format (instead of markdown)
-          format: markdown
-          # Use different output file path
-          output: results.md
-          # Fail action on broken links
-          fail: true
+          canonical-root: https://www.fluvio.io/
+          check-external: true
 
-      - name: Save Link Checker results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: link-check-report
-          path: results.md
-          retention-days: 7
+      #examples:
+      #  name: Build site and validate links
+      #  runs-on: ubuntu-latest
+      #  steps:
+      #    - uses: actions/checkout@v3
+      #- name: Setup Hugo
+      #  uses: peaceiris/actions-hugo@v2
+      #  with:
+      #    hugo-version: "0.92.2"
+      #    extended: true
+
+      #- name: Build and start Hugo in the background
+      #  run: |
+      #    ./hugo-start.sh &
+      #    sleep 5
+      #- name: Link Checker
+      #  uses: lycheeverse/lychee-action@v1.5.0
+      #  with:
+      #    # Check all html files in repo (default)
+      #    args: --verbose --no-progress 'http://localhost:1313'
+      #    # Use json as output format (instead of markdown)
+      #    format: markdown
+      #    # Use different output file path
+      #    output: results.md
+      #    # Fail action on broken links
+      #    fail: true
+
+      #- name: Save Link Checker results
+      #  if: always()
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: link-check-report
+      #    path: results.md
+      #    retention-days: 7
 
       - name: Save hugo build
         if: always()
