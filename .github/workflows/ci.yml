@@ -18,7 +18,7 @@ on:
 
 jobs:
   examples:
-    name: Build site
+    name: Build site and validate links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,13 +27,15 @@ jobs:
         with:
           hugo-version: "0.92.2"
           extended: true
-      - name: Build
-        run: hugo -v
+      - name: Build and start Hugo in the background
+        run: |
+          ./hugo-start.sh &
+          sleep 5
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1.5.0
         with:
           # Check all html files in repo (default)
-          args: --verbose --no-progress './public/*.html'
+          args: --verbose --no-progress 'http://localhost:1313'
           # Use json as output format (instead of markdown)
           format: markdown
           # Use different output file path
