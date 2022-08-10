@@ -20,7 +20,7 @@ jobs:
           hugo-version: "0.97.3"
           extended: true
       - name: Build
-        run: hugo server --verbose --buildDrafts --cleanDestinationDir --disableFastRender --buildFuture --baseURL http://localhost
+        run: hugo --verbose --buildDrafts --cleanDestinationDir --buildFuture --baseURL http://localhost
       - name: Run htmltest
         uses: wjdp/htmltest-action@master
         with:
