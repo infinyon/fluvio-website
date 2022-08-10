@@ -16,7 +16,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 ---
 
 ## New release
-* [Fluvio v0.9.32](https://github.com/infinyon/fluvio/releases/tag/v0.9.32)
+* [Fluvio v0.9.33](https://github.com/infinyon/fluvio/releases/tag/v0.9.33)
 
 ## New features
 * Added `DeliverySemantic` to `fluvio-cli`. ([#2508](https://github.com/infinyon/fluvio/pull/2508))
