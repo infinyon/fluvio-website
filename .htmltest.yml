@@ -1,0 +1,15 @@
+DirectoryPath: "public"
+
+StripQueryExcludes:
+  - "googletagmanager.com"
+  - "fonts.googleapis.com"
+
+IgnoreURLs:
+  - "googletagmanager.com"
+  - "fonts.googleapis.com"
+
+IgnoreDirectoryMissingTrailingSlash: true
+IgnoreInternalEmptyHash: true
+
+# TODO: Need to fix these
+IgnoreAltMissing: true
