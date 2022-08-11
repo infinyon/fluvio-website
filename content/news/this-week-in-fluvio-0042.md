@@ -15,15 +15,23 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 ---
 
+
+
 ## New release
 * [Fluvio v0.9.33](https://github.com/infinyon/fluvio/releases/tag/v0.9.33)
 
 ## New features
 * Added `DeliverySemantic` to `fluvio-cli`. ([#2508](https://github.com/infinyon/fluvio/pull/2508))
+* SmartModule package: add missing metadata ([#2532](https://github.com/infinyon/fluvio/pull/2532))
+
+## Bug fixes
+* Prevent collisions between namespaces ([#2539](https://github.com/infinyon/fluvio/pull/2539))
 
 ## Developer experience improvements
 * CLI: Added ability to delete multiple connectors, smart modules and topics with one command. ([#2427](https://github.com/infinyon/fluvio/issues/2427))
 * Added `--use-k8-port-forwarding` option to `fluvio cluster start`. ([#2516](https://github.com/infinyon/fluvio/pull/2516))
+* Added proxy support during packages installation ([#2535](https://github.com/infinyon/fluvio/pull/2535))
+* Adds feedback and debug info to 'smart-module create' ([#2513](https://github.com/infinyon/fluvio/pull/2513))
 
 ## New blog post
 * [Flexible JSON transformations in Rust](https://www.infinyon.com/blog/2022/08/fluvio-jolt-intro/)
