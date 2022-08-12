@@ -1,6 +1,6 @@
 ---
-title: "This Week in Fluvio #41"
-date: 2022-08-03
+title: "This Week in Fluvio #42"
+date: 2022-08-10
 weight: 20
 ---
 Fluvio is a distributed, programmable streaming platform written in Rust.
@@ -15,24 +15,27 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 ---
 
+
+
 ## New release
-* SmartModule development environment
-  * SmartModule developers may use our [container-based development environment](https://github.com/infinyon/fluvio/blob/master/dev-tools/smartmodule.Dockerfile) which contains all the tools required to build their Rust code into WASM
-  * Check out our [Dev tools](https://github.com/infinyon/fluvio/blob/master/dev-tools) for more information about how to get started
-* Rust crate [fluvio-jolt](https://crates.io/crates/fluvio-jolt) 
-  * This is a native Rust port of the [Java library of the same name](https://github.com/bazaarvoice/jolt)
-  * JSON to JSON transformation where the "specification" for the transform is itself a JSON document
-  * Compatible for use in SmartModules
+* [Fluvio v0.9.33](https://github.com/infinyon/fluvio/releases/tag/v0.9.33)
 
-## Feature Highlight
-This feature was added in the previous release but was not mentioned in [last week's issue]({{<ref "news/this-week-in-fluvio-0040">}}).
+## New features
+* Added `DeliverySemantic` to `fluvio-cli`. ([#2508](https://github.com/infinyon/fluvio/pull/2508))
+* SmartModule package: add missing metadata ([#2532](https://github.com/infinyon/fluvio/pull/2532))
 
-* Support for `at-least-once` and `at-most-once` in the Producer Client. ([#2481](https://github.com/infinyon/fluvio/issues/2481))
-  * This feature introduces the notion of **Delivery Semantic** to Fluvio Producer. From now, you can choose in which manner you want
-  your records to be transported from the producer to the SPU unit. It's either `at-most-once` guarantee or `at-least-once`.
-  The first one is sending without waiting for the response, hence no reaction for errors. The latter one is sending and 
-  retrying until succeeded (with certain assumptions). Check out more details in
-  [Delivery Semantics]({{< ref "/docs/clients/producer#delivery-semantics" >}}) section.
+## Bug fixes
+* Prevent collisions between namespaces ([#2539](https://github.com/infinyon/fluvio/pull/2539))
+
+## Developer experience improvements
+* CLI: Added ability to delete multiple connectors, smart modules and topics with one command. ([#2427](https://github.com/infinyon/fluvio/issues/2427))
+* Added `--use-k8-port-forwarding` option to `fluvio cluster start`. ([#2516](https://github.com/infinyon/fluvio/pull/2516))
+* Added proxy support during packages installation ([#2535](https://github.com/infinyon/fluvio/pull/2535))
+* Adds feedback and debug info to 'smart-module create' ([#2513](https://github.com/infinyon/fluvio/pull/2513))
+
+## New blog post
+* [Flexible JSON transformations in Rust](https://www.infinyon.com/blog/2022/08/fluvio-jolt-intro/)
+  * [Alexander](https://github.com/galibey) presents a Rust beginner-friendly solution for processing streams of dynamic JSON records using our [fluvio-jolt](https://crates.io/crates/fluvio-jolt)crate
 
 ## Upcoming events
 * Register for Webinar on Tue, Aug 16: [Enhance your Kafka Infrastructure with Fluvio](https://register.gotowebinar.com/register/7829882206451748624)
@@ -44,6 +47,8 @@ This feature was added in the previous release but was not mentioned in [last we
 * [Sr Rust engineer (Infrastructure)](https://www.infinyon.com/careers/infrastructure-engineer-senior-level) [Remote - US]
 * [Developer Advocate](https://www.infinyon.com/careers/developer-advocate-mid-senior-level) [Remote - US timezones +/- 5hr]
 * [Solutions Architect](https://www.infinyon.com/careers/solutions-architect) [Remote - US timezones +/- 5hr]
+
+
 
 ---
 
