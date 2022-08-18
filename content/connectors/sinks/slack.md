@@ -16,6 +16,7 @@ fluvio stream and `POST` it to the slack via a [slack webhook url]
 ```yaml
 # slack-connector.yml
 name: my-slack-sink
+version: 0.2.0
 type: slack-sink
 topic: slack-topic
 parameters:

@@ -75,6 +75,8 @@ The CLI takes a `--chart-values` option which accepts a file path to a YAML file
 
 [Helm chart]: {{< ref "./helm" >}}
 
+For installing on a remote Kubernetes cluster where the machine running the CLI does not have network access to the cluster pods/services via NodePort, use the `--use-k8-port-forwarding` option. This will tunnel traffic to Fluvio cluster components via the Kubernetes API server. After installation you will need to manually configure a load balancer to expose Fluvio services externally.
+
 See other options by running 
 
 %copy first-line%

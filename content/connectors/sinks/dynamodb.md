@@ -14,6 +14,7 @@ on the columns in the config.
 %copy%
 ```yaml
 # dynamodb-connector.yml
+version: 0.2.0
 name: dynamodb-connector
 type: dynamodb-sink
 topic: dynamodb-test
