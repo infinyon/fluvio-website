@@ -33,22 +33,32 @@ USAGE:
     fluvio-cloud login [OPTIONS]
 
 FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+    -h, --help         Prints help information
+    -V, --version      Prints version information
+        --use-oauth2   Authenticate using OAuth 2.0 Device Code Flow
 
 OPTIONS:
-        --email <email>          Fluvio Cloud email to use for logging in
+        --email <email>          InfinyOn Cloud email to use for logging in
         --password <password>    Password to use when logging in (not recommended)
         --profile <profile>      The name of the Profile to save
 ```
 
-Example usage:
+Example login with email and password:
 
 %copy first-line%
 ```bash
 $ fluvio cloud login
-Fluvio Cloud email: mosher@infinyon.com
+InfinyOn Cloud email: example@infinyon.com
 Password: <hidden>
+```
+
+Example login with OAuth2 (Since version 0.1.8):
+
+%copy first-line%
+```bash
+$ fluvio cloud login --use-oauth2
+A web browser has been opened at https://<OAUTH2_SERVER_DOMAIN>/activate?user_code=<CODE>.
+Please proceed with authentication.
 ```
 
 After this has completed successfully, you should be able to see your new cloud
