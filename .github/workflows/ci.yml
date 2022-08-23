@@ -65,7 +65,7 @@ jobs:
 
       # Capture page differences.
       - id: diffpages
-        uses: mastercoms/diff-pages-action@master
+        uses: mastercoms/diff-pages-action@v1.0.1-rc.3
         with:
           base-path: "." # Action will append `/base`
           head-path: "." # Action will append `/head`
