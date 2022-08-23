@@ -10,32 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     name: Check for broken links
     steps:
-      - name: "Build site with Hugo and audit"
-        uses: danielfdickinson/build-audit-action-hugo-dfd@main
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          base-url: https://www.fluvio.io/
-          build-for-downstream: "true"
-          use-lfs: true
-      - uses: actions/checkout@v3
+          fetch-depth: 1
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
         with:
-          path: validate-html-action
-      - name: "Validate HTML in output-directory"
-        uses: danielfdickinson/validate-html-action-hugo-dfd@main
-        with:
-          action-workspace: ${{ github.workspace }}/validate-html-action
-          use-existing-workspace: "true"
-      - name: "Check internal links"
-        uses: danielfdickinson/link-check-action-hugo-dfd@main
-        with:
-          canonical-root: "https://www.fluvio.io/"
-          check-external: "true"
-          upload-logs-as: test-logs-non-artifact-run
-          upload-logs-retention: 1
-          use-existing-workspace: "true"
-      - name: Save hugo build
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: hugo build
-          path: public
-          retention-days: 7
+          hugo-version: "0.97.3"
+          extended: true
+      - name: Run Hugo in the background
+        run: ./hugo-start.sh &
+      - name: Run htmltest
+        run: |
+          curl https://htmltest.wjdp.uk | bash
+          ./bin/htmltest

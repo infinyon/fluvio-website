@@ -45,7 +45,6 @@ jobs:
             --destination current_site \
             --verbose \
             --cleanDestinationDir \
-            --disableFastRender \
             --buildDrafts \
             --buildFuture \
             --ignoreCache
@@ -55,7 +54,6 @@ jobs:
             --destination pr_site \
             --verbose \
             --cleanDestinationDir \
-            --disableFastRender \
             --buildDrafts \
             --buildFuture \
             --ignoreCache
