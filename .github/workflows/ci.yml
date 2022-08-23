@@ -17,7 +17,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  diff_pages:
+  diff-pages:
+    name: Diff website pages
     runs-on: ubuntu-latest
     steps:
       - name: Setup Hugo
@@ -39,7 +40,8 @@ jobs:
           path: pr
 
       # Build sites
-      - run: |
+      - name: Build Hugo sites for comparison
+        run: |
           hugo \
             --source base \
             --destination current_site \
@@ -60,7 +62,7 @@ jobs:
 
       # Capture page differences.
       - id: diffpages
-        uses: ssowonny/diff-pages-action@v1.0.0
+        uses: mastercoms/diff-pages-action@v1.0.1-rc.3
         with:
           base-path: "current_site"
           head-path: "pr_site"
