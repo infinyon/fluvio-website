@@ -69,6 +69,7 @@ jobs:
         with:
           base-path: "current_site"
           head-path: "pr_site"
+          port: 1313
 
       # This example step is for uploading the result as an artifact. The result or
       # the artifact can be uploaded to the pull request comments, Amazon S3, or
