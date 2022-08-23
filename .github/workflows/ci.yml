@@ -51,8 +51,7 @@ jobs:
             --buildDrafts \
             --buildFuture \
             --ignoreCache
-          ls current_repo
-          ls base
+
           hugo \
             --source pr_repo \
             --destination ../head \
@@ -61,8 +60,7 @@ jobs:
             --buildDrafts \
             --buildFuture \
             --ignoreCache
-          ls pr
-          ls head
+
           ls
 
       # Capture page differences.
