@@ -31,29 +31,30 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.base.sha }}
-          path: base
+          path: current_repo
       # Checkout and build files of a head ref.
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           clean: false # Prevent removing files in 'path/to/base' folder.
-          path: pr
+          path: pr_repo
 
       # Build sites
       - name: Build Hugo sites for comparison
         run: |
           ls
           hugo \
-            --source base \
+            --source current_repo \
             --destination ../base \
             --verbose \
             --cleanDestinationDir \
             --buildDrafts \
             --buildFuture \
             --ignoreCache
+          ls current_repo
           ls base
           hugo \
-            --source pr \
+            --source pr_repo \
             --destination ../head \
             --verbose \
             --cleanDestinationDir \
@@ -61,6 +62,7 @@ jobs:
             --buildFuture \
             --ignoreCache
           ls pr
+          ls head
           ls
 
       # Capture page differences.
