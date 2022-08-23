@@ -42,6 +42,8 @@ jobs:
       # Build sites
       - name: Build Hugo sites for comparison
         run: |
+          ls
+
           hugo \
             --source base \
             --destination current_site \
@@ -51,6 +53,8 @@ jobs:
             --buildFuture \
             --ignoreCache
 
+          ls base
+
           hugo \
             --source pr \
             --destination pr_site \
@@ -59,6 +63,8 @@ jobs:
             --buildDrafts \
             --buildFuture \
             --ignoreCache
+
+          ls pr
 
       # Capture page differences.
       - id: diffpages
@@ -74,3 +80,13 @@ jobs:
         with:
           name: diff-pages-artifact
           path: "${{ steps.diffpages.outputs.path }}"
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: base-site
+          path: ./current_site
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: pr-site
+          path: "./pr_site"
