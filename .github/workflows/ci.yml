@@ -43,28 +43,25 @@ jobs:
       - name: Build Hugo sites for comparison
         run: |
           ls
-
           hugo \
             --source base \
-            --destination current_site \
+            --destination ../current_site \
             --verbose \
             --cleanDestinationDir \
             --buildDrafts \
             --buildFuture \
             --ignoreCache
-
           ls base
-
           hugo \
             --source pr \
-            --destination pr_site \
+            --destination ../pr_site \
             --verbose \
             --cleanDestinationDir \
             --buildDrafts \
             --buildFuture \
             --ignoreCache
-
           ls pr
+          ls
 
       # Capture page differences.
       - id: diffpages
