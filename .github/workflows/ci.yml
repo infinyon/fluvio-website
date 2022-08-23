@@ -62,7 +62,7 @@ jobs:
 
       # Capture page differences.
       - id: diffpages
-        uses: ssowonny/diff-pages-action@v1
+        uses: ssowonny/diff-pages-action@v1.0.0
         with:
           base-path: "current_site"
           head-path: "pr_site"

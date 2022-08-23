@@ -11,7 +11,7 @@ jobs:
     name: Check for broken links
     steps:
       - name: "Build site with Hugo and audit"
-        uses: danielfdickinson/build-audit-action-hugo-dfd@v0.3
+        uses: danielfdickinson/build-audit-action-hugo-dfd@main
         with:
           base-url: https://www.fluvio.io/
           build-for-downstream: "true"
@@ -20,12 +20,12 @@ jobs:
         with:
           path: validate-html-action
       - name: "Validate HTML in output-directory"
-        uses: danielfdickinson/validate-html-action-hugo-dfd@v0.3
+        uses: danielfdickinson/validate-html-action-hugo-dfd@main
         with:
           action-workspace: ${{ github.workspace }}/validate-html-action
           use-existing-workspace: "true"
       - name: "Check internal links"
-        uses: danielfdickinson/link-check-action-hugo-dfd@v0.3
+        uses: danielfdickinson/link-check-action-hugo-dfd@main
         with:
           canonical-root: "https://www.fluvio.io/"
           check-external: "true"
