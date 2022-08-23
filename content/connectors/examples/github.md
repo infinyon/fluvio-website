@@ -340,9 +340,6 @@ transformed!
 $ fluvio connector create --config=./connect.yml
 ```
 
-[2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
-[3]: /docs/smartmodules/map
-
 {{</ tab >}}
 
 {{< tab tabNum="2">}}
@@ -636,9 +633,6 @@ docker run -d --name="github-repo" \
     --map="github-smartmodule"
 {{</ highlight >}}
 
-[2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
-[3]: /docs/smartmodules/map
-
 {{</ tab >}}
 
 {{</ tabs >}}
@@ -662,4 +656,4 @@ Now we can see that our topic contains just the data we selected!
 
 [1]: https://infinyon.cloud/signup
 [2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
-[3]: /docs/smartmodules/map
+[3]: {{<ref "/smartmodules/transform/map" >}}

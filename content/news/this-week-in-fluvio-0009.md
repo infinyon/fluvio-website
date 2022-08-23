@@ -48,7 +48,7 @@ Before
 ```bash
 $ fluvio produce my-topic
 [...]
-Error: 
+Error:
    0: Consumer Error
    1: Fluvio client error
    2: Fluvio socket error
@@ -76,11 +76,11 @@ The idea is that a developer can create a custom connector that will do the foll
 
 These connectors can then be re-used by anyone without the need to maintain custom code.
 
-### First look 
+### First look
 
 The rest of this post is first look at a connector in action.
 
-We create a new connector, with configurable details stored in a this example config file `config.yaml`. 
+We create a new connector, with configurable details stored in a this example config file `config.yaml`.
 
 %copy%
 
@@ -107,7 +107,7 @@ $ fluvio cluster connector create --config config.yaml
 $ fluvio cluster connector list
 
 -------------
- NAME               STATUS 
+ NAME               STATUS
  my-test-connector  Running
 ```
 
@@ -154,4 +154,4 @@ Until next week!
 [our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [our Discord channel]: https://discordapp.com/invite/bBG2dTz
 [Github Discussions]: https://github.com/infinyon/fluvio/discussions
-[connectors]: /connectors
+[connectors]: {{<ref "/connectors" >}}

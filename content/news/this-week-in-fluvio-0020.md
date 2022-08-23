@@ -11,7 +11,7 @@ programmable streaming platform written in Rust.
 
 ## Local Connector Development
 
-This week we wanted to walkthrough the process of developing a connector. 
+This week we wanted to walkthrough the process of developing a connector.
 
 We'll approach connector development in this order:
 1. [Build and run your client locally]({{<ref "#build-and-run-your-client-locally">}})
@@ -25,7 +25,7 @@ You'll need the following tools installed
 - [Python 3.x](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installation/)
 - [python-fluvio](https://github.com/infinyon/fluvio-client-python)
-- [python-requests](https://docs.python-requests.org/en/latest/)
+- [python-requests](https://requests.readthedocs.io/en/latest/)
 - [Docker](https://www.docker.com/get-started)
 - Kubernetes distros ([k3d](https://k3d.io/) or [minikube](https://minikube.sigs.k8s.io/docs/start/))
 
@@ -108,7 +108,7 @@ Consuming records from the beginning of topic 'cat-facts-random'
 
 Now that we have verfied that our client works locally, we need to package it for Kubernetes. We do that by defining our data connector runtime environment with a Dockerfile.
 
-We use the `python` base image to keep things simple. 
+We use the `python` base image to keep things simple.
 
 Then we create a new user `fluvio` with a home directory (in `/home/fluvio`).
 

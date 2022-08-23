@@ -25,7 +25,7 @@ uploaded to SPUs upon opening a stream, and this change helps by significantly r
 the size of the upload request. Thank you to [@tomindisguise] for the contribution!
 
 [@tomindisguise]: https://github.com/tomindisguise
-[a feature we call SmartStreams]: /docs/smartstreams
+[a feature we call SmartStreams]: {{<ref "/smartmodules" >}}
 
 ### Bugfix for applying SmartStreams while using `--disable-continuous`
 

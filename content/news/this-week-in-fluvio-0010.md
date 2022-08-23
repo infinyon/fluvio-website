@@ -15,7 +15,7 @@ We didn't have a new release this week.
 
 Instead the team met up in person for the first time!
 
-<img src="/news/images/0010/team-at-alcatraz.jpg" style="width:600px" />
+<img src="/news/images/0010/team-at-alcatraz.jpg" style="width:600px" alt="Team photo at Alcatraz"/>
 
 > This is us trying to not look overheated after the audio tour at Alactraz.
 
@@ -54,7 +54,7 @@ $ fluvio cluster connector create --config config.yaml
 $ fluvio cluster connector list
 
 -------------
- NAME          STATUS 
+ NAME          STATUS
  my-test-mqtt  Running
 ```
 

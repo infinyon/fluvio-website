@@ -115,7 +115,7 @@ your tireless work assembling great Rust content and for helping us spread the w
 about Fluvio!
 
 <a href="https://youtu.be/OZPXhmy-wVw?t=761">
-<img src="/news/images/0006/rustconf.png" style="width:600px" />
+<img src="/news/images/0006/rustconf.png" style="width:600px" alt="Rustconf 2021 - Screenshot of This week in Rust talk"/>
 </a>
 
 [`@nellshamrell`]: https://github.com/nellshamrell

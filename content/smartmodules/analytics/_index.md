@@ -7,7 +7,7 @@ _build:
 
 ## Data Transformations
 
-The HTTP connector supports the following [SmartModules](/docs/smartmodules/overview/) for data transforamtions:
+The HTTP connector supports the following [SmartModules]({{<ref "/docs/smartmodules/overview/" >}}) for data transforamtions:
 
 - `filter`: to eliminate invalid records
 - `map`: to correct or transform data formats
@@ -29,4 +29,4 @@ parameters:
   map: "catfact-map"
 {{< /highlight >}}
 
-For additional information checkout [Connector SmartModules](/connectors/#smartmodules).
+For additional information checkout [Connector SmartModules]({{<ref "/connectors/#smartmodules" >}}).
