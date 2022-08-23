@@ -19,8 +19,8 @@ jobs:
         with:
           hugo-version: "0.97.3"
           extended: true
-      - name: Build
-        run: hugo --verbose --buildDrafts --cleanDestinationDir --buildFuture --baseURL http://localhost
+      - name: Run Hugo in the background
+        run: ./hugo-start.sh &
       - name: Run htmltest
         uses: wjdp/htmltest-action@master
         with:
