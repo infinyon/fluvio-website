@@ -1,5 +1,12 @@
 name: Hugo broken link check
 
+permissions:
+  contents: read
+
+concurrency:
+  group: broken-link-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   pull_request:
     branches:
