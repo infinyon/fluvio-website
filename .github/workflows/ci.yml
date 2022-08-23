@@ -17,67 +17,60 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-unminified-site:
+  diff_pages:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.97.3"
+          extended: true
+
+      # Checkout and build files of a base ref.
       - uses: actions/checkout@v3
-      - name: "Build Site with Hugo and Audit"
-        uses: danielfdickinson/build-audit-action-hugo-dfd@v0.2
         with:
-          upload-site-as: unminified-site
-          use-lfs: false
-          hugo-extended: true
-          hugo-version: 0.92.2
-  check-links:
-    needs: build-unminified-site
-    runs-on: ubuntu-latest
-    steps:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+      # Checkout and build files of a head ref.
       - uses: actions/checkout@v3
-      - name: Run DFD Hugo Check Links
-        uses: danielfdickinson/link-check-action-hugo-dfd@v0.2
         with:
-          canonical-root: https://www.fluvio.io/
-          check-external: true
+          ref: ${{ github.event.pull_request.head.sha }}
+          clean: false # Prevent removing files in 'path/to/base' folder.
+          path: pr
 
-      #examples:
-      #  name: Build site and validate links
-      #  runs-on: ubuntu-latest
-      #  steps:
-      #    - uses: actions/checkout@v3
-      #- name: Setup Hugo
-      #  uses: peaceiris/actions-hugo@v2
-      #  with:
-      #    hugo-version: "0.92.2"
-      #    extended: true
+      # Build sites
+      - run: |
+          hugo \
+            --source base \
+            --destination current_site \
+            --verbose \
+            --cleanDestinationDir \
+            --disableFastRender \
+            --buildDrafts \
+            --buildFuture \
+            --ignoreCache
 
-      #- name: Build and start Hugo in the background
-      #  run: |
-      #    ./hugo-start.sh &
-      #    sleep 5
-      #- name: Link Checker
-      #  uses: lycheeverse/lychee-action@v1.5.0
-      #  with:
-      #    # Check all html files in repo (default)
-      #    args: --verbose --no-progress 'http://localhost:1313'
-      #    # Use json as output format (instead of markdown)
-      #    format: markdown
-      #    # Use different output file path
-      #    output: results.md
-      #    # Fail action on broken links
-      #    fail: true
+          hugo \
+            --source pr \
+            --destination pr_site \
+            --verbose \
+            --cleanDestinationDir \
+            --disableFastRender \
+            --buildDrafts \
+            --buildFuture \
+            --ignoreCache
 
-      #- name: Save Link Checker results
-      #  if: always()
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #    name: link-check-report
-      #    path: results.md
-      #    retention-days: 7
-
-      - name: Save hugo build
-        if: always()
-        uses: actions/upload-artifact@v3
+      # Capture page differences.
+      - id: diffpages
+        uses: ssowonny/diff-pages-action@v1
         with:
-          name: hugo build
-          path: public
-          retention-days: 7
+          base-path: "current_site"
+          head-path: "pr_site"
+
+      # This example step is for uploading the result as an artifact. The result or
+      # the artifact can be uploaded to the pull request comments, Amazon S3, or
+      # any place according to the github action settings.
+      - uses: actions/upload-artifact@v1
+        with:
+          name: diff-pages-artifact
+          path: "${{ steps.diffpages.outputs.path }}"
