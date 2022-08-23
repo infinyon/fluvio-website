@@ -45,7 +45,7 @@ jobs:
           ls
           hugo \
             --source base \
-            --destination ../current_site \
+            --destination ../base \
             --verbose \
             --cleanDestinationDir \
             --buildDrafts \
@@ -54,7 +54,7 @@ jobs:
           ls base
           hugo \
             --source pr \
-            --destination ../pr_site \
+            --destination ../head \
             --verbose \
             --cleanDestinationDir \
             --buildDrafts \
@@ -65,10 +65,10 @@ jobs:
 
       # Capture page differences.
       - id: diffpages
-        uses: ssowonny/diff-pages-action@master
+        uses: mastercoms/diff-pages-action@master
         with:
-          base-path: "current_site"
-          head-path: "pr_site"
+          base-path: "." # Action will append `/base`
+          head-path: "." # Action will append `/head`
 
       # This example step is for uploading the result as an artifact. The result or
       # the artifact can be uploaded to the pull request comments, Amazon S3, or
@@ -81,9 +81,9 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: base-site
-          path: ./current_site
+          path: ./base
 
       - uses: actions/upload-artifact@v1
         with:
           name: pr-site
-          path: "./pr_site"
+          path: "./head"
