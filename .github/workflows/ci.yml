@@ -86,7 +86,7 @@ jobs:
           mkdir /tmp/changed-screenshots
           for f in $(cat /tmp/changed-html.txt); do
             echo $f;
-            capture-website --quality 0.5 $f --full-page --output /tmp/changed-screenshots/${f//\//-}.png;
+            capture-website --type jpeg  $f --full-page --output /tmp/changed-screenshots/${f//\//-}.png;
           done
 
       - uses: actions/upload-artifact@v1
