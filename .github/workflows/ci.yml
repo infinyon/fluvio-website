@@ -92,7 +92,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: changed-screenshots
-          path: /tmp/changed-screenshot
+          path: /tmp/changed-screenshots
 
       #- uses: actions/upload-artifact@v1
       #  with:
