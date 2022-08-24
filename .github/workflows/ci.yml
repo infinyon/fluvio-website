@@ -97,17 +97,17 @@ jobs:
             ((ITER = ITER + 1))
           done
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         with:
           name: changed-screenshots
           path: /tmp/changed-screenshots
 
-      #- uses: actions/upload-artifact@v1
+      #- uses: actions/upload-artifact@v3
       #  with:
       #    name: base-site
       #    path: ./base
 
-      #- uses: actions/upload-artifact@v1
+      #- uses: actions/upload-artifact@v3
       #  with:
       #    name: pr-site
       #    path: "./head"
