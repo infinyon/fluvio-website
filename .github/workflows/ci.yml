@@ -75,7 +75,7 @@ jobs:
       - name: Get list of changed html
         run: |
           cd head
-          find . -name "*.html" -exec diff --brief --new-file base/{} {} \; | awk '{print $4}' | | sed 's/./http:\/\/localhost:1313/' | tee /tmp/changed-html.txt
+          find . -name "*.html" -exec diff --brief --new-file base/{} {} \; | awk '{print $4}' | sed 's/./http:\/\/localhost:1313/' | tee /tmp/changed-html.txt
           wc /tmp/changed-html.txt
 
       - name: Start Hugo server and take screenshots
