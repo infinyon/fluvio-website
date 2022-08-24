@@ -1,0 +1,8 @@
+DirectoryPath: "public"
+
+IgnoreURLs:
+  - "/livereload.js"
+  - "twitter.com"
+
+HTTPHeaders:
+  "Accept": "text/html"

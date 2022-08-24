@@ -1,0 +1,34 @@
+name: Hugo broken link check
+
+permissions:
+  contents: read
+
+concurrency:
+  group: broken-link-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  broken-link-check:
+    runs-on: ubuntu-latest
+    name: Check for broken links
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.97.3"
+          extended: true
+      - name: Run Hugo in the background
+        run: ./hugo-start.sh &
+      - name: Run htmltest
+        run: |
+          curl https://htmltest.wjdp.uk | bash
+          ./bin/htmltest

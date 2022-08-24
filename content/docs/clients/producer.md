@@ -86,7 +86,7 @@ As of today, batching behavior in Fluvio Producer can be modified with the follo
 - `batch_size`: Indicates the maximum amount of bytes that can be accumulated in a batch.
 - `linger`: Time to wait before sending messages to the server. Defaults to 100 ms.
 - `compression`: Compression algorithm used by the producer to compress each batch before sending it to the SPU. Supported compression algorithms are none, gzip, snappy and lz4.
-  
+
 In general, each one of these configurations has a benefit and a potential drawback. For instance, with the compression algorithm, it is a trade-off between disk usage in the server and CPU usage in the producer and the consumer for compression and decompression. Typically, the compression ratio is improved when the payload is large, therefore a larger `batch_size` could be used to improve the compression ratio. A `linger` equals `0` means that each record is sent as soon as possible. A `linger` time larger than zero introduces latency but improves throughput.
 
 The ideal parameters for the `batch_size`, `linger` and `compression` depends on your application needs.
@@ -100,8 +100,8 @@ a different trade-off between reliability and performance. There are two deliver
 
 ### At Most Once
 `at-most-once` delivery means that for each record handed to Fluvio Producer, that record is delivered zero or one times;
-in more casual terms it means that messages may be lost. Fluvio Producer sends the message with records to the SPU and **does not 
-wait** for the response. Consider it as **fire and forget** approach. This delivery method has higher throughput but no 
+in more casual terms it means that messages may be lost. Fluvio Producer sends the message with records to the SPU and **does not
+wait** for the response. Consider it as **fire and forget** approach. This delivery method has higher throughput but no
 any guarantees if the message is delivered.
 
 
@@ -121,9 +121,9 @@ output.wait().await?; // wait for the response, considering `Isolation` as well
 
 
 ### At Least Once
-`at-least-once` delivery means that for each record handed to the Fluvio Producer potentially **multiple attempts** are made 
-at delivering it, such that at least one succeeds; again, in more casual terms this means that messages may be duplicated 
-but not lost. Fluvio Producer sends the message with records to the SPU, **waits** for the response and **re-send** in case of 
+`at-least-once` delivery means that for each record handed to the Fluvio Producer potentially **multiple attempts** are made
+at delivering it, such that at least one succeeds; again, in more casual terms this means that messages may be duplicated
+but not lost. Fluvio Producer sends the message with records to the SPU, **waits** for the response and **re-send** in case of
 transport errors occur. This delivery method has lower throughput comparing to `at-most-once` but better total reliability.
 
 
@@ -153,12 +153,11 @@ is exponential. The first delay is 10ms, the second is 100ms, then 1000ms, and a
 
 In order to get started with producing streaming data, you'll need to:
 
-- [Have a Fluvio cluster up and running]({{< ref "/docs/get-started" >}}),
+- [Have a Fluvio cluster up and running]({{< ref "/docs/get-started/linux" >}}),
 - [Create a Topic to produce data to]({{< ref "/cli/commands/topic#fluvio-topic-create" >}}), then
 - Choose one of the following producer interfaces to use:
-  - [Fluvio CLI]({{< ref "/cli/commands/produce" >}})
-  - [Rust]({{< ref "/api/official/rust" >}})
-  - [Node]({{< ref "/api/official/node" >}})
-  - [Python]({{< ref "/api/official/python" >}})
-  - [Java]({{< ref "/api/official/java" >}})
-
+  - [Fluvio CLI]({{< ref "/cli/commands/consume" >}})
+  - [Rust]({{< ref "/api/official/rust/installation" >}})
+  - [Node]({{< ref "/api/official/node/installation" >}})
+  - [Python]({{< ref "/api/official/python/installation" >}})
+  - [Java]({{< ref "/api/official/java/installation" >}})

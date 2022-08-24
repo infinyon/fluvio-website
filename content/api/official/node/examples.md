@@ -1,6 +1,6 @@
 ---
 title: Node.js Examples
-menu: Examples 
+menu: Examples
 weight: 30
 ---
 
@@ -13,7 +13,7 @@ To see the full docs, visit [our typedoc page].
 
 [`node-bindgen`]: https://github.com/infinyon/node-bindgen
 [our typedoc page]: https://infinyon.github.io/fluvio-client-node/
-[`PartitionConsumer.createStream`]: https://infinyon.github.io/fluvio-client-node/classes/partitionconsumer.html#createstream
+[`PartitionConsumer.createStream`]: https://infinyon.github.io/fluvio-client-node/classes/PartitionConsumer.html#createStream
 [`asyncIterator`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
 
 

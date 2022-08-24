@@ -27,3 +27,6 @@ $RECYCLE.BIN/
 
 ## Netlify (functions)
 .netlify
+
+# htmltest
+tmp/

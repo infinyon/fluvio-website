@@ -30,8 +30,8 @@ Postgres database for CDC, launching the Fluvio Postgres connector, and
 observing change events in our Fluvio Topic. To see the connector in
 action, jump to one of the walkthrough examples:
 
-- [Using a Local Connector with InfinyOn Cloud](#example-use-case-using-a-local-connector-with-infinyon-cloud)
-- [Using a Managed Connector with Minikube](#example-use-case-using-a-managed-connector-with-minikube)
+- [Using a Local Connector with InfinyOn Cloud]({{<ref "#example-use-case-using-a-local-connector-with-infinyon-cloud" >}})
+- [Using a Managed Connector with Minikube]({{<ref "#advanced-use-case-using-a-managed-connector-with-minikube" >}})
 
 ## Configuration Options
 
@@ -491,7 +491,7 @@ then launch a managed Fluvio Postgres connector to continuously produce CDC
 events from Postgres into a Fluvio topic. If you'd like to follow along, here
 are the tools we'll be using:
 
-- [minikube](https://v1-18.docs.kubernetes.io/docs/tasks/tools/install-minikube/)
+- [minikube](https://minikube.sigs.k8s.io/docs/start/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [The Fluvio CLI](https://fluvio.io/download)
 - [The Postgres CLI (psql)](https://www.postgresql.org/download/)
@@ -902,7 +902,7 @@ more details on how to use the Postgres Connector and what to expect from the da
 
 [a free InfinyOn Cloud account]: https://infinyon.cloud/signup
 [logical replication message format]: https://www.postgresql.org/docs/10/protocol-logicalrep-message-formats.html
-[how to set up Fluvio and Postgres in minikube]: #example-use-case-using-a-managed-connector-with-minikube
+[how to set up Fluvio and Postgres in minikube]: {{<ref "#advanced-use-case-using-a-managed-connector-with-minikube">}}
 [read the documentation on them here]: https://www.postgresql.org/docs/10/logical-replication-publication.html
 [Data Events section]: #data-events
 [Configuration Options section]: #configuration-options

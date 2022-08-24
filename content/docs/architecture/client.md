@@ -13,37 +13,13 @@ All communication between the clients and the servers is encrypted in <a href="h
 
 ## Native Language Bindings
 
-The Fluvio client library is written in Rust and can be natively embedded into other programming languages. 
+The Fluvio client library is written in Rust and can be natively embedded into other programming languages.
 
-### Node Binding
-
-The first language binding implementation is for `Node.js`. The Node bindings allow web developers to add real-time data streaming to applications in a matter of minutes. No servers to configure, no databases to maintain, just connect your App to [Fluvio Cloud], and you have the <ins>first building block</ins> on the path to a **real-time distributed App**.
-
-[Fluvio Cloud]: {{< ref "/docs/get-started/cloud" >}}
-
-* API Reference
-    * <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API Reference</a>
-
-* Tutorials
-    * [Hello, World!](https://www.infinyon.com/tutorials/node/hello-world/) 
-
-For additional details on Node binding implementation, checkout <a href="https://github.com/infinyon/node-bindgen" target="_blank">node-bindgen</a> library.
-
-
-### Rust API
-
-The Rust API is native to the platform and does not require any language binding. Check out the following references to add real-time data streaming to your Rust application:
-
-* API Reference
-    * <a href="https://docs.rs/fluvio/" target="_blank">Rust API Reference</a>
-
-* Demo Apps
-    * [Rust Tutorials](https://www.infinyon.com/tutorials/rust/hello-world/) 
-
+Check out our [APIs page]({{<ref "/api">}}) for more information
 
 ### Fluvio CLI
 
-The Fluvio ClI an application written on top of the client library. The CLI can manage a Fluvio cluster as well as produce and consume data using the terminal. 
+The Fluvio CLI an application written on top of the client library. The CLI can manage a Fluvio cluster as well as produce and consume data using the terminal.
 
 For additional information, checkout:
 
@@ -51,7 +27,7 @@ For additional information, checkout:
 
 #### Future Work
 
-Future versions of Fluvio will provide additional programming language bindings, such as: 
+Future versions of Fluvio will provide additional programming language bindings, such as:
 
 * <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" target="_blank">Objective-C</a>
 * <a href="https://www.cplusplus.com/" target="_blank">C/C++</a>
@@ -69,9 +45,9 @@ The **Producer API** is responsible for sending records to data streams. A data 
 For example, a producer with a `key` mapped to countries would use the following API:
 
 ```rust
-let timber_resources: HashMap<&str, i32> = 
+let timber_resources: HashMap<&str, i32> =
     [("Norway", 100), ("Denmark", 50), ("Iceland", 10)]
-    .into_iter().collect();   
+    .into_iter().collect();
 
 producer.send(timber_resources).await;
 ```
@@ -88,12 +64,12 @@ The **Consumer API** is responsible for receiving records from data streams. Rec
 For example, a consumer reading `key/value` records (_one at a time_) from offset 100, would use the following API:
 
 ```rust
-let records = consumer.fetch(100).await;  
+let records = consumer.fetch(100).await;
 
-for record in records { 
-    for (k, v) in record { 
+for record in records {
+    for (k, v) in record {
         println!("{}, {}", k, v);
-    } 
+    }
 }
 ```
 
@@ -118,7 +94,7 @@ Configuration object models follow a similar paradigm. Each object has the follo
 * **Status** - the actual provisioning status (aka. actual state)
 * **Owner** - provides a parent/child relationship (for resource removal)
 
-A Fluvio administrator configures the object _Spec_, and the cluster updates the object _Status_ to match. The _Status_ is a read-only element from the administrator's perspective. 
+A Fluvio administrator configures the object _Spec_, and the cluster updates the object _Status_ to match. The _Status_ is a read-only element from the administrator's perspective.
 
 Fluvio has the following configuration objects:
 
@@ -128,7 +104,7 @@ Fluvio has the following configuration objects:
 * **partitions** - provisioned data streaming element of a topic
     * partitions are children of topics
 
-Each configuration object goes through its own lifecycle. Object status track the state as it progresses through various lifecycle stages. 
+Each configuration object goes through its own lifecycle. Object status track the state as it progresses through various lifecycle stages.
 
 -> Some configuration objects such as **Partition** and **Managed** SPU are managed objects that are created as part of the parent's lifecycle, and they `cannot be directly modified` by the operator.
 
@@ -141,7 +117,7 @@ For detailed schema definition and object life cycles, checkout the [Architectur
 
 Each configuration object can converted to different data formats, such as _json_, or _yaml_. Additional data formats are available and can be exposed if required.
 
-Configuration objects may be fetched using filters such as `object name`. 
+Configuration objects may be fetched using filters such as `object name`.
 
 
 #### Consumer Behavior
@@ -158,7 +134,7 @@ Consumers are also multi-threaded which allows each consumer to read records fro
 
 ### Fault Tolerance
 
-The Fluvio client can survive SPU failures. All data streams are replicated across multiple SPUs to prevent data loss. 
+The Fluvio client can survive SPU failures. All data streams are replicated across multiple SPUs to prevent data loss.
 
 When a data stream is created, one of the SPUs is elected as leader and the others become followers. Fluvio clients look-up the SPU leaders to produce or consume records.
 

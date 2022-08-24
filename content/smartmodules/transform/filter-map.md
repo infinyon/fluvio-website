@@ -227,7 +227,7 @@ Use the `fluvio smart-module list` command to see all available SmartModules:
 ```bash
 $ fluvio smart-module list
  NAME             STATUS             SIZE
-filter-groceries  SmartModuleStatus  178931 
+filter-groceries  SmartModuleStatus  178931
 ```
 
 Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
@@ -243,7 +243,7 @@ $ fluvio consume filter-map -B --filter-map=filter-groceries
 - [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
 - [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
-[1]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/grocery-notifications-simple/src/lib.rs
+[1]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/grocery-notifications/src/lib.rs
 [2]: https://www.infinyon.com/blog/2021/11/filter-map/
 [downloaded the Fluvio CLI]: https://www.fluvio.io/download/
 [using ArrayMap to break apart paginated API requests]: https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/

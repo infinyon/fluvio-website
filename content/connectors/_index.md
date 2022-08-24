@@ -375,7 +375,7 @@ Followed by launching it with `fluvio connector`:
 $ fluvio connector create --config=./connect.yml
 ```
 
-[1]: sources/http
+[1]: {{<ref "sources/http" >}}
 [InfinyOn Cloud]: https://infinyon.cloud/signup
 
 

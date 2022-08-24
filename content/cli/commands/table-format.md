@@ -1,11 +1,11 @@
 ---
-title: TableFormat 
+title: TableFormat
 weight: 20
 ---
 
 Table Format is used to customize the behavior of the Fluvio consumer output type [`full-table`].
 
-[`full-table`]: {{< ref "#full-table" >}}
+[`full-table`]: {{< ref "/cli/advanced/consume_table#full-table" >}}
 
 With `table-format`, you can control the column labels, column ordering and control which keys are primary for displaying your live event data as row updates.
 
@@ -36,7 +36,7 @@ You only need to give your Table Format a name, and an input format (currently o
 
 This is a definition of the TableFormat config schema. Below are the descriptions of each field of the config file.
 
-Check out the [examples](#examples) section below to see a few different config files and their resulting table views.
+Check out the [examples]({{<ref "#examples" >}}) section below to see a few different config files and their resulting table views.
 
 ```yaml
 type: object
@@ -60,7 +60,7 @@ columns:
             keyPath:
                 type: string
             primaryKey:
-                type: boolean 
+                type: boolean
 ```
 
 #### Field descriptions

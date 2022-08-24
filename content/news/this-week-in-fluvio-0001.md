@@ -37,7 +37,7 @@ considered Tier 1:
 
 - Fluvio CLI (`fluvio`)
   - `x86_64-unknown-linux-musl` (Linux x86 64-bit)
-  
+
 - Fluvio cluster (`fluvio-run`)
   - `x86_64-unknown-linux-musl` (Linux x86 64-bit)
 
@@ -63,17 +63,17 @@ With 0.9.0, Fluvio now supports any standards compliant Kubernetes distribution.
 - AWS EKS
 
 
-Please see Fluvio's [Kubernetes documentation]({{< ref "/docs/kubernetes/install" >}}) for more information. 
+Please see Fluvio's [Kubernetes documentation]({{< ref "/docs/kubernetes/install" >}}) for more information.
 
 #### Helm changes
 
-Fluvio's CLI bundles helm charts for easy installation.  Fluvio's charts are no longer published to the Fluvio registry. 
+Fluvio's CLI bundles helm charts for easy installation.  Fluvio's charts are no longer published to the Fluvio registry.
 
 Please use following commands to update your Fluvio installation:
 
 ```
 fluvio cluster upgrade --sys      # upgrade CRD
-fluvio cluster upgrade            # upgrade rest 
+fluvio cluster upgrade            # upgrade rest
 ```
 
 
@@ -100,14 +100,14 @@ pub fn filter_odd(record: &Record) -> bool {
         Ok(s) => s,
         _ => return false,
     };
-  
+
     // Parse the string as an i32, or return false
     let int_result = string.parse::<i32>();
     let int = match int_result {
         Ok(i) => i,
         _ => return false,
     };
-  
+
     int % 2 == 0
 }
 ```
@@ -191,10 +191,10 @@ pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
 
 > See the [full source code for this example on GitHub]!
 
-[full source code for this example on GitHub]: https://github.com/infinyon/fluvio/tree/master/src/smartstream/examples/map_double
+[full source code for this example on GitHub]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/map_double
 
 In this example, we are reading in Records and first parsing them as UTF-8 strings,
-then parsing those strings as integers. If either of those steps fails, 
+then parsing those strings as integers. If either of those steps fails,
 the error is returned with `?` and the consumer receives an error item in the stream.
 
 Notice that the return type for Map is different from we have seen before with Filters.
@@ -253,7 +253,7 @@ for more Fluvio updates! If you have any questions or would like to get involved
 
 Until next week!
 
-[1]: https://github.com/infinyon/fluvio/issues/1198 
+[1]: https://github.com/infinyon/fluvio/issues/1198
 [2]: https://github.com/infinyon/fluvio/issues/1269
 [3]: https://github.com/infinyon/fluvio/issues/1271
 [4]: https://github.com/infinyon/fluvio/pull/1232
