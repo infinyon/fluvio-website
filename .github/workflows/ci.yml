@@ -84,10 +84,17 @@ jobs:
           ./hugo-start.sh &
           sleep 5
           mkdir /tmp/changed-screenshots
+
+          ITER=1
+          fileType=jpeg
           for f in $(cat /tmp/changed-html.txt); do
-            echo $f;
             tmpFilename=${f/http:\/\/localhost:1313\//}
-            capture-website --type jpeg  $f --full-page --output /tmp/changed-screenshots/${tmpFilename//\//--}.png;
+            finalFilename=${tmpFilename//\//--}.${fileType}
+
+            echo "Screenshot #$ITER: $f -> $finalFilename";
+            capture-website --type $fileType $f --full-page --output /tmp/changed-screenshots/${finalFilename};
+
+            ((ITER = ITER + 1))
           done
 
       - uses: actions/upload-artifact@v1
