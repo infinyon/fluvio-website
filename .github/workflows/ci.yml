@@ -27,6 +27,10 @@ jobs:
           hugo-version: "0.97.3"
           extended: true
 
+      - uses: bahmutov/npm-install@v1
+      - name: Install capture-website-cli
+        run: npm install --global capture-website-cli
+
       # Checkout and build files of a base ref.
       - uses: actions/checkout@v3
         with:
@@ -63,21 +67,27 @@ jobs:
 
           ls
 
-      # Capture page differences.
-      - id: diffpages
-        uses: mastercoms/diff-pages-action@v1.0.1-rc.3
-        with:
-          base-path: "base"
-          head-path: "head"
-          port: 1313
+      - name: Get list of changed html
+        run: |
+          cd head
+          find . -name "*.html" -exec diff --brief --new-file base/{} {} \; | awk '{print $4}' | xargs realpath | tee /tmp/changed-html.txt
+          wc /tmp/changed-html.txt
 
-      # This example step is for uploading the result as an artifact. The result or
-      # the artifact can be uploaded to the pull request comments, Amazon S3, or
-      # any place according to the github action settings.
+      - name: Start Hugo server and take screenshots
+        run: |
+          cd head
+          ./hugo-start.sh &
+          sleep 5
+          mkdir /tmp/changed-screenshots
+          for f in $(cat /tmp/changed-html.txt); do
+            echo $f;
+            capture-website $f --full-page --output /tmp/changed-screenshots ${f//\//-}.png;
+          done
+
       - uses: actions/upload-artifact@v1
         with:
-          name: diff-pages-artifact
-          path: "${{ steps.diffpages.outputs.path }}"
+          name: changed-screenshots
+          path: /tmp/changed-screenshots
 
       - uses: actions/upload-artifact@v1
         with:
