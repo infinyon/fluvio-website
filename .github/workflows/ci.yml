@@ -78,7 +78,7 @@ jobs:
 
       - name: Start Hugo server and take screenshots
         run: |
-          cd head
+          cd pr_repo
           ./hugo-start.sh &
           sleep 5
           mkdir /tmp/changed-screenshots
