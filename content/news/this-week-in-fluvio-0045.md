@@ -22,7 +22,9 @@ We intend to remove the `fluvio connector` subcommand, and related API from the 
 
 We will announce the release to expect this change ahead of time. Currently, we are updating our documentation with equivilent workflows in preparation to support OSS Fluvio users though this migration.
 
-Please connect with us in [our Discord channel] or you email us at [team@infinyon.com](mailto:team@infinyon.com) if there are any questions, concerns, comments, etc. We'll continue to make updates about this matter until resolved.
+Please connect with us in [our Discord channel] or you can email us at [team@infinyon.com](mailto:team@infinyon.com) if there are any questions, concerns, comments, etc.
+
+We'll continue to make updates about this matter until resolved.
 
 ## Upcoming InfinyOn Cloud update
 We intend to continue support for managed connectors in the CLI in this environment.
