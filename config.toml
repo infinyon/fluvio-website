@@ -70,6 +70,12 @@ staticDir = ["static", "code"]
     weight = 105
 
   [[menu.fluvio]]
+    identifier = "tutorials"
+    name = "Tutuorials"
+    url = "/tutorials/"
+    weight = 106
+
+  [[menu.fluvio]]
     identifier = "chat"
     url = "https://discordapp.com/invite/bBG2dTz"
     pre = "fab fa-discord"
