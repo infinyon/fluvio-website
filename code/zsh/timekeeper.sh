@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 message=$1
 # The first item after `./timekeeper.sh`
@@ -7,7 +7,6 @@ currtime=$(date -Iseconds)
 # ISO-8601 standard for time
 
 message=($currtime ":" $message)
-
 
 topic="timekeeper"
 # the fluvio topic to be transmitted to
