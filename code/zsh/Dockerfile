@@ -7,9 +7,6 @@ RUN apt-get update
 RUN apt-get install -y zsh
 
 COPY ./timekeeper.sh .
-RUN chown -R main:main timekeeper.sh
-
-USER main
 RUN curl -fsS https://packages.fluvio.io/v1/install.sh | sh
 RUN ls -alh | echo
 RUN /bin/zsh timekeeper.sh 'hello world!'
