@@ -105,8 +105,6 @@ The Fluvio CLI is currently the easiest way to interact with the Fluvio database
 
 Two core commands of Fluvio you will want to be familiar with are `fluvio produce <topic>` and `fluvio consume <topic>`
 
-_[flesh out information on Produce and Consume]_
-
 #### Produce
 
 `fluvio produce` is the main way to get data into the Fluvio database. While most of the time
@@ -127,9 +125,9 @@ Ok!
 `fluvio produce <topic> [flags]` takes in either input from stdin, or from a file. The
 stdin input can be piped into, as seen [in this tutorial](#fluvio-in-shell-scripting),
 or filled interactively as seen just above. The above example is an example
-of `produce`'s "interactive" mode where it reads from stdin until told to stop.
+of `produce`'s interactive mode where it reads from stdin until told to stop.
 
-Some useful option to be aware of:
+Some useful option flags to be aware of:
 
 * `-f <file name>` – to use a file as input to be read and uploaded as multiple records.
 * `--raw` – to specify that the incoming data should be stored as a single record.

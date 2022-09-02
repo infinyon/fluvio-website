@@ -6,7 +6,7 @@ ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:
 RUN pip install fluvio
 COPY hello-python.py .
 COPY patch-uploader.py .
-COPY ./testfiles/test .test
+COPY ./testfiles/test ./test
 CMD python hello-python.py
 
 CMD fluvio topic create patch-autosave
