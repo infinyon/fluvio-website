@@ -102,6 +102,7 @@ if __name__ == "__main__":
     with open("test", "r") as file:
         for line in file:
             producer.send_string("{}".format(line))
+        producer.flush()
 
 
     # run the two scripts:
