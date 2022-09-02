@@ -27,7 +27,7 @@ jobs:
           - python
           - node
           - java
-          - zsh
+
     steps:
       - uses: actions/checkout@v3
       - uses: AbsaOSS/k3d-action@v2

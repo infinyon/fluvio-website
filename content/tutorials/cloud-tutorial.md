@@ -152,7 +152,7 @@ script pushing time and comments to a remote record should do.
 
 {{<code file="/code/zsh/timekeeper.sh" lang="zsh" copy=true >}}
 
-_[TODO: find permanent home for tutoral code]_
+_[TODO: explain what this code does]_
 
 ### Running
 
@@ -165,18 +165,59 @@ Again, you can use either `consume` or the Cloud interface to view the results.
 
 ## More Advanced Python Script
 
-
-_[decide what the program should be]_
-
-_[ideas:]_
-
-* error logging in test software
-* diff patches for an autosave?
-*
+{{<code file="/code/python/patch-uploader.py" lang="py" copy=true >}}
 
 ### Running
 
+This one is a little bit more involved and requires some set up before you can run it and enjoy the fruits of your labors.
+
+First, we need to create the topic.
+
 %copy first-line%
 ```bash
-$ cargo run
+$ fluvio topic create patch-autosave
+topic "patch-autosave" created
 ```
+
+Then we need to create the file we want to save and retrieve from the system:
+
+%copy first-line%
+```bash
+$ echo "test\n123\n456\nI am the very model of a modern major general" > test
+```
+To show it working, we shall fill the topic with irrelevant data (in the real world, this would be entirely patch files instead.)
+
+%copy first-line%
+```bash
+fluvio produce patch-autosave
+> 123!
+Ok!
+> test!
+Ok!
+> It is best to sleep it off
+Ok!
+> 457
+Ok!
+> explosion!
+Ok!
+```
+
+Now, let us see what the script does!
+
+%copy first-line%
+```bash
+$ python ./patch-uploader.py
+```
+
+Nothing?
+
+Not quite, a quick search of the directory will show that `test2` now exists!
+and if we look at the cloud interface, we can see the contents of the first
+file, `test`, is now in the database.
+
+
+<img src="../images/cloud-patch-example.jpg"
+     alt="Infinion Cloud with sample data in it."
+     style="justify: center; max-width: 500px" />
+
+Clearly in a real world usecase, it would be full of diff patch files, but this shall do for today's example.
