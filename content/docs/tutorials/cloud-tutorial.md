@@ -183,13 +183,13 @@ interface!
 
 Here are two simple Fluvio projects to learn the basics of what is going on.
 
-### Fluvio in Shell Scripting
+### An Easy Fluvio Script — Bash
 
 Here is a simple script that pushes timestamped comments to a remote database.
 
 This code generates a string that contains the current time, and the contents of the first argument passed in.
 
-Once that has happened, it checks to see if the hardcoded topic exists. If it
+Once that has happened, it checks to see if the hard coded topic exists. If it
 does, good, it moves on. If not, then it calls upon `fluvio topic create`
 to generate the new topic. Afterwards, it issues the call to `fluvio produce`
 and sends the timestamped message off to the Cloud.

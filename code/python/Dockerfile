@@ -9,6 +9,6 @@ COPY patch-uploader.py .
 COPY ./testfiles/test ./test
 CMD python hello-python.py
 
-CMD fluvio topic create patch-autosave
-CMD fluvio produce patch-autosave -f test
+RUN fluvio topic create patch-autosave
+RUN fluvio produce patch-autosave -f test
 CMD python patch-uploader.py
