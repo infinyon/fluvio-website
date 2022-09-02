@@ -222,10 +222,12 @@ Consuming records from the beginning of topic 'timekeeper'
 ### A More Advanced Script — Python
 
 Now that we've gotten comfortable with the CLI, let's have a go at making something
-with the avaliable APIs. This script has two functions.
+with the avaliable APIs. This script creates the topic needed for the example,
+populates it with placeholder data, to simulate a fuller database (in the real
+world, this would be actual data – patch files – instead), then runs two functions.
 
 The first takes a file and the current time, and wraps it up as a JSON object. It
-then uploads the object as a single record to the `patch-autosave` record.
+then uploads the object as a single record to the `patch-autosave` database.
 
 The second function reads in the last five records from the database, and converts
 them to a list of JSON objects. Once done, it saves the most recent record to a file.
@@ -249,29 +251,11 @@ $ fluvio topic create patch-autosave
 topic "patch-autosave" created
 ```
 
-Then we need to create the test file we want to save and retrieve from the system.
+Second we need to create the test file we want to save and retrieve from the system.
 
 %copy first-line%
 ```bash
 $ echo "test\n123\n456\nI am the very model of a modern major general" > test
-```
-Last step before running the script, we need to fill the topic with placeholder
-data to simulate a fuller database (in the real world, this would be actual data
-– patch files – instead).
-
-%copy first-line%
-```bash
-fluvio produce patch-autosave
-> 123!
-Ok!
-> test!
-Ok!
-> It is best to sleep it off
-Ok!
-> 457
-Ok!
-> explosion!
-Ok!
 ```
 
 Now, let us see if it works!

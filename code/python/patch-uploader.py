@@ -91,6 +91,19 @@ def pull_patch(file_patch):
 
 
 if __name__ == "__main__":
+
+    os.popen("fluvio topic create {}".format(TOPIC_NAME))
+
+    # Connect to cluster
+    fluvio = Fluvio.connect()
+
+    # Produce to topic
+    producer = fluvio.topic_producer(TOPIC_NAME)
+    with open("test", "r") as file:
+        for line in file:
+            producer.send_string("{}".format(line))
+
+
     # run the two scripts:
     push_patch("test")
     pull_patch("test2")
