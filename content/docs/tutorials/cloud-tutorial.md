@@ -4,24 +4,20 @@ menu: Fluvio with InfinyOn Cloud Tutorial
 weight: 60
 ---
 
-## Why and What?
-
 Fluvio is great for ensuring that data gathered from multiple sources shows
-up in a central repository for storage and manipulation! Imagine a dozen sensors
-all transmitting data to the same database. Fluvio, with its ability to partition
-the database, would be able to handle the task with ease.
+up in one central repository! Imagine a dozen sensors all transmitting data
+to the same database. Fluvio, with its ability to handle multiple sources,
+would be able to handle the task with ease.
 
 This tutorial will walk you through setting up an InfinyOn account, and using
 Fluvio. Both as a standalone command, and as part of a larger program.
-
-_[rewrite]_
 
 ## Basic Setup
 
 There are 3 main steps for setting up for the Cloud: Installing the CLI,
 registering for a Cloud account, and finally linking the two together.
 
-The next section willl walk you through how to do that.
+The next section will walk you through how to do that.
 
 ### Install Fluvio CLI
 
@@ -163,8 +159,8 @@ use the `-d` flag to tell it to stop.
 Some useful option flags to be aware of:
 
 * `d` – to halt consumption after reaching the end of the records available.
-* `T[int]` – to consume only the T(default 10) most recent records.
-* `B[int]` – to consume records B(default 0) after the start of the database.
+* `T[int]` – to specify that it should consume only the T(default 10) most recent records.
+* `B[int]` – to specify to start consuming records B(default 0) after the start of the database.
 
 
 ### InfinyOn Cloud Interface
@@ -228,14 +224,15 @@ Consuming records from the beginning of topic 'timekeeper'
 ### A More Advanced Script — Python
 
 Now that we've gotten comfortable with the CLI, let's have a go at making something
-with the avaliable APIs. This script has two functions. The first takes a file
-and the current time, and wraps it up as a JSON object. It then uploads the object
-as a single record to the `patch-autosave` record. The second function reads in
-the last five records from the database, and converts them to a list of JSON objects.
-Once done, it saves the most recent record to a file. A quick `assert` shows that
-both the original and new files contain the same data.
+with the avaliable APIs. This script has two functions.
 
-_[TODO: rewrite above to say what it *does* do]_
+The first takes a file and the current time, and wraps it up as a JSON object. It
+then uploads the object as a single record to the `patch-autosave` record.
+
+The second function reads in the last five records from the database, and converts
+them to a list of JSON objects. Once done, it saves the most recent record to a file.
+
+A quick `assert` shows that both the original and new files contain the same data.
 
 {{<code file="/code/python/patch-uploader.py" lang="py" copy=true >}}
 
@@ -299,9 +296,7 @@ As extra credit you can create your own actual patch files and send them.
 
 ## Wrapping up
 
-This has been a short introduction
-
-_[TODO: trim the tutorial, it's too long]_
+This has been an introduction to Fluvio and a couple
 
 ### References:
 
@@ -312,3 +307,5 @@ _[TODO: trim the tutorial, it's too long]_
 [Fluvio CLI topic](/cli/commands/topic)
 
 [Fluvio CLI profile](/cli/installation/profile)
+
+[Fluvio Python API](https://infinyon.github.io/fluvio-client-python/fluvio.html)
