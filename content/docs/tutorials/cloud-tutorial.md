@@ -255,7 +255,7 @@ Second we need to create the test file we want to save and retrieve from the sys
 
 %copy first-line%
 ```bash
-$ echo "test\n123\n456\nI am the very model of a modern major general" > test
+$ echo "test\n456\nI am the very model of a modern major general\n123" > test
 ```
 
 Now, let us see if it works!
