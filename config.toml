@@ -21,7 +21,7 @@ staticDir = ["static", "code"]
 [outputFormats]
   [outputFormats.RSS]
     mediatype = "application/rss"
-    baseName = "rss"  
+    baseName = "rss"
 
 [params]
   version = "2.0.0"
@@ -69,11 +69,11 @@ staticDir = ["static", "code"]
     url = "/news/"
     weight = 105
 
-  [[menu.fluvio]]
-    identifier = "tutorials"
-    name = "Tutuorials"
-    url = "/tutorials/"
-    weight = 106
+#  [[menu.fluvio]]
+#    identifier = "tutorials"
+#    name = "Tutuorials"
+#    url = "/docs/tutorials/"
+#    weight = 106
 
   [[menu.fluvio]]
     identifier = "chat"
@@ -87,7 +87,7 @@ staticDir = ["static", "code"]
     url = "https://www.infinyon.com/blog"
     pre = "fab fa-blogger"
     weight = 100
-  
+
   [[menu.infinyon]]
     identifier = "webinars"
     name = "Webinars"
