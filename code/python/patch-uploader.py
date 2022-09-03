@@ -93,6 +93,12 @@ def pull_patch(file_patch):
 if __name__ == "__main__":
 
     os.popen("fluvio topic create {}".format(TOPIC_NAME))
+    # fluvio topic create <topic name>:
+    # Tells Fluvio to create a topic in the database named <topic name>.
+    # In this case, the topic is patch-autosave.
+    # Currently fluvio does not have topic create available in python,
+    # if you wish to do so, you have to call os.popen()
+
 
     # Connect to cluster
     fluvio = Fluvio.connect()

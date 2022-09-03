@@ -1,23 +1,18 @@
 ---
-title: Fluvio Tutorial [Work in Progress]
-menu: Fluvio with InfinyOn Cloud Tutorial
+title: Using InfinyOn Cloud Backend
+menu: InfinyOn Cloud Tutorial
 weight: 60
 ---
 
-Fluvio is great for ensuring that data gathered from multiple sources shows
-up in one central repository! Imagine a dozen sensors all transmitting data
-to the same database. Fluvio, with its ability to handle multiple sources,
-would be able to handle the task with ease.
-
 This tutorial will walk you through setting up an InfinyOn account, and using
-Fluvio. Both as a standalone command, and as part of a larger program.
+Fluvio, both as a standalone command, and as part of a larger program.
 
 ## Basic Setup
 
 There are 3 main steps for setting up for the Cloud: Installing the CLI,
 registering for a Cloud account, and finally linking the two together.
 
-The next section will walk you through how to do that.
+The following sections will walk you through how to do that.
 
 ### Install Fluvio CLI
 
@@ -108,7 +103,7 @@ Two core commands of Fluvio you will want to be familiar with are `fluvio produc
 #### Produce
 
 `fluvio produce` is the main way to get data into the Fluvio database. While most of the time
-you may be calling it through an API, this here is the CLI access to it.
+you may be calling it through an API, here is how to access it through the CLI.
 
 %copy first-line%
 ```bash
@@ -120,12 +115,12 @@ Ok!
 >
 ```
 
--> When quitting the interactive mode of `produce` press `^C`.
+-> To quit the continuous mode of `produce` press `CTRL-C`.
 
 `fluvio produce <topic> [flags]` takes in either input from stdin, or from a file. The
-stdin input can be piped into, as seen [in this tutorial](#fluvio-in-shell-scripting),
-or filled interactively as seen just above. The above example is an example
-of `produce`'s interactive mode where it reads from stdin until told to stop.
+stdin input can be piped into [like in this tutorial](#an-easy-fluvio-script--bash),
+or filled continuously as seen just above. When running in continuous mode, it won't stop
+until it is killed by the user.
 
 Some useful option flags to be aware of:
 
@@ -148,7 +143,7 @@ test
 meow
 ```
 
--> To quit the continuous mode of `consume` press `^C`.
+-> To quit the continuous mode of `consume` press `CTRL-C`.
 
 `fluvio consume <topic> [flags]` by default prints to the terminal new records as
 they appear. By default it runs nonstop until quit, the examples used here all
@@ -271,14 +266,13 @@ file, `test`, is now in the database.
 
 
 <img src="../images/cloud-patch-example.jpg"
-     alt="Infinion Cloud with sample data in it."
+     alt="InfinyOn Cloud with sample data in it."
      style="justify: center; max-width: 500px" />
 
 As extra credit you can create your own actual patch files and send them.
 
-## Wrapping up
+## Check out these Other Tutorials
 
-This has been an introduction to Fluvio and a couple
 
 ### References:
 
