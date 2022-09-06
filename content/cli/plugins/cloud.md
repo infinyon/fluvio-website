@@ -68,7 +68,7 @@ profile using [`fluvio profile list`]:
 ```bash
 $ fluvio profile list
     PROFILE    CLUSTER    ADDRESS                          TLS
- *  cloud      cloud      router.cloud.fluvio.io:9003      Verified
+ *  cloud      cloud      router.infinyon.cloud:9003      Verified
 ```
 
 At this point, any other `fluvio` commands (such as produce, consume, etc.) will
