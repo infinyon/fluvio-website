@@ -23,8 +23,8 @@ Download the Fluvio CLI with the following command.
 $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
-Follow the instructions in the installer to add Fluvio to your `$PATH`
-environment variable.
+{{< partial file="docs/path-env.html" >}}
+
 
 ### Create InfinyOn Cloud Account
 
@@ -217,8 +217,8 @@ Consuming records from the beginning of topic 'timekeeper'
 ### A More Advanced Script — Python
 
 Now that we've gotten comfortable with the CLI, let's have a go at making something
-with the avaliable APIs. This script creates the topic needed for the example,
-populates it with placeholder data, to simulate a fuller database (in the real
+with the avaliable APIs. This script creates the topic needed for the example, 
+populates it with placeholder data, to simulate a fuller database (in the real 
 world, this would be actual data – patch files – instead), then runs two functions.
 
 The first takes a file and the current time, and wraps it up as a JSON object. It
@@ -251,6 +251,24 @@ Second we need to create the test file we want to save and retrieve from the sys
 %copy first-line%
 ```bash
 $ echo "test\n456\nI am the very model of a modern major general\n123" > test
+```
+
+Finally, we need to install some python packages. Particularly `DateTime` and 
+`fluvio`. Read more on the Fluvio Python API requirements [here](/api/official/python/installation). 
+The easiest way to install them is with `pip`:
+
+%copy first-line%
+```bash
+$ pip install fluvio
+  Downloading fluvio-0.12.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.9/3.9 MB 7.7 MB/s eta 0:00:00
+Installing collected packages: fluvio
+Successfully installed fluvio-0.12.5
+```
+
+%copy first-line%
+```bash
+$ pip install datetime
 ```
 
 Now, let us see if it works!

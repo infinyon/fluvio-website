@@ -1,0 +1,6 @@
+{{ $file := .Get "file"}}
+{{ $FILE :=path.Join "layouts" "partials" $file }}
+{{ if os.FileExists $FILE }}
+  {{ partial $file }}
+{{ else }}
+{{ end }}
