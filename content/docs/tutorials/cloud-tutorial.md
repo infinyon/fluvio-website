@@ -14,6 +14,10 @@ registering for a Cloud account, and finally linking the two together.
 
 The following sections will walk you through how to do that.
 
+<img src="../images/Fluvio-Cloud-Flow.svg"
+     alt=""
+	 style="justify: center; max-width: 500px" />
+
 ### Install Fluvio CLI
 
 Download the Fluvio CLI with the following command.
@@ -27,6 +31,8 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 
 ### Create InfinyOn Cloud Account
+
+~> Work in progress
 
 Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 
@@ -91,8 +97,15 @@ $ echo 'Hello world!' | fluvio produce greetings
 
 ```
 
-The data you store is viewable from both the command line through Fluvio CLI and online
-through the Cloud interface.
+%copy first-line%
+```bash
+$ fluvio consume greetings -dB
+Hello world!
+
+```
+
+The data you store is viewable from both the command line through Fluvio CLI ~~and online
+through the Cloud interface.~~
 
 ### Fluvio CLI
 
