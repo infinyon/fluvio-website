@@ -1,5 +1,5 @@
 ---
-title: Using InfinyOn Cloud Backend
+title: Using InfinyOn Cloud Backend — Connectors and Smart Filters
 menu: InfinyOn Cloud Tutorial
 weight: 60
 ---
@@ -32,7 +32,23 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 ### Create InfinyOn Cloud Account
 
-~> Work in progress
+There are two mutually exclusive ways to log into Fluvio at the current time.
+
+##### Log in with Google
+
+If you wish to in the future sign in with Oauth2, then click on the `Sign in with Google` button.
+
+<img src="../images/google-signup-part1.jpg"
+     alt=""
+     style="justify: center; max-width: 300px" />
+
+The link will take you to a Google login prompt and ask if you are sure you want to log into InfinyOn Cloud.
+
+<img src="../images/google-signup-part2.jpg"
+     alt=""
+     style="justify: center; max-width: 300px" />
+
+##### Create an InfinyOn Cloud Account
 
 Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 
@@ -61,19 +77,47 @@ messages to your Fluvio cluster.
 
 ### Link InfinyOn Cloud to Fluvio CLI
 
-Use the command `fluvio cloud login` to connect the InfinyOn Cloud to your
-Fluvio CLI. It will ask for your account credentials, as seen below.
+##### Connect with Oauth2
+
+Use the command `fluvio cloud login --use-oauth2` to connect to the InfinyOn Cloud. It will open a login 
+screen in your webbrowser if possible. If that is not possible, it will print a 
+URL to go to.
 
 %copy first-line%
 ```bash
+$ fluvio cloud login --use-oauth2
+A web browser has been opened at https://infinyon-cloud.us.auth0.com/activate?user_code=GLMC-QDDJ.
+Please proceed with authentication.
+```
+
+<img src="../images/google-login-part1.jpg"
+     alt=""
+     style="justify: center; max-width: 300px" />
+
+<img src="../images/google-login-part2.jpg"
+     alt=""
+     style="justify: center; max-width: 300px" />
+	 
+ <img src="../images/google-login-confirm.jpg"
+     alt=""
+     style="justify: center; max-width: 300px" />
+
+##### Connect with username and password
+
+Use the command `fluvio cloud login` to connect the InfinyOn Cloud to your
+Fluvio CLI. It will ask for your account credentials, as seen below.
+ 
+ %copy first-line%
+ ```bash
 $ fluvio cloud login
 InfinyOn Cloud email: John@example.com
 Password:
 ```
 
+##### Confirming connection
 Use the `fluvio profile list` command to confirm that your CLI is linked to the
 InfinyOn Cloud instance.
-
+ 
 %copy first-line%
 ```bash
 $ fluvio profile list
@@ -104,8 +148,7 @@ Hello world!
 
 ```
 
-The data you store is viewable from both the command line through Fluvio CLI ~~and online
-through the Cloud interface.~~
+The data you store is viewable from the command line through Fluvio CLI.
 
 ### Fluvio CLI
 
@@ -168,28 +211,9 @@ Some useful option flags to be aware of:
 * `T[int]` – to specify that it should consume only the T(default 10) most recent records.
 * `B[int]` – to specify to start consuming records B(default 0) after the start of the database.
 
-
-### InfinyOn Cloud Interface
-
-If you wish to view the messages sent above to the greetings record, you can go
-to your Cloud instance.
-
-If you are logged into your InfinyOn Cloud account, this quick link will take you
-to the [greetings records](https://infinyon.cloud/account/clusters/default/topics/greetings/records).
-
-The Cloud interface is still actively being upgraded, so we will only be using
-it to passively view what is in the database.
-
-<img src="../images/cloud-overview.jpg"
-     alt="A screenshot of the InfinyOn cloud topic."
-     style="justify: center; max-width: 500px" />
-
-This is what the Cloud interface looks like for now. Stand by for an improved
-interface!
-
 ## Fluvio in Action
 
-Here are two simple Fluvio projects to learn the basics of what is going on.
+Here is one simple script showing Fluvio in action.
 
 ### An Easy Fluvio Script — Bash
 
@@ -227,80 +251,13 @@ Consuming records from the beginning of topic 'timekeeper'
 2022-09-01T18:46:12-07:00 : I love cupcakes
 ```
 
-### A More Advanced Script — Python
+## Connectors
 
-Now that we've gotten comfortable with the CLI, let's have a go at making something
-with the avaliable APIs. This script creates the topic needed for the example, 
-populates it with placeholder data, to simulate a fuller database (in the real 
-world, this would be actual data – patch files – instead), then runs two functions.
+_[TODO: introduce Connectors]_
 
-The first takes a file and the current time, and wraps it up as a JSON object. It
-then uploads the object as a single record to the `patch-autosave` database.
+## Smart Filters
 
-The second function reads in the last five records from the database, and converts
-them to a list of JSON objects. Once done, it saves the most recent record to a file.
-
-A quick `assert` shows that both the original and new files contain the same data.
-
-{{<code file="/code/python/patch-uploader.py" lang="py" copy=true >}}
-
-##### To Run the Script
-
-This one is a little bit more involved and requires some setup before you can
-run it and enjoy the fruits of your labors.
-
-First, we'll save the script to a file, here it's named `patch-uploader.py`.
-
-Second, we need to create the topic.
-
-%copy first-line%
-```bash
-$ fluvio topic create patch-autosave
-topic "patch-autosave" created
-```
-
-Second we need to create the test file we want to save and retrieve from the system.
-
-%copy first-line%
-```bash
-$ echo "test\n456\nI am the very model of a modern major general\n123" > test
-```
-
-Finally, we need to install some python packages. Particularly `DateTime` and 
-`fluvio`. Read more on the Fluvio Python API requirements [here](/api/official/python/installation). 
-The easiest way to install them is with `pip`:
-
-%copy first-line%
-```bash
-$ pip install fluvio
-  Downloading fluvio-0.12.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.9 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.9/3.9 MB 7.7 MB/s eta 0:00:00
-Installing collected packages: fluvio
-Successfully installed fluvio-0.12.5
-```
-
-%copy first-line%
-```bash
-$ pip install datetime
-```
-
-Now, let us see if it works!
-
-%copy first-line%
-```bash
-$ python ./patch-uploader.py
-```
-
-A quick search of the directory will show that the file `test2` now exists!
-And if we look at the cloud interface, we can see the contents of the first
-file, `test`, is now in the database.
-
-
-<img src="../images/cloud-patch-example.jpg"
-     alt="InfinyOn Cloud with sample data in it."
-     style="justify: center; max-width: 500px" />
-
-As extra credit you can create your own actual patch files and send them.
+_[TODO: Smart Filter introduction]_
 
 ## Check out these Other Tutorials
 
@@ -314,5 +271,3 @@ As extra credit you can create your own actual patch files and send them.
 [Fluvio CLI topic](/cli/commands/topic)
 
 [Fluvio CLI profile](/cli/installation/profile)
-
-[Fluvio Python API](https://infinyon.github.io/fluvio-client-python/fluvio.html)
