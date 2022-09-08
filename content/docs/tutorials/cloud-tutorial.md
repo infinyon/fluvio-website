@@ -1,22 +1,22 @@
 ---
-title: Using InfinyOn Cloud Backend — Connectors and Smart Filters
+title: Using InfinyOn Cloud Backend — Connectors and SmartModules
 menu: InfinyOn Cloud Tutorial
 weight: 60
 ---
 
-This tutorial will walk you through setting up an InfinyOn account, and using
-Fluvio, both as a standalone command, and as part of a larger program.
+This tutorial will walk you through setting up an InfinyOn account, using Fluvio,
+and learning the basics of connectors and SmartModules.
 
 ## Basic Setup
 
+<img src="../images/Fluvio-Cloud-Flow.svg"
+     alt="Signup flow for InfinyOn Cloud"
+	 style="justify: center; max-width: 500px" />
+	 
 There are 3 main steps for setting up for the Cloud: Installing the CLI,
 registering for a Cloud account, and finally linking the two together.
 
 The following sections will walk you through how to do that.
-
-<img src="../images/Fluvio-Cloud-Flow.svg"
-     alt=""
-	 style="justify: center; max-width: 500px" />
 
 ### Install Fluvio CLI
 
@@ -31,26 +31,27 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 
 ### Create InfinyOn Cloud Account
+Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 
-There are two mutually exclusive ways to log into Fluvio at the current time.
+Currently, there are two mutually exclusive ways to create your Fluvio account:
+Google sign in, and Email registration.
 
 ##### Log in with Google
 
-If you wish to in the future sign in with Oauth2, then click on the `Sign in with Google` button.
+If you wish to in the future sign in with OAuth2, then click on the `Sign in with Google` button.
 
 <img src="../images/google-signup-part1.jpg"
-     alt=""
+     alt="A screenshot of step one of Signing up to InfinyOn with Google — click on the sign in button"
      style="justify: center; max-width: 300px" />
 
-The link will take you to a Google login prompt and ask if you are sure you want to log into InfinyOn Cloud.
+The link will take you to a Google login prompt and ask if you are sure you want
+to log into InfinyOn Cloud.
 
 <img src="../images/google-signup-part2.jpg"
-     alt=""
+     alt="a screenshot of step two of Signing up to InfinyOn with Google — associate account"
      style="justify: center; max-width: 300px" />
 
 ##### Create an InfinyOn Cloud Account
-
-Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 
 <img src="../images/cloud-signup.jpg"
      alt="A screenshot of the InfinyOn new account form, with Name, Organization, Email, and Password fields"
@@ -65,7 +66,7 @@ to verify your email. You'll need to complete this step in order to continue.
      alt="A screenshot of the verification email received after completing the signup form, including a verification link"
      style="justify: center; max-width: 500px" />
 
-You should get a confirmation that your account is ready to use.
+You should now get a confirmation that your account is ready to use.
 
 <img src="../images/cloud-confirmation.jpg"
      alt="A screenshot of the prompt received after clicking the verification link, saying the account is ready to use"
@@ -77,11 +78,12 @@ messages to your Fluvio cluster.
 
 ### Link InfinyOn Cloud to Fluvio CLI
 
-##### Connect with Oauth2
+Depending which method you chose to create your account, please follow the relevant 
+instructions below.
 
-Use the command `fluvio cloud login --use-oauth2` to connect to the InfinyOn Cloud. It will open a login 
-screen in your webbrowser if possible. If that is not possible, it will print a 
-URL to go to.
+##### Connect with OAuth2
+
+Use the command `fluvio cloud login --use-oauth2` to connect to the InfinyOn Cloud. 
 
 %copy first-line%
 ```bash
@@ -90,17 +92,34 @@ A web browser has been opened at https://infinyon-cloud.us.auth0.com/activate?us
 Please proceed with authentication.
 ```
 
+It will open a login screen in your webbrowser if possible. If that is not
+possible, it will print a URL to you to enter into your web browser.
+
 <img src="../images/google-login-part1.jpg"
-     alt=""
+     alt="screenshot showing verification code that Fluvio is trying to connect with."
      style="justify: center; max-width: 300px" />
 
+Verify that the code matches what was displayed at the end of the url in the
+command prompt, then click the confirm button.
+
 <img src="../images/google-login-part2.jpg"
-     alt=""
+     alt="screenshot showing Google requesting you log in with your google account"
      style="justify: center; max-width: 300px" />
 	 
- <img src="../images/google-login-confirm.jpg"
-     alt=""
+Next you will have to log into google. If you are already signed in, this step 
+is automatically skipped.
+
+<img src="../images/google-login-part3.jpg"
+     alt="screenshot showing OAuth2 requesting access to your Google account"
      style="justify: center; max-width: 300px" />
+
+One last verification that you wish to connect to InfinyOn Cloud, click accept.
+
+ <img src="../images/google-login-confirm.jpg"
+     alt="screenshot showing confirmation that OAuth2 connection is complete"
+     style="justify: center; max-width: 300px" />
+
+Congrats, everything is now set up!
 
 ##### Connect with username and password
 
@@ -211,11 +230,7 @@ Some useful option flags to be aware of:
 * `T[int]` – to specify that it should consume only the T(default 10) most recent records.
 * `B[int]` – to specify to start consuming records B(default 0) after the start of the database.
 
-## Fluvio in Action
-
-Here is one simple script showing Fluvio in action.
-
-### An Easy Fluvio Script — Bash
+## An Easy Fluvio Script — Bash
 
 Here is a simple script that pushes timestamped comments to a remote database.
 
@@ -241,8 +256,7 @@ $ ./timekeeper.sh 'I love cupcakes'
 topic "timekeeper" created
 ```
 
-Again, you can use either `consume` or the Cloud interface to view the results.
-Here we will just check it with the CLI.
+Again, you can use `consume` to view the results.
 
 %copy first-line%
 ```bash
@@ -255,9 +269,13 @@ Consuming records from the beginning of topic 'timekeeper'
 
 _[TODO: introduce Connectors]_
 
-## Smart Filters
+### Adding Connectors to the Script
+
+## SmartModules
 
 _[TODO: Smart Filter introduction]_
+
+### Adding SmartModules to the script
 
 ## Check out these Other Tutorials
 
