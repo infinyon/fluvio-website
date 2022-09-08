@@ -1,0 +1,10 @@
+# connect.yml
+version: 0.3.0
+name: cat-facts
+type: http-source
+topic: timekeeper
+direction: source
+# HTTP specific parametes
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 30s

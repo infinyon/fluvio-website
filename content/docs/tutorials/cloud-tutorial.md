@@ -12,7 +12,7 @@ and learning the basics of connectors and SmartModules.
 <img src="../images/Fluvio-Cloud-Flow.svg"
      alt="Signup flow for InfinyOn Cloud"
 	 style="justify: center; max-width: 500px" />
-	 
+
 There are 3 main steps for setting up for the Cloud: Installing the CLI,
 registering for a Cloud account, and finally linking the two together.
 
@@ -29,7 +29,6 @@ $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 {{< partial file="docs/path-env.html" >}}
 
-
 ### Create InfinyOn Cloud Account
 Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 
@@ -38,18 +37,19 @@ Google sign in, and Email registration.
 
 ##### Log in with Google
 
-If you wish to in the future sign in with OAuth2, then click on the `Sign in with Google` button.
+If you wish to avoid creating a new username and password, then click on the `Sign in with Google` button.
 
 <img src="../images/google-signup-part1.jpg"
      alt="A screenshot of step one of Signing up to InfinyOn with Google — click on the sign in button"
      style="justify: center; max-width: 300px" />
 
-The link will take you to a Google login prompt and ask if you are sure you want
-to log into InfinyOn Cloud.
+The link will take you to a Google login prompt if you are not logged into google.
 
 <img src="../images/google-signup-part2.jpg"
      alt="a screenshot of step two of Signing up to InfinyOn with Google — associate account"
      style="justify: center; max-width: 300px" />
+
+Finally, it will ask if you are sure you want to log into InfinyOn Cloud.
 
 ##### Create an InfinyOn Cloud Account
 
@@ -72,18 +72,17 @@ You should now get a confirmation that your account is ready to use.
      alt="A screenshot of the prompt received after clicking the verification link, saying the account is ready to use"
      style="justify: center; max-width: 300px" />
 
-
 At this point, you can log in via the Fluvio CLI and start sending and receiving
 messages to your Fluvio cluster.
 
 ### Link InfinyOn Cloud to Fluvio CLI
 
-Depending which method you chose to create your account, please follow the relevant 
+Depending which method you chose to create your account, please follow the relevant
 instructions below.
 
 ##### Connect with OAuth2
 
-Use the command `fluvio cloud login --use-oauth2` to connect to the InfinyOn Cloud. 
+Use the command `fluvio cloud login --use-oauth2` to connect to the InfinyOn Cloud.
 
 %copy first-line%
 ```bash
@@ -105,8 +104,8 @@ command prompt, then click the confirm button.
 <img src="../images/google-login-part2.jpg"
      alt="screenshot showing Google requesting you log in with your google account"
      style="justify: center; max-width: 300px" />
-	 
-Next you will have to log into google. If you are already signed in, this step 
+
+Next you will have to log into google. If you are already signed in, this step
 is automatically skipped.
 
 <img src="../images/google-login-part3.jpg"
@@ -115,7 +114,7 @@ is automatically skipped.
 
 One last verification that you wish to connect to InfinyOn Cloud, click accept.
 
- <img src="../images/google-login-confirm.jpg"
+<img src="../images/google-login-confirm.jpg"
      alt="screenshot showing confirmation that OAuth2 connection is complete"
      style="justify: center; max-width: 300px" />
 
@@ -125,26 +124,15 @@ Congrats, everything is now set up!
 
 Use the command `fluvio cloud login` to connect the InfinyOn Cloud to your
 Fluvio CLI. It will ask for your account credentials, as seen below.
- 
- %copy first-line%
+
+%copy first-line%
  ```bash
 $ fluvio cloud login
 InfinyOn Cloud email: John@example.com
 Password:
 ```
 
-##### Confirming connection
-Use the `fluvio profile list` command to confirm that your CLI is linked to the
-InfinyOn Cloud instance.
- 
-%copy first-line%
-```bash
-$ fluvio profile list
-     PROFILE   CLUSTER   ADDRESS                     TLS
-  *  cloud     cloud     router.infinyon.cloud:9003  Verified
-```
-
-## A Quick Introduction to the Fluvio Interface
+## A Quick Introduction to the Fluvio CLI
 
 You can now see Fluvio in action by creating a simple topic, and pushing data to it:
 
@@ -167,18 +155,19 @@ Hello world!
 
 ```
 
-The data you store is viewable from the command line through Fluvio CLI.
-
-### Fluvio CLI
+The storage and retrieval of records from the topic as shown above are the basics
+of using the Fluvio CLI.
 
 The Fluvio CLI is currently the easiest way to interact with the Fluvio database.
 
-Two core commands of Fluvio you will want to be familiar with are `fluvio produce <topic>` and `fluvio consume <topic>`
+Two core commands of Fluvio you will need to be familiar with are 
+`fluvio produce <topic>` and `fluvio consume <topic>`
 
 #### Produce
 
-`fluvio produce` is the main way to get data into the Fluvio database. While most of the time
-you may be calling it through an API, here is how to access it through the CLI.
+`fluvio produce` is the main way to get data into the Fluvio database. While 
+most of the time you may be calling it through an API, here is how to access it
+through the CLI.
 
 %copy first-line%
 ```bash
@@ -201,6 +190,7 @@ Some useful option flags to be aware of:
 
 * `-f <file name>` – to use a file as input to be read and uploaded as multiple records.
 * `--raw` – to specify that the incoming data should be stored as a single record.
+* `--key-separator <key>` - to specify the string delineator to split the input into a key and value pairing.
 
 #### Consume
 
@@ -229,6 +219,8 @@ Some useful option flags to be aware of:
 * `d` – to halt consumption after reaching the end of the records available.
 * `T[int]` – to specify that it should consume only the T(default 10) most recent records.
 * `B[int]` – to specify to start consuming records B(default 0) after the start of the database.
+* `-p[int]` - to specify to read only from the partition p(default 0). 
+* `-k` - to tell Fluvio to display the key and value pairs.
 
 ## An Easy Fluvio Script — Bash
 
@@ -241,7 +233,7 @@ does, good, it moves on. If not, then it calls upon `fluvio topic create`
 to generate the new topic. Afterwards, it issues the call to `fluvio produce`
 and sends the timestamped message off to the Cloud.
 
-{{<code file="/code/bash/timekeeper.sh" lang="bash" copy=true >}}
+{{<code file="code/bash/timekeeper.sh" lang="bash" copy=true >}}
 
 ##### To Run the Script
 
@@ -267,20 +259,126 @@ Consuming records from the beginning of topic 'timekeeper'
 
 ## Connectors
 
-_[TODO: introduce Connectors]_
+If you wish to automatically collect information from one source and send it to
+Fluvio, Connectors are the way to go. Fluvio, when given the information on the
+interface through the Connector configuration file, can poll a multitude of
+input types.
+
+In this tutorial, we will be looking at the HTTP Connector setup, connecting
+to the `catfacts.ninja` JSON database.
+
+### Connector Config Layout
+
+This is the barebones yaml connector file. It doesn't have any information, or 
+sections for smart modules. 
+
+%copy% 
+```yaml
+# connect.yml
+version: 0.3.0
+name: 
+# the name that you will see when listing the connectors
+type: 
+# connection type:
+# source connections currently support: HTTP, Kafka, MQTT, Postgres -source
+# sink connections currently support: Dynabodb, Kafka, Postgres, Slack -sink
+topic: 
+# the topic to produce to or consume from
+direction: 
+# specifies as source or sink
+parameters:
+  # type specific parameters
+  # see the docs for the list of parameters
+  
+#optional content for producer type connector
+# producer:
+#   linger:
+#   batch-size:
+#   compression:
+  
+#optional content for consumer type connector
+#consumer:
+#  partition:
+
+```
+
+To make it useful, it needs populating. See [the documentation](/connectors) for
+the parameters for each type. 
+
+Thankfully, it's pretty easy at this stage. For any connection, you
+need a name, the connection type, the direction in which it is connecting, what
+topic to connect to. 
+
+For the HTTP-specific parameters you need the link it is polling to, and the 
+interval at which it polls at.
+
+%copy% 
+```yaml
+# connect.yml
+version: 0.3.0
+name: cat-facts
+type: http-source
+topic: greetings
+
+direction: source
+# HTTP specific parametes
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 30s
+```
+
+This creates a connector named cat-facts, that produces to the topic greetings
 
 ### Adding Connectors to the Script
 
+To add Connectors to the existing script, we shall have to make some modifications 
+to it.
+
+{{<code file="code/bash/timekeeper-connector.sh" lang="bash" copy=true >}}
+
+##### Running the Script
+
+Save the changes to `timekeeper.sh`, maybe in a new file. Save the above connector
+config in the file named `catfact.yml`.
+
+%copy first-line%
+```bash
+$ ./timekeeper-connector.sh "test123"
+topic "timekeeper-with-connector" created
+
+```
+
+Again, nothing much returned when running; but now the database will be more interesting. Try checking its contents with `fluvio consume`!
+
+You can stop the connector by deleting it. 
+
+%copy first-line%
+```bash
+$ fluvio connector delete cat-facts
+connector "cat-facts" deleted
+
+```
+
+Wait, now the Fluvio instance is getting cluttered! How are you supposed to sort 
+through this mix of information? Sure the cat facts are nice, but now they are 
+mixed in with the timestamped notes!
+
+Fear not, for we have *SmartModules*.
+
 ## SmartModules
+
+SmartModules are ...
 
 _[TODO: Smart Filter introduction]_
 
 ### Adding SmartModules to the script
 
+## Script in full
+
 ## Check out these Other Tutorials
 
 
-### References:
+## References:
 
 [Fluvio CLI Produce](/cli/commands/produce)
 
@@ -289,3 +387,7 @@ _[TODO: Smart Filter introduction]_
 [Fluvio CLI topic](/cli/commands/topic)
 
 [Fluvio CLI profile](/cli/installation/profile)
+
+[Connectors](/connectors)
+
+[Smart Modules](/smartmodules)
