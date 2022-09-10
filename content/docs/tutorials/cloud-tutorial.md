@@ -264,7 +264,7 @@ Fluvio, Connectors are the way to go. Fluvio, when given the information on the
 interface through the Connector configuration file, can poll a multitude of
 input types.
 
-In this tutorial, we will be looking at the HTTP Connector setup, connecting
+In this tutorial, we will be looking at the [HTTP Connector](/connectors/sources/http) setup, connecting
 to the `catfacts.ninja` JSON database.
 
 ### Connector Config Layout
@@ -275,7 +275,7 @@ sections for smart modules.
 %copy% 
 ```yaml
 # connect.yml
-version: 0.3.0
+version: 
 name: 
 # the name that you will see when listing the connectors
 type: 
@@ -288,6 +288,7 @@ direction:
 # specifies as source or sink
 parameters:
   # type specific parameters
+  # smart module parameters
   # see the docs for the list of parameters
   
 #optional content for producer type connector
@@ -299,17 +300,16 @@ parameters:
 #optional content for consumer type connector
 #consumer:
 #  partition:
-
 ```
 
 To make it useful, it needs populating. See [the documentation](/connectors) for
-the parameters for each type. 
+the parameters available for use.
 
 Thankfully, it's pretty easy at this stage. For any connection, you
 need a name, the connection type, the direction in which it is connecting, what
 topic to connect to. 
 
-For the HTTP-specific parameters you need the link it is polling to, and the 
+For the HTTP-specific parameters you will need to specify the link it is polling, and the 
 interval at which it polls at.
 
 %copy% 
@@ -348,7 +348,8 @@ topic "timekeeper-with-connector" created
 
 ```
 
-Again, nothing much returned when running; but now the database will be more interesting. Try checking its contents with `fluvio consume`!
+Again, nothing much returned when running; but now the database will be more 
+interesting. Try checking its contents with `fluvio consume`!
 
 You can stop the connector by deleting it. 
 
@@ -367,13 +368,75 @@ Fear not, for we have *SmartModules*.
 
 ## SmartModules
 
-SmartModules are ...
+SmartModules are user defined functions set to run on and modify the inputs to
+a Fluvio database. 
 
-_[TODO: Smart Filter introduction]_
+Want to filter which partition a JSON object goes in? Write a Map SmartModule
+that adds a JSON key to it so it goes with other JSON records. 
 
-### Adding SmartModules to the script
+Want to filter so that only JSON records that match a specific priority tag are
+recorded? A Filter SmartModule can be written to only let through records with
+specific values.
 
-## Script in full
+You create a SmartModule by using Rust and generating it based on the smartmodule
+template available [at the github repository](https://github.com/infinyon/fluvio-smartmodule-template).
+
+### Making a SmartModule
+
+If we want to clean up the timekeeper records and make it so that the messages
+are stored separate from the JSON objects, we will need a SmartModule.
+Specifically we will need a map SmartModule.
+
+We need to go through some setup steps though.
+
+First, check if `wasm32` is listed by rustup as an installed target.
+
+%copy first-line%
+```bash
+$ rustup target list | grep installed
+wasm32-unknown-unknown (installed)
+x86_64-unknown-linux-gnu (installed)
+```
+
+-> if it is not installed, run `$ rustup target add wasm32-unknown-unknown` to install it.
+
+Next, install cargo-generate, this may take a minute or two.
+
+%copy first-line%
+```bash
+$ cargo install cargo-generate
+```
+
+Now you can download the template with cargo-generate.
+
+%copy first-line%
+```bash
+cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
+🤷   Project Name : catfacts-map
+🔧   Destination: /home/[...]/projects/[...]/catfacts-map ...
+🔧   Generating template ...
+✔ 🤷   Want to use SmartModule parameters? · true
+✔ 🤷   Which type of SmartModule would you like? · map
+[1/7]   Done: .cargo/config.toml
+[2/7]   Done: .cargo
+[3/7]   Done: .gitignore
+[4/7]   Done: Cargo.toml
+[5/7]   Done: README.md
+[6/7]   Done: src/lib.rs
+[7/7]   Done: src
+🔧   Moving generated files into: `/home/[...]/projects/[...]/catfacts-map`...
+💡   Initializing a fresh Git repository
+✨   Done! New project created /home/[...]/projects/[...]/catfacts-map
+
+```
+
+There should now be a new directory labeled `catfacts-map` in your working directory.
+
+```bash
+$ cd catfacts-map/src
+```
+
+Now we can edit the `lib.rs` file to get what we need!
 
 ## Check out these Other Tutorials
 
