@@ -8,8 +8,10 @@ currtime=$(date -Iseconds)
 
 message="$currtime : $message"
 
-topic="timekeeper"
+topic="timekeeper-with-connector"
 # the fluvio topic to be transmitted to
+
+connector_name="cat-facts"
 
 config="./catfact.yml"
 
@@ -27,7 +29,7 @@ if ! $(fluvio topic list | grep -q $topic) ; then
 
 fi
 
-if ! $(fluvio connector list | grep -q cat-facts) ; then
+if ! $(fluvio connector list | grep -q $connector_name) ; then
 
     fluvio connector create --config=$config
     # fluvio connector create --config <config file>:

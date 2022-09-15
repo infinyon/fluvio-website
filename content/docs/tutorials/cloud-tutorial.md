@@ -221,6 +221,8 @@ Some useful option flags to be aware of:
 * `B[int]` – to specify to start consuming records B(default 0) after the start of the database.
 * `-p[int]` - to specify to read only from the partition p(default 0). 
 * `-k` - to tell Fluvio to display the key and value pairs.
+* `-A` - tells Fluvio to read from all partitions available.
+* `--smart-module <module>` - To tell Fluvio to run a [SmartModule](#smartmodules) module on the output, then display the results.
 
 ## An Easy Fluvio Script — Bash
 
@@ -318,7 +320,7 @@ interval at which it polls at.
 version: 0.3.0
 name: cat-facts
 type: http-source
-topic: greetings
+topic: timekeeper-with-connector
 
 direction: source
 # HTTP specific parametes
@@ -407,7 +409,9 @@ Next, install cargo-generate, this may take a minute or two.
 $ cargo install cargo-generate
 ```
 
-Now you can download the template with cargo-generate.
+Now you can download the template with cargo-generate. 
+
+-> You will have to fill out a couple of requirements below, prefaced by the 🤷 emoji.
 
 %copy first-line%
 ```bash
@@ -438,8 +442,98 @@ $ cd catfacts-map/src
 
 Now we can edit the `lib.rs` file to get what we need!
 
+%copy%
+```rust
+use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
+use serde_json::Value;
+
+#[smartmodule(map, params)]
+pub fn map(record: &Record, _params: &SmartModuleOpt) -> Result<(Option<RecordData>, RecordData)> {
+    let key = record.key.clone();
+    // the key for the fluvio key value pairs
+
+    let input: Value = serde_json::from_slice(record.value.as_ref())?;
+    // pulling the input value from the record
+    let fact = &input["fact"];
+    // getting just the fact portion of the JSON object
+
+    let output = serde_json::to_string(fact)?;
+    // string-ifying the JSON content
+
+    Ok((key, output.into()))
+    //returning the new key-value pair
+}
+
+
+#[derive(fluvio_smartmodule::SmartOpt, Default)]
+pub struct SmartModuleOpt;
+```
+_[TODO: find a permanent home for this]_
+
+Now that we have the smart module created, we need to link it to Fluvio, so that
+it can be used. Otherwise you would have to remember the entire path to the wasm file.
+
+%copy first-line%
+```bash
+$ cd ../.. && fluvio smart-module create catfacts-map --wasm-file="catfacts-map/target/wasm32-unknown-unknown/release/catfacts_map.wasm"
+smart-module "catfacts-map" has been created.
+```
+
+You can test that it is working with:
+
+%copy first-line%
+```bash
+fluvio consume timekeeper -AB --smart-module catfacts
+```
+
+### Connecting to a Connecter
+
+To use a smart module with a connector, add it to the connector config. 
+Currently you have to specify which type of smartmodule you are using, so it
+will be the form of `module-type: name-of-module`.
+
+```yaml
+…
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 30s
+  map: catfacts-map
+```
+
+-> In the near future the config arguments be updated so that you only specify that you are using a module; the module type will be automatically figured out.
+
+Now it is almost ready, you just need to tell Fluvio to update the connector.
+Or recreate it if you deleted it earlier. Use the `update` argument for `fluvio
+connector` to update the connector if it still exists.
+
+%copy first-line%
+```bash
+$ fluvio connector update --config=./catfact.yml
+```
+
+If you deleted the connector, you can easily recreate it.
+
+At this point you can run `fluvio consume` again and see how things have changed.
+
+%copy first-line%
+```bash
+$ fluvio consume timekeeper-with-connector -dT 4
+Consuming records starting 4 from the end of topic 'timekeeper-multi'
+"The average lifespan of an outdoor-only cat is about 3 to 5 years while an indoor-only cat can live 16 years or much longer."
+"In 1987, cats overtook dogs as the number one pet in America (about 50 million cats resided in 24 million homes in 1986). About 37% of American homes today have at least one cat."
+"Cats should not be fed tuna exclusively, as it lacks taurine, an essential nutrient required for good feline health.  Make sure you have the proper Pet supplies to keep your cat happy and healthy."
+"Cat paws act as tempetature regulators, shock absorbers, hunting and grooming tools, sensors, and more"
+```
+
+Now there are a couple things we could do here. The messages could do with some
+keys, for instance. Maybe make a filter that can be run on output that displays
+either messages or JSON files.
+
+
+
 ## Check out these Other Tutorials
 
+*Coming Soon*
 
 ## References:
 
