@@ -13,7 +13,7 @@ and learning the basics of connectors and SmartModules.
      alt="Signup flow for InfinyOn Cloud"
 	 style="justify: center; max-width: 500px" />
 
-There are 3 main steps for setting up for the Cloud: Installing the CLI,
+There are three main steps for setting up for the Cloud: Installing the CLI,
 registering for a Cloud account, and finally linking the two together.
 
 The following sections will walk you through how to do that.
@@ -35,21 +35,21 @@ Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 Currently, there are two mutually exclusive ways to create your Fluvio account:
 Google sign in, and Email registration.
 
-##### Log in with Google
+##### Signing up with Google
 
-If you wish to avoid creating a new username and password, then click on the `Sign in with Google` button.
+If you wish to avoid creating a new username and password for InfinyOn Cloud, then click on the blue **Sign up with Google** button.
 
 <img src="../images/google-signup-part1.jpg"
      alt="A screenshot of step one of Signing up to InfinyOn with Google — click on the sign in button"
      style="justify: center; max-width: 300px" />
 
-The link will take you to a Google login prompt if you are not logged into google.
+The link will take you to a Google login prompt if you are not already logged into Google.
 
 <img src="../images/google-signup-part2.jpg"
      alt="a screenshot of step two of Signing up to InfinyOn with Google — associate account"
      style="justify: center; max-width: 300px" />
 
-Finally, it will ask if you are sure you want to log into InfinyOn Cloud.
+Finally, Google will provide a confirmation screen confirming that you want to log into InfinyOn Cloud with your Google account.
 
 ##### Create an InfinyOn Cloud Account
 
@@ -57,8 +57,9 @@ Finally, it will ask if you are sure you want to log into InfinyOn Cloud.
      alt="A screenshot of the InfinyOn new account form, with Name, Organization, Email, and Password fields"
      style="justify: center; max-width: 300px" />
 
-After filling out the form, you'll be greeted with a success message telling you
-to verify your email. You'll need to complete this step in order to continue.
+After filling out the form, you'll be greeted with a success message requesting
+that you confirm your email address. You'll need to complete this step in order
+to continue.
 
 ~> The link in the email will time out after a few minutes.
 
@@ -77,10 +78,11 @@ messages to your Fluvio cluster.
 
 ### Link InfinyOn Cloud to Fluvio CLI
 
-Depending which method you chose to create your account, please follow the relevant
-instructions below.
+Depending which method you chose in account creation, you will have the option of
+logging in with OAuth2, or username/password. Please follow the relevant steps
+to link the Cloud to your Fluvio CLI.
 
-##### Connect with OAuth2
+##### Connecting with OAuth2
 
 Use the command `fluvio cloud login --use-oauth2` to connect to the InfinyOn Cloud.
 
@@ -91,36 +93,37 @@ A web browser has been opened at https://infinyon-cloud.us.auth0.com/activate?us
 Please proceed with authentication.
 ```
 
-It will open a login screen in your webbrowser if possible. If that is not
-possible, it will print a URL to you to enter into your web browser.
+Fluvio will open a login screen in your browser. If it is unable to do so, copy the
+URL provided in the command prompt and enter it into your web browser manually.
 
-<img src="../images/google-login-part1.jpg"
+Verify that the code matches what was displayed at the end of the URL in the
+command prompt, then click the **Confirm** button.
+
+<img src="../images/google-oauth-screen1.jpg"
      alt="screenshot showing verification code that Fluvio is trying to connect with."
      style="justify: center; max-width: 300px" />
 
-Verify that the code matches what was displayed at the end of the url in the
-command prompt, then click the confirm button.
+If you are not already logged into Google, the next step is to sign in.
 
-<img src="../images/google-login-part2.jpg"
+<img src="../images/google-oauth-screen2.jpg"
      alt="screenshot showing Google requesting you log in with your google account"
      style="justify: center; max-width: 300px" />
 
-Next you will have to log into google. If you are already signed in, this step
-is automatically skipped.
+One last verification that you wish to authorize InfinyOn Cloud, click **Accept**.
 
-<img src="../images/google-login-part3.jpg"
+<img src="../images/google-oauth-screen3.jpg"
      alt="screenshot showing OAuth2 requesting access to your Google account"
-     style="justify: center; max-width: 300px" />
-
-One last verification that you wish to connect to InfinyOn Cloud, click accept.
-
-<img src="../images/google-login-confirm.jpg"
-     alt="screenshot showing confirmation that OAuth2 connection is complete"
      style="justify: center; max-width: 300px" />
 
 Congrats, everything is now set up!
 
-##### Connect with username and password
+<img src="../images/google-oauth-screen4.jpg"
+     alt="screenshot showing confirmation that OAuth2 connection is complete"
+     style="justify: center; max-width: 300px" />
+
+_[rework **all** the screenshots]_
+
+##### Connecting with username and password
 
 Use the command `fluvio cloud login` to connect the InfinyOn Cloud to your
 Fluvio CLI. It will ask for your account credentials, as seen below.
@@ -155,13 +158,11 @@ Hello world!
 
 ```
 
-The storage and retrieval of records from the topic as shown above are the basics
-of using the Fluvio CLI.
-
-The Fluvio CLI is currently the easiest way to interact with the Fluvio database.
+The storage and retrieval of records from the topic as shown above are basic
+actions of the Fluvio CLI.
 
 Two core commands of Fluvio you will need to be familiar with are 
-`fluvio produce <topic>` and `fluvio consume <topic>`
+`fluvio produce <topic>` and `fluvio consume <topic>`.
 
 #### Produce
 
@@ -179,25 +180,25 @@ Ok!
 >
 ```
 
--> To quit the continuous mode of `produce` press `CTRL-C`.
+-> To quit `produce` press `CTRL-C`.
 
-`fluvio produce <topic> [flags]` takes in either input from stdin, or from a file. The
-stdin input can be piped into [like in this tutorial](#an-easy-fluvio-script--bash),
-or filled continuously as seen just above. When running in continuous mode, it won't stop
-until it is killed by the user.
+`fluvio produce <topic> [flags]` can take input from stdin, or from a file. The
+stdin input can be piped into, [as shown in this tutorial](#an-easy-fluvio-script--bash),
+or filled continuously as seen just above. When taking input continuously, it
+won't stop until it is terminated by the user.
 
 Some useful option flags to be aware of:
 
-* `-f <file name>` – to use a file as input to be read and uploaded as multiple records.
-* `--raw` – to specify that the incoming data should be stored as a single record.
-* `--key-separator <key>` - to specify the string delineator to split the input into a key and value pairing.
+* `-f <file name>`			– uses a file as input to be read and uploaded as multiple records.
+* `--raw`					– specifies that the incoming data should be stored as a single record.
+* `--key-separator <key>`	– specifies the string delineator to split the input into a key and value pairing.
 
 #### Consume
 
-`fluvio consume` is the main way to read out data from the Fluvio database. Either
-in scripting, or through the use of the CLI, most actions will use `consume` in some way.
+`fluvio consume` is the main way to read data from the Fluvio database. Either
+in scripting, or through the use of the CLI, most interactions will use `consume` in some way.
 
-Here is an example of Consume in action:
+Here is an example of `consume` in action:
 
 %copy first-line%
 ```bash
@@ -208,31 +209,32 @@ test
 meow
 ```
 
--> To quit the continuous mode of `consume` press `CTRL-C`.
+-> To quit `consume` press `CTRL-C`.
 
-`fluvio consume <topic> [flags]` by default prints to the terminal new records as
-they appear. By default it runs nonstop until quit, the examples used here all
-use the `-d` flag to tell it to stop.
+`fluvio consume <topic> [flags]` by default prints new records to the terminal as
+they enter the database. By default it runs nonstop until quit – the examples 
+used here all use the `-d` flag to tell it to stop.
 
 Some useful option flags to be aware of:
 
-* `d` – to halt consumption after reaching the end of the records available.
-* `T[int]` – to specify that it should consume only the T(default 10) most recent records.
-* `B[int]` – to specify to start consuming records B(default 0) after the start of the database.
-* `-p[int]` - to specify to read only from the partition p(default 0). 
-* `-k` - to tell Fluvio to display the key and value pairs.
-* `-A` - tells Fluvio to read from all partitions available.
-* `--smart-module <module>` - To tell Fluvio to run a [SmartModule](#smartmodules) module on the output, then display the results.
+* `d`						– halts consumption after reaching the end of the records available.
+* `T[int]`					– consumes only the T (default 10) most recent records.
+* `B[int]`					– starts consuming records B (default 0) after the start of the database.
+* `-p[int]`					– reads only from the partition p (default 0). 
+* `-k`						– displays the key portion of the key and value pairs.
+* `-A`						– reads from all partitions available.
+* `--smart-module <module>` – runs a [SmartModule](#smartmodules) module on the output, then displays the results.
 
 ## An Easy Fluvio Script — Bash
 
 Here is a simple script that pushes timestamped comments to a remote database.
 
-This code generates a string that contains the current time, and the contents of the first argument passed in.
+This code generates a message string that contains the current time, and the 
+contents of the first argument passed to it.
 
-Once that has happened, it checks to see if the hard coded topic exists. If it
-does, good, it moves on. If not, then it calls upon `fluvio topic create`
-to generate the new topic. Afterwards, it issues the call to `fluvio produce`
+Once done, it checks to see if the hard coded topic exists. If it
+does, good, it moves on. If not, it calls upon `fluvio topic create`
+to generate the new topic. Then, it makes a call to `fluvio produce`
 and sends the timestamped message off to the Cloud.
 
 {{<code file="code/bash/timekeeper.sh" lang="bash" copy=true >}}
@@ -262,8 +264,8 @@ Consuming records from the beginning of topic 'timekeeper'
 ## Connectors
 
 If you wish to automatically collect information from one source and send it to
-Fluvio, Connectors are the way to go. Fluvio, when given the information on the
-interface through the Connector configuration file, can poll a multitude of
+Fluvio, Connectors are the way to go. When given the information on the
+interface through the Connector configuration file, Fluvio can poll a multitude of
 input types.
 
 In this tutorial, we will be looking at the [HTTP Connector](/connectors/sources/http) setup, connecting
@@ -271,8 +273,9 @@ to the `catfacts.ninja` JSON database.
 
 ### Connector Config Layout
 
-This is the barebones yaml connector file. It doesn't have any information, or 
-sections for smart modules. 
+This is the template YAML connector file. To make it useful, it needs to be
+populated – which we will do in the next step. See
+[the documentation](/connectors) for the parameters available for use.
 
 %copy% 
 ```yaml
@@ -293,31 +296,28 @@ parameters:
   # smart module parameters
   # see the docs for the list of parameters
   
-#optional content for producer type connector
 # producer:
 #   linger:
 #   batch-size:
 #   compression:
+# optional content for producer type connector
   
-#optional content for consumer type connector
-#consumer:
-#  partition:
+# consumer:
+#   partition:
+# optional content for consumer type connector
 ```
 
-To make it useful, it needs populating. See [the documentation](/connectors) for
-the parameters available for use.
+Thankfully, filling it out is simple. For any connection, you need a name,
+the connection type, the direction in which it is connecting, and what topic
+to connect to. 
 
-Thankfully, it's pretty easy at this stage. For any connection, you
-need a name, the connection type, the direction in which it is connecting, what
-topic to connect to. 
-
-For the HTTP-specific parameters you will need to specify the link it is polling, and the 
-interval at which it polls at.
+For the HTTP-specific parameters you will need to specify the link it is
+polling, and the interval at which it polls.
 
 %copy% 
 ```yaml
 # connect.yml
-version: 0.3.0
+version: 0.1.0
 name: cat-facts
 type: http-source
 topic: timekeeper-with-connector
@@ -329,19 +329,22 @@ parameters:
   interval: 30s
 ```
 
-This creates a connector named cat-facts, that produces to the topic greetings
+This creates a connector named `cat-facts`, that reads from the website
+`https://catfacts.ninja/fact` every 30 seconds, and produces to the topic
+`timekeeper-with-connector`.
 
 ### Adding Connectors to the Script
 
-To add Connectors to the existing script, we shall have to make some modifications 
-to it.
+To add Connectors to the existing script, we will have to make some
+modifications to it.
 
-{{<code file="code/bash/timekeeper-connector.sh" lang="bash" copy=true >}}
+{{<code-highlight file="code/bash/timekeeper-connector.sh" lang="bash" copy=true lines=32-43 >}}
 
 ##### Running the Script
 
-Save the changes to `timekeeper.sh`, maybe in a new file. Save the above connector
-config in the file named `catfact.yml`.
+Save the above connector config in the file named `catfact.yml`. Next, save the
+changes to `timekeeper.sh` as a new file. We named it
+`timekeeper-connector.sh` to make the distinction easier to see.
 
 %copy first-line%
 ```bash
@@ -350,7 +353,7 @@ topic "timekeeper-with-connector" created
 
 ```
 
-Again, nothing much returned when running; but now the database will be more 
+Nothing much is returned when running, but now the database will be more 
 interesting. Try checking its contents with `fluvio consume`!
 
 You can stop the connector by deleting it. 
@@ -362,36 +365,32 @@ connector "cat-facts" deleted
 
 ```
 
-Wait, now the Fluvio instance is getting cluttered! How are you supposed to sort 
-through this mix of information? Sure the cat facts are nice, but now they are 
-mixed in with the timestamped notes!
+Wait, now the Fluvio instance is getting cluttered! Sure the cat facts are nice,
+but now there is JSON mixed in with the timestamped notes!
 
-Fear not, for we have *SmartModules*.
+Fear not, we have *SmartModules* to help with that.
 
 ## SmartModules
 
-SmartModules are user defined functions set to run on and modify the inputs to
+SmartModules are user defined functions set to run on and modify the inputs/outputs to
 a Fluvio database. 
-
-Want to filter which partition a JSON object goes in? Write a Map SmartModule
-that adds a JSON key to it so it goes with other JSON records. 
 
 Want to filter so that only JSON records that match a specific priority tag are
 recorded? A Filter SmartModule can be written to only let through records with
 specific values.
 
-You create a SmartModule by using Rust and generating it based on the smartmodule
+You create a SmartModule by using Rust and generating it based on the SmartModule
 template available [at the github repository](https://github.com/infinyon/fluvio-smartmodule-template).
 
 ### Making a SmartModule
 
 If we want to clean up the timekeeper records and make it so that the messages
-are stored separate from the JSON objects, we will need a SmartModule.
+are marked separately from the JSON objects, we will need a SmartModule.
 Specifically we will need a map SmartModule.
 
 We need to go through some setup steps though.
 
-First, check if `wasm32` is listed by rustup as an installed target.
+First, check if `wasm32` is listed by `rustup` as an installed target.
 
 %copy first-line%
 ```bash
@@ -400,18 +399,18 @@ wasm32-unknown-unknown (installed)
 x86_64-unknown-linux-gnu (installed)
 ```
 
--> if it is not installed, run `$ rustup target add wasm32-unknown-unknown` to install it.
+-> If it is not installed, run `$ rustup target add wasm32-unknown-unknown` to install it.
 
-Next, install cargo-generate, this may take a minute or two.
+Next, install `cargo-generate`, this may take a minute or two.
 
 %copy first-line%
 ```bash
 $ cargo install cargo-generate
 ```
 
-Now you can download the template with cargo-generate. 
+Now you can download the template with `cargo-generate`. 
 
--> You will have to fill out a couple of requirements below, prefaced by the 🤷 emoji.
+-> You will have to fill in a couple of required arguments below, prefaced by the "🤷" emoji.
 
 %copy first-line%
 ```bash
@@ -436,11 +435,7 @@ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
 
 There should now be a new directory labeled `catfacts-map` in your working directory.
 
-```bash
-$ cd catfacts-map/src
-```
-
-Now we can edit the `lib.rs` file to get what we need!
+Now we can edit the `catfacts-map/src/lib.rs` file to get what we need!
 
 %copy%
 ```rust
@@ -449,8 +444,9 @@ use serde_json::Value;
 
 #[smartmodule(map, params)]
 pub fn map(record: &Record, _params: &SmartModuleOpt) -> Result<(Option<RecordData>, RecordData)> {
-    let key = record.key.clone();
-    // the key for the fluvio key value pairs
+
+    let key = RecordData::from(String::from("JSON")).into();
+    // the key for the fluvio key value pairs -- setting it to report that it is a JSON key
 
     let input: Value = serde_json::from_slice(record.value.as_ref())?;
     // pulling the input value from the record
@@ -459,7 +455,6 @@ pub fn map(record: &Record, _params: &SmartModuleOpt) -> Result<(Option<RecordDa
 
     let output = serde_json::to_string(fact)?;
     // string-ifying the JSON content
-
     Ok((key, output.into()))
     //returning the new key-value pair
 }
@@ -468,31 +463,28 @@ pub fn map(record: &Record, _params: &SmartModuleOpt) -> Result<(Option<RecordDa
 #[derive(fluvio_smartmodule::SmartOpt, Default)]
 pub struct SmartModuleOpt;
 ```
-_[TODO: find a permanent home for this]_
 
-Now that we have the smart module created, we need to link it to Fluvio, so that
-it can be used. Otherwise you would have to remember the entire path to the wasm file.
+Now that we have the SmartModule created, we need to link it to Fluvio, so that
+it can be used. Otherwise you would have to remember the entire path to the
+`wasm` file.
 
 %copy first-line%
 ```bash
-$ cd ../.. && fluvio smart-module create catfacts-map --wasm-file="catfacts-map/target/wasm32-unknown-unknown/release/catfacts_map.wasm"
+$ fluvio smart-module create catfacts-map --wasm-file="catfacts-map/target/wasm32-unknown-unknown/release/catfacts_map.wasm"
 smart-module "catfacts-map" has been created.
 ```
 
-You can test that it is working with:
+You can test that it is working by adding it to the Connector config!
 
-%copy first-line%
-```bash
-fluvio consume timekeeper -AB --smart-module catfacts
-```
+### Connecting to a Connector
 
-### Connecting to a Connecter
-
-To use a smart module with a connector, add it to the connector config. 
-Currently you have to specify which type of smartmodule you are using, so it
+To use a SmartModule with a Connector, add it to the Connector config. 
+Currently you have to specify which type of SmartModule you are using, so it
 will be the form of `module-type: name-of-module`.
 
 ```yaml
+# connect.yml
+version: 0.2.0
 …
 parameters:
   endpoint: https://catfact.ninja/fact
@@ -500,40 +492,60 @@ parameters:
   map: catfacts-map
 ```
 
--> In the near future the config arguments be updated so that you only specify that you are using a module; the module type will be automatically figured out.
+-> In the near future the config arguments be updated so that you only specify that you are using a module; Fluvio will soon be able to take care of determining which module type is being used.
 
-Now it is almost ready, you just need to tell Fluvio to update the connector.
-Or recreate it if you deleted it earlier. Use the `update` argument for `fluvio
-connector` to update the connector if it still exists.
+Now it is almost ready, you just need to tell Fluvio to update the Connector;
+or recreate it if you deleted it earlier. Use the `update` argument for `fluvio
+connector` to update the Connector if it still exists.
 
 %copy first-line%
 ```bash
 $ fluvio connector update --config=./catfact.yml
 ```
 
-If you deleted the connector, you can easily recreate it.
+If you deleted the Connector, you can easily recreate it.
+
+%copy first-line%
+```bash
+$ fluvio connector create --config=./catfact.yml
+```
 
 At this point you can run `fluvio consume` again and see how things have changed.
 
 %copy first-line%
 ```bash
 $ fluvio consume timekeeper-with-connector -dT 4
-Consuming records starting 4 from the end of topic 'timekeeper-multi'
+Consuming records starting 4 from the end of topic 'timekeeper-with-connector'
 "The average lifespan of an outdoor-only cat is about 3 to 5 years while an indoor-only cat can live 16 years or much longer."
 "In 1987, cats overtook dogs as the number one pet in America (about 50 million cats resided in 24 million homes in 1986). About 37% of American homes today have at least one cat."
 "Cats should not be fed tuna exclusively, as it lacks taurine, an essential nutrient required for good feline health.  Make sure you have the proper Pet supplies to keep your cat happy and healthy."
 "Cat paws act as tempetature regulators, shock absorbers, hunting and grooming tools, sensors, and more"
 ```
 
-Now there are a couple things we could do here. The messages could do with some
-keys, for instance. Maybe make a filter that can be run on output that displays
-either messages or JSON files.
+## Shell Script Complete
 
+Now, we can make a few minor modifications to  `timekeeper.sh` so that the 
+messages are keyed. That way, if we use the `-k` flag, we can see the origins
+of each message!
 
+{{<code file="code/bash/timekeeper-full.sh" lang="bash" copy=true >}}
 
-## Check out these Other Tutorials
+Now, if we save this as `timekeeper-full.sh`, and use it to send a few messages
+to the Fluvio Topic, we can see the database with the keys active.
 
-*Coming Soon*
+%copy first-line%
+```bash
+$ fluvio consume timekeeper-with-connector -dkT 4
+Consuming records starting 4 from the end of topic 'timekeeper-with-connector'
+[MSG] 2022-09-15T15:31:07-07:00 : hello world!
+[JSON] "The cat appears to be the only domestic companion animal not mentioned in the Bible."
+[MSG] 2022-09-15T15:31:26-07:00 : Lettuce see here, any rabbits to be found?
+[JSON] "The largest cat breed is the Ragdoll. Male Ragdolls weigh between 12 and 20 lbs (5.4-9.0 k). Females weigh between 10 and 15 lbs (4.5-6.8 k)."
+```
+
+And voilà! We have a database that takes inputs from the user and from a website, and displays it all prettylike for whoever is reading it!
+
+<!-- ## Check out these Other Tutorials -->
 
 ## References:
 
@@ -548,3 +560,5 @@ either messages or JSON files.
 [Connectors](/connectors)
 
 [Smart Modules](/smartmodules)
+
+[Smart Module Rust API](https://docs.rs/fluvio-smartmodule/latest/fluvio_smartmodule/)

@@ -24,28 +24,25 @@ if ! $(fluvio topic list | grep -q $topic) ; then
 
     fluvio topic create $topic
     # fluvio topic create <topic name>:
-    # This tells Fluvio to create a topic in the database.
-    # In this case, the topic is timekeeper.
+    # This tells Fluvio to create a topic (timekeeper-with-connector)
+    # in the database.
 
 fi
 
 if ! $(fluvio connector list | grep -q $connector_name) ; then
+    # fluvio connector list:
+    # This returns all connectors currently set up in Fluvio.
+    # This line checks to see if the connector (cat-facts) exists.
+    # If that is not the case, it executes the next line and creates it.
 
     fluvio connector create --config=$config
     # fluvio connector create --config <config file>:
-    # Thi tells Fluvio to create a connector using the yml
-    # config file provided.
-    # In this case, that is the catfact.yml file in the
-    # same directory
+    # This tells Fluvio to create a connector using the yml
+    # config file (catfact.yml) provided.
 
 fi
 
 echo $message | fluvio produce $topic
 # fluvio produce <topic name>:
-# This gives the order to transmit the following file to the
-# selected topic.
-# In this case, the topic is timekeeper.
-
-# Fluvio does not take in arguments directly, it must either be
-# read in from stdin, or be a file. So we pipe the contents of
-# the message into stdin.
+# This gives the order to transmit the contents of stdin to
+# the selected topic (timekeeper-with-connector).

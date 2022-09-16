@@ -20,17 +20,16 @@ if ! $(fluvio topic list | grep -q $topic) ; then
 
     fluvio topic create $topic
     # fluvio topic create <topic name>:
-    # This tells Fluvio to create a topic in the database.
-    # In this case, the topic is timekeeper.
+    # This tells Fluvio to create a topic (timekeeper) in the database.
 
 fi
 
 echo $message | fluvio produce $topic
 # fluvio produce <topic name>:
-# This gives the order to transmit the following file to the
-# selected topic.
-# In this case, the topic is timekeeper.
+# This gives the order to transmit the contents of stdin to
+# the selected topic (timekeeper).
 
-# Fluvio does not take in arguments directly, it must either be
-# read in from stdin, or be a file. So we pipe the contents of
-# the message into stdin.
+
+# Fluvio does not take in arguments directly, they must either be
+# read in from stdin, or be a file. In this instance we pipe the
+# contents of the message into stdin.
