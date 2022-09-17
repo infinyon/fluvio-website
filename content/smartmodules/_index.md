@@ -32,7 +32,7 @@ one location to another.
 This is so that any filtering that happens will
 result in _reduced_ network traffic and more savings.
 
-* For Stream **inputs** (such Source Connectors and Producers)
+* For Stream **inputs** (such as Source Connectors and Producers)
   * SmartModules will apply before sending data _to the Fluvio cluster_
 
 * For Stream **outputs** (such as Sink Connectors, Consumers, and the Fluvio CLI)
