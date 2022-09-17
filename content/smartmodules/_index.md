@@ -56,7 +56,7 @@ Fluvio supports the following types of SmartModules:
 
 A [Filter SmartModule]({{<ref "transform/filter" >}}) takes an input record and allows you to check if the record value meets certain criteria.
 
-If `false` the record is discarded, or `true` if the record is saved, and continues downstream.
+If `false`, the record is discarded, and if `true`, the record is saved, and continues downstream.
 
 <img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="180">
 
