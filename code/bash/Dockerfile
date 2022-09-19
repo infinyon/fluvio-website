@@ -9,12 +9,10 @@ CMD /bin/bash ./timekeeper.sh 'hello world!'
 
 COPY ./timekeeper-connector.sh .
 COPY ./testfiles/catfact.yml ./catfact.yml
-RUN /bin/bash -c './timekeeper-connector.sh "hello world"'
-RUN /bin/bash -c 'fluvio connector list | grep -v "Failed" | grep -qv "STATUS"'
+CMD /bin/bash -c './timekeeper-connector.sh "hello world"'
 
 COPY ./timekeeper-full.sh .
 COPY ./testfiles/catfact-module.yml ./catfact.yml
 COPY ./testfiles/catfacts_map.wasm ./catfacts_map.wasm
-RUN /bin/bash -c 'fluvio smart-module create catfacts-map --wasm-file="catfacts_map.wasm"'
-RUN /bin/bash -c './timekeeper-full.sh "hello world"'
-RUN /bin/bash -c 'fluvio connector list | grep -v "Failed" | grep -qv "STATUS"'
+RUN fluvio smart-module create catfacts-map --wasm-file="catfacts_map.wasm"
+CMD /bin/bash -c './timekeeper-full.sh "hello world"'
