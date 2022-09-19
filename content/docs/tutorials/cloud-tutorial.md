@@ -9,7 +9,7 @@ and learning the basics of connectors and SmartModules.
 
 ## Basic Setup
 
-<img src="../images/Fluvio-Cloud-Flow.svg"
+<img src="../images/Fluvio-Cloud-Flow.png"
      alt="Signup flow for InfinyOn Cloud"
 	 style="justify: center; max-width: 500px" />
 
@@ -41,13 +41,13 @@ If you wish to avoid creating a new username and password for InfinyOn Cloud, th
 
 <img src="../images/google-signup-part1.jpg"
      alt="A screenshot of step one of Signing up to InfinyOn with Google — click on the sign in button"
-     style="justify: center; max-width: 300px" />
+     style="justify: center; max-width: 340px" />
 
 The link will take you to a Google login prompt if you are not already logged into Google.
 
 <img src="../images/google-signup-part2.jpg"
      alt="a screenshot of step two of Signing up to InfinyOn with Google — associate account"
-     style="justify: center; max-width: 300px" />
+     style="justify: center; max-width: 340px" />
 
 Finally, Google will provide a confirmation screen confirming that you want to log into InfinyOn Cloud with your Google account.
 
@@ -55,7 +55,7 @@ Finally, Google will provide a confirmation screen confirming that you want to l
 
 <img src="../images/cloud-signup.jpg"
      alt="A screenshot of the InfinyOn new account form, with Name, Organization, Email, and Password fields"
-     style="justify: center; max-width: 300px" />
+     style="justify: center; max-width: 340px" />
 
 After filling out the form, you'll be greeted with a success message requesting
 that you confirm your email address. You'll need to complete this step in order
@@ -71,7 +71,7 @@ You should now get a confirmation that your account is ready to use.
 
 <img src="../images/cloud-confirmation.jpg"
      alt="A screenshot of the prompt received after clicking the verification link, saying the account is ready to use"
-     style="justify: center; max-width: 300px" />
+     style="justify: center; max-width: 340px" />
 
 At this point, you can log in via the Fluvio CLI and start sending and receiving
 messages to your Fluvio cluster.
@@ -101,27 +101,25 @@ command prompt, then click the **Confirm** button.
 
 <img src="../images/google-oauth-screen1.jpg"
      alt="screenshot showing verification code that Fluvio is trying to connect with."
-     style="justify: center; max-width: 300px" />
+     style="justify: center; max-width: 340px" />
 
 If you are not already logged into Google, the next step is to sign in.
 
 <img src="../images/google-oauth-screen2.jpg"
      alt="screenshot showing Google requesting you log in with your google account"
-     style="justify: center; max-width: 300px" />
+     style="justify: center; max-width: 340px" />
 
 One last verification that you wish to authorize InfinyOn Cloud, click **Accept**.
 
 <img src="../images/google-oauth-screen3.jpg"
      alt="screenshot showing OAuth2 requesting access to your Google account"
-     style="justify: center; max-width: 300px" />
+     style="justify: center; max-width: 340px" />
 
 Congrats, everything is now set up!
 
 <img src="../images/google-oauth-screen4.jpg"
      alt="screenshot showing confirmation that OAuth2 connection is complete"
-     style="justify: center; max-width: 300px" />
-
-_[rework **all** the screenshots]_
+     style="justify: center; max-width: 340px" />
 
 ##### Connecting with username and password
 
