@@ -14,5 +14,5 @@ CMD /bin/bash -c './timekeeper-connector.sh "hello world"'
 COPY ./timekeeper-full.sh .
 COPY ./testfiles/catfact-module.yml ./catfact.yml
 COPY ./testfiles/catfacts_map.wasm ./catfacts_map.wasm
-RUN fluvio smart-module create catfacts-map --wasm-file="catfacts_map.wasm"
+RUN fluvio smart-module create catfacts-map --wasm-file="./catfacts_map.wasm"
 CMD /bin/bash -c './timekeeper-full.sh "hello world"'
