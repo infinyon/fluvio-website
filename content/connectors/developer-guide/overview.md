@@ -5,7 +5,7 @@ hidden: false
 ---
 
 Writing a new connector is meant to be easy. You may write your connector in
-any language which has a [fluvio client library](/api). You should simply
+any language which has a [fluvio client library]({{<ref "/api" >}}). You should simply
 follow a few conventions and we will gladly add and maintain a connector in our
 official catalog.
 

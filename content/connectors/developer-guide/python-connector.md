@@ -4,7 +4,7 @@ menu: Python Connector
 weight: 20
 ---
 
-Fluvio supports multiple programming languages for developing your own custom connectors. In you'd like to submit your connector to the InfinyOn Connector catalog, send us a note on [Discord](https://discord.gg/zHsWBt5Z2n). 
+Fluvio supports multiple programming languages for developing your own custom connectors. In you'd like to submit your connector to the InfinyOn Connector catalog, send us a note on [Discord](https://discord.gg/zHsWBt5Z2n).
 
 In chapter, we'll give an step-by-step example on how to develop a Python Connector:
 
@@ -19,7 +19,7 @@ You'll need the following tools installed
 - [Python 3.x](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installation/)
 - [python-fluvio](https://github.com/infinyon/fluvio-client-python)
-- [python-requests](https://docs.python-requests.org/en/latest/)
+- [python-requests](https://requests.readthedocs.io/en/latest/)
 - [Docker](https://www.docker.com/get-started)
 - Kubernetes distros ([k3d](https://k3d.io/) or [minikube](https://minikube.sigs.k8s.io/docs/start/))
 
@@ -102,7 +102,7 @@ Consuming records from the beginning of topic 'cat-facts-random'
 
 Now that we have verfied that our client works locally, we need to package it for Kubernetes. We do that by defining our data connector runtime environment with a Dockerfile.
 
-We use the `python` base image to keep things simple. 
+We use the `python` base image to keep things simple.
 
 Then we create a new user `fluvio` with a home directory (in `/home/fluvio`).
 

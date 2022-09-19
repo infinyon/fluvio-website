@@ -32,7 +32,7 @@ one location to another.
 This is so that any filtering that happens will
 result in _reduced_ network traffic and more savings.
 
-* For Stream **inputs** (such Source Connectors and Producers)
+* For Stream **inputs** (such as Source Connectors and Producers)
   * SmartModules will apply before sending data _to the Fluvio cluster_
 
 * For Stream **outputs** (such as Sink Connectors, Consumers, and the Fluvio CLI)
@@ -56,7 +56,7 @@ Fluvio supports the following types of SmartModules:
 
 A [Filter SmartModule]({{<ref "transform/filter" >}}) takes an input record and allows you to check if the record value meets certain criteria.
 
-If `false` the record is discarded, or `true` if the record is saved, and continues downstream.
+If `false`, the record is discarded, and if `true`, the record is saved, and continues downstream.
 
 <img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="180">
 

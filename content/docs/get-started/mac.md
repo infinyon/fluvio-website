@@ -17,7 +17,7 @@ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 
 ## Required Packages for Local Fluvio cluster
 
-1) [Rancher Desktop]({{< ref "#install-Rancher-Desktop" >}})
+1) [Rancher Desktop]({{< ref "#install-rancher-desktop" >}})
 
 `helm` and `kubectl` are also required but installing `Rancher Desktop` provide access to them.
 
@@ -28,7 +28,8 @@ If you have `Rancher Desktop` already set up, then continue to steps for [runnin
 
 Rancher Desktop is a tool for running a local Kubernetes cluster.
 
-In order to install Rancher Desktop go to the [rancher desktop installation page] and follow the instructions. Rancher Desktop will provide access to other utilities needed to run Fluvio such as `kubectl` and `helm`.
+In order to install Rancher Desktop go to the Rancher Desktop [installation page](https://docs.rancherdesktop.io/getting-started/installation/) and follow the instructions. Rancher Desktop will provide access to other utilities needed to run Fluvio such as `kubectl` and `helm`.
+
 
 Please make sure that the container runtime is `dockerd (moby)`. That configuration can be changed in the `Kubernetes Settings` section on the sidebar.
 
@@ -36,9 +37,9 @@ Please make sure that the container runtime is `dockerd (moby)`. That configurat
      alt="A screenshot of the Rancher Desktop using dockerd as container runtime"
      style="justify: center; max-width: 1000px" />
 
-## Start Fluvio cluster 
+## Start Fluvio cluster
 
-You can start a Fluvio cluster by running `fluvio cluster start`. 
+You can start a Fluvio cluster by running `fluvio cluster start`.
 
 %copy first-line%
 ```bash
@@ -67,7 +68,7 @@ Infinyon Cloud CLI (fluvio-cloud) : 0.1.8
 
 ## Hello, Fluvio!
 
-Congratulations, you've successfully installed Fluvio on your local machine! 
+Congratulations, you've successfully installed Fluvio on your local machine!
 
 Let's use the Fluvio CLI to play with some basic functionality.
 
@@ -99,20 +100,9 @@ Hello, Fluvio
 
 Way to go! You're well on your way to writing real-time distributed apps with Fluvio!
 
-Next, check out our [Tutorials page] to see real-world examples of Fluvio in action.
-
 [topic]: {{< ref "/cli/commands/topic.md" >}}
 [produce]: {{< ref "/cli/commands/produce.md" >}}
 [consume]: {{< ref "/cli/commands/consume.md" >}}
-[Tutorials page]: https://www.infinyon.com/tutorials 
-
-#### Related Topics
-----------------
-
-- ["Hello World" in Java](https://www.infinyon.com/tutorials/java/hello-world/)
-- ["Hello World" in Node.js](https://www.infinyon.com/tutorials/node/hello-world/)
-- ["Hello World" in Python](https://www.infinyon.com/tutorials/python/hello-world/)
-- ["Hello World" in Rust](https://www.infinyon.com/tutorials/rust/hello-world/)
 
 ---
 

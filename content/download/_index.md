@@ -2,7 +2,7 @@
 title: Download Fluvio
 ---
 
-{{< h-list tabTotal="4" tabID="1" tabName1="Linux" tabName2="MacOS" tabName3="Raspberry Pi">}}
+{{< h-list tabTotal="3" tabID="1" tabName1="Linux" tabName2="MacOS" tabName3="Raspberry Pi">}}
 
 {{< h-item tabNum="1">}}
 {{<download-card>}}

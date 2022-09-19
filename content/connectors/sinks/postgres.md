@@ -52,7 +52,7 @@ Below are descriptions of the purpose of each parameter:
 ## Data Events
 
 The Postgres Sink Connector consumes [replication events from the Postgres
-Source connector](/connectors/sources/postgresql/#data-events) and runs the
+Source connector]({{<ref "/connectors/sources/postgres#data-events" >}}) and runs the
 appropriate SQL for the corresponding postgres sink database.
 
 ## Connector Resume

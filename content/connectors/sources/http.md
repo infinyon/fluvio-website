@@ -24,7 +24,7 @@ The HTTP connector supports the following configuration options:
 - `output_parts`: HTTP Response output Record parts - body | full (default: `body`)
 - `output_type`: HTTP Response output Record type - text | json (default: `text`)
 
-Additionally, the HTTP connector supports the following [SmartModules](/docs/smartmodules/overview) options:
+Additionally, the HTTP connector supports the following [SmartModules]({{<ref "/smartmodules/" >}}) options:
 
 - `filter`: The name of the _filter_ SmartModule
 - `map`: The name of the _map_ SmartModule
@@ -195,10 +195,10 @@ To convert only the body of the HTTP Response and ignore the header, set `output
 In a local environment, you have the option to delop a **Managed Connector** or **Local Connector**.
 
 * **Managed Connector**
-  * ensure your [fluvio profile](/cli/installation/profile) points to your local cluster.
-  * follow the same instructions as in [Deploy on InfinyOn Cloud](#deploy-on-infinyon-cloud).
+  * ensure your [fluvio profile]({{<ref "/cli/installation/profile" >}}) points to your local cluster.
+  * follow the same instructions as in [Deploy on InfinyOn Cloud]({{<ref "#deploy-on-infinyon-cloud" >}}).
 * **Local Connector** (for connector developers)
-  * follow the instructions in the [next section](#deploy-local-connector).
+  * follow the instructions in the [next section]({{<ref "#deploy-local-connector" >}}).
 
 #### Deploy Local connector
 
@@ -226,7 +226,7 @@ Importantly, when using a Local Connector, you _must_ include the first two argu
 - `-t infinyon/fluvio-connect-http`
     - Tells docker which image to use for the connector
 
-[Fluvio CLI]: /download
+[Fluvio CLI]: {{<ref "/download" >}}
 [free InfinyOn Cloud account]: https://infinyon.cloud/signup
 
 ## Changelog

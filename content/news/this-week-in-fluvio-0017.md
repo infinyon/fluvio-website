@@ -29,7 +29,7 @@ Check out the [TableFormat docs]({{<ref "/cli/commands/table-format#examples">}}
 
 ### Migration to Rust edition 2021
 
-This update affects those using our [Rust API]({{<ref "/api/official/rust">}}). Our crates have transitioned to the new [Rust 2021 edition](https://doc.rust-lang.org/edition-guide/rust-2021/index.html).
+This update affects those using our [Rust API]({{<ref "/api/official/rust/installation">}}). Our crates have transitioned to the new [Rust 2021 edition](https://doc.rust-lang.org/edition-guide/rust-2021/index.html).
 
 If you want to migrate your existing projects with our crates, you can follow the official [Rust edition guide](https://doc.rust-lang.org/edition-guide/editions/transitioning-an-existing-project-to-a-new-edition.html)
 
@@ -37,7 +37,7 @@ And finally edit your `Cargo.toml` to use the new edition.
 
 ```toml
 edition = "2021"
-``` 
+```
 
 ---
 

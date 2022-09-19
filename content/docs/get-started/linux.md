@@ -60,15 +60,15 @@ If you didn't install `kubectl` and `helm`, you can install them in the followin
 
 Follow the instructions at the [kubectl installation page] and follow the instructions to download and install `kubectl` on Linux.
 
-[kubectl installation page]: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/ 
+[kubectl installation page]: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 
 ### Install Helm
 
-Helm is the package manager for Kubernetes. 
+Helm is the package manager for Kubernetes.
 
 Follow the instructions at the [helm installation page] and follow the instructions to download and install `helm` on Linux.
 
-[helm installation page]: https://v3.helm.sh/docs/intro/install/ 
+[helm installation page]: https://v3.helm.sh/docs/intro/install/
 
 ## Start Fluvio cluster on Kubernetes
 
@@ -110,7 +110,7 @@ Fluvio Runner (fluvio-run)     : 0.2.1
 
 ## Hello, Fluvio!
 
-Congratulations, you've successfully installed Fluvio on your local machine! 
+Congratulations, you've successfully installed Fluvio on your local machine!
 
 Let's use the Fluvio CLI to play with some basic functionality.
 
@@ -142,20 +142,9 @@ Hello, Fluvio
 
 Way to go! You're well on your way to writing real-time distributed apps with Fluvio!
 
-Next, check out our [Tutorials page] to see real-world examples of Fluvio in action.
-
 [topic]: {{< ref "/cli/commands/topic.md" >}}
 [produce]: {{< ref "/cli/commands/produce.md" >}}
 [consume]: {{< ref "/cli/commands/consume.md" >}}
-[Tutorials page]: https://www.infinyon.com/tutorials 
-
-#### Related Topics
-----------------
-
-- ["Hello World" in Java](https://www.infinyon.com/tutorials/java/hello-world/)
-- ["Hello World" in Node.js](https://www.infinyon.com/tutorials/node/hello-world/)
-- ["Hello World" in Python](https://www.infinyon.com/tutorials/python/hello-world/)
-- ["Hello World" in Rust](https://www.infinyon.com/tutorials/rust/hello-world/)
 
 ---
 
