@@ -15,6 +15,8 @@ topic="timekeeper-with-connector"
 
 connector_name="cat-facts"
 
+module_name="catfacts-map"
+
 config="./catfact.yml"
 
 if ! $(fluvio topic list | grep -q $topic) ; then
@@ -31,12 +33,27 @@ if ! $(fluvio topic list | grep -q $topic) ; then
 
 fi
 
+if ! $(fluvio smart-module list | grep -q $module_name) ; then
+	# fluvio smart-module list:
+	# This returns all the smart-modules that have been created and
+	# attached to fluvio.
+	# This line checks to see if the smart-module exists, and
+	# if not, runs the next line.
+
+	fluvio smart-module create catfacts-map --wasm-file="./catfacts-map/target/wasm32-unknown-unknown/release/catfacts_map.wasm"
+	# fluvio smart-module create <module-name> --wasm-file="<path/to/module.wasm>":
+	# This tells fluvio to create a module (catfacts-map) with the
+	# webassembly file provided (catfacts_map/target/.../catfacts_map.wasm).
+
+fi
+
+
 if ! $(fluvio connector list | grep -q $connector_name) ; then
     # fluvio connector list:
     # This returns all connectors currently set up in Fluvio.
     # This line checks to see if the connector (cat-facts) exists.
     # If that is not the case, it executes the next line and creates it.
-    
+
     fluvio connector create --config=$config
     # fluvio connector create --config <config file>:
     # This tells Fluvio to create a connector using the yml
