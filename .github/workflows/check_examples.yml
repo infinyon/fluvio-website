@@ -27,7 +27,6 @@ jobs:
           - python
           - node
           - java
-          - bash
 
     steps:
       - uses: actions/checkout@v3
