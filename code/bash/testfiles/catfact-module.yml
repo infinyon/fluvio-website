@@ -1,0 +1,12 @@
+# connect.yml
+version: 0.3.0
+name: cat-facts
+type: http-source
+topic: timekeeper-with-connector
+direction: source
+
+# HTTP specific parametes
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 30s
+  map: "catfacts-map" #"./catfacts-map/target/wasm32-unknown-unknown/release/catfacts_map.wasm"
