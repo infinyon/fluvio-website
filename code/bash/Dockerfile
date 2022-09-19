@@ -14,6 +14,5 @@ CMD /bin/bash timekeeper-connector.sh 'hello world!'
 COPY ./timekeeper-full.sh .
 COPY ./testfiles/catfact-module.yml ./catfact.yml
 COPY ./testfiles/catfacts_map.wasm ./catfacts_map.wasm
-RUN fluvio connector delete cat-facts
 RUN fluvio smartmodule create catfacts-map --wasm-file="catfacts_map.wasm"
 CMD /bin/bash timekeeper-full.sh 'hello world!'
