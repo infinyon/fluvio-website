@@ -159,12 +159,12 @@ Hello world!
 The storage and retrieval of records from the topic as shown above are basic
 actions of the Fluvio CLI.
 
-Two core commands of Fluvio you will need to be familiar with are 
+Two core commands of Fluvio you will need to be familiar with are
 `fluvio produce <topic>` and `fluvio consume <topic>`.
 
 #### Produce
 
-`fluvio produce` is the main way to get data into the Fluvio database. While 
+`fluvio produce` is the main way to get data into the Fluvio database. While
 most of the time you may be calling it through an API, here is how to access it
 through the CLI.
 
@@ -210,7 +210,7 @@ meow
 -> To quit `consume` press `CTRL-C`.
 
 `fluvio consume <topic> [flags]` by default prints new records to the terminal as
-they enter the database. By default it runs nonstop until quit – the examples 
+they enter the database. By default it runs nonstop until quit – the examples
 used here all use the `-d` flag to tell it to stop.
 
 Some useful option flags to be aware of:
@@ -218,7 +218,7 @@ Some useful option flags to be aware of:
 * `d`						– halts consumption after reaching the end of the records available.
 * `T[int]`					– consumes only the T (default 10) most recent records.
 * `B[int]`					– starts consuming records B (default 0) after the start of the database.
-* `-p[int]`					– reads only from the partition p (default 0). 
+* `-p[int]`					– reads only from the partition p (default 0).
 * `-k`						– displays the key portion of the key and value pairs.
 * `-A`						– reads from all partitions available.
 * `--smart-module <module>` – runs a [SmartModule](#smartmodules) module on the output, then displays the results.
@@ -227,7 +227,7 @@ Some useful option flags to be aware of:
 
 Here is a simple script that pushes timestamped comments to a remote database.
 
-This code generates a message string that contains the current time, and the 
+This code generates a message string that contains the current time, and the
 contents of the first argument passed to it.
 
 Once done, it checks to see if the hard coded topic exists. If it
@@ -266,40 +266,40 @@ Fluvio, Connectors are the way to go. When given the information on the
 interface through the Connector configuration file, Fluvio can poll a multitude of
 input types.
 
-In this tutorial, we will be looking at the [HTTP Connector](/connectors/sources/http) setup, connecting
+In this tutorial, we will be looking at the [HTTP Connector](/connectors/sources/http/) setup, connecting
 to the `catfacts.ninja` JSON database.
 
 ### Connector Config Layout
 
 This is the template YAML connector file. To make it useful, it needs to be
 populated – which we will do in the next step. See
-[the documentation](/connectors) for the parameters available for use.
+[the documentation](/connectors/) for the parameters available for use.
 
-%copy% 
+%copy%
 ```yaml
 # connect.yml
-version: 
-name: 
+version:
+name:
 # the name that you will see when listing the connectors
-type: 
+type:
 # connection type:
 # source connections currently support: HTTP, Kafka, MQTT, Postgres -source
 # sink connections currently support: Dynabodb, Kafka, Postgres, Slack -sink
-topic: 
+topic:
 # the topic to produce to or consume from
-direction: 
+direction:
 # specifies as source or sink
 parameters:
   # type specific parameters
   # smart module parameters
   # see the docs for the list of parameters
-  
+
 # producer:
 #   linger:
 #   batch-size:
 #   compression:
 # optional content for producer type connector
-  
+
 # consumer:
 #   partition:
 # optional content for consumer type connector
@@ -307,12 +307,12 @@ parameters:
 
 Thankfully, filling it out is simple. For any connection, you need a name,
 the connection type, the direction in which it is connecting, and what topic
-to connect to. 
+to connect to.
 
 For the HTTP-specific parameters you will need to specify the link it is
 polling, and the interval at which it polls.
 
-%copy% 
+%copy%
 ```yaml
 # connect.yml
 version: 0.1.0
@@ -351,10 +351,10 @@ topic "timekeeper-with-connector" created
 
 ```
 
-Nothing much is returned when running, but now the database will be more 
+Nothing much is returned when running, but now the database will be more
 interesting. Try checking its contents with `fluvio consume`!
 
-You can stop the connector by deleting it. 
+You can stop the connector by deleting it.
 
 %copy first-line%
 ```bash
@@ -371,7 +371,7 @@ Fear not, we have *SmartModules* to help with that.
 ## SmartModules
 
 SmartModules are user defined functions set to run on and modify the inputs/outputs to
-a Fluvio database. 
+a Fluvio database.
 
 Want to filter so that only JSON records that match a specific priority tag are
 recorded? A Filter SmartModule can be written to only let through records with
@@ -406,7 +406,7 @@ Next, install `cargo-generate`, this may take a minute or two.
 $ cargo install cargo-generate
 ```
 
-Now you can download the template with `cargo-generate`. 
+Now you can download the template with `cargo-generate`.
 
 -> You will have to fill in a couple of required arguments below, prefaced by the "🤷" emoji.
 
@@ -476,7 +476,7 @@ You can test that it is working by adding it to the Connector config!
 
 ### Connecting to a Connector
 
-To use a SmartModule with a Connector, add it to the Connector config. 
+To use a SmartModule with a Connector, add it to the Connector config.
 Currently you have to specify which type of SmartModule you are using, so it
 will be the form of `module-type: name-of-module`.
 
@@ -522,7 +522,7 @@ Consuming records starting 4 from the end of topic 'timekeeper-with-connector'
 
 ## Shell Script Complete
 
-Now, we can make a few minor modifications to  `timekeeper.sh` so that the 
+Now, we can make a few minor modifications to  `timekeeper.sh` so that the
 messages are keyed. That way, if we use the `-k` flag, we can see the origins
 of each message!
 
@@ -547,16 +547,16 @@ And voilà! We have a database that takes inputs from the user and from a websit
 
 ## References:
 
-[Fluvio CLI Produce](/cli/commands/produce)
+[Fluvio CLI Produce](/cli/commands/produce/)
 
-[Fluvio CLI Consume](/cli/commands/consume)
+[Fluvio CLI Consume](/cli/commands/consume/)
 
-[Fluvio CLI topic](/cli/commands/topic)
+[Fluvio CLI topic](/cli/commands/topic/)
 
-[Fluvio CLI profile](/cli/installation/profile)
+[Fluvio CLI profile](/cli/installation/profile/)
 
-[Connectors](/connectors)
+[Connectors](/connectors/)
 
-[Smart Modules](/smartmodules)
+[Smart Modules](/smartmodules/)
 
 [Smart Module Rust API](https://docs.rs/fluvio-smartmodule/latest/fluvio_smartmodule/)
