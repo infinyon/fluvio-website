@@ -21,6 +21,7 @@ The following sections will walk you through how to do that.
 
 ### Install Fluvio CLI
 
+
 Download the Fluvio CLI with the following command.
 
 %copy first-line%
@@ -36,7 +37,7 @@ Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 Currently, there are two mutually exclusive ways to create your Fluvio account:
 Google sign in, and Email registration.
 
-{{<h-list tabTotal="2" tabID="2" tabName1="Signup with Google" tabName2="Username & Password">}}
+{{<h-list tabTotal="2" tabID="2" tabName1="Signup with Google" tabName2="Signup with Username & Password">}}
 
 {{<h-item tabNum="1">}}
 
@@ -154,7 +155,6 @@ InfinyOn Cloud email: John@example.com
 Password:
 ```
 
-
 {{</h-item>}}
 
 {{</h-list>}}
@@ -207,9 +207,8 @@ Ok!
 -> To quit `produce` press `CTRL-C`.
 
 `fluvio produce <topic> [flags]` can take input from stdin, or from a file. The
-stdin input can be piped into, [as shown in this tutorial](#an-easy-fluvio-script--bash),
-or filled continuously as seen just above. When taking input continuously, it
-won't stop until it is terminated by the user.
+stdin input can be piped into, or filled continuously as seen just above. When 
+taking input continuously, it won't stop until it is terminated by the user.
 
 Some useful option flags to be aware of:
 
@@ -241,13 +240,13 @@ used here all use the `-d` flag to tell it to stop.
 
 Some useful option flags to be aware of:
 
-* `d`						– halts consumption after reaching the end of the records available.
-* `T[int]`					– consumes only the T (default 10) most recent records.
-* `B[int]`					– starts consuming records B (default 0) after the start of the database.
-* `-p[int]`					– reads only from the partition p (default 0).
+* `-d`						– halts consumption after reaching the end of the records available.
+* `-T [int]`				– consumes only the specified most recent records (default 10).
+* `-B [int]`				– starts consuming records a specified offset after the start of the database (default 0).
+* `-p <int>`				– reads only from the specified partition.
 * `-k`						– displays the key portion of the key and value pairs.
 * `-A`						– reads from all partitions available.
-* `--smart-module <module>` – runs a [SmartModule](#smartmodules) module on the output, then displays the results.
+* `--smart-module <module>` – runs a [SmartModule](/smartmodules/) module on the output, then displays the results.
 
 
 Now you have a fully setup Fluvio system, and you know the basic commands to get Fluvio working.
@@ -265,3 +264,5 @@ Now you have a fully setup Fluvio system, and you know the basic commands to get
 [Fluvio CLI topic](/cli/commands/topic/)
 
 [Fluvio CLI profile](/cli/installation/profile/)
+
+[SmartModule](/smartmodules/)

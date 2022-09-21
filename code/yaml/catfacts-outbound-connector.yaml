@@ -1,0 +1,20 @@
+# connector.yaml
+version: 0.1.0
+name: cat-facts-outbound
+type: postgres-sink
+topic: cat-facts
+
+parameters:
+  # type specific parameters
+  # smart module parameters
+  # see the docs for the list of parameters
+
+# producer:
+#   linger:
+#   batch-size:
+#   compression:
+# optional content for producer type connector
+
+# consumer:
+#   partition:
+# optional content for consumer type connector

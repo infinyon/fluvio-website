@@ -4,21 +4,30 @@ menu: Creating a Data Pipeline
 weight: 20
 ---
 
-## Connectors and SmartModules
+## Connector Pipeline
 
 <img src="../images/create-pipeline.png"
      alt="execution flow of InfinyOn pipeline"
 	 style="justify: center; max-width: 400px" />
 
 This tutorial expects you to already have the Fluvio CLI installed, and InfinyOn
-Cloud set up. If neither of these is the case, please follow the [previous tutorial](../cloud-setup)!
+Cloud set up. If neither of these is the case, please follow the [previous tutorial](../cloud-setup/)!
+
+There are two main steps for this tutorial:
+* Creating an inbound Connector 
+  * (optional) attaching a SmartModule
+* Creating an outbound Connector
+  * (optional) attaching a SmartModule
+
+We will be going through setting up an inbound and outbound Connector, as well
+as attaching a SmartModule to the inbound connection.
 
 ## Connectors
 
 If you wish to automatically collect information from one source and send it to
-Fluvio, Connectors are the way to go. When given the information on the
-interface through the Connector configuration file, Fluvio can poll a multitude of
-input types.
+Fluvio, or send data from Fluvio to location, Connectors are the way to go. When
+given the information on the interface through the Connector configuration file,
+Fluvio can poll a multitude of input types.
 
 In this tutorial, we will be looking at the [HTTP Connector](/connectors/sources/http/) setup, connecting
 to the <a href="https://catfact.ninja" target="_blank" rel="nofollow" > catfact.ninja</a> JSON database.
@@ -34,6 +43,8 @@ populated – which we will do in the next step. See
 Thankfully, filling it out is simple. For any connection, you need a name,
 the connection type, and what topic to connect to.
 
+### Inbound Connector
+
 For the HTTP-specific parameters you will need to specify the link it is
 polling, and the interval at which it polls.
 
@@ -41,9 +52,9 @@ polling, and the interval at which it polls.
 
 This creates a connector named `cat-facts`, that reads from the website
 `https://catfacts.ninja/fact` every 30 seconds, and produces to the topic
-`timekeeper-with-connector`.
+`cat-facts`.
 
-### Testing the Connector
+#### Testing the Inbound Connector
 
 You can register the connector to Fluvio with `fluvio connector create <connector name> --config=<config-file.yaml>`
 
@@ -66,6 +77,11 @@ Consuming records starting 4 from the end of topic 'cat-facts'
 
 To delete the Connector, use `fluvio connector delete <connector-name>`.
 
+### Outbound Connector
+
+#### Testing the Inbound Connector
+
+
 ## SmartModules
 
 SmartModules are user defined functions set to run on and modify the inputs/outputs to
@@ -80,9 +96,9 @@ template available [at the github repository](https://github.com/infinyon/fluvio
 
 ### Making a SmartModule
 
-If we want to clean up the timekeeper records and make it so that the messages
-are marked separately from the JSON objects, we will need a SmartModule.
-Specifically we will need a map SmartModule.
+If we want to clean up the `cat-facts` records and make it so that the facts are
+not ensconced in a JSON object, we will need a SmartModule. Specifically we will
+need a map SmartModule.
 
 We need to go through some setup steps though.
 
@@ -135,9 +151,14 @@ Now we can edit the `catfacts-map/src/lib.rs` file to get what we need!
 
 {{<code file="code/rust/catfacts-map/src/lib.rs" lang="rust">}}
 
-Now that we have the SmartModule created, we need to link it to Fluvio, so that
-it can be used. Otherwise you would have to remember the entire path to the
-`wasm` file.
+Now that we have the SmartModule created, we need to compile it and link it to
+Fluvio, so that it can be used. Otherwise you would have to remember the entire
+path to the `wasm` file.
+
+%copy%
+```bash
+$ cd catfacts-map && cargo build --release
+```
 
 %copy first-line%
 ```bash
@@ -147,7 +168,7 @@ smart-module "catfacts-map" has been created.
 
 You can test that it is working by adding it to the Connector config!
 
-### Connecting to a Connector
+### Connecting to an Inbound Connector
 
 To use a SmartModule with a Connector, add it to the Connector config.
 Currently you have to specify which type of SmartModule you are using, so it
@@ -179,7 +200,6 @@ Consuming records starting 4 from the end of topic 'cat-facts'
 [JSON] "Cats should not be fed tuna exclusively, as it lacks taurine, an essential nutrient required for good feline health.  Make sure you have the proper Pet supplies to keep your cat happy and healthy."
 [JSON] "Cat paws act as tempetature regulators, shock absorbers, hunting and grooming tools, sensors, and more"
 ```
-
 
 And voilà! We have a database that takes inputs from the user and from a website, and displays it all prettylike for whoever is reading it!
 
