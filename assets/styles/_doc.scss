@@ -9,7 +9,7 @@
     padding-top: 18px !important;
 
     a {
-      font-weight: 400; 
+      font-weight: 400;
       color: $main-color;
     }
 
@@ -18,7 +18,7 @@
 }
 
 .doc {
-  h1, h2, h3, h4, h5, h6 { 
+  h1, h2, h3, h4, h5, h6 {
     color: $main-color;
 
     i {
@@ -50,24 +50,24 @@
     }
   }
 
-  a { 
+  a {
     color:$main-dialog;
     &:hover {
       color: $main-dialog;
       text-decoration: underline;
     }
-  } 
-  
+  }
+
   li {
     margin-top: .5rem;
     margin-bottom: .5rem;
-    
+
     p {
       margin-top: .2rem;
       margin-bottom: .2rem;
     }
   }
-    
+
   img {
     display: block;
     width: 100%;
@@ -81,25 +81,25 @@
     margin-top: -20px;
     margin-bottom: 20px;
   }
-  
+
   .doc-content {
     margin: 10px 0;
 
     /* code section */
     .highlight pre {
-      max-height: 800px; 
+      max-height: 800px;
       overflow-y: auto;
       overflow-x: auto;
     }
-    
+
     ::-webkit-scrollbar {
-      -webkit-appearance: none; 
+      -webkit-appearance: none;
       width: 7px;
       height: 7px;
     }
     ::-webkit-scrollbar-thumb {
-      border-radius: 4px; 
-      background-color: rgba(255, 255, 255, .5); 
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, .5);
       box-shadow: 0 0 1px rgba(0, 0, 0, .5)
     }
   }
@@ -107,16 +107,16 @@
   .edit-this-page {
     text-align: right;
     margin: 30px 10px;
-  
+
     a {
       color: $gray8;
       img {
         display: inline;
         width: 24px;
-        filter: brightness(6) invert(1);   
-      }      
+        filter: brightness(6) invert(1);
+      }
     }
-  
+
     a:hover {
       text-decoration: none;
       color: inherit;
@@ -129,5 +129,33 @@
     font-size: 1.2rem;
     margin-top: -10px;
     margin-bottom: 20px;
+  }
+
+
+
+  .lang-nav {
+    ul.nav {
+      border-bottom: 1px solid $gray2;
+      li {
+        margin-bottom: -3px;
+
+        .active {
+          border-bottom: 5px solid $main-color;
+        }
+
+        a {
+          font-size: 1.3em;
+          color: $black;
+        }
+
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .tab-content {
+      margin: 20px;
+    }
   }
 }
