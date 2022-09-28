@@ -17,7 +17,7 @@ Follow the [installation instructions]({{< ref "installation.md" >}}) to run thi
 [Download Cargo.toml](/rust/Cargo.toml)
 {{<code file="code/rust/Cargo.toml" lang="toml" copy=true >}}
 
-[Download main.rs](/rust/src/main.rs)
+[Download main.rs](/rust/src/main.rs) and place in a subdirector named `src`:
 {{<code file="code/rust/src/main.rs" lang="rust" copy=true >}}
 
 ### Run
