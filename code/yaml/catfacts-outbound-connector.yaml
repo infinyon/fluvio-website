@@ -6,7 +6,7 @@ topic: cat-facts
 
 parameters:
   hub_url: https://hub-dev.infinyon.cloud
-  database_url: postgres://spvlvtqf:UgJYE8eTpZQhF_Kze6ljMLzMgi1Tw0sI@heffalump.db.elephantsql.com/spvlvtqf
+  database_url: postgres://database:password@heffalump.db.elephantsql.com/database
 transforms:
   - uses: infinyon/json-sql
     invoke: insert
