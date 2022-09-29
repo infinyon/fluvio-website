@@ -43,10 +43,12 @@ populated – which we will do in the next step. See
 Thankfully, filling it out is simple. For any connection, you need a name,
 the connection type, and what topic to connect to.
 
+
 ### Inbound Connector
 
 For the HTTP-specific parameters you will need to specify the link it is
-polling, and the interval at which it polls.
+polling, and the interval at which it polls. You will also have to specify that
+it is using the connector version `0.3.0`.
 
 {{<code file="code/yaml/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
 
@@ -63,11 +65,11 @@ You can register the connector to Fluvio with `fluvio connector create <connecto
 fluvio connector create --config=./catfact.yml
 ```
 
-To see if it is running successfully, you have two options: `fluvio connector list`, and `fluvio consume`.
+To see if it is running successfully, you have two options: `fluvio cloud connector logs <topic name>`, and `fluvio consume`.
 
 %copy first-line%
 ```bash
-fluvio consume cat-facts -dT4
+$ fluvio consume cat-facts -dT4
 Consuming records starting 4 from the end of topic 'cat-facts'
 {"fact":"A cat lover is called an Ailurophilia (Greek: cat+lover).","length":57}
 {"fact":"British cat owners spend roughly 550 million pounds yearly on cat food.","length":71}
@@ -79,8 +81,40 @@ To delete the Connector, use `fluvio connector delete <connector-name>`.
 
 ### Outbound Connector
 
-#### Testing the Inbound Connector
+We will be using a <a href="https://elephantsql.com" target="_blank" rel="nofollow" > ElephantSQL </a>
+database for this tutorial. If you have your own online database, or can quickly
+create an account with ElephantSQL, please follow along!
 
+~> At the current moment the SQL connector is not fully released, some growing pains may be noticed!
+
+{{<code file="code/yaml/catfacts-outbound-connector.yaml" lang="yaml" copy="true">}}
+
+For safety, the account name and secret key were censored from the connector.
+Other than that, this connector should work as is! This configuration file is telling
+Fluvio to use the `0.1.0` version of the SQL connector, to consume from the cat-facts
+Fluvio topic, and to connect to ElephantSQL.
+
+After connecting to ElephantSQL, the connector proceeds to run the transform listed.
+
+#### Testing the Outbound Connector
+
+saving the config file as `catfacts-outbound-connector.yaml` you can create the connector with
+
+%copy first-line%
+```bash
+fluvio connector create --config ./catfacts-outbound-connector.yaml
+```
+
+
+You can test that it is working with `fluvio connector list`
+
+%copy first-line%
+```bash
+$ fluvio connector list
+  NAME                TYPE         VERSION  STATUS
+  cat-facts           http-source  0.3.0    Running 
+  cat-facts-outbound  sql-sink     latest   Running 
+```
 
 ## SmartModules
 

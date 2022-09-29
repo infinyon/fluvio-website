@@ -1,20 +1,27 @@
 # connector.yaml
-version: 0.1.0
 name: cat-facts-outbound
-type: postgres-sink
+type: sql-sink
+version: latest
 topic: cat-facts
 
 parameters:
-  # type specific parameters
-  # smart module parameters
-  # see the docs for the list of parameters
-
-# producer:
-#   linger:
-#   batch-size:
-#   compression:
-# optional content for producer type connector
-
-# consumer:
-#   partition:
-# optional content for consumer type connector
+  hub_url: https://hub-dev.infinyon.cloud
+  database_url: postgres://spvlvtqf:UgJYE8eTpZQhF_Kze6ljMLzMgi1Tw0sI@heffalump.db.elephantsql.com/spvlvtqf
+transforms:
+  - uses: infinyon/json-sql
+    invoke: insert
+    with:
+      table: "topic_message"
+      map-columns:
+        "message":
+          json-key: "fact"
+          value:
+            type: "text"
+            default: "A cat can sometimes purr"
+            required: true
+        "length":
+          json-key: "length"
+          value:
+            type: "int"
+            default: "0"
+            required: true

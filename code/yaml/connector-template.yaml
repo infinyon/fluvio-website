@@ -1,5 +1,4 @@
 # connector.yaml
-version:
 name:
 # the name that you will see when listing the connectors
 type:
@@ -14,6 +13,8 @@ type:
   # kafka-sink
   # postgres-sink
   # slack-sink
+version:
+# the version of the connector type
 topic:
 # the topic to produce to or consume from
 parameters:

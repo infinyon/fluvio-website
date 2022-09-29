@@ -1,7 +1,7 @@
 # catfacts-map-connector.yml
-version: 0.2.0
 name: cat-facts
 type: http-source
+version: 0.3.0
 topic: cat-facts
 
 parameters:
