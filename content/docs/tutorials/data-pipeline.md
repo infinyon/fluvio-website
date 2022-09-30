@@ -33,8 +33,8 @@ To learn connectors, we will be creating one that uses the [HTTP Connector](/con
 Connector, pointed at the <a href="https://catfact.ninja" target="_blank" rel="nofollow"> catfact.ninja </a>
 JSON database.
 
-Then, we will create an outbound connector with the [SQL](/connectors/sinks/SQL/)
-Connector, and produce records to an SQL database. You can use any SQL system that
+Then, we will create an outbound connector with the SQL Connector, and produce
+records to an SQL database. You can use any SQL system that
 you like, but for an easy setup we will be using the provider
 <a href="https://elephantsql.com" target="_blank" rel="nofollow"> ElephantSQL</a>.
 
