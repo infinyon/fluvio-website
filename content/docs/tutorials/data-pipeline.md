@@ -14,7 +14,7 @@ This tutorial expects you to already have the Fluvio CLI installed, and InfinyOn
 Cloud set up. If neither of these is the case, please follow the [previous tutorial](../cloud-setup/)!
 
 There are two main steps for this tutorial:
-* Creating an inbound Connector 
+* Creating an inbound Connector
   * (optional) attaching a SmartModule
 * Creating an outbound Connector
   * (optional) attaching a SmartModule
@@ -25,30 +25,38 @@ as attaching a SmartModule to the inbound connection.
 ## Connectors
 
 If you wish to automatically collect information from one source and send it to
-Fluvio, or send data from Fluvio to location, Connectors are the way to go. When
-given the information on the interface through the Connector configuration file,
-Fluvio can poll a multitude of input types.
+Fluvio, or send data from Fluvio to another system, Connectors are the way to go.
+When given the information on the interface through the Connector configuration
+file, Fluvio can poll a multitude of input types.
 
-In this tutorial, we will be looking at the [HTTP Connector](/connectors/sources/http/) setup, connecting
-to the <a href="https://catfact.ninja" target="_blank" rel="nofollow" > catfact.ninja</a> JSON database.
+To learn connectors, we will be creating one that uses the [HTTP Connector](/connectors/sources/http/)
+Connector, pointed at the <a href="https://catfact.ninja" target="_blank" rel="nofollow"> catfact.ninja </a>
+JSON database.
+
+Then, we will create an outbound connector with the [SQL](/connectors/sinks/SQL/)
+Connector, and produce records to an SQL database. You can use any SQL system that
+you like, but for an easy setup we will be using the provider
+<a href="https://elephantsql.com" target="_blank" rel="nofollow"> ElephantSQL</a>.
+
 
 ### Connector Config Layout
 
-This is the template YAML connector file. To make it useful, it needs to be
-populated – which we will do in the next step. See
+If you wish to use connectors on InfinyOn Cloud, you will have to use a YAML
+connector file. We have provided the template file below. To make it useful, it
+needs to be populated – which we will do as the next step. See
 [the documentation](/connectors/) for the parameters available for use.
 
 {{<code file="code/yaml/connector-template.yaml" lang="yaml" copy="true">}}
 
-Thankfully, filling it out is simple. For any connection, you need a name,
-the connection type, and what topic to connect to.
+Thankfully, filling it out is simple. For any connection, you will need a name,
+the connection type, the version of the connection type, and what topic to connect to.
 
 
 ### Inbound Connector
 
 For the HTTP-specific parameters you will need to specify the link it is
 polling, and the interval at which it polls. You will also have to specify that
-it is using the connector version `0.3.0`.
+it is using the HTTP connector version `0.3.0`.
 
 {{<code file="code/yaml/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
 
@@ -79,22 +87,31 @@ Consuming records starting 4 from the end of topic 'cat-facts'
 
 To delete the Connector, use `fluvio connector delete <connector-name>`.
 
+-> If at any time, you need information on what the connector is doing `fluvio cloud connector logs <connector name>` is quite helpful!
+
 ### Outbound Connector
 
 We will be using a <a href="https://elephantsql.com" target="_blank" rel="nofollow" > ElephantSQL </a>
-database for this tutorial. If you have your own online database, or can quickly
-create an account with ElephantSQL, please follow along!
+database for this tutorial. It is fast to set up an account, if you do not have
+your own online database already! For safety, the account name and secret key
+were censored from the connector. Other than that, this connector should work as is.
 
 ~> At the current moment the SQL connector is not fully released, some growing pains may be noticed!
 
 {{<code file="code/yaml/catfacts-outbound-connector.yaml" lang="yaml" copy="true">}}
 
-For safety, the account name and secret key were censored from the connector.
-Other than that, this connector should work as is! This configuration file is telling
-Fluvio to use the `0.1.0` version of the SQL connector, to consume from the cat-facts
-Fluvio topic, and to connect to ElephantSQL.
+This configuration file is telling Fluvio to use the latest (`0.1.0`) version of the SQL
+connector, to consume from the cat-facts Fluvio topic, and to connect to
+ElephantSQL. After connecting to ElephantSQL, the connector proceeds to run the
+transform listed.
 
-After connecting to ElephantSQL, the connector proceeds to run the transform listed.
+The transform command should take a JSON object and transform it into an SQL insertion call:
+```JSON
+{"fact":"Cats have been domesticated for half as long as dogs have been.","length":63}
+```
+```SQL
+INSERT INTO topic_message (fact, length) values ('Cats have been domesticated for half as long as dogs have been.',63)
+```
 
 #### Testing the Outbound Connector
 
@@ -105,34 +122,36 @@ saving the config file as `catfacts-outbound-connector.yaml` you can create the 
 fluvio connector create --config ./catfacts-outbound-connector.yaml
 ```
 
-
 You can test that it is working with `fluvio connector list`
 
 %copy first-line%
 ```bash
 $ fluvio connector list
   NAME                TYPE         VERSION  STATUS
-  cat-facts           http-source  0.3.0    Running 
-  cat-facts-outbound  sql-sink     latest   Running 
+  cat-facts           http-source  0.3.0    Running
+  cat-facts-outbound  sql-sink     latest   Running
 ```
 
 ## SmartModules
 
 SmartModules are user defined functions set to run on and modify the inputs/outputs to
-a Fluvio database.
+a Fluvio database. We already saw the hints of a SmartModule in the SQL connector
+earlier, but now we will be creating our own connector from scratch!
 
 Want to filter so that only JSON records that match a specific priority tag are
 recorded? A Filter SmartModule can be written to only let through records with
-specific values.
+specific values. A Map SmartModule could be used to run the same conversion script
+on every record entering or leaving the topic.
 
 You create a SmartModule by using Rust and generating it based on the SmartModule
-template available [at the github repository](https://github.com/infinyon/fluvio-smartmodule-template).
+template available [at the github repository](https://github.com/infinyon/fluvio-smartmodule-template/).
 
 ### Making a SmartModule
 
-If we want to clean up the `cat-facts` records and make it so that the facts are
+If we want to have cleaner `cat-facts` records and make it so that the facts are
 not ensconced in a JSON object, we will need a SmartModule. Specifically we will
-need a map SmartModule.
+need a map SmartModule. Then we will need to move it to a new topic so that the
+SQL connector doesn't panic.
 
 We need to go through some setup steps though.
 
@@ -196,7 +215,7 @@ $ cd catfacts-map && cargo build --release
 
 %copy first-line%
 ```bash
-$ fluvio smart-module create catfacts-map --wasm-file="catfacts-map/target/wasm32-unknown-unknown/release/catfacts_map.wasm"
+$ fluvio smart-module create catfacts-map --wasm-file="target/wasm32-unknown-unknown/release/catfacts_map.wasm"
 smart-module "catfacts-map" has been created.
 ```
 
@@ -214,7 +233,8 @@ will be the form of `module-type: name-of-module`.
 
 Now it is almost ready, you just need to tell Fluvio to update the Connector;
 or recreate it if you deleted it earlier. Use the `update` argument for `fluvio
-connector` to update the Connector if it still exists.
+connector` to update the Connector if it still exists. This will produce to a new
+topic, so that the JSON→SQL connector does not break.
 
 %copy first-line%
 ```bash
@@ -227,8 +247,8 @@ At this point you can run `fluvio consume` again and see how things have changed
 
 %copy first-line%
 ```bash
-$ fluvio consume cat-facts -dT 4
-Consuming records starting 4 from the end of topic 'cat-facts'
+$ fluvio consume cat-facts-map -dkT 4
+Consuming records starting 4 from the end of topic 'cat-facts-map'
 [JSON] "The average lifespan of an outdoor-only cat is about 3 to 5 years while an indoor-only cat can live 16 years or much longer."
 [JSON] "In 1987, cats overtook dogs as the number one pet in America (about 50 million cats resided in 24 million homes in 1986). About 37% of American homes today have at least one cat."
 [JSON] "Cats should not be fed tuna exclusively, as it lacks taurine, an essential nutrient required for good feline health.  Make sure you have the proper Pet supplies to keep your cat happy and healthy."

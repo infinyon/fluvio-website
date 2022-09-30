@@ -2,7 +2,7 @@
 name: cat-facts
 type: http-source
 version: 0.3.0
-topic: cat-facts
+topic: cat-facts-map
 
 parameters:
   endpoint: https://catfact.ninja/fact
