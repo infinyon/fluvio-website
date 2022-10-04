@@ -60,7 +60,7 @@ from a JSON API.
 # connect.yml
 version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:
@@ -110,7 +110,7 @@ is safe to be copied and used in a `fluvio connector create --config
 $ fluvio connector config cat-facts
 ---
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 version: 0.3.0
 parameters:
@@ -359,7 +359,7 @@ For this example, we would add `map` to the `parameters` section, like so:
 # connect.yml
 version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:
@@ -411,7 +411,7 @@ These fields are all optional as well as the `producer` field itself.
 # connect.yml
 version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:

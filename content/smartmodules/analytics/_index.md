@@ -18,14 +18,14 @@ Once a SmartModule is uploaded on the cluster, it can be referenced in the `para
 
 {{< highlight yaml "hl_lines=10" >}}
 # connect.yml
-version: 0.2.0
+version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 10
+  interval: 10s
   map: "catfact-map"
 {{< /highlight >}}
 
