@@ -33,9 +33,9 @@ In order to install Rancher Desktop go to the Rancher Desktop [installation page
 
 Please make sure that the container runtime is `dockerd (moby)`. That configuration can be changed in the `Kubernetes Settings` section on the sidebar.
 
-<img src="../images/rancher-desktop.png"
+<img src="../images/rancher-dockerd.png"
      alt="A screenshot of the Rancher Desktop using dockerd as container runtime"
-     style="justify: center; max-width: 1000px" />
+     style="justify: center; max-width: 800px" />  
 
 ## Start Fluvio cluster
 
