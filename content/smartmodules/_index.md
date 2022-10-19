@@ -227,14 +227,14 @@ For example, this is how you would define a `filter` type SmartModule named `my-
 
 %copy%
 ```yaml
-# cat-facts-connector.yml
-name: cat-facts-connector
-type: http
-topic: cat-facts 
-create_topic: true
+# connect.yml
+version: 0.3.0
+name: cat-facts
+type: http-source
+topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 30
+  interval: 30s
   filter: my-filter 
 ```

@@ -30,14 +30,14 @@ An example connector config file might look like this:
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+version: 0.3.0
 name: cat-facts
-type: http
+type: http-source
 topic: cat-facts
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 10
+  interval: 10s
 ```
 
 Here's a description of the available options:
