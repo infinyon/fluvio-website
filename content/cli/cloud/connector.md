@@ -31,6 +31,8 @@ SUBCOMMANDS:
     update    Create a new Managed Connector
 ```
 
+---
+
 ## `fluvio cloud connector create`
 
 This command is used to provision a new connector.
@@ -86,7 +88,7 @@ Here's a description of the available options:
 
 -> **Note**: The Fluvio topic set in `topic` will be automatically created if the Fluvio `topic` does not exist.
 
-When running `fluvio connector create`, pass the path to this file using the `--config`
+When running `fluvio cloud connector create`, pass the path to this file using the `--config`
 option.
 
 Example usage:
@@ -99,52 +101,174 @@ connector "cat-facts" (http-source) created
 
 ---
 
-## `fluvio connector list`
+## `fluvio cloud connector config`
 
-This command show you all the existing Managed Connectors in your cluster.
+Command to show the configuration file used to create this connector.
+
+%copy first-line%
+```bash
+$  fluvio cloud connector config -h
+```
 
 ```
-List all Managed Connectors
+fluvio-cloud-connector-config 
+Show the connector spec
 
-fluvio connector list [OPTIONS]
+USAGE:
+    fluvio-cloud connector config <NAME>
 
-FLAGS:
-    -h, --help    Prints help information
+ARGS:
+    <NAME>    Name of connector
 
 OPTIONS:
-    -O, --output <type>    Output [default: table]  [possible values: table, yaml, json]
+    -h, --help    Print help information
 ```
 
 Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio connector list
- NAME       STATUS
- cat-facts  Running
+$ fluvio cloud connector config cat-facts
+
+name: cat-facts
+type: http-source
+topic: cat-facts
+version: latest
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 10s
+
 ```
 
 ---
 
-## `fluvio connector delete`
+## `fluvio cloud connector list`
 
-This command deletes an existing Managed Connector.
+This command show you all the existing Connectors in your cluster.
+
+%copy first-line%
+```bash
+$  fluvio cloud connector list -h
+```
 
 ```
-Delete a Managed Connector
+fluvio-cloud-connector-list 
+List all Managed Connectors
 
-fluvio connector delete <name>
+USAGE:
+    fluvio-cloud connector list
 
-FLAGS:
-    -h, --help    Prints help information
-
-ARGS:
-    <name>    The name of the connector to delete
+OPTIONS:
+    -h, --help    Print help information
 ```
 
 Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio connector delete cat-facts
+$ fluvio cloud connector list
+ NAME         TYPE         VERSION  STATUS  
+ cat-facts    http-source  latest   Running 
+```
+
+---
+
+## `fluvio cloud connector update`
+
+Command to update and restart an existing connector.
+
+%copy first-line%
+```bash
+$  fluvio cloud connector update -h
+```
+
+```
+Create a new Managed Connector
+
+USAGE:
+    fluvio-cloud connector update --config <CONFIG>
+
+OPTIONS:
+    -c, --config <CONFIG>    Name of connector
+    -h, --help               Print help information
+```
+
+Example usage:
+
+Make a small change in the cats cats.yaml, for example change `interval: 20s`, the update:
+
+%copy first-line%
+```bash
+$ fluvio cloud connector update --config=./cats.yaml
+connector "cat-facts" (http-source) updated
+```
+
+---
+
+## `fluvio cloud connector logs`
+
+Command to view the logs written by the connector.
+
+%copy first-line%
+```bash
+$  fluvio cloud connector logs -h
+```
+
+```
+View connector logs
+
+USAGE:
+    fluvio-cloud connector logs <NAME>
+
+ARGS:
+    <NAME>    Name of connector
+
+OPTIONS:
+    -h, --help    Print help information
+```
+
+Example usage:
+
+%copy first-line%
+```bash
+% fluvio cloud connector logs cat-facts
+2022-10-21T14:55:13.508989Z  INFO http_source: Starting HTTP source connector connector_version="0.4.1" git_hash="0ad913c5ceb732881fd753874e5082777bbed91e"
+2022-10-21T14:55:13.509096Z  INFO http_source: interval=10s method=GET topic=cat-facts output_parts=body output_type=text endpoint=https://catfact.ninja/fact
+2022-10-21T14:55:13.510284Z  INFO fluvio::config::tls: Using verified TLS with certificates from paths domain="broad-union-b685e7fda03fefb3d5221d0a3b9c64c7.c.infinyon.cloud"
+2022-10-21T14:55:13.515459Z  INFO fluvio::fluvio: Connecting to Fluvio cluster fluvio_crate_version="0.14.0" fluvio_git_hash="e96d8e2738ee39ddbb64fea37134f119f97e25bf"
+2022-10-21T14:55:13.574584Z  INFO connect: fluvio::sockets: connect to socket add=fluvio-sc-public:9003
+...
+```
+
+---
+
+## `fluvio cloud connector delete`
+
+This command deletes an existing Connector.
+
+%copy first-line%
+```bash
+$  fluvio cloud connector delete -h
+```
+
+```
+fluvio-cloud-connector-logs 
+View connector logs
+
+USAGE:
+    fluvio-cloud connector logs <NAME>
+
+ARGS:
+    <NAME>    Name of connector
+
+OPTIONS:
+    -h, --help    Print help information
+```
+
+Example usage:
+
+%copy first-line%
+```bash
+$ fluvio cloud connector delete cat-facts
+connector "cat-facts" deleted
 ```
