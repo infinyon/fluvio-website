@@ -2,14 +2,11 @@
 title: Kafka
 ---
 
-The Kafka Connector is quite simple. It will send every record on a kafka
-topic/partition to a fluvio topic/partition.
+The inbound Kafka Connector will send every record on a Kafka topic/partition to a Fluvio topic/partition.
 
 ## Configuration Options
 
-%copy%
-
-{{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-kafka.yaml" lang="yaml" copy=true >}}
+The inbound Kafka connector supports the following configuration options:
 
 ###  `kakfa-url`
 *required*
@@ -18,7 +15,7 @@ The url of the Kafka instance to connect to.
 
 ### `kafka-topic`
 
-Defaults to the name of the `fluvio` topic
+Defaults to using the same name as the `fluvio` topic
 
 The name of the Kafka topic name to connect to.
 
@@ -26,6 +23,13 @@ The name of the Kafka topic name to connect to.
 Default: `0`
 
 The Kafka partition to connect to.
+
+#### Example connector config 
+%copy%
+
+{{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-kafka.yaml" lang="yaml" copy=true >}}
+
+
 
 ## Data Events
 
