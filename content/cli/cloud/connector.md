@@ -4,7 +4,7 @@ menu: Connector
 weight: 40
 ---
 
-The `fluvio cloud connector` family of commands is used to create, delete adn troubleshoot Connectors in InfinyOn Cloud. The connectors can be inbound or outbound, as provisioned in the configuration file.
+The `fluvio cloud connector` family of commands is used to create, delete, and troubleshoot Connectors in InfinyOn Cloud. The connectors can be inbound or outbound, as provisioned in the configuration file.
 
 %copy first-line%
 ```bash
