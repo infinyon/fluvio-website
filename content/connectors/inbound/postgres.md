@@ -1,5 +1,5 @@
 ---
-title: Inbound PostgreSQL
+title: Inbound PostgreSQL Connector
 menu: Postgres
 toc: true
 ---
@@ -28,7 +28,7 @@ and `psql` on the Postgres DB the outbound connector inserts into.
 {{</caution>}}
 
 
-## Configuration Options
+## Connector config `parameters`
 
 The inbound Postgres connector supports the following configuration options:
 
@@ -38,9 +38,12 @@ The inbound Postgres connector supports the following configuration options:
 The login URL for your Postgres database.
 
 This should contain
-  your username, password, database hostname, and port. This key can also be specified
- via the `FLUVIO_PG_DATABASE_URL` in the `secrets` sections of the connector config.
+  your username, password, database hostname, and port.
   - Example: `postgres://user:password@hostname:port/database_name`
+  
+  This key can also be specified under config `secrets`.
+  
+  See: [`FLUVIO_PG_DATABASE_URL`]({{<ref "#fluvio_pg_database_url">}})
 
 ### `publication`
 *required*
@@ -72,6 +75,12 @@ If you'd like the connector to not to automatically create
     the `slot` and a `publication` in your postgres database.
 
 Choices: `true`, `false`
+
+## Connector config `secrets`
+
+### `FLUVIO_PG_DATABASE_URL`
+
+Alternative configuration path for config parameter [`url`]({{<ref "#url">}})
 
 #### Example connector config 
 %copy%

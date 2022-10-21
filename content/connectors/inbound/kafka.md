@@ -1,10 +1,14 @@
 ---
-title: Kafka
+title: Inbound Kafka Connector
+menu: Kafka
+connector:
+  name: "infinyon/fluvio-connect-http"
+  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/http"
 ---
 
 The inbound Kafka Connector will send every record on a Kafka topic/partition to a Fluvio topic/partition.
 
-## Configuration Options
+## Connector config `parameters`
 
 The inbound Kafka connector supports the following configuration options:
 
@@ -24,12 +28,15 @@ Default: `0`
 
 The Kafka partition to connect to.
 
+### `kafka-group`
+Default: `fluvio-kafka-source`
+
+The Kafka group
+
 #### Example connector config 
 %copy%
 
 {{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-kafka.yaml" lang="yaml" copy=true >}}
-
-
 
 ## Data Events
 

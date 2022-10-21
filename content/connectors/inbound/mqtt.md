@@ -1,5 +1,5 @@
 ---
-title: MQTT Connector
+title: Inbound MQTT Connector
 menu: MQTT
 ---
 
@@ -9,7 +9,7 @@ of events produced to a server.
 It is widely used in real-time and IoT applications
 since it is lightweight and easy to use.
 
-## Configuration Options
+## Connector config `parameters`
 
 The inbound MQTT connector supports the following configuration options:
 

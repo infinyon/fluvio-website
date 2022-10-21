@@ -1,0 +1,14 @@
+# dynamodb-connector.yml
+version: 0.2.0
+name: dynamodb-connector
+type: dynamodb-sink
+topic: dynamodb-test
+create_topic: true
+parameters:
+  table-name: dynamodb-test
+  column-names: col_1,col_2,col_3
+  column-types: N,N,S
+secrets:
+  AWS_REGION: "us-west-2"
+  AWS_ACCESS_KEY_ID: ""
+  AWS_SECRET_ACCESS_KEY: ""

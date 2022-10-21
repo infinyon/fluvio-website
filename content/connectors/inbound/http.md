@@ -1,5 +1,5 @@
 ---
-title: HTTP Connector
+title: Inbound HTTP Connector
 menu: HTTP
 connector:
   name: "infinyon/fluvio-connect-http"
@@ -17,7 +17,7 @@ Note that this connector is _not_ intended for streaming HTTP endpoints, it inst
 periodically sends HTTP requests and collects the response as an event.
 
 
-## Configuration Options
+## Connector config `parameters`
 
 The inbound HTTP connector supports the following configuration options:
 
