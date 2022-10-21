@@ -4,95 +4,52 @@ menu: MQTT
 ---
 
 MQTT is a publish/subscribe protocol that allows clients to listen to a stream
-of events produced to a server. It is widely used in real-time and IoT applications
+of events produced to a server.
+
+It is widely used in real-time and IoT applications
 since it is lightweight and easy to use.
 
 ## Configuration Options
 
 The MQTT connector supports the following configuration options:
 
-- `mqtt-url`: The hostname of the MQTT server to subscribe to
-- `mqtt-topic`: The topic filter to use when receiving MQTT events
+### `mqtt-url`
+*required*
 
-As well as the following Smart Connector options:
+The hostname of the MQTT server to subscribe to
 
-- `filter`: The name of a SmartModule to use as a filter
-- `map`: The name of a SmartModule to use as a map
-- `arraymap`: The name of a SmartModule to use as an arraymap
+This value can be provided as a parameter or as a secret
 
-The MQTT connector may be deployed as a Local Connector or a Managed Connector.
-See the following sections to learn how to declare the configuration options
-for each mode.
+### `mqtt-topic`
+*required*
 
-### As a Managed Connector
+The topic filter to use when receiving MQTT events
 
-To deploy MQTT as a Managed Connector, we need to create a configuration file,
-typically called `connect.yml`. The config file might look like the following:
-
+#### Example connector config 
 %copy%
-```yaml
-# connect.yml
-version: 0.3.0
-name: my-mqtt
-type: mqtt-source
-topic: mqtt-topic
-direction: source
-parameters:
-  mqtt_topic: "/hfp/v2/journey/#"
-secrets:
-  MQTT_URL: mqtts://mqtt.hsl.fi:8883/
-```
 
-The way we use this configuration is by passing it to the `fluvio connector` command,
-like this:
-
-%copy first-line%
-```bash
-$ fluvio connector create --config=./connect.yml
-```
-
-### As a Local Connector
-
-To deploy MQTT as a Local Connector, we execute it via the published Docker image
-for the connector. We'll first need to make sure we have a Fluvio topic ready.
-
-%copy first-line%
-```bash
-$ fluvio topic create mqtt
-```
-
-Then, we can execute the connector with the following command:
-
-%copy%
-```bash
-docker run -d --name="my-mqtt" \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-mqtt \
-    -- \
-    --fluvio-topic=mqtt \
-    --mqtt-url=mqtt.hsl.fi \
-    --mqtt-topic=/hfp/v2/journey/#
-```
-
-Here, everything before the `--` is a docker argument, and everything after
-`--` is an argument to the connector.
+{{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-mqtt.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 
 There are two important pieces of information that we're interested in capturing from
-every MQTT event. They are:
+every MQTT event.
 
-- The topic the event was sent to, and
-- The body of the event
+1. The topic the event was sent to, and
+2. The body of the event
 
 In MQTT, topics are more of a label for particular message types. When we specify a
 `mqtt-topic` to subscribe to, we are actually defining a "filter", or a pattern that
-tells MQTT which events we are interested in receiving. This means that events we receive
+tells MQTT which events we are interested in receiving.
+
+This means that events we receive
 may not all belong to the same topic - rather, they all match the filter we provided.
 
-Because of this, the Fluvio MQTT Connector includes both the topic name _and_ the
-message body when producing events to Fluvio. It packages these two pieces of information
-as two fields in a JSON object. Furthermore, since MQTT allows events to contain arbitrary
+The result of the event message body produced to Fluvio by the inbound MQTT connector is a JSON object containing:
+* MQTT topic name
+* MQTT message body
+
+Furthermore, since MQTT allows events to contain arbitrary
 binary data, the payload is encoded as a byte buffer.
 
 Below is a sample of what an MQTT event captured and sent to Fluvio looks like:
