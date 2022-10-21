@@ -1,4 +1,4 @@
 ---
-title: UTILITIES
-weight: 50
+title: COMMANDS/UTILS
+weight: 60
 ---

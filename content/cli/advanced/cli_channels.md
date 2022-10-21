@@ -1,6 +1,6 @@
 ---
 title: Fluvio Release Channels
-menu: Fluvio Release Channels
+menu: Release Channels
 weight: 10
 ---
 

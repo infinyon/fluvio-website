@@ -159,7 +159,7 @@ The client library utilizes profiles to hide the complexity associated with the 
 
 For additional information on Profile management, checkout [Fluvio Profiles] section.
 
-[Fluvio Profiles]: {{< ref "/cli/installation/profile" >}}
+[Fluvio Profiles]: {{< ref "/cli/client/profile" >}}
 
 ## Client Workflow
 

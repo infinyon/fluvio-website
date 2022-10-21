@@ -12,7 +12,7 @@ over the components, then this is the section for you.
 
 [Streaming Controller (SC)]: {{< ref "/docs/architecture/sc" >}}
 [Streaming Processing Unit (SPU)]: {{< ref "/docs/architecture/spu" >}}
-[`fluvio cluster`]: {{< ref "/cli/commands/cluster" >}}
+[`fluvio cluster`]: {{< ref "/cli/local/cluster" >}}
 
 ## `fluvio run sc`
 

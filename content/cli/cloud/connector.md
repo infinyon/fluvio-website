@@ -1,36 +1,64 @@
 ---
-title: Connector
-weight: 30
+title: Cloud Connectors
+menu: Connector
+weight: 40
 ---
 
-The `fluvio connector` family of commands is used to create and delete Managed Connectors,
-as well as to view basic information about existing connectors.
+The `fluvio cloud connector` family of commands is used to create, delete adn troubleshoot Connectors in InfinyOn Cloud. The connectors can be inbound or outbound, as provisioned in the configuration file.
 
-## `fluvio connector create`
+%copy first-line%
+```bash
+$  fluvio cloud connector -h
+```
 
-This command is used to create new Managed Connectors.
+```
+fluvio-cloud-connector 
+View Fluvio Connector information
+
+USAGE:
+    fluvio-cloud connector <SUBCOMMAND>
+
+OPTIONS:
+    -h, --help    Print help information
+
+SUBCOMMANDS:
+    config    Show the connector spec
+    create    Create a new Managed Connector
+    delete    Delete a Managed Connector
+    help      Print this message or the help of the given subcommand(s)
+    list      List all Managed Connectors
+    logs      View connector logs
+    update    Create a new Managed Connector
+```
+
+## `fluvio cloud connector create`
+
+This command is used to provision a new connector.
+
+%copy first-line%
+```bash
+$  fluvio cloud connector create -h
+```
 
 ```
 Create a new Managed Connector
 
-fluvio connector create --config <config>
-
-FLAGS:
-    -h, --help    Prints help information
+USAGE:
+    fluvio-cloud connector create --config <CONFIG>
 
 OPTIONS:
-    -c, --config <config>    The name for the new Managed Connector
+    -c, --config <CONFIG>    Name of connector
+    -h, --help               Print help information
 ```
 
-New connectors require a
-configuration file (commonly called `connect.yml`) which is used to pass general
-and connector-specific parameters to the connector instance.
+New connectors require a configuration file (commonly called `connect.yml`) which is used to pass general and connector-specific parameters to the connector instance.
+
 An example connector config file might look like this:
 
 %copy%
 ```yaml
 # connect.yml
-version: 0.3.0
+version: latest
 name: cat-facts
 type: http-source
 topic: cat-facts
@@ -65,7 +93,8 @@ Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio connector create --config=./connect.yml
+$ fluvio cloud connector create --config=./cats.yaml
+connector "cat-facts" (http-source) created
 ```
 
 ---

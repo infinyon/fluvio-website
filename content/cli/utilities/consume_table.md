@@ -1,7 +1,7 @@
 ---
 title: Consumer output table formatting
 menu: Consumer Table Format
-weight: 10
+weight: 30
 ---
 
 This document covers two of the the CLI Consumer's output types.
@@ -87,7 +87,7 @@ You may have json data that isn't most effectively displayed with the keys order
 
 In that case, to customize the `full-table` output, you can provide the name of your [`table-format`].
 
-[`table-format`]: {{< ref "/cli/commands/table-format.md" >}}
+[`table-format`]: {{< ref "/cli/utilities/table-format.md" >}}
 
 `fluvio consume <topic-name> --output full-table --table-format <table-format name>`
 

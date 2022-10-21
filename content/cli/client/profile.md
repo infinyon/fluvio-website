@@ -86,7 +86,7 @@ Deletes cluster connection information from your Fluvio configuration. This will
 a cluster itself (for that see [`fluvio cluster delete`]), but it will cause the Fluvio CLI to
 no longer be able to connect to that cluster.
 
-[`fluvio cluster delete`]: {{< ref "/cli/commands/cluster#fluvio-cluster-delete" >}}
+[`fluvio cluster delete`]: {{< ref "/cli/local/cluster#fluvio-cluster-delete" >}}
 
 ```
 fluvio-profile-delete-cluster

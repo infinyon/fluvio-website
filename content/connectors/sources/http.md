@@ -195,7 +195,7 @@ To convert only the body of the HTTP Response and ignore the header, set `output
 In a local environment, you have the option to delop a **Managed Connector** or **Local Connector**.
 
 * **Managed Connector**
-  * ensure your [fluvio profile]({{<ref "/cli/installation/profile" >}}) points to your local cluster.
+  * ensure your [fluvio profile]({{<ref "/cli/client/profile" >}}) points to your local cluster.
   * follow the same instructions as in [Deploy on InfinyOn Cloud]({{<ref "#deploy-on-infinyon-cloud" >}}).
 * **Local Connector** (for connector developers)
   * follow the instructions in the [next section]({{<ref "#deploy-local-connector" >}}).

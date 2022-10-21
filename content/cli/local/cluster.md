@@ -1,7 +1,7 @@
 ---
 title: Fluvio Cluster
 menu: Cluster
-weight: 50
+weight: 20
 ---
 
 The `fluvio cluster` family of commands is used to install and manage your own

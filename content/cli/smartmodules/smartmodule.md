@@ -1,6 +1,6 @@
 ---
 title: SmartModule
-weight: 30
+weight: 10
 ---
 
 The `fluvio smart-module` family of commands is used to create and delete SmartModules,

@@ -21,8 +21,8 @@ out with Fluvio:
 
 #### Setting up a cluster
 
-- [Create your own Fluvio cluster with `fluvio cluster start`]({{< ref "/cli/commands/cluster#fluvio-cluster-start" >}})
-- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`]({{< ref "/cli/plugins/cloud#fluvio-cloud-login" >}})
+- [Create your own Fluvio cluster with `fluvio cluster start`]({{< ref "/cli/local/cluster#fluvio-cluster-start" >}})
+- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`]({{< ref "cli/cloud/get-started#fluvio-cloud-login" >}})
   
 #### Sending and Receiving data from Fluvio
 
@@ -40,4 +40,4 @@ out with Fluvio:
 
 - [See all of your topics with `fluvio topic list`]({{< ref "/cli/commands/topic#fluvio-topic-list" >}})
 - [See your partitions and data replication with `fluvio partition list`]({{< ref "/cli/commands/partition#fluvio-partition-list" >}})
-- [See the status of the SPUs in your cluster with `fluvio cluster spu list`]({{< ref "/cli/commands/cluster#fluvio-cluster-spu-list" >}})
+- [See the status of the SPUs in your cluster with `fluvio cluster spu list`]({{< ref "/cli/local/cluster#fluvio-cluster-spu-list" >}})

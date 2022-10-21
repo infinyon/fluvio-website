@@ -5,7 +5,7 @@ weight: 20
 
 Table Format is used to customize the behavior of the Fluvio consumer output type [`full-table`].
 
-[`full-table`]: {{< ref "/cli/advanced/consume_table#full-table" >}}
+[`full-table`]: {{< ref "/cli/utilities/consume_table#full-table" >}}
 
 With `table-format`, you can control the column labels, column ordering and control which keys are primary for displaying your live event data as row updates.
 

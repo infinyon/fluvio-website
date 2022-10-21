@@ -4,17 +4,13 @@ menu: Overview
 toc: true
 ---
 
-SmartModules are one of Fluvio's unique features, allowing users to have
-direct control over their streaming data by providing a programmable API
-for inline data manipulation.
+SmartModules are user-defined functions written in Rust and compiled to <a href="https://webassembly.org/" target="_blank">WebAssembly</a>, allowing users to have direct control over their streaming data by providing a programmable API for inline data manipulation. Lightweight and portable, SmartModuels integrate at many points in a streaming pipeline, enabling enormous flexibility.
 
-SmartModules are user-defined functions, written in Rust and compiled to
-<a href="https://webassembly.org/" target="_blank">WebAssembly</a> - that
-means they're lightweight and portable, and enable enormous flexibility for
-being integrated at many points in a streaming pipeline.
+SmartModules Development Kit (SMDK) allows data pipeline operators to build, compile and test SmartModules in their development environment. 
 
-They enhance the entire streaming platform: reducing network costs by allowing precision 
-filtering along the stream and encouraging code-reuse and collaboration.
+
+
+They enhance the entire streaming platform: reducing network costs by allowing precision filtering along the stream and encouraging code-reuse and collaboration.
 
 The following diagram shows common components which may be configured with SmartModules
 performing inline computation.

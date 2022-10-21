@@ -22,7 +22,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 The Fluvio Java client is now [hosted in Maven Central](https://search.maven.org/artifact/com.infinyon/fluvio), which should reduce the friction for Java developers to install.
 
 ## InfinyOn Cloud updates
-We've added the capability to query your account's [CPU and memory usage via Cloud CLI]({{< ref "cli/plugins/cloud#fluvio-cloud-usage-since-version-017" >}})
+We've added the capability to query your account's [CPU and memory usage via Cloud CLI]({{< ref "cli/cloud/usage" >}})
 
 ## New blog post
 * [Handling JSON data in Fluvio SmartModules](https://www.infinyon.com/blog/2022/06/smartmodule-json/)
