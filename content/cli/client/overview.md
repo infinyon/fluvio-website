@@ -1,6 +1,6 @@
 ---
-title: Getting Started with Fluvio Client
-menu: Getting Started
+title: Fluvio Client Overview
+menu: Overview
 weight: 10
 ---
 

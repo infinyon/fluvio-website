@@ -1,6 +1,6 @@
 ---
-title: Fluvio Local Installation
-menu: Getting Started
+title: Fluvio Local Overview
+menu: Overview
 toc: false
 weight: 10
 ---
@@ -16,7 +16,7 @@ Checkout [`Fluvio Cluster`] to provision or check the states of a local cluster.
 
 Fluvio gives operators the ability to manage and run their connectors outside of the cluster. Checkout [`Fluvio Connectors`] for additional information.
 
-[`Client - Getting Started`]: {{< ref "/cli/client/get-started" >}}
+[`Client - Getting Started`]: {{< ref "/cli/client/overview" >}}
 [`Fluvio Cluster`]: {{< relref "./cluster" >}}
 [`Fluvio Connectors`]: {{< relref "./connector" >}}
 

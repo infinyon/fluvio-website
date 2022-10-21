@@ -77,9 +77,9 @@ At this point, any other `fluvio` commands (such as produce, consume, etc.) will
 interact with your `cloud` cluster. To switch back to a different cluster, use
 [`fluvio profile switch`].
 
-[ Download Fluvio CLI ]: {{< ref "/cli/client/get-started" >}}
+[ Download Fluvio CLI ]: {{< ref "/cli/client/overview" >}}
 [Provision InfinyOn Cloud Account]: https://infinyon.cloud/
-[`Fluvio CLI`]: {{< ref "/cli/client/get-started" >}}
+[`Fluvio CLI`]: {{< ref "/cli/client/overview" >}}
 [`Cloud account`]: https://infinyon.cloud/
 [`fluvio profile list`]: {{< ref "/cli/client/profile#fluvio-profile-list" >}}
 [`fluvio profile switch`]: {{< ref "/cli/client/profile#fluvio-profile-switch" >}}
