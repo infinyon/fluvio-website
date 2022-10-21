@@ -1,0 +1,8 @@
+name: my-slack-sink
+version: 0.2.0
+type: slack-sink
+topic: slack-topic
+parameters:
+  webhook-url: ...
+secrets:
+  WEBHOOK_URL: ...

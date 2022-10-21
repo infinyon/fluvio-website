@@ -1,5 +1,6 @@
 ---
-title: Slack
+title: Outbound Slack Connector
+menu: Slack
 ---
 
 ## Overview
@@ -9,30 +10,21 @@ fluvio stream and `POST` it to the slack via a [slack webhook url]
 
 [slack webhook url]: https://api.slack.com/messaging/webhooks
 
-## Configuration Options
+## Connector config `parameters`
 
-%copy%
-```yaml
-# slack-connector.yml
-name: my-slack-sink
-version: 0.2.0
-type: slack-sink
-topic: slack-topic
-parameters:
-  webhook-url: ...
-secrets:
-  WEBHOOK_URL: ...
-```
+### `webhook-url`
+
+## Connector config `secrets`
+
+### `WEBHOOK_URL`
 
 You need either `webhook-url` in the `params` section or `WEBHOOK_URL` in the
 secrets.
 
-This configuration file is used together with the `fluvio connector create` command, like so:
+#### Example connector config 
+%copy%
 
-%copy first-line%
-```bash
-$ fluvio connector create --config=./slack-connector.yml
-```
+{{<code file="code-blocks/yaml/connectors/outbound-examples/outbound-slack.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 
