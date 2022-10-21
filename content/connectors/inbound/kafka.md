@@ -18,8 +18,7 @@ The inbound Kafka connector supports the following configuration options:
 The url of the Kafka instance to connect to.
 
 ### `kafka-topic`
-
-Defaults to using the same name as the `fluvio` topic
+Default: Same name as the configured `fluvio` topic
 
 The name of the Kafka topic name to connect to.
 

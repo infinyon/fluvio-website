@@ -1,4 +1,3 @@
-# dynamodb-connector.yml
 version: 0.2.0
 name: dynamodb-connector
 type: dynamodb-sink
