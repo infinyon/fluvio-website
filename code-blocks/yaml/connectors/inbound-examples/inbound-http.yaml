@@ -1,0 +1,10 @@
+version: 0.3.0
+name: cat-facts
+type: http-source
+topic: cat-facts
+parameters:
+  endpoint: https://catfact.ninja/fact
+  method: GET
+  body: ""
+  interval: 300
+  output_parts: body

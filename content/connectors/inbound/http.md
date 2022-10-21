@@ -7,8 +7,12 @@ connector:
 ---
 
 Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint,
-feeding the HTTP response into a Fluvio topic. This is useful for monitoring APIs
+feeding the HTTP response into a Fluvio topic.
+
+This is useful for monitoring APIs
 continuously, and building streaming applications that react to new or updated info.
+
+
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead
 periodically sends HTTP requests and collects the response as an event.
 
@@ -17,51 +21,51 @@ periodically sends HTTP requests and collects the response as an event.
 
 The HTTP connector supports the following configuration options:
 
-- `endpoint` (required): The HTTP endpoint to send requests to
-- `method`: The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE` (default: `GET`)
-- `body`: The body to use in the HTTP request to the endpoint
-- `interval`: The period (in seconds) between sending requests to the endpoint (default: `300`)
-- `output_parts`: HTTP Response output Record parts - body | full (default: `body`)
-- `output_type`: HTTP Response output Record type - text | json (default: `text`)
+### `endpoint`
+*required*
 
-Additionally, the HTTP connector supports the following [SmartModules]({{<ref "/smartmodules/" >}}) options:
+The HTTP endpoint to send requests to
 
-- `filter`: The name of the _filter_ SmartModule
-- `map`: The name of the _map_ SmartModule
-- `filter-map`: The name of the _filter-map_ SmartModule
-- `arraymap`: The name of the _arraymap_ SmartModule
+### `method`
+default: `GET`
 
-## Deploy on InfinyOn Cloud
+The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE`
 
-Getting started with InfinyOn Cloud is a simple:
-1. Download [Fluvio CLI]
-2. Sign-up for a [free InfinyOn Cloud account].
-3. Login to InfinyOn Cloud via CLI: `fluvio cloud login`
+### `body`
+*optional*
 
-#### Deploy an HTTP connector
+The body to use in the HTTP request to the endpoint
 
-Connectors are defiend through configuration files. Create a `connect.yml` HTTP configuration file that instructs the **inbound connector** to read periodically from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website:
+### `interval`
+default: `300`
+
+The period (in seconds) between sending requests to the endpoint
+
+### `output_parts`
+default: `body`
+
+HTTP Response output Record parts
+
+Choices:
+* `body`
+* `full`
+
+### `output_type`
+default: `text`
+
+HTTP Response output Record type
+
+Choices:
+* `text`
+* `json`
+
+#### Example connector config 
 
 %copy%
-```yaml
-version: 0.3.0
-name: cat-facts
-type: http-source
-topic: cat-facts
-direction: source
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10s
-```
 
-Use the CLI command to deploy the connector on InfinyOn Cloud:
+{{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-http.yaml" lang="yaml" copy=true >}}
 
-%copy first-line%
-```bash
-$ fluvio connector create --config=./connect.yml
-```
-
-Once provisioned, the connector will run continuously and produce data records to the `cat-facts` every 10 seconds.
+This example config for inbound HTTP connector config reads from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website, and stores the output in the `cat-facts` topic every `300` seconds
 
 ## Data Events
 
@@ -70,6 +74,8 @@ The HTTP connector generates one data event per HTTP response. The data depends 
 ### HTTP - Body
 
 By default, the HTTP connector produces the `body` of the HTTP response in JSON format:
+
+Example output: `output_parts: body`
 
 %copy first-line%
 ```bash
@@ -84,21 +90,7 @@ $ fluvio consume cat-facts -T -d
 
 Use the `output_parts` parameter to produce full HTTP responses:
 
-%copy%
-
-{{< highlight yaml "hl_lines=9" >}}
-version: 0.3.0
-name: cat-facts
-type: http-source
-topic: cat-facts
-direction: source
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10s
-  output_parts: full
-{{</ highlight >}}
-
-This configruation, instructs the connector to product `header` and `body` to `cat-facts` topic.
+Example output: `output_parts: full`
 
 %copy first-line%
 ```bash
@@ -124,32 +116,21 @@ x-content-type-options: nosniff
 {"fact":"There are more than 500 million domestic cats in the world, with approximately 40 recognized breeds.","length":100}
 ```
 
-Note, the `header` is text and `body` is JSON.
+{{<idea>}}
+The `header` is text and `body` is JSON.
+{{</idea>}}
 
 ### HTTP - JSON
 
 Set the `output_type` parameter to `json` if you want to convert the full HTTP response into JSON format.
 
-%copy%
-
-{{< highlight yaml "hl_lines=9-10" >}}
-version: 0.3.0
-name: cat-facts
-type: http-source
-topic: cat-facts
-direction: source
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10s
-  output_parts: full
-  output_type: json
-{{</ highlight >}}
-
-Create a new connector that writes to `cat-facts`:
+ The following is the example output from {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} with the following inbound HTTP connector config:
+* `output_parts: full`
+* `output_type: json`
 
 %copy first-line%
 ```bash
-$ http % fluvio consume cat-facts -T=1 -d | jq
+$ fluvio consume cat-facts -T=1 -d | jq
 {
   "status": {
     "version": "HTTP/1.1",
@@ -189,45 +170,6 @@ To convert only the body of the HTTP Response and ignore the header, set `output
 }
 ```
 
-
-## Deploy Locally (Advanced)
-
-In a local environment, you have the option to delop a **Managed Connector** or **Local Connector**.
-
-* **Managed Connector**
-  * ensure your [fluvio profile]({{<ref "/cli/client/profile" >}}) points to your local cluster.
-  * follow the same instructions as in [Deploy on InfinyOn Cloud]({{<ref "#deploy-on-infinyon-cloud" >}}).
-* **Local Connector** (for connector developers)
-  * follow the instructions in the [next section]({{<ref "#deploy-local-connector" >}}).
-
-#### Deploy Local connector
-
-Local connectors are deployed as Docker containers. You may launch a local connector with the following command:
-
-%copy%
-```bash
-docker run -d --name="my-http" \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http \
-    -- \
-    --endpoint="https://catfact.ninja/fact" \
-    --fluvio-topic="cat-facts" \
-    --interval=10
-```
-
-Passing config options to a Local Connector, requires command-line arguments.
-In the above `docker` command, all arguments before the `--` are used by
-Docker itself, and all arguments after the `--` are passed to the connector.
-
-Importantly, when using a Local Connector, you _must_ include the first two arguments: a fluvio profile, and a docker container. For example:
-
-- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`
-    - Puts your `~/.fluvio/config` into the container, so the connector can reach your Fluvio cluster
-- `-t infinyon/fluvio-connect-http`
-    - Tells docker which image to use for the connector
-
-[Fluvio CLI]: {{<ref "/download" >}}
-[free InfinyOn Cloud account]: https://infinyon.cloud/signup
 
 ## Changelog
 
