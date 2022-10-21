@@ -2,35 +2,30 @@
 title: Kafka
 ---
 
-## Overview
-
 The Kafka Connector is quite simple. It will send every record on a kafka
 topic/partition to a fluvio topic/partition.
 
 ## Configuration Options
 
 %copy%
-```yaml
-# kafka-source-connector.yml
-name: my-kafka-source
-type: kafka-source
-topic: fluvio-output-topic
-parameters:
-  kafka-url: "localhost:9092" # or something
-  kafka-topic: kafka-input-topic
-```
 
-* `kakfa-url` is required
-* `kafka-topic` is optional and will default to the top level `topic` which is the topic used on the fluvio side of things.
-* `kafka-partition` is option and will default to `0` unless specified.
+{{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-kafka.yaml" lang="yaml" copy=true >}}
 
+###  `kakfa-url`
+*required*
 
-This configuration file is used together with the `fluvio connector create` command, like so:
+The url of the Kafka instance to connect to.
 
-%copy first-line%
-```bash
-$ fluvio connector create --config=./kafka-source-connector.yml
-```
+### `kafka-topic`
+
+Defaults to the name of the `fluvio` topic
+
+The name of the Kafka topic name to connect to.
+
+### `kafka-partition`
+Default: `0`
+
+The Kafka partition to connect to.
 
 ## Data Events
 
