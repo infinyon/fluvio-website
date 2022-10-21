@@ -1,23 +1,22 @@
 ---
 title: Postgres
-section: Sink
 ---
 
-The Postgres Sink Connector is a sink connector which reads events from a
+The Postgres Outbound Connector reads events from a
 fluvio topic and inserts them into a postgres database.
 
 ## Overview
 
-The postgres sink connector consumes replication events that a postgres
-source connector emits to a fluvio topic. In the near future, it will be able
-to consume events produced by other database source connectors.
+The Postgres Outbound connector consumes replication events that a postgres
+inbound connector emits to a fluvio topic. In the near future, it will be able
+to consume events produced by other database inbound connectors.
 
 
 ## Configuration Options
 
 Fluvio Connectors may be launched as a "Managed connector" when running Fluvio
 in Kubernetes, or as a "Local connector" which may connect to Fluvio anywhere.
-When using Fluvio Postgres Sink as a Managed Connector, you'll need to provide a
+When using Fluvio Postgres Outbound as a Managed Connector, you'll need to provide a
 configuration file that looks like the following:
 
 %copy%
@@ -51,9 +50,9 @@ Below are descriptions of the purpose of each parameter:
 
 ## Data Events
 
-The Postgres Sink Connector consumes [replication events from the Postgres
-Source connector]({{<ref "/connectors/sources/postgres#data-events" >}}) and runs the
-appropriate SQL for the corresponding postgres sink database.
+The Postgres Outbound Connector consumes [replication events from the Postgres
+ Inbound connector]({{<ref "/connectors/inbound/postgres#data-events" >}}) and runs the
+appropriate SQL for the corresponding postgres outbound database.
 
 ## Connector Resume
 

@@ -40,7 +40,7 @@ Getting started with InfinyOn Cloud is a simple:
 
 #### Deploy an HTTP connector
 
-Connectors are defiend through configuration files. Create a `connect.yml` HTTP configuration file that instructs the **source connector** to read periodically from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website:
+Connectors are defiend through configuration files. Create a `connect.yml` HTTP configuration file that instructs the **inbound connector** to read periodically from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website:
 
 %copy%
 ```yaml

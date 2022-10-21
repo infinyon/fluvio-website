@@ -1,11 +1,10 @@
 ---
 title: Dynamodb
-section: Sink
 ---
 
 ## Overview
 
-The Dynamodb Sink Connector is a sink connector which reads events from a
+The Dynamodb Outbound Connector reads events from a
 fluvio topic, deserializes them as json and inserts those key value pairs based
 on the columns in the config.
 

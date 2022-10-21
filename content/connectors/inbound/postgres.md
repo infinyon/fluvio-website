@@ -1,15 +1,14 @@
 ---
 title: Postgres
-section: Source
 toc: true
 ---
 
-The Postgres connector is a Source which reads events from a Postgres
+The Inbound Postgres connector reads events from a Postgres
 database and produces them into a Fluvio Topic.
 
 ## Overview
 
-The Fluvio Postgres Source connector allows you to connect to a Postgres database
+The Fluvio Inbound Postgres connector allows you to connect to a Postgres database
 and perform Change Data Capture (CDC) on it. Whenever data is inserted,
 updated, or deleted in the connected database, this connector will capture
 an event that describes the change that took place, and emit a record
@@ -23,7 +22,7 @@ has some
 [restrictions](https://www.postgresql.org/docs/14/logical-replication-restrictions.html).
 The main of which is that existing tables and rows will not be copied over when
 the connector starts. The postgres documentation recomends using `pg_dump` on
-the source and then `psql` on the postgres sink.
+the inbound and then `psql` on the postgres outbound.
 
 In this documentation, we'll walk through the process of preparing a
 Postgres database for CDC, launching the Fluvio Postgres connector, and
@@ -702,7 +701,7 @@ thing we'll do is set up the Fluvio Postgres connector, but I recommend you keep
 `psql` window open. We'll eventually want to come back to it in order to add some tables
 and data to the database and see the activity in the connector.
 
-### Launching the Fluvio Postgres Source connector
+### Launching the Fluvio Postgres Inbound connector
 
 To launch our Fluvio Postgres connector, we'll be using the `fluvio connector create` command.
 To use this, we first need to create a configuration file that describes the connector's
@@ -841,7 +840,7 @@ Consuming records from the beginning of topic 'postgres'
 
 ### Manually Setting Replication and Publication with `psql`
 
-In your `connector.yaml` args if you opt to `skip_setup`, the postgres source
+In your `connector.yaml` args if you opt to `skip_setup`, the postgres inbound 
 connector will assume you have created a logical replication slot and a
 publication. You can do this via `psql`.
 

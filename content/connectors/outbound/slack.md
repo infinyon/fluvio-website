@@ -1,6 +1,5 @@
 ---
 title: Slack
-section: Sink
 ---
 
 ## Overview

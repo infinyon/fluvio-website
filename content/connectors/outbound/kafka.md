@@ -1,6 +1,5 @@
 ---
 title: Kafka
-section: Sink
 ---
 
 ## Overview

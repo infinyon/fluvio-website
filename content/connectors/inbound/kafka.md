@@ -1,6 +1,5 @@
 ---
 title: Kafka
-section: Source
 ---
 
 ## Overview

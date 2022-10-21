@@ -11,12 +11,12 @@ allowing for portability and consistency from a deployment perspective, and simp
 flexibility from a development perspective. Fluvio also provides a uniform mechanism for
 configuring instances of connectors via `yaml` config files.
 
-Each connector is either a `source`, which imports data, or a `sink`, which exports data.
+Each connector is either an `inbound`, which imports data, or an `outbound`, which exports data.
 Connectors may be deployed in one of two ways: as a Managed Connector,
 in which the Fluvio cluster provisions and manages the connector; or as a Local Connector,
 in which you manually launch the connector as a docker container where you want it.
 Additionally, connectors conceptually have four stages, where each stage has distinct responsibilities.
-These stages are the same for sources and sinks, but in reverse order. For a source connector,
+These stages are the same for inbound and outbound, but in reverse order. For a inbound connector,
 the stages are as follows:
 
 <img src="./images/smart-connectors-extra.svg"
@@ -227,7 +227,7 @@ $ docker run -d --name="my-http" \
 Fluvio's official connectors have support for applying SmartModules to perform inline
 compute on the data passing through - when used together this way, we call them
 "Smart Connectors". One of the reasons Smart Connectors are so beneficial is because
-they can help save streaming costs. For example, when using a Source connector to
+they can help save streaming costs. For example, when using an Inbound  connector to
 stream data from a third-party data platform, you may only be interested in receiving
 a subset of the available data. With Smart Connectors, you can write custom logic to
 filter out irrelevant data _before_ it gets sent over the network and persisted in
@@ -375,7 +375,7 @@ Followed by launching it with `fluvio connector`:
 $ fluvio connector create --config=./connect.yml
 ```
 
-[1]: {{<ref "sources/http" >}}
+[1]: {{<ref "inbound/http" >}}
 [InfinyOn Cloud]: https://infinyon.cloud/signup
 
 
@@ -396,9 +396,9 @@ For our rust connectors we have a set of parameters that are the same for all co
 ### Producer Options
 
 Adding a top level `producer` section to a given yaml has the following key options:
-* `linger` - the amount of time a source connector should wait before publishing
+* `linger` - the amount of time an inbound connector should wait before publishing
 to a fluvio topic. This is of the form `1s`, `1m`, `1 ms`, etc.
-* `batch-size` - the size of the batches for the source connector. This is of the
+* `batch-size` - the size of the batches for the inbound connector. This is of the
 form `1B`, `2KB`, `3MB`, etc. This allows for more throughput into a fluvio
 topic.
 * `compression` - This is an enum with options of `gzip`, `snappy`, or `lz4`
@@ -428,4 +428,4 @@ producer:
 
 Adding a top level `consumer` section to a given yaml has the following options:
 
-* `partition` - The fluvio partition that a sink connector uses.
+* `partition` - The fluvio partition that an outbound connector uses.
