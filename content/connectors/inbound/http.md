@@ -19,7 +19,7 @@ periodically sends HTTP requests and collects the response as an event.
 
 ## Configuration Options
 
-The HTTP connector supports the following configuration options:
+The inbound HTTP connector supports the following configuration options:
 
 ### `endpoint`
 *required*

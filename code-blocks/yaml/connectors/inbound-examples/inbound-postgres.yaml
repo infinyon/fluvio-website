@@ -1,0 +1,9 @@
+version: 0.2.0
+name: my-postgres-source
+type: postgres-source
+topic: postgres-topic
+parameters:
+  publication: fluvio
+  slot: fluvio
+secrets:
+  FLUVIO_PG_DATABASE_URL: postgres://postgres:mysecretpassword@localhost:5432/postgres

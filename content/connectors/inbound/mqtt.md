@@ -11,7 +11,7 @@ since it is lightweight and easy to use.
 
 ## Configuration Options
 
-The MQTT connector supports the following configuration options:
+The inbound MQTT connector supports the following configuration options:
 
 ### `mqtt-url`
 *required*
