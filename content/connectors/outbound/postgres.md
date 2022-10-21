@@ -1,5 +1,6 @@
 ---
-title: Postgres
+title: Outbound PostgreSQL Connector
+menu: Postgres
 ---
 
 The Postgres Outbound Connector reads events from a
@@ -12,41 +13,46 @@ inbound connector emits to a fluvio topic. In the near future, it will be able
 to consume events produced by other database inbound connectors.
 
 
-## Configuration Options
+## Connector config `parameters`
 
 Fluvio Connectors may be launched as a "Managed connector" when running Fluvio
 in Kubernetes, or as a "Local connector" which may connect to Fluvio anywhere.
 When using Fluvio Postgres Outbound as a Managed Connector, you'll need to provide a
 configuration file that looks like the following:
 
-%copy%
-```yaml
-# connect.yml
-version: 0.2.0
-name: my-postgres-sink
-type: postgres-sink
-topic: postgres-topic
-parameters:
-  url: postgres://postgres:mysecretpassword@localhost:5432/postgres
-secrets:
-  FLUVIO_PG_DATABASE_URL: postgres://postgres:mysecretpassword@localhost:5432/postgres
-```
-
-This configuration file is used together with the `fluvio connector create` command, like so:
-
-%copy first-line%
-```bash
-$ fluvio connector create --config=./connect.yml
-```
 
 Below are descriptions of the purpose of each parameter:
 
-- `url` (required): The login URL for your Postgres database. This should contain
-  your username, password, database hostname, and port. This key can also be specified
- via the `FLUVIO_PG_DATABASE_URL` in the `secrets` sections like above.
-- `topic` (required): The name of the Fluvio Topic that the connector should
+### `url`
+*required*
+
+The login URL for your Postgres database.
+
+This should contain
+  your username, password, database hostname, and port.
+  - Example: `postgres://user:password@hostname:port/database_name`
+  
+  This key can also be specified under config `secrets`.
+  
+  See: [`FLUVIO_PG_DATABASE_URL`]({{<ref "#fluvio_pg_database_url">}})
+
+ ### `topic`
+*required*
+
+The name of the Fluvio Topic that the connector should
   produce CDC events to.
   - Example: `postgres-topic`
+
+## Connector config `secrets`
+### `FLUVIO_PG_DATABASE_URL`
+
+Alternative configuration path for config parameter [`url`]({{<ref "#url">}})
+
+
+#### Example connector config 
+%copy%
+
+{{<code file="code-blocks/yaml/connectors/outbound-examples/outbound-postgres.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 
