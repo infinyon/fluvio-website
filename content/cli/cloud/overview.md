@@ -1,5 +1,5 @@
 ---
-title: InfinyOn Cloud - Overview
+title: InfinyOn Cloud Overview
 menu: Overview
 weight: 10
 ---

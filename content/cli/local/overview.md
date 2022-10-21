@@ -1,5 +1,5 @@
 ---
-title: Fluvio Local Overview
+title: Fluvio Local Cluster Overview
 menu: Overview
 toc: false
 weight: 10
