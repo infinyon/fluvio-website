@@ -15,10 +15,10 @@ Refer to the [fluvio docs.rs page] for full detail.
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
 [Download Cargo.toml](/rust/Cargo.toml)
-{{<code file="code/rust/Cargo.toml" lang="toml" copy=true >}}
+{{<code file="code-blocks/rust/Cargo.toml" lang="toml" copy=true >}}
 
-[Download main.rs](/rust/src/main.rs) and place in a subdirector named `src`:
-{{<code file="code/rust/src/main.rs" lang="rust" copy=true >}}
+[Download main.rs](/rust/src/main.rs) and place in a subdirectory named `src`:
+{{<code file="code-blocks/rust/src/main.rs" lang="rust" copy=true >}}
 
 ### Run
 

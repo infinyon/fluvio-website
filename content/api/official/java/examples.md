@@ -21,11 +21,11 @@ Follow the [installation instructions]({{< ref "installation.md" >}}) to run thi
 
 [Download ./gradle-project/app/build.gradle](/java/fluvio-java/app/build.gradle)
 
-{{<code file="code/java/fluvio-java/app/build.gradle" lang="gradle" copy=true >}}
+{{<code file="code-blocks/java/fluvio-java/app/build.gradle" lang="gradle" copy=true >}}
 
 [Download ./gradle-project/app/src/main/java/fluvio/App.java](/java/fluvio-java/app/src/main/java/fluvio/App.java)
 
-{{<code file="code/java/fluvio-java/app/src/main/java/fluvio/App.java" lang="java" copy=true >}}
+{{<code file="code-blocks/java/fluvio-java/app/src/main/java/fluvio/App.java" lang="java" copy=true >}}
 
 ### Run
 

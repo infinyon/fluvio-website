@@ -38,7 +38,7 @@ This is the template YAML connector file. To make it useful, it needs to be
 populated – which we will do in the next step. See
 [the documentation](/connectors/) for the parameters available for use.
 
-{{<code file="code/yaml/connector-template.yaml" lang="yaml" copy="true">}}
+{{<code file="code-blocks/yaml/connector-template.yaml" lang="yaml" copy="true">}}
 
 Thankfully, filling it out is simple. For any connection, you need a name,
 the connection type, and what topic to connect to.
@@ -48,7 +48,7 @@ the connection type, and what topic to connect to.
 For the HTTP-specific parameters you will need to specify the link it is
 polling, and the interval at which it polls.
 
-{{<code file="code/yaml/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
+{{<code file="code-blocks/yaml/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
 
 This creates a connector named `cat-facts`, that reads from the website
 `https://catfacts.ninja/fact` every 30 seconds, and produces to the topic
@@ -149,7 +149,7 @@ There should now be a new directory labeled `catfacts-map` in your working direc
 
 Now we can edit the `catfacts-map/src/lib.rs` file to get what we need!
 
-{{<code file="code/rust/catfacts-map/src/lib.rs" lang="rust">}}
+{{<code file="code-blocks/rust/catfacts-map/src/lib.rs" lang="rust">}}
 
 Now that we have the SmartModule created, we need to compile it and link it to
 Fluvio, so that it can be used. Otherwise you would have to remember the entire
@@ -174,7 +174,7 @@ To use a SmartModule with a Connector, add it to the Connector config.
 Currently you have to specify which type of SmartModule you are using, so it
 will be the form of `module-type: name-of-module`.
 
-{{<code-highlight file="code/yaml/catfacts-map-connector.yaml" lang="yaml" lines=10 copy="true">}}
+{{<code-highlight file="code-blocks/yaml/catfacts-map-connector.yaml" lang="yaml" lines=10 copy="true">}}
 
 -> In the near future the config arguments be updated so that you only specify that you are using a module; Fluvio will soon be able to take care of determining which module type is being used.
 
