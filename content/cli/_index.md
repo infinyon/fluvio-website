@@ -22,7 +22,7 @@ out with Fluvio:
 #### Setting up a cluster
 
 - [Create your own Fluvio cluster with `fluvio cluster start`]({{< ref "/cli/local/cluster#fluvio-cluster-start" >}})
-- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`]({{< ref "cli/cloud/get-started#fluvio-cloud-login" >}})
+- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`]({{< ref "cli/cloud/overview#fluvio-cloud-login" >}})
   
 #### Sending and Receiving data from Fluvio
 

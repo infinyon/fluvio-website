@@ -1,6 +1,6 @@
 ---
-title: Getting Started with InfinyOn Cloud
-menu: Getting Started
+title: InfinyOn Cloud - Overview
+menu: Overview
 weight: 10
 ---
 
