@@ -2,53 +2,114 @@
 title: Common connector config
 menu: Common config 
 ---
-### Common Connector Arguments
+## Common connector arguments
 
-For our rust connectors we have a set of parameters that are the same for all connectors. Below are the keys and their descriptions:
+### `name`
+*required*
 
-* `aggregate` - Path of aggregate smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
-* `aggregate-initial-value` - The initial value for the aggregate smartmodule
-* `arraymap` - Path of arraymap smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
-* `filter` -  Path of filter smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
-* `filter-map` - Path of `filter-map` smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
-* `fluvio-partition` - The fluvio partition to consume with
-* `map` - Path of map smartmodule used as a pre-produce step. If the value is not a path to a file, it will be used to lookup a SmartModule by name
-* `rust-log` - The rust log level. If it is not defined, `RUST_LOG` environment variable will be used. If environment variable is not defined, then INFO level will be used.
+A given name for your connector
+
+### `type`
+*required*
+
+The kind of Inbound or Outbound connector
+
+### `version`
+*required*
+
+This version corresponds to the type of Inbound of Outbound connector.
+See the individual Inbound or Outbound connector page for valid version numbers.
+
+### `topic`
+*required*
+
+This is the name of the topic that sends or recieves records
+
+### `create-topic`
+Default: `false`
+
+If the `topic` does not exist at the time of connector creation, it will be created if set to `true`.
+
+Choices:
+- `true`
+- `false`
+
+### `rust-log`
+Default: `info`
+
+This configures the logging for your connector
+
+Choices:
+- `off`
+- `info`
+- `warn`
+- `error`
+- `debug`
+- `trace`
 
 
-### Producer Options
+### `consumer` (Common Outbound connector options)
 
-Adding a top level `producer` section to a given yaml has the following key options:
-* `linger` - the amount of time an inbound connector should wait before publishing
-to a fluvio topic. This is of the form `1s`, `1m`, `1 ms`, etc.
-* `batch-size` - the size of the batches for the inbound connector. This is of the
-form `1B`, `2KB`, `3MB`, etc. This allows for more throughput into a fluvio
-topic.
-* `compression` - This is an enum with options of `gzip`, `snappy`, or `lz4`
-for the different compression types that fluvio supports.
+#### `partition`
+Default: `0`
 
-These fields are all optional as well as the `producer` field itself.
+Select the partition for Outbound connector to watch
 
-%copy%
+### `producer` Common Inbound connector options
+
+#### `linger`
+Default: `100ms`
+
+The maximum time an Inbound connector spends collecting data before sending to topic.
+Can be combined with `batch-size`
+
+#### `compression`
+Default: `none`
+
+Choices:
+- `none`
+- `gzip`
+- `snappy`
+- `lz4`
+
+#### `batch-size`
+Default: `16KB`
+
+The maximum size of the Inbound connector producer batch size before sending to topic.
+Can be combined with `linger`
+
+### `transforms` (Common SmartModule options)
+
+#### `uses`
+#### `invoke`
+#### `with`
+Default: `[]`
+
+
+### Connector specific configuration options
+
+See individual connector for more details about the available parameters or secrets
+
+
+#### `parameters`
+
+In this section is where the unique configuration per connector will be described
+
 ```yaml
-# connect.yml
-version: 0.3.0
-name: cat-facts
-type: http-source
-topic: cat-facts
-direction: source
 parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10s
-  map: "catfact-map"
-producer:
-  linger: 1ms
-  compression: gzip
-  batch-size: 1 MB
+    example: true
+    message: "hello"
 ```
 
-### Consumer Options
+#### `secrets`
+Pass sensitive configuration details to your connector
 
-Adding a top level `consumer` section to a given yaml has the following options:
+```yaml
+secrets:
+    my-secret: secret-value
+    A_SECRET: 12345
+```
 
-* `partition` - The fluvio partition that an outbound connector uses.
+## Connector Template
+
+{{<code file="code-blocks/yaml/connector-template.yaml" lang="yaml" copy=true >}}
