@@ -1,71 +1,121 @@
 ---
-title: Run connectors locally 
-menu: Local connectors
+title: Local Connectors
+weight: 20
 ---
 
-## Local Connectors
+Local connectors are provided as Docker containers. Using our `connector-run` utility supports starting connectors in Kubernetes or Docker using a connector config file.
 
-Local Connectors are deployed using Docker. Each connector is packaged into
-a container, allowing for easy and portable execution. When running a local connector, configurations
-are passed to it using command-line arguments, given at the end of the `docker run` command.
+{{<caution>}}
+Running local connectors is an advanced topic.<br>
+Currently our `connector-run` utility requires a [Rust development environment](https://www.rust-lang.org/learn/get-started)
+to build the CLI, and Docker or Kubernetes.
+{{</caution>}}
 
-One of the primary ways Local connectors are different from Managed connectors is that
-we have to manually set up our Fluvio profile for Local connectors. Fluvio profiles live
-in the `~/.fluvio/config` file, and each profile describes how to connect to a specific
-Fluvio cluster. Therefore, in order to use a Local connector, we need to give it access to
-our `~/.fluvio/config` file.
+## Create your first connector locally
 
-Let's go ahead and check out what this looks like. First, create a topic for our connector
-to pump data into.
+This guide will walk you through creating an Inbound HTTP connector to ingest json data from and HTTP endpoint.
 
-%copy first-line%
-```bash
-$ fluvio topic create cat-facts
-```
-
-Now, let's try running the `http` connector in a docker container using the following command:
+You will need a local Fluvio cluster for the connector to send data to.
 
 %copy%
-```bash
-docker run -d --name="my-http" \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http:latest \
-    -- \
-    --endpoint="https://catfact.ninja/fact" \
-    --fluvio-topic="cat-facts" \
-    --interval=10
+```shell
+$ fluvio cluster start
 ```
 
-What we're doing here is setting up the HTTP connector to fetch a new cat fact every 10
-seconds and produce it to our Fluvio topic `cat-facts`. Here are some important points to
-understand about this command:
+For more details about starting a cluster, [see `fluvio cluster` CLI docs]({{<ref "/cli/local/cluster.md">}}).
 
-- `-v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config"`
-  - This part of the command is what shares our `~/.fluvio/config` file with the connector
-    so that it has access to our Fluvio profiles. The connector will connect using the "active"
-    profile in the config, which you can view using `fluvio profile`
-- `-t infinyon/fluvio-connect-http:latest`
-  - Specifies which docker image should be used to launch this connector. Since we're using
-    the HTTP connector, we give it the full name of the container on Docker Hub.
-- The rest of the arguments are specific to the HTTP connector, and you can read more about
-  them on [the HTTP connector docs page][1].
+And you will need a Rust environment with a copy of our [`fluvio-connectors` repo](https://github.com/infinyon/fluvio-connectors.git)
 
-You should be able to see the cat facts start rolling in, we can check this
-by opening a consumer in another terminal window.
-
-```bash
-$ fluvio consume cat-facts -B
-{"fact":"A cat almost never meows at another cat, mostly just humans. Cats typically will spit, purr, and hiss at other cats.","length":116}
-{"fact":"In one stride, a cheetah can cover 23 to 26 feet (7 to 8 meters).","length":65}
-{"fact":"Phoenician cargo ships are thought to have brought the first domesticated cats to Europe in about 900 BC.","length":105}
+%copy%
+```shell
+$ git clone https://github.com/infinyon/fluvio-connectors.git
 ```
 
-If we want to view the logs of our local connector to ensure it's running properly, we can
-use the `docker logs` command, like so:
+### Example HTTP connector
+This is the config file for the [Inbound HTTP connector]({{<ref "/connectors/inbound/http.md">}}) in this guide.
+
+{{<code file="code-blocks/yaml/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
+
+In this config, we are creating a connector named `cat-facts`. It will request data from {{<link "https://catfact.ninja" "a cat fact API">}} once every 30 seconds and receive json data. The connector will store the json into a topic called `cat-facts-data`
+
+
+#### Start a connector
+
+You can start a connector in Kubernetes by running 
+
+%copy%
+```shell
+$ cargo run --bin connector-run -- apply --config /path/to/catfacts-basic-connector.yaml
+```
+
+#### List all connectors
+
+To list all connectors in Kubernetes, run `kubectl get pods --selector app=fluvio-connector`
+
+%copy%
+```shell
+$ kubectl get pods --selector app=fluvio-connector
+```
+
+#### Look at connector logs
+
+To view the logs of your connectors in Kubernetes, run `kubectl logs -l app=fluvio-connector`
+
+%copy%
+```shell
+$ kubectl logs -l app=fluvio-connector
+```
+#### View data in topic
+
+The HTTP connector should be receiving data and storing it in a topic with the name we specified.
 
 %copy first-line%
-```bash
-$ docker logs -f my-http
+```shell
+$ fluvio topic list
+  NAME            TYPE      PARTITIONS  REPLICAS  RETENTION TIME  COMPRESSION  STATUS                   REASON
+  cat-facts-data  computed  1           1         7days           any          resolution::provisioned
 ```
 
-And finally, when we're done with our connector, we can stop it from running using `docker kill`:
+To verify, you can consume from the topic with the `fluvio consume` CLI.
+
+We are using the `-B` option to start from the beginning offset of the topic. Once you reach the end of the topic, you can see new data as it is sent to the topic. To exit this live view, press `Ctrl+C`.
+
+{{<idea>}}
+Using the `--disable-continuous` flag with `fluvio consume` will exit the stream once the last record has printed to screen
+{{</idea>}}
+
+```shell
+$ fluvio consume cat-facts-data -B
+{"fact":"Female felines are \\superfecund","length":31}
+{"fact":"Cats only sweat through their paws and nowhere else on their body","length":65}
+{"fact":"While many parts of Europe and North America consider the black cat a sign of bad luck, in Britain and Australia, black cats are considered lucky.","length":146}
+^C
+```
+
+#### Delete a connector
+
+When you want to stop the connector in Kubernetes, run
+
+```shell
+$ cargo run --bin connector-run -- delete --config /path/to/catfacts-basic-connector.yaml
+```
+
+Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete cat-facts-data`
+
+%copy first-line%
+```shell
+$ fluvio topic delete cat-facts-data
+topic "cat-facts-data" deleted
+```
+
+### Conclusion
+
+And that's the end of the guide.
+
+Using `connector-run`, and `kubectl` we were able to manage our connectors in Kubernetes.
+
+We created a basic Inbound HTTP connector, looked at the logs for the connector, viewed the HTTP response data in the Fluvio topic, and lastly we deleted the connector and topic.
+
+You are ready to create your own connectors! Check out the docs for our supported Inbound and Outbound connector docs try to connect to your own data source.  
+
+
