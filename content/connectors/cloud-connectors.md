@@ -1,0 +1,128 @@
+---
+title: Cloud Connectors 
+weight: 30
+---
+
+Connectors with [InfinyOn Cloud] is the best option for those who want to manage their data pipelines in one place.
+
+Configuring connectors works the same way with InfinyOn Cloud, as it does locally.
+
+You can create and maintain your connectors in a more streamlined way through the CLI with [`fluvio cloud`]({{<ref "/cli/cloud/overview.md">}}).
+
+## Create your first connector 
+
+This guide will walk you through creating an Inbound HTTP connector to ingest json data from and HTTP endpoint.
+
+To follow this guide you will need to sign up for [InfinyOn Cloud] and log into the CLI.
+
+%copy%
+```bash
+fluvio cloud login
+```
+
+{{<idea>}}
+Check out the [`fluvio cloud` CLI docs]({{<ref "/cli/cloud/overview.md">}}) for more details about logging into the CLI. 
+{{</idea>}}
+
+### Example HTTP connector
+This is the config file for the [Inbound HTTP connector]({{<ref "/connectors/inbound/http.md">}}) in this guide.
+
+{{<code file="code-blocks/yaml/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
+
+In this config, we are creating a connector named `cat-facts`. It will request data from {{<link "https://catfact.ninja" "a cat fact API">}} once every 30 seconds and receive json data. The connector will store the json into a topic called `cat-facts-data`
+
+
+#### Start a connector
+
+You can create a connector by using `fluvio cloud connector create` with the example connector.
+
+%copy first-line%
+```bash
+$ fluvio cloud connector create --config catfacts-basic-connector.yml 
+connector "cat-facts" (http-source) created
+```
+#### List all connectors
+
+After the connector is created, you can list the connectors you've created, and view their current status.
+
+%copy first-line%
+```bash
+$ fluvio cloud connector list
+ NAME                        TYPE         VERSION  STATUS
+ cat-facts                   http-source  0.3.0    Running
+```
+
+#### Look at connector logs
+
+If there is a need to debug the behavior of a connector, the logs are available by running `fluvio cloud connector logs <connector name>`
+
+%copy first-line%
+```bash
+$ fluvio cloud connector logs cat-facts
+2022-10-23T07:36:36.915928Z  INFO http_source: Starting HTTP source connector connector_version="0.3.0" git_hash="10ee08a94b7be7d91a31a01104b7f6e86e54b7d9"
+2022-10-23T07:36:36.915981Z  INFO http_source: interval=30s method=GET topic=cat-facts output_parts=body output_type=text endpoint=https://catfact.ninja/fact
+2022-10-23T07:36:36.916165Z  INFO fluvio::config::tls: Using verified TLS with certificates from paths domain="odd-butterfly-0dea7a035980a4679d0704f654e1a14e.c"
+2022-10-23T07:36:36.920362Z  INFO fluvio::fluvio: Connecting to Fluvio cluster fluvio_crate_version="0.12.14" fluvio_git_hash=""
+2022-10-23T07:36:36.979270Z  INFO connect: fluvio::sockets: connect to socket add=fluvio-sc-public:9003
+2022-10-23T07:36:37.025300Z  INFO connect:connect_with_config: fluvio::config::tls: Using verified TLS with certificates from paths domain="odd-butterfly-0dea7a035980a4679d0704f654e1a14e.c"
+2022-10-23T07:36:37.088073Z  INFO connect:connect_with_config:connect: fluvio::sockets: connect to socket add=fluvio-sc-public:9003
+2022-10-23T07:36:37.494092Z  INFO dispatcher_loop{self=MultiplexDisp(13)}: fluvio_socket::multiplexing: multiplexer terminated
+2022-10-23T07:36:37.544828Z  INFO http_source: Connected to Fluvio
+2022-10-23T07:36:38.060832Z  INFO run:create_serial_socket_from_leader{leader_id=0}:connect_to_leader{leader=0}:connect: fluvio::sockets: connect to socket add=fluvio-spu-main-0.acct-.svc.cluster.local:9005
+```
+
+#### View data in topic
+
+The HTTP connector should be receiving data and storing it in a topic with the name we specified.
+
+%copy first-line%
+```shell
+$ fluvio topic list
+  NAME            TYPE      PARTITIONS  REPLICAS  RETENTION TIME  COMPRESSION  STATUS                   REASON
+  cat-facts-data  computed  1           1         7days           any          resolution::provisioned
+```
+
+To verify, you can consume from the topic with the `fluvio consume` CLI.
+
+We are using the `-B` option to start from the beginning offset of the topic. Once you reach the end of the topic, you can see new data as it is sent to the topic. To exit this live view, press `Ctrl+C`.
+
+{{<idea>}}
+Using the `--disable-continuous` flag with `fluvio consume` will exit the stream once the last record has printed to screen
+{{</idea>}}
+
+```shell
+$ fluvio consume cat-facts-data -B
+{"fact":"Female felines are \\superfecund","length":31}
+{"fact":"Cats only sweat through their paws and nowhere else on their body","length":65}
+{"fact":"While many parts of Europe and North America consider the black cat a sign of bad luck, in Britain and Australia, black cats are considered lucky.","length":146}
+^C
+```
+
+#### Delete a connector
+
+When you want to stop the connector, you can delete it with `fluvio cloud connector <connector name>`
+
+%copy first-line%
+```shell
+$ fluvio cloud connector delete cat-facts
+connector "cat-facts" deleted
+```
+
+Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete <topic name>`
+
+%copy first-line%
+```shell
+$ fluvio topic delete cat-facts-data
+topic "cat-facts-data" deleted
+```
+
+### Conclusion
+
+And that's the end of the guide.
+
+We created a basic Inbound HTTP connector, looked at the logs for the connector, viewed the HTTP response data in the Fluvio topic, and lastly we deleted the connector and topic.
+
+You are ready to create your own connectors! Check out the docs for our supported Inbound and Outbound connector docs try to connect to your own data source.  
+
+
+[InfinyOn Cloud]: https://infinyon.cloud

@@ -1,6 +1,6 @@
 ---
 title: Common connector config
-menu: Common config 
+weight: 40
 ---
 ## Common connector arguments
 
@@ -24,15 +24,6 @@ See the individual Inbound or Outbound connector page for valid version numbers.
 *required*
 
 This is the name of the topic that sends or recieves records
-
-### `create-topic`
-Default: `false`
-
-If the `topic` does not exist at the time of connector creation, it will be created if set to `true`.
-
-Choices:
-- `true`
-- `false`
 
 ### `rust-log`
 Default: `info`
