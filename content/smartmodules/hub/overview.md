@@ -14,7 +14,7 @@ Thie sections outlines core concepts of the SmartModule Hub.
 * [Certified SmartModules](#certified-smartmodules)
 * [Private/Public SmartModules](#privatepublic-smartmodules)
 
-If you want to skip ahead, [`Login`] to access SmartModule Hub.
+If you want to skip ahead, checkout [SmartModule Operations](#smartmodule-operations). 
 
 ### Unique Identifier
 
@@ -58,11 +58,10 @@ SmartModules published to the Hub can `public` or `private`. Public SmartModules
 -> This feature is under development; please reach out on [`Discord`] to request early access.
 
 
-## Next Steps
+## SmartModule Operations
 
-1. [`Login`] to use the Hub
-2. [`List`] SmartModules in the Hub
-3. [`Download`] SmartModules from the Hub.
+* [`List`] SmartModules in the Hub
+* [`Download`] SmartModules from the Hub.
 
 
 [`InfinyOn Cloud`]: https://infinyon.cloud/
@@ -70,6 +69,5 @@ SmartModules published to the Hub can `public` or `private`. Public SmartModules
 [`SMDK section`]: {{< ref "/smartmodules/smdk/overview" >}}
 [`SMDK cli`]: {{< ref "/cli/smartmodules/smdk" >}}
 [`Hub cli`]: {{< ref "/cli/smartmodules/hub" >}}
-[`Login`]: {{< ref "login" >}}
 [`List`]: {{< ref "list" >}}
 [`Download`]: {{< ref "download" >}}
