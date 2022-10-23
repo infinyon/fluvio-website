@@ -37,6 +37,7 @@ and `psql` on the Postgres DB the outbound connector inserts into.
 type: postgres-source
 ```
 
+%copy%
 ```yaml
 version: 0.2.0
 ```

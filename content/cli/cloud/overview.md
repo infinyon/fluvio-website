@@ -6,7 +6,7 @@ weight: 10
 
 InfinyOn Cloud is managed through the [`Fluvio CLI`] via `fluvio-cloud` plugin which is distributed by default by the installation script.
 
-##### Presequisites
+##### Prerequisites
 * [Download Fluvio CLI]
 * [Provision InfinyOn Cloud Account]
 

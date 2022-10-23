@@ -18,6 +18,7 @@ Follow the Slack docs for creating a webhook: https://api.slack.com/messaging/we
 type: slack-sink
 ```
 
+%copy%
 ```yaml
 version: 0.2.0
 ```

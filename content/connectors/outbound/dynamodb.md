@@ -15,6 +15,7 @@ The DynamoDB Outbound Connector reads events from a Fluvio topic, then deseriali
 type: dynamodb-sink
 ```
 
+%copy%
 ```yaml
 version: 0.2.0
 ```

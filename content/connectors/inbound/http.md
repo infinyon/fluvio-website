@@ -23,6 +23,7 @@ periodically sends HTTP requests and collects the response as an event.
 type: http-source
 ```
 
+%copy%
 ```yaml
 version: 0.3.0
 ```

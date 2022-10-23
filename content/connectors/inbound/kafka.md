@@ -19,6 +19,7 @@ The Inbound Kafka connector does not currently support SSL
 type: kafka-source
 ```
 
+%copy%
 ```yaml
 version: 0.2.0
 ```

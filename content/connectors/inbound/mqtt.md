@@ -19,6 +19,7 @@ since it is lightweight and easy to use.
 type: mqtt-source
 ```
 
+%copy%
 ```yaml
 version: 0.3.0
 ```

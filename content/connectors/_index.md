@@ -35,12 +35,14 @@ arrives to or while it streams from a Fluvio topic. The **Filter** and **Shape**
 Powered by WebAssembly (also called wasm), SmartModules are pre-packaged or custom logic applied to your data. Supporting access to your data while it is in transit provides you the ability to clean, transform and enrich your data before it is stored in a topic, or it exits the Fluvio cluster.
 
 Use Connectors either as: 
-* a Local Connector
+* a [Local Connector]({{<ref "/connectors/local-connectors.md">}})
   * Run your connector on your machine as a docker container
 
-* a Cloud Connector,
+* a [Cloud Connector]({{<ref "/connectors/cloud-connectors.md">}}),
   * You can start a connector on [InfinyOn Cloud], and let us manage the infrastruture
 
-You can customize how your connectors run through a configuration file. For more info about connectors or configuration, check out our supported Inbound and Outbound connector docs.
+You can customize how your connectors run through a configuration file.
+
+For more info about connectors or configuration, check out our supported Inbound and Outbound connector docs.
 
 [InfinyOn Cloud]: https://infinyon.cloud

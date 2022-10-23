@@ -21,7 +21,6 @@ To see the full docs, visit [our typedoc page].
 
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-[Download example.ts](/node/example.ts)
 {{<code file="code-blocks/node/example.ts" lang="typescript" copy=true >}}
 
 ### Run

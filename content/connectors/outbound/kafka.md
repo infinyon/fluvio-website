@@ -19,6 +19,7 @@ The Outbound Kafka connector does not currently support SSL
 type: kafka-sink
 ```
 
+%copy%
 ```yaml
 version: 0.2.0
 ```

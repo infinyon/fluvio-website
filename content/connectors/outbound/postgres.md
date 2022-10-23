@@ -24,12 +24,16 @@ The Outbound Postgres connector does not currently support SSL
 type: postgres-sink
 ```
 
+%copy%
 ```yaml
 version: 0.2.0
 ```
 
 ## Secrets
 ### `FLUVIO_PG_DATABASE_URL`
+*required*
+
+### `url`
 *required*
 
 The login URL for your Postgres database.
@@ -39,6 +43,17 @@ This should contain
   - Example: `postgres://user:password@hostname:port/database_name`
   
 #### Example connector config 
+
+{{<code file="code-blocks/yaml/connectors/outbound-examples/outbound-postgres.yaml" lang="yaml" copy=true >}}
+
+## Connector config `secrets`
+### `FLUVIO_PG_DATABASE_URL`
+
+Alternative configuration path for config parameter [`url`]({{<ref "#url">}})
+
+
+#### Example connector config 
+%copy%
 
 {{<code file="code-blocks/yaml/connectors/outbound-examples/outbound-postgres.yaml" lang="yaml" copy=true >}}
 
