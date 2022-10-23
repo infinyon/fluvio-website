@@ -5,25 +5,18 @@ section: Connectors
 toc: true
 ---
 
-Fluvio's Connectors are components that may be deployed to import or export streaming data
-from or to a third-party data platform. Connectors are packaged and distributed as Docker images,
-allowing for portability and consistency from a deployment perspective, and simplicity and
-flexibility from a development perspective. Fluvio also provides a uniform mechanism for
-configuring instances of connectors via `yaml` config files.
+Smart Connectors make the process of importing or exporting data uncomplicated.
+Import data with an `Inbound` connector and export data with an `Outbound` connector.
 
-Each connector is either an `inbound`, which imports data, or an `outbound`, which exports data.
-Connectors may be deployed in one of two ways: as a Managed Connector,
-in which the Fluvio cluster provisions and manages the connector; or as a Local Connector,
-in which you manually launch the connector as a docker container where you want it.
-Additionally, connectors conceptually have four stages, where each stage has distinct responsibilities.
-These stages are the same for inbound and outbound, but in reverse order. For a inbound connector,
-the stages are as follows:
+Inbound and outbound connectors fundamentally work in the same way. The only difference being the direction your data is streaming with respect to a Fluvio topic.
+
+There are 4 steps to the connector:
 
 <img src="./images/smart-connectors-extra.svg"
      alt="Smart Connectors"
      style="justify: center; max-width: 600px" />
 
-- **Protocol**: Parses input data according to the wire format of the connected data platform.
+- **Protocol**: Parses data according to the wire format of the connected data platform.
 - **Extract**: Extracts raw data from the protocol format and packages it neatly into data structures
   that may be used by subsequent stages or be produced directly to a topic.
 - **Filter** (optional): A user-provided SmartModule that may determine whether a given record
@@ -31,25 +24,23 @@ the stages are as follows:
 - **Shape** (optional): A user-provided SmartModule that may take the extracted data structures and
   transform them in to an application-specific format.
 
-The **Protocol** and **Extract** stages are built directly into the implementation of each
-connector, and have domain-specific logic according to the data platform the connector is
-integrating with. The data format output by the **Extract** stage is therefore "opinionated"
-with respect to the particular data platform being connected to. However, for some applications,
-it is useful to be able to perform some custom pre-processing on the data, before it even
-arrives to your Fluvio topic. The **Filter** and **Shape** stages are present so that you
-can provide your own SmartModules with custom code to manipulate data before it's sent to
-Fluvio from the connector.
+The **Protocol** and **Extract** stages are built directly into the
+connector. They offer basic access to your data through the various protocols your data sources use.
 
-In this overview, we'll cover the two deployment styles for connectors, how to apply
-configurations for connectors, and how to use SmartModule capabilities for custom processing
-in Smart Connectors.
+In the **Extract** stage, your data is structured from whatever protocol it is sourced from.
 
+Additionally, You can apply custom pre-processing or post-processing to data, before it
+arrives to or while it streams from a Fluvio topic. The **Filter** and **Shape** stages are provided through SmartModules.
 
-%copy first-line%
-```bash
-$ docker kill my-http; docker rm my-http
-```
+Powered by WebAssembly (also called wasm), SmartModules are pre-packaged or custom logic applied to your data. Supporting access to your data while it is in transit provides you the ability to clean, transform and enrich your data before it is stored in a topic, or it exits the Fluvio cluster.
 
+Use Connectors either as: 
+* a Local Connector
+  * Run your connector on your machine as a docker container
 
-[1]: {{<ref "inbound/http" >}}
-[InfinyOn Cloud]: https://infinyon.cloud/signup
+* a Cloud Connector,
+  * You can start a connector on [InfinyOn Cloud], and let us manage the infrastruture
+
+You can customize how your connectors run through a configuration file. For more info about connectors or configuration, check out our supported Inbound and Outbound connector docs.
+
+[InfinyOn Cloud]: https://infinyon.cloud
