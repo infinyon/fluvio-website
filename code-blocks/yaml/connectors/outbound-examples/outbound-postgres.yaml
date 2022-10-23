@@ -2,7 +2,5 @@ version: 0.2.0
 name: my-postgres-sink
 type: postgres-sink
 topic: postgres-topic
-parameters:
-  url: postgres://postgres:mysecretpassword@localhost:5432/postgres
 secrets:
-  FLUVIO_PG_DATABASE_URL: postgres://postgres:mysecretpassword@localhost:5432/postgres
+  FLUVIO_PG_DATABASE_URL: postgres://user:password@hostname:port/database_name

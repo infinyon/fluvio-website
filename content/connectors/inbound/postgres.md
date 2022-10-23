@@ -1,7 +1,9 @@
 ---
 title: Inbound PostgreSQL Connector
 menu: Postgres
-toc: true
+connector:
+  name: "infinyon/fluvio-connect-postgres-source"
+  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/postgres"
 ---
 
 The Inbound Postgres connector *reads Write-Ahead Logging (WAL) events* from a Postgres
@@ -19,31 +21,29 @@ has some
 [restrictions](https://www.postgresql.org/docs/current/logical-replication-restrictions.html).
 
 {{<caution>}}
-Known issue:
-Existing tables and rows will not be copied over when
-the connector starts.
+The Inbound Postgres connector does not currently support SSL
+{{</caution>}}
 
+{{<caution>}}
+Existing tables and rows will not be copied over when the connector starts.<br>
 We recomend using `pg_dump` on the Postgres DB connected the inbound connector uses
 and `psql` on the Postgres DB the outbound connector inserts into.
 {{</caution>}}
 
+## Common config values
 
-## Connector config `parameters`
+%copy%
+```yaml
+type: postgres-source
+```
+
+```yaml
+version: 0.2.0
+```
+
+## Parameters
 
 The inbound Postgres connector supports the following configuration options:
-
-### `url`
-*required*
-
-The login URL for your Postgres database.
-
-This should contain
-  your username, password, database hostname, and port.
-  - Example: `postgres://user:password@hostname:port/database_name`
-  
-  This key can also be specified under config `secrets`.
-  
-  See: [`FLUVIO_PG_DATABASE_URL`]({{<ref "#fluvio_pg_database_url">}})
 
 ### `publication`
 *required*
@@ -74,16 +74,20 @@ The name of the Fluvio Topic that the connector should
 If you'd like the connector to not to automatically create
     the `slot` and a `publication` in your postgres database.
 
-Choices: `true`, `false`
+Choices:
+- `true`
+- `false`
 
-## Connector config `secrets`
+## Secrets
 
 ### `FLUVIO_PG_DATABASE_URL`
+*required*
 
-Alternative configuration path for config parameter [`url`]({{<ref "#url">}})
+This should contain
+  your username, password, database hostname, and port.
+  - Example: `postgres://user:password@hostname:port/database_name`
 
-#### Example connector config 
-%copy%
+#### Example connector config
 
 {{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-postgres.yaml" lang="yaml" copy=true >}}
 

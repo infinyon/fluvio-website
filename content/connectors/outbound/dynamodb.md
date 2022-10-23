@@ -1,47 +1,67 @@
 ---
 title: Outbound DynamoDB Connector
 menu: DynamoDB
+connector:
+  name: "infinyon/fluvio-connect-dynamodb-sink"
+  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sinks/dynamodb"
 ---
 
-The Dynamodb Outbound Connector reads events from a
-fluvio topic, deserializes them as json and inserts those key value pairs based
-on the columns in the config.
+The DynamoDB Outbound Connector reads events from a Fluvio topic, then deserializes as json and inserts those key value pairs based on the columns in the config.
 
-## Connector config `parameters`
+## Common config values
+
+%copy%
+```yaml
+type: dynamodb-sink
+```
+
+```yaml
+version: 0.2.0
+```
+
+## Parameters
 
 ### `table-name`
+*required*
 
 The name of the [dynamodb table name]
 
 ### `column-names`
+*required*
 
 A comma separated list of the keys. **The first key is the partition key**
 
 ### `column-types`
+*required*
 
-A comma separated list of the [attribute types of the keys].
-These are `N` for number, `S` for String, and `B` for Binary.
+A comma separated list of the options representing [attribute types of the keys].
 
-These keys are used for table creation. The incoming json is converted to the
-[Dynamodb data types] on insert.
+These keys are used for table creation. The incoming json is converted to the [Dynamodb data types] on insert.
 
+| Option | Attribute Type |
+|:------:|:--------------:|
+|    N   |     Number     |
+|    S   |     String     |
+|    B   |     Binary     |
 
-## Connector config `secrets`
+## Secrets
 
 ### `AWS_REGION`
+*required*
 
 The [AWS Region]
 
 ### `AWS_ACCESS_KEY_ID`
+*required*
 
 The [AWS Access Key Id]
 
 ### `AWS_SECRET_ACCESS_KEY`
+*required*
 
 The [AWS Secret Access Key]
 
-#### Example connector config 
-%copy%
+#### Example connector config
 
 {{<code file="code-blocks/yaml/connectors/outbound-examples/outbound-dynamodb.yaml" lang="yaml" copy=true >}}
 

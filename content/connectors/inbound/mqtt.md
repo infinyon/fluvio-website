@@ -1,6 +1,9 @@
 ---
 title: Inbound MQTT Connector
 menu: MQTT
+connector:
+  name: "infinyon/fluvio-connect-mqtt-source"
+  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/mqtt"
 ---
 
 MQTT is a publish/subscribe protocol that allows clients to listen to a stream
@@ -9,7 +12,18 @@ of events produced to a server.
 It is widely used in real-time and IoT applications
 since it is lightweight and easy to use.
 
-## Connector config `parameters`
+## Common config values
+
+%copy%
+```yaml
+type: mqtt-source
+```
+
+```yaml
+version: 0.3.0
+```
+
+## Parameters
 
 The inbound MQTT connector supports the following configuration options:
 
@@ -25,8 +39,7 @@ This value can be provided as a parameter or as a secret
 
 The topic filter to use when receiving MQTT events
 
-#### Example connector config 
-%copy%
+#### Example connector config
 
 {{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-mqtt.yaml" lang="yaml" copy=true >}}
 
@@ -35,7 +48,7 @@ The topic filter to use when receiving MQTT events
 There are two important pieces of information that we're interested in capturing from
 every MQTT event.
 
-1. The topic the event was sent to, and
+1. The topic the event was sent to
 2. The body of the event
 
 In MQTT, topics are more of a label for particular message types. When we specify a

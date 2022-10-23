@@ -6,4 +6,4 @@ parameters:
   publication: fluvio
   slot: fluvio
 secrets:
-  FLUVIO_PG_DATABASE_URL: postgres://postgres:mysecretpassword@localhost:5432/postgres
+  FLUVIO_PG_DATABASE_URL: postgres://user:password@hostname:port/database_name

@@ -2,13 +2,28 @@
 title: Inbound Kafka Connector
 menu: Kafka
 connector:
-  name: "infinyon/fluvio-connect-http"
-  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/http"
+  name: "infinyon/fluvio-connect-kafka-source"
+  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/kafka"
 ---
 
 The inbound Kafka Connector will send every record on a Kafka topic/partition to a Fluvio topic/partition.
 
-## Connector config `parameters`
+{{<caution>}}
+The Inbound Kafka connector does not currently support SSL
+{{</caution>}}
+
+## Common config values
+
+%copy%
+```yaml
+type: kafka-source
+```
+
+```yaml
+version: 0.2.0
+```
+
+## Parameters
 
 The inbound Kafka connector supports the following configuration options:
 
@@ -32,11 +47,10 @@ Default: `fluvio-kafka-source`
 
 The Kafka group
 
-#### Example connector config 
-%copy%
+#### Example connector config
 
 {{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-kafka.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 
-Events are sent to fluvio as raw bytes. The record are sent along to fluvio as well.
+Events are sent to Fluvio as raw bytes. The record are sent along to Fluvio as well.

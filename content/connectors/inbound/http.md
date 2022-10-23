@@ -2,7 +2,7 @@
 title: Inbound HTTP Connector
 menu: HTTP
 connector:
-  name: "infinyon/fluvio-connect-http"
+  name: "infinyon/fluvio-connect-http-source"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/http"
 ---
 
@@ -16,8 +16,18 @@ continuously, and building streaming applications that react to new or updated i
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead
 periodically sends HTTP requests and collects the response as an event.
 
+## Common config values
 
-## Connector config `parameters`
+%copy%
+```yaml
+type: http-source
+```
+
+```yaml
+version: 0.3.0
+```
+
+## Parameters
 
 The inbound HTTP connector supports the following configuration options:
 
@@ -26,20 +36,50 @@ The inbound HTTP connector supports the following configuration options:
 
 The HTTP endpoint to send requests to
 
-### `method`
-default: `GET`
-
-The HTTP verb to use - i.e. `GET`, `PUT`, `POST`, `DELETE`
-
 ### `body`
 *optional*
 
 The body to use in the HTTP request to the endpoint
 
-### `interval`
-default: `300`
+### `user_agent`
+default: `fluvio/http-source 0.1.0`
 
-The period (in seconds) between sending requests to the endpoint
+The HTTP User-Agent request header used in the HTTP request.
+
+### `method`
+default: `GET`
+
+Choices: 
+- `GET`
+- `PUT`
+- `POST`
+- `DELETE`
+
+### `interval`
+default: `10s`
+
+A time period between sending requests to the endpoint.
+
+The time is formatted as an integer and a suffix. Supported suffixes:
+
+- `msec`, `ms` -- milliseconds
+- `seconds`, `second`, `sec`, `s`
+- `minutes`, `minute`, `min`, `m`
+- `hours`, `hour`, `hr`, `h`
+- `days`, `day`, `d`
+
+### `headers`
+*optional*
+
+A list additional headers to include in the HTTP request. In the form `Key=Value`
+
+Example
+
+```yaml
+headers:
+  - Keep-Alive=timeout=5,max=1000
+  - Cache-Control=no-cache
+```
 
 ### `output_parts`
 default: `body`
@@ -59,9 +99,7 @@ Choices:
 * `text`
 * `json`
 
-#### Example connector config 
-
-%copy%
+#### Example connector config
 
 {{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-http.yaml" lang="yaml" copy=true >}}
 
