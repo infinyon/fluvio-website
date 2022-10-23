@@ -1,5 +1,6 @@
 ---
 title: Connectors and Fluvio profiles
+hidden: true
 ---
 ### About Switching Profiles
 

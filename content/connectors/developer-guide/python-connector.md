@@ -10,8 +10,8 @@ In chapter, we'll give an step-by-step example on how to develop a Python Connec
 
 1. [Build and run your client locally]({{<ref "#build-and-run-your-client-locally">}})
 2. [Package your Client into Docker Image]({{<ref "#package-your-client-into-docker-image">}})
-3. [Load your Connector image into Kubernetes Cluster]({{<ref "#load-your-connector-image-into-kubernetes-cluster">}})
-4. [Create a new Connector in Fluvio]({{<ref "#create-a-new-connector-in-fluvio">}})
+3. [Start Connector]({{<ref "#start-the-connector">}})
+4. [Verify data in Fluvio topic]({{<ref "#verify-topic-data-from-packaged-connector">}})
 
 ### Tools needed to follow this example
 
@@ -21,49 +21,22 @@ You'll need the following tools installed
 - [python-fluvio](https://github.com/infinyon/fluvio-client-python)
 - [python-requests](https://requests.readthedocs.io/en/latest/)
 - [Docker](https://www.docker.com/get-started)
-- Kubernetes distros ([k3d](https://k3d.io/) or [minikube](https://minikube.sigs.k8s.io/docs/start/))
+- [Rust development environment](https://www.rust-lang.org/learn/get-started)
+    - This may be needed to install the `fluvio` python package
 
 ## Build and Run Your Client Locally
 
 Let's start with building a simple client.
 
-This client is written in Python, but we have client libraries for Rust, Javascript, Java and Go.
+This client is written in [Python](), but we have client libraries for [Rust], [Javascript], [Java] and [Go] (with community support).
 
-%copy%
-```python
-#!/usr/bin/env python3
-#
-# get-cat-facts.py
-# An example Python-based Fluvio connector
+[Python]: {{<ref "/api/official/python/installation.md">}}
+[Rust]: {{<ref "/api/official/rust/installation.md">}}
+[Javascript]: {{<ref "/api/official/node/installation.md">}}
+[Java]: {{<ref "/api/official/java/installation.md">}}
+[Go]: {{<ref "/api/community/go.md">}}
 
-from fluvio import Fluvio
-import requests
-import time
-
-WAIT_SECONDS = 10
-CAT_FACTS_API = 'https://catfact.ninja/fact'
-CAT_FACTS_TOPIC = 'cat-facts-random'
-
-if __name__ == '__main__':
-    # Before entering event loop
-    # Connect to cluster and create a producer before we enter loop
-    fluvio = Fluvio.connect()
-    producer = fluvio.topic_producer(CAT_FACTS_TOPIC)
-
-    # Event loop
-    while True:
-        # Get random cat fact
-        catfact = requests.get(CAT_FACTS_API)
-
-        # Save fact
-        producer.send_string(catfact.text)
-
-        # Print fact to container logs
-        print(catfact.text)
-
-        # Be polite and control the rate we send requests to external API
-        time.sleep(WAIT_SECONDS)
-```
+{{<code file="code-blocks/yaml/connectors/developer-guide/python-connector/get-cat-facts.py" lang="python" copy=true >}}
 
 Before we run this code, we need to create the fluvio topic that our client produces data to
 
@@ -72,7 +45,9 @@ Before we run this code, we need to create the fluvio topic that our client prod
 $ fluvio topic create cat-facts-random
 ```
 
-Install fluvio package:
+In order to test our connector application, we'll need to install libraries in our development environment.
+
+Install the [fluvio](https://pypi.org/project/fluvio/) and [requests](https://pypi.org/project/requests/) python packages using `pip` (or `pip3`):
 
 %copy first-line%
 ```shell
@@ -100,7 +75,9 @@ Consuming records from the beginning of topic 'cat-facts-random'
 
 ## Package Your Client into Docker Image
 
-Now that we have verfied that our client works locally, we need to package it for Kubernetes. We do that by defining our data connector runtime environment with a Dockerfile.
+This section is optional, but is recommended if you want to share your connectors with others. Packaging with Docker will allow you to bundle in any libraries or tools.
+
+The result will enable another user to start the connector locally without additional setup (assuming they have Docker and Fluvio on their machine).
 
 We use the `python` base image to keep things simple.
 
@@ -108,57 +85,39 @@ Then we create a new user `fluvio` with a home directory (in `/home/fluvio`).
 
 This is **required** for all connectors. The Fluvio cluster shares information with the `fluvio` user on startup.
 
-%copy%
-```Dockerfile
-# Dockerfile
-FROM python
-
-# Copy our python script into the connector image
-COPY get-cat-facts.py /usr/local/sbin/get-cat-facts.py
-RUN chmod +x /usr/local/sbin/get-cat-facts.py
-
-# This is required to connect to a cluster
-# Connectors run as the `fluvio` user
-ENV USER=fluvio
-RUN useradd --create-home "$USER"
-USER $USER
-
-# Install dependencies
-RUN pip install fluvio requests
-
-# Start script on start
-ENTRYPOINT get-cat-facts.py
-```
+{{<code file="code-blocks/yaml/connectors/developer-guide/python-connector/Dockerfile" lang="dockerfile" copy=true >}}
 
 ### Build and Test the Container
 You can build the Docker image with this command.
 
 %copy first-line%
 ```shell
-$ docker build -t infinyon/fluvio-connect-cat-facts .
+$ docker build -t cat-facts-connector .
 ```
 
 The image should have been created
 
 %copy first-line%
 ```shell
-$ docker images
-REPOSITORY                          TAG            IMAGE ID       CREATED         SIZE
-infinyon/fluvio-connect-cat-facts   latest         08ced64017f0   5 seconds ago   936MB
-...
+% docker image list cat-facts-connector
+REPOSITORY            TAG       IMAGE ID       CREATED          SIZE
+cat-facts-connector   latest    9a48639f8bac   17 minutes ago   2.66GB
 ```
 
-{{< caution >}}
-The image name `infinyon/fluvio-connect-cat-facts` will be significant when we create the connector in the Fluvio cluster with `fluvio connector create`.
-{{< /caution >}}
+In needed, create your topic *before* starting your container
 
+%copy first-line%
+```shell
+$ fluvio topic create cat-facts-random
+```
 
+### Start the connector
 Start a the container with this `docker` command
 
 %copy first-line%
 ```shell
-$ docker run -it --rm -v $HOME/.fluvio:/home/fluvio/.fluvio --network host infinyon/fluvio-connect-cat-facts
-{"fact":"In the 1750s, Europeans introduced cats into the Americas to control pests.","length":75}
+% docker run --init -it --rm -v $HOME/.fluvio:/home/fluvio/.fluvio --network host cat-facts-connector
+{"fact":"The first cat show was organized in 1871 in London. Cat shows later became a worldwide craze.","length":93}
 ...
 <CTRL>-C
 ```
@@ -167,122 +126,28 @@ You can check out `docker run --help` if you want a description of what these do
 
 | Docker option                           | Why you want it                                                                             |
 |-----------------------------------------|---------------------------------------------------------------------------------------------|
-| `-it`                                   | Without both `-i` and `-t`, you can't use `ctrl+c` to exit your container                   |
+| `--init`                                | This will ensure that your container will be able to support signals to exit                |
+| `-it`                                   | Without both `-i` and `-t`, you can't send `ctrl+c` to exit signals your container          |
 | `--rm`                                  | Prevents accumulating Docker-related mess on your host while you are testing your connector |
 | `-v $HOME/.fluvio:/home/fluvio/.fluvio` | Share existing Fluvio config - This is *effectively* what `fluvio connector create` does    |
 | `--network host`                        | The default docker network can't reach the host's Fluvio cluster                            |
 
-## Load Your Connector Image into Kubernetes Cluster
+We can look at topic, and verify our records.
 
-By default, connectors will attempt to pull images from the internet. However, development images need to be testable locally before making them available publicly. So we pre-load the connector images.
-
-{{< tabs tabTotal="2" tabID="1" tabName1="k3d" tabName2="minikube">}}
-
-{{< tab tabNum="1">}}
-
-Let's create a cluster called `fluvio`
+### Verify topic data from packaged connector
 
 %copy first-line%
 ```shell
-$ k3d cluster create fluvio
-```
-
-And import the image (use the name of your cluster)
-
-%copy first-line%
-```shell
-$ k3d image import infinyon/fluvio-connect-cat-facts --cluster fluvio
-```
-
-The image should have been created
-
-%copy first-line%
-```shell
-$ docker exec k3d-fluvio-server-0 sh -c "ctr image list -q"
-docker.io/infinyon/fluvio-connect-cat-facts:latest
-...
-```
-
-{{</ tab >}}
-
-{{< tab tabNum="2">}}
-
-Load image to `minikube`:
-
-%copy first-line%
-```shell
-$ minikube image load infinyon/fluvio-connect-cat-facts
-```
-
-{{</ tab >}}
-
-{{</ tabs >}}
-
-
-
-
-## Create a new Connector in Fluvio
-
-Last step for testing our connector is verifying that it runs in the Fluvio cluster. We will create the config file and run the CLI command
-
-### The Connector config
-
-Create a connector configuration file `example-connector.yaml`:
-
-%copy%
-
-```yaml
-# example-connector.yaml
-version: dev
-name: cat-facts-connector
-type: cat-facts
-topic: cat-facts-random
-direction: source
-```
-
-| Connector config option | Description                                                                                                                                                              |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `version`               | This value must be  `dev`  for local development.                                                                                                                        |
-| `name`                  | A unique name for this connector. <br><br> It will be displayed in `fluvio connector list`                                                                                                               |
-| `type`                  | The value of this name will be used for tagging image before loading into Kubernetes. <br><br> Connector image names follow the pattern: `infinyon/fluvio-connect-{type}` |
-| `topic`                 | The name of the Fluvio `topic` where the connector will publish the data records. The Fluvio `topic` will be automatically created if the Fluvio topic does not exist. |
-| `direction`             | The metadata that defines the direction of data flow (`source` or `sink`).<br><br> This is a `source` connector.
-
-Lastly, create the connector
-
-%copy first-line%
-```shell
-$ fluvio connector create --config example-connector.yaml
-```
-
-%copy first-line%
-```shell
-$ fluvio connector list
- NAME                 STATUS
- cat-facts-connector  Running
- ```
-
-We can look at the container logs, and verify the topic has our records.
-
-%copy first-line%
-```shell
-$ fluvio connector logs cat-facts-connector
-{"fact":"Cats eat grass to aid their digestion and to help them get rid of any fur in their stomachs.","length":92}
-{"fact":"When a cat drinks, its tongue - which has tiny barbs on it - scoops the liquid up backwards.","length":92}
-{"fact":"Cats and kittens should be acquired in pairs whenever possible as cat families interact best in pairs.","length":102}
-```
-
-And again, to verify we check the contents of the topic. We see the last 3 rows match.
-
-%copy first-line%
-```shell
-$ fluvio consume cat-facts-random -B
+% fluvio consume cat-facts-random -B
 Consuming records from the beginning of topic 'cat-facts-random'
-{"fact":"Cats bury their feces to cover their trails from predators.","length":59}
-{"fact":"Cats step with both left legs, then both right legs when they walk or run.","length":74}
-{"fact":"Cats can jump up to 7 times their tail length.","length":46}
-{"fact":"A cat can jump 5 times as high as it is tall.","length":45}
-{"fact":"Cats eat grass to aid their digestion and to help them get rid of any fur in their stomachs.","length":92}
-{"fact":"When a cat drinks, its tongue - which has tiny barbs on it - scoops the liquid up backwards.","length":92}
-{"fact":"Cats and kittens should be acquired in pairs whenever possible as cat families interact best in pairs.","length":102}
+{"fact":"The first cat show was organized in 1871 in London. Cat shows later became a worldwide craze.","length":93}
+{"fact":"A cat's cerebral cortex contains about twice as many neurons as that of dogs. Cats have 300 million neurons, whereas dogs have about 160 million. See, cats rule, dogs drool!","length":173}
 ```
+
+## Conclusion
+
+We just walked through how to develop a Fluvio connector from scratch, using the Fluvio python library.
+
+Also we demonstrated how to package your connector with Docker, how to start the Docker-based connector, and verified data in our topic.
+
+You are now prepared to build your own connectors. This one was for Python, but the pattern should be the same for any of our other language bindings or CLI.

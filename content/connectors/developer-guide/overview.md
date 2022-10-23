@@ -1,7 +1,7 @@
 ---
 title: Overview
 weight: 10
-hidden: false
+hidden: true
 ---
 
 Writing a new connector is meant to be easy. You may write your connector in

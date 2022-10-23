@@ -1,8 +1,12 @@
 ---
 title: Using Connectors with SmartModules
-weight: 1000
+weight: 10
 ---
 ## SmartModules
+
+{{<caution>}}
+Changes to this process are coming soon, so that Connectors can take advantage of new SmartModules features 
+{{</caution>}}
 
 Fluvio's official connectors have support for applying SmartModules to perform inline
 compute on the data passing through - when used together this way, we call them
@@ -101,37 +105,9 @@ Then to register the SmartModule with Fluvio, use this command:
 $ fluvio smartmodule create catfact-map --wasm-file=target/wasm32-unknown-unknown/release/catfact_map.wasm
 ```
 
-The last step is to launch our connector using the SmartModule we just built.
-This step is different for Local Connectors and Managed Connectors, so check out
-the relevant section for you below.
+### Apply to Cloud Connectors
 
-### Apply to Local Connectors
-
-Launching a Smart Connector locally is as easy as adding one additional argument to the docker command.
-Depending on which SmartModule type you're using, you'll choose one of the following arguments:
-
-- `--filter`
-- `--map`
-- `--arraymap`
-
-For this example, we'll be using `--map`, and providing the name of the
-SmartModule we just created, like so:
-
-%copy%
-```bash
-docker run -d --name="my-http" \
-    -v"$HOME/.fluvio/config:/home/fluvio/.fluvio/config" \
-    -t infinyon/fluvio-connect-http \
-    -- \
-    --endpoint="https://catfact.ninja/fact" \
-    --fluvio-topic="cat-facts" \
-    --interval=10s \
-    --map="catfact-map"
-```
-
-### Apply to Managed Connectors
-
-Launching a Smart Managed Connector is as simple as updating the `connect.yml` configuration.
+Launching a Smart Cloud Connector only requires updating the `connect.yml` configuration.
 For this example, we would add `map` to the `parameters` section, like so:
 
 %copy%
@@ -152,7 +128,7 @@ Followed by launching it with `fluvio connector`:
 
 %copy first-line%
 ```bash
-$ fluvio connector create --config=./connect.yml
+$ fluvio cloud connector create --config=./connect.yml
 ```
 
 
