@@ -69,14 +69,6 @@ Default: `16KB`
 The maximum size of the Inbound connector producer batch size before sending to topic.
 Can be combined with `linger`
 
-### `transforms` (Common SmartModule options)
-
-#### `uses`
-#### `invoke`
-#### `with`
-Default: `[]`
-
-
 ### Connector specific configuration options
 
 See individual connector for more details about the available parameters or secrets

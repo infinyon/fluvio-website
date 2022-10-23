@@ -9,7 +9,7 @@ Configuring connectors works the same way with InfinyOn Cloud, as it does locall
 
 You can create and maintain your connectors in a more streamlined way through the CLI with [`fluvio cloud`]({{<ref "/cli/cloud/overview.md">}}).
 
-## Create your first connector 
+## Create your first connector on InfinyOn Cloud
 
 This guide will walk you through creating an Inbound HTTP connector to ingest json data from and HTTP endpoint.
 
@@ -54,7 +54,7 @@ $ fluvio cloud connector list
 
 #### Look at connector logs
 
-If there is a need to debug the behavior of a connector, the logs are available by running `fluvio cloud connector logs <connector name>`
+If there is a need to debug the behavior of a connector, the logs are available by running `fluvio cloud connector logs cat-facts`
 
 %copy first-line%
 ```bash
@@ -100,7 +100,7 @@ $ fluvio consume cat-facts-data -B
 
 #### Delete a connector
 
-When you want to stop the connector, you can delete it with `fluvio cloud connector <connector name>`
+When you want to stop the connector, you can delete it with `fluvio cloud connector cat-facts`
 
 %copy first-line%
 ```shell
@@ -108,7 +108,7 @@ $ fluvio cloud connector delete cat-facts
 connector "cat-facts" deleted
 ```
 
-Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete <topic name>`
+Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete cat-facts-data`
 
 %copy first-line%
 ```shell
