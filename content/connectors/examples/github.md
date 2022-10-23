@@ -5,6 +5,10 @@ weight: 20
 toc: false
 ---
 
+{{<caution>}}
+Changes to this example are coming soon, so that Connectors can take advantage of new SmartModules features 
+{{</caution>}}
+
 We can use the HTTP Connector to continuously stream data from the GitHub API,
 allowing us to observe and react to changes in real-time. However, the GitHub API
 typically returns large JSON responses with dozens of fields, many of which are
@@ -21,16 +25,15 @@ Let's look at how to set up the HTTP connector _without_ a SmartModule first, th
 we'll look at the fields available, decide which fields we want to keep, then finally
 write a SmartModule to help us extract those fields.
 
-We can launch the HTTP Connector as a Managed Connector (preferred for [InfinyOn Cloud][1])
-or as a Local Connector. If you don't know which one to pick, we recommend sticking
-with a Managed Connector.
+We can launch the HTTP Connector as a Cloud Connector on [InfinyOn Cloud][1]
+or as a Local Connector.
 
 You can find the full code for this example in [the fluvio-smartmodule-examples][2] repository.
 
-{{< tabs tabTotal="2" tabID="1" tabName1="Managed Connector" tabName2="Local Connector">}}
+{{< tabs tabTotal="2" tabID="1" tabName1="Cloud Connector" tabName2="Local Connector">}}
 
 {{< tab tabNum="1">}}
-#### Connect to GitHub using HTTP as a Managed Connector
+#### Connect to GitHub using HTTP as a Cloud Connector
 
 To set up our use-case using a managed connector, we'll need to create a connector
 configuration file, which we'll call `connect.yml`. Paste the following contents into
@@ -58,7 +61,7 @@ To use this configuration, run the following command:
 
 %copy first-line%
 ```bash
-$ fluvio connector create --config=./connect.yml
+$ fluvio cloud connector create --config=./connect.yml
 ```
 
 ### Checking out the data
@@ -294,20 +297,20 @@ name that we can use to refer to it later.
 
 %copy first-line%
 ```bash
-$ fluvio smart-module create github-smartmodule --wasm-file=target/wasm32-unknown-unknown/release/github_stars.wasm
+$ fluvio smartmodule create github-smartmodule --wasm-file=target/wasm32-unknown-unknown/release/github_stars.wasm
 ```
 
 At this point, our SmartModule has been registered and named `github-smartmodule`. Now, we can
 return to our connector setup and re-launch the HTTP Connector with our SmartModule!
 
-#### With Managed Connector
+#### With Cloud Connector
 
-If you're following along with a Managed Connector, the first thing we need to do is stop the
+If you're following along with a Cloud Connector, the first thing we need to do is stop the
 connector we started previously, and delete the topic since it contains old data.
 
 %copy first-line%
 ```bash
-$ fluvio connector delete github-repo
+$ fluvio cloud connector delete github-repo
 ```
 
 %copy first-line%
@@ -337,7 +340,7 @@ transformed!
 
 %copy first-line%
 ```bash
-$ fluvio connector create --config=./connect.yml
+$ fluvio cloud connector create --config=./connect.yml
 ```
 
 {{</ tab >}}
@@ -345,7 +348,7 @@ $ fluvio connector create --config=./connect.yml
 {{< tab tabNum="2">}}
 #### Connect to GitHub using HTTP as a Local Connector
 
-Local connectors are run using `docker`. Unlike Managed Connectors, they do not
+Local connectors are run using `docker`. Unlike Cloud Connectors, they do not
 create topics if they don't exist, so the first thing we want to do is create our topic:
 
 %copy first-line%
