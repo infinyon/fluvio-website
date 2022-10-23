@@ -14,22 +14,16 @@ The following building blocks make building, testing, and deploying SmartModule 
 
 #### SmartModule Developer Kit (SMDK)
 
-SmartModules Development Kit (SMDK) is an independent command line downloadable via [`Fluvio CLI`] to help SmartModule developers build and test SmartModules, and publish them to the SmartModule Hub. 
+SmartModules Development Kit (SMDK) is an independent command line downloadable via [`Fluvio CLI`] to help SmartModule developers build and test SmartModules, and publish them to the SmartModule Hub. Checkout [`SMDK section`].
 
 #### SmartModule Hub
 
-SmartModule Hub is the store for real-time data pipelines. Developers publish SmartModules, and user operators download and integrate them into their pipelines. The Hub, powered by [`InfinyOn Cloud`], groups SmartModules by their owners, where each owner decides if their SmartModule should be private or publicly accessible. 
+SmartModule Hub, powered by [`InfinyOn Cloud`], is a real-time apps store, where developers publish SmartModules, and users download and integrate them into their data pipelines. Checkout [`Hub section`].
 
 #### SmartModule API Library
 
-The following diagram shows common components which may be configured with SmartModules
-performing inline computation.
+SmartModule APIs are programmable data streaming functions exposed to WebAssembly. SmartModules allows developers to manipulate data in real-time inside the Fluvio cluster, without the need for external servicees such as Lambda or Functions. Checkout [`APIs section`].
 
-[SmartModule Development Kit (SMDK)]: #smartmodule-developer-kit-smdk
-[SmartModule Hub]: #smartmodule-hub
-[SmartModule API Library]:  #smartmodule-api-library
-[`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
-[`InfinyOn Cloud`]: https://infinyon.cloud/
 
 ## Use Cases
 
@@ -43,3 +37,14 @@ SmartModules are ideal for edge (IoT) scenarios, where backhaulling the data to 
 
 #### ETL...
 
+
+
+
+[SmartModule Development Kit (SMDK)]: #smartmodule-developer-kit-smdk
+[SmartModule Hub]: #smartmodule-hub
+[SmartModule API Library]:  #smartmodule-api-library
+[`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
+[`InfinyOn Cloud`]: https://infinyon.cloud/
+[`SMDK section`]: {{< ref "/smartmodules/smdk/overview" >}}
+[`Hub section`]: {{< ref "/smartmodules/hub/overview" >}}
+[`APIs section`]: {{< ref "/smartmodules/apis/overview" >}}

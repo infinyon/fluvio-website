@@ -195,8 +195,8 @@ other SmartModules examples.
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})
 
 [downloaded the Fluvio CLI]: https://www.fluvio.io/download/
 [using ArrayMap to break apart paginated API requests]: https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/

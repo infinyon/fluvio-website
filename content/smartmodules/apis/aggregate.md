@@ -186,5 +186,5 @@ $ fluvio consume aggregate-ints -B --aggregate=aggregate-sm
 ### Read next
 
 - [Explore aggregate use-cases](https://www.infinyon.com/blog/2021/08/smartstream-aggregates/)
-- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
-- [Writing a map to transform records]({{< ref "/smartmodules/transform/map" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
+- [Writing a map to transform records]({{< ref "/smartmodules/apis/map" >}})

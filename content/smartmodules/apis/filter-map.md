@@ -240,8 +240,8 @@ $ fluvio consume filter-map -B --filter-map=filter-groceries
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})
 
 [1]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/grocery-notifications/src/lib.rs
 [2]: https://www.infinyon.com/blog/2021/11/filter-map/

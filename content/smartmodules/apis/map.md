@@ -176,5 +176,5 @@ $ fluvio consume map-double -B --map=map-double-sm
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})

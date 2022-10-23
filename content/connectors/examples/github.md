@@ -656,4 +656,4 @@ Now we can see that our topic contains just the data we selected!
 
 [1]: https://infinyon.cloud/signup
 [2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
-[3]: {{<ref "/smartmodules/transform/map" >}}
+[3]: {{<ref "/smartmodules/apis/map" >}}

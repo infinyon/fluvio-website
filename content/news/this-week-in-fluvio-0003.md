@@ -107,7 +107,7 @@ come say hello!
 
 Until next week!
 
-[SmartStreams Aggregate]: {{<ref "/smartmodules/analytics/aggregate" >}}
+[SmartStreams Aggregate]: {{<ref "/smartmodules/apis/aggregate" >}}
 [sums]: https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/aggregate-sum/src/lib.rs
 [averages]: https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/aggregate-average/src/lib.rs
 [combining structural key-value data]: https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/aggregate-json/src/lib.rs
