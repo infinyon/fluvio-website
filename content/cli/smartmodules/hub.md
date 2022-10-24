@@ -22,6 +22,7 @@ Commands for users to interact with the SmartModule hub are under the **fluvio h
 
 The command **fluvio hub download <group/package@version>** will download a hub smartmodule into your cluster so it can be configured and used in your pipeline.
 
+%copy first-line%
 ```
 $ fluvio hub download infinyon/egex-filter2@0.1.0
 
@@ -35,6 +36,7 @@ trying connection to fluvio router.dev.infinyon.cloud:9003
 
 Once a package is downloaded, a fluvio smartmodule list command will show the installation
 
+%copy first-line%
 ```
 $ flvio sm list
   SMARTMODULE                   SIZE     
@@ -48,6 +50,7 @@ Once a SmartModule is download, it can be configured and applied in a pipleine. 
 
 The command **fluvio hub list** will list SmartModules and versions available for download
 
+%copy first-line%
 ```
 $ fluvio hub list -h
 
@@ -63,6 +66,7 @@ Options:
 The list command shows Smartmodules by **group/package@version**. Packages uploaded by InfinyOn will be in the
 infinyon group.
 
+%copy first-line%
 ```
 $ fluvio hub list 
 
@@ -80,7 +84,7 @@ SmartModule Packages are listed in the hub as in the form of `<group>/<package n
 
 Group `infinyon` packages are published by InfinyOn, the maker of Fluvio.  Third-party developers may also upload public packages which appear in other groups. The Hub service enforces signing and publishing restrictions on uploaded packages. Once a signed package of given group has been published, only the original signing key will be accepted for other packages in the same group.
 
-Currently all packages are public, with private package upload is in development.
+Currently all packages are public, private package upload is in development.
 
 
 
