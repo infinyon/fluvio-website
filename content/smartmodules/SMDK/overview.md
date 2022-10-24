@@ -127,7 +127,7 @@ For our [official source and sink connectors]({{<ref "/connectors/">}}) you can 
 
 You just need to provide the type of module (`filter`, `map`, `array-map`, `filter-map`, `aggregate`) and it's registered name as a parameter.
 
-For example, this is how you would define a `filter` type SmartModule named `my-filter` to use with our [http source connector]({{<ref "/connectors/sources/http">}}), to apply the filter to each HTTP response before publishing to the topic:
+For example, this is how you would define a `filter` type SmartModule named `my-filter` to use with our [http source connector]({{<ref "/connectors/inbound/http">}}), to apply the filter to each HTTP response before publishing to the topic:
 
 %copy%
 ```yaml
