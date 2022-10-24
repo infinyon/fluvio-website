@@ -26,4 +26,4 @@ npm install -S @fluvio/client
 
 And your `package.json` should look similar to the following:
 
-{{<code file="code/node/package.json" lang="json" copy=true >}}
+{{<code file="code-blocks/node/package.json" lang="json" copy=true >}}

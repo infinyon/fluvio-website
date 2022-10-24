@@ -21,8 +21,7 @@ To see the full docs, visit our [pdoc page](https://infinyon.github.io/fluvio-cl
 
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-[Download hello-python.py](/python/hello-python.py)
-{{<code file="code/python/hello-python.py" lang="python" copy=true >}}
+{{<code file="code-blocks/python/hello-python.py" lang="python" copy=true >}}
 
 ### Run
 
