@@ -7,7 +7,7 @@ toc: false
 
 Download operation sends a copy of the SmartModule from the Hub to the local or Cloud cluster, defined by [`the profile`] in the Fluvio Client. After downloading, all SmartModules, regardless of their source, are treated the same.
 
-##### Presequisites
+##### Prerequisites
 
 SmartModule Hub is powered by [`InfinyOn Cloud`], which requires a Cloud account and the CLI:
 

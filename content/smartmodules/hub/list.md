@@ -7,7 +7,7 @@ toc: false
 
 List operation retrieves all SmartModuels available for download in the SmarModule Hub for a specific user. By default, users can retrieve all public SmartModules and all private SmartModules that match their group assignment. Organization-level sharing rules will be available in future releases. 
 
-##### Presequisites
+##### Prerequisites
 
 SmartModule Hub is powered by [`InfinyOn Cloud`], which requires a Cloud account and the CLI:
 
