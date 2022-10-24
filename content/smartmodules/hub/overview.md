@@ -46,7 +46,7 @@ The Hub use cases are centered around two distinct personas: `developers` and `u
 
 We built SmartModule Hub to democratize real-time application development. This mission mandates that anyone in the Fluvio community can upload SmartModules to the Hub. While, we use advanced security techniques to guarantee ownership, and walled gardens to sandbox runtinme functions, we cannot cannot guarantee the quality and intent of the community developed SmartModules.
 
-**Certified SmartModules** should alleviate this concerns. A certified SmartModule ensures the SmartModule has been vetted by the InfinyOn team and deamed safe to use. 
+**Certified SmartModules** alleviate this concern. A certified SmartModule ensures the SmartModule has been vetted by the InfinyOn team and deamed safe to use. 
 
 Currently only InfinyOn SmartModule are certified, though we intend to roll-out a cerfitication process that enables the community to certify their own SmartModules. Please reach out on [`Discord`] if you are interested in the **SmartModule Certification** program.
 
