@@ -12,7 +12,7 @@ The following building blocks make building, testing, and deploying SmartModule 
 * [SmartModule Hub]
 * [SmartModule API Library]
 
-#### SmartModule Developer Kit (SMDK)
+#### SmartModule Development Kit (SMDK)
 
 SmartModules Development Kit (SMDK) is an independent executable downloadable via [`Fluvio CLI`] to help developers build and test SmartModules, and publish them to the SmartModule Hub. Checkout [`SMDK section`].
 
