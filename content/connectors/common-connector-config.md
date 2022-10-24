@@ -1,5 +1,6 @@
 ---
-title: Common connector config
+title: Common Connector Configurations
+menu: Common configs
 weight: 40
 ---
 ## Common connector arguments
