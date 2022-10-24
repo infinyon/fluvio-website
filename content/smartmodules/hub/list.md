@@ -48,8 +48,13 @@ $ fluvio hub list
   ...
 ```
 
+### Next Steps
+
+* [`Download`] SmartModules from the Hub.
+
 
 [`InfinyOn Cloud`]: https://infinyon.cloud/
 [`fluvio hub list`]: {{< ref "/cli/smartmodules/hub" >}}
 [ Download Fluvio CLI ]: {{< ref "/cli/client/overview" >}}
 [Provision InfinyOn Cloud Account]: https://infinyon.cloud/
+[`Download`]: {{< ref "download" >}}

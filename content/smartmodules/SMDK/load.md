@@ -66,3 +66,10 @@ parameters:
   interval: 30s
   filter: my-filter 
 ```
+
+
+### Next Steps
+
+5. [Publish to SmartMoudle Hub]
+
+[Publish to SmartMoudle Hub]: {{< ref "publish" >}}

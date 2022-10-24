@@ -5,43 +5,59 @@ weight: 40
 toc: false
 ---
 
-### Create a new project
+SmartModules are binaries developed for real-time data stream processing, requiring in-line and live testing facilities. This section covers in-line testing, and the [next section] describes how to load SmartMoudules on the Cluster for live traffic testing.
 
-Using `cargo generate`, you can answer a few prompts and generate the code for a SmartModule
+This section assumes that SMDK is [installed] and `my-filter` project has been [generated].
 
-%copy first-line%
-```bash
-$ cargo generate gh:infinyon/fluvio-smartmodule-template
-```
+### Build - Operation
 
-Example:
-
-We are creating a `filter` type of SmartModule, named `my-filter`
+Navigate to `my-filter` project directory and run `build`:
 
 %copy first-line%
 ```bash
-$ cargo generate gh:infinyon/fluvio-smartmodule-template
-🤷   Project Name : my-filter
-🔧   Generating template ...
-✔ 🤷   Which type of SmartModule would you like? · filter
-✔ 🤷   Want to use SmartModule parameters? · true
-[1/7]   Done: .cargo/config.toml
-[2/7]   Done: .cargo
-[3/7]   Done: .gitignore
-[4/7]   Done: Cargo.toml
-[5/7]   Done: README.md
-[6/7]   Done: src/lib.rs
-[7/7]   Done: src
-🔧   Moving generated files into: `/home/User/my-filter`...
-💡   Initializing a fresh Git repository
-✨   Done! New project created /home/User/my-filter
+$ smdk build
+...
+Compiling my-filter v0.1.0 (~/smdk/my-filter)
+Finished release-lto [optimized] target(s) in 12.65s
 ```
 
-Navigate to your SmartModule directory, make your changes, then compile:
+The build process generated an binary optimized for WebAssembly. We are now ready to test it.
+
+### Test - Operation
+
+Testing a SmartModule takes `text` of `files` from the commnad line. 
+
+Let's perform the matching test for our `my-filter` that looks for letter `a`:
 
 %copy first-line%
 ```bash
-$ cargo build --release
+$ smdk test --text cat
+loading module at: ~/smdk/my-filter/target/wasm32-unknown-unknown/release-lto/my_filter.wasm
+1 records outputed
+cat
 ```
 
-Now that we have the SmartModule binary compiled let's see it in action.
+Next, an non-matching test:
+
+%copy first-line%
+```bash
+$ smdk test --text dog
+loading module at: ~/smdk/my-filter/target/wasm32-unknown-unknown/release-lto/my_filter.wasm
+0 records outputed
+```
+
+Checkout the `smdk test -h` for additional parameters. 
+
+Next, we'll upload the SmartModule on the cluster for live traffic testing.
+
+### Next Steps
+
+4. [Load to your Cluster]
+5. [Publish to SmartMoudle Hub]
+
+
+[next section]: {{< ref "load" >}}
+[installed]: {{< ref "install" >}}
+[generated]: {{< ref "generate" >}}
+[Load to your Cluster]: {{< ref "load" >}}
+[Publish to SmartMoudle Hub]: {{< ref "publish" >}}

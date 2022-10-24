@@ -43,8 +43,19 @@ $ tree
     └── lib.rs
 ```
 
+This is a simple SmartModule `filter` matching for all data records that contains letter `a`:
 
-Note the `SmartModule.toml` file. This file contains SmartModule parameters required to load the file in the Cluster or publish to SmartModule Hub. 
+```bash
+use fluvio_smartmodule::{smartmodule, Result, Record};
+
+#[smartmodule(filter)]
+pub fn filter(record: &Record) -> Result<bool> {
+    let string = std::str::from_utf8(record.value.as_ref())?;
+    Ok(string.contains('a'))
+}
+```
+
+**Note** the `SmartModule.toml` file. This file contains SmartModule parameters required to load the file in the Cluster and publish it to SmartModule Hub. 
 
 %copy first-line%
 ```bash
@@ -64,7 +75,7 @@ description = "input description"
 
 #### Sections
 
-* `package` is used to build the SmartModule FQDN (`aj/my-filter@0.1.0`) and the description to publish to SmartModule Hub. Note that the `group` is equivalent to the package owner in the Hub. 
+* `package` is used to build the SmartModule FQDN `aj/my-filter@0.1.0`, and the description to publish to SmartModule Hub. The `group` name is equivalent to the package owner in the Hub. 
 * `params` defines the command line parameters by the SmartModule internal logic.
 
 The project is ready to build and test. Checkout the next section for instructions.
