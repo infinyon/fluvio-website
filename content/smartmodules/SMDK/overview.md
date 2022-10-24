@@ -6,29 +6,20 @@ toc: true
 weight: 10
 ---
 
-### Basic setup
+SmartModules Development Kit (SMDK) is an independent command line downloadable via [`Fluvio CLI`] to help developers build and test SmartModules, and publish them to the SmartModule Hub. Currently the SmartModule development is limited to the Rust programming language, but you can be a Rust beginner and still take advantage of custom SmartModules!
 
-Currently the SmartModule development is limited to the Rust programming language, but you can be a Rust beginner and still take advantage of custom SmartModules!
+##### Presequisites
 
-In addition to the [basic Rust development environment](https://www.rust-lang.org/tools/install), we need the following Rust tools installed:
+SMDK generator will prompt you to [`Install Rust`] language, add a Cargo target [`wasm32-unknown-unknown`] for compiling SmartModule Rust code into WebAssembly modules, and install [`cargo-generate`] for generating new Rust SmartModule projects. If you want to be proactive about it, install them now, it's a one-time setup.
 
-* Cargo WebAssembly target: `wasm32-unknown-unknown`
+### Install SMDK
+....
 
-This is needed to compile the SmartModule Rust code into a WebAssembly module
+Typical Journey:
+* Generate -> build -> test -> load
 
-%copy first-line%
-```shell
-$ rustup target install wasm32-unknown-unknown
-```
-
-* [`cargo-generate`](https://github.com/cargo-generate/cargo-generate)
-
-This will be used for creating new Rust SmartModule projects
-
-%copy first-line%
-```shell
-$ cargo install cargo-generate
-```
+Another
+* Generate -> bild -> test - publish
 
 ### Create a new project
 
@@ -142,3 +133,8 @@ parameters:
   interval: 30s
   filter: my-filter 
 ```
+
+[`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
+[`Install Rust`]: https://www.rust-lang.org/tools/install
+[`wasm32-unknown-unknown`]: https://doc.rust-lang.org/rustc/platform-support/wasm64-unknown-unknown.html
+[`cargo-generate`]: https://github.com/cargo-generate/cargo-generate
