@@ -2,7 +2,7 @@
 version: 0.3.0
 name: cat-facts
 type: http-source
-topic: cat-facts-data
+topic: cat-facts
 
 parameters:
   endpoint: https://catfact.ninja/fact

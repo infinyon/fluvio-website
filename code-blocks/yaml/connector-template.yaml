@@ -1,35 +1,56 @@
 # connector.yaml
-version:
+
+# The name attached to this instance of connector
+# This is the name seen when listing the connectors
+#
 name:
-# the name that you will see when listing the connectors
+
+# The version of the connector type to use
+# See the individual connector docs for the current release version
+#
+version:
+
+# The Connector type
+#
+# Inbound Connector choices:
+# * http-source
+# * kafka-source
+# * mqtt-source
+# * postgres-source
+#
+# Outbound Connector choices:
+# * dynamodb-sink
+# * kafka-sink
+# * postgres-sink
+# * slack-sink
+# * sql-sink
+#
 type:
-# connection type:
-# source connections currently support:
-# http-source
-# kafka-source
-# mqtt-source
-# postgres-source
-# sink connections currently support:
-# dynamodb-sink
-# kafka-sink
-# postgres-sink
-# slack-sink
+
+# The topic to produce to or consume from
+#
 topic:
-# the topic to produce to or consume from
 
+# Type specific parameters
+# See the individual connector docs a list of parameter keys
+#
 parameters:
-  # type specific parameters
-  # see the individual connector docs for the list of parameters
+#  example-param:
 
-secrets:
-  # type specific secrets
-  # see the individual connector docs for the list of secrets
-# producer:
-#   linger:
-#   batch-size:
-#   compression:
-# optional content for producer type connector
+# Type specific secrets
+# See the individual connector docs a list of secret keys
+#
+#secrets:
+#  EXAMPLE_SECRET:
 
-# consumer:
-#   partition:
-# optional content for consumer type connector
+# Optional content for producer type connector
+#
+#producer:
+#  linger:
+#  batch-size:
+#  compression:
+
+# Optional content for consumer type connector
+#
+#consumer:
+#  partition:

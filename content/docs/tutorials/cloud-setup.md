@@ -1,6 +1,5 @@
 ---
 title: Setup InfinyOn Cloud
-menu: Setup InfinyOn Cloud
 weight: 10
 ---
 
@@ -14,8 +13,8 @@ This tutorial will walk you through setting up an InfinyOn account, and using Fl
 
 There are three main steps for setting up for the Cloud:
 * Installing the CLI
-* registering for a Cloud account
-* finally linking the two together
+* Registering for a Cloud account
+* Connecting the CLI to your Cloud account 
 
 The following sections will walk you through how to do that.
 
@@ -29,12 +28,51 @@ Download the Fluvio CLI with the following command.
 $ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
 ```
 
-{{< inline-embed file="path-env.md" >}}
+Next you will have to add Fluvio to your `$PATH` environment variable. There are three main shells that see common usage: Bash, Zsh, and Fish. Bash and Zsh use a similar approach to modifying the `$PATH` but Fish is completely different.
 
+If you are unsure of which shell you are using, the command `echo $0` will tell you:
+
+%copy first-line%
+```bash
+$ echo $0
+/bin/zsh
+```
+
+Once you confirm which shell you are using, use one of the following commands to modify your `$PATH`.
+
+{{< h-list tabTotal="3" tabID="1" tabName1="Zsh" tabName2="Bash" tabName3="Fish">}}
+
+{{< h-item tabNum="1">}}
+
+%copy first-line%
+```zsh
+$ echo 'export PATH="$PATH:~/.fluvio/bin"' >> .zshrc
+```
+
+{{</ h-item >}}
+
+
+{{< h-item tabNum="2" >}}
+
+%copy first-line%
+```bash
+$ echo 'export PATH="$PATH:$HOME/.fluvio/bin"' >> .bashrc
+```
+{{</ h-item >}}
+
+{{< h-item tabNum="3" >}}
+
+%copy first-line%
+```fish
+$ fish_add_path ~/.fluvio/bin
+```
+{{</ h-item >}}
+
+{{</h-list>}}
 ### Create InfinyOn Cloud Account
 Head over to the [InfinyOn Cloud sign up page](https://infinyon.cloud).
 
-Currently, there are two mutually exclusive ways to create your Fluvio account:
+Currently, there are two ways to create your Fluvio account:
 Google sign in, and Email registration.
 
 {{<h-list tabTotal="2" tabID="2" tabName1="Signup with Google" tabName2="Signup with Username & Password">}}
@@ -246,23 +284,20 @@ Some useful option flags to be aware of:
 * `-p <int>`				– reads only from the specified partition.
 * `-k`						– displays the key portion of the key and value pairs.
 * `-A`						– reads from all partitions available.
-* `--smart-module <module>` – runs a [SmartModule](/smartmodules/) module on the output, then displays the results.
+* `--smartmodule <module>` – runs a [SmartModule]({{<ref "/smartmodules/">}}) module on the output, then displays the results.
 
 
 Now you have a fully setup Fluvio system, and you know the basic commands to get Fluvio working.
 
 ## Check out these Other Tutorials
 
-[Creating a Data Pipeline](../data-pipeline/)
+*[SmartModules with `smdk`]({{<ref "/docs/tutorials/smartmodule-development.md">}})
+*[Creating a Data Pipeline]({{<ref "/docs/tutorials/data-pipeline.md">}})
 
 ## References
 
-[Fluvio CLI Produce](/cli/commands/produce/)
-
-[Fluvio CLI Consume](/cli/commands/consume/)
-
-[Fluvio CLI topic](/cli/commands/topic/)
-
-[Fluvio CLI profile](/cli/installation/profile/)
-
-[SmartModule](/smartmodules/)
+* [Fluvio CLI Produce]({{<ref "/cli/commands/produce.md">}})
+* [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
+* [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
+* [Fluvio CLI profile]({{<ref "/cli/client/profile.md">}})
+* [SmartModule]({{<ref "/smartmodules/">}})
