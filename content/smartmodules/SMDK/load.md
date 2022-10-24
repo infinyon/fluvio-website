@@ -5,71 +5,117 @@ weight: 50
 toc: false
 ---
 
+SMDK load give developers the ability to upload their own SmartModules to a local or [InfinyOn Cloud] clusters. 
 
-## Registering SmartModules with your cluster
+This section assumes that SMDK is [installed] and `my-filter` project has been [built].
 
-After building a SmartModule as a WASM binary, it may be registered with Fluvio using
-the `fluvio smart-module` command, providing a name and a path to the binary.
+### Generate - Load
 
-Use [SmartModule filters]({{<ref "/smartmodules/apis/filter" >}}) to build a WASM file.
-
-%copy first-line%
-```bash
-$ fluvio smart-module create my-filter --wasm-file ./target/wasm32-unknown-unknown/release/my_filter.wasm
-```
-
-After creating one or more SmartModules, one may use the `fluvio smart-module list` command
-to see the available SmartModules:
+Navigate to your `my-filter` directory and use the `load` command:
 
 %copy first-line%
 ```bash
-$ fluvio smart-module list
-   NAME       STATUS             SIZE
-   my-filter  SmartModuleStatus  90442
+$ smdk load
+Loading package at: ~/smdk/my-filter
+Found SmartModule package: my-filter
+loading module at: ~/smdk/my-filter/target/wasm32-unknown-unknown/release-lto/my_filter.wasm
+Trying connection to fluvio router.infinyon.cloud:9003
+Creating SmartModule: my-filter
 ```
 
-## Using SmartModules
+The SmartMoudule is uploaded to the cluster that your [`current profile`]. If you want to upload the SmartModule to multiple clusters, just switch the profile and run the `load` command again.
 
-### SmartModules with Consumers
+#### Inspect Result
 
-#### Using Registered SmartModules
-You may use a Registered SmartModule anywhere that SmartModules may be used. To use them,
-you'll need to provide the name of the SmartModule as well as its type. 
-
-For example, if we want to apply our registered SmartModule `my-filter` while consuming from our topic `my-topic`,
-provide it's name to the `--filter` argument.
+Ensure that your SmartModule has been uploaded by running the following command :
 
 %copy first-line%
 ```bash
-$ fluvio consume my-topic -B --filter my-filter
+$ fluvio smartmodule list
+  SMARTMODULE                  SIZE     
+  aj/my-filter@0.1.0            85.7 KB
 ```
 
+SmartModules can be used in `Consumers` and `Connectors`. Future releases will expand this capability to other system components.
 
-### In Connectors
+### Test with Consumers
 
-For our [official source and sink connectors]({{<ref "/connectors/">}}) you can apply SmartModules can be applied to any `source` or `sink` connector.
+SmartModules are applied to consumers with the `--smartmodule` argument. Let's setup a topic and produce some random text.
 
-You just need to provide the type of module (`filter`, `map`, `array-map`, `filter-map`, `aggregate`) and it's registered name as a parameter.
+Create a topic:
 
-For example, this is how you would define a `filter` type SmartModule named `my-filter` to use with our [http source connector]({{<ref "/connectors/inbound/http">}}), to apply the filter to each HTTP response before publishing to the topic:
+%copy first-line%
+```bash
+$ fluvio topic create test
+topic "test" created
+```
+
+Produce random data:
+
+%copy first-line%
+```bash
+$ fluvio produce test 
+> cats
+Ok!
+> dogs
+Ok!
+> start
+Ok!
+> stop
+Ok!
+> ^C
+```
+
+Consume using `my-filter`:
+
+%copy first-line%
+```bash
+$ fluvio consume test -B -d --smartmodule aj/my-filter@0.1.0
+Consuming records from the beginning of topic 'test'
+cats
+start
+```
+
+The `-B` tells the consumer to read from the beginning of the stream, and `-d` disables continuous reading.
+
+
+### Test with Cloud Connectors
+
+SmartModule are applied to InfinyOn Cloud Connectors using `fluvio cloud connector` command. In this example we use the `http-source` connector with `transforms` to invoke our filter.
+
+Copy the following connector configuration into a`connector.yml` file:
 
 %copy%
 ```yaml
-# connect.yml
 version: 0.3.0
 name: cat-facts
 type: http-source
-topic: cat-facts
+topic: cats
 direction: source
 parameters:
   endpoint: https://catfact.ninja/fact
-  interval: 30s
-  filter: my-filter 
+  interval: 10s
+transforms:
+  - uses: aj/my-filter@0.1.0
+    invoke: filter
 ```
+
+Create a connector using the configuration file.
+
+%copy first-line%
+```bash
+$ fluvio cloud connector create --config connector.yaml
+connector "cat-facts" (http-source) created
+```
+
+The conector creates a topic called `cats` and filters out all records without letter `a`. Note, this exammple shows a general use case rather than a practical use case (as virtually all entries will have the letter 'a').
 
 
 ### Next Steps
 
-5. [Publish to SmartMoudle Hub]
+* [Publish to SmartMoudle Hub]({{< ref "publish" >}})
 
-[Publish to SmartMoudle Hub]: {{< ref "publish" >}}
+[InfinyOn Cloud]: https://infinyon.cloud
+[installed]: {{< ref "install" >}}
+[built]: {{< ref "build-test/#build---operation" >}}
+[`current profile`]: {{< ref "cli/client/profile" >}}
