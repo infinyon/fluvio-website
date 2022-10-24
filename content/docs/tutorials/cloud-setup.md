@@ -291,8 +291,8 @@ Now you have a fully setup Fluvio system, and you know the basic commands to get
 
 ## Check out these Other Tutorials
 
-*[SmartModules with `smdk`]({{<ref "/docs/tutorials/smartmodule-development.md">}})
-*[Creating a Data Pipeline]({{<ref "/docs/tutorials/data-pipeline.md">}})
+* [SmartModules with `smdk`]({{<ref "/docs/tutorials/smartmodule-development.md">}})
+* [Creating a Data Pipeline]({{<ref "/docs/tutorials/data-pipeline.md">}})
 
 ## References
 
