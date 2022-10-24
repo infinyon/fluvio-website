@@ -1,0 +1,11 @@
+version: 0.2.0
+name: my-kafka-sink
+type: kafka-sink
+topic: fluvio-output-topic
+parameters:
+  kafka-url: "localhost:9092"
+  kafka-topic: kafka-input-topic
+  kafka-option:
+    linger.ms: 10
+    topic.metadata.refresh.fast.interval.ms: 10
+    topic.metadata.refresh.fast.cnt: 10

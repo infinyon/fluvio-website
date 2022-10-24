@@ -5,22 +5,25 @@ name:
 type:
 # connection type:
 # source connections currently support:
-  # http-source
-  # kafka-source
-  # mqtt-source
-  # postgres-source
+# http-source
+# kafka-source
+# mqtt-source
+# postgres-source
 # sink connections currently support:
-  # dynamodb-sink
-  # kafka-sink
-  # postgres-sink
-  # slack-sink
+# dynamodb-sink
+# kafka-sink
+# postgres-sink
+# slack-sink
 topic:
 # the topic to produce to or consume from
+
 parameters:
   # type specific parameters
-  # smart module parameters
-  # see the docs for the list of parameters
+  # see the individual connector docs for the list of parameters
 
+secrets:
+  # type specific secrets
+  # see the individual connector docs for the list of secrets
 # producer:
 #   linger:
 #   batch-size:
