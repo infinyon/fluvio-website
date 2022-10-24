@@ -48,7 +48,7 @@ loading module at: ~/smdk/my-filter/target/wasm32-unknown-unknown/release-lto/my
 
 Checkout the `smdk test -h` for additional parameters. 
 
-Next, we'll upload the SmartModule on the cluster for live traffic testing.
+Checkout the [next section] on how upload the SmartModule to your local cluster or [InfinyOn Cloud] for live traffic testing.
 
 ### Next Steps
 
@@ -61,3 +61,4 @@ Next, we'll upload the SmartModule on the cluster for live traffic testing.
 [generated]: {{< ref "generate" >}}
 [Load to your Cluster]: {{< ref "load" >}}
 [Publish to SmartMoudle Hub]: {{< ref "publish" >}}
+[InfinyOn Cloud]: https://infinyon.cloud

@@ -13,14 +13,15 @@ SMDK generate commands runds a wizard and builds a sample project is a subdirect
 
 %copy first-line%
 ```bash
-$ smdk generate my-filter
+$ smdk generate my-filter 
 Generating new SmartModule project: my-filter
 fluvio-smartmodule-cargo-dependency => '"0.2.5"'
 🔧   Destination: ~/smdk/my-filter ...
 🔧   Generating template ...
-✔ 🤷   Which type of SmartModule would you like? · filter
 ✔ 🤷   Will your SmartModule use init parameters? · false
-Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpwdNuM4/cargo-generate.toml
+✔ 🤷   Which type of SmartModule would you like? · filter
+🤷   Please set a group name : aj
+Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpwXs6cl/cargo-generate.toml
 [1/5]   Done: Cargo.toml
 [2/5]   Done: README.md
 [3/5]   Done: SmartModule.toml
@@ -28,7 +29,8 @@ Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpwdNuM4/cargo-gene
 [5/5]   Done: src
 🔧   Moving generated files into: `~/smdk/my-filter`...
 💡   Initializing a fresh Git repository
-✨   Done! New project created ~/smdk/my-filter
+✨   Done! New project created /Users/aj/local/projects/smartmodule/smdk/my-filter
+Hub access: hub: hubid aj has been set
 ```
 
 The generator created Rust project ready to compile:
