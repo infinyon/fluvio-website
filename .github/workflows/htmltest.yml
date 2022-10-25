@@ -1,0 +1,44 @@
+name: Hugo HTML lint
+
+permissions:
+  contents: read
+
+concurrency:
+  group: broken-link-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  htmltest:
+    runs-on: ubuntu-latest
+    name: Run htmltest to lint Hugo output
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.97.3'
+          extended: true
+      - name: Run Hugo in the background
+        run: ./hugo-start.sh &
+      - name: Run htmltest
+        run: |
+          make htmltest
+
+  # Job that follows the success of all required jobs in this workflow.
+  # Used by Bors to detect that all required jobs have completed successfully
+  done:
+    name: Pass html lint
+    if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+    needs: htmltest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Done
+        run: echo "Done!"

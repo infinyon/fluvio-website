@@ -25,7 +25,7 @@ Example topic data. Mix of JSON objects, and an array of objects.
 [{"key1":"x","key2":"10","key3":"Alice","id":123},{"key1":"y","key2":"20","key3":"Bob","id":456},{"key1":"c","key2":"30","key3":"Carol","id":789}]
 ```
 
-Check out the [TableFormat docs]({{<ref "/cli/commands/table-format#examples">}}) for more information about using `TableFormat`.
+Check out the [TableFormat docs]({{<ref "/cli/utilities/table-format#examples">}}) for more information about using `TableFormat`.
 
 ### Migration to Rust edition 2021
 

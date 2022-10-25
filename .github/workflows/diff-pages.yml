@@ -1,0 +1,113 @@
+name: Take screenshots
+
+permissions:
+  contents: read
+
+concurrency:
+  group: screenshots-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - staging
+      - trying
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  diff-pages:
+    name: Diff website and take screenshots
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.97.3'
+          extended: true
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install capture-website-cli
+        run: npm install --global capture-website-cli
+
+      # Checkout and build files of a base ref.
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: current_repo
+      # Checkout and build files of a head ref.
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          clean: false # Prevent removing files in 'path/to/base' folder.
+          path: pr_repo
+
+      # Build sites
+      - name: Build Hugo sites for comparison
+        run: |
+          ls
+          hugo \
+            --source current_repo \
+            --destination ../base \
+            --verbose \
+            --cleanDestinationDir \
+            --buildDrafts \
+            --buildFuture \
+            --ignoreCache
+
+          hugo \
+            --source pr_repo \
+            --destination ../head \
+            --verbose \
+            --cleanDestinationDir \
+            --buildDrafts \
+            --buildFuture \
+            --ignoreCache
+
+          ls
+
+      # Diff PR site against base site
+      # Render changed files with respect to http://localhost:1313 (local Hugo dev server)
+      - name: Get list of changed html
+        run: |
+          cd head
+          find . -name "*.html" -exec diff --brief --new-file base/{} {} \; | awk '{print $4}' | sed 's/./http:\/\/localhost:1313/' | tee /tmp/changed-html.txt
+          wc /tmp/changed-html.txt
+
+      - name: Start Hugo server and take screenshots
+        run: |
+          cd pr_repo
+          ./hugo-start.sh &
+          sleep 5
+          mkdir /tmp/changed-screenshots
+
+          ITER=1
+          fileType=jpeg
+          for f in $(cat /tmp/changed-html.txt); do
+            tmpFilename=${f/http:\/\/localhost:1313\//}
+            finalFilename=${tmpFilename//\//--}.${fileType}
+
+            echo "Screenshot #$ITER: $f -> $finalFilename";
+            capture-website --type $fileType $f --full-page --output /tmp/changed-screenshots/${finalFilename};
+
+            ((ITER = ITER + 1))
+          done
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: changed-screenshots
+          path: /tmp/changed-screenshots
+
+      #- uses: actions/upload-artifact@v3
+      #  with:
+      #    name: base-site
+      #    path: ./base
+
+      #- uses: actions/upload-artifact@v3
+      #  with:
+      #    name: pr-site
+      #    path: "./head"

@@ -16,6 +16,9 @@ on:
     branches: [master]
   workflow_dispatch:
 
+env:
+  K3D_VERSION: v5.4.1
+
 jobs:
   examples:
     name: Run all client examples
@@ -30,10 +33,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: AbsaOSS/k3d-action@v2
-        name: "Create fluvio k3d Cluster"
+
+      - uses: actions/checkout@v3
         with:
-          cluster-name: "fluvio"
+          repository: infinyon/fluvio
+          path: fluvio-repo
+      - name: Setup K3d
+        run: curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=${{ env.K3D_VERSION }} bash
+      - name: Create K3d cluster
+        run: |
+          ./fluvio-repo/k8-util/cluster/reset-k3d.sh
+
       - name: Sleep 20 to ensure k3d cluster is ready
         run: sleep 20
       - name: Install Fluvio Local Cluster
@@ -45,17 +55,20 @@ jobs:
       # Ensure cluster is started
       - name: Ensure Fluvio Cluster is up
         run: |
-          fluvio version
-          fluvio topic list
-          fluvio topic create foobar
-          sleep 30
-          echo foo | fluvio produce foobar
-          fluvio consume foobar -o 0 -d
-          fluvio topic delete foobar;
+          make cluster-verify
 
       # Run docker build
       - name: Build and test clients
         run: |
-          cd code/${{ matrix.client-type }}
-          docker-compose build
-          docker-compose run example
+          make run-client-example-${{ matrix.client-type }}
+
+  # Job that follows the success of all required jobs in this workflow.
+  # Used by Bors to detect that all required jobs have completed successfully
+  done:
+    name: Pass client examples
+    if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+    needs: examples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Done
+        run: echo "Done!"

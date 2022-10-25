@@ -72,7 +72,7 @@ Start our development Fluvio cluster with WASI support
 $ ./target/debug/fluvio cluster start --develop
 ```
 
-Here's our example SmartModule. It is a slight modification of [our filter example](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/filter/src/lib.rs). For debugging purposes, we print the record to stdout before checking the contents of the record and applying filtering.
+Here's our example SmartModule. It is a slight modification of [our filter example](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter/src/lib.rs). For debugging purposes, we print the record to stdout before checking the contents of the record and applying filtering.
 
 %copy%
 ```rust
@@ -177,7 +177,7 @@ We will provide a more hands-on blog post in the future, but for now we'll summa
 The Fluvio source connector allows you to connect to an external Postgres database and implement [Change Data Capture (CDC)](https://en.wikipedia.org/wiki/Change_data_capture) patterns by recording all database updates into a Fluvio topic.
 
 
-There is a little bit of [required configuration on the Postgres database side]({{<ref "/connectors/sources/postgres#create-a-postgres-server-using-docker">}}), but the Postgres source connector config looks like this:
+There is a little bit of [required configuration on the Postgres database side]({{<ref "/connectors/inbound/postgres#create-a-postgres-server-using-docker">}}), but the Postgres source connector config looks like this:
 
 ```yaml
 # example-pg-source-connect.yml
@@ -215,8 +215,8 @@ A lot of work went into the release of our new Postgres connectors that we could
 
 We encourage you to visit the docs, and expect a walkthrough using the Source and Sink connectors together in the future.
 
-* [Docs for Postgres Source connector]({{<ref "/connectors/sources/postgres">}})
-* [Docs for Postgres Sink connector]({{<ref "/connectors/sinks/postgres">}})
+* [Docs for Postgres Source connector]({{<ref "/connectors/inbound/postgres">}})
+* [Docs for Postgres Sink connector]({{<ref "/connectors/outbound/postgres">}})
 
 
 ### HTTP
@@ -300,7 +300,7 @@ Consuming records from the end of topic 'cat-facts'. This will wait for new reco
 {"status":{"version":"HTTP/1.1","code":200,"string":"OK"},"header":{"set-cookie":["XSRF-TOKEN=REDACTED expires=Wed, 16-Feb-2022 02:56:22 GMT; path=/; samesite=lax","cat_facts_session=REDACTED expires=Wed, 16-Feb-2022 02:56:22 GMT; path=/; httponly; samesite=lax"],"content-type":"application/json","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","x-xss-protection":"1; mode=block","vary":"Accept-Encoding","server":"nginx","x-ratelimit-remaining":"94","date":"Wed, 16 Feb 2022 00:56:22 GMT","transfer-encoding":"chunked","cache-control":"no-cache, private","x-ratelimit-limit":"100","access-control-allow-origin":"*","connection":"keep-alive"},"body":"{\"fact\":\"There are more than 500 million domestic cats in the world, with approximately 40 recognized breeds.\",\"length\":100}"}
 ```
 
-[Updated docs for the HTTP Connector are available]({{<ref "/connectors/sources/http">}})
+[Updated docs for the HTTP Connector are available]({{<ref "/connectors/inbound/http">}})
 
 ---
 

@@ -21,8 +21,8 @@ out with Fluvio:
 
 #### Setting up a cluster
 
-- [Create your own Fluvio cluster with `fluvio cluster start`]({{< ref "/cli/commands/cluster#fluvio-cluster-start" >}})
-- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`]({{< ref "/cli/plugins/cloud#fluvio-cloud-login" >}})
+- [Create your own Fluvio cluster with `fluvio cluster start`]({{< ref "/cli/local/cluster#fluvio-cluster-start" >}})
+- [Connect to your Fluvio Cloud cluster with `fluvio cloud login`]({{< ref "cli/cloud/overview#fluvio-cloud-login" >}})
   
 #### Sending and Receiving data from Fluvio
 
@@ -33,11 +33,11 @@ out with Fluvio:
 #### Enriching data with SmartModules
 
 - [Overview for SmartModules]({{< ref "/smartmodules" >}})
-- [Write a custom filtering SmartModule]({{< ref "/smartmodules/transform/filter" >}})
+- [Write a custom filtering SmartModule]({{< ref "/smartmodules/apis/filter" >}})
 - [Consume enriched data using SmartModules]({{< ref "/cli/commands/consume#example-3-consume-using-a-smartstream" >}})
 
 #### Viewing the status of the cluster
 
 - [See all of your topics with `fluvio topic list`]({{< ref "/cli/commands/topic#fluvio-topic-list" >}})
 - [See your partitions and data replication with `fluvio partition list`]({{< ref "/cli/commands/partition#fluvio-partition-list" >}})
-- [See the status of the SPUs in your cluster with `fluvio cluster spu list`]({{< ref "/cli/commands/cluster#fluvio-cluster-spu-list" >}})
+- [See the status of the SPUs in your cluster with `fluvio cluster spu list`]({{< ref "/cli/local/cluster#fluvio-cluster-spu-list" >}})

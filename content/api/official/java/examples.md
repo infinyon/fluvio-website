@@ -19,13 +19,9 @@ To see the full docs, visit [our javadoc page](https://infinyon.github.io/fluvio
 
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-[Download ./gradle-project/app/build.gradle](/java/fluvio-java/app/build.gradle)
+{{<code file="code-blocks/client-examples/java/fluvio-java/app/build.gradle" lang="gradle" copy=true >}}
 
-{{<code file="code/java/fluvio-java/app/build.gradle" lang="gradle" copy=true >}}
-
-[Download ./gradle-project/app/src/main/java/fluvio/App.java](/java/fluvio-java/app/src/main/java/fluvio/App.java)
-
-{{<code file="code/java/fluvio-java/app/src/main/java/fluvio/App.java" lang="java" copy=true >}}
+{{<code file="code-blocks/client-examples/java/fluvio-java/app/src/main/java/fluvio/App.java" lang="java" copy=true >}}
 
 ### Run
 

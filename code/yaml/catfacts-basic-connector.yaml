@@ -1,9 +1,0 @@
-# catfacts-basic-connector.yml
-version: 0.1.0
-name: cat-facts
-type: http-source
-topic: cat-facts
-
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 30s
