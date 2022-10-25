@@ -57,10 +57,16 @@ jobs:
         run: |
           make cluster-verify
 
-      # Run docker build
       - name: Build and test clients
-        run: |
-          make run-client-example-${{ matrix.client-type }}
+        uses: nick-fields/retry@v2.8.2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: |
+            make run-client-example-${{ matrix.client-type }}
+          on_retry_command: |
+            fluvio cluster delete
+            fluvio cluster start --local --image-version latest
 
   # Job that follows the success of all required jobs in this workflow.
   # Used by Bors to detect that all required jobs have completed successfully

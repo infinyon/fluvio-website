@@ -22,18 +22,18 @@ SmartModule Hub, powered by [`InfinyOn Cloud`], is a real-time apps store, where
 
 #### SmartModule API Library
 
-SmartModule APIs are programmable data streaming functions exposed to WebAssembly. SmartModules allows developers to manipulate data in real-time inside the Fluvio cluster, without the need for external servicees such as Lambda or Functions. Checkout [`APIs section`].
+SmartModule APIs are programmable data streaming functions exposed to WebAssembly. SmartModules allows developers to manipulate data in real-time inside the Fluvio cluster, without the need for external services such as Lambda or Functions. Checkout [`APIs section`].
 
 
 ## Use Cases
 
-SmartModules are small and portable making the suitable for a variety of edge to core use cases Today SmartModules can be used by consumers, producers, and connectors. Future releases will allow them to operate on data inside data streams.
+SmartModules are small and portable making them suitable for a variety of edge to core use cases Today SmartModules can be used by consumers, producers, and connectors. Future releases will allow them to operate on data inside data streams.
 
 <img src="/smartmodules/images/smartmodule-overview.svg" alt="SmartModule Overview" justify="center" height="480">
 
 #### Edge (IoT)
 
-SmartModules are ideal for edge (IoT) scenarios, where backhaulling the data to the cloud is prohibitively expensive. SmartModuels can filter, map or aggregate data before sending it to the cluster, significantly _reducing_ network traffic.
+SmartModules are ideal for edge (IoT) scenarios, where backhauling the data to the cloud is prohibitively expensive. SmartModuels can filter, map or aggregate data before sending it to the cluster, significantly _reducing_ network traffic.
 
 #### ETL to STL Migration
 
