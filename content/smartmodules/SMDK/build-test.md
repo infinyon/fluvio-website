@@ -7,6 +7,8 @@ toc: false
 
 SmartModules are binaries developed for real-time data stream processing, requiring in-line and live testing facilities. This section covers in-line testing, and the [next section] describes how to load SmartMoudules on the Cluster for live traffic testing.
 
+##### Prerequisites
+
 This section assumes that SMDK is [installed] and `my-filter` project has been [generated].
 
 ### Build - Operation
