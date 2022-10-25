@@ -15,9 +15,9 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 ## New release
 * [Fluvio v0.9.24](https://github.com/infinyon/fluvio/releases/tag/v0.9.24)
-* [DynamoDB Sink connector](https://www.fluvio.io/connectors/sinks/dynamodb/)
+* [DynamoDB Sink connector]({{<ref "/connectors/outbound/dynamodb.md">}})
   * The Dynamodb Sink Connector is a sink connector which reads events from a Fluvio topic, deserializes them as json and inserts those key value pairs based on the columns in the config.
-* [Slack Sink connector](https://www.fluvio.io/connectors/sinks/slack/)
+* [Slack Sink connector]({{<ref "/connectors/outbound/slack.md">}})
   * The Slack Connector is quite simple. It will stringify any record coming from a Fluvio stream and POST it to the slack via a slack webhook url
 
 ## New features

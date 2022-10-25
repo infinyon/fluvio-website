@@ -75,7 +75,7 @@ Most of our clients support idiomatic ways of iterating over the items in the st
 
 [`Stream`]: https://docs.rs/futures/0.3.15/futures/stream/trait.Stream.html
 [`asyncIterator`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
-[Python Iterator]: https://www.programiz.com/python-programming/iterator
+[Python Iterator]: https://wiki.python.org/moin/Iterator 
 
 This functionality has not been implemented for the java client yet.
 
