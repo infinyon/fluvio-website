@@ -31,3 +31,14 @@ jobs:
       - name: Run htmltest
         run: |
           make htmltest
+
+  # Job that follows the success of all required jobs in this workflow.
+  # Used by Bors to detect that all required jobs have completed successfully
+  done:
+    name: Pass html lint
+    if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+    needs: htmltest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Done
+        run: echo "Done!"
