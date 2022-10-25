@@ -1,7 +1,7 @@
 ---
 title: Map
 weight: 30
-toc: false
+toc: true
 ---
 
 SmartModule Maps are used to transform or edit each Record in a stream.
