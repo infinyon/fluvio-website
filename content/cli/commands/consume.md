@@ -106,7 +106,7 @@ the `--key-value` flag:
 
 %copy first-line%
 ```bash
-$ fluvio consume my-topic -B -d --key-value
+$ fluvio consume my-topic -dB --key-value
 [null] This is my first record ever
 [null] This is my second record ever
 [alice] Alice In Wonderland

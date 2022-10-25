@@ -292,7 +292,7 @@ SmartModule that have been uploaded on the cluster can be used by other areas of
 
 %copy first-line%
 ```bash
-$ fluvio consume server-logs -B -d --smartmodule=john/json-filter@0.1.0
+$ fluvio consume server-logs -dB --smartmodule=john/json-filter@0.1.0
 Consuming records from the beginning of topic 'server-logs'
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}
 {"level":"info","message":"Accepted incoming connection"}
