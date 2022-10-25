@@ -27,7 +27,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 ## New video
 Here's the recording from our CTO, Sehyo Chang's recent talk [Building a WASM Powered Distributed Streaming Platform](https://www.youtube.com/watch?v=EVW9hPdfRdY) at [Cloud Native Wasm Day EU 2022](https://events.linuxfoundation.org/cloud-native-wasm-day-europe/).
 
-It is about the design challenges experienced by today's stream processing architectures, and how [Fluvio SmartModules](https://www.fluvio.io/smartmodules/) leverage WebAssembly with Rust to solve these problems.
+It is about the design challenges experienced by today's stream processing architectures, and how [Fluvio SmartModules]({{<ref "/smartmodules">}}) leverage WebAssembly with Rust to solve these problems.
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/EVW9hPdfRdY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
