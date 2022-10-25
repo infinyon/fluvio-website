@@ -14,32 +14,37 @@ In this example, we're going to filter records based on the contents of their JS
 
 [check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
-### Create a new Project
+##### Prerequisites
 
-Let's use `cargo-generate` again to set up our new SmartModule project. We'll want
-to give the project a name and choose the "filter" option.
+This section assumes that SMDK is [installed].
 
-%copy first-line%
-```bash
-$ cargo install cargo-generate # In case you didn't install it before
-```
+### Create a SmartModule Project
+
+Run `smdk generate` with the name of the filter and choose  "filter" options:
 
 %copy first-line%
 ```bash
-$ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
-🤷   Project Name : json-filter
-🔧   Creating project called `json-filter`...
+$ smdk generate json-filter
+Generating new SmartModule project: json-filter
+fluvio-smartmodule-cargo-dependency => '"0.2.5"'
+🔧   Destination: ~/smdk/json-filter ...
+🔧   Generating template ...
+🤷   Please set a group name : john
 ✔ 🤷   Which type of SmartModule would you like? · filter
-[1/5]   Done: .cargo/config.toml
-[2/5]   Done: .gitignore
-[3/5]   Done: Cargo.toml
-[4/5]   Done: README.md
-[5/5]   Done: src/lib.rs
-✨   Done! New project created json-filter
+✔ 🤷   Will your SmartModule use init parameters? · false
+Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpoM9gda/cargo-generate.toml
+[1/5]   Done: Cargo.toml
+[2/5]   Done: README.md
+[3/5]   Done: SmartModule.toml
+[4/5]   Done: src/lib.rs
+[5/5]   Done: src
+🔧   Moving generated files into: `~/smdk/json-filter`...
+💡   Initializing a fresh Git repository
+✨   Done! New project created ~/smdk/json-filter
+hub: hubid john is set                               
 ```
 
-Alright, now that we have a setup, let's talk about what we're going to
-be filtering.
+With the SmartModule project created, let's talk about what we will be filtering.
 
 ### The Data: Server Logs
 
@@ -86,12 +91,11 @@ Let's look at the starter code that we got when we created our Filter template.
 
 %copy first-line%
 ```bash
-cd json-filter && cat ./src/lib.rs
+$ cd json-filter && cat ./src/lib.rs
 ```
 
 ```rust
-// src/lib.rs
-use fluvio_smartmodule::{smartmodule, Record, Result};
+use fluvio_smartmodule::{smartmodule, Result, Record};
 
 #[smartmodule(filter)]
 pub fn filter(record: &Record) -> Result<bool> {
@@ -194,26 +198,43 @@ the smallest and fastest binary possible. We should be able to see the
 
 %copy first-line%
 ```bash
-$ cargo build --release
-   Compiling json-filter v0.1.0 (/home/user/json-filter)
-    Finished release [optimized] target(s) in 2.33s
+$ smdk build
+...
+Compiling json-filter v0.1.0 (~/smdk/json-filter)
+Finished release-lto [optimized] target(s) in 12.78s
 ```
 
 Your WASM binary is now ready for use.
 
--> If this is your first time building WASM, you may need to run **% rustup target add wasm32-unknown-unknown**
- 
+### Test with SMDK
+
+Now that we've written our filter, let's test using the command line. 
+
+Test `info` log:
+
 %copy first-line%
-```bash    
-$ ls -la target/wasm32-unknown-unknown/release
-.rwxr-xr-x  135Ki user 19 May 13:29   json_filter.wasm
+```bash
+$ smdk test --text='{"level":"info","message":"Server listening on 0.0.0.0:8000"}'
+loading module at: /Users/aj/local/projects/smartmodule/smdk/json-filter/target/wasm32-unknown-unknown/release-lto/json_filter.wasm
+1 records outputed
+{"level":"info","message":"Server listening on 0.0.0.0:8000"}
 ```
 
-### Test Drive: Producing and Consuming the Data
+Test `debug` log:
 
-Now that we've written our filter, let's play with some data and make sure we
-get the results we expect! We'll start by creating a new topic where we'll
-produce our data.
+%copy first-line%
+```bash
+$ smdk test --text='{"level":"debug","message":"Deserializing request from client"}'
+loading module at: /Users/aj/local/projects/smartmodule/smdk/json-filter/target/wasm32-unknown-unknown/release-lto/json_filter.wasm
+0 records outputed
+```
+
+Good news! :tada: it works as expected!
+
+
+### Test on Cluster
+
+We'll start by creating a new topic where we'll produce our data.
 
 %copy first-line%
 ```bash
@@ -221,35 +242,14 @@ $ fluvio topic create server-logs
 topic "server-logs" created
 ```
 
-In order to see the impact of our SmartModule filter, let's open two terminals,
-with each running a consumer that watches our `server-logs` topic. One of these
-will be a plain consumer that consumes _all_ the records, and the other one will
-use our filter, so we should only see non-debug logs.
-
-To run the plain consumer, use the following command:
-
-%copy first-line%
-```bash
-$ fluvio consume server-logs -B
-```
-
-In the other terminal, run a consumer with the SmartModule filter using this command:
-
-%copy first-line%
-```bash
-$ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/json_filter.wasm"
-```
-
-Finally, we can take our `server.log` file and use `fluvio produce` to send each
-line of the file as one record to our topic. In a third terminal, run the following
-command to produce the server logs to our topic:
+Load `server.log` file to `server-logs` topic:
 
 %copy first-line%
 ```bash
 $ fluvio produce server-logs -f server.log
 ```
 
-In the plain consumer, we should see all the records get passed through:
+Let's double check it's all there.
 
 %copy first-line%
 ```bash
@@ -267,12 +267,35 @@ $ fluvio consume server-logs -B
 {"level":"error","message":"Unable to connect to database"}
 ```
 
-But in the consumer with our SmartModule, we'll no longer see any of the records
-whose log level was debug!
+#### Load SmartModule to Fluvio
+
+The SmartModule can be loaded to local Fluvio Cluster or [InfinyOn Cloud], as determined by the [`current profile`]. In this example, the profile points to InfinyOn Cloud.
 
 %copy first-line%
 ```bash
-$ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/json_filter.wasm"
+$ smdk load
+Loading package at: ~/smdk/json-filter
+Found SmartModule package: json-filter
+loading module at: ~/smdk/json-filter/target/wasm32-unknown-unknown/release-lto/json_filter.wasm
+Trying connection to fluvio router.infinyon.cloud:9003
+Creating SmartModule: json-filter
+```
+
+Rust `fluvio smartmodule list` to ensure your SmartModule has been uploaded:
+
+%copy first-line%
+```bash
+$ fluvio smartmodule list
+  SMARTMODULE                   SIZE     
+  john/json-filter@0.1.0        140.1 KB 
+```
+
+SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume server-logs -B --smartmodule=john/json-filter@0.1.0
+Consuming records from the beginning of topic 'server-logs'
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}
 {"level":"info","message":"Accepted incoming connection"}
 {"level":"warn","message":"Client dropped connnection"}
@@ -280,34 +303,42 @@ $ fluvio consume server-logs -B --filter="target/wasm32-unknown-unknown/release/
 {"level":"error","message":"Unable to connect to database"}
 ```
 
-## Register the SmartModule with Fluvio
+Congratulations! :tada: Eveything worked as expected!
 
-After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
 
-%copy first-line%
-```bash
-$ fluvio smart-module create log-filter --wasm-file target/wasm32-unknown-unknown/release/json_filter.wasm
-```
+### Publish to SmartModule Hub
 
-Use `fluvio smart-module list` command to see the available SmartModules:
+It turns out this SmartModule was requested by other data streaming teams in the organization, so we've decided to [publish] it on [SmartMoudle Hub].
 
 %copy first-line%
 ```bash
-$ fluvio smart-module list
- NAME        STATUS             SIZE
- log-filter  SmartModuleStatus  161916
+$ smdk publish
+Creating package john/json-filter@0.1.0
+.. fill out info in hub/package-meta.yaml
+Package hub/json-filter-0.1.0.ipkg created
+Package uploaded!
 ```
 
-Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+Let's double check that the SmartModule is available for download:
 
 %copy first-line%
 ```bash
-$ fluvio consume server-logs -B --filter=log-filter
+$ fluvio hub list
+  SMARTMODULE                    
+  john/json-filter@0.1.0         
 ```
 
+Congratulations! :tada: Your SmartModule is now availavle for download in the SmartModule Hub.
 
 ### Read next
 
 - [Explore filter use-cases](https://www.infinyon.com/blog/2021/06/smartstream-filters/)
 - [Writing a map to transform records]({{< ref "/smartmodules/apis/map" >}})
 - [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})
+
+
+[installed]: {{< ref "smartmodules/smdk/install" >}}
+[publish]: {{< ref "smartmodules/smdk/publish" >}}
+[InfinyOn Cloud]: https://infinyon.cloud
+[`current profile`]: {{< ref "cli/client/profile" >}}
+[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}

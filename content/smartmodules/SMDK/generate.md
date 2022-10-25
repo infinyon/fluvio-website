@@ -34,7 +34,7 @@ Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpwXs6cl/cargo-gene
 🔧   Moving generated files into: `~/smdk/my-filter`...
 💡   Initializing a fresh Git repository
 ✨   Done! New project created /Users/aj/local/projects/smartmodule/smdk/my-filter
-Hub access: hub: hubid aj has been set
+hub: hubid aj is set 
 ```
 
 The generator created Rust project ready to compile:
