@@ -3,6 +3,8 @@ DirectoryPath: 'public'
 IgnoreURLs:
   - '/livereload.js'
   - 'twitter.com'
+  # Comment Github out once in a while outside of CI
+  - 'github.com'
 
 HTTPHeaders:
   'Accept': 'text/html'
