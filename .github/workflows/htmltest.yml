@@ -4,7 +4,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: broken-link-${{ github.ref }}
+  group: html-lint-${{ github.ref }}
   cancel-in-progress: true
 
 on:
