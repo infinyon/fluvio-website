@@ -37,7 +37,7 @@ $ fluvio hub list
 
 The SmartMoudule is now available for [download] by anyone with access to the `[Hub]`.
 
-Congratulations :tada:!  You are now ready to build, test, and publish your own SmartModule.
+Congratulations :tada:!  You are now ready to build, test, and publish your own SmartModules.
 
 ### Next Steps
 
