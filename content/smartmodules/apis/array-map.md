@@ -62,8 +62,7 @@ Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmp4imt4g/cargo-gene
 
 ### Code Generator for ArrayMap
 
-The code in this generated project takes JSON arrays as input records and
-returns the _elements_ of those arrays as output records. Let's take a look at the full source, then we'll cover it piece by piece. Let's look at `src/lib.rs`:
+The code in this generated project takes JSON arrays as input records and returns the _elements_ of those arrays as output records. Let's take a look at the full source, then we'll cover it piece by piece. Let's look at `src/lib.rs`:
 
 %copy first-line%
 ```bash
