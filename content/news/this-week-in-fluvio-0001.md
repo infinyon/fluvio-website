@@ -191,7 +191,7 @@ pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
 
 > See the [full source code for this example on GitHub]!
 
-[full source code for this example on GitHub]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/map_double
+[full source code for this example on GitHub]: https://github.com/infinyon/fluvio/tree/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/map_double 
 
 In this example, we are reading in Records and first parsing them as UTF-8 strings,
 then parsing those strings as integers. If either of those steps fails,

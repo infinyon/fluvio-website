@@ -12,7 +12,7 @@ The simplest type of SmartModule is a filter, which can examine each record in a
 
 In this example, we're going to filter records based on the contents of their JSON fields. Since SmartModules are written using arbitrary Rust code, we can also pull in other crates as dependencies. If you want to jump ahead and see the finished code, [check out our JSON filter example].
 
-[check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
+[check out our JSON filter example]: https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter_json
 
 ### Create a new Project
 

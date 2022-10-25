@@ -1,6 +1,9 @@
 ---
 title: Using Connectors with SmartModules
 weight: 10
+hidden: true
+_build:
+  render: never
 ---
 ## SmartModules
 

@@ -40,7 +40,7 @@ SmartModules are ideal for edge (IoT) scenarios, where backhaulling the data to 
 Traditional ETL pipelines are batch driven and often have a fragmented architecture that is difficult to manage and includes lots of software or microservices to make data usable. Fluvio users can now migrate to Stream, Transform and Load (STL) pipelines, where transformation is performed in real time before events are loaded into a database or data lake. Deploy SmartModules on the source or sink connectors to transform and structure data within your STL pipeline. ETL to STL migration reduces the cost and complexity of your architecture.
 
 
-[SmartModule Development Kit (SMDK)]: #smartmodule-developer-kit-smdk
+[SmartModule Development Kit (SMDK)]: {{< ref "/smartmodules/smdk/overview" >}}
 [SmartModule Hub]: #smartmodule-hub
 [SmartModule API Library]:  #smartmodule-api-library
 [`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}

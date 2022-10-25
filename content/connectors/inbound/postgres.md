@@ -90,7 +90,7 @@ This should contain
 
 #### Example connector config
 
-{{<code file="code-blocks/yaml/connectors/inbound-examples/inbound-postgres.yaml" lang="yaml" copy=true >}}
+{{<code file="code-blocks/connectors/inbound-examples/inbound-postgres.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 

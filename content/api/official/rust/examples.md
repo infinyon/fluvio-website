@@ -14,9 +14,9 @@ Refer to the [fluvio docs.rs page] for full detail.
 
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-{{<code file="code-blocks/rust/Cargo.toml" lang="toml" copy=true >}}
+{{<code file="code-blocks/client-examples/rust/Cargo.toml" lang="toml" copy=true >}}
 
-{{<code file="code-blocks/rust/src/main.rs" lang="rust" copy=true >}}
+{{<code file="code-blocks/client-examples/rust/src/main.rs" lang="rust" copy=true >}}
 
 ### Run
 
