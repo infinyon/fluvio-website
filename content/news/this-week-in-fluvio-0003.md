@@ -108,8 +108,8 @@ come say hello!
 Until next week!
 
 [SmartStreams Aggregate]: {{<ref "/smartmodules/apis/aggregate" >}}
-[sums]: https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/aggregate-sum/src/lib.rs
-[averages]: https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/aggregate-average/src/lib.rs
-[combining structural key-value data]: https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/aggregate-json/src/lib.rs
+[sums]: https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/aggregate-sum/src/lib.rs
+[averages]: https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/aggregate-average/src/lib.rs
+[combining structural key-value data]: https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/aggregate-json/src/lib.rs
 [our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [join our Discord channel]: https://discordapp.com/invite/bBG2dTz

@@ -80,7 +80,7 @@ pub fn filter_map(record: &Record) -> Result<Option<(Option<RecordData>, RecordD
     }
 }
 ```
-[Link to example code](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/filter_map/src/lib.rs)
+[Link to example code](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter_map/src/lib.rs)
 
 
 Example input
@@ -193,7 +193,7 @@ Consuming records from the end of topic 'left-topic'. This will wait for new rec
 22
 ```
 
-[Link to example code](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/join/src/lib.rs)
+[Link to example code](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/join/src/lib.rs)
 
 ### Fullscreen Consumer table
 

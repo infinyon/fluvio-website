@@ -1,9 +1,13 @@
 ---
-title: Common Connector Configurations
-menu: Common configs
+title: Connector template 
 weight: 40
 ---
-## Common connector arguments
+
+## Connector Template
+
+{{<code file="code-blocks/templates/connector-template.yaml" lang="yaml" copy=true >}}
+
+## Template description
 
 ### `name`
 *required*
@@ -93,7 +97,3 @@ secrets:
     my-secret: secret-value
     A_SECRET: 12345
 ```
-
-## Connector Template
-
-{{<code file="code-blocks/yaml/connector-template.yaml" lang="yaml" copy=true >}}

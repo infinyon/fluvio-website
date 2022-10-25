@@ -2,6 +2,8 @@
 title: Collect CDC events from Postgres with Fluvio
 weight: 1000
 hidden: true
+_build:
+  render: never
 ---
 ## Advanced Use-Case: Using a Managed Connector with Minikube
 

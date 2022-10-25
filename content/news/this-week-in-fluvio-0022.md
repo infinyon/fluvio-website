@@ -72,7 +72,7 @@ Start our development Fluvio cluster with WASI support
 $ ./target/debug/fluvio cluster start --develop
 ```
 
-Here's our example SmartModule. It is a slight modification of [our filter example](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/filter/src/lib.rs). For debugging purposes, we print the record to stdout before checking the contents of the record and applying filtering.
+Here's our example SmartModule. It is a slight modification of [our filter example](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter/src/lib.rs). For debugging purposes, we print the record to stdout before checking the contents of the record and applying filtering.
 
 %copy%
 ```rust

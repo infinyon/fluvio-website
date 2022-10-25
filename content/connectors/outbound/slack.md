@@ -36,7 +36,7 @@ https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 
 #### Example connector config
 
-{{<code file="code-blocks/yaml/connectors/outbound-examples/outbound-slack.yaml" lang="yaml" copy=true >}}
+{{<code file="code-blocks/connectors/outbound-examples/outbound-slack.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 

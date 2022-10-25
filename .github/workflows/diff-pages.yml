@@ -1,10 +1,10 @@
-name: CI
+name: Take screenshots
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: screenshots-${{ github.ref }}
   cancel-in-progress: true
 
 on:
@@ -18,13 +18,13 @@ on:
 
 jobs:
   diff-pages:
-    name: Diff website pages
+    name: Diff website and take screenshots
     runs-on: ubuntu-latest
     steps:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.97.3"
+          hugo-version: '0.97.3'
           extended: true
 
       - uses: actions/setup-node@v3

@@ -38,7 +38,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
   * Grant shares how legacy data infrastructures operate and how Infinyon with Fluvio's community are positioned to leverage modern technology for faster and higher quality data infrastructures. 
 
 ## Recent events
-* Infinyon was featured as a one of [The 18 Most Exciting Startups Building with Wasm](https://amplifypartners.com/industry-trends/how-webassembly-gets-used-the-18-most-exciting-startups-building-with-wasm/)
+* Infinyon was featured as a one of <a href="https://reneeshah.medium.com/how-webassembly-gets-used-the-18-most-exciting-startups-building-with-wasm-939474e951db" rel="nofollow">The 18 Most Exciting Startups Building with Wasm</a>
   * Our CEO, A.J. Hunyady, answered questions about our decision to use WebAssembly, and how we use it in Fluvio and Infinyon Cloud.
 
 ## Open positions
