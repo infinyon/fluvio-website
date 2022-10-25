@@ -2,6 +2,8 @@
 title: Using a Local Connector with InfinyOn Cloud
 weight: 1000
 hidden: true
+_build:
+  render: never
 ---
 ## Example Use-Case: Using a Local Connector with InfinyOn Cloud
 

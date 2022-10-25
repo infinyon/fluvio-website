@@ -1,8 +1,10 @@
-DirectoryPath: "public"
+DirectoryPath: 'public'
 
 IgnoreURLs:
-  - "/livereload.js"
-  - "twitter.com"
+  - '/livereload.js'
+  - 'twitter.com'
 
 HTTPHeaders:
-  "Accept": "text/html"
+  'Accept': 'text/html'
+
+CacheExpires: '6h'

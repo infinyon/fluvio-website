@@ -132,7 +132,7 @@ or not. You can find the full example code [in our GitHub repo] and compile
 it to test out yourself.
 
 [filter example]: {{< ref "/smartmodules/apis/filter" >}}
-[in our GitHub repo]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
+[in our GitHub repo]:https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter_json
 
 Once you have compiled your SmartModule Filter and have a `.wasm` file for it, you
 can apply it to the consumer as follows:

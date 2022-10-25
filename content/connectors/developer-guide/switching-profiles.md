@@ -1,6 +1,8 @@
 ---
 title: Connectors and Fluvio profiles
 hidden: true
+_build:
+  render: never
 ---
 ### About Switching Profiles
 
