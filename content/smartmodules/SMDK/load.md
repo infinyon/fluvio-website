@@ -7,9 +7,11 @@ toc: false
 
 SMDK load give developers the ability to upload their own SmartModules to a local or [InfinyOn Cloud] clusters. 
 
+##### Prerequisites
+
 This section assumes that SMDK is [installed] and `my-filter` project has been [built].
 
-### Generate - Load
+### Load - Operation
 
 Navigate to your `my-filter` directory and use the `load` command:
 
@@ -113,7 +115,7 @@ The conector creates a topic called `cats` and filters out all records without l
 
 ### Next Steps
 
-* [Publish to SmartMoudle Hub]({{< ref "publish" >}})
+5.  [Publish to SmartMoudle Hub]({{< ref "publish" >}})
 
 [InfinyOn Cloud]: https://infinyon.cloud
 [installed]: {{< ref "install" >}}
