@@ -18,38 +18,42 @@ example looks like.
 
 <img src="/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="190">
 
-## Create a new Project
 
-Let's use `cargo-generate` to set up a blank SmartModule Map project. If you
-don't have it yet, run the following command to install it:
+##### Prerequisites
+
+This section assumes that SMDK is [installed].
+
+
+### Create a SmartModule Project
+
+Run `smdk generate` with the name of the map and choose the "map" options:
 
 %copy first-line%
 ```bash
-$ cargo install cargo-generate
+$ smdk generate map-example
+Generating new SmartModule project: map-example
+project-group => 'john'
+fluvio-smartmodule-cargo-dependency => '"0.2.5"'
+🔧   Destination: ~/smdk/map-example ...
+🔧   Generating template ...
+✔ 🤷   Will your SmartModule use init parameters? · false
+✔ 🤷   Which type of SmartModule would you like? · map
+Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpNFObJj/cargo-generate.toml
+[1/5]   Done: Cargo.toml
+[2/5]   Done: README.md
+[3/5]   Done: SmartModule.toml
+[4/5]   Done: src/lib.rs
+[5/5]   Done: src
+🔧   Moving generated files into: `~/smdk/map-example`...
+💡   Initializing a fresh Git repository
+✨   Done! New project created ~/smdk/map-example
 ```
 
-Then, run the following command and be sure to select the `map` option.
+We should see a new folder has been created for our project `map-example`. Let's navigate inside and take a look at the sample Map generated for us by the template:
 
 %copy first-line%
 ```bash
-$ cargo generate --git https://github.com/infinyon/fluvio-smartmodule-template
-🤷   Project Name : map-example
-🔧   Creating project called `map-example`...
-🤷   Which type of SmartModule would you like? [filter, map] [default: filter]: map
-[1/5]   Done: .cargo/config.toml
-[2/5]   Done: .gitignore
-[3/5]   Done: Cargo.toml
-[4/5]   Done: README.md
-[5/5]   Done: src/lib.rs
-✨   Done! New project created map-example
-```
-
-We should see a new folder has been created for our project, `map-example`. We
-can go inside and take a look at the sample Map generated for us by the template:
-
-%copy first-line%
-```bash
-cd map-example && cat ./src/lib.rs
+$ cd map-example && cat ./src/lib.rs
 ```
 
 %copy%
@@ -83,14 +87,38 @@ Let's break down what's happening here:
 - At any point in the SmartModule, errors may be returned using `?` or via
   `Err(e.into())`. This works for any error type that has `impl std::error::Error`.
 
-This template SmartModule will parse each record as an `i32` integer, then
-multiply that value by 2. To test it out, make sure you are connected to an
-active Fluvio Cluster (see the getting started sections in the top left), then
-follow the instructions in the next section:
+This template SmartModule will parse each record as an `i32` integer, then multiply that value by 2. 
 
-## How to run a SmartModule Map with a consumer
+Let's make sure our code compiles. If eveything works as expected, there is a `.wasm` file generated in the target directory.
 
-Create a new Topic:
+%copy first-line%
+```bash
+$ smdk build
+...
+Compiling map-example v0.1.0 (~/smdk/map-example)
+Finished release-lto [optimized] target(s) in1 12.83s
+```
+
+Your WASM binary is now ready for use.
+
+### Test with SMDK
+
+Now that we've written our map, let's test using the command line. 
+
+%copy first-line%
+```bash
+$ smdk test --text=6
+loading module at: ~/smdk/map-example/target/wasm32-unknown-unknown/release-lto/map_example.wasm
+1 records outputed
+12
+```
+
+Good news! :tada: it works as expected!
+
+
+### Test on Cluster
+
+Let's create a new topic to produce our source data:
 
 %copy first-line%
 ```bash
@@ -98,47 +126,65 @@ $ fluvio topic create map-double
 topic "map-double" created
 ```
 
-Build the SmartModule WASM module. In your project folder, run:
+In a new terminal, producde the following entries:
 
 %copy first-line%
 ```bash
-$ cargo build --release
-```
-
-Your WASM binary is now ready for use.
-
--> You may need to run **% rustup target add wasm32-unknown-unknown**
-
-Now, open a consumer and use the `--map` flag to point it to your WASM module:
-
-%copy first-line%
-```bash
-$ fluvio consume map-double -B --map=target/wasm32-unknown-unknown/release/map_example.wasm
-Consuming records from the beginning of topic 'map-double'
-```
-
-This command will stay open, waiting for records to arrive on the `map-double` topic.
-Now let's open a new terminal and produce some data to watch this work end-to-end.
-
-In a new terminal, run the following:
-
-%copy first-line%
-```bash
-$ fluvio produce map-double
+$ fluvio produce map-double   
 > 1
+Ok!
 > 2
+Ok!
 > 3
+Ok!
 > 4
+Ok!
 > 5
+Ok!
 > ^C
 ```
 
-When the prompt `>` appears, the data you type on each line will be sent to the topic.
-If we check on our consumer window, we should see each record get doubled and printed out:
+Let's double check it's all there.
 
 %copy first-line%
 ```bash
-$ fluvio consume map-double -B --map=target/wasm32-unknown-unknown/release/map_example.wasm
+$ fluvio consume map-double -B -d
+Consuming records from the beginning of topic 'map-double'
+1
+2
+3
+4
+5
+```
+
+#### Load SmartModule to Fluvio
+
+The SmartModule can be loaded to local Fluvio Cluster or [InfinyOn Cloud], as determined by the [`current profile`]. In this example, the profile points to InfinyOn Cloud.
+
+%copy first-line%
+```bash
+$ smdk load 
+Loading package at: ~/smdk/map-example
+Found SmartModule package: map-example
+loading module at: ~/smdk/map-example/target/wasm32-unknown-unknown/release-lto/map_example.wasm
+Trying connection to fluvio router.infinyon.cloud:9003
+Creating SmartModule: map-example
+```
+
+Rust `fluvio smartmodule list` to ensure your SmartModule has been uploaded:
+
+%copy first-line%
+```bash
+$ fluvio smartmodule list
+ SMARTMODULE                    SIZE     
+ john/map-example@0.1.0         87.5 KB 
+```
+
+SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume map-double -B --smartmodule=john/map-example@0.1.0
 Consuming records from the beginning of topic 'map-double'
 2
 4
@@ -147,30 +193,32 @@ Consuming records from the beginning of topic 'map-double'
 10
 ```
 
-## Register the SmartModule with Fluvio
+Congratulations! :tada: Eveything worked as expected!
 
-After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
 
-%copy first-line%
-```bash
-$ fluvio smart-module create map-double-sm --wasm-file target/wasm32-unknown-unknown/release/map_example.wasm
-```
+### Publish to SmartModule Hub
 
-Use the `fluvio smart-module list` command to see all available SmartModules:
+As bonus, let's [publish] this SmartModule to [SmartMoudle Hub].
 
 %copy first-line%
 ```bash
-$ fluvio smart-module list
- NAME          STATUS             SIZE
-map-double-sm  SmartModuleStatus  111280 
+$ smdk publish
+Creating package john/map-example@0.1.0
+.. fill out info in hub/package-meta.yaml
+Package hub/map-example-0.1.0.ipkg created
+Package uploaded!
 ```
 
-Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+Let's double check that the SmartModule is available for download:
 
 %copy first-line%
 ```bash
-$ fluvio consume map-double -B --map=map-double-sm
+$ fluvio hub list
+  SMARTMODULE                    
+  john/map-example@0.1.0        
 ```
+
+Congratulations! :tada: Your SmartModule is now availavle for download in the SmartModule Hub.
 
 
 ### Read next
@@ -178,3 +226,10 @@ $ fluvio consume map-double -B --map=map-double-sm
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
 - [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
 - [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})
+
+
+[installed]: {{< ref "smartmodules/smdk/install" >}}
+[publish]: {{< ref "smartmodules/smdk/publish" >}}
+[InfinyOn Cloud]: https://infinyon.cloud
+[`current profile`]: {{< ref "cli/client/profile" >}}
+[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}

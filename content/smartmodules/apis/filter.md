@@ -8,23 +8,24 @@ The simplest type of SmartModule is a filter, which can examine each record in a
 
 <img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="190">
 
-## Getting Practical: Filter Records by JSON fields
-
-In this example, we're going to filter records based on the contents of their JSON fields. Since SmartModules are written using arbitrary Rust code, we can also pull in other crates as dependencies. If you want to jump ahead and see the finished code, [check out our JSON filter example].
-
-[check out our JSON filter example]: https://github.com/infinyon/fluvio/tree/master/crates/fluvio-smartmodule/examples/filter_json
 
 ##### Prerequisites
 
 This section assumes that SMDK is [installed].
 
+
+## Getting Practical: Filter Records by JSON fields
+
+In this example, we're going to filter records based on the contents of their JSON fields. Since SmartModules are written using arbitrary Rust code, we can also pull in other crates as dependencies. 
+
 ### Create a SmartModule Project
 
-Run `smdk generate` with the name of the filter and choose  "filter" options:
+Run `smdk generate` with the name of the filter and choose the  "filter" options:
 
 %copy first-line%
 ```bash
 $ smdk generate json-filter
+project-group => 'john'
 Generating new SmartModule project: json-filter
 fluvio-smartmodule-cargo-dependency => '"0.2.5"'
 🔧   Destination: ~/smdk/json-filter ...
@@ -41,7 +42,6 @@ Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpoM9gda/cargo-gene
 🔧   Moving generated files into: `~/smdk/json-filter`...
 💡   Initializing a fresh Git repository
 ✨   Done! New project created ~/smdk/json-filter
-hub: hubid john is set                               
 ```
 
 With the SmartModule project created, let's talk about what we will be filtering.
@@ -192,9 +192,7 @@ fn filter(record: &Record) -> Result<bool> {
 }
 ```
 
-Let's make sure our code compiles. We'll use release mode in order to get
-the smallest and fastest binary possible. We should be able to see the
-`.wasm` file appear in the target directory.
+Let's make sure our code compiles. If eveything works as expected, there is a `.wasm` file generated in the target directory.
 
 %copy first-line%
 ```bash
@@ -234,7 +232,7 @@ Good news! :tada: it works as expected!
 
 ### Test on Cluster
 
-We'll start by creating a new topic where we'll produce our data.
+Let's create a new topic to produce our source data:
 
 %copy first-line%
 ```bash
@@ -253,7 +251,7 @@ Let's double check it's all there.
 
 %copy first-line%
 ```bash
-$ fluvio consume server-logs -B
+$ fluvio consume server-logs -B -d
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}
 {"level":"info","message":"Accepted incoming connection"}
 {"level":"debug","message":"Deserializing request from client"}

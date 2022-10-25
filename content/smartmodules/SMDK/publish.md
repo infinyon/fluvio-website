@@ -21,7 +21,7 @@ $ smdk publish
 Creating package aj/my-filter@0.1.0
 .. fill out info in hub/package-meta.yaml
 Package hub/my-filter-0.1.0.ipkg created
-Package successfully uploaded
+Package uploaded!
 ```
 
 #### Inspect Result
