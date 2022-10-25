@@ -5,22 +5,15 @@ weight: 40
 toc: true
 ---
 
-SmartModule FilterMaps are used to both transform _and_ potentially filter
-records from a stream at the same time. This can be useful for a number of
-scenarios including working with data with nullable fields, or working with
-subsets of event data. In these cases, FilterMap allows us discard irrelevant
-data - such as records with null fields or event types that we don't care about -
-while also performing meaningful work with relevant data - such as reformatting
-fields we've extracted or events we've gathered.
+SmartModule FilterMaps are used to both transform _and_ potentially filter records from a stream at the same time. This can be useful for a number of
+scenarios including working with data with nullable fields, or working with subsets of event data. In these cases, FilterMap allows us discard irrelevant data - such as records with null fields or event types that we don't care about - while also performing meaningful work with relevant data - such as reformatting fields we've extracted or events we've gathered.
 
-FilterMap functions work by returning an `Option` of a new record. To discard a
-record from the stream, return `None`. Otherwise, transform
+FilterMap functions work by returning an `Option` of a new record. To discard a record from the stream, return `None`. Otherwise, transform
 the record according to your needs and return it as `Some(record)`.
 
 <img src="/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="190">
 
-Let's dive in and see how to use this in practice. You can find the full code
-for this doc's example [in the fluvio-smartmodule-examples repository][1].
+Let's dive in and see how to use this in practice. You can find the full code for this doc's example [in the fluvio-smartmodule-examples repository][1].
 
 ##### Prerequisites
 
@@ -139,7 +132,7 @@ Let's break down what's happening here. First, we have a `GroceryEvent` enum whi
 
 Next, we check what type of event we received. If it's an `order_ready` event, we transform it, picking the phone number and account preferred name and creating a record that contains a text-friendly message that should be sent to the user. If it is any other event type, we filter it out by returning `Ok(None)`.
 
-#### Build the SmartModule
+### Build the SmartModule
 
 Let's make sure our code compiles. If eveything works as expected, there is a `.wasm` file generated in the target directory.
 
@@ -208,7 +201,7 @@ Let's double check it's all there.
 
 %copy first-line%
 ```bash
-$ fluvio consume filter-map -B -d
+$ fluvio consume filter-map -dB
 Consuming records from the beginning of topic 'filter-map'
 {"type":"account_created","account_id":"1","username":"bill9876","preferred_name":"Bill","phone_number":"1-800-234-5678"}
 {"type":"order_ready","account_id":"1","sms_number":"1-800-234-5678","sms_name":"Bill"}
@@ -243,7 +236,7 @@ SmartModule that have been uploaded on the cluster can be used by other areas of
 
 %copy first-line%
 ```bash
-$ fluvio consume filter-map -B -d --smartmodule=john/filter-map@0.1.0
+$ fluvio consume filter-map -dB --smartmodule=john/filter-map@0.1.0
 Consuming records from the beginning of topic 'filter-map'
 {"message":"Hello Bill, your groceries have been collected and are ready to pick up!","number":"1-800-234-5678"}
 {"message":"Hello Mary, your groceries have been collected and are ready to pick up!","number":"1-222-222-2222"}

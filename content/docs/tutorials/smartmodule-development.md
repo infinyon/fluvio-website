@@ -162,7 +162,7 @@ $ echo "abc123" | fluvio produce filter-test
 
 %copy first-line%
 ```bash
-$ fluvio consume filter-test -B -d  --smartmodule my-group/regex-filter@0.1.0 -e regex="^[0-9]*$"
+$ fluvio consume filter-test -dB --smartmodule my-group/regex-filter@0.1.0 -e regex="^[0-9]*$"
 Consuming records from the beginning of topic 'filter-test'
 42
 ```
@@ -171,7 +171,7 @@ Or you can just use the SmartModule by name, if it is unique
 
 %copy first-line%
 ```bash
-$ fluvio consume filter-test -B -d  --smartmodule regex-filter -e regex="^[0-9]*$" 
+$ fluvio consume filter-test -dB  --smartmodule regex-filter -e regex="^[0-9]*$" 
 Consuming records from the beginning of topic 'filter-test'
 42
 ```
