@@ -26,8 +26,6 @@ htmltest:
 	curl https://htmltest.wjdp.uk | bash
 	./bin/htmltest
 
-run-client-example-all: run-client-example-rust run-client-example-node run-client-example-java run-client-example-python
-
 run-client-example:
 	cd $(CLIENT_EXAMPLE_ROOT)/$(LANG); \
 	docker-compose build; \

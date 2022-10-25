@@ -31,3 +31,6 @@ $RECYCLE.BIN/
 # htmltest
 tmp/
 bin/
+
+# Rust
+code-blocks/client-examples/rust/target/
