@@ -61,11 +61,11 @@ hubid set to my-group
 
 You will need to add a dependency to the `Cargo.toml`
 
-{{<code-highlight file="code-blocks/tutorials/sm-development/regex-filter/Cargo.toml" lang="rust" lines="15">}}
+{{<code-highlight file="embeds/tutorials/sm-development/regex-filter/Cargo.toml" lang="rust" lines="15">}}
 
 And you can copy/paste this code into the `lib.rs` of the generated SmartModule project.
 
-{{<code file="code-blocks/tutorials/sm-development/regex-filter/src/lib.rs" lang="rust" copy="true">}}
+{{<code file="embeds/tutorials/sm-development/regex-filter/src/lib.rs" lang="rust" copy="true">}}
 
 Now that we have the SmartModule project created and code written, we need to build it.
 
@@ -126,7 +126,7 @@ loading module at: target/wasm32-unknown-unknown/release-lto/regex_filter.wasm
 
 In the previous steps, we used `smdk generate` to a SmartModule package. This is what the `SmartModule.toml` package metadata looks like.
 
-{{<code file="code-blocks/tutorials/sm-development/regex-filter/SmartModule.toml" lang="toml">}}
+{{<code file="embeds/tutorials/sm-development/regex-filter/SmartModule.toml" lang="toml">}}
 
 %copy first-line%
 ```shell

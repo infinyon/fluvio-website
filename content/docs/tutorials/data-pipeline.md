@@ -38,7 +38,7 @@ This is the template YAML connector file. To make it useful, it needs to be
 populated – which we will do in the next step. See
 [the documentation]({{<ref "/connectors/">}}) for the parameters available for use.
 
-{{<code file="code-blocks/templates/connector-template.yaml" lang="yaml" copy="true">}}
+{{<code file="embeds/templates/connector-template.yaml" lang="yaml" copy="true">}}
 
 Thankfully, filling it out is simple. For any connection, you need a name,
 the connection type, and what topic to connect to.
@@ -48,7 +48,7 @@ the connection type, and what topic to connect to.
 For the HTTP-specific parameters you will need to specify the link it is
 polling, and the interval at which it polls.
 
-{{<code file="code-blocks/connectors/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
+{{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
 
 This creates a connector named `cat-facts`, that reads from the website
 `https://catfacts.ninja/fact` every 30 seconds, and produces to the topic
@@ -117,7 +117,7 @@ For more info about the SmartModule Hub, check out the [Hub Overview page]({{<re
 #### Outbound SQL with basic SQL inserts
 In this connector, we will listen in on the `cat-facts-data` topic. Whenever a new fact is produced to the topic, the Outbound SQL connector will insert the record into a table named `animalfacts`. The length in one column called `length` and the entire JSON in another column `raw_fact_json`.
 
-{{<code file="code-blocks/tutorials/data-pipeline/sql-basic.yml" lang="yaml" copy="true">}}
+{{<code file="embeds/tutorials/data-pipeline/sql-basic.yml" lang="yaml" copy="true">}}
 
 And we create the Outbound connector just like the Inbound connector
 
@@ -151,7 +151,7 @@ In this connector, we will listen in on the `cat-facts-data` topic.
 
 But before we insert into the database, we specify a transformation. The resulting JSON we see inserted in the table has the `length` removed, and adds `type: cat` to every JSON.
 
-{{<code file="code-blocks/tutorials/data-pipeline/sql-transform.yml" lang="yaml" copy="true">}}
+{{<code file="embeds/tutorials/data-pipeline/sql-transform.yml" lang="yaml" copy="true">}}
 
 Create another connector with our transformations.
 

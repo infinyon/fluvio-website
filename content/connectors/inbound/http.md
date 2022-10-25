@@ -102,7 +102,7 @@ Choices:
 
 #### Example connector config
 
-{{<code file="code-blocks/connectors/inbound-examples/inbound-http.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors/inbound-examples/inbound-http.yaml" lang="yaml" copy=true >}}
 
 This example config for inbound HTTP connector config reads from the {{<link "https://catfact.ninja/fact" "https://catfact.ninja" >}} website, and stores the output in the `cat-facts` topic every `300` seconds
 

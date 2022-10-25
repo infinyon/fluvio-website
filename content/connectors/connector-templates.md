@@ -5,7 +5,7 @@ weight: 40
 
 ## Connector Template
 
-{{<code file="code-blocks/templates/connector-template.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/templates/connector-template.yaml" lang="yaml" copy=true >}}
 
 ## Template description
 
