@@ -8,9 +8,13 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  pull_request:
+  push:
     branches:
-      - master
+      - staging
+      - trying
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
 
 jobs:
   htmltest:
