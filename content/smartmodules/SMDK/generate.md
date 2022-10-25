@@ -7,6 +7,10 @@ toc: false
 
 SMDK generate helps develpoers build a sample SmartModule project by answering a few simple quuestions. 
 
+##### Prerequisites
+
+This section assumes that SMDK is [installed].
+
 ### Generate - Operation
 
 SMDK generate commands runds a wizard and builds a sample project is a subdirectory. Let's get started:
@@ -89,6 +93,7 @@ The project is ready to build and test. Checkout the next section for instructio
 5. [Publish to SmartMoudle Hub]
 
 
+[installed]: {{< ref "install" >}}
 [Build and Test]: {{< ref "build-test" >}}
 [Load to your Cluster]: {{< ref "load" >}}
 [Publish to SmartMoudle Hub]: {{< ref "publish" >}}
