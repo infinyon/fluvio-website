@@ -24,14 +24,16 @@ If `false`, the record is discarded, and if `true`, the record is saved, and con
 
 <img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="180">
 
+Checkout [`filter section`] for an example.
+
 ### Map
 A [Map SmartModule]({{<ref "map" >}}) takes an input record allows you to apply any data transformations to the record before it continues downstream.
 
-"Map" refers to the [programming language term](https://en.wikipedia.org/wiki/Map_(higher-order_function)), which simply is a function that is applied to all input data.
-
+"Map" refers to the [programming language term](https://en.wikipedia.org/wiki/Map_(higher-order_function)), which simply is a function that is applied to all input data. 
 
 <img src="/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="180">
 
+Checkout [`map section`] for an example.
 
 ### FilterMap
 
@@ -43,6 +45,7 @@ You can check for conditions in the data and if met, apply transformations. Or i
 
 <img src="/smartmodules/images/smartmodule-filtermap.svg" alt="SmartModule FilterMap" justify="center" height="180">
 
+Checkout [`filter-map section`] for an example.
 
 ### ArrayMap
 
@@ -54,6 +57,7 @@ Given a single record that is a JSON array, you may flatten the single input arr
 
 <img src="/smartmodules/images/smartmodule-arraymap.svg" alt="SmartModule ArrayMap" justify="center" height="180">
 
+Checkout [`array-map section`] for an example.
 
 ### Aggregate
 
@@ -64,3 +68,11 @@ The value of the Accumulator Record is also returned after each input.
 For example, if you're trying to Sum up stream of numbers, you would add each input value to the current value of the Accumulator Record.
 
 <img src="/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="220">
+
+Checkout [`aggregate section`] for an example.
+
+[`filter section`]: {{< ref "filter" >}}
+[`map section`]: {{< ref "map" >}}
+[`filter-map section`]: {{< ref "filter-map" >}}
+[`array-map section`]: {{< ref "array-map" >}}
+[`aggregate section`]: {{< ref "aggregate" >}}

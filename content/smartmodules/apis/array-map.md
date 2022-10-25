@@ -1,5 +1,6 @@
 ---
-title: ArrayMap
+title: ArrayMap API
+menu: ArrayMap
 weight: 50
 toc: false
 ---

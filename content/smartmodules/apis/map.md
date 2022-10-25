@@ -1,13 +1,11 @@
 ---
-title: Map
+title: Map API
+menu: Map
 weight: 30
 toc: true
 ---
 
-SmartModule Maps are used to transform or edit each Record in a stream.
-We say that these SmartModules "map" each input record into a new output
-record by applying a function to the input data. This type of SmartModule
-may be used for many use-cases, such as:
+SmartModule Maps are used to transform or edit each Record in a stream. We say that these SmartModules "map" each input record into a new output record by applying a function to the input data. This type of SmartModule may be used for many use-cases, such as:
 
 - Narrowing large records into a smaller subset of important fields
 - Scrubbing sensitive fields of data to be invisible to downstream consumers
@@ -218,7 +216,7 @@ $ fluvio hub list
   john/map-example@0.1.0        
 ```
 
-Congratulations! :tada: Your SmartModule is now availavle for download in the SmartModule Hub.
+Congratulations! :tada: Your SmartModule is now available for download in the SmartModule Hub.
 
 
 ### Read next

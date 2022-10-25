@@ -1,5 +1,6 @@
 ---
-title: Filter
+title: Filter API
+menu: Filter
 weight: 20
 toc: true
 ---
@@ -291,7 +292,7 @@ SmartModule that have been uploaded on the cluster can be used by other areas of
 
 %copy first-line%
 ```bash
-$ fluvio consume server-logs -B --smartmodule=john/json-filter@0.1.0
+$ fluvio consume server-logs -B -d --smartmodule=john/json-filter@0.1.0
 Consuming records from the beginning of topic 'server-logs'
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}
 {"level":"info","message":"Accepted incoming connection"}
@@ -325,7 +326,7 @@ $ fluvio hub list
   john/json-filter@0.1.0         
 ```
 
-Congratulations! :tada: Your SmartModule is now availavle for download in the SmartModule Hub.
+Congratulations! :tada: Your SmartModule is now available for download in the SmartModule Hub.
 
 ## Read next
 

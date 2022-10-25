@@ -1,5 +1,6 @@
 ---
-title: Aggregate
+title: Aggregate API
+menu: Aggregate
 weight: 60
 toc: false
 ---

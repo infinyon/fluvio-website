@@ -1,7 +1,8 @@
 ---
-title: FilterMap
+title: FilterMap API
+menu: FilterMap
 weight: 40
-toc: false
+toc: true
 ---
 
 SmartModule FilterMaps are used to both transform _and_ potentially filter
@@ -21,13 +22,14 @@ the record according to your needs and return it as `Some(record)`.
 Let's dive in and see how to use this in practice. You can find the full code
 for this doc's example [in the fluvio-smartmodule-examples repository][1].
 
-## Example project
+##### Prerequisites
 
-For this example, we'll write a simplified version of the [online grocery-notifications
-example we blogged about][2]. In this simplified example, we'll consider a stream that
-has two event types: Account Created and Order Ready. We'll use FilterMap to discard
-`account_created` events, and to transform `order_ready` events into text messages that should
-be sent to the user.
+This section assumes that SMDK is [installed].
+
+
+## Getting Practical: Transform `Order Ready` events in a mobile shopping App
+
+For this example, we'll write a simplified version of the [online grocery-notifications example we blogged about][2]. In this simplified example, we'll consider a stream that has two event types: Account Created and Order Ready. We'll use FilterMap to discard `account_created` events, and to transform `order_ready` events into text messages that should be sent to the user.
 
 Let's take a look at some sample input for this example:
 
@@ -47,47 +49,42 @@ The output records in this stream should look like this:
 {"number":"1-222-222-2222","message":"Hello Mary, your groceries have been collected and are ready to pick up!"}
 ```
 
-## Create a new Project
+### Create a SmartModule Project
 
-We can use the `cargo-generate` tool to create a new SmartModules project that
-is ready to go. If you don't already have it, you can install `cargo-generate`
-using this command:
+Run `smdk generate` with the name of the filter and choose the  "filter" options:
 
 %copy first-line%
 ```bash
-$ cargo install cargo-generate
-```
-
-Then, use the following command to create a new SmartModules FilterMap project.
-
-%copy first-line%
-```bash
-$ cargo generate --git="https://github.com/infinyon/fluvio-smartmodule-template"
-⚠️   Unable to load config file: ~/.cargo/cargo-generate.toml
-🤷   Project Name : filter-map
+$ smdk generate filter-map
+project-group => 'john'
+fluvio-smartmodule-cargo-dependency => '"0.3.0"'
+🔧   Destination: ~/smdk/filter-map ...
 🔧   Generating template ...
-✔ 🤷   Which type of SmartModule would you like? · array-map
-[1/7]   Done: .cargo/config.toml
-[2/7]   Done: .cargo
-[3/7]   Done: .gitignore
-[4/7]   Done: Cargo.toml
-[5/7]   Done: README.md
-[6/7]   Done: src/lib.rs
-[7/7]   Done: src
-🔧   Moving generated files into: `filter-map`...
-✨   Done! New project created filter-map
+✔ 🤷   Will your SmartModule use init parameters? · false
+✔ 🤷   Which type of SmartModule would you like? · filter-map
+Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmp5Yi3lU/cargo-generate.toml
+[1/5]   Done: Cargo.toml
+[2/5]   Done: README.md
+[3/5]   Done: SmartModule.toml
+[4/5]   Done: src/lib.rs
+[5/5]   Done: src
+🔧   Moving generated files into: `~/smdk/filter-map`...
+💡   Initializing a fresh Git repository
+✨   Done! New project created ~/smdk/filter-map
 ```
 
-We'll want to `cd` into the project directory for the rest of the commands
-to work:
+The generator created a sample code for us, let's go ahead and update it.
+
+### The Code: Writing our FilterMap
+
+We'll want to `cd` into the project directory for the rest of the commands to work:
 
 %copy first-line%
 ```bash
 $ cd filter-map
 ```
 
-Now, let's jump right into the code. Copy and paste the following block into
-the `src/lib.rs` file in the new SmartModule project:
+Now, let's jump right into the code. Copy and paste the following block into the `src/lib.rs` file in the new SmartModule project:
 
 %copy%
 ```rust
@@ -138,44 +135,55 @@ fn filter_map(record: &Record) -> Result<Option<(Option<RecordData>, RecordData)
 }
 ```
 
-Let's break down what's happening here. First, we have a `GroceryEvent` enum which
-represents the different types of input record we are expecting. We're using `serde`
-to automatically serialize and deserialize our JSON into this enum type.
+Let's break down what's happening here. First, we have a `GroceryEvent` enum which represents the different types of input record we are expecting. We're using `serde` to automatically serialize and deserialize our JSON into this enum type.
 
-Next, we check what type of event we received. If it's an `order_ready` event, we
-transform it, picking the phone number and account preferred name and creating a
-record that contains a text-friendly message that should be sent to the user.
-If it is any other event type, we filter it out by returning `Ok(None)`.
+Next, we check what type of event we received. If it's an `order_ready` event, we transform it, picking the phone number and account preferred name and creating a record that contains a text-friendly message that should be sent to the user. If it is any other event type, we filter it out by returning `Ok(None)`.
 
-Let's take a look at how we can run this SmartModule with our sample data!
+#### Build the SmartModule
 
-## Running the FilterMap
-
-Before getting started, make sure you have [downloaded the Fluvio CLI] and followed
-the getting started guide to get up and running with a Fluvio cluster. Then, if you
-haven't done so already, you'll need to install the `wasm32-unknown-unknown` target
-for Rust using the following command:
+Let's make sure our code compiles. If eveything works as expected, there is a `.wasm` file generated in the target directory.
 
 %copy first-line%
 ```bash
-$ rustup target add wasm32-unknown-unknown
+$ smdk build
+...
+Compiling filter-map v0.1.0 (~/smdk/filter-map)
+Finished release-lto [optimized] target(s) in 11.97s
 ```
 
-Now we'll be able to compile the FilterMap SmartModule. Let's use release mode so
-we get the smallest WASM binary possible:
+Your SmartModule WASM binary is now ready for use.
+
+### Test with SMDK
+
+Let's test our work using the command line `test` facility.
+
+Test `filter` component to ensure non-mathing records are eliminated:
 
 %copy first-line%
 ```bash
-$ cargo build --release
+$ smdk test --text='{"type":"account_created","account_id":"1","username":"bill9876","preferred_name":"Bill","phone_number":"1-800-234-5678"}'
+loading module at: ~/smdk/filter-map/target/wasm32-unknown-unknown/release-lto/filter_map.wasm
+0 records outputed
 ```
 
-Next, we'll need to create a new Fluvio topic to produce and consume our data using
-this command:
+Test `map` part to ensure matching records are transformed:
+
+%copy first-line%
+```bash
+$ smdk test --text='{"type":"order_ready","account_id":"1","sms_number":"1-800-234-5678","sms_name":"Bill"}'
+loading module at: ~/smdk/filter-map/target/wasm32-unknown-unknown/release-lto/filter_map.wasm
+1 records outputed
+{"message":"Hello Bill, your groceries have been collected and are ready to pick up!","number":"1-800-234-5678"}
+```
+
+### Test on Cluster
+
+Let's create a new Fluvio topic to produce the sample records we want to consume with our SmartModule:
 
 %copy first-line%
 ```bash
 $ fluvio topic create filter-map
-topic "array-map" created
+topic "filter-map" created
 ```
 
 Now, let's put our sample data into a file and produce it to our topic.
@@ -196,52 +204,89 @@ Now we can produce the sample data to our topic.
 $ fluvio produce filter-map -f ./groceries.txt
 ```
 
-Finally, let's consume our data using our FilterMap SmartModule and see that our
-output records match the format we expect, with the phone number and text message
-to send:
+Let's double check it's all there.
 
 %copy first-line%
 ```bash
-$ fluvio consume filter-map -B --filter-map=target/wasm32-unknown-unknown/release/filter_map.wasm
+$ fluvio consume filter-map -B -d
+Consuming records from the beginning of topic 'filter-map'
+{"type":"account_created","account_id":"1","username":"bill9876","preferred_name":"Bill","phone_number":"1-800-234-5678"}
+{"type":"order_ready","account_id":"1","sms_number":"1-800-234-5678","sms_name":"Bill"}
+{"type":"account_created","account_id":"2","username":"mary","preferred_name":"Mary","phone_number":"1-222-222-2222"}
+{"type":"order_ready","account_id":"2","sms_number":"1-222-222-2222","sms_name":"Mary"}
+```
+
+#### Load SmartModule to Fluvio
+
+The SmartModule can be loaded to local Fluvio Cluster or [InfinyOn Cloud], as determined by the [`current profile`]. In this example, the profile points to InfinyOn Cloud.
+
+%copy first-line%
+```bash
+$ smdk load
+Loading package at: ~/smdk/filter-map
+Found SmartModule package: filter-map
+loading module at: ~/smdk/filter-map/target/wasm32-unknown-unknown/release-lto/filter_map.wasm
+Trying connection to fluvio router.infinyon.cloud:9003
+Creating SmartModule: filter-map
+```
+
+Rust `fluvio smartmodule list` to ensure your SmartModule has been uploaded:
+
+%copy first-line%
+```bash
+$ fluvio smartmodule list
+  SMARTMODULE                   SIZE     
+  john/filter-map@0.1.0         166.6 KB
+```
+
+SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
+
+%copy first-line%
+```bash
+$ fluvio consume filter-map -B -d --smartmodule=john/filter-map@0.1.0
 Consuming records from the beginning of topic 'filter-map'
 {"message":"Hello Bill, your groceries have been collected and are ready to pick up!","number":"1-800-234-5678"}
 {"message":"Hello Mary, your groceries have been collected and are ready to pick up!","number":"1-222-222-2222"}
 ```
 
-Congratulations, you just completed your first FilterMap example! You can find the
-[full source code for this example on GitHub][1], along with the full sources for many
-other SmartModules examples.
+Congratulations! :tada: Eveything worked as expected!
 
-## Register the SmartModule with Fluvio
+## Publish to SmartModule Hub
 
-After building a SmartModule as a WASM binary, it may be registered with Fluvio using the `fluvio smart-module` command:
+Let's [publish] this SmartModule to [SmartMoudle Hub] to make accessible to others.
 
 %copy first-line%
 ```bash
-$ fluvio smart-module create filter-groceries --wasm-file target/wasm32-unknown-unknown/release/filter_map.wasm
+$ smdk publish
+Creating package john/filter-map@0.1.0
+.. fill out info in hub/package-meta.yaml
+Package hub/filter-map-0.1.0.ipkg created
+Package uploaded!
 ```
 
-Use the `fluvio smart-module list` command to see all available SmartModules:
+Let's double check that the SmartModule is available for download:
 
 %copy first-line%
 ```bash
-$ fluvio smart-module list
- NAME             STATUS             SIZE
-filter-groceries  SmartModuleStatus  178931
+$ fluvio hub list
+  SMARTMODULE                    
+  john/filter-map@0.1.0         
 ```
 
-Once the SmartModule is created, it can be used by other areas of the system (consumers, producers, connectors, etc):
+Congratulations! :tada: Your SmartModule is now available for download in the SmartModule Hub.
 
-%copy first-line%
-```bash
-$ fluvio consume filter-map -B --filter-map=filter-groceries
-```
-
-### Read next
+## Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})
+- [Writing a JSON filter]({{< ref "filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "aggregate" >}})
+
+
+[installed]: {{< ref "smartmodules/smdk/install" >}}
+[publish]: {{< ref "smartmodules/smdk/publish" >}}
+[InfinyOn Cloud]: https://infinyon.cloud
+[`current profile`]: {{< ref "cli/client/profile" >}}
+[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}
 
 [1]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/grocery-notifications/src/lib.rs
 [2]: https://www.infinyon.com/blog/2021/11/filter-map/
