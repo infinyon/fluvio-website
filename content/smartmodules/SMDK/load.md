@@ -72,7 +72,7 @@ Consume using `my-filter`:
 
 %copy first-line%
 ```bash
-$ fluvio consume test -B -d --smartmodule aj/my-filter@0.1.0
+$ fluvio consume test -dB --smartmodule aj/my-filter@0.1.0
 Consuming records from the beginning of topic 'test'
 cats
 start
