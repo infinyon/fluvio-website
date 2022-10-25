@@ -53,7 +53,7 @@ options](https://github.com/edenhill/librdkafka/blob/b171d8f411a981c7604a79777ce
 
 #### Example connector config
 
-{{<code file="code-blocks/yaml/connectors/outbound-examples/outbound-kafka.yaml" lang="yaml" copy=true >}}
+{{<code file="code-blocks/connectors/outbound-examples/outbound-kafka.yaml" lang="yaml" copy=true >}}
 
 
 ## Data Events

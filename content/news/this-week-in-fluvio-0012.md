@@ -14,9 +14,9 @@ programmable streaming platform written in Rust.
 ### ArrayMap examples
 This is an addition to [last week]( {{< ref "/news/this-week-in-fluvio-0011.md" >}})'s release of ArrayMap. We have some new examples.
 
-- [ArrayMap w/ JSON array inputs](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/array_map_json_array/src/lib.rs)
-- [ArrayMap w/ JSON object inputs](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/array_map_json_object/src/lib.rs)
-- [ArrayMap example code](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/array_map_json_reddit/src/lib.rs) from [our previous blog post](https://www.infinyon.com/blog/2021/10/smartstream-array-map-reddit/)
+- [ArrayMap w/ JSON array inputs](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/array_map_json_array/src/lib.rs)
+- [ArrayMap w/ JSON object inputs](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/array_map_json_object/src/lib.rs)
+- [ArrayMap example code](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/array_map_json_reddit/src/lib.rs) from [our previous blog post](https://www.infinyon.com/blog/2021/10/smartstream-array-map-reddit/)
 
 ### Improved user experience when loading invalid SmartStream code
 Prior to this release, trying to use invalid SmartStream code (but valid Rust code) with a consumer would result in the stream closing without a specific reason being reported to the user.
