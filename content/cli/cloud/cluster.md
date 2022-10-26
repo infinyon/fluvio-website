@@ -11,22 +11,7 @@ The `fluvio cloud cluster` family of commands is used to create, delete, and tro
 $  fluvio cloud cluster -h
 ```
 
-```
-fluvio-cloud-cluster 
-View Fluvio Cluster information
-
-USAGE:
-    fluvio-cloud cluster <SUBCOMMAND>
-
-OPTIONS:
-    -h, --help    Print help information
-
-SUBCOMMANDS:
-    create    Create a new Fluvio cluster
-    delete    Delete an existing Fluvio cluster
-    help      Print this message or the help of the given subcommand(s)
-    list      List all Fluvio clusters
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-cluster.md" %}}
 
 ---
 
@@ -39,16 +24,8 @@ This command is used to provision a new cluster.
 $  fluvio cloud cluster create -h
 ```
 
-```
-Create a new Fluvio cluster
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-cluster-create.md" %}}
 
-USAGE:
-    fluvio-cloud cluster create [OPTIONS]
-
-OPTIONS:
-    -h, --help                 Print help information
-        --profile <PROFILE>    The name of the Profile to save
-```
 
 ## `fluvio cloud cluster list`
 
@@ -59,15 +36,7 @@ Command to show the fluvio clusters in Cloud associated with current user.
 $  fluvio cloud cluster list -h
 ```
 
-```
-List all Fluvio clusters
-
-USAGE:
-    fluvio-cloud cluster list
-
-OPTIONS:
-    -h, --help    Print help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-cluster-list.md" %}}
 
 Example usage:
 
@@ -91,16 +60,7 @@ This command deletes current cluster of current user.
 $  fluvio cloud cluster delete -h
 ```
 
-```
-USAGE:
-    fluvio-cloud cluster delete <email>
-
-ARGS:
-    <email>    The email for the cluster to be deleted
-
-OPTIONS:
-    -h, --help    Print help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-cluster-delete.md" %}}
 
 Example usage:
 

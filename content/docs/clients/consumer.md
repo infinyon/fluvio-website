@@ -14,26 +14,6 @@ not expire after being consumed.
 
 [Producer documentation]: {{< ref "/docs/clients/producer" >}}
 
-## Offsets
-
-In order to begin consuming records, a consumer must specify the topic and
-partition to consume from, as well as the offset into the partition where
-it should begin reading. Remember, the offset of a record is its total
-position within its parent partition. However, there are multiple ways that
-an offset may be derived in more convenient ways:
-
-- Directly, as an absolute index into the partition, starting from zero
-- As a relative distance from the beginning of the partition
-- As a relative distance from the end of the partition
-
-When consumers specify a relative offset, the offset given by the consumer
-is used to calculate the actual total offset into the partition. There is
-also an important difference between an absolute offset and a relative offset
-from the beginning of the partition. If a partition has a retention policy
-that causes it to begin deleting records from the beginning, then the
-relative-from-beginning offset will count forward from the oldest record
-that is still available.
-
 ## Start Consuming
 
 In order to get started with consuming streaming data, you'll need to:

@@ -21,7 +21,7 @@ To see the full docs, visit our [pdoc page](https://infinyon.github.io/fluvio-cl
 
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-{{<code file="code-blocks/client-examples/python/hello-python.py" lang="python" copy=true >}}
+{{<code file="embeds/client-examples/python/hello-python.py" lang="python" copy=true >}}
 
 ### Run
 

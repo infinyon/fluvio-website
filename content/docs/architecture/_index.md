@@ -1,4 +1,6 @@
 ---
 title: ARCHITECTURE
-weight: 80
+weight: 60
+_build:
+  render: never
 ---

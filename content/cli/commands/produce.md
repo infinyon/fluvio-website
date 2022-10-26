@@ -3,48 +3,14 @@ title: Produce
 weight: 10
 ---
 
+## `fluvio produce`
 The `fluvio produce` command is a way to send records to the leader of a partition.
 Produce records by specifying the destination Topic
 
-```
-fluvio-produce
-Write messages to a topic/partition
+{{% inline-embed file="embeds/cli/help/fluvio-produce.md" %}}
 
-When no '--file' is provided, the producer will read from 'stdin' and send each
-line of input as one record.
-
-If a file is given with '--file', each line of file is sent as a record, unless also using `--raw` flag.
-
-If '--key-separator' is used, records are sent as key/value pairs, and the keys
-are used to determine which partition the records are sent to.
-
-Use `--compression` to specify compression algorithm used when sending records. Default value is `none`, other options are `gzip`, `snappy` and `lz4`.
-
-USAGE:
-    fluvio produce [FLAGS] [OPTIONS] <topic>
-
-FLAGS:
-    -v, --verbose    Print progress output when sending records
-        --raw        Send all input as one record. Use this when producing
-                     binary files
-    -h, --help       Prints help information
-
-OPTIONS:
-        --key-separator <key-separator>
-            Sends key/value records split on the first instance of the separator
-
-        --compression <compression>
-            Compression algorithm to use when sending records. Supported values: none, gzip, snappy
-            and lz4
-
-    -f, --file <file>
-            Path to a file to produce to the topic. If absent, producer will read stdin
-
-ARGS:
-    <topic>    The name of the Topic to produce to
-```
-
-## Example 1: Produce records from stdin
+## Examples
+### Produce records from stdin
 
 The quickest way to send a record using the producer is to just type your record
 into standard input:
@@ -66,7 +32,7 @@ As the message says, each line that you type will be sent a new record to the to
 The `Ok!` was printed by the producer after each record, to let us know the record
 was sent successfully.
 
-## Example 2: Produce key/value records from stdin
+### Produce key/value records from stdin
 
 Fluvio supports key/value records out-of-the-box. In a key/value record, the key is used
 to decide which partition the record is sent to. Let's try sending some simple key/value records:
@@ -96,7 +62,7 @@ Ok!
 
 The producer splits the key from the value and prints it in a `[key] value` format.
 
-## Example 3: Produce key/value records to multiple partitions
+### Produce key/value records to multiple partitions
 
 When producing to a topic with multiple partitions, the producer will send
 all records with the same key to the same partition. Let's test this out by making
@@ -175,7 +141,7 @@ $ fluvio consume multi-keys -B -p3 --key-value
 [rafael] complete purchase
 ```
 
-## Example 4: Producing to multiple partitions using Round-Robin
+### Producing to multiple partitions using Round-Robin
 
 When we produce to a topic with multiple partitions, records that have no key
 are assigned to partitions in a round-robin fashion. This ensures an even load
@@ -237,7 +203,7 @@ $ fluvio partition list
 Notice how the high watermark (HW) and log-end-offset (LEO) tell us that there are
 exactly 2 records in each partition. Our ten records have been evenly distributed!
 
-## Example 5: Producing using a compression algorithm (GZIP)
+### Producing using a compression algorithm (GZIP)
 
 Fluvio support different types of compression algorithms to send records. 
 Compression, in general, improves throughput in exchange of some CPU cost to compress/uncompress the data.

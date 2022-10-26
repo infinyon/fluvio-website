@@ -20,10 +20,12 @@ Commands for users to interact with the SmartModule hub are under the **fluvio h
 
 ### `fluvio hub download`
 
+{{% inline-embed file="embeds/cli/help/fluvio-hub-download.md" %}}
+
 The command **fluvio hub download <group/package@version>** will download a hub smartmodule into your cluster so it can be configured and used in your pipeline.
 
 %copy first-line%
-```
+```bash
 $ fluvio hub download infinyon/egex-filter2@0.1.0
 
 downloading infinyon/regex-filter2@0.1.0 to infinyon-regex-filter2-0.1.0.ipkg
@@ -37,7 +39,7 @@ trying connection to fluvio router.dev.infinyon.cloud:9003
 Once a package is downloaded, a fluvio smartmodule list command will show the installation
 
 %copy first-line%
-```
+```bash
 $ flvio sm list
   SMARTMODULE                   SIZE     
   infinyon/regex-filter@0.1.0   316.1 KB 
@@ -50,24 +52,13 @@ Once a SmartModule is download, it can be configured and applied in a pipleine. 
 
 The command **fluvio hub list** will list SmartModules and versions available for download
 
-%copy first-line%
-```
-$ fluvio hub list -h
-
-List available SmartModules in the hub
-
-Usage: fluvio-latest hub list [OPTIONS]
-
-Options:
-  -O, --output <type>  Output [default: table] [possible values: table, yaml, json]
-  -h, --help           Print help information (use `--help` for more detail)
-```
+{{% inline-embed file="embeds/cli/help/fluvio-hub-list.md" %}}
 
 The list command shows Smartmodules by **group/package@version**. Packages uploaded by InfinyOn will be in the
 infinyon group.
 
 %copy first-line%
-```
+```bash
 $ fluvio hub list 
 
 SMARTMODULE                    

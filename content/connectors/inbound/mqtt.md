@@ -42,7 +42,7 @@ The topic filter to use when receiving MQTT events
 
 #### Example connector config
 
-{{<code file="code-blocks/connectors/inbound-examples/inbound-mqtt.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors/inbound-examples/inbound-mqtt.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 

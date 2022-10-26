@@ -23,7 +23,7 @@ This Week in Fluvio is our weekly newsletter for development updates to [Fluvio 
 and Producers which level of isolation to use. Isolation, basically, is a trade-off between latency and guarantees. If your workload
 needs low latency, but you can tolerate some losses, `ReadUncommitted` is recommended option for you. An alternative is 
 `ReadCommitted` - latency includes replication but data consistency is stronger. Check out 
-[Data Consistency]({{< ref "/docs/architecture/data-consistency" >}}) for more details.
+[Data Consistency]({{< ref "/docs/concepts/data-consistency" >}}) for more details.
 
 ## Bug fixes
 * Increase default `STORAGE_MAX_BATCH_SIZE` ([#2342](https://github.com/infinyon/fluvio/issues/2342))

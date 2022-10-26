@@ -35,7 +35,7 @@ This client is written in [Python], but we have client libraries for [Rust], [Ja
 [Java]: {{<ref "/api/official/java/installation.md">}}
 [Go]: {{<ref "/api/community/go.md">}}
 
-{{<code file="code-blocks/connectors/developer-guide/python-connector/get-cat-facts.py" lang="python" copy=true >}}
+{{<code file="embeds/connectors/developer-guide/python-connector/get-cat-facts.py" lang="python" copy=true >}}
 
 Before we run this code, we need to create the fluvio topic that our client produces data to
 
@@ -84,7 +84,7 @@ Then we create a new user `fluvio` with a home directory (in `/home/fluvio`).
 
 This is **required** for all connectors. The Fluvio cluster shares information with the `fluvio` user on startup.
 
-{{<code file="code-blocks/connectors/developer-guide/python-connector/Dockerfile" lang="dockerfile" copy=true >}}
+{{<code file="embeds/connectors/developer-guide/python-connector/Dockerfile" lang="dockerfile" copy=true >}}
 
 ### Build and Test the Container
 You can build the Docker image with this command.

@@ -4,32 +4,14 @@ menu: Connector
 weight: 40
 ---
 
-The `fluvio cloud connector` family of commands is used to create, delete, and troubleshoot Connectors in InfinyOn Cloud. The connectors can be inbound or outbound, as provisioned in the configuration file.
+The `fluvio cloud connector` subcommands are used to manage Connectors in InfinyOn Cloud.
 
 %copy first-line%
 ```bash
 $  fluvio cloud connector -h
 ```
 
-```
-fluvio-cloud-connector 
-View Fluvio Connector information
-
-USAGE:
-    fluvio-cloud connector <SUBCOMMAND>
-
-OPTIONS:
-    -h, --help    Print help information
-
-SUBCOMMANDS:
-    config    Show the connector spec
-    create    Create a new Managed Connector
-    delete    Delete a Managed Connector
-    help      Print this message or the help of the given subcommand(s)
-    list      List all Managed Connectors
-    logs      View connector logs
-    update    Create a new Managed Connector
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector.md" %}}
 
 ---
 
@@ -42,51 +24,11 @@ This command is used to provision a new connector.
 $  fluvio cloud connector create -h
 ```
 
-```
-Create a new Managed Connector
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-create.md" %}}
 
-USAGE:
-    fluvio-cloud connector create --config <CONFIG>
+To create a connector, you need to create a YAML-based connector config file.
 
-OPTIONS:
-    -c, --config <CONFIG>    Name of connector
-    -h, --help               Print help information
-```
-
-New connectors require a configuration file (commonly called `connect.yml`) which is used to pass general and connector-specific parameters to the connector instance.
-
-An example connector config file might look like this:
-
-%copy%
-```yaml
-# connect.yml
-version: latest
-name: cat-facts
-type: http-source
-topic: cat-facts
-direction: source
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10s
-```
-
-Here's a description of the available options:
-
-- `version`: The published version of the connector
-- `name`: The name given to the instance of the connector when it is created
-- `type`: The type of connector. This corresponds to the name of the docker image
-  that this connector is published in, e.g. `infinyon/fluvio-connect-<type>`
-- `topic`: The name of the Fluvio topic that this connector will produce to.
-- `direction`: Whether the connector is a `source` or a `sink` connector
-- `parameters`: An object that contains connector-specific parameters.
-  Also, connectors that support SmartModules specify their SmartModule names here:
-  - `filter`: The name of a Filter SmartModule to apply
-  - `map`: The name of a Map SmartModule to apply
-  - `arraymap`: The name of an ArrayMap SmartModule to apply
-
--> **Note**: Currently, `aggregate` and `filter-map` SmartModules are not supported in connectors.
-
--> **Note**: The Fluvio topic set in `topic` will be automatically created if the Fluvio `topic` does not exist.
+For more about the connector config file, see the [Cloud connectors page]({{<ref "/connectors/cloud-connectors.md" >}}) or the [connector template]({{<ref "/connectors/connector-templates.md" >}})
 
 When running `fluvio cloud connector create`, pass the path to this file using the `--config`
 option.
@@ -110,19 +52,7 @@ Command to show the configuration file used to create this connector.
 $  fluvio cloud connector config -h
 ```
 
-```
-fluvio-cloud-connector-config 
-Show the connector spec
-
-USAGE:
-    fluvio-cloud connector config <NAME>
-
-ARGS:
-    <NAME>    Name of connector
-
-OPTIONS:
-    -h, --help    Print help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-config.md" %}}
 
 Example usage:
 
@@ -151,25 +81,8 @@ This command show you all the existing Connectors in your cluster.
 $  fluvio cloud connector list -h
 ```
 
-```
-fluvio-cloud-connector-list 
-List all Managed Connectors
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-list.md" %}}
 
-USAGE:
-    fluvio-cloud connector list
-
-OPTIONS:
-    -h, --help    Print help information
-```
-
-Example usage:
-
-%copy first-line%
-```bash
-$ fluvio cloud connector list
- NAME         TYPE         VERSION  STATUS  
- cat-facts    http-source  latest   Running 
-```
 
 ---
 
@@ -182,20 +95,9 @@ Command to update and restart an existing connector.
 $  fluvio cloud connector update -h
 ```
 
-```
-Create a new Managed Connector
-
-USAGE:
-    fluvio-cloud connector update --config <CONFIG>
-
-OPTIONS:
-    -c, --config <CONFIG>    Name of connector
-    -h, --help               Print help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-update.md" %}}
 
 Example usage:
-
-Make a small change in the cats cats.yaml, for example change `interval: 20s`, the update:
 
 %copy first-line%
 ```bash
@@ -214,18 +116,8 @@ Command to view the logs written by the connector.
 $  fluvio cloud connector logs -h
 ```
 
-```
-View connector logs
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-logs.md" %}}
 
-USAGE:
-    fluvio-cloud connector logs <NAME>
-
-ARGS:
-    <NAME>    Name of connector
-
-OPTIONS:
-    -h, --help    Print help information
-```
 
 Example usage:
 
@@ -251,19 +143,7 @@ This command deletes an existing Connector.
 $  fluvio cloud connector delete -h
 ```
 
-```
-fluvio-cloud-connector-logs 
-View connector logs
-
-USAGE:
-    fluvio-cloud connector logs <NAME>
-
-ARGS:
-    <NAME>    Name of connector
-
-OPTIONS:
-    -h, --help    Print help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-delete.md" %}}
 
 Example usage:
 
