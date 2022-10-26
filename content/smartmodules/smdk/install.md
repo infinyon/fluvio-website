@@ -23,32 +23,16 @@ Current channel: stable
 
 The executable is installed in `~/.fluvio/bin/` directory, the same directry as fluvio, hence the command should be immediate accesible at the prompt. Let's check it out:
 
-%copy first-line%
-```bash
-$ smdk -h
-SmartModule Development Kit utility
 
-Usage: smdk <COMMAND>
+{{% inline-embed file="embeds/cli/help/smdk.md" %}}
 
-Commands:
-  build     Builds SmartModule into WASM
-  generate  Generates a new SmartModule Project
-  test      Test SmartModule
-  load      Load SmartModule into Fluvio cluster
-  publish   Publish SmartModule to Hub
-  help      Print this message or the help of the given subcommand(s)
+### Steps
 
-Options:
-  -h, --help  Print help information
-```
-
-### Next Steps
-
-2. [Generate a SmartModule]
-3. [Build and Test]
-4. [Load to your Cluster]
-5. [Publish to SmartMoudle Hub]
-
+1. **[Install SMDK]({{< ref "install" >}})**
+2. [Generate a SmartModule]({{< ref "generate" >}})
+3. [Build and Test]({{< ref "build-test" >}})
+4. [Load to your Cluster]({{< ref "load" >}})
+5. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
 [`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
 [Generate a SmartModule]: {{< ref "generate" >}}

@@ -4,7 +4,7 @@ menu: Connector
 weight: 40
 ---
 
-The `fluvio cloud connector` family of commands is used to create, delete, and troubleshoot Connectors in InfinyOn Cloud. The connectors can be inbound or outbound, as provisioned in the configuration file.
+The `fluvio cloud connector` subcommands are used to manage Connectors in InfinyOn Cloud.
 
 %copy first-line%
 ```bash
@@ -24,44 +24,11 @@ This command is used to provision a new connector.
 $  fluvio cloud connector create -h
 ```
 
-
 {{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-create.md" %}}
 
+To create a connector, you need to create a YAML-based connector config file.
 
-New connectors require a configuration file (commonly called `connect.yml`) which is used to pass general and connector-specific parameters to the connector instance.
-
-An example connector config file might look like this:
-
-%copy%
-```yaml
-# connect.yml
-version: latest
-name: cat-facts
-type: http-source
-topic: cat-facts
-direction: source
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10s
-```
-
-Here's a description of the available options:
-
-- `version`: The published version of the connector
-- `name`: The name given to the instance of the connector when it is created
-- `type`: The type of connector. This corresponds to the name of the docker image
-  that this connector is published in, e.g. `infinyon/fluvio-connect-<type>`
-- `topic`: The name of the Fluvio topic that this connector will produce to.
-- `direction`: Whether the connector is a `source` or a `sink` connector
-- `parameters`: An object that contains connector-specific parameters.
-  Also, connectors that support SmartModules specify their SmartModule names here:
-  - `filter`: The name of a Filter SmartModule to apply
-  - `map`: The name of a Map SmartModule to apply
-  - `arraymap`: The name of an ArrayMap SmartModule to apply
-
--> **Note**: Currently, `aggregate` and `filter-map` SmartModules are not supported in connectors.
-
--> **Note**: The Fluvio topic set in `topic` will be automatically created if the Fluvio `topic` does not exist.
+For more about the connector config file, see the [Cloud connectors page]({{<ref "/connectors/cloud-connectors.md" >}}) or the [connector template]({{<ref "/connectors/connector-templates.md" >}})
 
 When running `fluvio cloud connector create`, pass the path to this file using the `--config`
 option.
@@ -130,10 +97,7 @@ $  fluvio cloud connector update -h
 
 {{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-update.md" %}}
 
-
 Example usage:
-
-Make a small change in the cats cats.yaml, for example change `interval: 20s`, the update:
 
 %copy first-line%
 ```bash

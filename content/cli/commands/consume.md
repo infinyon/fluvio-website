@@ -5,23 +5,16 @@ weight: 20
 
 ## `fluvio consume`
 The `fluvio consume` command is a way to read the contents of records in a Fluvio topic
-from a command-line environment. This can be useful if you are developing an application
-with Fluvio and want real-time visibility into what is streaming through your topics.
-It can also be handy for writing shell scripts that can read and react to messages in a
-topic.
+from a command-line environment.
 
-If your topic has more than one partition, the `consume` command will only read from one
-of those partitions, defaulting to the first one (index zero). You can specify which
-partition you want to read messages from using the `-p` option.
+The `consume` command will only read from one of those partitions, defaulting to partition `0`.
 
 {{% inline-embed file="embeds/cli/help/fluvio-consume.md" %}}
 
-For our consumer examples, we are going to read back the records we sent from the
-[produce command examples].
+The following `fluvio consume` examples come after the [`fluvio produce` examples]({{< ref "/cli/commands/produce" >}}).
 
-[produce command examples]: {{< ref "/cli/commands/produce" >}}
-
-## Example 1: Consume all records
+## Examples
+### Consume all records
 
 When consuming, we need to specify a starting offset from which to begin reading.
 We can use the `--from-beginning` (`-B`) flag in order to read everything from the very
@@ -42,7 +35,7 @@ Notice that all the records are printed by value only: the records with keys hav
 had their keys printed! This is the default behavior of the consumer. To see how to print
 the keys of key/value records, see the next example!
 
-## Example 2: Consume key/value records
+### Consume key/value records
 
 If we want to see both the keys _and_ values of the records in the topic, you can use
 the `--key-value` flag:
@@ -59,7 +52,7 @@ $ fluvio consume my-topic -dB --key-value
 
 Records that were not given a key are printed with `[null]`.
 
-## Example 3: Consume using a SmartModule
+### Consume using a SmartModule
 
 Fluvio SmartModules are WASM modules that can edit the contents of a stream
 inline, before the records of that stream are delivered to a consumer. In order
@@ -74,7 +67,7 @@ filters records from the stream based on whether they contain the letter `a`
 or not. You can find the full example code [in our GitHub repo] and compile
 it to test out yourself.
 
-[filter example]: {{< ref "/smartmodules/apis/filter" >}}
+[filter example]: {{< ref "/smartmodules/types/filter" >}}
 [in our GitHub repo]:https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter_json
 
 Once you have compiled your SmartModule Filter and have a `.wasm` file for it, you
@@ -87,7 +80,7 @@ $ fluvio consume my-topic -B --filter="fluvio_wasm_filter.wasm"
 $ fluvio consume my-topic -B --smartmodule="fluvio_wasm_filter.wasm"
 ```
 
-## Example 4: Consume from a topic with multiple partitions
+### Consume from a topic with multiple partitions
 
 As of today, the Fluvio CLI Consumer can only consume records from a single
 partition at a time. When running `fluvio consume topic-name`, the CLI will
@@ -174,7 +167,7 @@ six
 nine
 ```
 
-## Example 5: Consume from all partitions
+### Consume from all partitions
 
 At times, it is useful to see all records from all partitions from a single consumer. 
 Using the example above:
@@ -207,7 +200,7 @@ nine
 -> Note: There is no order guarantee between partitions.
 
 
-## Example 6: Print consumed records with custom formatting
+### Print consumed records with custom formatting
 
 Sometimes, the default Consumer printout might not work for your needs. As of Fluvio `0.9.6`
 you can now use the `--format` string to describe how the Consumer should print your records!

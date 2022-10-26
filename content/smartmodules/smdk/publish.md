@@ -39,12 +39,18 @@ The SmartMoudule is now available for [download] by anyone with access to the `[
 
 Congratulations :tada:!  You are now ready to build, test, and publish your own SmartModules.
 
-### Next Steps
+* Checkout [SmartModule types] build your data streaming SmartModules.
 
-* Checkout SmartModule [APIs] build your data streaming SmartModules.
+### Steps
+
+1. [Install SMDK]({{< ref "install" >}})
+2. [Generate a SmartModule]({{< ref "generate" >}})
+3. [Build and Test]({{< ref "build-test" >}})
+4. [Load to your Cluster]({{< ref "load" >}})
+5. **[Publish to SmartModule Hub]({{< ref "publish" >}})**
 
 [Hub]: {{< ref "../hub/overview" >}}
-[APIs]: {{< ref "../apis/overview" >}}
+[SmartModule types]: {{< ref "../types/overview" >}}
 [installed]: {{< ref "install" >}}
 [built]: {{< ref "build-test/#build---operation" >}}
 [download]: {{< ref "../hub/download" >}}

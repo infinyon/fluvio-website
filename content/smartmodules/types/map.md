@@ -1,6 +1,5 @@
 ---
-title: Map API
-menu: Map
+title: Map
 weight: 30
 toc: true
 ---
@@ -222,8 +221,8 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 ### Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/types/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/types/aggregate" >}})
 
 
 [installed]: {{< ref "smartmodules/smdk/install" >}}

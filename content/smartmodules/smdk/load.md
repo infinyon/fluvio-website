@@ -113,9 +113,13 @@ connector "cat-facts" (http-source) created
 The conector creates a topic called `cats` and filters out all records without letter `a`. Note, this exammple shows a general use case rather than a practical use case (as virtually all entries will have the letter 'a').
 
 
-### Next Steps
+### Steps
 
-5.  [Publish to SmartMoudle Hub]({{< ref "publish" >}})
+1. [Install SMDK]({{< ref "install" >}})
+2. [Generate a SmartModule]({{< ref "generate" >}})
+3. [Build and Test]({{< ref "build-test" >}})
+4. **[Load to your Cluster]({{< ref "load" >}})**
+5. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
 [InfinyOn Cloud]: https://infinyon.cloud
 [installed]: {{< ref "install" >}}

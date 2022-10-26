@@ -3,15 +3,12 @@ title: Topic
 weight: 30
 ---
 
-The `fluvio topic` family of commands is used to create and delete topics, as
+The `fluvio topic` subcommands are used to create and delete topics, as
 well as to view basic information about existing topics.
 
 ## `fluvio topic create`
 
-This command is used to create new Fluvio topics. A Fluvio topic is a stream where
-you send related messages. Different topics have unique names and store their data
-independently. They may also be divided into multiple partitions, which can
-increase the message throughput of the topic.
+This command is used to create new Fluvio topics.
 
 {{% inline-embed file="embeds/cli/help/fluvio-topic-create.md" %}}
 
@@ -25,9 +22,16 @@ topic "greeting" created
 
 ### Retention
 
-If  you want to set a retention time for the topic, you can use the `--retention-time` parameter. In fluvio, the records are organized in segments. Each segment has a fixed size, and it can be configured with the `--segment-size` param. Any segments older than the retention time will be deleted.
+Retention is a policy for how data is cleaned up from a topic. 
+
+* For a time-based policy, use  `--retention-time`
+* For a segment-size based policy, use  `--segment-size`
+
+Check [the docs for more info about data retention]({{<ref "/docs/operations/retention.md">}})
 
 Example usage:
+
+In this example, the last segment of 500k will be deleted after 30 days.
 
 %copy first-line%
 ```bash
@@ -35,13 +39,20 @@ $ fluvio topic create my-topic --retention-time '30 days' --segment-size 500000
 topic "my-topic" created
 ```
 
-In this example, the last segment of 500k will be deleted after 30 days.
 
 ### Compression
 
-If you want to set topic level compression, you can use the `--compression-type` parameter, possible values are `any`(default), `none`, `gzip`, `lz4` and `snappy`.
-This configuration will enforce producers to use a compression algorithm that matches with the topic configuration. The SPU will reject any Produce request
-that does not match with the topic configuration. If `--compression-type any` is used, SPU will accept any compression algorithm.
+This configuration will set compression at a topic level. When set producers are forced to use a compression algorithm that matches with the topic configuration. The SPU will reject any Produce request
+that does not match with the topic configuration.
+
+If `--compression-type any` is used, SPU will accept any compression algorithm.
+
+possible values:
+* `any`(default)
+* `none`
+* `gzip`
+* `lz4`
+* `snappy`
 
 Example usage:
 

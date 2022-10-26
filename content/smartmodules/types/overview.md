@@ -1,13 +1,15 @@
 ---
-title: SmartModule API Library
+title: SmartModule Types
 menu: Overview
 toc: true
 weight: 10
 ---
 
-SmartModule APIs are programmable data streaming functions exposed to WebAssembly. SmartModules allows developers to manipulate data in real-time inside the Fluvio cluster, without the need for external servicees such as Lambda or Functions. The APIs when chained together in data pipelines, make it possible to implement and run full featured data streaming applications in Fluvio. 
+SmartModules are powered by WebAssembly and provide the ability to clean, transform, and enrich data – in real-time, or before it gets saved to storage.
 
-The API Library offers a growing number of APIs for in-line data transformations:
+Quickly form rich data pipelines by using SmartModules with Connectors, or chaining multiple SmartModules together.
+
+The growing SmartModule Library offer multiple in-line data transformation patterns:
 
 * [Filter]({{<ref "#filter" >}})
 * [Map]({{<ref "#map" >}})

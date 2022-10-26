@@ -1,9 +1,10 @@
 ---
-title: Aggregate API
-menu: Aggregate
+title: Aggregate
 weight: 60
 toc: true
 ---
+
+-> **Note**: Currently, `aggregate` SmartModules are not supported in connectors.
 
 SmartModule Aggregates are functions that define how to combine each record
 in a stream with some accumulated value. In the functional programming world,
@@ -241,8 +242,8 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 ## Read next
 
 - [Explore aggregate use-cases](https://www.infinyon.com/blog/2021/08/smartstream-aggregates/)
-- [Writing a JSON filter]({{< ref "/smartmodules/apis/filter" >}})
-- [Writing a map to transform records]({{< ref "/smartmodules/apis/map" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/types/filter" >}})
+- [Writing a map to transform records]({{< ref "/smartmodules/types/map" >}})
 
 
 [installed]: {{< ref "smartmodules/smdk/install" >}}

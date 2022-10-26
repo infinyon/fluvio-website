@@ -17,13 +17,6 @@ The choice of programming language makes Fluvio a low memory, high performance p
 
 Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>**. Any infrastructure running **Kubernetes** can install the **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, check out the [Kubernetes install]({{< ref "/docs/kubernetes/install" >}}) section. 
 
-#### Fluvio Cloud
-
-If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< ref "/docs/get-started/cloud" >}})**. The cloud installation hides all the complexity associated with the infrastructure and exposes only relevant streaming APIs. Follow our Getting Started guide (for [MacOS] or [Linux]) to set up your dedicated cloud environment.
-
-[MacOS]: {{< ref "/docs/get-started/mac" >}}
-[Linux]: {{< ref "/docs/get-started/linux" >}}
-
 ## High Level Architecture
 
 Fluvio's architecture centers around **real time streaming**, and the platform can **scale horizontally** to accommodate large volumes of data.

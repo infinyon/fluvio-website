@@ -1,51 +1,29 @@
 ---
-title: Topic/Partitions
-weight: 70
+title: Partitions
+weight: 20
 ---
 
-A **topic** is the basic primitive for data stream and the **partitions** is the unit of parallelism accessed independently by **producers** and **consumers**. A topic may be split in any number of partitions.
+A **topic** is the basic primitive for data stream and the **partitions** is the unit of parallelism accessed independently by **producers** and **consumers**. 
 
+Each record stored in a partition is
+given an offset, starting from zero and monotonically increasing by one for each new
+record. 
 
-### Topics
+Once a record is committed to a partition and an offset is assigned to it. The offset in that partition will _always_ refer to that record. Because of this, all records that are sent to a given partition are
+guaranteed to remain ordered in the order they were committed.
 
-**Topics** define a **data streams**, and **partitions** the number of data slices for each stream. Topics also have a **replication factor** that defines durability, the number of copies for each data slice.
-
--> **Note**: Replication factor must be less or equal to the number of SPUs.  While topics that exceed the number of available SPUs may be created, they are not provisioned until additional SPUs join the cluster.
-
-Replicas have a leader and one or more followers and distributed across all available SPUs according to the [replica assignment algorithm].
-
-[replica assignment algorithm]: {{< ref "./replica-assignment" >}}
-
-For example, when provisioning a topic with **2** partitions and **3** replicas:
-
-```bash
-$ fluvio topic create --topic topic-a --partitions 2 --replication 3
-```
-
-**Leaders** maintain the primary data set and **followers** store a copy of the data. Leaders and followers map to independent **SPUs**:
-
-<img src="../images/assignment-leader-followers.svg"
-     alt="Leader, Followers"
-     style="justify: center; max-width: 640px" />
-
-* topic-a/0
-    * **leader** on SPU-1
-    * **followers** on SPU-2 and SPU-3
-* topic-a/1
-    * **leader** on SPU-2
-    * **followers** on SPU-1 and SPU-3
-
-### Partitions
 
 **Partition** are configuration objects managed by the system. Topics and partitions are linked through a **parent-child** relationship. Partition generation algorithm is described in the [SC Architecture].
 
-[SC Architecture]: {{< ref "./sc/#partitions" >}}
+[SC Architecture]: {{< ref "/docs/architecture/sc#partitions" >}}
 
-<img src="../images/topic-2-partitions.svg"
+<img src="/docs/architecture/images/topic-2-partitions.svg"
      alt="Topic 2 Assignment"
      style="justify: center; max-width: 640px" />
 
 If a topic is deleted, all child partitions are automatically removed.
+
+---
 
 #### Producing with Multiple Partitions
 

@@ -86,12 +86,13 @@ description = "input description"
 
 The project is ready to build and test. Checkout the next section for instructions.
 
-### Next Steps
+### Steps
 
-3. [Build and Test]
-4. [Load to your Cluster]
-5. [Publish to SmartMoudle Hub]
-
+1. [Install SMDK]({{< ref "install" >}})
+2. **[Generate a SmartModule]({{< ref "generate" >}})**
+3. [Build and Test]({{< ref "build-test" >}})
+4. [Load to your Cluster]({{< ref "load" >}})
+5. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
 [installed]: {{< ref "install" >}}
 [Build and Test]: {{< ref "build-test" >}}

@@ -52,11 +52,13 @@ Checkout the `smdk test -h` for additional parameters.
 
 Checkout the [next section] on how upload the SmartModule to your local cluster or [InfinyOn Cloud] for live traffic testing.
 
-### Next Steps
+### Steps
 
-4. [Load to your Cluster]
-5. [Publish to SmartMoudle Hub]
-
+1. [Install SMDK]({{< ref "install" >}})
+2. [Generate a SmartModule]({{< ref "generate" >}})
+3. **[Build and Test]({{< ref "build-test" >}})**
+4. [Load to your Cluster]({{< ref "load" >}})
+5. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
 [next section]: {{< ref "load" >}}
 [installed]: {{< ref "install" >}}

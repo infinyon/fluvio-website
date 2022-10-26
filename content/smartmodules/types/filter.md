@@ -1,6 +1,5 @@
 ---
-title: Filter API
-menu: Filter
+title: Filter
 weight: 20
 toc: true
 ---
@@ -331,8 +330,8 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 ## Read next
 
 - [Explore filter use-cases](https://www.infinyon.com/blog/2021/06/smartstream-filters/)
-- [Writing a map to transform records]({{< ref "/smartmodules/apis/map" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/apis/aggregate" >}})
+- [Writing a map to transform records]({{< ref "/smartmodules/types/map" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/types/aggregate" >}})
 
 
 [installed]: {{< ref "smartmodules/smdk/install" >}}
