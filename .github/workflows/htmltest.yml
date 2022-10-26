@@ -23,26 +23,28 @@ jobs:
     steps:
       - name: Skip label check
         id: skip_label_check
-        uses: agilepathway/label-checker@v1.2.6
+        uses: agilepathway/label-checker@v1.2.7
         with:
           all_of: CI:bors-skip-html-lint
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           allow_failure: true
 
       - name: Checkout code
-        if: steps.skip_label_check.outputs.label_check == 'failure'
+        if: steps.skip_label_check.outputs.label_check != 'success'
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Setup Hugo
-        if: steps.skip_label_check.outputs.label_check == 'failure'
+        if: steps.skip_label_check.outputs.label_check != 'success'
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.97.3'
           extended: true
       - name: Run Hugo in the background
+        if: steps.skip_label_check.outputs.label_check != 'success'
         run: ./hugo-start.sh &
       - name: Run htmltest
+        if: steps.skip_label_check.outputs.label_check != 'success'
         run: |
           make htmltest
 
