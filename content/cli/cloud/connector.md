@@ -11,25 +11,7 @@ The `fluvio cloud connector` family of commands is used to create, delete, and t
 $  fluvio cloud connector -h
 ```
 
-```
-fluvio-cloud-connector 
-View Fluvio Connector information
-
-USAGE:
-    fluvio-cloud connector <SUBCOMMAND>
-
-OPTIONS:
-    -h, --help    Print help information
-
-SUBCOMMANDS:
-    config    Show the connector spec
-    create    Create a new Managed Connector
-    delete    Delete a Managed Connector
-    help      Print this message or the help of the given subcommand(s)
-    list      List all Managed Connectors
-    logs      View connector logs
-    update    Create a new Managed Connector
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector.md" %}}
 
 ---
 
@@ -42,16 +24,9 @@ This command is used to provision a new connector.
 $  fluvio cloud connector create -h
 ```
 
-```
-Create a new Managed Connector
 
-USAGE:
-    fluvio-cloud connector create --config <CONFIG>
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-create.md" %}}
 
-OPTIONS:
-    -c, --config <CONFIG>    Name of connector
-    -h, --help               Print help information
-```
 
 New connectors require a configuration file (commonly called `connect.yml`) which is used to pass general and connector-specific parameters to the connector instance.
 
@@ -110,19 +85,7 @@ Command to show the configuration file used to create this connector.
 $  fluvio cloud connector config -h
 ```
 
-```
-fluvio-cloud-connector-config 
-Show the connector spec
-
-USAGE:
-    fluvio-cloud connector config <NAME>
-
-ARGS:
-    <NAME>    Name of connector
-
-OPTIONS:
-    -h, --help    Print help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-config.md" %}}
 
 Example usage:
 
@@ -151,25 +114,8 @@ This command show you all the existing Connectors in your cluster.
 $  fluvio cloud connector list -h
 ```
 
-```
-fluvio-cloud-connector-list 
-List all Managed Connectors
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-list.md" %}}
 
-USAGE:
-    fluvio-cloud connector list
-
-OPTIONS:
-    -h, --help    Print help information
-```
-
-Example usage:
-
-%copy first-line%
-```bash
-$ fluvio cloud connector list
- NAME         TYPE         VERSION  STATUS  
- cat-facts    http-source  latest   Running 
-```
 
 ---
 
@@ -182,16 +128,8 @@ Command to update and restart an existing connector.
 $  fluvio cloud connector update -h
 ```
 
-```
-Create a new Managed Connector
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-update.md" %}}
 
-USAGE:
-    fluvio-cloud connector update --config <CONFIG>
-
-OPTIONS:
-    -c, --config <CONFIG>    Name of connector
-    -h, --help               Print help information
-```
 
 Example usage:
 
@@ -214,18 +152,8 @@ Command to view the logs written by the connector.
 $  fluvio cloud connector logs -h
 ```
 
-```
-View connector logs
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-logs.md" %}}
 
-USAGE:
-    fluvio-cloud connector logs <NAME>
-
-ARGS:
-    <NAME>    Name of connector
-
-OPTIONS:
-    -h, --help    Print help information
-```
 
 Example usage:
 
@@ -251,19 +179,7 @@ This command deletes an existing Connector.
 $  fluvio cloud connector delete -h
 ```
 
-```
-fluvio-cloud-connector-logs 
-View connector logs
-
-USAGE:
-    fluvio-cloud connector logs <NAME>
-
-ARGS:
-    <NAME>    Name of connector
-
-OPTIONS:
-    -h, --help    Print help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-connector-delete.md" %}}
 
 Example usage:
 

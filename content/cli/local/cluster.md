@@ -19,7 +19,7 @@ This command is used to check whether you have all the required dependencies
 installed correctly. If this runs and returns successfully, you should be all
 set to start a Fluvio cluster.
 
-{{<code file="embeds/cli/help/fluvio-cluster-check.txt" lang="console">}}
+{{% inline-embed file="embeds/cli/help/fluvio-cluster-check.md" %}}
 
 ### Example usage:
 
@@ -50,7 +50,7 @@ to a Kubernetes cluster, typically Minikube. The other variation is
 `fluvio cluster start --local`, which will start the cluster components
 as plain processes on your local machine.
 
-{{<code file="embeds/cli/help/fluvio-cluster-start.txt" lang="console">}}
+{{% inline-embed file="embeds/cli/help/fluvio-cluster-start.md" %}}
 
 ### Example usage:
 
@@ -95,23 +95,7 @@ Deletes a Fluvio cluster and all data associated with it.
 
 ~> **CAUTION**: Be careful, this cannot be undone.
 
-```
-fluvio-cluster-delete
-Delete a Fluvio cluster from the local machine or Minikube
-
-USAGE:
-    fluvio cluster delete [FLAGS] [OPTIONS]
-
-FLAGS:
-        --no-wait    don't wait for clean up
-        --local      Remove local spu/sc(custom) fluvio installation
-        --sys        Remove fluvio system chart
-    -h, --help       Prints help information
-
-OPTIONS:
-        --namespace <namespace>     [default: default]
-        --name <name>               [default: fluvio]
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cluster-delete.md" %}}
 
 ### Example usage:
 
@@ -135,20 +119,7 @@ This command shows details about the active SPUs in your cluster.
 It is mostly useful for checking on the status of individual SPUs
 to see whether they are still online, and which addresses they live at.
 
-```
-fluvio-cluster-spu-list
-List all SPUs known by this cluster (managed AND custom)
-
-fluvio cluster spu list [FLAGS] [OPTIONS]
-
-FLAGS:
-        --custom    Whether to list only custom SPUs
-    -h, --help      Prints help information
-
-OPTIONS:
-    -O, --output <type>    Output [default: table]  [possible values: table,
-                           yaml, json]
-```
+{{% inline-embed file="embeds/cli/help/fluvio-cluster-spu-list.md" %}}
 
 ### Example usage:
 

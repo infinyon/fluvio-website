@@ -23,16 +23,7 @@ create a "greeting" topic on your local cluster.
 
 [`fluvio topic create greeting`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
 
-```
-fluvio-profile-current
-Print the name of the current context
-
-USAGE:
-fluvio profile current
-
-FLAGS:
--h, --help    Prints help information
-```
+{{% inline-embed file="embeds/cli/help/fluvio-profile-current.md" %}}
 
 Example usage:
 
@@ -48,27 +39,7 @@ Deletes a profile from your Fluvio configuration (`~/.fluvio/config`). This will
 not delete a cluster (for that, see [`fluvio cluster delete`]), but it will cause
 the Fluvio CLI to no longer be able to interact with that cluster.
 
-```
-fluvio-profile-delete
-Delete the named profile
-
-USAGE:
-    fluvio profile delete <profile name>
-
-FLAGS:
-    -h, --help    Prints help information
-
-ARGS:
-    <profile name>
-```
-
-Example usage:
-
-%copy first-line%
-```bash
-$ fluvio profile delete local
-profile local deleted
-```
+{{% inline-embed file="embeds/cli/help/fluvio-profile-delete.md" %}}
 
 If you try to delete the current profile, you will get a warning, because other CLI
 commands depend on having a current profile being set.
@@ -88,20 +59,7 @@ no longer be able to connect to that cluster.
 
 [`fluvio cluster delete`]: {{< ref "/cli/local/cluster#fluvio-cluster-delete" >}}
 
-```
-fluvio-profile-delete-cluster
-Delete the named cluster
-
-USAGE:
-    fluvio profile delete-cluster [FLAGS] <cluster name>
-
-FLAGS:
-    -f, --force    Deletes a cluster even if its active
-    -h, --help     Prints help information
-
-ARGS:
-    <cluster name>    The name of a cluster connection to delete
-```
+{{% inline-embed file="embeds/cli/help/fluvio-profile-delete-cluster.md" %}}
 
 Example usage:
 
@@ -117,46 +75,16 @@ This switches the "current" profile. After switching current profiles, all
 subsequent Fluvio CLI commands that interact with a cluster will target the
 cluster of the new "current" profile.
 
-```
-fluvio-profile-switch
-Switch to the named profile
 
-USAGE:
-    fluvio profile switch <profile name>
-
-FLAGS:
-    -h, --help    Prints help information
-
-ARGS:
-    <profile name>
-```
-
-Example usage:
-
-%copy first-line%
-```bash
-$ fluvio profile switch cloud
-```
+{{% inline-embed file="embeds/cli/help/fluvio-profile-switch.md" %}}
 
 ## `fluvio profile list`
 
 Prints a table of your profiles, including the address of the associated
 cluster and which profile is active.
 
-```
-fluvio-profile-list
-Display all Fluvio profiles
 
-USAGE:
-    fluvio profile list
-
-FLAGS:
-    -h, --help    Prints help information
-    
-OPTIONS:
-    -O, --output <type>    Output [default: table]  [possible values: table,
-                           yaml, json]
-```
+{{% inline-embed file="embeds/cli/help/fluvio-profile-list.md" %}}
 
 Example usage:
 

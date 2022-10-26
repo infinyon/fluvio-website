@@ -24,23 +24,8 @@ automatically create a profile called `cloud` in your Fluvio config file
 $ fluvio cloud login -h
 ```
 
-```
-fluvio-cloud-login 
-Log into Infinyon Cloud with a username and password
+{{% inline-embed file="embeds/cli/help/fluvio-cloud-login.md" %}}
 
-USAGE:
-    fluvio-cloud login [OPTIONS]
-
-OPTIONS:
-        --email <EMAIL>          Infinyon Cloud email to use for logging in
-    -h, --help                   Print help information
-        --password <PASSWORD>    Password to use when logging in (not recommended)
-        --profile <PROFILE>      The name of the Profile to save
-        --remote <REMOTE>        Infinyon Cloud remote address to use
-        --use-oauth2             Authenticate using OAuth 2.0 Device Code Flow. CLI will try to
-                                 launch a web browser to log in interactively. If a web browser is
-                                 not available, CLI will print URL for device code login
-```
 
 #### Example login with email and password
 

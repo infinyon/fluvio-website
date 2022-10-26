@@ -50,7 +50,13 @@ cli-commands:
   - fluvio cluster delete
   - fluvio cluster check
   - fluvio cluster spu
+  - fluvio cluster spu register
+  - fluvio cluster spu unregister
+  - fluvio cluster spu list
   - fluvio cluster spg
+  - fluvio cluster spg create
+  - fluvio cluster spg delete
+  - fluvio cluster spg list
   - fluvio cluster diagnostics
 
   - fluvio install
@@ -66,7 +72,16 @@ cli-commands:
 
   - fluvio cloud
   - fluvio cloud cluster
+  - fluvio cloud cluster create
+  - fluvio cloud cluster list
+  - fluvio cloud cluster delete
   - fluvio cloud connector
+  - fluvio cloud connector config
+  - fluvio cloud connector create
+  - fluvio cloud connector delete
+  - fluvio cloud connector list
+  - fluvio cloud connector logs
+  - fluvio cloud connector update
   - fluvio cloud login
   - fluvio cloud logout
   - fluvio cloud usage

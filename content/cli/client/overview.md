@@ -6,4 +6,4 @@ weight: 10
 
 Fluvio client, aka Fluvio CLI, is a powerful command line interface for interacting with Fluvio Clusters locally, or in InfinyOn Cloud. Fluvio client is installed using the one-liner installation script:
 
-{{% inline-embed file="fluvio-install-command.md" %}}
+{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}

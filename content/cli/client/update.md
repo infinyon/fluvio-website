@@ -4,23 +4,12 @@ weight: 20
 toc: false
 ---
 
+## `fluvio update`
+
 This command performs a self-update for the Fluvio CLI. It takes no arguments,
 and just simply downloads the latest version of `fluvio` and overwrites itself.
 
-```
-fluvio-update
-Update the Fluvio CLI
-
-USAGE:
-    fluvio update [FLAGS] [plugins]...
-
-FLAGS:
-        --develop    Update to the latest prerelease rather than the latest release
-    -h, --help       Prints help information
-
-ARGS:
-    <plugins>...    (Optional) the name of one or more plugins to update
-```
+{{% inline-embed file="embeds/cli/help/fluvio-update.md" %}}
 
 Example usage:
 

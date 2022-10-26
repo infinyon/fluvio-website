@@ -3,46 +3,11 @@ title: Produce
 weight: 10
 ---
 
+## `fluvio produce`
 The `fluvio produce` command is a way to send records to the leader of a partition.
 Produce records by specifying the destination Topic
 
-```
-fluvio-produce
-Write messages to a topic/partition
-
-When no '--file' is provided, the producer will read from 'stdin' and send each
-line of input as one record.
-
-If a file is given with '--file', each line of file is sent as a record, unless also using `--raw` flag.
-
-If '--key-separator' is used, records are sent as key/value pairs, and the keys
-are used to determine which partition the records are sent to.
-
-Use `--compression` to specify compression algorithm used when sending records. Default value is `none`, other options are `gzip`, `snappy` and `lz4`.
-
-USAGE:
-    fluvio produce [FLAGS] [OPTIONS] <topic>
-
-FLAGS:
-    -v, --verbose    Print progress output when sending records
-        --raw        Send all input as one record. Use this when producing
-                     binary files
-    -h, --help       Prints help information
-
-OPTIONS:
-        --key-separator <key-separator>
-            Sends key/value records split on the first instance of the separator
-
-        --compression <compression>
-            Compression algorithm to use when sending records. Supported values: none, gzip, snappy
-            and lz4
-
-    -f, --file <file>
-            Path to a file to produce to the topic. If absent, producer will read stdin
-
-ARGS:
-    <topic>    The name of the Topic to produce to
-```
+{{% inline-embed file="embeds/cli/help/fluvio-produce.md" %}}
 
 ## Example 1: Produce records from stdin
 
