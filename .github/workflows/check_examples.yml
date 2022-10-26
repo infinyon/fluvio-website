@@ -32,21 +32,34 @@ jobs:
           - java
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Skip label check
+        id: skip_label_check
+        uses: agilepathway/label-checker@v1.2.6
+        with:
+          all_of: CI:bors-skip-client-examples
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          allow_failure: true
 
       - uses: actions/checkout@v3
+        if: steps.skip_label_check.outputs.label_check == 'failure'
+
+      - uses: actions/checkout@v3
+        if: steps.skip_label_check.outputs.label_check == 'failure'
         with:
           repository: infinyon/fluvio
           path: fluvio-repo
       - name: Setup K3d
+        if: steps.skip_label_check.outputs.label_check == 'failure'
         run: curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=${{ env.K3D_VERSION }} bash
       - name: Create K3d cluster
         run: |
           ./fluvio-repo/k8-util/cluster/reset-k3d.sh
 
       - name: Sleep 20 to ensure k3d cluster is ready
+        if: steps.skip_label_check.outputs.label_check == 'failure'
         run: sleep 20
       - name: Install Fluvio Local Cluster
+        if: steps.skip_label_check.outputs.label_check == 'failure'
         uses: infinyon/fluvio@master
         with:
           cluster-type: local
@@ -54,10 +67,12 @@ jobs:
 
       # Ensure cluster is started
       - name: Ensure Fluvio Cluster is up
+        if: steps.skip_label_check.outputs.label_check == 'failure'
         run: |
           make cluster-verify
 
       - name: Build and test clients
+        if: steps.skip_label_check.outputs.label_check == 'failure'
         uses: nick-fields/retry@v2.8.2
         with:
           timeout_minutes: 10
