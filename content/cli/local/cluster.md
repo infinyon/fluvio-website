@@ -19,16 +19,7 @@ This command is used to check whether you have all the required dependencies
 installed correctly. If this runs and returns successfully, you should be all
 set to start a Fluvio cluster.
 
-```
-fluvio-cluster-check
-Check that all requirements for cluster startup are met
-
-USAGE:
-    fluvio cluster check
-
-FLAGS:
-    -h, --help    Prints help information
-```
+{{<code file="embeds/cli/help/fluvio-cluster-check.txt" lang="console">}}
 
 ### Example usage:
 
@@ -59,75 +50,7 @@ to a Kubernetes cluster, typically Minikube. The other variation is
 `fluvio cluster start --local`, which will start the cluster components
 as plain processes on your local machine.
 
-```
-fluvio-cluster-start
-Start a Fluvio cluster, locally or on Minikube
-
-USAGE:
-    fluvio cluster start [FLAGS] [OPTIONS]
-
-FLAGS:
-        --develop                  use local image
-        --skip-profile-creation
-        --sys                      installing sys
-        --local                    install local spu/sc(custom)
-        --tls                      Whether to use TLS
-        --skip-checks
-            Whether to skip pre-install checks, defaults to false
-
-        --setup
-            Tries to setup necessary environment for cluster startup
-
-    -h, --help                     Prints help information
-
-OPTIONS:
-        --chart-version <chart-version>
-            k8: use specific chart version [default: x.x.x-beta.1]
-
-        --image-version <image-version>
-            k8: use specific image version
-
-        --registry <registry>
-            k8: use custom docker registry
-
-        --namespace <namespace>
-            k8 [default: default]
-
-        --group-name <group-name>
-            k8 [default: main]
-
-        --install-name <install-name>
-            helm chart installation name [default: fluvio]
-
-        --chart-location <chart-location>
-            Local path to a helm chart to install
-
-        --cloud <cloud>
-            k8 [default: minikube]
-
-        --spu <spu>
-            number of SPU [default: 1]
-
-        --rust-log <rust-log>
-            RUST_LOG options
-
-        --log-dir <log-dir>
-            log dir [default: /usr/local/var/log/fluvio]
-            
-        --domain <domain>                                        TLS: domain
-        --ca-cert <ca-cert>                                      TLS: ca cert
-        --client-cert <client-cert>
-            TLS: client cert
-
-        --client-key <client-key>                                TLS: client key
-        --server-cert <server-cert>
-            TLS: path to server certificate
-
-        --server-key <server-key>
-            TLS: path to server private key
-
-        --authorization-config-map <authorization-config-map>
-```
+{{<code file="embeds/cli/help/fluvio-cluster-start.txt" lang="console">}}
 
 ### Example usage:
 
