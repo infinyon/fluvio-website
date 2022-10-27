@@ -28,7 +28,7 @@ jobs:
       - name: Get PR Number from title
         if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
         run: |
-          echo "PR_NUMBER=$(git show --oneline -s HEAD | | sed -n 's/.*(#\(.*\))$/\1/p')" >> $GITHUB_ENV
+          echo "PR_NUMBER=$(git show --oneline -s HEAD | sed -n 's/.*(#\(.*\))$/\1/p')" >> $GITHUB_ENV
 
       - id: pr_number_sync
         run: |
