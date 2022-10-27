@@ -13,8 +13,8 @@ jobs:
   pr_number:
     runs-on: ubuntu-latest
     outputs:
-      skip: ${{ step.outputs.skip_label_check.result }}
-      no-skip: ${{ !step.outputs.skip_label_check.result }}
+      skip: ${{ steps.outputs.skip_label_check.result }}
+      no-skip: ${{ !steps.outputs.skip_label_check.result }}
     steps:
       - name: Get PR Number from title
         if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
