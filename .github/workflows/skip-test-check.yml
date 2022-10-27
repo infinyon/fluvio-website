@@ -13,8 +13,7 @@ jobs:
   pr_number:
     runs-on: ubuntu-latest
     outputs:
-      skip: ${{ steps.outputs.skip_label_check.result }}
-      no-skip: ${{ !steps.outputs.skip_label_check.result }}
+      found: ${{ steps.outputs.skip_label_check.result }}
     steps:
       - name: Dump context
         uses: crazy-max/ghaction-dump-context@v1.2.1
@@ -37,13 +36,38 @@ jobs:
         run: |
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
 
+      - name: Get PR labels
+        run: |
+          gh auth login --with-token < <(echo ${{ secrets.GITHUB_TOKEN }})
+          gh pr view ${{ env.PR_NUMBER }} --json --jq '.labels[].name' | tee /tmp/pr-labels
+
       - name: Check PR Labels
         id: skip_label_check
-        uses: paul1k/check-pr-labels@v1.0.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          pull-number: ${{ env.PR_NUMBER }}
-          labels: ${{ inputs.labels }}
+        run: |
+          LABEL_FOUND=false
+
+          for label in $(echo ${{ inputs.labels }} | jq -r '.[]'); do
+            echo $label;
+            grep $label /tmp/pr-labels;
+            if [ $? -eq 0 ]; then
+              LABEL_FOUND=true 
+            fi
+          done
+          echo Label check result: $LABEL_FOUND
+          if [ "$LABEL_FOUND" = true ]
+          then
+            echo "result=true" >> GITHUB_OUTPUT
+          else
+            echo "result=false" >> GITHUB_OUTPUT
+          fi
+
+      #- name: Check PR Labels
+      #  id: skip_label_check
+      #  uses: paul1k/check-pr-labels@v1.0.0
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    pull-number: ${{ env.PR_NUMBER }}
+      #    labels: ${{ inputs.labels }}
 
       - name: Dump context
         uses: crazy-max/ghaction-dump-context@v1.2.1
