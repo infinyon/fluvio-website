@@ -1,8 +1,12 @@
-{{ $file := .Get "file"}}
-{{ $FILE :=path.Join "content" "embeds" $file }}
-{{ $content:= ""  }}
+{{ $FILE := .Get "file"}}
+{{ $PLAINTEXT := .Get "plaintext"}}
+{{ $content:= "" }}
 {{ if os.FileExists $FILE }}
-  {{ $content := (os.ReadFile $FILE) }}
-  {{ $content | markdownify }}
+{{ $content := (os.ReadFile $FILE) }}
+{{ if $PLAINTEXT }}
+{{ $content }}
+{{ else }}
+{{ $content | markdownify }}
+{{ end }}
 {{ else }}
 {{ end }}

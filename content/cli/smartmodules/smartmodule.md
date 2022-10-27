@@ -3,91 +3,52 @@ title: SmartModule
 weight: 10
 ---
 
-The `fluvio smart-module` family of commands is used to create and delete SmartModules,
+The `fluvio smartmodule` family of commands is used to create and delete SmartModules,
 as well as to view basic information about existing SmartModules.
 
-## `fluvio smart-module create`
+## `fluvio smartmodule create`
 
 This command is used to create new Fluvio SmartModules. A SmartModule must be given
 a name and provided with a path to a WASM binary which will be uploaded and used for
 the SmartModule.
 
-```
-fluvio-smart-module-create
-Create a new SmartModule with a given name
-
-USAGE:
-    fluvio smart-module create [OPTIONS] <name> --wasm-file <wasm-file>
-
-FLAGS:
-    -h, --help    Prints help information
-
-OPTIONS:
-        --wasm-file <wasm-file>        The path to a WASM binary to create the SmartModule from
-
-ARGS:
-    <name>    The name of the SmartModule to create
-```
+{{% inline-embed file="embeds/cli/help/fluvio-smartmodule-create.md" %}}
 
 Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio smart-module create json-filter --wasm-file=target/wasm32-unknown-unknown/release/json_filter.wasm
+$ fluvio smartmodule create json-filter --wasm-file=target/wasm32-unknown-unknown/release/json_filter.wasm
 ```
 
 ---
 
-## `fluvio smart-module list`
+## `fluvio smartmodule list`
 
 This command shows all the registered SmartModules in your cluster.
 
-```
-fluvio-smart-module-list 0.0.0
-List all existing SmartModules
-
-USAGE:
-    fluvio smart-module list [OPTIONS]
-
-FLAGS:
-    -h, --help    Prints help information
-
-OPTIONS:
-    -O, --output <type>    Output [default: table]  [possible values: table, yaml, json]
-```
+{{% inline-embed file="embeds/cli/help/fluvio-smartmodule-list.md" %}}
 
 Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio smart-module list
+$ fluvio smartmodule list
  NAME          STATUS             SIZE
  json-filter   SmartModuleStatus  142843
 ```
 
 ---
 
-## `fluvio smart-module delete`
+## `fluvio smartmodule delete`
 
 This command will delete an existing SmartModule by name.
 
-```
-fluvio-smart-module-delete 0.0.0
-Delete an existing SmartModule with the given name
-
-USAGE:
-    fluvio smart-module delete <name>
-
-FLAGS:
-    -h, --help    Prints help information
-
-ARGS:
-    <name>
-```
+{{% inline-embed file="embeds/cli/help/fluvio-smartmodule-delete.md" %}}
 
 Example usage:
 
 %copy first-line%
 ```bash
-$ fluvio smart-module delete json-filter
+$ fluvio smartmodule delete json-filter
 ```

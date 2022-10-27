@@ -21,7 +21,7 @@ To see the full docs, visit [our typedoc page].
 
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-{{<code file="code-blocks/client-examples/node/example.ts" lang="typescript" copy=true >}}
+{{<code file="embeds/client-examples/node/example.ts" lang="typescript" copy=true >}}
 
 ### Run
 

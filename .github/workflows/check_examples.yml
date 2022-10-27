@@ -20,9 +20,18 @@ env:
   K3D_VERSION: v5.4.1
 
 jobs:
+  test-skip-check:
+    uses: ./.github/workflows/skip-test-check.yml
+    permissions:
+      pull-requests: read
+    with:
+      labels: '["CI:bors-skip-client-examples"]'
+    secrets: inherit
+
   examples:
     name: Run all client examples
     runs-on: ubuntu-latest
+    needs: test-skip-check
     strategy:
       matrix:
         client-type:
@@ -32,21 +41,29 @@ jobs:
           - java
 
     steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1.2.1
       - uses: actions/checkout@v3
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
 
       - uses: actions/checkout@v3
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         with:
           repository: infinyon/fluvio
           path: fluvio-repo
       - name: Setup K3d
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=${{ env.K3D_VERSION }} bash
       - name: Create K3d cluster
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: |
           ./fluvio-repo/k8-util/cluster/reset-k3d.sh
 
       - name: Sleep 20 to ensure k3d cluster is ready
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: sleep 20
       - name: Install Fluvio Local Cluster
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: infinyon/fluvio@master
         with:
           cluster-type: local
@@ -54,13 +71,21 @@ jobs:
 
       # Ensure cluster is started
       - name: Ensure Fluvio Cluster is up
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: |
           make cluster-verify
 
-      # Run docker build
       - name: Build and test clients
-        run: |
-          make run-client-example-${{ matrix.client-type }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
+        uses: nick-fields/retry@v2.8.2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: |
+            make run-client-example-${{ matrix.client-type }}
+          on_retry_command: |
+            fluvio cluster delete
+            fluvio cluster start --local --image-version latest
 
   # Job that follows the success of all required jobs in this workflow.
   # Used by Bors to detect that all required jobs have completed successfully

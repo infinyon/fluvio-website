@@ -9,7 +9,7 @@ NPROCS = $(shell sysctl hw.ncpu  | grep -o '[0-9]\+')
 MAKEFLAGS += -j$(NPROCS)
 endif
 
-CODE_ROOT=code-blocks
+CODE_ROOT=embeds
 CLIENT_EXAMPLE_ROOT=$(CODE_ROOT)/client-examples
 
 

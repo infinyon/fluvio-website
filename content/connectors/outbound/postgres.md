@@ -44,7 +44,7 @@ This should contain
   
 #### Example connector config 
 
-{{<code file="code-blocks/connectors/outbound-examples/outbound-postgres.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors/outbound-examples/outbound-postgres.yaml" lang="yaml" copy=true >}}
 
 ## Connector config `secrets`
 ### `FLUVIO_PG_DATABASE_URL`
@@ -55,7 +55,7 @@ Alternative configuration path for config parameter [`url`]({{<ref "#url">}})
 #### Example connector config 
 %copy%
 
-{{<code file="code-blocks/connectors/outbound-examples/outbound-postgres.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors/outbound-examples/outbound-postgres.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 

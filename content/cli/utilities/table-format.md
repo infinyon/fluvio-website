@@ -5,28 +5,12 @@ weight: 20
 
 Table Format is used to customize the behavior of the Fluvio consumer output type [`full-table`].
 
-[`full-table`]: {{< ref "/cli/utilities/consume_table#full-table" >}}
+[`full-table`]: {{< ref "/cli/advanced/consume_table#full-table" >}}
 
 With `table-format`, you can control the column labels, column ordering and control which keys are primary for displaying your live event data as row updates.
 
-%copy first-line%
-```
-$ fluvio table-format -h
-fluvio-table-format 0.0.0
-Create a table-format display specification
-
-USAGE:
-    fluvio table-format <SUBCOMMAND>
-
-FLAGS:
-    -h, --help    Prints help information
-
-SUBCOMMANDS:
-    create    Create a new TableFormat display
-    delete    Delete a TableFormat display
-    list      List all TableFormat display
-    help      Prints this message or the help of the given subcommand(s)
-```
+## `fluvio table-format`
+{{% inline-embed file="embeds/cli/help/fluvio-install.md" %}}
 
 This is the schema for the Table Format yaml config used by `fluvio table-format create`
 

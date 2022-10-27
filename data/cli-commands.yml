@@ -1,0 +1,94 @@
+# This is the list of CLI commands to collect help output from
+cli-commands:
+  - fluvio
+
+  - fluvio consume
+  - fluvio produce
+  - fluvio topic
+
+  - fluvio topic create
+  - fluvio topic delete
+  - fluvio topic describe
+  - fluvio topic list
+
+  - fluvio partition
+  - fluvio partition list
+
+  - fluvio smartmodule
+  - fluvio smartmodule create
+  - fluvio smartmodule list
+  - fluvio smartmodule watch
+  - fluvio smartmodule delete
+
+  - fluvio table-format
+  - fluvio table-format create
+  - fluvio table-format list
+  - fluvio table-format delete
+
+  - fluvio derived-stream
+  - fluvio derived-stream create
+  - fluvio derived-stream list
+  - fluvio derived-stream delete
+
+  - fluvio hub
+  - fluvio hub download
+  - fluvio hub list
+
+  - fluvio profile
+  - fluvio profile current
+  - fluvio profile delete
+  - fluvio profile delete-cluster
+  - fluvio profile list
+  - fluvio profile rename
+  - fluvio profile switch
+  - fluvio profile sync
+  - fluvio profile export
+
+  - fluvio cluster
+  - fluvio cluster start
+  - fluvio cluster upgrade
+  - fluvio cluster delete
+  - fluvio cluster check
+  - fluvio cluster spu
+  - fluvio cluster spu register
+  - fluvio cluster spu unregister
+  - fluvio cluster spu list
+  - fluvio cluster spg
+  - fluvio cluster spg create
+  - fluvio cluster spg delete
+  - fluvio cluster spg list
+  - fluvio cluster diagnostics
+
+  - fluvio install
+  - fluvio update
+  - fluvio version
+  - fluvio completions
+
+  - fluvio run
+  - fluvio run spu
+  - fluvio run sc
+  - fluvio run metadata
+  - fluvio run version
+
+  - fluvio cloud
+  - fluvio cloud cluster
+  - fluvio cloud cluster create
+  - fluvio cloud cluster list
+  - fluvio cloud cluster delete
+  - fluvio cloud connector
+  - fluvio cloud connector config
+  - fluvio cloud connector create
+  - fluvio cloud connector delete
+  - fluvio cloud connector list
+  - fluvio cloud connector logs
+  - fluvio cloud connector update
+  - fluvio cloud login
+  - fluvio cloud logout
+  - fluvio cloud usage
+
+  - smdk
+  - smdk build
+  - smdk generate
+  - smdk test
+  - smdk load
+  - smdk publish

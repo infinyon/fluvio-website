@@ -10,10 +10,7 @@ The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, 
 
 Install the Fluvio CLI by running the following command:
 
-%copy first-line%
-```bash
-curl -fsS https://packages.fluvio.io/v1/install.sh | bash
-```
+{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
 
 ## Setting up a Fluvio cluster on Kubernetes
 

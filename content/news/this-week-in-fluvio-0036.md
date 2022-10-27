@@ -15,8 +15,8 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 ## New release
 * New Kafka Source and Sink connectors
-  * [Kafka Source docs](https://www.fluvio.io/connectors/sources/kafka/)
-  * [Kafka Sink docs](https://www.fluvio.io/connectors/sinks/kafka/)
+  * [Kafka Source docs]({{<ref "/connectors/inbound/kafka.md">}})
+  * [Kafka Sink docs]({{<ref "/connectors/outbound/kafka.md">}})
 
 ## Developer experience improvements
 The Fluvio Java client is now [hosted in Maven Central](https://search.maven.org/artifact/com.infinyon/fluvio), which should reduce the friction for Java developers to install.

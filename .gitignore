@@ -33,4 +33,4 @@ tmp/
 bin/
 
 # Rust
-code-blocks/client-examples/rust/target/
+embeds/client-examples/rust/target/
