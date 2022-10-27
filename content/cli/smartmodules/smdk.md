@@ -4,7 +4,7 @@ menu: SMDK
 weight: 10
 ---
 
-Check out the [SmartModule Development Kit]({{<ref "/smartmodules/SMDK/overview.md">}}) page for more information.
+Check out the [SmartModule Development Kit]({{<ref "/smartmodules/smdk/overview.md">}}) page for more information.
 
 {{% inline-embed file="embeds/cli/help/smdk.md" %}}
 ## `smdk build`
