@@ -17,6 +17,6 @@
     "@netlify/functions": "^1.0.0",
     "@types/node": "^18.11.6",
     "node-fetch": "^3.2.10",
-    "typescript": "^4.0.0"
+    "typescript": "^4.8.4"
   }
 }
