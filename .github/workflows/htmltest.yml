@@ -22,7 +22,7 @@ jobs:
     permissions:
       pull-requests: read
     with:
-      labels: '["CI:bors-skip-client-examples"]'
+      labels: '["CI:bors-skip-html-lint"]'
     secrets: inherit
 
   htmltest:
@@ -30,13 +30,6 @@ jobs:
     name: Run htmltest to lint Hugo output
     needs: test-skip-check
     steps:
-      - name: Check if skip test labels set on PR
-        id: label_check
-        uses: ./.github/workflows/skip-test-check.yml
-        with:
-          labels: '["CI:bors-skip-html-lint"]'
-        secrets: inherit
-
       - name: Checkout code
         if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: actions/checkout@v3
