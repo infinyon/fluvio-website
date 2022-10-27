@@ -46,7 +46,7 @@ jobs:
         run: |
           LABEL_FOUND=false
 
-          for label in $(echo ${{ inputs.labels }} | jq -r '.[]'); do
+          for label in $(echo '${{ inputs.labels }}' | jq -r '.[]'); do
             echo $label;
             grep $label /tmp/pr-labels;
             if [ $? -eq 0 ]; then

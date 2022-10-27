@@ -44,11 +44,9 @@ jobs:
       - name: Dump context
         uses: crazy-max/ghaction-dump-context@v1.2.1
       - uses: actions/checkout@v3
-        needs: test-skip-check
         if: ${{ needs.test-skip-check.outputs.found }}
 
       - uses: actions/checkout@v3
-        needs: test-skip-check
         if: ${{ needs.test-skip-check.outputs.found }}
         with:
           repository: infinyon/fluvio
