@@ -39,10 +39,11 @@ jobs:
       - name: Get PR labels
         run: |
           gh auth login --with-token < <(echo ${{ secrets.GITHUB_TOKEN }})
-          gh pr view ${{ env.PR_NUMBER }} --json --jq '.labels[].name' | tee /tmp/pr-labels
+          gh pr view ${{ env.PR_NUMBER }} --json labels --jq '.labels[].name' | tee /tmp/pr-labels
 
       - name: Check PR Labels
         id: skip_label_check
+        continue-on-error: true
         run: |
           LABEL_FOUND=false
 
@@ -50,14 +51,17 @@ jobs:
             echo $label;
             grep $label /tmp/pr-labels;
             if [ $? -eq 0 ]; then
-              LABEL_FOUND=true 
+              echo "Label found"
+              LABEL_FOUND=true
             fi
           done
           echo Label check result: $LABEL_FOUND
           if [ "$LABEL_FOUND" = true ]
           then
+            echo "result=true"
             echo "result=true" >> GITHUB_OUTPUT
           else
+            echo "result=false"
             echo "result=false" >> GITHUB_OUTPUT
           fi
 
