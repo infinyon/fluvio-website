@@ -155,7 +155,9 @@
     }
 
     .tab-content {
-      margin: 20px;
+      margin-top: 1px;
+      padding: 20px;
+      border-bottom: 1px solid $gray2;
     }
   }
 }
