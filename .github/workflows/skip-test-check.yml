@@ -1,0 +1,43 @@
+name: Get PR Number
+
+permissions:
+  pull-requests: read
+
+on:
+  workflow_call:
+    inputs:
+      labels:
+        required: true
+        type: string
+jobs:
+  pr_number:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.outputs.skip_label_check.result }}
+      no-skip: ${{ !steps.outputs.skip_label_check.result }}
+    steps:
+      - name: Checkout code for push
+        if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+        uses: actions/checkout@v3
+
+      - name: Get PR Number from event
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Get PR Number from title
+        if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+        run: |
+          echo "PR_NUMBER=$(git show --oneline -s HEAD | sed -n 's/.*(#\(.*\))$/\1/p')" >> $GITHUB_ENV
+
+      - id: pr_number_sync
+        run: |
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Check PR Labels
+        id: skip_label_check
+        uses: paul1k/check-pr-labels@v1.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pull-number: ${{ env.PR_NUMBER }}
+          labels: ${{ inputs.labels }}
