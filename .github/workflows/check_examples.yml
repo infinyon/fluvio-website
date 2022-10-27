@@ -44,26 +44,26 @@ jobs:
       - name: Dump context
         uses: crazy-max/ghaction-dump-context@v1.2.1
       - uses: actions/checkout@v3
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
 
       - uses: actions/checkout@v3
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         with:
           repository: infinyon/fluvio
           path: fluvio-repo
       - name: Setup K3d
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=${{ env.K3D_VERSION }} bash
       - name: Create K3d cluster
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: |
           ./fluvio-repo/k8-util/cluster/reset-k3d.sh
 
       - name: Sleep 20 to ensure k3d cluster is ready
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: sleep 20
       - name: Install Fluvio Local Cluster
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: infinyon/fluvio@master
         with:
           cluster-type: local
@@ -71,12 +71,12 @@ jobs:
 
       # Ensure cluster is started
       - name: Ensure Fluvio Cluster is up
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: |
           make cluster-verify
 
       - name: Build and test clients
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: nick-fields/retry@v2.8.2
         with:
           timeout_minutes: 10

@@ -34,21 +34,21 @@ jobs:
         uses: crazy-max/ghaction-dump-context@v1.2.1
 
       - name: Checkout code
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Setup Hugo
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.97.3'
           extended: true
       - name: Run Hugo in the background
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: ./hugo-start.sh &
       - name: Run htmltest
-        if: ${{ needs.test-skip-check.outputs.found }}
+        if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: |
           make htmltest
 
