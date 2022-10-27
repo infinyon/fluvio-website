@@ -16,6 +16,9 @@ jobs:
       skip: ${{ steps.outputs.skip_label_check.result }}
       no-skip: ${{ !steps.outputs.skip_label_check.result }}
     steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1.2.1
+
       - name: Checkout code for push
         if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
         uses: actions/checkout@v3
@@ -41,3 +44,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pull-number: ${{ env.PR_NUMBER }}
           labels: ${{ inputs.labels }}
+
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1.2.1

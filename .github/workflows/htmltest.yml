@@ -30,6 +30,9 @@ jobs:
     name: Run htmltest to lint Hugo output
     needs: test-skip-check
     steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1.2.1
+
       - name: Checkout code
         if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: actions/checkout@v3
