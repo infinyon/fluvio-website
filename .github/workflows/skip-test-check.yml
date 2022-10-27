@@ -9,6 +9,13 @@ on:
       labels:
         required: true
         type: string
+    outputs:
+      label-found:
+        description: 'Boolean if label(s) found'
+        value: ${{ jobs.pr_number.outputs.found }}
+      no-skip:
+        description: 'Boolean if tests should be skipped'
+        value: ${{ jobs.pr_number.outputs.no-skip }}
 jobs:
   pr_number:
     runs-on: ubuntu-latest
