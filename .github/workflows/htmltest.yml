@@ -34,9 +34,10 @@ jobs:
       - name: Check PR Labels
         id: skip_label_check
         uses: paul1k/check-pr-labels@v1.0.0
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        pull-number: ${{ env.PR_NUMBER }}
-        labels: '["CI:bors-skip-html-lint"]'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pull-number: ${{ env.PR_NUMBER }}
+          labels: '["CI:bors-skip-html-lint"]'
 
       - name: Checkout code
         if: ${{ !steps.skip_label_check.outputs.result }}
