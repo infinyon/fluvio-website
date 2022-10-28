@@ -199,7 +199,7 @@ Consuming records from the beginning of topic 'filter-test'
 42
 ```
 
-You now know  the development workflow for SmartModules with `smdk`. You can now generate your own project that processes data. For additional information on how to publish and share SmartModules checkout [SmartModule Hub].
+You now know the development workflow for SmartModules with `smdk`. You can now generate your own project that processes data. For additional information on how to publish and share SmartModules checkout [SmartModule Hub].
 
 
 ## Check out these Other Tutorials
