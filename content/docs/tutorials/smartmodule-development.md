@@ -199,30 +199,7 @@ Consuming records from the beginning of topic 'filter-test'
 42
 ```
 
-## Publish to SmartModule Hub
-
-As bonus, let's [publish] this SmartModule to [SmartMoudle Hub].
-
-%copy first-line%
-```bash
-$ smdk publish
-Creating package my-group/regex-filter@0.1.0
-.. fill out info in hub/package-meta.yaml
-Package hub/regex-filter-0.1.0.ipkg created
-Package uploaded!
-```
-
-Let's double check that the SmartModule is available for download:
-
-%copy first-line%
-```bash
-$ fluvio hub list
-  SMARTMODULE                    
-  my-group/regex-filter@0.1.0
-```
-
-
-You now know  the development workflow for SmartModules with `smdk` and publish to `the HUb`. You can now generate your own project that processes data. At last, you can shared the SmartModule with your team.
+You now know  the development workflow for SmartModules with `smdk`. You can now generate your own project that processes data. For additional information on how to publish and share SmartModules checkout [SmartModule Hub].
 
 
 ## Check out these Other Tutorials
@@ -237,5 +214,4 @@ You now know  the development workflow for SmartModules with `smdk` and publish 
 * [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
 * [SmartModule]({{<ref "/smartmodules/">}})
 
-[publish]: {{< ref "/smartmodules/smdk/publish" >}}
-[SmartMoudle Hub]: {{< ref "/smartmodules/hub/overview" >}}
+[SmartModule Hub]: {{< ref "/smartmodules/hub/overview" >}}
