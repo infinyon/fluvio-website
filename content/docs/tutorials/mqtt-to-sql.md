@@ -76,11 +76,6 @@ You can start one of both of the following connectors
 
 ##### Download `json-sql` SmartModule
 
-%copy first-line%
-```shell
-$ fluvio hub download infinyon/json-sql@0.1.0
-```
-
 Example output
 
 %copy first-line%
@@ -92,7 +87,6 @@ downloading infinyon/json-sql@0.1.0 to infinyon-json-sql-0.1.0.ipkg
 trying connection to fluvio router.dev.infinyon.cloud:9003
 ... cluster smartmodule install complete
 ```
-
 
 ##### SQL Connector with no transformation config
 
@@ -174,9 +168,9 @@ $ brew install pgcli
 
 Table create query
 
-%copy first-line%
+%copy%
 ```sql
-> create table topic_message(device_id int, record jsonb);
+create table topic_message(device_id int, record jsonb);
 ```
 {{</idea>}}
 
@@ -212,6 +206,8 @@ Run the following to connect to PostgreSQL DB with `pgcli` ([Installation steps]
 
 ### Connect to test DB
 
+Use `pgcli` to examine the database.
+
 %copy first-line%
 ```shell
 Note to self, obscure db 
@@ -220,15 +216,14 @@ $ pgcli -U postgres -h mqtt-test.cfr6uxaqcmox.us-west-2.rds.amazonaws.com -p 543
 
 Check that the JSON from MQTT has been inserted into table
 
-%copy first-line%
+%copy%
 ```sql
-> select * from topic_message;
+select * from topic_message;
 ```
 
 Example output from both connectors
 
-```sql
-> select * from topic_message;
+```txt
 +-----------+-----------------------------------------------------------------------------------------------+
 | device_id | record                                                                                        |
 |-----------+-----------------------------------------------------------------------------------------------|
