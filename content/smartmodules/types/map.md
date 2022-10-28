@@ -195,7 +195,7 @@ Congratulations! :tada: Eveything worked as expected!
 
 ### Publish to SmartModule Hub
 
-As bonus, let's [publish] this SmartModule to [SmartMoudle Hub].
+As bonus, let's [publish] this SmartModule to [SmartModule Hub].
 
 %copy first-line%
 ```bash
@@ -229,4 +229,4 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}
-[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}
+[SmartModule Hub]: {{< ref "smartmodules/hub/overview" >}}

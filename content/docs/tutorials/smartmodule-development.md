@@ -28,7 +28,7 @@ We will need a custom map SmartModule project, which we can generate with the Sm
 
 You can install `smdk` with the Fluvio CLI
 
-%copy%
+%copy first-line%
 ```shell
 $ fluvio install smdk
 ```
@@ -59,11 +59,18 @@ hub: hubid my-group is set
 hubid set to my-group
 ```
 
-You will need to add a dependency to the `Cargo.toml`
+Navigate to the project directory and take a look at the `Cargo.toml` file:
 
-{{<code-highlight file="embeds/tutorials/sm-development/regex-filter/Cargo.toml" lang="rust" lines="15">}}
+%copy first-line%
+```shell
+$ cd regex-filter && cat Cargo.toml
+```
 
-And you can copy/paste this code into the `lib.rs` of the generated SmartModule project.
+You will need to add a couple of dependencies:
+
+{{<code-highlight file="embeds/tutorials/sm-development/regex-filter/Cargo.toml" lang="rust" lines="14-15" copy="true">}}
+
+And copy/paste this code in place of the auto-generated code in `lib.rs` :
 
 {{<code file="embeds/tutorials/sm-development/regex-filter/src/lib.rs" lang="rust" copy="true">}}
 
@@ -71,9 +78,10 @@ Now that we have the SmartModule project created and code written, we need to bu
 
 ### Build SmartModule
 
-%copy%
+Building a SamartModule is trivial:
+
+%copy first-line%
 ```bash
-$ cd regex-filter
 $ smdk build
 ```
 
@@ -92,7 +100,7 @@ $ smdk test -e regex="^[0-9]*$" --text 42
 project name: "regex-filter"
 loading module at: target/wasm32-unknown-unknown/release-lto/regex_filter.wasm
 1 records outputed
-45
+42
 ```
 
 
@@ -143,21 +151,36 @@ When you list the SmartModules in your cluster, you'll see that the `regex-filte
 %copy first-line%
 ```shell
 $ fluvio sm list
-  NAME          GROUP     VERSION  SIZE
-  regex-filter  my-group  0.1.0    316.0 KB
+  SMARTMODULE                      SIZE     
+  my-group/regex-filter@0.1.0      316.4 KB 
 ```
 
 With the SmartModule loaded in the cluster, we will test that our filter works with data from a topic.
 
-This basic example we'll create a new topic, and load it with values. The regex filter
+This basic example we'll create a new topic, and load it with values. 
+
+Create a file `values.txt` with the following
+contents:
+
+```txt
+$ cat values.txt
+42
+abc
+abc123
+```
+
+Create a topic `filter-test`:
 
 %copy first-line%
 ```bash
 $ fluvio topic create filter-test 
+```
 
-$ echo "42" | fluvio produce filter-test
-$ echo "abc" | fluvio produce filter-test
-$ echo "abc123" | fluvio produce filter-test
+Load `values.txt` file to `filter-test` topic:
+
+%copy first-line%
+```bash
+$ fluvio produce filter-test -f values.txt
 ```
 
 %copy first-line%
@@ -176,7 +199,7 @@ Consuming records from the beginning of topic 'filter-test'
 42
 ```
 
-You now know  the development workflow for SmartModules with `smdk`. You can now generate your own project and process your own data.
+You now know the development workflow for SmartModules with `smdk`. You can now generate your own project that processes data. For additional information on how to publish and share SmartModules checkout [SmartModule Hub].
 
 
 ## Check out these Other Tutorials
@@ -190,3 +213,5 @@ You now know  the development workflow for SmartModules with `smdk`. You can now
 * [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
 * [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
 * [SmartModule]({{<ref "/smartmodules/">}})
+
+[SmartModule Hub]: {{< ref "/smartmodules/hub/overview" >}}
