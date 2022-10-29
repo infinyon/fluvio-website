@@ -60,14 +60,14 @@ You can register the connector to Fluvio with `fluvio cloud connector create --c
 
 %copy first-line%
 ```bash
-fluvio cloud connector create --config=catfacts-basic-connector.yml
+$ fluvio cloud connector create --config=catfacts-basic-connector.yml
 ```                               
 
 You can use `fluvio cloud connector list` to view the status of the connector.
 
 %copy first-line%
 ```shell
- % fluvio cloud connector list
+ $ fluvio cloud connector list
  NAME       TYPE         VERSION  STATUS
  cat-facts  http-source  0.3.0    Running
  ```
@@ -76,7 +76,7 @@ And `fluvio consume` to view the incoming data in the topic.
 
 %copy first-line%
 ```bash
-fluvio consume cat-facts-data -dT4
+$ fluvio consume cat-facts-data -dT4
 Consuming records starting 4 from the end of topic 'cat-facts-data'
 {"fact":"A cat lover is called an Ailurophilia (Greek: cat+lover).","length":57}
 {"fact":"British cat owners spend roughly 550 million pounds yearly on cat food.","length":71}
@@ -129,7 +129,7 @@ connector "simple-cat-facts-sql" (sql-sink) created
 
 After a few seconds, we can see data in the PostgreSQL table,
 
-```sql
+```txt
 > select * from animalfacts;
 +--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | length | raw_fact_json                                                                                                                                                                                                                     |
@@ -157,7 +157,7 @@ Create another connector with our transformations.
 
 %copy first-line%
 ```shell
-% fluvio cloud connector create --config sql-transform.yml 
+$ fluvio cloud connector create --config sql-transform.yml 
 connector "transform-cat-facts-sql" (sql-sink) created
 ```
 
@@ -188,7 +188,7 @@ This will delete the connector, but not the topic is was attached to
 
 %copy%
 ```shell
-% fluvio cloud connector delete cat-facts simple-cat-facts-sql transform-cat-facts-sql
+$ fluvio cloud connector delete cat-facts simple-cat-facts-sql transform-cat-facts-sql
 connector "cat-facts" deleted
 connector "simple-cat-facts-sql" deleted
 connector "transform-cat-facts-sql" deleted
