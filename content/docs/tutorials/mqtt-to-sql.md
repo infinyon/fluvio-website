@@ -210,8 +210,7 @@ Use `pgcli` to examine the database.
 
 %copy first-line%
 ```shell
-Note to self, obscure db 
-$ pgcli -U postgres -h mqtt-test.cfr6uxaqcmox.us-west-2.rds.amazonaws.com -p 5432 msgdb postgres
+$ pgcli -U db-user -h your.postgres.db -p 5432 your-pg-table 
 ```
 
 Check that the JSON from MQTT has been inserted into table
