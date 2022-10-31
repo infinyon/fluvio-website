@@ -8,13 +8,13 @@ updates:
 
   # Maintain dependencies for Gradle
   - package-ecosystem: 'gradle'
-    directory: '/code-blocks/client-examples/java/fluvio-java'
+    directory: '/embeds/client-examples/java/fluvio-java'
     schedule:
       interval: 'daily'
 
   # Maintain dependencies for npm
   - package-ecosystem: 'npm'
-    directory: '/code-blocks/client-examples/node'
+    directory: '/embeds/client-examples/node'
     schedule:
       interval: 'daily'
     ignore:
@@ -30,13 +30,13 @@ updates:
 
   # Maintain dependencies for pip
   - package-ecosystem: 'pip'
-    directory: '/code-blocks/client-examples/python'
+    directory: '/embeds/client-examples/python'
     schedule:
       interval: 'daily'
 
   # Maintain dependencies for Cargo
   - package-ecosystem: 'cargo'
-    directory: '/code-blocks/client-examples/rust'
+    directory: '/embeds/client-examples/rust'
     schedule:
       interval: 'daily'
     ignore:
