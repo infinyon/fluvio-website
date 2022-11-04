@@ -3,25 +3,26 @@ title: Partitions
 weight: 20
 ---
 
-A **topic** is the basic primitive for data stream and the **partitions** is the unit of parallelism accessed independently by **producers** and **consumers**. 
+**Partitions** are the unit of parallelism accessed independently by **producers** and **consumers** within a **topic**.
 
 Each record stored in a partition is
 given an offset, starting from zero and monotonically increasing by one for each new
 record. 
 
-Once a record is committed to a partition and an offset is assigned to it. The offset in that partition will _always_ refer to that record. Because of this, all records that are sent to a given partition are
+Once a record is committed to a partition and an offset is assigned to it, the offset in that partition will _always_ refer to that record. Because of this, all records that are sent to a given partition are
 guaranteed to remain ordered in the order they were committed.
 
 
-**Partition** are configuration objects managed by the system. Topics and partitions are linked through a **parent-child** relationship. Partition generation algorithm is described in the [SC Architecture].
+**Partitions** are configuration objects managed by the system. Topics and partitions are linked through a **parent-child** relationship. The partition generation algorithm is described in the [SC Architecture].
 
 [SC Architecture]: {{< ref "/docs/architecture/sc#partitions" >}}
 
+<!-- This Image Renders Very Poorly -->
 <img src="/docs/architecture/images/topic-2-partitions.svg"
      alt="Topic 2 Assignment"
      style="justify: center; max-width: 640px" />
 
-If a topic is deleted, all child partitions are automatically removed.
+If a topic is deleted, all associated partitions are automatically removed.
 
 ---
 

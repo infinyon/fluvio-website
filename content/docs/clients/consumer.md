@@ -11,7 +11,7 @@ partition at any given time: since the records are persisted, they do
 not expire after being consumed.
 
 -> [1] For an overview of Topics and Partitions, see the [Producer documentation]
-
+<!-- TODO this links to something that doesn't talk about topics and partitions -->
 [Producer documentation]: {{< ref "/docs/clients/producer" >}}
 
 ## Start Consuming

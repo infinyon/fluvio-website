@@ -86,7 +86,7 @@ Let's break down what's happening here:
 
 This template SmartModule will parse each record as an `i32` integer, then multiply that value by 2. 
 
-Let's make sure our code compiles. If eveything works as expected, there is a `.wasm` file generated in the target directory.
+Let's make sure our code compiles. If eveything works as expected, there will be a `.wasm` file generated in the target directory.
 
 %copy first-line%
 ```bash
@@ -177,7 +177,7 @@ $ fluvio smartmodule list
  john/map-example@0.1.0         87.5 KB 
 ```
 
-SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
+SmartModules that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
 
 %copy first-line%
 ```bash

@@ -32,13 +32,15 @@ type:
 topic:
 
 # Type specific parameters
-# See the individual connector docs a list of parameter keys
+# A list of parameter keys 
+# See the individual connector docs
 #
 parameters:
 #  example-param:
 
 # Type specific secrets
-# See the individual connector docs a list of secret keys
+# A list of secret keys 
+# See individual connector docs
 #
 #secrets:
 #  EXAMPLE_SECRET:

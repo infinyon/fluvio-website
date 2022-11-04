@@ -233,7 +233,8 @@ SELECT 2
 Time: 0.080s
 ```
 
-Explanation of output:
+Output explanation:
+
 In both cases, we’ve used the device_id key in the MQTT JSON as the value in the column of the same name.
 The first row is from our No Transformation connector. The record data appears unchanged from what we saw in the topic.
 
@@ -255,4 +256,4 @@ After setting up our end-to-end MQTT to SQL scenario, we were able to send JSON 
 
 We saw the results for the JSON just being inserted into the table with the `json-sql` SmartModule.
 
-Using SmartModule chaining with the `jolt` and `json-sql` SmartModules, we observed that the resulting JSON was transformed. 
+Using SmartModule chaining with the `jolt` and `json-sql` SmartModules, we observed that the resulting JSON was successfully transformed. 

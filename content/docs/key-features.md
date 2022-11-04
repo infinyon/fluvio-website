@@ -8,7 +8,7 @@ A subset of key features are as follows:
 
 * **Ultra Low Latency**: Fluvio takes advantage of Rust's async runtime to improve system performance and achieve low latency. It utilizes all available cores and interacts directly with hardware I/O. Unlike other streaming platforms where garbage collection adds unpredictable latency, Fluvio latency is constant and predictable.
 
-* **Low Memory Footprint**: Fluvio can be deployed in as little as 100Mb of memory. The deployment is highly optimized machine code and it does not require an intermediary virtual machine. Fluvio can be run on devices such as the Raspberry Pi and are suitable for IOT devices running at the edge.
+* **Low Memory Footprint**: Fluvio can be deployed in as little as 100Mb of memory. The deployment is highly optimized machine code and it does not require an intermediary virtual machine. Fluvio can be run on devices such as the Raspberry Pi and is suitable for IOT devices running at the edge.
 
 * **Built-in Retention**: Fluvio uses long-lived immutable storage to persist data streams. Each data stream is copied to multiple servers and retained for hours or years. Fluvio clients have built-in failure detection and switch-over mechanisms to minimize downtime. Fluvio's retention mechanism allows clients to come and go without concerns over data loss.
 

@@ -5,10 +5,10 @@ section: Connectors
 toc: true
 ---
 
-Smart Connectors make the process of importing or exporting data uncomplicated.
-Import data with an `Inbound` connector and export data with an `Outbound` connector.
+Smart Connectors make the process of importing or exporting data simple.
+You can import data with an `Inbound` connector and export data with an `Outbound` connector.
 
-Inbound and outbound connectors fundamentally work in the same way. The only difference being the direction your data is streaming with respect to a Fluvio topic.
+Inbound and outbound connectors fundamentally work in the same way. The only difference is the direction your data is streaming with respect to a Fluvio topic.
 
 There are 4 steps to the connector:
 
@@ -32,7 +32,8 @@ In the **Extract** stage, your data is structured from whatever protocol it is s
 Additionally, You can apply custom pre-processing or post-processing to data, before it
 arrives to or while it streams from a Fluvio topic. The **Filter** and **Shape** stages are provided through SmartModules.
 
-Powered by WebAssembly (also called wasm), SmartModules are pre-packaged or custom logic applied to your data. Supporting access to your data while it is in transit provides you the ability to clean, transform and enrich your data before it is stored in a topic, or it exits the Fluvio cluster.
+Powered by WebAssembly (also called wasm), SmartModules are user-provided operations such as filters, maps, or aggregators that can be applied to records at various points in the streaming pipeline.
+Supporting access to your data while it is in transit provides you the ability to clean, transform and enrich your data before it is stored in a topic, or it exits the Fluvio cluster.
 
 Use Connectors either as: 
 * a [Local Connector]({{<ref "/connectors/local-connectors.md">}})

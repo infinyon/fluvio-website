@@ -51,7 +51,7 @@ polling, and the interval at which it polls.
 {{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
 
 This creates a connector named `cat-facts`, that reads from the website
-`https://catfacts.ninja/fact` every 30 seconds, and produces to the topic
+`https://catfact.ninja/fact` every 30 seconds, and produces to the topic
 `cat-facts-data`.
 
 #### Testing the Inbound Connector
@@ -96,7 +96,7 @@ Run this query in your database before starting any Outbound connectors.
 create table animalfacts(length integer, raw_fact_json jsonb)
 ```
 
-We also need to run a few commands with `fluvio` to download from the SmartModule Hub to attach prepackaged SmartModules to the Outbound Connector.
+We also need to run a few commands with `fluvio` to download some prepackaged SmartModules from the SmartModule Hub to attach to the Outbound Connector.
 
 This SmartModule will do a basic mapping of the JSON input into a SQL statement for the Outbound SQL connector
 

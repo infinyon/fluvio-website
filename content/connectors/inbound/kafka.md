@@ -55,3 +55,4 @@ The Kafka group
 ## Data Events
 
 Events are sent to Fluvio as raw bytes. The record are sent along to Fluvio as well.
+<!-- TODO this is not clear also record != are -->
