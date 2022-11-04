@@ -1,4 +1,3 @@
-
 ---
 title: SmartModule Hub
 menu: Overview
