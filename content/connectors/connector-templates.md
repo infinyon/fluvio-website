@@ -14,7 +14,7 @@ This is an example connector template. Templates are written using `yaml` syntax
 ### `name`
 *required*
 
-The name of your connector
+Provide a name for your connector
 
 ### `type`
 *required*

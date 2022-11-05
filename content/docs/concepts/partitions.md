@@ -17,7 +17,7 @@ guaranteed to remain ordered in the order they were committed.
 
 [SC Architecture]: {{< ref "/docs/architecture/sc#partitions" >}}
 
-<!-- This Image Renders Very Poorly -->
+<!-- TODO This Image Renders Poorly -->
 <img src="/docs/architecture/images/topic-2-partitions.svg"
      alt="Topic 2 Assignment"
      style="justify: center; max-width: 640px" />
@@ -61,4 +61,4 @@ Currently, consumers are limited to reading from one partition at a time. This m
 that in order to read all records from a given topic, it may be necessary to instantiate
 one consumer per partition in the topic.
 
-- [Check out the multi-consumer example in the CLI reference]({{< ref "cli/commands/consume#example-4-consume-from-a-topic-with-multiple-partitions" >}})
+- [Check out the multi-consumer example in the CLI reference]({{< ref "cli/commands/consume#consume-from-a-topic-with-multiple-partitions" >}})

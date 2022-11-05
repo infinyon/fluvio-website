@@ -95,7 +95,7 @@ This should contain
 ## Data Events
 
 The Fluvio Postgres connector emits events that closely represent
-the format of Postgres [logical replication messages](https://www.postgresql.org/docs/10/protocol-logicalrep-message-formats.html), however, event messages are formatted in JSON.
+the format of Postgres [logical replication messages](https://www.postgresql.org/docs/10/protocol-logicalrep-message-formats.html), however, the Fluvio connector event messages are formatted in JSON.
 There are nine different types of messages, each of which share some common
 metadata, but then contain different inner contents.
 

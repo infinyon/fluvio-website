@@ -2,8 +2,8 @@
 title: Batching
 weight: 50
 ---
-Fluvio producer tries to send records in batches to reduce the number of messages sent and improve throughput. A producer has some configurations that can be set to improve performance for a specific use case. For instance, they can be used to reduce disk usage, reduce latency, or improve throughput.
-As of today, batching behavior in Fluvio Producer can be modified with the following configurations:
+Fluvio producers try to send records in batches to reduce the number of messages sent and improve throughput. Each producer has some configurations that can be set to improve performance for a specific use case. For instance, they can be used to reduce disk usage, reduce latency, or improve throughput.
+As of today, batching behavior in Fluvio Producers can be modified with the following configurations:
 
 - `batch_size`: Indicates the maximum amount of bytes that can be accumulated in a batch.
 - `linger`: Time to wait before sending messages to the server. Defaults to 100 ms.
