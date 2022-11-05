@@ -104,7 +104,7 @@ Fluvio has the following configuration objects:
 * **partitions** - provisioned data streaming element of a topic
     * partitions are children of topics
 
-Each configuration object goes through its own lifecycle. Object status track the state as it progresses through various lifecycle stages.
+Each configuration object goes through its own lifecycle. Object status tracks the state as it progresses through various lifecycle stages.
 
 -> Some configuration objects such as **Partition** and **Managed** SPU are managed objects that are created as part of the parent's lifecycle, and they `cannot be directly modified` by the operator.
 

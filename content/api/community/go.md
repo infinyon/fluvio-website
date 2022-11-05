@@ -6,7 +6,7 @@ weight: 19
 The [fluvio-go] client is a community
 project put together by [@avinassh].
 
-It's still under development but still very exciting!
+It's still under development but very exciting nonetheless!
 
 [fluvio-go]: https://github.com/avinassh/fluvio-go 
 [@avinassh]: https://github.com/avinassh

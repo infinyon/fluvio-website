@@ -4,7 +4,7 @@ menu: Overview
 weight: 10
 ---
 
-The Fluvio CLI, is for interacting with Fluvio clusters.
+The Fluvio CLI is for interacting with Fluvio clusters.
 
 To install the CLI, copy and paste this command into a command terminal.
 

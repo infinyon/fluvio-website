@@ -8,7 +8,7 @@ components, the [Streaming Controller (SC)] and [Streaming Processing Unit (SPU)
 For most use-cases, you'll probably want to use the [`fluvio cluster`] commands,
 which are simpler to use and invoke these runner commands for you. However, if
 you want to manually administrate your own cluster and have fine-grained control
-over the components, then this is the section for you.
+over the components, then you can do so using `fluvio run`.
 
 [Streaming Controller (SC)]: {{< ref "/docs/architecture/sc" >}}
 [Streaming Processing Unit (SPU)]: {{< ref "/docs/architecture/spu" >}}

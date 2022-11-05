@@ -6,7 +6,7 @@ weight: 40
 
 {{< caution >}}
 
-Only Producers and consumers support. No cluster administration support.
+Only producers and consumers are supported. There is no support for cluster administration.
 
 {{</ caution >}}
 

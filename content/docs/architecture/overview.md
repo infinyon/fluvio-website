@@ -11,7 +11,7 @@ aliases:
 
 Fluvio is **built in <a href="https://www.rust-lang.org/" target="_blank">Rust</a>**, a systems programming language with **higher performance** than Java and **better code safety** than C/C++. Rust has a powerful multi-threaded asynchronous engine that runs natively in multi-core and low powered embedded systems. Zero cost abstractions and **no garbage collection** makes this language ideal for low network latency and high IO throughput systems.
 
-The choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions such as MacOS, Linux, Windows, and small footprint embedded systems such as <a href="https://www.raspberrypi.org/" target="_blank">Raspberry Pi</a>.
+This choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions such as MacOS, Linux, Windows, and small footprint embedded systems such as <a href="https://www.raspberrypi.org/" target="_blank">Raspberry Pi</a>.
 
 #### Cloud Native by Design
 
@@ -38,7 +38,7 @@ Fluvio is designed to address a variety of **deployment scenarios** from public 
      alt="DC, Cloud, Edge, IoT"
      style="justify: center; max-width: 580px" />
 
-The **SC** handles **topology map dynamically** to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
+The **SC** handles the **topology map** dynamically to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
 For a deep dive in the SC design, checkout the [SC Architecture] section.
 
