@@ -287,7 +287,7 @@ $ fluvio smartmodule list
   john/json-filter@0.1.0        140.1 KB 
 ```
 
-SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
+SmartModules that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
 
 %copy first-line%
 ```bash
@@ -305,7 +305,7 @@ Congratulations! :tada: Eveything worked as expected!
 
 ## Publish to SmartModule Hub
 
-It turns out this SmartModule was requested by other data streaming teams in the organization, so we've decided to [publish] it on [SmartMoudle Hub].
+It turns out this SmartModule was requested by other data streaming teams in the organization, so we've decided to [publish] it on [SmartModule Hub].
 
 %copy first-line%
 ```bash
@@ -338,4 +338,4 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}
-[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}
+[SmartModule Hub]: {{< ref "smartmodules/hub/overview" >}}

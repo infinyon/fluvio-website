@@ -12,11 +12,9 @@ We build and distribute testing binaries and images each time we merge a pull re
 
 Starting a cluster from an unofficial release wasn't a straightforward process either. The Fluvio CLI is geared towards production users using official releases. An unofficial release cluster required setting a few extra CLI options to `fluvio cluster start`. An easy step to forget.
 
-Inspired by [Rust's concept of channels](https://rust-lang.github.io/rustup/concepts/channels.html), Fluvio's release channels address these issues for anyone to test the bleeding edge, with minimal thinking required. While also providing an easy path to switch back stable releases.
+Inspired by [Rust's concept of channels](https://rust-lang.github.io/rustup/concepts/channels.html), Fluvio's release channels address these issues and provide an easy way to switch between development and stable releases.
 
 ## Installation
-
-If you have recently installed Fluvio through that method, there is nothing left to do.
 
 Release channel support is provided by the [official installer script]({{<ref "/download">}}). The installer uses the `stable` channel by default. 
 

@@ -235,7 +235,7 @@ $ fluvio smartmodule list
   john/filter-map@0.1.0         166.6 KB
 ```
 
-SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
+SmartModules that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
 
 %copy first-line%
 ```bash
@@ -249,7 +249,7 @@ Congratulations! :tada: Eveything worked as expected!
 
 ## Publish to SmartModule Hub
 
-Let's [publish] this SmartModule to [SmartMoudle Hub] to make accessible to others.
+Let's [publish] this SmartModule to [SmartModule Hub] to make accessible to others.
 
 %copy first-line%
 ```bash
@@ -282,7 +282,7 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}
-[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}
+[SmartModule Hub]: {{< ref "smartmodules/hub/overview" >}}
 
 [1]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/grocery-notifications/src/lib.rs
 [2]: https://www.infinyon.com/blog/2021/11/filter-map/

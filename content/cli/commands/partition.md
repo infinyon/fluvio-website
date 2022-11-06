@@ -21,3 +21,10 @@ $ fluvio partition list
  TOPIC     PARTITION  LEADER  REPLICAS  RESOLUTION  SIZE  HW  LEO  LRS  FOLLOWER OFFSETS 
  greeting  0          0       []        Online      86 B  1   1    0    [] 
 ```
+
+
+More information about the columns HW, LEO, and LRS can be found in the details regarding the [Synchronization Algorithm].
+
+
+[Synchronization Algorithm]: {{< ref "/docs/architecture/replica-election#synchronization-algorithm" >}}
+ 

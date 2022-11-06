@@ -58,4 +58,4 @@ options](https://github.com/edenhill/librdkafka/blob/b171d8f411a981c7604a79777ce
 
 ## Data Events
 
-Events are sent to Fluvio as raw bytes. The record are sent along to Fluvio as well.
+Events are sent to Fluvio as raw bytes. The event records are sent along to Fluvio as well.

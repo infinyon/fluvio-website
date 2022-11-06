@@ -5,6 +5,8 @@ weight: 40
 
 ## Connector Template
 
+This is an example connector template. Templates are written using `yaml` syntax.
+
 {{<code file="embeds/templates/connector-template.yaml" lang="yaml" copy=true >}}
 
 ## Template description
@@ -12,7 +14,7 @@ weight: 40
 ### `name`
 *required*
 
-A given name for your connector
+Provide a name for your connector
 
 ### `type`
 *required*

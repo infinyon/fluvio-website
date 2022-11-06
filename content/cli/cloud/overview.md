@@ -4,7 +4,7 @@ menu: Overview
 weight: 10
 ---
 
-InfinyOn Cloud is managed through the [`Fluvio CLI`] via `fluvio-cloud` plugin which is distributed by default by the installation script.
+InfinyOn Cloud is managed through the [`Fluvio CLI`] via the `fluvio-cloud` plugin distributed by default by the installation script.
 
 ##### Prerequisites
 * [Download Fluvio CLI]
@@ -18,7 +18,6 @@ Run this command to log into InfinyOn Cloud.
 
 You log in with either username and password or Oauth2.
 
-After login, a CLI profile called `cloud` will be created and set as active. For more about profiles, see [`fluvio profile`]({{<ref "/cli/client/profile.md">}})
 
 %copy first-line%
 ```bash
@@ -27,7 +26,7 @@ $ fluvio cloud login -h
 
 {{% inline-embed file="embeds/cli/help/fluvio-cloud-login.md" %}}
 
-On login, a profile called `cloud` will be created and set as active. For more about profiles, see [`fluvio profile`]({{<ref "/cli/client/profile.md">}})
+After login, a CLI profile called `cloud` will be created and set as active. For more about profiles, see [`fluvio profile`]({{<ref "/cli/client/profile.md">}})
 
 %copy first-line%
 ```bash

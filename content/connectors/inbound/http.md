@@ -6,11 +6,11 @@ connector:
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/http"
 ---
 
-Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint,
-feeding the HTTP response into a Fluvio topic.
+Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint
+and feed the HTTP response into a Fluvio topic.
 
 This is useful for monitoring APIs
-continuously, and building streaming applications that react to new or updated info.
+continuously and building streaming applications that react to new or updated info.
 
 
 Note that this connector is _not_ intended for streaming HTTP endpoints, it instead

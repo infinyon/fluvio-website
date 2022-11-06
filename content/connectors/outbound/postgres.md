@@ -64,6 +64,6 @@ The Postgres Outbound Connector consumes [replication events from the Postgres
 appropriate SQL for the corresponding postgres outbound database.
 
 ## Connector Resume
-In order to prevent any duplicate inserts or deletes, this connector will create a table in the configured Postgres database to keep track of its current Fluvio offset. 
+In order to prevent any duplicate inserts or deletes, this connector will create a table in the configured Postgres database to keep track of the connector's current Fluvio offset. 
 
-Should the connector stop or unexpectedly restart, will resume from the last recorded offset. 
+Should the connector stop or unexpectedly restart, the connector will resume from the last recorded offset. 

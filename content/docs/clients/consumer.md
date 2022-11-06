@@ -10,9 +10,8 @@ a database. There may be many consumers reading data from a particular
 partition at any given time: since the records are persisted, they do
 not expire after being consumed.
 
--> [1] For an overview of Topics and Partitions, see the [Producer documentation]
-
-[Producer documentation]: {{< ref "/docs/clients/producer" >}}
+-> [1] For an overview of Topics and Partitions, see the [Topic documentation]
+[Topic documentation]: {{< ref "/docs/concepts/topics" >}}
 
 ## Start Consuming
 
