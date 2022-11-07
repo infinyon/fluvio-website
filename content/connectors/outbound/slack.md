@@ -4,6 +4,9 @@ menu: Slack
 connector:
   name: "infinyon/fluvio-connect-slack-sink"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sinks/slack"
+hidden: true
+_build:
+  render: never
 ---
 
 The Slack Connector will stringify any record coming from a

@@ -4,6 +4,9 @@ menu: Postgres
 connector:
   name: "infinyon/fluvio-connect-postgres-source"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/postgres"
+hidden: true
+_build:
+  render: never
 ---
 
 The Inbound Postgres connector *reads Write-Ahead Logging (WAL) events* from a Postgres

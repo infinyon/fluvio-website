@@ -4,6 +4,9 @@ menu: Postgres
 connector:
   name: "infinyon/fluvio-connect-postgres-sink"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sinks/postgres"
+hidden: true
+_build:
+  render: never
 ---
 
 The Outbound Postgres connector consumes Postgres events from a Fluvio topic.
