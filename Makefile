@@ -19,7 +19,7 @@ cluster-verify:
 	fluvio topic create foobar
 	sleep 30
 	echo foo | fluvio produce foobar
-	fluvio consume foobar -o 0 -d
+	fluvio consume foobar -B -d
 	fluvio topic delete foobar;
 
 htmltest:
