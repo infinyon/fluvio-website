@@ -15,7 +15,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 ## New release
 * New Kafka Source and Sink connectors
-  * ~~Kafka Source docs~~ (Support discontinued since Fluvio v0.10.0)
+  * [Kafka Source docs]({{<ref "/connectors/inbound/kafka.md">}})
   * [Kafka Sink docs]({{<ref "/connectors/outbound/kafka.md">}})
 
 ## Developer experience improvements
