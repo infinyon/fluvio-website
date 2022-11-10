@@ -21,7 +21,7 @@ alias Fluvio.Admin
 
 ## Producer
 
-In this example, a Producer for the topic `lobby` is created. Then the message `hello` is sent to the topic 20 times.
+In this example, a Producer for the topic `lobby` is created. Then the message `hello` is sent to the topic. Also, twenty values (`1` to `20`) are sent asynchronously in chunks of 10.
 
 ```elixir
 alias Fluvio.Producer
