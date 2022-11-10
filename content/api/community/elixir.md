@@ -3,7 +3,7 @@ title: Elixir
 weight: 15
 ---
 
-Support for [Elixir](https://elixir-lang.org/) is provided through [fluvio-ex](https://github.com/viniarck/fluvio-ex), a community supported project by [@aviniarck](https://github.com/viniarck).
+Support for [Elixir](https://elixir-lang.org/) is provided through [fluvio-ex](https://github.com/viniarck/fluvio-ex), a community supported project by [@viniarck](https://github.com/viniarck).
 
 
 ## Create a topic
