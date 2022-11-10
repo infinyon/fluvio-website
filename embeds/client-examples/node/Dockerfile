@@ -7,11 +7,13 @@ USER $USER
 WORKDIR /home/fluvio 
 
 # Copy your Node project
-COPY *.ts ./
-COPY *.json ./
+COPY --chown=$USER:$USER *.ts ./
+COPY --chown=$USER:$USER *.json ./
 
 # Install dependencies
-RUN npm init -y && \
+RUN mkdir -p ~/.local/bin && \
+    npm config set prefix '~/.local/' && \
+    npm init -y && \
     npm install -D typescript ts-node @types/node && \
     npm install -S @fluvio/client
 

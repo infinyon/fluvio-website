@@ -7,6 +7,6 @@ USER $USER
 WORKDIR /home/fluvio 
 
 # Copy your Rust project and run it
-COPY Cargo.toml .
-COPY src ./src
+COPY --chown=$USER:$USER Cargo.toml .
+COPY --chown=$USER:$USER src ./src
 CMD /usr/local/cargo/bin/cargo run

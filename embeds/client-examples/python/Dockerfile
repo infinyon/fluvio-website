@@ -20,5 +20,5 @@ RUN pip install --upgrade pip
 RUN pip3 install fluvio
 
 # Copy your Python project and run it
-COPY hello-python.py .
+COPY --chown=$USER:$USER hello-python.py .
 CMD python hello-python.py
