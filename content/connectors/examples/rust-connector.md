@@ -16,5 +16,12 @@ This `docker-compose.yml` used with `docker compose` CLI starts our previously b
 
 ## Run example
 
-
 {{% inline-embed file="embeds/client-examples/run-docker-compose-example.md" %}}
+
+### Example output
+
+```
+[...]
+Hello World! - Time is Thu, 10 Nov 2022 02:31:51 +0000
+[...]
+ ```
