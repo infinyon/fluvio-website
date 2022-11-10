@@ -1,10 +1,8 @@
-# This docker-compose file is for CI testing purposes only
 version: "3"
 services:
   example:
     build: .
     network_mode: "host"
     volumes:
-      - $HOME/.fluvio/config:/root/.fluvio/config:ro
-      - $HOME/.kube:/root/.kube:ro
-    #command: bash
+      - $HOME/.fluvio/config:/home/fluvio/.fluvio/config:ro
+      - $HOME/.kube:/home/fluvio/.kube:ro

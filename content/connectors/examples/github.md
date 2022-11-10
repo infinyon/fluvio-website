@@ -3,6 +3,9 @@ title: Reading GitHub API data with a SmartModule
 menu: GitHub Stars
 weight: 20
 toc: false
+hidden: true
+_build:
+  render: never
 ---
 
 {{<caution>}}

@@ -52,7 +52,7 @@ This feature was teased [last week], but now it is ready to be tried out.
 
 Check out the new [Connector Developer guide] for more information about how to create your own connectors.
 
-[Connector Developer guide]: {{< ref "/connectors/developer-guide/overview.md">}}
+[Connector Developer guide]: {{< ref "/connectors/how-to/overview.md">}}
 
 ### FilterMap SmartModule 
 
