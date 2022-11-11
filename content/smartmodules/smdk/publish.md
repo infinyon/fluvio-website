@@ -49,8 +49,8 @@ Congratulations :tada:!  You are now ready to build, test, and publish your own 
 4. [Load to your Cluster]({{< ref "load" >}})
 5. **[Publish to SmartModule Hub]({{< ref "publish" >}})**
 
-[Hub]: {{< ref "../hub/overview" >}}
-[SmartModule types]: {{< ref "../types/overview" >}}
+[Hub]: {{< ref "/smartmodules/hub/overview" >}}
+[SmartModule types]: {{< ref "/smartmodules/transforms/overview" >}}
 [installed]: {{< ref "install" >}}
 [built]: {{< ref "build-test/#build---operation" >}}
 [download]: {{< ref "../hub/download" >}}
