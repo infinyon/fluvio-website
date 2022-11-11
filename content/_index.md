@@ -6,8 +6,8 @@ author:
 img: "images/assets/fluvio-social.png"
 twitter-card: summary_large_image
 jumbotron:
-  title: "Programmable platform for data in motion"
-  description: "An open source-data streaming platform with in-line computation capabilities. Apply your [custom programs](/docs/smartmodules/overview) to aggregate, correlate, and transform data records in real-time as they move over the network."
+  title: "The OS for Real-Time Data"
+  description: "An open-source data streaming operating system with in-line transformation capabilities. Apply your [SmartModules](/docs/smartmodules/overview) to aggregate, correlate, and transform data records in real-time."
   imageLarge: "/images/assets/fluvio-oss-large.svg"
   imageSmall: "/images/assets/fluvio-oss-small.svg"
   alt: "Fluvio SmartModules"
@@ -65,7 +65,7 @@ stack:
     - title: "Clients & Connectors"
       description: "Native API support to most popular programming languages & connector catalog (in preview)."
 platform:
-  title: "The Platform"
+  title: "The Fluvio Real-Time Data Operating System"
   items:
     - title: "Unified Cluster"
       description: "A unified cluster for streaming and stateful computation minimizes delay, reduces operational complexity, and boosts security. When streaming and stateful computation are combined, it sets the foundation for a new class of real-time streaming use cases unique to Fluvio. For example:"
@@ -75,7 +75,7 @@ platform:
         - "**Refine**: compute aggregates, derive substreams, and more."
       icon: "/images/icons/unified-connected.svg"
     - title: "Extensible"
-      description: "Fluvio uses WebAssembly(WASM) to extend real-time stateful computation to a countless number of use cases. Custom modules are loaded dynamically and applied to any number of data streams. For example:"
+      description: "Fluvio uses WebAssembly (WASM) to extend real-time stateful computation to a countless number of use cases. Custom modules are loaded dynamically and applied to any number of data streams. For example:"
       examples:
         - "**Filter** patients with high blood sugar in real-time."
         - "**Count** all users that have a declined credit card transactions."
