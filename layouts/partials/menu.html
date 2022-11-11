@@ -74,7 +74,7 @@
 </nav>
 
 {{- define "logo" -}}
-   <a class="navbar-brand" id="logo" href="{{ "/" | relURL}}"><img src="{{ .page.Site.Params.site_logo }}"></img></a>
+   <a class="navbar-brand" id="logo" href="{{ "/" | relURL}}"><img src="{{ .page.Site.Params.site_logo }}" alt="Fluvio logo"></img></a>
 {{- end -}}
 
 {{- define "stars" -}}
@@ -84,7 +84,7 @@
 {{- end -}}
 
 {{- define "try-cloud" -}}
-    <li class="navbar-item">
+    <li class="navbar-item try-cloud">
       <div class="button inline">
           <a href="{{ .page.Site.Params.fluvio_cloud }}" class="btn btn-menu" id="button-cloud">Try Cloud</a>
       </div>

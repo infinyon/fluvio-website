@@ -3,10 +3,14 @@ title: This Week in Fluvio
 description: Weekly updates for the Open-Source development of Fluvio.
 ---
 
+<center>
 Welcome to This Week in Fluvio, a weekly newsletter about new
-features and development updates in the [Open Source Fluvio project].
+features and development updates in the <a href="https://github.com/infinyon/fluvio">Open Source Fluvio project</a>.
+<br>
 
-[Fluvio] is a distributed, programmable streaming platform written in Rust.
+Subscribe to our newsletter and we'll send you the latest news direclty in your mailbox.
 
-[Open Source Fluvio project]: https://github.com/infinyon/fluvio
-[Fluvio]: https://fluvio.io
+{{< subscribe-button >}}
+
+<br>
+</center>

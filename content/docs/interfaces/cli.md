@@ -2,5 +2,5 @@
 title: CLI
 link:
     local: "/cli/"
-weight: 10
+weight: 30
 ---

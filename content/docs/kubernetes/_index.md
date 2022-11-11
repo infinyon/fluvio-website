@@ -1,6 +1,6 @@
 ---
 title: KUBERNETES
-weight: 70
+weight: 80
 _build:
   render: never
 ---

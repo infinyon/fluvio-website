@@ -3,46 +3,14 @@ title: Topic
 weight: 30
 ---
 
-The `fluvio topic` family of commands is used to create and delete topics, as
+The `fluvio topic` subcommands are used to create and delete topics, as
 well as to view basic information about existing topics.
 
 ## `fluvio topic create`
 
-This command is used to create new Fluvio topics. A Fluvio topic is a stream where
-you send related messages. Different topics have unique names and store their data
-independently. They may also be divided into multiple partitions, which can
-increase the message throughput of the topic.
+This command is used to create new Fluvio topics.
 
-```
-Create a Topic with the given name
-
-fluvio topic create [FLAGS] [OPTIONS] <name>
-
-FLAGS:
-    -i, --ignore-rack-assignment
-            Ignore racks while computing replica assignment
-
-    -d, --dry-run                   Validates configuration, does not provision
-    -h, --help                      Prints help information
-
-OPTIONS:
-    -p, --partitions <partitions>
-            The number of Partitions to give the Topic [default: 1]
-
-    -r, --replication <integer>
-            The number of full replicas of the Topic to keep [default: 1]
-
-    -f, --replica-assignment <file.json>    Replica assignment file
-
-    --retention-time <time>
-            Retention time (round to seconds) Ex: '1h', '2d 10s', '7 days' (default)
-
-    --segment-size <bytes>              
-        Segment size in bytes
-
-ARGS:
-    <name>    The name of the Topic to create
-```
+{{% inline-embed file="embeds/cli/help/fluvio-topic-create.md" %}}
 
 Example usage:
 
@@ -54,11 +22,47 @@ topic "greeting" created
 
 ### Retention
 
-If  you want to set a retention time for the topic, you can use the `--retention-time` flag.
-The records are fluvio are organized in terms fo segments.  Each segment is a fixed size which can be configured with the `--segment-size` flag.
-Any segments which are older than the retention time will be deleted.
+Retention is a policy for how data is cleaned up from a topic. 
 
----
+* For a time-based policy, use  `--retention-time`
+* For a segment-size based policy, use  `--segment-size`
+
+Check [the docs for more info about data retention]({{<ref "/docs/operations/retention.md">}})
+
+Example usage:
+
+In this example, the last segment of 500k will be deleted after 30 days.
+
+%copy first-line%
+```bash
+$ fluvio topic create my-topic --retention-time '30 days' --segment-size 500000  
+topic "my-topic" created
+```
+
+
+### Compression
+
+This configuration will set compression at a topic level. When set producers are forced to use a compression algorithm that matches with the topic configuration. The SPU will reject any Produce request
+that does not match with the topic configuration.
+
+If `--compression-type any` is used, SPU will accept any compression algorithm.
+
+possible values:
+* `any`(default)
+* `none`
+* `gzip`
+* `lz4`
+* `snappy`
+
+Example usage:
+
+%copy first-line%
+```bash
+$ fluvio topic create my-topic --compression-type gzip
+topic "my-topic" created
+```
+
+In this example, the topic `my-topic` will be created with compression type `gzip`.
 
 ## `fluvio topic list`
 
@@ -66,18 +70,7 @@ This command shows you all the existing topics in your cluster, as well as some 
 information about them, including how many partitions a topic has and how many times it
 is replicated.
 
-```
-List all of the Topics in the cluster
-
-fluvio topic list [OPTIONS]
-
-FLAGS:
-    -h, --help    Prints help information
-
-OPTIONS:
-    -O, --output <type>    Output [default: table]  [possible values: table,
-                           yaml, json]
-```
+{{% inline-embed file="embeds/cli/help/fluvio-topic-list.md" %}}
 
 Example usage:
 
@@ -94,21 +87,7 @@ $ fluvio topic list
 
 This command prints more detailed information about a specific topic.
 
-```
-Print detailed information about a Topic
-
-fluvio topic describe [OPTIONS] <name>
-
-FLAGS:
-    -h, --help    Prints help information
-
-OPTIONS:
-    -O, --output <type>    Output [default: table]  [possible values: table,
-                           yaml, json]
-
-ARGS:
-    <name>    The name of the Topic to describe
-```
+{{% inline-embed file="embeds/cli/help/fluvio-topic-describe.md" %}}
 
 Example usage:
 
@@ -132,17 +111,7 @@ $ fluvio topic describe greeting
 This command deletes an existing Fluvio topic and all data associated with it.
 This data may not be recovered, so use this with care.
 
-```
-Delete a Topic with the given name
-
-fluvio topic delete <name>
-
-FLAGS:
-    -h, --help    Prints help information
-
-ARGS:
-    <name>    The name of the Topic to delete
-```
+{{% inline-embed file="embeds/cli/help/fluvio-topic-delete.md" %}}
 
 Example usage:
 

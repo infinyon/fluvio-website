@@ -1,0 +1,8 @@
+version: 0.3.0
+name: my-mqtt
+type: mqtt-source
+topic: mqtt-topic
+parameters:
+  mqtt_topic: "/hfp/v2/journey/#"
+secrets:
+  MQTT_URL: mqtts://mqtt.hsl.fi:8883/

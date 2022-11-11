@@ -4,7 +4,7 @@ menu: Overview
 section: APIs
 ---
 
-This page describes how to generally use any of the fluvie clients.  Each
+This page describes how to generally use any of the Fluvio clients.  Each
 client has some differences but these are the general rules about them.
 
 For generated API Docs visit:
@@ -29,15 +29,24 @@ For generated API Docs visit:
 {{< icon-gopher link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
 </div>
 
-## Connect to fluvio
+## Connect to Fluvio
 
-The first thing you want to do to use a fluvio client is connect to the fluvio
+The first thing you want to do to use a Fluvio client is connect to the Fluvio
 cluster.
 
 ## Producer
 
 Once you've got a connection handler, you will want to create a producer for a
 given topic.
+
+The producer could be created with the following configurations: `batch_size`, `compression`, `linger` and `partitioner`.
+
+These configurations control the behavior of the producer in the following way:
+
+* `batch_size`: Maximum amount of bytes accumulated by the records before sending the batch. Defaults to 16384 bytes.
+* `compression`: Compression algorithm used by the producer to compress each batch before sending to the SPU. Supported compression algorithms are `none`, `gzip`, `snappy` and `lz4`.
+* `linger`: Time to wait before sending messages to the server. Defaults to 100 ms.
+* `partitioner`: custom class/struct that assigns the partition to each record that needs to be send. Defaults to Siphash Round Robin partitioner.
 
 ### Sending
 
@@ -46,6 +55,8 @@ The `key` is optional. For clients which don't have `Option` as a feature, this
 is simply an empty array.
 
 Depending on the client, these can be `string` or an array of `bytes`.
+
+Depending on the producer configuration, a `send` call will not send immediately the record to the SPU. `flush` is used to immediately send all the queued records in the producer batches.
 
 ## Consumer
 
@@ -64,7 +75,7 @@ Most of our clients support idiomatic ways of iterating over the items in the st
 
 [`Stream`]: https://docs.rs/futures/0.3.15/futures/stream/trait.Stream.html
 [`asyncIterator`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
-[Python Iterator]: https://www.programiz.com/python-programming/iterator
+[Python Iterator]: https://wiki.python.org/moin/Iterator 
 
 This functionality has not been implemented for the java client yet.
 
@@ -81,3 +92,7 @@ Our clients differ a little bit on this but a `Record` is a wrapper around
 array of bytes with accessor methods of `key` or `value`.
 
 In the python, node and java clients, we have to-string convenience methods.
+
+### Timestamps
+
+Fluvio `Records` contain timestamp information. As of Fluvio `0.9.25`, the timestamp of each record is set by Fluvio Producer on creation, previously the timestamp fields were uninitialized. This information is available to the consumer using the respective API call `timestamp()`.

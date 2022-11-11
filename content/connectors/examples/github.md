@@ -3,7 +3,14 @@ title: Reading GitHub API data with a SmartModule
 menu: GitHub Stars
 weight: 20
 toc: false
+hidden: true
+_build:
+  render: never
 ---
+
+{{<caution>}}
+Changes to this example are coming soon, so that Connectors can take advantage of new SmartModules features 
+{{</caution>}}
 
 We can use the HTTP Connector to continuously stream data from the GitHub API,
 allowing us to observe and react to changes in real-time. However, the GitHub API
@@ -21,16 +28,15 @@ Let's look at how to set up the HTTP connector _without_ a SmartModule first, th
 we'll look at the fields available, decide which fields we want to keep, then finally
 write a SmartModule to help us extract those fields.
 
-We can launch the HTTP Connector as a Managed Connector (preferred for [InfinyOn Cloud][1])
-or as a Local Connector. If you don't know which one to pick, we recommend sticking
-with a Managed Connector.
+We can launch the HTTP Connector as a Cloud Connector on [InfinyOn Cloud][1]
+or as a Local Connector.
 
 You can find the full code for this example in [the fluvio-smartmodule-examples][2] repository.
 
-{{< tabs tabTotal="2" tabID="1" tabName1="Managed Connector" tabName2="Local Connector">}}
+{{< tabs tabTotal="2" tabID="1" tabName1="Cloud Connector" tabName2="Local Connector">}}
 
 {{< tab tabNum="1">}}
-#### Connect to GitHub using HTTP as a Managed Connector
+#### Connect to GitHub using HTTP as a Cloud Connector
 
 To set up our use-case using a managed connector, we'll need to create a connector
 configuration file, which we'll call `connect.yml`. Paste the following contents into
@@ -39,16 +45,15 @@ the file:
 %copy%
 ```yaml
 # connect.yml
-api_version: v1
+version: 0.3.0
 name: github-repo
-type: http
+type: http-source
 topic: github-repo
-create_topic: true
 direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 30
+  interval: 30s
 ```
 
 This configuration is using the `http` connector type, will produce events to a topic
@@ -59,7 +64,7 @@ To use this configuration, run the following command:
 
 %copy first-line%
 ```bash
-$ fluvio connector create --config=./connect.yml
+$ fluvio cloud connector create --config=./connect.yml
 ```
 
 ### Checking out the data
@@ -290,7 +295,7 @@ Since we're using a SmartModule from source, the next thing we need to do is com
 $ cargo build --release
 ```
 
-Next, we need to register this SmartModule using the `fluvio smartmodule` command, giving it a
+Next, we need to register this SmartModule using the `fluvio smart-module` command, giving it a
 name that we can use to refer to it later.
 
 %copy first-line%
@@ -301,14 +306,14 @@ $ fluvio smartmodule create github-smartmodule --wasm-file=target/wasm32-unknown
 At this point, our SmartModule has been registered and named `github-smartmodule`. Now, we can
 return to our connector setup and re-launch the HTTP Connector with our SmartModule!
 
-#### With Managed Connector
+#### With Cloud Connector
 
-If you're following along with a Managed Connector, the first thing we need to do is stop the
+If you're following along with a Cloud Connector, the first thing we need to do is stop the
 connector we started previously, and delete the topic since it contains old data.
 
 %copy first-line%
 ```bash
-$ fluvio connector delete github-repo
+$ fluvio cloud connector delete github-repo
 ```
 
 %copy first-line%
@@ -321,16 +326,15 @@ Then, we can edit the `connect.yml` file and tell it to use our SmartModule as a
 %copy%
 {{< highlight yaml "hl_lines=12" >}}
 # connect.yml
-api_version: v1
+version: 0.3.0
 name: github-repo
-type: http
+type: http-source
 topic: github-repo
-create_topic: true
 direction: source
 parameters:
   endpoint: https://api.github.com/repos/infinyon/fluvio
   headers: "User-Agent:fluvio-http-example"
-  interval: 30
+  interval: 30s
   map: github-smartmodule
 {{</ highlight >}}
 
@@ -339,18 +343,15 @@ transformed!
 
 %copy first-line%
 ```bash
-$ fluvio connector create --config=./connect.yml
+$ fluvio cloud connector create --config=./connect.yml
 ```
-
-[2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
-[3]: /docs/smartmodules/map
 
 {{</ tab >}}
 
 {{< tab tabNum="2">}}
 #### Connect to GitHub using HTTP as a Local Connector
 
-Local connectors are run using `docker`. Unlike Managed Connectors, they do not
+Local connectors are run using `docker`. Unlike Cloud Connectors, they do not
 create topics if they don't exist, so the first thing we want to do is create our topic:
 
 %copy first-line%
@@ -601,12 +602,12 @@ Since we're using a SmartModule from source, the next thing we need to do is com
 $ cargo build --release
 ```
 
-Next, we need to register this SmartModule using the `fluvio smartmodule` command, giving it a
+Next, we need to register this SmartModule using the `fluvio smart-module` command, giving it a
 name that we can use to refer to it later.
 
 %copy first-line%
 ```bash
-$ fluvio smartmodule create github-smartmodule --wasm-file=target/wasm32-unknown-unknown/release/github_stars.wasm
+$ fluvio smart-module create github-smartmodule --wasm-file=target/wasm32-unknown-unknown/release/github_stars.wasm
 ```
 
 At this point, our SmartModule has been registered and named `github-smartmodule`. Now, we can
@@ -638,9 +639,6 @@ docker run -d --name="github-repo" \
     --map="github-smartmodule"
 {{</ highlight >}}
 
-[2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
-[3]: /docs/smartmodules/map
-
 {{</ tab >}}
 
 {{</ tabs >}}
@@ -664,4 +662,4 @@ Now we can see that our topic contains just the data we selected!
 
 [1]: https://infinyon.cloud/signup
 [2]: https://github.com/infinyon/fluvio-smartmodule-examples/blob/master/github-stars/src/lib.rs
-[3]: /docs/smartmodules/map
+[3]: {{<ref "/smartmodules/transforms/map" >}}

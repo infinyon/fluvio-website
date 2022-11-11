@@ -7,13 +7,15 @@ Welcome to This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
+{{< banner >}}
+
 ## No new release
 
 We didn't have a new release this week.
 
 Instead the team met up in person for the first time!
 
-<img src="/news/images/0010/team-at-alcatraz.jpg" style="width:600px" />
+<img src="/news/images/0010/team-at-alcatraz.jpg" style="width:600px" alt="Team photo at Alcatraz"/>
 
 > This is us trying to not look overheated after the audio tour at Alactraz.
 
@@ -27,17 +29,15 @@ We have a new connector for the MQTT protocol available.
 
 ```yaml
 # config.yaml
-api_version: v1
+version: 0.2.0
 name: my-test-mqtt
 type: mqtt
 topic: public-mqtt
-create_topic: true
 direction: source
 parameters:
-  mqtt-url: "broker.hivemq.com"
-  mqtt-topic: "testtopic/#"
-  fluvio-topic: "public-mqtt"
+  mqtt_topic: "testtopic/#"
 secrets:
+  MQTT_URL: "mqtts://broker.hivemq.com:8883"
   foo: bar
 ```
 
@@ -54,7 +54,7 @@ $ fluvio cluster connector create --config config.yaml
 $ fluvio cluster connector list
 
 -------------
- NAME          STATUS 
+ NAME          STATUS
  my-test-mqtt  Running
 ```
 

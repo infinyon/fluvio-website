@@ -1,5 +1,5 @@
 ---
-title: "Fluvio - The programmable data streaming platform"
+title: "The programmable data streaming platform"
 description: "An open-source data streaming platform with in-line computation capabilities. Use SmartModules to upload your custom logic and modify data as it moves over the network."
 author:
     name: "Fluvio Team"
@@ -11,7 +11,7 @@ jumbotron:
   imageLarge: "/images/assets/fluvio-oss-large.svg"
   imageSmall: "/images/assets/fluvio-oss-small.svg"
   alt: "Fluvio SmartModules"
-  download_link: "/download"
+  download_link: "/download/"
   contribute_link: "https://github.com/infinyon/fluvio/blob/master/CONTRIBUTING.md"
 technology:
   title: "The Technology"
@@ -50,8 +50,8 @@ technology:
       description: "All records are written in the order received and cannot be altered."
       icon: "/images/icons/immutable-store.svg"
     - title: "Self Service"
-      description: "Powerful CLI with built-in cluster management for hands free opertions."
-      icon: "/images/icons/self-service.svg"  
+      description: "Powerful CLI with built-in cluster management for hands-off operations."
+      icon: "/images/icons/self-service.svg"
 stack:
   title: "The Stack"
   image: "./docs/architecture/images/fluvio-stack.svg"
@@ -59,7 +59,7 @@ stack:
     - title: "SmartModules"
       description: "Programmable stream processing to clean, transform, correlate, and derive insights from data in real-time."
     - title: "Data Streams"
-      description: "Distribured stream processing with redundancy and failover to prevent data loss and minimize downtime."
+      description: "Distributed stream processing with redundancy and failover to prevent data loss and minimize downtime."
     - title: "Immutable Store"
       description: "Long-lived immutable storage layer that persists data without compromising latency."
     - title: "Clients & Connectors"
@@ -70,8 +70,8 @@ platform:
     - title: "Unified Cluster"
       description: "A unified cluster for streaming and stateful computation minimizes delay, reduces operational complexity, and boosts security. When streaming and stateful computation are combined, it sets the foundation for a new class of real-time streaming use cases unique to Fluvio. For example:"
       examples:
-        - "**Normalize**: remove null values, map invalid fields, filter out records, and more." 
-        - "**Protect**: strip out personally identifiable information (PII), and encrypt fields." 
+        - "**Normalize**: remove null values, map invalid fields, filter out records, and more."
+        - "**Protect**: strip out personally identifiable information (PII), and encrypt fields."
         - "**Refine**: compute aggregates, derive substreams, and more."
       icon: "/images/icons/unified-connected.svg"
     - title: "Extensible"
@@ -87,20 +87,20 @@ platform:
         - "**Low latency:** single-digit milliseconds response at high throughput and consistent variance."
         - "**Low footprint:** small executable and low memory."
         - "**Asynchronous architecture:** non-blocking calls to reduce latency and scale to a large number of concurrent streams."
-      icon: "/images/icons/efficient.svg"    
+      icon: "/images/icons/efficient.svg"
     - title: "Self Healing"
       description: "Fluvio operates the cluster automatically with minimum human intervention. The platform implements self-healing by combining a variety of technologies:"
       examples:
         - "**Declarative Management**: a technology pattern where users declare intent and the system provisions resources as they become available."
         - "**Reconciliation:** the cluster continuously checks system components and brings them to a stable state."
-        - "**Replication:** all data streams can have multiple copies to reduce the possibility of data loss during outages." 
-      icon: "/images/icons/self-healing.svg"   
+        - "**Replication:** all data streams can have multiple copies to reduce the possibility of data loss during outages."
+      icon: "/images/icons/self-healing.svg"
     - title: "Developer Friendly"
       description: "Fluvio was built with the development community in mind. It offers a powerful CLI for operational efficiency and native language bindings for most common programming languages. For example:"
       examples:
         - "**One-Click Deploy:** create a cluster locally `fluvio cluster start` or login to cloud `fluvio cloud login` with one simple command."
         - "**Simple CLI**: provision streams, apply stateful computations, produce, consume and more."
-        - "**Native APIs**: support for `Rust`, `Node.js`, `Python`, and `Java` with other languages coming soon." 
+        - "**Native APIs**: support for `Rust`, `Node.js`, `Python`, and `Java` with other languages coming soon."
       icon: "/images/icons/dev-friendly.svg"
 ---
 

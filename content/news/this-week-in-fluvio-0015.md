@@ -7,19 +7,19 @@ Welcome to This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
-## New Release
+{{< banner >}}
 
-### Fluvio v0.9.13
+## New Release - Fluvio v0.9.13
 
 This is a big release
 
-#### Apple M1 support
+### Apple M1 support
 
-This is the first release with official Apple M1 support. If you have an Apple M1 machine and you'd like to try out Fluvio, please read our [Getting Started] page for MacOS on M1.
+This is the first release with official Apple M1 support. If you have an Apple M1 machine and you'd like to try out Fluvio, please read our [Getting Started] page for MacOS.
 
-[Getting Started]: {{< ref "/docs/get-started/mac_m1.md">}}
+[Getting Started]: {{< ref "/docs/get-started/mac.md">}}
 
-#### SmartModules
+### SmartModules
 
 We previewed this feature [a couple weeks ago] and now it's here!
 
@@ -43,7 +43,8 @@ $ fluvio consume my-topic --join <name>
 ```
 
 You can still use SmartModules the original way, by providing a path to your wasm file. But if you're using the SmartModule a lot, we think persistent SmartModules will be more convenient to use.
-#### SmartConnectors 
+
+### SmartConnectors 
 
 This feature was teased [last week], but now it is ready to be tried out.
 
@@ -51,12 +52,13 @@ This feature was teased [last week], but now it is ready to be tried out.
 
 Check out the new [Connector Developer guide] for more information about how to create your own connectors.
 
-[Connector Developer guide]: {{< ref "/connectors/developer-guide/overview.md">}}
+[Connector Developer guide]: {{< ref "/connectors/how-to/overview.md">}}
 
-#### FilterMap SmartModule 
+### FilterMap SmartModule 
+
 The FilterMap SmartModule enables you to do filtering and reshaping your data at the same time.
 
-##### Example FilterMap code
+#### Example FilterMap code
 
 In this example, we take in integers. 
 
@@ -78,7 +80,7 @@ pub fn filter_map(record: &Record) -> Result<Option<(Option<RecordData>, RecordD
     }
 }
 ```
-[Link to example code](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/filter_map/src/lib.rs)
+[Link to example code](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter_map/src/lib.rs)
 
 
 Example input
@@ -112,11 +114,11 @@ Consuming records from the end of topic 'filter-map-topic'. This will wait for n
 
 For a deeper dive into FilterMap, check out our [blog post](https://www.infinyon.com/blog/2021/11/filter-map/) which covers a use-case.
 
-#### Join SmartModule 
+### Join SmartModule 
 
 The Join SmartModule uses the stream you are consuming and the value at the end of another topic and allows you to return a new value 
 
-##### Example Join code
+#### Example Join code
 
 In this example, we have 2 topics, `left-topic` and `right-topic`, and our example Join SmartModule.
 
@@ -191,9 +193,9 @@ Consuming records from the end of topic 'left-topic'. This will wait for new rec
 22
 ```
 
-[Link to example code](https://github.com/infinyon/fluvio/blob/master/crates/fluvio-smartmodule/examples/join/src/lib.rs)
+[Link to example code](https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/join/src/lib.rs)
 
-#### Fullscreen Consumer table
+### Fullscreen Consumer table
 
 This is the first version of an interactive table display for the Consumer. It expects the same json object input as `--output=table` but the output is a full screen scrollable table. The columns are alphabetized, and the first column serves as a primary key for updating the row. This offers the possibility of viewing live updating data
 
@@ -229,9 +231,9 @@ Create the `tableformat`
 $ fluvio tableformat create --config tableformat-config.yaml
 ```
 
-Consuming from the topic using the `full_table` output, and our `tableformat`
+Consuming from the topic using the `full-table` output, and our `tableformat`
 ```shell
-$ fluvio consume request-events --output full_table --tableformat current-requests 
+$ fluvio consume request-events --output full-table --tableformat current-requests
 ```
 
 Output:
@@ -245,7 +247,8 @@ Output:
 ```
 
 Docs for this feature will be coming soon!
-#### A few bug fixes
+
+### A few bug fixes
 A handful of user-facing issues were fixed
 
 * Creating a connector that creates a topic will not fail if the topic already exists ([#1823](https://github.com/infinyon/fluvio/pull/1823))

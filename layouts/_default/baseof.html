@@ -11,6 +11,7 @@
   </head>
   <body class="content d-flex flex-column">
     <div class="page-overlay"></div>
+    {{- partial "house-adds.html" . -}}
     {{- block "menu" . -}}{{- end }}
     <div id="content">
     {{- block "content" . }}{{- end }}

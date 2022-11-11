@@ -1,0 +1,9 @@
+{
+    "payload": {
+        "device": {
+            "name": "device17",
+            "device_id": 17
+        }
+    },
+    "mqtt_topic": "ag-mqtt-topic"
+}

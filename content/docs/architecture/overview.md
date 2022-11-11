@@ -1,6 +1,8 @@
 ---
 title: Overview
 weight: 10
+aliases:
+    - /docs/architecture
 ---
 
 **Fluvio Data Streaming** is a modern Cloud Native software stack designed for **high speed, real-time data** processing. Fluvio is _fast_, _scalable_, _self-healing_, _pluggable_, and _user-friendly_.
@@ -9,18 +11,11 @@ weight: 10
 
 Fluvio is **built in <a href="https://www.rust-lang.org/" target="_blank">Rust</a>**, a systems programming language with **higher performance** than Java and **better code safety** than C/C++. Rust has a powerful multi-threaded asynchronous engine that runs natively in multi-core and low powered embedded systems. Zero cost abstractions and **no garbage collection** makes this language ideal for low network latency and high IO throughput systems.
 
-The choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions such as MacOS, Linux, Windows, and small footprint embedded systems such as <a href="https://www.raspberrypi.org/" target="_blank">Raspberry Pi</a>.
+This choice of programming language makes Fluvio a low memory, high performance product that **compiles natively** in many software distributions such as MacOS, Linux, Windows, and small footprint embedded systems such as <a href="https://www.raspberrypi.org/" target="_blank">Raspberry Pi</a>.
 
 #### Cloud Native by Design
 
 Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>**. Any infrastructure running **Kubernetes** can install the **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, check out the [Kubernetes install]({{< ref "/docs/kubernetes/install" >}}) section. 
-
-#### Fluvio Cloud
-
-If you don't have Kubernetes installed or prefer to run **Fluvio as a Service**, you can use **[Fluvio Cloud]({{< ref "/docs/get-started/cloud" >}})**. The cloud installation hides all the complexity associated with the infrastructure and exposes only relevant streaming APIs. Follow our Getting Started guide (for [MacOS] or [Linux]) to set up your dedicated cloud environment.
-
-[MacOS]: {{< ref "/docs/get-started/mac" >}}
-[Linux]: {{< ref "/docs/get-started/linux" >}}
 
 ## High Level Architecture
 
@@ -43,7 +38,7 @@ Fluvio is designed to address a variety of **deployment scenarios** from public 
      alt="DC, Cloud, Edge, IoT"
      style="justify: center; max-width: 580px" />
 
-The **SC** handles **topology map dynamically** to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
+The **SC** handles the **topology map** dynamically to simplify complex tasks such as increasing capacity, adding new infrastructure, or attaching a new geo-locations.
 
 For a deep dive in the SC design, checkout the [SC Architecture] section.
 
@@ -102,7 +97,22 @@ SPU leaders **save** all data stream messages received from producers on **local
 
 SPU persistence is designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.  
 
-Fluvio adds messages local storage until the **retention period** is met. The retention periods should be set to cover **up to 80%** of the disk size. If the disk is full before the retention period is triggered, the SPU stops accepting messages and the overall health of the system may be compromised.
+Fluvio persists messages in the local storage until any eviction condition is met. It supports **time-based** and 
+**size-based** conditions. Both always are checked and do not exclude each other. The time-based condition 
+is specified by using `retention-time` property of the topic. The retention time is an **age** after which older 
+segments will be **deleted** from the partition. The size-based condition allows setting max size per partition. 
+If **partition size** exceeds the configured max size, Fluvio **deletes the oldest segment** in the partition.
+
+The data eviction operates on a **segments level**. Hence, the frequency and accuracy depend on the **granularity** of 
+segments. The higher the segment size, the less often it is **evicted**, and the longer the records stay alive. 
+The **real retention period** of all records within a segment will be the age of **the latest record** in the segment.
+
+Fluvio provides the **best-effort** guarantee of size-based and time-based eviction. For short periods of time these 
+rules may be violated. The retention periods and max partition size should be set to cover **up to 80%** of the disk size.
+If the disk is full before the eviction is triggered, the SPU stops accepting messages and the overall health of the 
+system may be compromised.
+
+For additional information on retention conditions, checkout [Data Retention]({{< ref "/docs/operations/retention" >}}).
 
 ## APIs
 

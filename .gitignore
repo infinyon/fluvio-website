@@ -16,8 +16,21 @@ $RECYCLE.BIN/
 .DS_Store
 .vscode
 
+## Environment variables
+.env
+
 ## Scripts
 .tmp
 
 # JetBrains
 .idea/
+
+## Netlify (functions)
+.netlify
+
+# htmltest
+tmp/
+bin/
+
+# Rust
+embeds/client-examples/rust/target/

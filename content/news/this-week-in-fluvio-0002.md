@@ -10,7 +10,9 @@ programmable streaming platform written in Rust.
 
 [Fluvio open source]: https://github.com/infinyon/fluvio
 
-## Release of Fluvio `0.9.1`
+{{< banner >}}
+
+## New Release - Fluvio v0.9.1
 
 In `0.9.1`, we added support for running a Fluvio cluster locally on an
 Apple M1 machine (architecture `aarch64-apple-darwin`). This means that if
@@ -21,10 +23,7 @@ Kubernetes instance somewhere.
 On M1, you can now run the standard `install.sh` script and get both the
 Fluvio CLI and the `fluvio-run` cluster binary:
 
-%copy first-line%
-```bash
-$ curl -fsS https://packages.fluvio.io/v1/install.sh | bash
-```
+{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
 
 After this has run (and you've set up your PATH), you can now run a local
 cluster on M1 with the following command:

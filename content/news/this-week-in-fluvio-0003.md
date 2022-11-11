@@ -10,7 +10,9 @@ programmable streaming platform written in Rust.
 
 [Fluvio open source]: https://github.com/infinyon/fluvio
 
-## Release of Fluvio `0.9.3`
+{{< banner >}}
+
+## New Release - Fluvio v0.9.3
 
 ### SmartStreams Aggregates
 
@@ -105,9 +107,9 @@ come say hello!
 
 Until next week!
 
-[SmartStreams Aggregate]: /docs/smartstreams/aggregate
-[sums]: https://github.com/infinyon/fluvio/blob/master/src/smartstream/examples/aggregate-sum/src/lib.rs
-[averages]: https://github.com/infinyon/fluvio/blob/master/src/smartstream/examples/aggregate-average/src/lib.rs
-[combining structural key-value data]: https://github.com/infinyon/fluvio/blob/master/src/smartstream/examples/aggregate-json/src/lib.rs
+[SmartStreams Aggregate]: {{<ref "/smartmodules/transforms/aggregate" >}}
+[sums]: https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/aggregate-sum/src/lib.rs
+[averages]: https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/aggregate-average/src/lib.rs
+[combining structural key-value data]: https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/aggregate-json/src/lib.rs
 [our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [join our Discord channel]: https://discordapp.com/invite/bBG2dTz

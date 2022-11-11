@@ -1,1 +1,1 @@
-{{ . | replaceRE "<p>%copy%</p>"  "<div class=\"copy-code\"></div>" | safeHTML  | replaceRE "<p>%copy first-line%</p>"  "<div class=\"copy-first-line\"></div>" | safeHTML}}
+{{ . | replaceRE "<p>%copy%</p>"  "<div class=\"copy-code\"></div>" | safeHTML  | replaceRE "<p>%copy first-line%</p>"  "<div class=\"copy-first-line\"></div>" | replaceRE "<p>%copy multi-line%</p>"  "<div class=\"copy-multi-line\"></div>" | safeHTML}}

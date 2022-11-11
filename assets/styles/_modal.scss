@@ -1,0 +1,64 @@
+.modal {
+    margin-top: 100px;
+
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        padding: 15px 10px 10px 15px;
+        background: $main-dialog; 
+        border-radius: 9px 9px 0 0;
+
+        .modal-title {
+            font-size: 1.35em;
+            color: $white;
+        }
+
+        button.close {
+            max-height: 30px;
+        }
+
+        .close img {
+            margin-right: 10px;
+            width: 14px !important;
+        }
+    }
+
+    .modal-body {
+        text-align: left;
+        
+        .field {
+            margin: 10px 0;
+            font-size: .95em;
+            color: $main-dark;
+        }
+
+        .field::placeholder {
+            font-family: $main-font;
+            font-size: .95em;
+            color: $gray7;
+        }
+        
+        .g-recaptcha { 
+            margin: auto;
+        }
+
+        img {
+            width: 40px;
+        }
+    }
+
+    .modal-footer {
+        .spinner-border {
+            margin-left: 20px;
+            max-height: 20px;
+            max-width: 20px;
+        }
+        .btn {
+            padding-right: 20px;
+            padding-left: 20px;
+            white-space: nowrap;
+        }
+    }
+}

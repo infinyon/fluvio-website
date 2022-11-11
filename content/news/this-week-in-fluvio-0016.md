@@ -7,12 +7,12 @@ Welcome to This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
-## New Release
+{{< banner >}}
 
-### Fluvio v0.9.14
+## New Release - Fluvio v0.9.14
 
-#### Connector logs
-Logs from [connectors](/connectors) are now accessible from the CLI
+### Connector logs
+Logs from [connectors]({{<ref "/connectors" >}}) are now accessible from the CLI
 
 %copy first-line%
 ```shell
@@ -31,7 +31,7 @@ $ fluvio connector logs my-test-mqtt -f
 2021-12-15T05:20:27.684853Z ERROR mqtt: Mqtt error MqttState(Deserialization(PayloadSizeLimitExceeded(16635)))
 ```
 
-#### CLI Consumer wait spinner
+### CLI Consumer wait spinner
 
 Using the CLI consumer now has a new spinner to give feedback about the stream waiting for data.
 
@@ -39,7 +39,7 @@ Here's a short clip of the spinner in action with streaming data.
 
 <script id="asciicast-pxtVvacxOTE3XWCQFzTCW3DLy" src="https://asciinema.org/a/pxtVvacxOTE3XWCQFzTCW3DLy.js" async></script>
 
-##### Change to multi-word subcommands
+### Change to multi-word subcommands
 
 Given that these are still long commands, we've added aliases too
 
@@ -50,7 +50,7 @@ Given that these are still long commands, we've added aliases too
 | tableformat         | table-format   | tf        |
 | derivedstream       | derived-stream | ds        |
 
-##### CLI shell autocompletions
+### CLI shell autocompletions
 This actually isn't new, but it was hidden. Thanks to [bohlmannc](https://github.com/bohlmannc) for helping us resolve this!
 
 ```
@@ -62,7 +62,7 @@ Run the following two commands to enable fluvio command completions.
 
 Open a new terminal for the changes to take effect.
 
-$ fluvio completions bash > ~/fluvio_completions.sh 
+$ fluvio completions bash > ~/fluvio_completions.sh
 $ echo "source ~/fluvio_completions.sh" >> ~/.bashrc
 
 USAGE:

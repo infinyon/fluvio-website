@@ -1,0 +1,22 @@
+{
+  "name": "newsletter",
+  "version": "1.0.0",
+  "description": "netlify functions:create - subscribe to newsletter in typescript",
+  "main": "newsletter.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "netlify",
+    "serverless",
+    "typescript"
+  ],
+  "author": "Netlify",
+  "license": "MIT",
+  "dependencies": {
+    "@netlify/functions": "^1.0.0",
+    "@types/node": "^18.11.7",
+    "node-fetch": "^3.2.10",
+    "typescript": "^4.8.4"
+  }
+}

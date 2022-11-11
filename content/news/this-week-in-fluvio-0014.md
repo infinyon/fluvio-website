@@ -7,6 +7,8 @@ Welcome to This Week in Fluvio, our weekly newsletter
 for development updates to [Fluvio open source]. Fluvio is a distributed,
 programmable streaming platform written in Rust.
 
+{{< banner >}}
+
 ## No new release
 
 We didn't have a new release this week.
@@ -21,16 +23,16 @@ Let's look at an example. We're going to look at a SmartConnector from the persp
 
 ```yaml
 # config.yaml
-api_version: v1
+version: 0.2.0
 name: my-test-mqtt
 type: mqtt
 topic: public-mqtt
-create_topic: true
 direction: source
 parameters:
-  mqtt-url: "broker.hivemq.com"
-  mqtt-topic: "testtopic/#"
+  mqtt_topic: "testtopic/#"
   map: "example-parse-mqtt-map"
+secrets:
+  MQTT_URL: "mqtts://broker.hivemq.com:8883
 ```
 
 In this example, we're using the `my-test-mqtt` connector we introduced in [a previous TWiF] to get a live bytestream from an MQTT broker and store it in a topic. But before we store it, we want to parse and transform the raw bytestream into our own types with a SmartModule.

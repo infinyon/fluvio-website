@@ -7,7 +7,7 @@ toc: false
 When upgrading to a new version of Fluvio, the first thing you need to do
 is [update the Fluvio CLI] using the following command:
 
-[update the Fluvio CLI]: /cli/commands/install#fluvio-update
+[update the Fluvio CLI]: {{< ref "/cli/client/update" >}}
 
 %copy first-line%
 ```bash

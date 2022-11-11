@@ -1,4 +1,6 @@
 ---
-title: UTILITIES
-weight: 20
+title: COMMANDS/UTILS
+weight: 60
+_build:
+  render: never
 ---

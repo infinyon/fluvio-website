@@ -1,6 +1,6 @@
 ---
 title: COMMUNITY
-weight: 20
+weight: 90
 _build:
   render: never
 ---

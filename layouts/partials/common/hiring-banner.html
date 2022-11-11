@@ -1,0 +1,9 @@
+{{- $globalPage := site.GetPage "/_globals.html" -}}
+{{- $careersLink := $globalPage.Params.careersLink -}}
+<div class="hiring-banner">
+    <a href="{{ $careersLink }}" target="_blank">
+        <img src="/images/assets/we-are-hiring.png"
+         alt="We are hiring"
+         class="center" />
+    </a>    
+</div>

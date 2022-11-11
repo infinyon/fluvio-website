@@ -1,0 +1,89 @@
+name: Get PR Number
+
+permissions:
+  pull-requests: read
+
+on:
+  workflow_call:
+    inputs:
+      labels:
+        required: true
+        type: string
+    outputs:
+      label-found:
+        description: 'Boolean if label(s) found'
+        value: ${{ jobs.pr_number.outputs.found }}
+      no-skip:
+        description: 'Boolean if tests should be skipped'
+        value: ${{ jobs.pr_number.outputs.no-skip }}
+jobs:
+  pr_number:
+    runs-on: ubuntu-latest
+    outputs:
+      found: ${{ steps.outputs.skip_label_check.result }}
+      no-skip: ${{ ! steps.outputs.skip_label_check.result }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1.2.1
+
+      - name: Checkout code for push
+        if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+        uses: actions/checkout@v3
+
+      - name: Get PR Number from event
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Get PR Number from title
+        if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+        run: |
+          echo "PR_NUMBER=$(git show --oneline -s HEAD | sed -n 's/.*(#\(.*\))$/\1/p')" >> $GITHUB_ENV
+
+      - id: pr_number_sync
+        run: |
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Get PR labels
+        run: |
+          gh auth login --with-token < <(echo ${{ secrets.GITHUB_TOKEN }})
+          gh pr view ${{ env.PR_NUMBER }} --json labels --jq '.labels[].name' | tee /tmp/pr-labels
+
+      - name: Check PR Labels
+        id: skip_label_check
+        continue-on-error: true
+        run: |
+          LABEL_FOUND=false
+
+          for label in $(echo '${{ inputs.labels }}' | jq -r '.[]'); do
+            echo $label;
+            
+            if grep $label /tmp/pr-labels
+            then
+              echo "Label found"
+              LABEL_FOUND=true
+            fi
+          done
+          echo Label check result: $LABEL_FOUND
+          if [ "$LABEL_FOUND" = true ]
+          then
+            echo "result=true"
+            echo "result=true" >> GITHUB_OUTPUT
+          else
+            echo "result=false"
+            echo "result=false" >> GITHUB_OUTPUT
+          fi
+
+      #- name: Check PR Labels
+      #  id: skip_label_check
+      #  uses: paul1k/check-pr-labels@v1.0.0
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    pull-number: ${{ env.PR_NUMBER }}
+      #    labels: ${{ inputs.labels }}
+
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1.2.1

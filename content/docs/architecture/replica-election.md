@@ -197,4 +197,4 @@ Replica <ins>leaders</ins> receive data records from producers and sends them to
 
 Consumers can choose to receive either COMMITTED or UNCOMMITTED records. The second method is discouraged as it cannot deterministically survive various failure scenarios. 
 
-By default only COMMITTED messages are sent to consumers.
+By default, UNCOMMITTED messages are sent to consumers.

@@ -1,27 +1,15 @@
 ---
 title: Generate Command Completion
-menu: Completion
-weight: 10
+menu: Command Completion
+weight: 100
 toc: false
 ---
 
 This command generates CLI completions for bash and fish, by specifying either bash or fish as a subcommand. Adding the output of this script to your `~/.bashrc` file will enable the use of the [TAB] key to auto-complete fluvio commands. 
 
-```
-fluvio completions
-Generate command-line completions for Fluvio
+## `fluvio completions`
+{{% inline-embed file="embeds/cli/help/fluvio-completions.md" %}}
 
-USAGE:
-    fluvio completions <SUBCOMMAND>
-
-FLAGS:
-    -h, --help    Prints help information
-
-SUBCOMMANDS:
-    bash    Generate CLI completions for bash
-    fish    Generate CLI completions for fish
-    help    Prints this message or the help of the given subcommand(s)
-```
 
 Example usage for bash shell. Note that we are piping the output of the command to a shell script. We then add the script to the ~/.bashrc file. 
 

@@ -1,0 +1,70 @@
+<form 
+    class="newsletterForm"
+    method="POST"
+    data-netlify="true"
+    data-netlify-recaptcha="true"
+    id="subscribe-newsletter" 
+>
+    <input type='hidden' name='form-name' value='subscribeNewsletter' />
+        <input 
+            type="text" 
+            name="name" 
+            id="form-name" 
+            aria-labelledby="form-name-label" 
+            class="form-input" 
+            placeholder="Name"
+            size="20"            
+            required 
+        />
+        <input 
+            type="email" 
+            name="email" 
+            id="form-email" 
+            aria-labelledby="form-email-label" 
+            class="form-input" 
+            placeholder="Email address"
+            size="30"
+            required 
+        />
+    <p class ="form-row">
+        <div data-netlify-recaptcha="true" class="form-row"></div>
+    </p>
+    <p class="form-row form-submit">
+        <button type="submit" class="button">Send Message</button>
+    </p>
+</form>
+
+<script>
+    const processForm = async (event) => {
+        event.preventDefault();
+        
+        let formData = new FormData(theForm);
+
+        try {
+            const response = await fetch("/.netlify/functions/newsletter", {
+                method: 'POST',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString(),
+            });
+            const message = await response.text();
+
+            console.log(` Response (${response.status}): ${message}`)
+            if (response.ok) {
+                theForm.innerHTML = `<div class="form--success">Congratulations!</div>`;
+            } else {
+                theForm.innerHTML = `<div class="form--error">Error (${response.status}): ${message}</div>`;
+            }
+
+        } catch (err) {
+            console.log(`Error: ${err}`);
+            theForm.innerHTML = `<div class="form--error">Error: ${err.toString()}</div>`;
+        }
+    }
+    
+    const theForm = document.querySelector(".newsletterForm");
+    if (theForm) {
+        theForm.addEventListener('submit', processForm, false)
+    }
+    
+</script>
+    

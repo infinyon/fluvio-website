@@ -10,10 +10,7 @@ The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, 
 
 Install the Fluvio CLI by running the following command:
 
-%copy first-line%
-```bash
-curl -fsS https://packages.fluvio.io/v1/install.sh | bash
-```
+{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
 
 ## Setting up a Fluvio cluster on Kubernetes
 
@@ -27,14 +24,13 @@ For installing on your local machine, here are suggested Kubernetes installation
 
 1) [K3d](https://k3d.io)
 2) [Kind](https://kind.sigs.k8s.io)
-3) [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 After installing Kubernetes, you can run the following command to check if your Kubernetes cluster is up and running:
 
 %copy first-line%
 ```bash
 $ kubectl config current-context
-minikube
+k3d-fluvio
 ```
 
 Some of Kubernetes installation will install `kubectl` and `helm`.  You can check it by:
@@ -60,15 +56,15 @@ If you didn't install `kubectl` and `helm`, you can install them in the followin
 
 Follow the instructions at the [kubectl installation page] and follow the instructions to download and install `kubectl` on Linux.
 
-[kubectl installation page]: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/ 
+[kubectl installation page]: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 
 ### Install Helm
 
-Helm is the package manager for Kubernetes. 
+Helm is the package manager for Kubernetes.
 
 Follow the instructions at the [helm installation page] and follow the instructions to download and install `helm` on Linux.
 
-[helm installation page]: https://v3.helm.sh/docs/intro/install/ 
+[helm installation page]: https://v3.helm.sh/docs/intro/install/
 
 ## Start Fluvio cluster on Kubernetes
 
@@ -98,19 +94,21 @@ You can start a Fluvio cluster by running:
 %copy first-line%
 ```bash
 $ fluvio version
-Fluvio CLI           : 0.9.0
-Fluvio CLI SHA256    : 170c6d4bad98e961b1f14d0fd052900dcbc92d736757bad3c7dcae2095151861
-Fluvio Platform      : 0.9.0 (minikube)
-Git Commit           : 5ff06169660c2f111bde3bdfcab9b83f569f9960
-OS Details           : Ubuntu 18.04 (kernel 5.4.0-1054-aws)
+Release Channel      : stable
+Fluvio CLI           : 0.10.0
+Fluvio CLI SHA256    : c39222aacf9f0f5d60f9ae2c992f7cebe6729600c43fce433e624e13c09dec16
+Fluvio channel frontend SHA256 : b77ef03027a73738747a6ccd64f1f423f474e828456b9e462e6273dc330a0201
+Fluvio Platform      : 0.10.0 (k3d-fluvio)
+Git Commit           : a948a2fca7d2e306789df8bf85d8de5042fce0d7
+OS Details           : Ubuntu 20.04 (kernel 5.15.0-1022-azure)
 === Plugin Versions ===
-Fluvio Cloud CLI (fluvio-cloud) : 0.1.5
-Fluvio Runner (fluvio-run)     : 0.2.1
+Fluvio Runner (fluvio-run)     : 0.0.0
+Infinyon Cloud CLI (fluvio-cloud) : 0.2.4
 ```
 
 ## Hello, Fluvio!
 
-Congratulations, you've successfully installed Fluvio on your local machine! 
+Congratulations, you've successfully installed Fluvio on your local machine!
 
 Let's use the Fluvio CLI to play with some basic functionality.
 
@@ -142,20 +140,9 @@ Hello, Fluvio
 
 Way to go! You're well on your way to writing real-time distributed apps with Fluvio!
 
-Next, check out our [Tutorials page] to see real-world examples of Fluvio in action.
-
 [topic]: {{< ref "/cli/commands/topic.md" >}}
 [produce]: {{< ref "/cli/commands/produce.md" >}}
 [consume]: {{< ref "/cli/commands/consume.md" >}}
-[Tutorials page]: https://www.infinyon.com/tutorials 
-
-#### Related Topics
-----------------
-
-- ["Hello World" in Java](https://www.infinyon.com/tutorials/java/hello-world/)
-- ["Hello World" in Node.js](https://www.infinyon.com/tutorials/node/hello-world/)
-- ["Hello World" in Python](https://www.infinyon.com/tutorials/python/hello-world/)
-- ["Hello World" in Rust](https://www.infinyon.com/tutorials/rust/hello-world/)
 
 ---
 

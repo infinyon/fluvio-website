@@ -7,6 +7,8 @@ enableEmoji = true
 
 disableKinds = ["taxonomyTerm"]
 
+staticDir = ["static", "code"]
+
 [markup]
   defaultMarkdownHandler = "goldmark"
   [markup.goldmark]
@@ -25,7 +27,7 @@ disableKinds = ["taxonomyTerm"]
   version = "2.0.0"
   description = "Real-time Data Streaming Platform"
   company_url = "https://www.infinyon.com"
-  fluvio_cloud= "https://cloud.fluvio.io/signup"
+  fluvio_cloud= "https://infinyon.cloud/signup"
   company_logo = "/images/assets/infinyon-logo-text.svg"
   company_logo_white = "/images/assets/infinyon-logo-text-white.svg"
   site_logo = "/images/assets/fluvio-with-text.svg"
@@ -38,28 +40,34 @@ disableKinds = ["taxonomyTerm"]
     weight = 100
 
   [[menu.fluvio]]
-    identifier = "cli"
-    name = "CLI"
-    url = "/cli/"
-    weight = 101
-
-  [[menu.fluvio]]
     identifier = "connectors"
     name = "Connectors"
     url = "/connectors/"
+    weight = 101
+
+  [[menu.fluvio]]
+    identifier = "smartmodules"
+    name = "SmartModules"
+    url = "/smartmodules/"
     weight = 102
+
+  [[menu.fluvio]]
+    identifier = "cli"
+    name = "CLI"
+    url = "/cli/"
+    weight = 103
 
   [[menu.fluvio]]
     identifier = "api"
     name = "APIs"
     url = "/api/"
-    weight = 103
+    weight = 104
 
   [[menu.fluvio]]
     identifier = "news"
     name = "News"
     url = "/news/"
-    weight = 104
+    weight = 105
 
   [[menu.fluvio]]
     identifier = "chat"
@@ -73,17 +81,17 @@ disableKinds = ["taxonomyTerm"]
     url = "https://www.infinyon.com/blog"
     pre = "fab fa-blogger"
     weight = 100
-
+  
   [[menu.infinyon]]
-    identifier = "tutorials"
-    name = "Tutorials"
-    url = "https://www.infinyon.com/tutorials"
-    pre = "fas fa-graduation-cap"
+    identifier = "webinars"
+    name = "Webinars"
+    url = "https://www.infinyon.com/webinars"
+    pre = "fas fa-desktop"
     weight = 110
 
   [[menu.infinyon]]
     identifier = "use-cases"
     name = "Use Cases"
     url = "https://www.infinyon.com/use-cases"
-    pre = "fas fa-grip-vertical"
+    pre = "fas fa-tools"
     weight = 120

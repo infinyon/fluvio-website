@@ -1,0 +1,11 @@
+[package]
+name = "regex-filter"
+group = "my-group"
+version = "0.1.0"
+apiVersion = "0.1.0"
+description = ""
+license = "Apache-2.0"
+
+[[params]]
+name = "input"
+description = "input description"

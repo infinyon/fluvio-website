@@ -42,7 +42,12 @@
     }
 
     .tab-content {
-      margin: 20px;
+      padding: 20px;
+
+      .copy-code-button {
+        margin-top: 25px;
+        margin-right :35px;
+      }
     }
   }
 }

@@ -2,5 +2,5 @@
 title: Connectors
 link:
     local: "/connectors/"
-weight: 20
+weight: 10
 ---
