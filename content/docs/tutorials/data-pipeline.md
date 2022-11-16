@@ -14,6 +14,8 @@ Cloud set up. If neither of these is the case, please follow the [setup tutorial
 
 There are two main steps for this tutorial:
 * Creating an Inbound HTTP Connector to collect JSON
+  * Receive data without any modifications
+  * JSON to JSON transformation before send to topic
 * Creating an Outbound SQL Connector to insert the input JSON into a database
   * Basic insert
   * JSON to JSON transformation before insert
@@ -69,7 +71,7 @@ You can use `fluvio cloud connector list` to view the status of the connector.
 ```shell
  $ fluvio cloud connector list
  NAME       TYPE         VERSION  STATUS
- cat-facts  http-source  0.3.0    Running
+ cat-facts  http-source  0.4.0    Running
  ```
 
 And `fluvio consume` to view the incoming data in the topic.
@@ -82,6 +84,42 @@ Consuming records starting 4 from the end of topic 'cat-facts-data'
 {"fact":"British cat owners spend roughly 550 million pounds yearly on cat food.","length":71}
 {"fact":"Fossil records from two million years ago show evidence of jaguars.","length":67}
 {"fact":"Relative to its body size, the clouded leopard has the biggest canines of all animals\u2019 canines. Its dagger-like teeth can be as long as 1.8 inches (4.5 cm).","length":156}
+```
+
+#### Inbound Connector with JSON to JSON transformation before send out
+All Inbound Connectors support transformations which are applied before the data is sent to the topic.
+We can extend our config file to add an additional JSON to JSON transformation to records.
+
+{{<code file="embeds/connectors/catfacts-basic-connector-with-transform.yaml" lang="yaml" copy="true">}}
+
+In this config, we add the field `source` with the static value `http` to every record. Note that if the field 
+already exists, it will not be overwritten.
+
+Before we create the connector we need to add `infinyon/jolt@0.1.0` SmartModule to the cluster.
+This SmartModule uses a domain specific language (DSL) called [Jolt](https://github.com/infinyon/fluvio-jolt), to specify a transformation of input JSON to another shape of JSON data
+
+%copy first-line%
+```shell
+$ fluvio hub download infinyon/jolt@0.1.0
+```
+
+Then, we create a connector just like before
+
+%copy first-line%
+```shell
+$ fluvio cloud connector create --config catfacts-basic-connector-with-transform.yaml
+```
+
+And `fluvio consume` to view the transformed data in the topic.
+
+%copy first-line%
+```bash
+$ fluvio consume cat-facts-data-transformed -dT4
+Consuming records starting 4 from the end of topic 'cat-facts-data-transformed'
+{"fact":"The Amur leopard is one of the most endangered animals in the world.","length":68,"source":"http"}
+{"fact":"Some cats have survived falls of over 65 feet (20 meters), due largely to their “righting reflex.” The eyes and balance organs in the inner ear tell it where it is in space so the cat can land on its feet. Even cats without a tail have this ability.","length":249,"source":"http"}
+{"fact":"In Holland’s embassy in Moscow, Russia, the staff noticed that the two Siamese cats kept meowing and clawing at the walls of the building. Their owners finally investigated, thinking they would find mice. Instead, they discovered microphones hidden by Russian spies. The cats heard the microphones when they turned on.","length":318,"source":"http"}
+{"fact":"Cats can be right-pawed or left-pawed.","length":38,"source":"http"}
 ```
 
 ### Outbound Connector
@@ -105,7 +143,7 @@ This SmartModule will do a basic mapping of the JSON input into a SQL statement 
 $ fluvio hub download infinyon/json-sql@0.1.0
 ```
 
-This SmartModule uses a domain specific language (DSL) called [Jolt](https://github.com/infinyon/fluvio-jolt), to specify a transformation of input JSON to another shape of JSON data
+If you have not added `infinyon/jolt@0.1.0` SmartModule on previous steps, we need to add it as well:
 
 %copy first-line%
 ```shell
@@ -188,15 +226,17 @@ This will delete the connector, but not the topic is was attached to
 
 %copy%
 ```shell
-$ fluvio cloud connector delete cat-facts simple-cat-facts-sql transform-cat-facts-sql
+$ fluvio cloud connector delete cat-facts cat-facts-transformed simple-cat-facts-sql transform-cat-facts-sql
 connector "cat-facts" deleted
+connector "cat-facts-transformed" deleted
 connector "simple-cat-facts-sql" deleted
 connector "transform-cat-facts-sql" deleted
 ```
 
 ## Conclusion
 
-We used the Inbound HTTP Connector to ingest JSON data from an endpoint and save it in a topic.
+We used the Inbound HTTP Connector to ingest JSON data from an endpoint and save it in a topic. We configured 
+transformation of outgoing JSON records.
 
 There was a brief introduction to the SmartModule Hub, which enabled the Outbound SQL connector to consume data.
 

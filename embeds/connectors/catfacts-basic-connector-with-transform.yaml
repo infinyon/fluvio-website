@@ -1,0 +1,18 @@
+# catfacts-basic-connector-with-transform.yml
+version: 0.4.0
+name: cat-facts-transformed
+type: http-source
+topic: cat-facts-data-transformed
+
+parameters:
+  endpoint: https://catfact.ninja/fact
+  interval: 30s
+
+transforms:
+  - uses: infinyon/jolt@0.1.0
+    with:
+      spec:
+        - operation: default
+          spec:
+            source: "http"
+

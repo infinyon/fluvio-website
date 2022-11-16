@@ -7,7 +7,6 @@ parameters:
   database-url: 'postgresql://db_user:db_pass@db.host.com/db_name'
 transforms:
   - uses: infinyon/json-sql@0.1.0
-    invoke: insert
     with:
       mapping:
         table: 'db_tablename'
