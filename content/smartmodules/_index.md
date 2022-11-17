@@ -23,7 +23,7 @@ SmartModule Hub, powered by [`InfinyOn Cloud`], is a real-time apps store, where
 
 #### SmartModules
 
-SmartModules are programmable data streaming functions exposed to WebAssembly. SmartModules allows developers to manipulate data in real-time inside the Fluvio cluster, without the need for external services such as Lambda or Functions. Checkout [`SmartModule types`].
+SmartModules are programmable data streaming functions exposed to WebAssembly. SmartModules allows developers to manipulate data in real-time inside the Fluvio cluster, without the need for external services such as Lambda or Functions. Check out the [`transform`] and [`analytics`] sections for more info.
 
 
 [SmartModule Development Kit (SMDK)]: {{< ref "/smartmodules/smdk/overview" >}}
@@ -33,4 +33,5 @@ SmartModules are programmable data streaming functions exposed to WebAssembly. S
 [`InfinyOn Cloud`]: https://infinyon.cloud/
 [`SMDK section`]: {{< ref "/smartmodules/smdk/overview" >}}
 [`Hub section`]: {{< ref "/smartmodules/hub/overview" >}}
-[`SmartModule types`]: {{< ref "/smartmodules/transform/overview" >}}
+[`transform`]: {{< ref "/smartmodules/transform/overview" >}}
+[`analytics`]: {{< ref "/smartmodules/analytics/overview" >}}
