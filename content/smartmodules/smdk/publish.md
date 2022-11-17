@@ -50,7 +50,7 @@ Congratulations :tada:!  You are now ready to build, test, and publish your own 
 5. **[Publish to SmartModule Hub]({{< ref "publish" >}})**
 
 [Hub]: {{< ref "/smartmodules/hub/overview" >}}
-[SmartModule types]: {{< ref "/smartmodules/transforms/overview" >}}
+[SmartModule types]: {{< ref "/smartmodules/transform/overview" >}}
 [installed]: {{< ref "install" >}}
 [built]: {{< ref "build-test/#build---operation" >}}
 [download]: {{< ref "../hub/download" >}}
