@@ -27,9 +27,9 @@ SmartModules are programmable data streaming functions exposed to WebAssembly. S
 
 [SmartModule Development Kit (SMDK)]: {{< ref "/smartmodules/smdk/overview" >}}
 [SmartModule Hub]: {{< ref "/smartmodules/hub/overview" >}}
-[SmartModules]:  {{< ref "/smartmodules/transforms/overview" >}}
+[SmartModules]:  {{< ref "/smartmodules/transform/overview" >}}
 [`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
 [`InfinyOn Cloud`]: https://infinyon.cloud/
 [`SMDK section`]: {{< ref "/smartmodules/smdk/overview" >}}
 [`Hub section`]: {{< ref "/smartmodules/hub/overview" >}}
-[`SmartModule types`]: {{< ref "/smartmodules/transforms/overview" >}}
+[`SmartModule types`]: {{< ref "/smartmodules/transform/overview" >}}
