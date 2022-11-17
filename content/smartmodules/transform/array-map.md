@@ -230,7 +230,7 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
 - [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/transform/aggregate" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 [installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}

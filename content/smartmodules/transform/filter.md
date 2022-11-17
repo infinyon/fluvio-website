@@ -331,7 +331,7 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 
 - [Explore filter use-cases](https://www.infinyon.com/blog/2021/06/smartstream-filters/)
 - [Writing a map to transform records]({{< ref "/smartmodules/transform/map" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/transform/aggregate" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 
 [installed]: {{< ref "smartmodules/smdk/install" >}}

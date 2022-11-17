@@ -1,21 +1,16 @@
 ---
-title: SmartModule Types
+title: SmartModule Transform
 menu: Overview
 toc: true
 weight: 10
 ---
 
-SmartModules are powered by WebAssembly and provide the ability to clean, transform, and enrich data – in real-time, or before it gets saved to storage.
-
-Quickly form rich data pipelines by using SmartModules with Connectors, or chaining multiple SmartModules together.
-
-The growing SmartModule Library offer multiple in-line data transformation patterns:
+Fluvio SmartModules support the following in-line data transformation patterns:
 
 * [Filter]({{<ref "#filter" >}})
 * [Map]({{<ref "#map" >}})
 * [FilterMap]({{<ref "#filtermap" >}})
 * [ArrayMap]({{<ref "#arraymap" >}})
-* [Aggregate]({{<ref "#aggregate" >}})
 
 
 ### Filter
@@ -61,20 +56,7 @@ Given a single record that is a JSON array, you may flatten the single input arr
 
 Checkout [`array-map section`] for an example.
 
-### Aggregate
-
-An [Aggregate SmartModule]({{<ref "aggregate" >}}) ability to create a feedback loop, by providing a Accumulator Record that is persistent per stream. Each event may modify the Accumulator, and the changes will be available for next input to use.
-
-The value of the Accumulator Record is also returned after each input. 
-
-For example, if you're trying to Sum up stream of numbers, you would add each input value to the current value of the Accumulator Record.
-
-<img src="/smartmodules/images/smartmodule-aggregate.svg" alt="SmartModule Aggregate" justify="center" height="220">
-
-Checkout [`aggregate section`] for an example.
-
 [`filter section`]: {{< ref "filter" >}}
 [`map section`]: {{< ref "map" >}}
 [`filter-map section`]: {{< ref "filter-map" >}}
 [`array-map section`]: {{< ref "array-map" >}}
-[`aggregate section`]: {{< ref "aggregate" >}}
