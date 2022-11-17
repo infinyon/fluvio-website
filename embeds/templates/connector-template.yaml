@@ -56,3 +56,9 @@ parameters:
 #
 #consumer:
 #  partition:
+
+# Optional list of transformations
+#transforms:
+#  - uses: smartmodule_name
+#    with:
+#      param_name: param_value
