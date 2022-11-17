@@ -86,7 +86,7 @@ Consuming records starting 4 from the end of topic 'cat-facts-data'
 {"fact":"Relative to its body size, the clouded leopard has the biggest canines of all animals\u2019 canines. Its dagger-like teeth can be as long as 1.8 inches (4.5 cm).","length":156}
 ```
 
-#### Inbound Connector with JSON to JSON transformation before send out
+#### Inbound Connector with JSON to JSON transformation before writing to topic
 All Inbound Connectors support transformations which are applied before the data is sent to the topic.
 We can extend our config file to add an additional JSON to JSON transformation to records.
 
@@ -96,7 +96,9 @@ In this config, we add the field `source` with the static value `http` to every 
 already exists, it will not be overwritten.
 
 Before we create the connector we need to add `infinyon/jolt@0.1.0` SmartModule to the cluster.
-This SmartModule uses a domain specific language (DSL) called [Jolt](https://github.com/infinyon/fluvio-jolt), to specify a transformation of input JSON to another shape of JSON data
+This SmartModule uses a domain specific language (DSL) called [Jolt](https://github.com/infinyon/fluvio-jolt), to specify a transformation of input JSON to another shape of JSON data.
+
+Let's download this SmartModule from the [SmartModule Hub]({{<ref "/smartmodules/hub/overview.md">}}).
 
 %copy first-line%
 ```shell
