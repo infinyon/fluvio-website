@@ -90,9 +90,9 @@ $ smdk build
 Using `smdk test`, we’ll use a simple regular expression that will return when the record contains only numbers.
 
 
-Filter pass example: input `42`
+#### Filter pass example
 
-We expect the input will be returned because it is all numbers
+We expect the input `42` will return because there are only all numbers
 
 %copy first-line%
 ```bash
@@ -104,9 +104,9 @@ loading module at: target/wasm32-unknown-unknown/release-lto/regex_filter.wasm
 ```
 
 
-Filter drop example 1: input `abc` 
+#### Filter drop example 1 
 
-This should drop, because there are no numbers
+We expect the input `abc` will drop because there are no numbers
 
 %copy first-line%
 ```bash
@@ -116,9 +116,9 @@ loading module at: target/wasm32-unknown-unknown/release-lto/regex_filter.wasm
 0 records outputed
 ```
 
-Filter drop example 2: input `abc123`
+#### Filter drop example 2
 
-This will drop too, because there are letters mixed with numbers
+We expect the input `abc123` will also drop because there are letters mixed with numbers
 
 
 %copy first-line%

@@ -52,7 +52,7 @@ Cluster local deleted
 
 ## `fluvio profile switch`
 
-Chqnges the active CLI profile. 
+Changes the active CLI profile. 
 
 {{% inline-embed file="embeds/cli/help/fluvio-profile-switch.md" %}}
 

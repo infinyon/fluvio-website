@@ -1,13 +1,12 @@
 name: fluvio-sql-connector
 type: sql-sink
-version: latest # 0.5.1
+version: 0.1.0
 topic: json-topic
 create-topic: true
 parameters:
   database-url: 'postgresql://db_user:db_pass@db.host.com/db_name'
 transforms:
   - uses: infinyon/json-sql@0.1.0
-    invoke: insert
     with:
       mapping:
         table: 'db_tablename'

@@ -6,6 +6,8 @@ weight: 20
 
 **Streaming Controller (SC)** is the central coordinator and the **authoritative** entity of the cluster. It manages configuration changes, provisions SPUs, performs replica assignment, coordinates communication with external clients, and sends periodic reconciliation updates.
 
+
+<!-- TODO Image renders poorly -->
 <img src="../images/sc-architecture.svg"
      alt="SC Coordinator"
      style="justify: center; max-width: 580px" />
@@ -15,7 +17,7 @@ The SC leverages a **Key-Value (KV) store** to persist cluster object configurat
 
 #### Key-Value Store
 
-**Fluvio** is designed to work seamlessly with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>** and **<a href="https://etcd.io" target="_blank">etcd</a>** **KV** store. The **KV interface** is store agnostic and can be extended to support alternative implementations such <a href="https://consul.io" target="_blank">Consul</a>, <a href="https://zookeeper.apache.org" target="_blank">Zookeeper</a>, or in-memory stores.
+**Fluvio** is designed to work seamlessly with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>** and **<a href="https://etcd.io" target="_blank">etcd</a>** **KV** stores. The **KV interface** is store agnostic and can be extended to support alternative implementations such <a href="https://consul.io" target="_blank">Consul</a>, <a href="https://zookeeper.apache.org" target="_blank">Zookeeper</a>, or in-memory stores.
 
 #### Default Ports
 
@@ -27,7 +29,7 @@ SCs have a **public** and a **private** server that are attached to the followin
 
 ## Core Objects
 
-There are four core objects in a Fluvio cluster: **SPU**, **SPU-group**, **Topic**, and **Partition**. The objects follow **Kubernetes paradigm** with two fields that govern the configuration: the spec and the status. **Spec** expresses a desired state and the **status** describes the current state. 
+There are four core objects in a Fluvio cluster: **SPU**, **SPU-group**, **Topic**, and **Partition**. The objects follow the **Kubernetes paradigm** with two fields that govern the configuration: the spec and the status. **Spec** expresses a desired state and the **status** describes the current state. 
 
 
 ### SPUs
@@ -71,7 +73,7 @@ Custom SPUs are designed for **Edge** devices, **IOT** devices or **custom envir
 The SC requires Custom SPUs to be registered before they are allowed to join the cluster:
 
 1. Register a new Custom SPU in the SC.
-2. Configure Custom SPU a network that has connectivity with the SC.
+2. Configure Custom SPU in a network that has connectivity with the SC.
 2. Deploy the Custom SPU.
 3. Check SPU status on the SC to see if connected successfully.
 
@@ -87,6 +89,7 @@ Aside from the differences in installation, all SPU types are treated the same.
 
 Fluvio **SPU-groups** define the configuration parameters used for provisioning groups of **Managed SPUs**. 
 
+<!-- TODO image renders poorly -->
 <img src="../images/spu-groups.svg"
      alt="SPU Groups"
      style="justify: center; max-width: 740px" />

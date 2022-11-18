@@ -167,6 +167,7 @@ DEBUG: Record {
 ```
 
 ## Connectors
+~> Support for inbound and outbound Postgres connectors discontinued since Fluvio release v0.10.0. <br/>This section is for historical purposes only
 
 ### Postgres
 
@@ -177,7 +178,7 @@ We will provide a more hands-on blog post in the future, but for now we'll summa
 The Fluvio source connector allows you to connect to an external Postgres database and implement [Change Data Capture (CDC)](https://en.wikipedia.org/wiki/Change_data_capture) patterns by recording all database updates into a Fluvio topic.
 
 
-There is a little bit of [required configuration on the Postgres database side]({{<ref "/connectors/inbound/postgres#create-a-postgres-server-using-docker">}}), but the Postgres source connector config looks like this:
+There is a little bit of required configuration on the Postgres database side, but the Postgres source connector config looks like this:
 
 ```yaml
 # example-pg-source-connect.yml
@@ -215,8 +216,8 @@ A lot of work went into the release of our new Postgres connectors that we could
 
 We encourage you to visit the docs, and expect a walkthrough using the Source and Sink connectors together in the future.
 
-* [Docs for Postgres Source connector]({{<ref "/connectors/inbound/postgres">}})
-* [Docs for Postgres Sink connector]({{<ref "/connectors/outbound/postgres">}})
+* ~~Docs for Postgres Source connector~~
+* ~~Docs for Postgres Sink connector~~
 
 
 ### HTTP

@@ -184,7 +184,7 @@ $ fluvio smartmodule list
   john/array-map@0.1.0          157.8 KB
 ```
 
-SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
+SmartModules that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
 
 %copy first-line%
 ```bash
@@ -203,7 +203,7 @@ Congratulations! :tada: Eveything worked as expected!
 
 ## Publish to SmartModule Hub
 
-It turns out this SmartModule was requested by other data streaming teams in the organization, so we've decided to [publish] it on [SmartMoudle Hub].
+It turns out this SmartModule was requested by other data streaming teams in the organization, so we've decided to [publish] it on [SmartModule Hub].
 
 %copy first-line%
 ```bash
@@ -229,14 +229,14 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 ## Read next
 
 - [Explore map use-cases](https://www.infinyon.com/blog/2021/08/smartstream-map-use-cases/)
-- [Writing a JSON filter]({{< ref "/smartmodules/types/filter" >}})
-- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/types/aggregate" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
+- [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 [installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}
-[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}
+[SmartModule Hub]: {{< ref "smartmodules/hub/overview" >}}
 
 [downloaded the Fluvio CLI]: https://www.fluvio.io/download/
 [using ArrayMap to break apart paginated API requests]: https://infinyon.com/blog/2021/10/smartstream-array-map-reddit/

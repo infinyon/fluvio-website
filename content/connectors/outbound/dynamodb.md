@@ -4,6 +4,9 @@ menu: DynamoDB
 connector:
   name: "infinyon/fluvio-connect-dynamodb-sink"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sinks/dynamodb"
+hidden: true
+_build:
+  render: never
 ---
 
 The DynamoDB Outbound Connector reads events from a Fluvio topic, then deserializes as json and inserts those key value pairs based on the columns in the config.

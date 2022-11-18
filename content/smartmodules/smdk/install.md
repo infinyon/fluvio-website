@@ -38,4 +38,4 @@ The executable is installed in `~/.fluvio/bin/` directory, the same directry as 
 [Generate a SmartModule]: {{< ref "generate" >}}
 [Build and Test]: {{< ref "build-test" >}}
 [Load to your Cluster]: {{< ref "load" >}}
-[Publish to SmartMoudle Hub]: {{< ref "publish" >}}
+[Publish to SmartModule Hub]: {{< ref "publish" >}}

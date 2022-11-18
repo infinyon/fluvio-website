@@ -17,4 +17,4 @@ Service behavior can be configured at installation by overriding values in the h
 
 Run `kubectl describe svc fluvio-sc-public` to view address and port information for accessing the SC public endpoint.
 
-SPU service names follow the pattern `fluvio-spu-<group name>-<id>`, for example the first SPU of the "main" group is named `fluvio-spu-main-0`. It can be view with `kubectl describe svc fluvio-spu-main-0`
+SPU service names follow the pattern `fluvio-spu-<group name>-<id>`, for example the first SPU of the "main" group is named `fluvio-spu-main-0`. It can be viewed with `kubectl describe svc fluvio-spu-main-0`

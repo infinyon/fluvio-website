@@ -24,14 +24,13 @@ For installing on your local machine, here are suggested Kubernetes installation
 
 1) [K3d](https://k3d.io)
 2) [Kind](https://kind.sigs.k8s.io)
-3) [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 After installing Kubernetes, you can run the following command to check if your Kubernetes cluster is up and running:
 
 %copy first-line%
 ```bash
 $ kubectl config current-context
-minikube
+k3d-fluvio
 ```
 
 Some of Kubernetes installation will install `kubectl` and `helm`.  You can check it by:
@@ -95,14 +94,16 @@ You can start a Fluvio cluster by running:
 %copy first-line%
 ```bash
 $ fluvio version
-Fluvio CLI           : 0.9.0
-Fluvio CLI SHA256    : 170c6d4bad98e961b1f14d0fd052900dcbc92d736757bad3c7dcae2095151861
-Fluvio Platform      : 0.9.0 (minikube)
-Git Commit           : 5ff06169660c2f111bde3bdfcab9b83f569f9960
-OS Details           : Ubuntu 18.04 (kernel 5.4.0-1054-aws)
+Release Channel      : stable
+Fluvio CLI           : 0.10.0
+Fluvio CLI SHA256    : c39222aacf9f0f5d60f9ae2c992f7cebe6729600c43fce433e624e13c09dec16
+Fluvio channel frontend SHA256 : b77ef03027a73738747a6ccd64f1f423f474e828456b9e462e6273dc330a0201
+Fluvio Platform      : 0.10.0 (k3d-fluvio)
+Git Commit           : a948a2fca7d2e306789df8bf85d8de5042fce0d7
+OS Details           : Ubuntu 20.04 (kernel 5.15.0-1022-azure)
 === Plugin Versions ===
-Fluvio Cloud CLI (fluvio-cloud) : 0.1.5
-Fluvio Runner (fluvio-run)     : 0.2.1
+Fluvio Runner (fluvio-run)     : 0.0.0
+Infinyon Cloud CLI (fluvio-cloud) : 0.2.4
 ```
 
 ## Hello, Fluvio!

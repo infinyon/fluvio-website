@@ -175,9 +175,7 @@ $ fluvio smartmodule list
   john/example-aggregate@0.1.0   91.5 KB
 ```
 
-SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
-
-SmartModule that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc).
+SmartModules that have been uploaded on the cluster can be used by other areas of the system (consumers, producers, connectors, etc):
 
 
 #### Run Aggregates with default initial value
@@ -216,7 +214,7 @@ Congratulations! :tada: Eveything worked as expected!
 
 ## Publish to SmartModule Hub
 
-Let's [publish] this SmartModule to [SmartMoudle Hub] to make accessible to others.
+Let's [publish] this SmartModule to [SmartModule Hub] to make accessible to others.
 
 %copy first-line%
 ```bash
@@ -242,12 +240,12 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 ## Read next
 
 - [Explore aggregate use-cases](https://www.infinyon.com/blog/2021/08/smartstream-aggregates/)
-- [Writing a JSON filter]({{< ref "/smartmodules/types/filter" >}})
-- [Writing a map to transform records]({{< ref "/smartmodules/types/map" >}})
+- [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
+- [Writing a map to transform records]({{< ref "/smartmodules/transform/map" >}})
 
 
 [installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}
-[SmartMoudle Hub]: {{< ref "smartmodules/hub/overview" >}}
+[SmartModule Hub]: {{< ref "smartmodules/hub/overview" >}}

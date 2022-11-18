@@ -118,11 +118,9 @@ topic "cat-facts-data" deleted
 
 ### Conclusion
 
-And that's the end of the guide.
+We created a basic Inbound HTTP connector, looked at the logs for the connector, and viewed the HTTP response data in the Fluvio topic. Lastly, we deleted the connector and topic.
 
-We created a basic Inbound HTTP connector, looked at the logs for the connector, viewed the HTTP response data in the Fluvio topic, and lastly we deleted the connector and topic.
-
-You are ready to create your own connectors! Check out the docs for our supported Inbound and Outbound connector docs try to connect to your own data source.  
+You are ready to create your own connectors! Check out the docs for our supported Inbound and Outbound connectors to get started with your own data sources.
 
 
 [InfinyOn Cloud]: https://infinyon.cloud

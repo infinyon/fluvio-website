@@ -64,5 +64,5 @@ Checkout the [next section] on how upload the SmartModule to your local cluster 
 [installed]: {{< ref "install" >}}
 [generated]: {{< ref "generate" >}}
 [Load to your Cluster]: {{< ref "load" >}}
-[Publish to SmartMoudle Hub]: {{< ref "publish" >}}
+[Publish to SmartModule Hub]: {{< ref "publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud

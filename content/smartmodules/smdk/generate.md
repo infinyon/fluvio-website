@@ -97,4 +97,4 @@ The project is ready to build and test. Checkout the next section for instructio
 [installed]: {{< ref "install" >}}
 [Build and Test]: {{< ref "build-test" >}}
 [Load to your Cluster]: {{< ref "load" >}}
-[Publish to SmartMoudle Hub]: {{< ref "publish" >}}
+[Publish to SmartModule Hub]: {{< ref "publish" >}}

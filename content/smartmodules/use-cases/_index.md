@@ -1,6 +1,6 @@
 ---
-title: TYPES
-weight: 10
+title:  USE CASES 
+weight: 5 
 _build:
   render: never
 ---

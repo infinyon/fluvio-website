@@ -14,7 +14,7 @@ Then add [`fluvio`] under `[dependencies]` to your project's `Cargo.toml`
 
 %copy%
 ```toml
-fluvio = "0.12"
+fluvio = "0.15"
 ```
 
 [`fluvio`]: https://crates.io/crates/fluvio

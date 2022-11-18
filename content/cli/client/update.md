@@ -6,8 +6,7 @@ toc: false
 
 ## `fluvio update`
 
-This command performs a self-update for the Fluvio CLI. It takes no arguments,
-and just simply downloads the latest version of `fluvio` and overwrites itself.
+This command performs a self-update for the Fluvio CLI and any plugins supplied as arguments. 
 
 {{% inline-embed file="embeds/cli/help/fluvio-update.md" %}}
 
