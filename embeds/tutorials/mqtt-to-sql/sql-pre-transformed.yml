@@ -8,17 +8,6 @@ parameters:
   database-url: 'postgres://user:password@db.postgreshost.example/dbname'
   rust_log: 'sql_sink=INFO,sqlx=WARN'
 transforms:
-  - uses: infinyon/jolt@0.1.0
-    with:
-      spec:
-        - operation: shift
-          spec:
-            payload:
-              device: 'device'
-        - operation: default
-          spec:
-            device:
-              type: 'mobile'
   - uses: infinyon/json-sql@0.1.0
     with:
       mapping:
