@@ -1,4 +1,4 @@
-version: latest
+version: 0.5.1
 name: my-mqtt-new
 type: mqtt-source
 topic: mqtt-topic

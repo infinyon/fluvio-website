@@ -1,7 +1,7 @@
 # sql-chain.yaml
 name: transform-cat-facts-sql
 type: sql-sink
-version: latest
+version: 0.1.0
 topic: cat-facts-data
 parameters:
   database-url: 'postgres://user:password@db.postgreshost.example/dbname'

@@ -19,7 +19,7 @@ type: sql-sink
 
 %copy%
 ```yaml
-version: latest 
+version: 0.1.0
 ```
 
 ## Parameters
