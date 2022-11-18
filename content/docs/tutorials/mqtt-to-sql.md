@@ -24,8 +24,8 @@ You can use your own PostgreSQL instance, if it can be reached over the internet
         * [Connector with extra JSON to JSON transformation]({{<ref "#connector-with-json-to-json-transformation" >}})
         * [Install `pgcli` for validating DB inserts]({{<ref "#install-pgcli---postgresql-client" >}})
 2. [The actual test]({{<ref "#the-actual-test" >}})
-    1. [Publish JSON to MQTT broker]({{<ref "#publish-json-to-mqtt-broker" >}})
-    2. [View output in PostgreSQL]({{<ref "#view-output-in-postgresql" >}})
+    * [Publish JSON to MQTT broker]({{<ref "#publish-json-to-mqtt-broker" >}})
+    * [View output in PostgreSQL]({{<ref "#view-output-in-postgresql" >}})
 3. [Move transformation to MQTT connector]({{<ref "#move-transformation-to-mqtt-connector" >}})
 4. [Conclusion]({{<ref "#conclusion" >}})
 
@@ -254,14 +254,15 @@ Then we enrich the payload by adding the `.device.type` key with the value mobil
 
 ## Move transformation to MQTT Connector
 
-Transformations in the `transforms` section of SQL Connector config are not a specific feature of this connector.
-All Inbound and Outbound connectors support it. The only difference is where these transformations take place. For Inbound connectors,
-the data is transformed before sending to Fluvio topic, while for Outbound, it happens after the data is sent to Fluvio topic
+Transformations in the `transforms` section of SQL Connector config are deliberately decoupled from connectors. 
+We can move a SmartModule from an Inbound to an Outbound connector and accomplish the same result. 
+The decision depends on the shape of the data you want to store in a topic.
+For Inbound connectors, the data is transformed before sending to Fluvio topic, while for Outbound, it happens after the data is sent to Fluvio topic
 but before it is sent to the connector.
 
 Let's try it.
 
-Modify our `mqtt.yml` config with one transformation that we are taking from SQL Connector:
+Modify our `mqtt.yml` config with one transformation that we are moving from the SQL Connector:
 {{<code file="embeds/tutorials/mqtt-to-sql/mqtt-chain.yml" lang="yaml" copy=true >}}
 
 We don’t need this transformation on SQL Connector anymore, remove it from `sql-chain.yml` file:
@@ -275,7 +276,7 @@ $ fluvio cloud connector delete fluvio-mqtt-connector
 $ fluvio cloud connector create --config mqtt.yml
 ```
 
-also, we delete one unneeded SQL connector and re-create another without the transformation that we moved to MQTT:
+also, we delete one now obsolete SQL connector and re-create another without the transformation that we moved to MQTT:
 
 %copy first-line%
 ```shell
@@ -291,7 +292,7 @@ And now, if we execute command:
 $ mosquitto_pub -h test.mosquitto.org -t ag-mqtt-topic -m '{"device": {"device_id":17, "name":"device17"}}'
 ```
 
-The newest record differs from what we saw previously:
+The new record differs from what we saw previously:
 
 %copy first-line%
 ```shell
@@ -317,7 +318,7 @@ SELECT 3
 Time: 0.080s
 ```
 
-Although the final result was not changed (the same records will end up in SQL database with the same content), choosing the proper side
+Although the final result is the same (the same records will end up in SQL database with the same content), choosing the proper side
 of a pipeline where transformations should reside may significantly affect performance on high volumes of data.
 
 ## Conclusion
@@ -328,4 +329,4 @@ We saw the results for the JSON just being inserted into the table with the `jso
 
 Using SmartModule chaining with the `jolt` and `json-sql` SmartModules, we observed that the resulting JSON was successfully transformed. 
 
-We saw that we could choose on which side of a pipeline we wanted to transform our data.
+We can choose on which side of a pipeline we wanted to transform our data without material impact to the result.
