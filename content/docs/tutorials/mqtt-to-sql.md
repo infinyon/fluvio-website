@@ -131,7 +131,7 @@ trying connection to fluvio router.infinyon.cloud:9003
 
 {{<code file="embeds/tutorials/mqtt-to-sql/sql-chain.yml" lang="yaml" copy=true >}}
 
-Start SQL connector with JSON transformation 
+Start SQL connector with JSON [transformation]({{<ref "../../../docs/concepts/transformations-chain.md">}}) 
 
 %copy first-line%
 ```shell
@@ -254,7 +254,7 @@ Then we enrich the payload by adding the `.device.type` key with the value mobil
 
 ## Move transformation to MQTT Connector
 
-Transformations in the `transforms` section of SQL Connector config are deliberately decoupled from connectors. 
+* [Transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}}) in the `transforms` section of SQL Connector config are deliberately decoupled from connectors. 
 We can move a SmartModule from an Inbound to an Outbound connector and accomplish the same result. 
 The decision depends on the shape of the data you want to store in a topic.
 For Inbound connectors, the data is transformed before sending to Fluvio topic, while for Outbound, it happens after the data is sent to Fluvio topic

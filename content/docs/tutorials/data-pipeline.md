@@ -87,7 +87,7 @@ Consuming records starting 4 from the end of topic 'cat-facts-data'
 ```
 
 #### Inbound Connector with JSON to JSON transformation before writing to topic
-All Inbound Connectors support transformations which are applied before the data is sent to the topic.
+All Inbound Connectors support [transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}}) which are applied before the data is sent to the topic.
 We can extend our config file to add an additional JSON to JSON transformation to records.
 
 {{<code file="embeds/connectors/catfacts-basic-connector-with-transform.yaml" lang="yaml" copy="true">}}
@@ -261,3 +261,4 @@ With the Outbound SQL Connector, we utilized SmartModules in two different ways.
 * [Connectors]({{<ref "/connectors/">}})
 * [Smart Modules]({{<ref "/smartmodules/">}})
 * [SmartModule Rust API](https://docs.rs/fluvio-smartmodule/latest/fluvio_smartmodule/)
+* [Transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}})

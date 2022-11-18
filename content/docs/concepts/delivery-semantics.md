@@ -1,5 +1,6 @@
 ---
 title: Delivery Semantics
+weight: 90
 ---
 The Internet, as well as other networks, is considered an unreliable communication channel. There can be delays or lost messages, and connections can fail unexpectedly. 
 This affects the reliability of record delivery between producers and the SPU.
