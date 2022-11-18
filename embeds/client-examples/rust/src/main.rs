@@ -4,9 +4,9 @@ use fluvio::metadata::topic::TopicSpec;
 use fluvio::{Fluvio, RecordKey};
 
 const TOPIC_NAME: &str = "hello-rust";
-const PARTITION_NUM: i32 = 0;
-const PARTITIONS: i32 = 1;
-const REPLICAS: i32 = 1;
+const PARTITION_NUM: u32 = 0;
+const PARTITIONS: u32 = 1;
+const REPLICAS: u32 = 1;
 
 /// This is an example of a basic Fluvio workflow in Rust
 ///  
