@@ -1,7 +1,7 @@
 # sql-chain.yml
 name: fluvio-sql-connector-chain
 type: sql-sink
-version: latest
+version: 0.1.0
 topic: mqtt-topic
 create-topic: true
 parameters:
