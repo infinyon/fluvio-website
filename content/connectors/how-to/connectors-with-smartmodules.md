@@ -116,7 +116,7 @@ For this example, we would add `map` to the `parameters` section, like so:
 %copy%
 ```yaml
 # connect.yml
-version: 0.3.0
+version: 0.4.1
 name: cat-facts
 type: http-source
 topic: cat-facts
