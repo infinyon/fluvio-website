@@ -3,11 +3,11 @@ title: Transformations
 weight: 100
 ---
 
-In Fluvio, the data transformation is done using [SmartModules](../../../smartmodules/) - user-defined functions compiled to WASM. A group of SmartModules forms a transformation chain - sequential invocations of each SmartModule according to the order defined upon creation. The output of the first invocation becomes the input of the second, the output of the second becomes the input of the third, and so on.
+In Fluvio, the data transformation is done using [SmartModules](../../../smartmodules/) - user-defined functions compiled to WebAssembly (WASM). A group of SmartModules forms a transformation chain - sequential invocations of each SmartModule according to the order defined upon creation. The output of the first invocation becomes the input of the second, the output of the second becomes the input of the third, and so on.
 
 Both Fluvio Producer and Fluvio Consumer support **Transformation Chaining**. However, the actual code execution happens in different places. For Producer, the transformation
-happens before the data is sent to SPU, inside the Producer's process, hence consuming the resources of the client. For Consumer, the transformation takes place on SPU before the data is sent
-to Consumer.
+happens before the data is sent to the topic on the SPU, inside the Producer's process, hence utilizing the resources of the client. For Consumer, the transformation takes place on SPU before the data is sent
+to the Consumers.
 
 **Transformation Chaining** is available on the following components:
  1. Fluvio Client
@@ -29,7 +29,7 @@ transforms:
             source: "http"
 ```
 we have one transformation, which is a SmartModule named `infinyon/jolt@0.1.0`. 
-The name must match a SmartModule that existed in the Cluster:
+The name must match a SmartModule previously downloaded to the Cluster:
 
 %copy%
 ```bash
