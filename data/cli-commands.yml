@@ -92,3 +92,5 @@ cli-commands:
   - smdk test
   - smdk load
   - smdk publish
+  - smdk set-public
+
