@@ -4,34 +4,29 @@ menu: Overview
 toc: false
 ---
 
-SmartModules are powered by WebAssembly and provide the ability to clean, transform, and enrich data – in real-time, or before it gets saved to storage. The can be integrated at many points of a data streaming pipeline 
+SmartModules are programmable data streaming functions exposed to WebAssembly, allowing developers to manipulate data in real-time inside the Fluvio cluster without needing external services such as Lambda or Functions. SmartModules can be published to [SmartModule Hub] and downloaded to multiple clusters. Once downloaded, SmartModules can be chained together to build powerful data transformation pipelines.
 
-Quickly form rich data pipelines by using SmartModules with Connectors, or chaining multiple SmartModules together.
-The following building blocks make building, testing, and deploying SmartModule easy:
+Examples on how to use SmartModules in a pipeline:
+* [Build HTTP to SQL Pipeline]
+* [Build MQTT to SQL Pipeline]
 
-* [SmartModules]
-* [SmartModule Hub]
+Build, test, and publish your own SmartModules:
+
 * [SmartModule Development Kit (SMDK)]
+* [SmartModule Hub]
 
-#### SmartModule Development Kit (SMDK)
+APIs to build your own SmartModules:
+* [Transform]
+* [Analytics]
 
-SmartModules Development Kit (SMDK) is an independent executable downloadable via [`Fluvio CLI`] to help developers build and test SmartModules, and publish them to the SmartModule Hub. Checkout [`SMDK section`].
-
-#### SmartModule Hub
-
-SmartModule Hub, powered by [`InfinyOn Cloud`], is a real-time apps store, where developers publish SmartModules, and users download and integrate them into their data pipelines. Checkout [`Hub section`].
-
-#### SmartModules
-
-SmartModules are programmable data streaming functions exposed to WebAssembly. SmartModules allows developers to manipulate data in real-time inside the Fluvio cluster, without the need for external services such as Lambda or Functions. Check out the [`transform`] and [`analytics`] sections for more info.
+InfinyOn Certified SmartModules published in the [SmartModule Hub]:
+* [Jolt]
 
 
 [SmartModule Development Kit (SMDK)]: {{< ref "/smartmodules/smdk/overview" >}}
 [SmartModule Hub]: {{< ref "/smartmodules/hub/overview" >}}
-[SmartModules]:  {{< ref "/smartmodules/transform/overview" >}}
-[`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
-[`InfinyOn Cloud`]: https://infinyon.cloud/
-[`SMDK section`]: {{< ref "/smartmodules/smdk/overview" >}}
-[`Hub section`]: {{< ref "/smartmodules/hub/overview" >}}
-[`transform`]: {{< ref "/smartmodules/transform/overview" >}}
-[`analytics`]: {{< ref "/smartmodules/analytics/overview" >}}
+[Transform]:  {{< ref "/smartmodules/transform/overview" >}}
+[Analytics]:  {{< ref "/smartmodules/analytics/overview" >}}
+[Jolt]:  {{< ref "/smartmodules/certified/jolt" >}}
+[Build HTTP to SQL Pipeline]: {{<ref "/docs/tutorials/data-pipeline.md" >}}
+[Build MQTT to SQL Pipeline]: {{<ref "/docs/tutorials/mqtt-to-sql.md" >}}
