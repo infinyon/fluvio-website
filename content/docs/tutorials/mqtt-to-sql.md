@@ -103,7 +103,7 @@ $ fluvio cloud connector create --config sql.yml
 
 #### Connector with JSON to JSON transformation
 
-Download the `jolt` and `json-sql` SmartModules used by this example connector
+Download the [Jolt]({{<ref "../../smartmodules/certified/jolt.md" >}}) and `json-sql` SmartModules used by this example connector
 
 Example output
 
