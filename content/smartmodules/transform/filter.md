@@ -212,7 +212,7 @@ Test `info` log:
 %copy first-line%
 ```bash
 $ smdk test --text='{"level":"info","message":"Server listening on 0.0.0.0:8000"}'
-loading module at: /Users/aj/local/projects/smartmodule/smdk/json-filter/target/wasm32-unknown-unknown/release-lto/json_filter.wasm
+loading module at: ~/smdk/json-filter/target/wasm32-unknown-unknown/release-lto/json_filter.wasm
 1 records outputed
 {"level":"info","message":"Server listening on 0.0.0.0:8000"}
 ```
@@ -222,7 +222,7 @@ Test `debug` log:
 %copy first-line%
 ```bash
 $ smdk test --text='{"level":"debug","message":"Deserializing request from client"}'
-loading module at: /Users/aj/local/projects/smartmodule/smdk/json-filter/target/wasm32-unknown-unknown/release-lto/json_filter.wasm
+loading module at: ~/smdk/json-filter/target/wasm32-unknown-unknown/release-lto/json_filter.wasm
 0 records outputed
 ```
 
