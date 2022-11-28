@@ -95,7 +95,7 @@ We can extend our config file to add an additional JSON to JSON transformation t
 In this config, we add the field `source` with the static value `http` to every record. Note that if the field 
 already exists, it will not be overwritten.
 
-Before we create the connector we need to add `infinyon/jolt@0.1.0` SmartModule to the cluster.
+Before we create the connector we need to add [`infinyon/jolt@0.1.0`]({{<ref "../../smartmodules/certified/jolt.md" >}}) SmartModule to the cluster.
 This SmartModule uses a domain specific language (DSL) called [Jolt](https://github.com/infinyon/fluvio-jolt), to specify a transformation of input JSON to another shape of JSON data.
 
 Let's download this SmartModule from the [SmartModule Hub]({{<ref "/smartmodules/hub/overview.md">}}).

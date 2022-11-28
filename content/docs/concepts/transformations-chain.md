@@ -28,7 +28,7 @@ transforms:
           spec:
             source: "http"
 ```
-we have one transformation, which is a SmartModule named `infinyon/jolt@0.1.0`. 
+we have one transformation, which is a SmartModule named [`infinyon/jolt@0.1.0`]({{<ref "../../smartmodules/certified/jolt.md" >}}). 
 The name must match a SmartModule previously downloaded to the Cluster:
 
 %copy%
