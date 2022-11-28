@@ -87,7 +87,7 @@ Consuming records starting 4 from the end of topic 'cat-facts-data'
 ```
 
 #### Inbound Connector with JSON to JSON transformation before writing to topic
-All Inbound Connectors support transformations which are applied before the data is sent to the topic.
+All Inbound Connectors support [transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}}) which are applied before the data is sent to the topic.
 We can extend our config file to add an additional JSON to JSON transformation to records.
 
 {{<code file="embeds/connectors/catfacts-basic-connector-with-transform.yaml" lang="yaml" copy="true">}}
@@ -95,7 +95,7 @@ We can extend our config file to add an additional JSON to JSON transformation t
 In this config, we add the field `source` with the static value `http` to every record. Note that if the field 
 already exists, it will not be overwritten.
 
-Before we create the connector we need to add `infinyon/jolt@0.1.0` SmartModule to the cluster.
+Before we create the connector we need to add [`infinyon/jolt@0.1.0`]({{<ref "../../smartmodules/certified/jolt.md" >}}) SmartModule to the cluster.
 This SmartModule uses a domain specific language (DSL) called [Jolt](https://github.com/infinyon/fluvio-jolt), to specify a transformation of input JSON to another shape of JSON data.
 
 Let's download this SmartModule from the [SmartModule Hub]({{<ref "/smartmodules/hub/overview.md">}}).
@@ -261,3 +261,4 @@ With the Outbound SQL Connector, we utilized SmartModules in two different ways.
 * [Connectors]({{<ref "/connectors/">}})
 * [Smart Modules]({{<ref "/smartmodules/">}})
 * [SmartModule Rust API](https://docs.rs/fluvio-smartmodule/latest/fluvio_smartmodule/)
+* [Transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}})
