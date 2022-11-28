@@ -33,7 +33,7 @@ Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpwXs6cl/cargo-gene
 [5/5]   Done: src
 🔧   Moving generated files into: `~/smdk/my-filter`...
 💡   Initializing a fresh Git repository
-✨   Done! New project created /Users/aj/local/projects/smartmodule/smdk/my-filter
+✨   Done! New project created ~/smdk/my-filter
 hub: hubid aj is set 
 ```
 
