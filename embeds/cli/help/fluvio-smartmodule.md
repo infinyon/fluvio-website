@@ -8,7 +8,6 @@ Commands:
   list    List all existing SmartModules
   watch   List all existing SmartModules
   delete  Delete one or more SmartModules with the given name(s)
-  help    Print this message or the help of the given subcommand(s)
 
 Options:
   -h, --help  Print help information (use `--help` for more detail)

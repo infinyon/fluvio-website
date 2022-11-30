@@ -11,7 +11,6 @@ Commands:
   spu          Manage and view Streaming Processing Units (SPUs)
   spg          Manage and view SPU Groups (SPGs)
   diagnostics  Collect anonymous diagnostic information to help with debugging
-  help         Print this message or the help of the given subcommand(s)
 
 Options:
   -h, --help  Print help information

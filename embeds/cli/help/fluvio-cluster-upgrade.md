@@ -24,6 +24,10 @@ Options:
           chart values
       --use-k8-port-forwarding
           Uses port forwarding for connecting to SC during install
+      --tls-client-secret-name <TLS_CLIENT_SECRET_NAME>
+          TLS: Client secret name while adding to Kubernetes [default: fluvio-client-tls]
+      --tls-server-secret-name <TLS_SERVER_SECRET_NAME>
+          TLS: Server secret name while adding to Kubernetes [default: fluvio-tls]
       --spu-storage-size <SPU_STORAGE_SIZE>
           set spu storage size [default: 10]
       --skip-profile-creation
