@@ -76,7 +76,7 @@ You can start one of both of the following connectors
 
 #### SQL Connector with no transformation
 
-##### Download `json-sql` SmartModule
+##### Download [`json-sql`]({{<ref "../../smartmodules/certified/json-sql.md">}}) SmartModule
 
 Example output
 
@@ -103,7 +103,7 @@ $ fluvio cloud connector create --config sql.yml
 
 #### Connector with JSON to JSON transformation
 
-Download the [Jolt]({{<ref "../../smartmodules/certified/jolt.md" >}}) and `json-sql` SmartModules used by this example connector
+Download the [Jolt]({{<ref "../../smartmodules/certified/jolt.md" >}}) and [Json-Sql]({{<ref "../../smartmodules/certified/json-sql.md">}}) SmartModules used by this example connector
 
 Example output
 
