@@ -20,7 +20,6 @@ Commands:
   completions     Generate command-line completions for Fluvio
   run             Run Fluvio cluster components (SC and SPU)
   cloud           Cloud Operations
-  help            Print this message or the help of the given subcommand(s)
 
 Options:
   -c, --cluster <host:port>        Address of cluster

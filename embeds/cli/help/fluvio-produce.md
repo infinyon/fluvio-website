@@ -9,6 +9,8 @@ Arguments:
 Options:
   -v, --verbose
           Print progress output when sending records
+      --key <KEY>
+          Sends key/value records with this value as key
       --key-separator <KEY_SEPARATOR>
           Sends key/value records split on the first instance of the separator
       --raw
@@ -16,7 +18,7 @@ Options:
       --compression <COMPRESSION>
           Compression algorithm to use when sending records. Supported values: none, gzip, snappy and lz4
   -f, --file <FILE>
-          Path to a file to produce to the topic. If absent, producer will read stdin
+          Path to a file to produce to the topic. Default: Each line treated as single record unless `--raw` specified. If absent, producer will read stdin
       --linger <LINGER>
           Time to wait before sending Ex: '150ms', '20s'
       --batch-size <BATCH_SIZE>
