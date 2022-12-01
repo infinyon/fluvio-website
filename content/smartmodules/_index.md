@@ -21,6 +21,7 @@ APIs to build your own SmartModules:
 
 InfinyOn Certified SmartModules published in the [SmartModule Hub]:
 * [Jolt]
+* [Json-Sql]
 
 
 [SmartModule Development Kit (SMDK)]: {{< ref "/smartmodules/smdk/overview" >}}
@@ -28,5 +29,6 @@ InfinyOn Certified SmartModules published in the [SmartModule Hub]:
 [Transform]:  {{< ref "/smartmodules/transform/overview" >}}
 [Analytics]:  {{< ref "/smartmodules/analytics/overview" >}}
 [Jolt]:  {{< ref "/smartmodules/certified/jolt" >}}
+[Json-Sql]:  {{< ref "/smartmodules/certified/json-sql" >}}
 [Build HTTP to SQL Pipeline]: {{<ref "/docs/tutorials/data-pipeline.md" >}}
 [Build MQTT to SQL Pipeline]: {{<ref "/docs/tutorials/mqtt-to-sql.md" >}}
