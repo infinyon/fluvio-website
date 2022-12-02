@@ -32,6 +32,8 @@ async fn main() {
     // Produce to a topic
     let producer = fluvio::producer(TOPIC_NAME).await.unwrap();
     producer.send(RecordKey::NULL, record).await.unwrap();
+    // Fluvio batches outgoing records by default, so flush producer to ensure all records are sent
+    producer.flush().await.unwrap();
 
     // Consume last record from topic
     let consumer = fluvio::consumer(TOPIC_NAME, PARTITION_NUM).await.unwrap();
