@@ -7,13 +7,11 @@ messages from the producer, sending messages to the consumer, and replicating th
 per partition** at any point in time. Depending on the cluster and topic configurations, there can be many or zero followers.
 
 Messages get the **order** that the leader observes, and **the reordering is proscribed**. Records order inside the message 
-is kept and can not be changed. Each record gets assigned to a **unique monotonically increased** number called **offset**.
+is kept and cannot be changed. Each record gets assigned to a **unique monotonically increased** number called **offset**.
 
 After a record gets accepted by the leader, it can be in one of two states: COMMITTED or UNCOMMITTED. COMMITTED denotes 
-that all followers have acknowledged the record. More precisely, the record's offset is less or equal to **HW**
-<!-- TODO clarify HW in this context -->
-
-of the partition. If there are no followers in the partition, the state is always COMMITTED once
+that all followers have acknowledged the record. 
+If there are no followers in the partition, the state is always COMMITTED once
 a record gets acknowledged. Records are UNCOMMITTED in all other cases. 
 See more details about [Synchronization Algorithm]({{< ref "/docs/architecture/replica-election#synchronization-algorithm" >}}).
 
@@ -43,7 +41,7 @@ $ fluvio produce greetings --isolation read_uncommitted
 
 If not specified, `ReadUncommitted` isolation is used by default.
 
--> Producer Isolation has no effect if **at-most-once** delivery semantic is used. [Read details]({{< ref "/docs/clients/producer#at-most-once" >}}).
+-> Producer Isolation determines when a successful delivery has been made for **at-least-once** delivery semantic. [Read details]({{< ref "/docs/concepts/delivery-semantics#at-least-once" >}}).
 
 ## Consumer Isolation
 Isolation is a configuration parameter of Consumer that has two values:

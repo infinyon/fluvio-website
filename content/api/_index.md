@@ -56,7 +56,7 @@ is simply an empty array.
 
 Depending on the client, these can be `string` or an array of `bytes`.
 
-Depending on the producer configuration, a `send` call will not send immediately the record to the SPU. `flush` is used to immediately send all the queued records in the producer batches.
+Depending on the producer configuration, a `send` call will not send immediately the record to the SPU. `flush` is used to immediately send all the queued records in the producer batches. Producers should `flush` before terminating to ensure that all records are sent properly.
 
 ## Consumer
 

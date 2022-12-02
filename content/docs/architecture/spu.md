@@ -20,7 +20,7 @@ SPUs have a **public** and a **private** server that are attached to the followi
 
 ## Workflows
 
-The **SPU** is a high performance streaming processing unit that works in unisom with other SPUs to perform the following **core tasks**:
+The **SPU** is a high performance streaming processing unit that works in unison with other SPUs to perform the following **core tasks**:
 
 * manage replicas
 * manage local storage
