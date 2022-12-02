@@ -63,7 +63,7 @@ output.wait().await?; // Producer isolation has no effect unless wait() is calle
 ### At Least Once
 `at-least-once` delivery means that for each record handed to the producer potentially **multiple attempts** are made
 at delivering it, such that at least one succeeds. **This means that messages may be duplicated
-but not lost.** 
+but not lost.**
 
 The producer sends the message with records to the SPU, **waits** for the response and **resends** in case of
 transport errors occur. This delivery method has lower throughput comparing to `at-most-once` but better reliability.
