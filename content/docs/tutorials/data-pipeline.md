@@ -138,7 +138,7 @@ create table animalfacts(length integer, raw_fact_json jsonb)
 
 We also need to run a few commands with `fluvio` to download some prepackaged SmartModules from the SmartModule Hub to attach to the Outbound Connector.
 
-This SmartModule will do a basic mapping of the JSON input into a SQL statement for the Outbound SQL connector
+[This SmartModule]({{<ref "../../smartmodules/certified/json-sql.md">}}) will do a basic mapping of the JSON input into a SQL statement for the Outbound SQL connector
 
 %copy first-line%
 ```shell

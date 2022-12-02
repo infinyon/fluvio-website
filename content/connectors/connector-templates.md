@@ -53,7 +53,7 @@ Default: `0`
 
 Select the partition for Outbound connector to watch
 
-### `producer` Common Inbound connector options
+### `producer` (Common Inbound connector options)
 
 #### `linger`
 Default: `100ms`
@@ -75,6 +75,15 @@ Default: `16KB`
 
 The maximum size of the Inbound connector producer batch size before sending to topic.
 Can be combined with `linger`
+
+### `transforms`
+This is a list that configures the order of execution of SmartModules against your record data.
+
+#### `uses`
+This takes a single value, which is the name of your SmartModule
+
+#### `with`
+This takes multiple `key: value` pass to your SmartModule
 
 ### Connector specific configuration options
 

@@ -8,10 +8,6 @@ connector:
 
 The Kafka Connector is quite simple. It will send every record of a fluvio topic to a kafka cluster for a given kafka topic.
 
-{{<caution>}}
-The Outbound Kafka connector does not currently support SSL
-{{</caution>}}
-
 ## Common config values
 
 %copy%
@@ -50,6 +46,32 @@ option that is specified as a dictonary.
 See: The [Configuration
 properties are from the rdkafka
 options](https://github.com/edenhill/librdkafka/blob/b171d8f411a981c7604a79777ce10245f05280dd/CONFIGURATION.md).
+
+### `security`
+
+#### `security-protocol`
+*optional*
+
+The kafka security protocol.
+
+Currently only supports `SSL`.
+
+## Secrets
+
+### `FLUVIO_KAFKA_CLIENT_KEY`
+*optional*
+
+The SSL key pem text.
+
+### `FLUVIO_KAFKA_CLIENT_CERT`
+*optional*
+
+The SSL cert pem text
+
+### `FLUVIO_KAFKA_CLIENT_CA`
+*optional*
+
+The SSL CA pem text
 
 #### Example connector config
 

@@ -30,7 +30,7 @@ For additional information, checkout:
 Future versions of Fluvio will provide additional programming language bindings, such as:
 
 * <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" target="_blank">Objective-C</a>
-* <a href="https://www.cplusplus.com/" target="_blank">C/C++</a>
+* <a href="https://www.isocpp.org/" target="_blank">C/C++</a>
 
 
 ## Client API

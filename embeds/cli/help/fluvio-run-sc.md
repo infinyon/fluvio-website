@@ -24,6 +24,8 @@ Options:
           TLS: path to ca cert, required when client cert is enabled
       --bind-non-tls-public <BIND_NON_TLS_PUBLIC>
           TLS: address of non tls public service, required
+      --secret-name <SECRET_NAME>
+          Secret name used while adding to kubernetes
       --authorization-scopes <authorization scopes path>
           [env: X509_AUTH_SCOPES=]
       --authorization-policy <authorization policy path>

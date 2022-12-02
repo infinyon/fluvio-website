@@ -12,7 +12,6 @@ Commands:
   switch          Switch to the named profile
   sync            Sync a profile from a cluster
   export          Export a profile for use in other applications
-  help            Print this message or the help of the given subcommand(s)
 
 Options:
   -h, --help  Print help information (use `--help` for more detail)

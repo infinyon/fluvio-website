@@ -16,13 +16,9 @@ version:
 # * http-source
 # * kafka-source
 # * mqtt-source
-# * postgres-source
 #
 # Outbound Connector choices:
-# * dynamodb-sink
 # * kafka-sink
-# * postgres-sink
-# * slack-sink
 # * sql-sink
 #
 type:
@@ -32,14 +28,14 @@ type:
 topic:
 
 # Type specific parameters
-# A list of parameter keys 
+# A list of parameter keys
 # See the individual connector docs
 #
 parameters:
 #  example-param:
 
 # Type specific secrets
-# A list of secret keys 
+# A list of secret keys
 # See individual connector docs
 #
 #secrets:
@@ -58,6 +54,7 @@ parameters:
 #  partition:
 
 # Optional list of transformations
+#
 #transforms:
 #  - uses: smartmodule_name
 #    with:

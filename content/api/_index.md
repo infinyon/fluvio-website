@@ -29,6 +29,10 @@ For generated API Docs visit:
 {{< icon-gopher link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
 </div>
 
+<div style="padding-left: 12px; display: inline">
+{{< icon-elixir link="https://github.com/viniarck/fluvio-ex" external="true">}}
+</div>
+
 ## Connect to Fluvio
 
 The first thing you want to do to use a Fluvio client is connect to the Fluvio
@@ -56,7 +60,7 @@ is simply an empty array.
 
 Depending on the client, these can be `string` or an array of `bytes`.
 
-Depending on the producer configuration, a `send` call will not send immediately the record to the SPU. `flush` is used to immediately send all the queued records in the producer batches.
+Depending on the producer configuration, a `send` call will not send immediately the record to the SPU. `flush` is used to immediately send all the queued records in the producer batches. Producers should `flush` before terminating to ensure that all records are sent properly.
 
 ## Consumer
 
