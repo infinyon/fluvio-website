@@ -12,7 +12,7 @@ Currently, SMDK is limited to the Rust programming language. However, you can be
 
 ##### Prerequisites
 
-SMDK generator will prompt you to [`Install Rust`] on your system, add a Cargo target [`wasm32-unknown-unknown`] for compiling SmartModule Rust code into WebAssembly modules, and install [`cargo-generate`] for generating new Rust SmartModule projects.
+SMDK generator will prompt you to [`Install Rust`] on your system, add a Cargo target `wasm32-unknown-unknown` for compiling SmartModule Rust code into WebAssembly modules, and install [`cargo-generate`] for generating new Rust SmartModule projects.
 
 ### SMDK - Operations
 
@@ -28,7 +28,6 @@ SMDK helps developers build, test in-line, load to local or cloud Cluster, then 
 
 [`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
 [`Install Rust`]: https://www.rust-lang.org/tools/install
-[`wasm32-unknown-unknown`]: https://doc.rust-lang.org/rustc/platform-support/wasm64-unknown-unknown.html
 [`cargo-generate`]: https://github.com/cargo-generate/cargo-generate
 [Install SMDK]: {{< ref "install" >}}
 [Generate a SmartModule]: {{< ref "generate" >}}
