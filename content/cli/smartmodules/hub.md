@@ -54,8 +54,7 @@ The command **fluvio hub list** will list SmartModules and versions available fo
 
 {{% inline-embed file="embeds/cli/help/fluvio-hub-list.md" %}}
 
-The list command shows Smartmodules by **group/package@version** in the SMARTMODULE column. The Visibility column describes if the package is accessible to
-to the public or private.  If package visibility is **private** only your user login can list or download the package. Packages uploaded by InfinyOn will be in the infinyon group.
+The list command shows Smartmodules by **group/package@version** in the SMARTMODULE column. The Visibility column describes if the package is accessible to public or private views.  If package visibility is **private** only your user login can list or download the package. Packages uploaded by InfinyOn will be in the infinyon group.
 
 
 %copy first-line%
@@ -76,7 +75,7 @@ $ fluvio hub list
 
 SmartModule Packages are listed in the hub as in the form of `<group>/<package name>@version`. 
 
-Group `infinyon` packages are published by InfinyOn, the maker of Fluvio.  Third-party developers may also upload public packages which appear in other groups. The Hub service enforces signing and publishing restrictions on uploaded packages. Once a signed package of given group has been published, only the original owner of that package will be accepted into the same group.
+Group `infinyon` packages are published by InfinyOn, the maker of Fluvio.  Third-party developers may also upload public packages which appear in other groups. The Hub service enforces signing and publishing restrictions on uploaded packages. Once a signed package of given group has been published, only the group owner may update that package or add new packages within that group.
 
 ### Private and Public Packages
 
