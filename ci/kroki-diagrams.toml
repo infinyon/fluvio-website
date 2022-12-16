@@ -1,0 +1,7 @@
+# Paths are relative to repo root to support how CI runs this process
+
+[[diagram]]
+input_format = "excalidraw"
+output_format = "svg"
+source = "./reference-sync.excalidraw"
+destination = "./reference-sync.svg"

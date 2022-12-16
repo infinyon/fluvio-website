@@ -1,0 +1,22 @@
+name: Check for diagram updates
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+    paths:
+      - '**.excalidraw'
+
+concurrency:
+  group: diagrams-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  call-workflow-kroki-check:
+    uses: tjtelan/fluvio/.github/workflows/update-diagram.yml@ci-diagrams
+    with:
+      config-path: ./ci/kroki-diagrams.toml

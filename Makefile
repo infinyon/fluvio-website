@@ -43,3 +43,13 @@ run-client-example-java: run-client-example
 run-client-example-python: LANG=python
 run-client-example-python: run-client-example
 
+# Run this first
+install-fluvio-kroki-local:
+	cargo install --git https://github.com/tjtelan/fluvio.git --branch ci-diagrams ci-kroki
+
+check-diagram-local:
+	ci-kroki --batch ./ci/kroki-diagrams.toml --diff-fail --use-public
+
+update-diagram-local:
+	ci-kroki --batch ./ci/kroki-diagrams.toml --use-public
+
