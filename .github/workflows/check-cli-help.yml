@@ -19,6 +19,7 @@ on:
 
 jobs:
   cli-help:
+    name: Check for available CLI help updates
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
