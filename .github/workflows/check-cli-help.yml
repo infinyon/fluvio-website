@@ -1,0 +1,29 @@
+name: Check CLI help
+
+permissions:
+  contents: read
+
+concurrency:
+  group: examples-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - staging
+      - trying
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+  # TODO: Add schedule to check against latest
+
+jobs:
+  cli-help:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Fluvio CLI
+        run: |
+          curl -fsS https://packages.fluvio.io/v1/install.sh | VERSION=latest bash
+          echo "$HOME/.fluvio/bin" >> $GITHUB_PATH
+      - name: Run CLI help text script
+        run: make update-cli-help
