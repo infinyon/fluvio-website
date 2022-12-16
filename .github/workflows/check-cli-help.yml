@@ -25,7 +25,8 @@ jobs:
         run: |
           curl -fsS https://packages.fluvio.io/v1/install.sh | bash
           echo "$HOME/.fluvio/bin" >> $GITHUB_PATH
-          fluvio install smdk
+      - name: Install SMDK
+        run: fluvio install smdk
       - name: Run CLI help text script
         run: make update-cli-help
       # This step will evaluate the repo status and report the change
