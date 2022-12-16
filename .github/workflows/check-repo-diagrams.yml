@@ -12,7 +12,7 @@ on:
       - '**.excalidraw'
 
 concurrency:
-  group: diagrams-${{ github.ref }}
+  group: website-diagrams-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
