@@ -21,6 +21,7 @@ jobs:
   cli-help:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Install Fluvio CLI
         run: |
           curl -fsS https://packages.fluvio.io/v1/install.sh | bash
