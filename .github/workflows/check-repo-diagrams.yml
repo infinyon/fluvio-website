@@ -19,4 +19,5 @@ jobs:
   call-workflow-kroki-check:
     uses: tjtelan/fluvio/.github/workflows/update-diagram.yml@ci-diagrams
     with:
-      config-path: ./ci/kroki-diagrams.toml
+      # This is a hack. Fix once this is working
+      config-path: ../ci/kroki-diagrams.toml
