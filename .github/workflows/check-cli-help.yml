@@ -32,4 +32,4 @@ jobs:
       - name: Run CLI help text script
         run: make update-cli-help
       - name: Check for uncommitted changes
-        run: git diff --name-only --exit-code
+        run: git diff --exit-code
