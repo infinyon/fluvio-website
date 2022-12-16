@@ -4,7 +4,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: examples-${{ github.ref }}
+  group: cli-help-${{ github.ref }}
   cancel-in-progress: true
 
 on:
