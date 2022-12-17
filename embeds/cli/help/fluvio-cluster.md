@@ -9,6 +9,7 @@ Commands:
   spu          Manage and view Streaming Processing Units (SPUs)
   spg          Manage and view SPU Groups (SPGs)
   diagnostics  Collect anonymous diagnostic information to help with debugging
+  status       Check the status of a Fluvio cluster
 Options:
   -h, --help  Print help information
 ```
