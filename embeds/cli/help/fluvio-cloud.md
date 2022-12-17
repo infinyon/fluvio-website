@@ -1,12 +1,9 @@
 ```
 fluvio-cloud 
-
 USAGE:
     fluvio-cloud <SUBCOMMAND>
-
 OPTIONS:
     -h, --help    Print help information
-
 SUBCOMMANDS:
     cluster      View Cluster information
     connector    View Fluvio Connector information

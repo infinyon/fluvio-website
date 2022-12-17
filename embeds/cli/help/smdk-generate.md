@@ -1,11 +1,8 @@
 ```
 Generates a new SmartModule Project
-
 Usage: smdk generate [OPTIONS] [NAME]
-
 Arguments:
   [NAME]  SmartModule Project Name
-
 Options:
       --project-group <GROUP>  SmartModule Project Group Name. Default to Hub ID, if set. Overrides
                                Hub ID if provided [env: SMDK_PROJECT_GROUP=]

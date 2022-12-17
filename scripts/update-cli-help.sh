@@ -2,8 +2,8 @@
 
 THIS_SCRIPT_DIR=$(dirname $0)
 
-FORMATTER_CMD="pr -t -w"
-COLUMNS=120
+FORMATTER_CMD="column -c"
+COLUMNS=80
 
 CLI_COMMANDS_YML=$(realpath "${THIS_SCRIPT_DIR}/../data/cli-commands.yml")
 OUTPUT_DIR=$(realpath "${THIS_SCRIPT_DIR}/../embeds/cli/help")

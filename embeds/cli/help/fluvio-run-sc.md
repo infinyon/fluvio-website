@@ -1,8 +1,6 @@
 ```
 Run a new Streaming Controller (SC)
-
 Usage: fluvio-run sc [OPTIONS]
-
 Options:
       --local
           running in local mode only
@@ -11,7 +9,6 @@ Options:
       --bind-private <BIND_PRIVATE>
           Address for internal service
   -n, --namespace <namespace>
-          
       --tls
           enable tls
       --server-cert <SERVER_CERT>

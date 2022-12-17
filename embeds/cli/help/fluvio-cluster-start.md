@@ -1,8 +1,6 @@
 ```
 Install Fluvio cluster
-
 Usage: fluvio cluster start [OPTIONS]
-
 Options:
       --develop
           use local image
@@ -31,7 +29,6 @@ Options:
       --spu-storage-size <SPU_STORAGE_SIZE>
           set spu storage size [default: 10]
       --skip-profile-creation
-          
       --spu <SPU>
           number of SPU [default: 1]
       --rust-log <RUST_LOG>
@@ -57,7 +54,6 @@ Options:
       --server-key <SERVER_KEY>
           TLS: path to server private key
       --authorization-config-map <AUTHORIZATION_CONFIG_MAP>
-          
       --skip-checks
           Whether to skip pre-install checks, defaults to false
       --setup

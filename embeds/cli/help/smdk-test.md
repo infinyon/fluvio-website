@@ -1,11 +1,8 @@
 ```
 Test SmartModule
-
 Usage: smdk test [OPTIONS] [KEY]
-
 Arguments:
   [KEY]  Key to use with the test record(s)
-
 Options:
       --text <TEXT>
           Provide test input with this flag

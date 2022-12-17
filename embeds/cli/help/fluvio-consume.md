@@ -1,11 +1,8 @@
 ```
 Read messages from a topic/partition
-
 Usage: fluvio consume [OPTIONS] <topic>
-
 Arguments:
   <topic>  Topic name
-
 Options:
   -p, --partition <integer>
           Partition id [default: 0]
