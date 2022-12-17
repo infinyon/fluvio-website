@@ -16,8 +16,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  output-hack:
+    runs-on: ubuntu-latest
+    outputs:
+      workspace: ${{ steps.repo.outputs.workspace }}
+    steps:
+      - id: repo
+        run: echo "workspace=$GITHUB_WORKSPACE" >> $GITHUB_OUTPUT
+
   call-workflow-kroki-check:
     uses: tjtelan/fluvio/.github/workflows/update-diagram.yml@ci-diagrams
+    needs: output-hack
     with:
-      base-path: ${{ env.GITHUB_WORKSPACE }}
+      base-path: ${{ needs.output-hack.outputs.workspace }}
       config-path: ./ci/kroki-diagrams.toml
