@@ -34,7 +34,7 @@ Options:
       --rust-log <RUST_LOG>
           RUST_LOG options
       --log-dir <LOG_DIR>
-          log dir [default: /usr/local/var/log/fluvio]
+          log dir [default: /tmp]
       --sys-only
           installing/upgrade sys only
       --local
