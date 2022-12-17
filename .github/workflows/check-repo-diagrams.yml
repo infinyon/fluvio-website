@@ -19,5 +19,5 @@ jobs:
   call-workflow-kroki-check:
     uses: tjtelan/fluvio/.github/workflows/update-diagram.yml@ci-diagrams
     with:
-      base-path: ${{ runner.temp }}
+      base-path: ${{ env.GITHUB_WORKSPACE }}
       config-path: ./ci/kroki-diagrams.toml
