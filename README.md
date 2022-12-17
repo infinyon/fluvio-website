@@ -27,3 +27,5 @@ Hugo watches for file changes and automatically updates website.
 
 * `stable` updates [fluvio.io](https://fluvio.io)
 * `master` updates [nightly.fluvio.io](https://nightly.fluvio.io)
+
+![](./reference-sync.svg)
