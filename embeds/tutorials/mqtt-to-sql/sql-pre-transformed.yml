@@ -1,26 +1,26 @@
 # sql-chain.yml
 name: fluvio-sql-connector-chain
 type: sql-sink
-version: 0.1.0
+version: 0.1.1
 topic: mqtt-topic
 create-topic: true
 parameters:
-  database-url: 'postgres://user:password@db.postgreshost.example/dbname'
-  rust_log: 'sql_sink=INFO,sqlx=WARN'
+  database-url: "postgres://user:password@db.postgreshost.example/dbname"
+  rust_log: "sql_sink=INFO,sqlx=WARN"
 transforms:
   - uses: infinyon/json-sql@0.1.0
     with:
       mapping:
-        table: 'topic_message'
+        table: "topic_message"
         map-columns:
-          'device_id':
-            json-key: 'device.device_id'
+          "device_id":
+            json-key: "device.device_id"
             value:
-              type: 'int'
-              default: '0'
+              type: "int"
+              default: "0"
               required: true
-          'record':
-            json-key: '$'
+          "record":
+            json-key: "$"
             value:
-              type: 'jsonb'
+              type: "jsonb"
               required: true

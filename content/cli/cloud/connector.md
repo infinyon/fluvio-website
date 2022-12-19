@@ -63,7 +63,7 @@ $ fluvio cloud connector config cat-facts
 name: cat-facts
 type: http-source
 topic: cat-facts
-version: 0.4.1
+version: 0.4.2
 parameters:
   endpoint: https://catfact.ninja/fact
   interval: 10s

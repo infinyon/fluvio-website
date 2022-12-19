@@ -116,7 +116,7 @@ For this example, we would add `map` to the `parameters` section, like so:
 %copy%
 ```yaml
 # connect.yml
-version: 0.4.1
+version: 0.4.2
 name: cat-facts
 type: http-source
 topic: cat-facts
@@ -127,7 +127,7 @@ parameters:
   map: "catfact-map"
 ```
 
-Followed by launching it with `fluvio connector`:
+Followed by launching it with `fluvio cloud connector`:
 
 %copy first-line%
 ```bash
