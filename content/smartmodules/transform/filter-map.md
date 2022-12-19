@@ -58,6 +58,7 @@ fluvio-smartmodule-cargo-dependency => '"0.3.0"'
 🔧   Generating template ...
 ✔ 🤷   Will your SmartModule use init parameters? · false
 ✔ 🤷   Which type of SmartModule would you like? · filter-map
+✔ 🤷   Will your SmartModule be public? · false
 Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmp5Yi3lU/cargo-generate.toml
 [1/5]   Done: Cargo.toml
 [2/5]   Done: README.md

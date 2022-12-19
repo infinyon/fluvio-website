@@ -54,16 +54,18 @@ The command **fluvio hub list** will list SmartModules and versions available fo
 
 {{% inline-embed file="embeds/cli/help/fluvio-hub-list.md" %}}
 
-The list command shows Smartmodules by **group/package@version**. Packages uploaded by InfinyOn will be in the
-infinyon group.
+The list command shows Smartmodules by **group/package@version** in the SMARTMODULE column. The Visibility column describes if the package is accessible to public or private views.  If package visibility is **private** only your user login can list or download the package. Packages uploaded by InfinyOn will be in the infinyon group.
+
 
 %copy first-line%
 ```bash
 $ fluvio hub list 
 
-SMARTMODULE                    
-infinyon/json-sql@0.1.0        
-infinyon/regex-filter2@0.1.0 
+  SMARTMODULE                  Visibility 
+  mypriv/foo-priv@0.1.1        private    
+  infinyon/jolt@0.1.0          public     
+  infinyon/json-sql@0.1.0      public     
+  infinyon/regex-filter@0.1.0  public
 ...
 
 ```
@@ -73,9 +75,18 @@ infinyon/regex-filter2@0.1.0
 
 SmartModule Packages are listed in the hub as in the form of `<group>/<package name>@version`. 
 
-Group `infinyon` packages are published by InfinyOn, the maker of Fluvio.  Third-party developers may also upload public packages which appear in other groups. The Hub service enforces signing and publishing restrictions on uploaded packages. Once a signed package of given group has been published, only the original signing key will be accepted for other packages in the same group.
+Group `infinyon` packages are published by InfinyOn, the maker of Fluvio.  Third-party developers may also upload public packages which appear in other groups. The Hub service enforces signing and publishing restrictions on uploaded packages. Once a signed package of given group has been published, only the group owner may update that package or add new packages within that group.
 
-Currently all packages are public, private package upload is in development.
+### Private and Public Packages
+
+Published packages are by default private. In order to make a published package publically available, the package should be set to public. The cli method to do this is below:
+
+```bash
+cd smartmodule-dev-dir
+smdk set-public
+```
+
+After the package is set to public, any publish will ask to verify the publish operation. Once a package version is publically published, the package cannot revoked.
 
 
 
