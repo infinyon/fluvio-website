@@ -45,7 +45,7 @@ the file:
 %copy%
 ```yaml
 # connect.yml
-version: 0.3.0
+version: 0.4.2
 name: github-repo
 type: http-source
 topic: github-repo

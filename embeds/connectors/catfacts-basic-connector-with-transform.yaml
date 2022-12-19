@@ -1,5 +1,5 @@
 # catfacts-basic-connector-with-transform.yml
-version: 0.4.1
+version: 0.4.2
 name: cat-facts-transformed
 type: http-source
 topic: cat-facts-data-transformed
@@ -15,4 +15,3 @@ transforms:
         - operation: default
           spec:
             source: "http"
-

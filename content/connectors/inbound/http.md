@@ -25,7 +25,7 @@ type: http-source
 
 %copy%
 ```yaml
-version: 0.4.1
+version: 0.4.2
 ```
 
 ## Parameters
@@ -43,7 +43,7 @@ The HTTP endpoint to send requests to
 The body to use in the HTTP request to the endpoint
 
 ### `user_agent`
-default: `fluvio/http-source 0.1.0`
+default: `fluvio/http-source X.Y.Z`
 
 The HTTP User-Agent request header used in the HTTP request.
 
