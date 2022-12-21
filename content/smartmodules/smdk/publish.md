@@ -18,7 +18,7 @@ Navigate to your `my-filter` directory and use the `publish` command:
 %copy first-line%
 ```bash
 $ smdk publish
-Creating package aj/my-filter@0.1.0
+Creating package john/my-filter@0.1.0
 .. fill out info in hub/package-meta.yaml
 Package hub/my-filter-0.1.0.ipkg created
 Package uploaded!
@@ -31,8 +31,9 @@ Ensure that your SmartModule has been uploaded to the [Hub]:
 %copy first-line%
 ```bash
 $ fluvio hub list
-  SMARTMODULE                    
-  aj/my-filter@0.1.0                    
+  SMARTMODULE                 Visibility 
+  john/my-filter@0.1.0        private    
+  ...
 ```
 
 The SmartMoudule is now available for [download] by anyone with access to the `[Hub]`.

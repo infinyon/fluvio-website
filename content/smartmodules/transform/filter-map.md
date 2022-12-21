@@ -266,8 +266,9 @@ Let's double check that the SmartModule is available for download:
 %copy first-line%
 ```bash
 $ fluvio hub list
-  SMARTMODULE                    
-  john/filter-map@0.1.0         
+  SMARTMODULE                 Visibility 
+  john/filter-map@0.1.0        private    
+  ...
 ```
 
 Congratulations! :tada: Your SmartModule is now available for download in the SmartModule Hub.

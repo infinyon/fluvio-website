@@ -41,10 +41,10 @@ Listing Hub SmartModule from the CLI is staright forward:
 %copy first-line%
 ```bash
 $ fluvio hub list
-  SMARTMODULE                    
-  infinyon/jolt@0.1.0            
-  infinyon/regex-filter@0.1.2    
-  infinyon/json-sql@0.1.0
+  SMARTMODULE                  Visibility 
+  infinyon/jolt@0.1.0          public     
+  infinyon/json-sql@0.1.0      public     
+  infinyon/regex-filter@0.1.0  public
   ...
 ```
 
