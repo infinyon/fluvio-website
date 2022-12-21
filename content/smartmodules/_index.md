@@ -13,13 +13,8 @@ SmartModules are programmable data streaming functions exposed to WebAssembly, a
 #### Certified SmartModules Examples
 
 InfinyOn Certified SmartModules published in the [SmartModule Hub]:
-<<<<<<< HEAD
-* [Jolt] - JSON to JSON tranformation
-* [Json-Sql] - JSON to SQL tranformation
-=======
 * [Jolt] - JSON to JSON transformation
 * [Json-Sql] - JSON to SQL transformation
->>>>>>> master
 * RegEx - Regex filtering
 
 #### Pipelines with SmartModules Examples
