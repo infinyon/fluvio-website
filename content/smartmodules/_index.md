@@ -55,12 +55,12 @@ Commands:
 #### Publish to SmartModule Hub
 * [SmartModule Hub]
 
-#### Data Streaming APIs available in SmartModules
-* [Filter]
-* [Map]
-* [FilterMap]
-* [ArrayMap]
-* [Aggregate]
+APIs to build your own SmartModules:
+* [Transform]
+* [Analytics]
+
+InfinyOn Certified SmartModules published in the [SmartModule Hub]:
+* [Jolt]
 
 
 [SmartModule Development Kit (SMDK)]: {{< ref "/smartmodules/smdk/overview" >}}
@@ -71,6 +71,5 @@ Commands:
 [ArrayMap]:  {{< ref "/smartmodules/transform/array-map" >}}
 [Aggregate]:  {{< ref "/smartmodules/analytics/aggregate" >}}
 [Jolt]:  {{< ref "/smartmodules/certified/jolt" >}}
-[Json-Sql]:  {{< ref "/smartmodules/certified/json-sql" >}}
 [Build HTTP to SQL Pipeline]: {{<ref "/docs/tutorials/data-pipeline.md" >}}
 [Build MQTT to SQL Pipeline]: {{<ref "/docs/tutorials/mqtt-to-sql.md" >}}
