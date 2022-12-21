@@ -48,6 +48,7 @@ fluvio-smartmodule-cargo-dependency => '"0.3.0"'
 🔧   Generating template ...
 ✔ 🤷   Will your SmartModule use init parameters? · false
 ✔ 🤷   Which type of SmartModule would you like? · array-map
+✔ 🤷   Will your SmartModule be public? · false
 Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmp4imt4g/cargo-generate.toml
 [1/5]   Done: Cargo.toml
 [2/5]   Done: README.md
@@ -219,8 +220,9 @@ Let's double check that the SmartModule is available for download:
 %copy first-line%
 ```bash
 $ fluvio hub list
-  SMARTMODULE                    
-  john/array-map@0.1.0      
+  SMARTMODULE                 Visibility 
+  john/array-map@0.1.0        private    
+  ...
 ```
 
 Congratulations! :tada: Your SmartModule is now available for download in the SmartModule Hub.

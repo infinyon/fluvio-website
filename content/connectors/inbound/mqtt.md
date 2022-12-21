@@ -21,7 +21,7 @@ type: mqtt-source
 
 %copy%
 ```yaml
-version: 0.5.1
+version: 0.5.2
 ```
 
 ## Parameters

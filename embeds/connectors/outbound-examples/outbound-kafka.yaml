@@ -1,7 +1,6 @@
 name: my-outbound-kafka
 type: kafka-sink
-topic: fluvio-output-topic
-version: 0.3.1
+version: 0.3.2
 parameters:
   kafka-url: kafka-ssl.host.tld:9092
   security-protocol: 'SSL'

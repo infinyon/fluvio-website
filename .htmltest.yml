@@ -5,6 +5,8 @@ IgnoreURLs:
   - 'twitter.com'
   # Comment Github out once in a while outside of CI
   - 'github.com'
+  - 'crates.io'
+  - 'python.org'
 
 HTTPHeaders:
   'Accept': 'text/html'

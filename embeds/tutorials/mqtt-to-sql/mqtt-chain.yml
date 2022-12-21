@@ -1,12 +1,12 @@
 # mqtt.yml
-version: 0.5.1
+version: 0.5.2
 name: fluvio-mqtt-connector
 type: mqtt-source
 topic: mqtt-topic
 direction: source
 create-topic: true
 parameters:
-  mqtt_topic: 'ag-mqtt-topic'
+  mqtt_topic: "ag-mqtt-topic"
   payload_output_type: json
 secrets:
   MQTT_URL: mqtt://test.mosquitto.org/
@@ -17,8 +17,8 @@ transforms:
         - operation: shift
           spec:
             payload:
-              device: 'device'
+              device: "device"
         - operation: default
           spec:
             device:
-              type: 'mobile'
+              type: "mobile"
