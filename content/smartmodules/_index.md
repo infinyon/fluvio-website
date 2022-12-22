@@ -13,8 +13,8 @@ SmartModules are programmable data streaming functions exposed to WebAssembly, a
 #### Certified SmartModules Examples
 
 InfinyOn Certified SmartModules published in the [SmartModule Hub]:
-* [Jolt] - JSON to JSON transformation
-* [Json-Sql] - JSON to SQL transformation
+* [Jolt] - JSON to JSON tranformation
+* [Json-Sql] - JSON to SQL tranformation
 * RegEx - Regex filtering
 
 #### Pipelines with SmartModules Examples
@@ -71,5 +71,6 @@ Commands:
 [ArrayMap]:  {{< ref "/smartmodules/transform/array-map" >}}
 [Aggregate]:  {{< ref "/smartmodules/analytics/aggregate" >}}
 [Jolt]:  {{< ref "/smartmodules/certified/jolt" >}}
+[Json-Sql]:  {{< ref "/smartmodules/certified/json-sql" >}}
 [Build HTTP to SQL Pipeline]: {{<ref "/docs/tutorials/data-pipeline.md" >}}
 [Build MQTT to SQL Pipeline]: {{<ref "/docs/tutorials/mqtt-to-sql.md" >}}
