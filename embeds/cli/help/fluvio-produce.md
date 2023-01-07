@@ -1,11 +1,8 @@
 ```
 Write messages to a topic/partition
-
 Usage: fluvio produce [OPTIONS] <topic>
-
 Arguments:
   <topic>  The name of the Topic to produce to
-
 Options:
   -v, --verbose
           Print progress output when sending records

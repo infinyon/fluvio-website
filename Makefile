@@ -43,3 +43,5 @@ run-client-example-java: run-client-example
 run-client-example-python: LANG=python
 run-client-example-python: run-client-example
 
+update-cli-help:
+	./scripts/update-cli-help.sh

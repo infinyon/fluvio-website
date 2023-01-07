@@ -1,13 +1,10 @@
 ```
 fluvio-cloud-connector 
 View Fluvio Connector information
-
 USAGE:
     fluvio-cloud connector <SUBCOMMAND>
-
 OPTIONS:
     -h, --help    Print help information
-
 SUBCOMMANDS:
     config    Show the connector configuration details
     create    Create a new Connector
