@@ -1,4 +1,4 @@
-FROM rust:1.65.0
+FROM rust:1.66.0
 
 # Run as the `fluvio` user instead of root
 ENV USER=fluvio
