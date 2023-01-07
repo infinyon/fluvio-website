@@ -13,6 +13,8 @@ $  fluvio cloud connector -h
 
 {{% inline-embed file="embeds/cli/help/fluvio-cloud-connector.md" %}}
 
+-> For more info about using connectors, see the [Connectors page]({{<ref "/connectors">}}). The available connector types are listed under the *Inbound* and *Outbound* sections.
+
 ---
 
 ## `fluvio cloud connector create`
