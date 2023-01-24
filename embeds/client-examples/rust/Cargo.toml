@@ -9,4 +9,4 @@ version = "0.0.0"
 [dependencies]
 async-std = {version = "1", features = ["attributes"]}
 chrono = "0.4"
-fluvio = "0.15"
+fluvio = "0.16"
