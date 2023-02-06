@@ -1,6 +1,6 @@
 ---
 title: Python Examples
-menu: Examples 
+menu: Examples
 weight: 20
 ---
 
@@ -29,6 +29,12 @@ Follow the [installation instructions]({{< ref "installation.md" >}}) to run thi
 ```shell
 $ python hello-python.py
 ```
+
+## Example with a SmartModule
+
+
+{{<code file="embeds/client-examples/python/hello-python-smartmodule.py" lang="python" copy=true >}}
+
 
 ## Links to Docs:
 * [Connect to Fluvio](https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.connect)
