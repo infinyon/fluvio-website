@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
 
     # Create a ConsumerConfig using your "uppercase-map" smartmodule
-    config = ConsumerCoonfig()
+    config = ConsumerConfig()
     config.smartmodule(name="uppercase-map")
 
     for record in consumer.stream_with_config(Offset.from_end(0), config):
