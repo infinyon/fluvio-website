@@ -2,37 +2,30 @@
 title: Outbound SQL Connector 
 menu: SQL 
 connector:
-  name: "infinyon/fluvio-connect-sql-sink"
-  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sinks/sql"
+  name: "Source"
+  link: "https://github.com/infinyon/sql-connector"
 ---
 
--> SQL Connector is a preview with support for SmartModule chaining through `transforms`.<br>See [HTTP-to-SQL]({{<ref "/docs/tutorials/data-pipeline.md" >}}) and [MQTT-to-SQL]({{<ref "/docs/tutorials/mqtt-to-sql.md">}}) for examples of this connector in action.
+The SQL Sink connector reads records from Fluvio topic, applies configured transformations, and 
+sends new records to the SQL database (via `INSERT` statements). 
 
-The Outbound SQL connector supports PostgreSQL and SQLite databases.
+Supported databases
 
-## Common config values
+1. PostgreSQL
+2. SQLite
 
-%copy%
-```yaml
-type: sql-sink
-```
 
-%copy%
-```yaml
-version: 0.1.1
-```
+## Basic example:
 
-## Parameters
+{{<code file="embeds/connectors/outbound-examples/outbound-sql.yaml" lang="yaml" copy=true >}}
 
-### `database_url`
-*required*
+## Configuration
+| Option       | default | type   | description                                           |
+|:-------------|:--------| :---   |:------------------------------------------------------|
+| url          |    -    | String | SQL database conection url                            |
 
-The connection string for a PostgreSQL or SQLite database
 
 ### Data types
-
-This is the a table of what input types map to in PostgreSQL and SQLite
-
 | Model           | PostgreSQL                   | SQLite       |                                          
 |:----------------|:-----------------------------|:-------------|
 | Bool            | BOOL                         | BOOLEAN      |
@@ -51,59 +44,49 @@ This is the a table of what input types map to in PostgreSQL and SQLite
 | Uuid            | UUID                         | BLOB, TEXT   |
 | Json            | JSON, JSONB                  | TEXT         |
 
-## Transforms
-*required*
+## Transformations
+The SQL Sink connector expects the data in [Fluvio SQL Model](./crates/fluvio-model-sql/README.md) in JSON format.
+In order to work with different data formats or data structures, [transformations](https://github.com/infinyon/fluvio-connectors/blob/main/rust-connectors/common/README.md#transforms) can be applied.
+The transformation is a SmartModule pulled from the SmartModule Hub. Transformations are chained according to the order
+in the config. If a SmartModule requires configuration, it is passed via `with` section of `transforms` entry. 
 
-### Uses
-This is the name of a SmartModules from the SmartModule Hub.
+## Usage Example
+Let's look at the example of the connector with one transformation named [infinyon/json-sql](https://github.com/infinyon/fluvio-connectors/blob/main/smartmodules/json-sql/README.md). The transformation takes
+records in JSON format and creates SQL insert operation to `topic_message` table. The value from `device.device_id`
+JSON field will be put to `device_id` column and the entire json body to `record` column.
 
-`<group>/<SmartModuleName>@<version>`
-
-### Invoke
-This is the action 
-
-Choices:
-- `insert`
-- `map`
-
-### With 
-These are parameters to the SmartModule
-
-## Example
-
-Transform with [Jolt SmartModule](https://github.com/infinyon/fluvio-connectors/blob/308ca0ec6e195210a86724ff8b0a32f6897c7b93/smartmodules/jolt/)
-```yaml
-  - uses: infinyon/jolt@0.1.0
-    invoke: insert
-    with:
-      spec:
-        - operation: shift
-          spec:
-            payload:
-              device: 'device'
-        - operation: default
-          spec:
-            device:
-              type: 'mobile'
+The JSON record:
+```json
+{
+  "device": {
+    "device_id": 1
+  }
+}
 ```
 
-Transform with [json-sql SmartModule](https://github.com/infinyon/fluvio-connectors/blob/308ca0ec6e195210a86724ff8b0a32f6897c7b93/smartmodules/json-sql)
-```yaml
-  - uses: infinyon/json-sql@0.1.0
-    invoke: insert
-    with:
-      mapping:
-        table: 'topic_message'
-        map-columns:
-          'device_id':
-            json-key: 'device.device_id'
-            value:
-              type: 'int'
-              default: '0'
-              required: true
-          'record':
-            json-key: '$'
-            value:
-              type: 'jsonb'
-              required: true
+The SQL database (Postgres):
 ```
+CREATE TABLE topic_message (device_id int, record json);
+```
+
+Connector configuration file:
+
+{{<code file="embeds/connectors/outbound-examples/outbound-sql-transformation.yaml" lang="yaml" copy=true >}}
+
+
+You can use Fluvio `cdk` tool to deploy the connector:
+```bash
+fluvio install cdk
+```
+and then:
+```bash
+cdk deploy start --config connector-config.yaml
+```
+To delete the connector run:
+```bash
+cdk deploy shutdown --config connector-config.yaml
+
+```
+After you run the connector you will see records in your database table.
+
+See more in our [Build MQTT to SQL Pipeline](https://www.fluvio.io/docs/tutorials/mqtt-to-sql/) and [Build HTTP to SQL Pipeline](https://www.fluvio.io/docs/tutorials/data-pipeline/) tutorials.

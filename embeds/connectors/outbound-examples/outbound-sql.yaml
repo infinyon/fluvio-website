@@ -1,24 +1,8 @@
-name: fluvio-sql-connector
-type: sql-sink
-version: 0.1.1
-topic: json-topic
-create-topic: true
-parameters:
-  database-url: "postgresql://db_user:db_pass@db.host.com/db_name"
-transforms:
-  - uses: infinyon/json-sql@0.1.0
-    with:
-      mapping:
-        table: "db_tablename"
-        map-columns:
-          "device_id":
-            json-key: "payload.device.device_id"
-            value:
-              type: "int"
-              default: "0"
-              required: true
-          "record":
-            json-key: "$"
-            value:
-              type: "jsonb"
-              required: true
+meta:
+  version: latest
+  name: my-sql-connector
+  type: sql-sink
+  topic: sql-topic
+  create-topic: true
+sql:
+  url: "postgresql://USERNAME:PASSWORD@HOST:PORT/DB_NAME"

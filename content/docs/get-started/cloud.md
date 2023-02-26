@@ -14,7 +14,7 @@ The Fluvio CLI (_command-line interface_) is an all-in-one tool for setting up, 
 
 Install the Fluvio CLI by running the following command:
 
-{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
+{{% inline-embed file="embeds/cli/install/fluvio-cli-curl.md" %}}
 
 ## Creating an InfinyOn Cloud account
 

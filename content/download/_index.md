@@ -7,7 +7,7 @@ title: Download Fluvio
 {{< h-item tabNum="1">}}
 {{<download-card>}}
 
-{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
+{{% inline-embed file="embeds/cli/install/fluvio-cli-curl.md" %}}
 
 #### Linux
 
@@ -24,7 +24,7 @@ Copy the command above into your terminal to install Fluvio CLI
 {{< h-item tabNum="2">}}
 {{<download-card>}}
 
-{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
+{{% inline-embed file="embeds/cli/install/fluvio-cli-curl.md" %}}
 
 #### MacOS
 Copy the command above into your terminal to install Fluvio CLI
@@ -39,7 +39,7 @@ Copy the command above into your terminal to install Fluvio CLI
 {{< h-item tabNum="3">}}
 {{<download-card>}}
 
-{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
+{{% inline-embed file="embeds/cli/install/fluvio-cli-curl.md" %}}
 
 #### Raspberry Pi
 

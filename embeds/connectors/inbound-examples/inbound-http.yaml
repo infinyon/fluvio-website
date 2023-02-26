@@ -1,10 +1,10 @@
-version: 0.4.2
-name: cat-facts
-type: http-source
-topic: cat-facts
-parameters:
-  endpoint: https://catfact.ninja/fact
-  method: GET
-  body: ""
-  interval: 300
-  output_parts: body
+# config-example.yaml
+meta:
+  version: latest
+  name: cat-facts
+  type: http-source
+  topic: cat-facts
+  create-topic: true
+http:
+  endpoint: "https://catfact.ninja/fact"
+  interval: 10s

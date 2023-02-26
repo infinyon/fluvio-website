@@ -7,7 +7,7 @@ weight: 40
 The Fluvio CLI may be used to produce and consume data from a Raspberry Pi.
 To get started, use the installation script below:
 
-{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
+{{% inline-embed file="embeds/cli/install/fluvio-cli-curl.md" %}}
 
 We do not support running a Fluvio Cluster on Raspberry Pi, so in order
 to stream data we'll need to connect to an existing cluster. The best way

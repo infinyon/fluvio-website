@@ -2,8 +2,8 @@
 title: Inbound MQTT Connector
 menu: MQTT
 connector:
-  name: "infinyon/fluvio-connect-mqtt-source"
-  link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/mqtt"
+  name: "Source"
+  link: "https://github.com/infinyon/mqtt-connector"
 ---
 
 MQTT is a publish/subscribe protocol that allows clients to listen to a stream
@@ -12,62 +12,30 @@ of events produced to a server.
 It is widely used in real-time and IoT applications
 since it is lightweight and easy to use.
 
-## Common config values
+-> Supports MQTT V3.1.1 and V5 protocols
 
-%copy%
-```yaml
-type: mqtt-source
-```
-
-%copy%
-```yaml
-version: 0.5.2
-```
-
-## Parameters
-
-The inbound MQTT connector supports the following configuration options:
-
-### `mqtt-url`
-*required*
-
-The hostname of the MQTT server to subscribe to
-
-This value can be provided as a parameter or as a secret
-
-### `mqtt-topic`
-*required*
-
-The topic filter to use when receiving MQTT events
-
-#### Example connector config
+## Example config
 
 {{<code file="embeds/connectors/inbound-examples/inbound-mqtt.yaml" lang="yaml" copy=true >}}
 
-## Data Events
+## Configuration
+| Option              | default  | type           | description                                                                                                                                          |
+|:--------------------|:---------|:---------      |:-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| timeout             | 60s      | Duration       | mqtt broker connect timeout in seconds and nanoseconds                                                                                               |
+| url                 | -        | SecretString   | MQTT url which includes schema, domain, port and credentials such as username and password.                                                          |
+| topic               | -        | String         | mqtt topic to subscribe and source events from                                                                                                       |
+| client_id           | UUID V4  | String         | mqtt client ID                                                                                                                                       |
+| payload_output_type | binary   | String         | controls how the output of `payload` field is produced                                                                                               |
 
-There are two important pieces of information that we're interested in capturing from
-every MQTT event.
 
-1. The topic the event was sent to
-2. The body of the event
+### Transformations
+Fluvio MQTT Source Connector supports [Transformations](https://www.fluvio.io/docs/concepts/transformations-chain/). Records can be modified before sending to Fluvio topic.
 
-In MQTT, topics are more of a label for particular message types. When we specify a
-`mqtt-topic` to subscribe to, we are actually defining a "filter", or a pattern that
-tells MQTT which events we are interested in receiving.
+The previous example can be extended to add extra transformations to outgoing records:
 
-This means that events we receive
-may not all belong to the same topic - rather, they all match the filter we provided.
+{{<code file="embeds/connectors/inbound-examples/inbound-mqtt-transformation.yaml" lang="yaml" copy=true >}}
 
-The result of the event message body produced to Fluvio by the inbound MQTT connector is a JSON object containing:
-* MQTT topic name
-* MQTT message body
+The object `device` in the resulting record will be "unwrapped" and the addition field `source` with value `mqtt-connector`
+will be added.
 
-Furthermore, since MQTT allows events to contain arbitrary
-binary data, the payload is encoded as a byte buffer.
-
-Below is a sample of what an MQTT event captured and sent to Fluvio looks like:
-
-```json
-{"mqtt_topic":"/hfp/v2/journey/ongoing/vp/bus/0022/01151/2200/1/Espoon keskus/23:02/1160105/4/60;24/29/00/00","payload":[123,34,86,80,34,58,123,34,100,101,115,105,34,58,34,50,48,48,34,44,34,100,105,114,34,58,34,49,34,44,34,111,112,101,114,34,58,50,50,44,34,118,101,104,34,58,49,49,53,49,44,34,116,115,116,34,58,34,50,48,50,49,45,49,49,45,49,56,84,50,49,58,49,51,58,51,50,46,56,56,52,90,34,44,34,116,115,105,34,58,49,54,51,55,50,55,48,48,49,50,44,34,115,112,100,34,58,49,50,46,54,55,44,34,104,100,103,34,58,51,51,55,44,34,108,97,116,34,58,54,48,46,50,48,48,49,53,55,44,34,108,111,110,103,34,58,50,52,46,57,48,48,50,49,53,44,34,97,99,99,34,58,45,48,46,49,49,44,34,100,108,34,58,45,55,53,44,34,111,100,111,34,58,110,117,108,108,44,34,100,114,115,116,34,58,110,117,108,108,44,34,111,100,97,121,34,58,34,50,48,50,49,45,49,49,45,49,56,34,44,34,106,114,110,34,58,49,53,48,44,34,108,105,110,101,34,58,49,48,52,52,44,34,115,116,97,114,116,34,58,34,50,51,58,48,50,34,44,34,108,111,99,34,58,34,71,80,83,34,44,34,115,116,111,112,34,58,110,117,108,108,44,34,114,111,117,116,101,34,58,34,50,50,48,48,34,44,34,111,99,99,117,34,58,48,125,125]}
-```
+Read more about [JSON to JSON transformations]({{<ref "/smartmodules/certified/jolt">}}).

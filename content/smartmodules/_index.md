@@ -55,6 +55,9 @@ Commands:
 #### Publish to SmartModule Hub
 * [SmartModule Hub]
 
+#### Publish to SmartModule Hub
+* [SmartModule Hub]
+
 #### Data Streaming APIs available in SmartModules
 * [Filter]
 * [Map]

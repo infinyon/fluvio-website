@@ -14,4 +14,4 @@ transforms:
       spec:
         - operation: default
           spec:
-            source: "http"
+            source: 'http'

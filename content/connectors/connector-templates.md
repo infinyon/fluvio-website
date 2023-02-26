@@ -1,6 +1,7 @@
 ---
 title: Connector template 
 weight: 40
+hidden: true
 ---
 
 ## Connector Template

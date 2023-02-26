@@ -1,6 +1,7 @@
 ---
 title: Cloud Connectors 
 weight: 30
+hidden: true
 ---
 
 Connectors with [InfinyOn Cloud] is the best option for those who want to manage their data pipelines in one place.

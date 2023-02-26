@@ -1,0 +1,18 @@
+meta:
+  version: latest
+  name: my-kafka-connector
+  type: kafka-sink
+  topic: kafka-topic
+  create-topic: true
+kafka:
+  url: "KAFKA_BROKER_URL"
+  topic: fluvio-topic
+  create-topic: true
+  security:
+    ssl_key:
+      file: /path/to/file
+    ssl_cert:
+      pem: "CONTENT IN PEM FORMAT"
+    ssl_ca:
+      file: /path/to/file
+    security_protocol: ssl

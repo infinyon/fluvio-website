@@ -9,7 +9,7 @@ The Fluvio CLI is an all-in-one tool for installing and managing Fluvio,
 as well as for producing and consuming data on the command-line. If you
 have not installed it already, you may do so using the following command:
 
-{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
+{{% inline-embed file="embeds/cli/install/fluvio-cli-curl.md" %}}
 
 Let's have a look at some common commands you'll want to know when starting
 out with Fluvio:

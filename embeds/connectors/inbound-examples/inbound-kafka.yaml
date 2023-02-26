@@ -1,8 +1,10 @@
-version: 0.3.1
-name: my-inbound-kafka
-type: kafka-source
-topic: fluvio-output-topic
-parameters:
-  kafka-url: "localhost:9092"
-  kafka-topic: kafka-input-topic
-  kafka-partition: 0
+meta:
+  version: latest
+  name: my-kafka-connector
+  type: kafka-sink
+  topic: kafka-topic
+  create-topic: true
+kafka:
+  url: "localhost:9092"
+  topic: fluvio-topic
+  create-topic: true

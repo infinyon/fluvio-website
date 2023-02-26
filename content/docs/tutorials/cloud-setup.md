@@ -23,7 +23,7 @@ The following sections will walk you through how to do that.
 
 Download the Fluvio CLI with the following command.
 
-{{% inline-embed file="embeds/download-cli/curl-bash-copy.md" %}}
+{{% inline-embed file="embeds/cli/install/fluvio-cli-curl.md" %}}
 
 Next you will have to add Fluvio to your `$PATH` environment variable. There are three main shells that see common usage: Bash, Zsh, and Fish. Bash and Zsh use a similar approach to modifying the `$PATH` but Fish is completely different.
 
