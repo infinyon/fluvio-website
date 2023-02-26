@@ -13,5 +13,5 @@ Options:
       --segment-size <bytes>            Segment size (by default measured in bytes) Ex: `2048`, '2 Ki', '10 MiB', `1 GB`
       --compression-type <compression>  Compression configuration for topic
       --max-partition-size <bytes>      Max partition size (by default measured in bytes) Ex: `2048`, '2 Ki', '10 MiB', `1 GB`
-  -h, --help                            Print help information (use `--help` for more detail)
+  -h, --help                            Print help (see more with '--help')
 ```

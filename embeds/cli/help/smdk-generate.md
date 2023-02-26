@@ -18,5 +18,5 @@ Options:
                                project. Skip prompt if value given [env: SMDK_WITH_PARAMS=]
       --no-params              No SmartModule input parameters in generated SmartModule project.
                                Skip prompt if value given [env: SMDK_NO_PARAMS=]
-  -h, --help                   Print help information (use `--help` for more detail)
+  -h, --help                   Print help (see more with '--help')
 ```

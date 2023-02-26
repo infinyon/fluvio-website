@@ -6,5 +6,5 @@ Arguments:
 Options:
       --wasm-file <WASM_FILE>  The path to a WASM binary to create the SmartModule from
       --package <PACKAGE>      The path to the SmartModule package (experimental)
-  -h, --help                   Print help information
+  -h, --help                   Print help
 ```

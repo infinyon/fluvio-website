@@ -1,6 +1,6 @@
 ```
-Publish SmartModule to Hub
-Usage: smdk publish [OPTIONS] [PACKAGE_META]
+Publish Connector package to the Hub
+Usage: cdk publish [OPTIONS] [PACKAGE_META]
 Arguments:
   [PACKAGE_META]  
 Options:

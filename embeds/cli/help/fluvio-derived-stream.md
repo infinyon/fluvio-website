@@ -6,5 +6,5 @@ Commands:
   list    List all existing SmartModules
   delete  
 Options:
-  -h, --help  Print help information (use `--help` for more detail)
+  -h, --help  Print help (see more with '--help')
 ```

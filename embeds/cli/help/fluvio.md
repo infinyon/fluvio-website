@@ -17,6 +17,7 @@ Commands:
   version         Print Fluvio version information
   completions     Generate command-line completions for Fluvio
   run             Run Fluvio cluster components (SC and SPU)
+  package         Package publishing and management
   cloud           Cloud Operations
 Options:
   -c, --cluster <host:port>        Address of cluster
@@ -27,5 +28,5 @@ Options:
       --client-cert <CLIENT_CERT>  Path to TLS client certificate
       --client-key <CLIENT_KEY>    Path to TLS client private key
   -P, --profile <profile>          
-  -h, --help                       Print help information
+  -h, --help                       Print help
 ```

@@ -94,3 +94,12 @@ cli-commands:
   - smdk publish
   - smdk set-public
 
+  - cdk
+  - cdk build
+  - cdk test
+  - cdk deploy start
+  - cdk deploy shutdown
+  - cdk deploy list
+  - cdk deploy log
+  - cdk publish
+  - cdk set-public

@@ -6,5 +6,5 @@ Commands:
   zsh   Generate CLI completions for zsh
   fish  Generate CLI completions for fish
 Options:
-  -h, --help  Print help information (use `--help` for more detail)
+  -h, --help  Print help (see more with '--help')
 ```

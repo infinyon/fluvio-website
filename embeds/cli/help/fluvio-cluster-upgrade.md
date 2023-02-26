@@ -65,5 +65,5 @@ Options:
       --connector-prefix <connector_prefix>
           Connector Prefix
   -h, --help
-          Print help information
+          Print help
 ```

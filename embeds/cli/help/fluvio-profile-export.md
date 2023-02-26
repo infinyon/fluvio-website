@@ -5,5 +5,5 @@ Arguments:
   [PROFILE_NAME]  
 Options:
   -O, --output <type>  [default: json] [possible values: table, yaml, json]
-  -h, --help           Print help information
+  -h, --help           Print help
 ```

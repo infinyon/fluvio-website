@@ -6,5 +6,5 @@ Arguments:
 Options:
       --develop  Update to the latest prerelease rather than the latest release
       --dry-run  Print output for update process but do not install updates
-  -h, --help     Print help information
+  -h, --help     Print help
 ```
