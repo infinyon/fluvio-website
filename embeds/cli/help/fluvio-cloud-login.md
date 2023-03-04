@@ -1,10 +1,8 @@
 ```
 fluvio-cloud-login 
 Log into Infinyon Cloud with Oauth2 or username/password
-
 USAGE:
     fluvio-cloud login [OPTIONS]
-
 OPTIONS:
         --email <EMAIL>          Infinyon Cloud email to use for logging in
     -h, --help                   Print help information

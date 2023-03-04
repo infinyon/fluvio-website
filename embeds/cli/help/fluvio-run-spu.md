@@ -1,8 +1,6 @@
 ```
 Run a new Streaming Processing Unit (SPU)
-
 Usage: fluvio-run spu [OPTIONS]
-
 Options:
   -i, --id <integer>
           SPU unique identifier

@@ -1,6 +1,6 @@
 ---
 title: Python Examples
-menu: Examples 
+menu: Examples
 weight: 20
 ---
 
@@ -51,6 +51,10 @@ $ python python-consume.py
 ## Limitations
 * Fluvio cluster administration is not supported.
 * Python [async](https://docs.python.org/3/library/asyncio.html) is not supported.
+
+## Example with a SmartModule
+
+{{<code file="embeds/client-examples/python/hello-python-smartmodule.py" lang="python" copy=true >}}
 
 
 ## Links to Docs:

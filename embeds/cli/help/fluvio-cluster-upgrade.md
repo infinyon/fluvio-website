@@ -1,8 +1,6 @@
 ```
 Upgrades an already-started Fluvio cluster
-
 Usage: fluvio cluster upgrade [OPTIONS]
-
 Options:
       --develop
           use local image
@@ -31,13 +29,12 @@ Options:
       --spu-storage-size <SPU_STORAGE_SIZE>
           set spu storage size [default: 10]
       --skip-profile-creation
-          
       --spu <SPU>
           number of SPU [default: 1]
       --rust-log <RUST_LOG>
           RUST_LOG options
       --log-dir <LOG_DIR>
-          log dir [default: /usr/local/var/log/fluvio]
+          log dir [default: /tmp]
       --sys-only
           installing/upgrade sys only
       --local
@@ -57,7 +54,6 @@ Options:
       --server-key <SERVER_KEY>
           TLS: path to server private key
       --authorization-config-map <AUTHORIZATION_CONFIG_MAP>
-          
       --skip-checks
           Whether to skip pre-install checks, defaults to false
       --setup
