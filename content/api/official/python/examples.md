@@ -4,14 +4,6 @@ menu: Examples
 weight: 20
 ---
 
-{{< caution >}}
-
-Only producers and consumers are supported. There is no support for cluster administration.
-
-Also client does not support [async python](https://docs.python.org/3/library/asyncio.html).
-
-{{</ caution >}}
-
 * The Python client [wraps the rust client](https://www.infinyon.com/blog/2021/03/python-client/).
 * It currently does not support the administrator features that the rust client does.
 * The [PartitionConsumer.stream](https://infinyon.github.io/fluvio-client-python/fluvio.html#PartitionConsumer.stream) returns an object which implements the [python iterator convention](https://wiki.python.org/moin/Iterator) to allow for iterating over the stream in a for-loop.
@@ -21,14 +13,45 @@ To see the full docs, visit our [pdoc page](https://infinyon.github.io/fluvio-cl
 
 Follow the [installation instructions]({{< ref "installation.md" >}}) to run this example.
 
-{{<code file="embeds/client-examples/python/hello-python.py" lang="python" copy=true >}}
+### Prerequisites
 
-### Run
+Create the topic used to produce and consume records:
+
+%copy%
+```bash
+fluvio topic create python-data
+```
+
+### Producer
+
+Create a file called `python-produce.py`:
+
+{{<code file="embeds/client-examples/python/python-produce.py" lang="python" copy=true >}}
+
+Let's run the file: 
 
 %copy first-line%
 ```shell
-$ python hello-python.py
+$ python python-produce.py
 ```
+
+### Consumer
+
+Create a file called `python-consume.py`:
+
+{{<code file="embeds/client-examples/python/python-consume.py" lang="python" copy=true >}}
+
+Let's run the file: 
+
+%copy first-line%
+```shell
+$ python python-consume.py
+```
+
+## Limitations
+* Fluvio cluster administration is not supported.
+* Python [async](https://docs.python.org/3/library/asyncio.html) is not supported.
+
 
 ## Links to Docs:
 * [Connect to Fluvio](https://infinyon.github.io/fluvio-client-python/fluvio.html#Fluvio.connect)
