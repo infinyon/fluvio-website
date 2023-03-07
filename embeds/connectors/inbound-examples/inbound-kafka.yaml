@@ -1,4 +1,4 @@
-version: 0.3.1
+version: 0.3.2
 name: my-inbound-kafka
 type: kafka-source
 topic: fluvio-output-topic
