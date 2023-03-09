@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:16
 
 # Run as the `fluvio` user instead of root
 ENV USER=fluvio
