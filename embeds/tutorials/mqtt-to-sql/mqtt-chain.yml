@@ -1,5 +1,5 @@
 # mqtt.yml
-version: 0.5.2
+version: 0.5.3
 name: fluvio-mqtt-connector
 type: mqtt-source
 topic: mqtt-topic

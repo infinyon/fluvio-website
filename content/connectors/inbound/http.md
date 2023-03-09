@@ -25,7 +25,7 @@ type: http-source
 
 %copy%
 ```yaml
-version: 0.4.2
+version: 0.4.3
 ```
 
 ## Parameters

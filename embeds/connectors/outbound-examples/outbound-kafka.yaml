@@ -1,6 +1,6 @@
 name: my-outbound-kafka
 type: kafka-sink
-version: 0.3.2
+version: 0.3.3
 parameters:
   kafka-url: kafka-ssl.host.tld:9092
   security-protocol: 'SSL'

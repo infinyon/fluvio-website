@@ -71,7 +71,7 @@ You can use `fluvio cloud connector list` to view the status of the connector.
 ```shell
  $ fluvio cloud connector list
  NAME       TYPE         VERSION  STATUS
- cat-facts  http-source  0.4.2    Running
+ cat-facts  http-source  0.4.3    Running
  ```
 
 And `fluvio consume` to view the incoming data in the topic.
