@@ -1,10 +1,5 @@
 ---
-title: HTTP 
-connector:
-  direction: inbound
-  version:
-  repo:
-  hub:
+menu: HTTP 
 ---
 
-{{% inline-embed file="embeds/connectors-beta/inbound/http.md" %}}
+{{% inline-embed file="embeds/connectors-beta/inbound/http.md" %}}"
