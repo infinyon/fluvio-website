@@ -43,37 +43,43 @@ staticDir = ["static", "code"]
     identifier = "connectors"
     name = "Connectors"
     url = "/connectors/"
-    weight = 101
+    weight = 110
+
+  [[menu.fluvio]]
+    identifier = "connectors-beta"
+    name = "Connectors (beta)"
+    url = "/connectors-beta/"
+    weight = 120
 
   [[menu.fluvio]]
     identifier = "smartmodules"
     name = "SmartModules"
     url = "/smartmodules/"
-    weight = 102
+    weight = 130
 
   [[menu.fluvio]]
     identifier = "cli"
     name = "CLI"
     url = "/cli/"
-    weight = 103
+    weight = 140
 
   [[menu.fluvio]]
     identifier = "api"
     name = "APIs"
     url = "/api/"
-    weight = 104
+    weight = 150
 
   [[menu.fluvio]]
     identifier = "news"
     name = "News"
     url = "/news/"
-    weight = 105
+    weight = 160
 
   [[menu.fluvio]]
     identifier = "chat"
     url = "https://discordapp.com/invite/bBG2dTz"
     pre = "fab fa-discord"
-    weight = 160
+    weight = 170
 
   [[menu.infinyon]]
     identifier = "blog"

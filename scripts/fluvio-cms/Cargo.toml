@@ -1,0 +1,19 @@
+[package]
+name = "fluvio-cms"
+version = "0.0.0"
+edition = "2021"
+description = "A content management system CLI for fluvio.io"
+publish = false
+
+[dependencies]
+anyhow = "1.0.69"
+async-std = { version = "1.12",  default-features = false, features = ["attributes", "tokio1"]}
+bytes = "1.4.0"
+clap = { version = "4.1.8", features = ["derive"] }
+fluvio-future = { version = "0.4.0", features = ["task"], default-features = false }
+lazy_static = "1.4.0"
+reqwest = "0.11.14"
+strum = { version = "0.24.1", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3.16", features = ["env-filter"] }
+url = "2.3.1"
