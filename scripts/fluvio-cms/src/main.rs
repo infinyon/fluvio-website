@@ -1,6 +1,9 @@
 pub mod connectors;
 use connectors::ConnectorsOpt;
 
+pub mod hugo;
+use hugo::HugoOpt;
+
 use anyhow::Result;
 use clap::Parser;
 use tracing_subscriber::filter::{EnvFilter, LevelFilter};
@@ -34,13 +37,14 @@ enum Subject {
     //#[clap(alias = "twif")]
     //ThisWeekInFluvio,
     //CheckLinks,
-    //Run,
+    Hugo(HugoOpt),
 }
 
 impl Subject {
     fn run(&self) -> Result<()> {
         match self {
             Subject::Connectors(opt) => opt.run(),
+            Subject::Hugo(opt) => opt.run(),
         }
     }
 }
