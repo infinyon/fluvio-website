@@ -5,5 +5,5 @@ Arguments:
   <FROM>  The name of the profile to rename
   <TO>    The new name to give the profile
 Options:
-  -h, --help  Print help information
+  -h, --help  Print help
 ```

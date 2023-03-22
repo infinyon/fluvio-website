@@ -27,5 +27,5 @@ Options:
           --text '{}'
           --transform='{"uses":"infinyon/jolt@0.1.0","with":{"spec":"[{\"operation\":\"default\",\"spec\":{\"source\":\"test\"}}]"}}'
   -h, --help
-          Print help information
+          Print help
 ```

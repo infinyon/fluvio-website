@@ -3,6 +3,7 @@ title: Smart Connectors
 menu: Overview
 section: Connectors
 toc: true
+hidden: true
 ---
 
 Smart Connectors make the process of importing or exporting data simple.

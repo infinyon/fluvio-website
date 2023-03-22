@@ -6,5 +6,5 @@ Arguments:
 Options:
       --release <RELEASE>            Release profile name [default: release-lto]
   -p, --package-name <PACKAGE_NAME>  Optional package/project name
-  -h, --help                         Print help information
+  -h, --help                         Print help
 ```

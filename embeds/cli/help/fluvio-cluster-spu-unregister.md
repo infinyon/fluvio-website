@@ -4,5 +4,5 @@ fluvio cluster spu unregister [OPTIONS]
 Options:
   -i, --id <ID>        SPU id
   -n, --name <string>  SPU name
-  -h, --help           Print help information
+  -h, --help           Print help
 ```

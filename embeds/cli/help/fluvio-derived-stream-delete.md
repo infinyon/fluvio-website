@@ -1,7 +1,3 @@
 ```
-Usage: fluvio derived-stream delete <NAME>
-Arguments:
-  <NAME>  
-Options:
-  -h, --help  Print help information
+Unable to find plugin 'fluvio-derived-stream'. Make sure it is installed in "/Users/telant/.fluvio/extensions-latest".
 ```

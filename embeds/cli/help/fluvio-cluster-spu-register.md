@@ -7,5 +7,5 @@ Options:
   -r, --rack <string>               Rack name
   -p, --public-server <host:port>   Public server::port
   -v, --private-server <host:port>  Private server::port
-  -h, --help                        Print help information
+  -h, --help                        Print help
 ```

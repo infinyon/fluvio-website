@@ -10,6 +10,7 @@ Commands:
   spg          Manage and view SPU Groups (SPGs)
   diagnostics  Collect anonymous diagnostic information to help with debugging
   status       Check the status of a Fluvio cluster
+  shutdown     Shutdown cluster processes without deleting data
 Options:
-  -h, --help  Print help information
+  -h, --help  Print help
 ```

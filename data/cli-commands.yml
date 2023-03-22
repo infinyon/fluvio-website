@@ -33,6 +33,9 @@ cli-commands:
   - fluvio hub
   - fluvio hub download
   - fluvio hub list
+  - fluvio hub connector
+  - fluvio hub connector list
+  - fluvio hub connector download
 
   - fluvio profile
   - fluvio profile current
@@ -94,3 +97,14 @@ cli-commands:
   - smdk publish
   - smdk set-public
 
+  - cdk
+  - cdk build
+  - cdk test
+  - cdk generate
+  - cdk deploy
+  - cdk deploy start
+  - cdk deploy shutdown
+  - cdk deploy list
+  - cdk deploy log
+  - cdk publish
+  - cdk set-public

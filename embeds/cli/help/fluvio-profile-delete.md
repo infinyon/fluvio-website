@@ -4,5 +4,5 @@ Usage: fluvio profile delete <profile name>
 Arguments:
   <profile name>  
 Options:
-  -h, --help  Print help information
+  -h, --help  Print help
 ```
