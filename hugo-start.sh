@@ -1,13 +1,12 @@
 #!/bin/bash
 WAIT=20
 
-echo "Starting in $WAIT seconds
-This script is deprecated.
+printf "\nThis script is deprecated.\nInstead run:\ncargo run -- hugo"
 
-Instead run:
-cargo run -- hugo"
-
-sleep $WAIT
+if [[ -z "$CI" ]]; then
+    printf "\n\nStarting in $WAIT seconds..."
+    sleep $WAIT
+fi
 
 hugo server \
     --watch \
