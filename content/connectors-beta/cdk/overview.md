@@ -7,11 +7,11 @@ weight: 10
 
 Fluvio Connector Development Kit (CDK) is a command-line tool whose primary goal is to help developers build, test, deploy SmartConnectors, and publish them to the Hub.
 
-Sources: [https://github.com/infinyon/fluvio/tree/master/crates/cdk](https://github.com/infinyon/fluvio/tree/master/crates/cdk)
+[Source code](https://github.com/infinyon/fluvio/tree/master/crates/cdk)
 
 ## Installation
 
-CDK currently supports Rust programming language. Other languages will be added in future release.
+CDK only supports connectors developed in the Rust programming language. Other languages will be added in future releases.
 
 ### Requirements
 

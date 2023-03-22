@@ -6,9 +6,9 @@ weight: 20
 
 ## Introduction to the SmartModule Hub Service
 
-The SmartModule Hub allows users to start building their data streaming pipline with SmartModules which have been uploaded into the Hub as ready to use packages. The Hub allows Fluvio pipeline construction focusing on the business logic by providing already built, reliable and tested modules. The modules contain high level configurable inputs which can be applied without needing to rebuild the module. Pipelines can employ a mix of Hub downloaded packages as well as custom developed SmartModules.
+The SmartModule Hub allows users to start building their data streaming pipeline with SmartModules which have been uploaded into the Hub as ready to use packages. The Hub allows Fluvio pipeline construction focusing on the business logic by providing already built, reliable and tested modules. The modules contain high level configurable inputs which can be applied without needing to rebuild the module. Pipelines can employ a mix of Hub downloaded packages as well as custom developed SmartModules.
 
-A view of available and installed SmartModules is accessible from both the fluvio cli as well as on the Fluvio cloud dashboard.
+A view of available and installed SmartModules is accessible from both the `fluvio` cli as well as on the Fluvio cloud dashboard.
 
 
 ## Fluvio Hub Commands
@@ -79,14 +79,14 @@ Group `infinyon` packages are published by InfinyOn, the maker of Fluvio.  Third
 
 ### Private and Public Packages
 
-Published packages are by default private. In order to make a published package publically available, the package should be set to public. The cli method to do this is below:
+Published packages are by default private. In order to make a published package publicly available, the package should be set to public. The cli method to do this is below:
 
 ```bash
 cd smartmodule-dev-dir
 smdk set-public
 ```
 
-After the package is set to public, any publish will ask to verify the publish operation. Once a package version is publically published, the package cannot revoked.
+After the package is set to public, any publish will ask to verify the publish operation. Once a package version is publicly published, the package cannot revoked.
 
 
 

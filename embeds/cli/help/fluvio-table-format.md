@@ -6,5 +6,5 @@ Commands:
   delete  Delete a TableFormat display
   list    List all TableFormat display
 Options:
-  -h, --help  Print help information (use `--help` for more detail)
+  -h, --help  Print help (see more with '--help')
 ```

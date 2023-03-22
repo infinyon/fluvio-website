@@ -6,5 +6,5 @@ Options:
       --k8     
       --local  
       --cloud  
-  -h, --help   Print help information
+  -h, --help   Print help
 ```

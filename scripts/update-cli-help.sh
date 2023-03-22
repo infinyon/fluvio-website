@@ -12,7 +12,7 @@ yq eval '.cli-commands[]' $CLI_COMMANDS_YML | while read -r cmd; do
     printf '%s\n' "$cmd"
 
     # just call it `fluvio` and save as markdown
-    FILENAME=$(printf "$cmd\n" | sed 's/fluvio-stable/fluvio/' | tr ' ' '-').md
+    FILENAME=$(printf "$cmd\n" | sed 's/fluvio-stable/fluvio/' | sed 's/fluvio-latest/fluvio/' | tr ' ' '-').md
     echo "\`\`\`" >$OUTPUT_DIR/$FILENAME
 
     # Run the command help option
@@ -21,7 +21,7 @@ yq eval '.cli-commands[]' $CLI_COMMANDS_YML | while read -r cmd; do
     # Make default paths match the linux defaults
     eval "$cmd -h" |
         $FORMATTER_CMD $COLUMNS |
-        sed -e 's/fluvio-stable/fluvio/' -e 's|/usr/local/var/log/fluvio|/tmp|' \
+        sed -e 's/fluvio-stable/fluvio/' -e 's/fluvio-latest/fluvio/' -e 's|/usr/local/var/log/fluvio|/tmp|' \
             >>$OUTPUT_DIR/$FILENAME
     echo -n "\`\`\`" >>$OUTPUT_DIR/$FILENAME
 done

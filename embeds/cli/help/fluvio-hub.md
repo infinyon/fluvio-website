@@ -6,5 +6,5 @@ Commands:
   list       List available SmartModules in the hub
   connector  List available Connectors in the hub
 Options:
-  -h, --help  Print help information
+  -h, --help  Print help
 ```

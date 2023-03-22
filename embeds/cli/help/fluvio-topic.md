@@ -7,5 +7,5 @@ Commands:
   describe  Print detailed information about a Topic
   list      List all of the Topics in the cluster
 Options:
-  -h, --help  Print help information (use `--help` for more detail)
+  -h, --help  Print help (see more with '--help')
 ```

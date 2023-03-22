@@ -5,7 +5,7 @@ weight: 20
 
 ### Install
 
-CDK is an independent executable downloadable via `[Fluvio CLI](https://www.fluvio.io/cli/utilities/install/)`:
+CDK is an independent executable downloadable via [`Fluvio CLI`](https://www.fluvio.io/cli/utilities/install/):
 
 ```bash
 $ fluvio install cdk

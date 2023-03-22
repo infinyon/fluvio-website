@@ -8,5 +8,5 @@ Options:
       --min-id <integer>       Minimum SPU ID [default: 1]
       --rack <string>          Rack name
       --storage-size <string>  The amount of storage to assign to this SPG
-  -h, --help                   Print help information
+  -h, --help                   Print help
 ```

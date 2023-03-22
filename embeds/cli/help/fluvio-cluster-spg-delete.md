@@ -4,5 +4,5 @@ fluvio cluster spg delete <name>
 Arguments:
   <name>  The name of the SPU Group to delete
 Options:
-  -h, --help  Print help information
+  -h, --help  Print help
 ```

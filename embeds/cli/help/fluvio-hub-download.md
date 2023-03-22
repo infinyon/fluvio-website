@@ -14,5 +14,5 @@ Options:
   -P, --profile <profile>          
       --local                      just download package to local filesystem
       --ipkg                       given local package file, download to cluster
-  -h, --help                       Print help information (use `--help` for more detail)
+  -h, --help                       Print help (see more with '--help')
 ```

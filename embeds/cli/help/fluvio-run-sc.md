@@ -30,5 +30,5 @@ Options:
       --white-list <WHITE_LIST>
           only allow white list of controllers
   -h, --help
-          Print help information
+          Print help
 ```

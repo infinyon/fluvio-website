@@ -17,5 +17,5 @@ Options:
   -P, --profile <profile>            
       --dry-run                      Validate package config files, and connection to cluster. Skip
                                      SmartModule load to cluster
-  -h, --help                         Print help information
+  -h, --help                         Print help
 ```
