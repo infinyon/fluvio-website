@@ -1,14 +1,14 @@
+use std::fs::{self, File};
+use std::io::{BufReader, Read, Write};
 use std::{collections::HashMap, path::PathBuf};
 
 use anyhow::{anyhow, Result};
-use bytes::Bytes;
 use clap::{Parser, ValueEnum};
+use convert_case::{Case, Casing};
 use lazy_static::lazy_static;
 use strum::Display;
 use tracing::info;
-
-use std::fs::{self, File};
-use std::io::{BufReader, Read, Write};
+use xshell::{cmd, Shell};
 
 // This is a bit verbose until reference docs are fetched from Hub
 lazy_static! {
@@ -17,86 +17,75 @@ lazy_static! {
         m.insert(
             DataService::Http,
             DocsLocation {
-                _hub: "infinyon/http-source@0.1.0",
-                github: "https://raw.githubusercontent.com/infinyon/http-connector/main/README.md",
+                hub_group: "infinyon",
+                hub_pkg_name: "http-source",
+                hub_pkg_version: "0.1.1",
                 hugo_embed: "embeds/connectors-beta/inbound/http.md".into(),
                 hugo_content: "content/connectors-beta/inbound/http.md".into(),
-                use_remote_sync: true,
             },
         );
 
         m.insert(
             DataService::Mqtt,
             DocsLocation {
-                _hub: "infinyon/mqtt-source@0.1.0",
-                github: "https://raw.githubusercontent.com/infinyon/mqtt-connector/main/README.md",
+                hub_group: "infinyon",
+                hub_pkg_name: "mqtt-source",
+                hub_pkg_version: "0.1.2",
                 hugo_embed: "embeds/connectors-beta/inbound/mqtt.md".into(),
                 hugo_content: "content/connectors-beta/inbound/mqtt.md".into(),
-                use_remote_sync: true,
             },
         );
 
         m.insert(
             DataService::Kafka,
             DocsLocation {
-                _hub: "infinyon/kafka-source@0.4.0",
-                // This doesn't exist yet
-                github: "https://raw.githubusercontent.com/infinyon/kafka-connector/main/crates/kafka-source/README.md?token=GHSAT0AAAAAAB7VGJIUUUMLFZG6IOE6HREWZASDYWA",
+                hub_group: "infinyon",
+                hub_pkg_name: "kafka-source",
+                hub_pkg_version: "0.1.1",
                 hugo_embed: "embeds/connectors-beta/inbound/kafka.md".into(),
                 hugo_content: "content/connectors-beta/inbound/kafka.md".into(),
-                use_remote_sync: false,
             },
         );
 
         m
-
     };
-
     static ref OUTBOUND: HashMap<DataService, DocsLocation> = {
         let mut m = HashMap::new();
 
         m.insert(
             DataService::Sql,
             DocsLocation {
-                _hub: "infinyon/sql-sink@0.1.0",
-                github: "https://raw.githubusercontent.com/infinyon/sql-connector/main/README.md?token=GHSAT0AAAAAAB7VGJIVGR6VOC3XANRNZTWCZASDXMA",
+                hub_group: "infinyon",
+                hub_pkg_name: "sql-sink",
+                hub_pkg_version: "0.1.1",
                 hugo_embed: "embeds/connectors-beta/outbound/sql.md".into(),
                 hugo_content: "content/connectors-beta/outbound/sql.md".into(),
-                use_remote_sync: false,
             },
         );
 
         m.insert(
             DataService::Kafka,
             DocsLocation {
-                // This doesn't exist yet
-                _hub: "",
-                // This doesn't exist yet
-                github: "https://raw.githubusercontent.com/infinyon/kafka-connector/main/crates/kafka-sink/README.md?token=GHSAT0AAAAAAB7VGJIUUUMLFZG6IOE6HREWZASDYWA",
+                hub_group: "infinyon",
+                hub_pkg_name: "kafka-sink",
+                hub_pkg_version: "0.1.1",
                 hugo_embed: "embeds/connectors-beta/outbound/kafka.md".into(),
                 hugo_content: "content/connectors-beta/outbound/kafka.md".into(),
-                use_remote_sync: false,
             },
         );
 
         m
     };
-
 }
 
 //
 struct DocsLocation {
-    // Not yet implemented, but assuming the README will be available from the connector package
-    _hub: &'static str,
-    // This is just a short-term workaround
-    github: &'static str,
-
+    hub_group: &'static str,
+    hub_pkg_name: &'static str,
+    hub_pkg_version: &'static str,
     // This is where Hugo templates expect README.md for embedding
     hugo_embed: PathBuf,
     hugo_content: PathBuf,
-
-    // This is temporary, for giving error message
-    use_remote_sync: bool,
 }
 
 /// Selector for the data protocol of connectors
@@ -162,55 +151,78 @@ impl ConnectorsOpt {
             }
         };
 
-        let readme = if let Some(f) = &self.localfile {
+        let _readme = if let Some(f) = &self.localfile {
             let f = File::open(f)?;
             let mut reader = BufReader::new(f);
             let mut buffer = Vec::new();
 
             // Read file into vector.
             reader.read_to_end(&mut buffer)?;
-            buffer.into()
-        } else if docs.use_remote_sync {
-            self.download_connector_ref(docs)?
+            //buffer.into()
         } else {
-            return Err(anyhow!("Syncing docs remotely not yet supported. Use `--file` to point at reference doc for connector on local disk"));
+            //self.download_connector_ref(docs)?
+
+            // TODO: Write into temp directory
+
+            let sh = Shell::new()?;
+
+            let hub_group = docs.hub_group;
+            let hub_pkg_name = docs.hub_pkg_name;
+            let hub_pkg_version = docs.hub_pkg_version;
+            cmd!(
+                sh,
+                "fluvio hub connector download {hub_group}/{hub_pkg_name}@{hub_pkg_version} --remote https://hub-dev.infinyon.cloud"
+            )
+            .run()?;
+            cmd!(
+                sh,
+                "tar xvf {hub_group}-{hub_pkg_name}-{hub_pkg_version}.ipkg"
+            )
+            .run()?;
+            cmd!(sh, "tar xvf manifest.tar.gz").run()?;
         };
 
-        self.write_ref_to_disk(docs, direction, protocol, readme)
+        self.write_ref_to_disk(docs, direction, protocol, "README.md".into())?;
+        Ok(())
     }
 
-    fn download_connector_ref(&self, docs: &DocsLocation) -> Result<Bytes> {
-        info!("Downloading refs");
+    //fn download_connector_ref(&self, docs: &DocsLocation) -> Result<Bytes> {
+    //    info!("Downloading refs");
 
-        fluvio_future::task::run_block_on(async {
-            let resp = reqwest::get(docs.github)
-                .await
-                .map_err(|e| anyhow!(e.to_string()))?;
+    //    fluvio_future::task::run_block_on(async {
+    //        let resp = reqwest::get(docs.github)
+    //            .await
+    //            .map_err(|e| anyhow!(e.to_string()))?;
 
-            if resp.status().is_success() {
-                resp.bytes().await.map_err(|e| anyhow!(e.to_string()))
-            } else {
-                Err(anyhow!("Unable to download docs at {}", docs.github))
-            }
-        })
-    }
+    //        if resp.status().is_success() {
+    //            resp.bytes().await.map_err(|e| anyhow!(e.to_string()))
+    //        } else {
+    //            Err(anyhow!("Unable to download docs at {}", docs.github))
+    //        }
+    //    })
+    //}
 
     fn write_ref_to_disk(
         &self,
         docs: &DocsLocation,
         direction: DataDirection,
         protocol: DataService,
-        readme: Bytes,
+        readme: PathBuf,
     ) -> Result<()> {
         // Write the embeddable readme
-        let mut embed_file = fs::OpenOptions::new()
-            .create(true) // To create a new file
-            .write(true)
-            .open(docs.hugo_embed.as_path())
-            .unwrap();
+        //let mut embed_file = fs::OpenOptions::new()
+        //    .create(true) // To create a new file
+        //    .write(true)
+        //    .open(docs.hugo_embed.as_path())
+        //    .unwrap();
 
+        let sh = Shell::new()?;
         info!("Write the README file to {}", docs.hugo_embed.display());
-        embed_file.write_all(&readme).unwrap();
+
+        let embed_location = docs.hugo_embed.to_path_buf();
+
+        cmd!(sh, "mv {readme} {embed_location}").run()?;
+        //embed_file.write_all(&readme).unwrap();
 
         // Write the content file template
         info!(
@@ -229,11 +241,11 @@ impl ConnectorsOpt {
 menu: {connector_name_title} 
 ---
 
-{{{{% inline-embed file="embeds/connectors-beta/{direction}/{connector_file_name}.md" %}}}}"
+{{{{% inline-embed file="embeds/connectors-beta/{direction}/{connector_file_name}.md" %}}}}
 "#,
-            direction = direction.to_string().to_ascii_lowercase(),
-            connector_name_title = protocol.to_string().to_ascii_uppercase(),
-            connector_file_name = protocol.to_string().to_ascii_lowercase(),
+            direction = direction.to_string().to_case(Case::Lower),
+            connector_name_title = protocol.to_string().to_case(Case::Title),
+            connector_file_name = protocol.to_string().to_case(Case::Lower),
         )?;
 
         Ok(())

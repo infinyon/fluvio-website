@@ -1,5 +1,6 @@
 ---
-menu: KAFKA 
+menu: Kafka 
 ---
 
-{{% inline-embed file="embeds/connectors-beta/inbound/kafka.md" %}}"
+{{% inline-embed file="embeds/connectors-beta/inbound/kafka.md" %}}
+

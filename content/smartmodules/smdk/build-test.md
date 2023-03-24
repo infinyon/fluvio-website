@@ -5,7 +5,7 @@ weight: 40
 toc: false
 ---
 
-SmartModules are binaries developed for real-time data stream processing, requiring in-line and live testing facilities. This section covers in-line testing, and the [next section] describes how to load SmartMoudules on the Cluster for live traffic testing.
+SmartModules are binaries developed for real-time data stream processing, requiring in-line and live testing facilities. This section covers in-line testing, and the [next section] describes how to load SmartModules on the Cluster for live traffic testing.
 
 ##### Prerequisites
 
@@ -27,7 +27,7 @@ The build process generated an binary optimized for WebAssembly. We are now read
 
 ### Test - Operation
 
-Testing a SmartModule takes `text` of `files` from the commnad line. 
+Testing a SmartModule takes `text` of `files` from the command line. 
 
 Let's perform the matching test for our `my-filter` that looks for letter `a`:
 

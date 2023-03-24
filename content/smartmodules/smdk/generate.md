@@ -5,15 +5,15 @@ weight: 30
 toc: false
 ---
 
-SMDK generate helps develpoers build a sample SmartModule project by answering a few simple quuestions. 
+SMDK generate helps developers build a sample SmartModule project by answering a few simple questions
 
 ##### Prerequisites
 
-This section assumes that SMDK is [installed].
+This section assumes that SMDK is [installed]
 
 ### Generate - Operation
 
-SMDK generate commands runds a wizard and builds a sample project is a subdirectory. Let's get started:
+SMDK generate commands runs a wizard and builds a sample project in a subdirectory
 
 %copy first-line%
 ```bash

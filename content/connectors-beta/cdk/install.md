@@ -9,31 +9,17 @@ CDK is an independent executable downloadable via [`Fluvio CLI`](https://www.flu
 
 ```bash
 $ fluvio install cdk
-
-# Until it is officially released
-# fluvio install --hub cdk
-
-# Alternative, recommended only for dev purposes:
-# cargo install --git https://github.com/infinyon/fluvio cdk
 ```
 
 The executable is installed in `~/.fluvio/bin` directory, the same directory as `fluvio`. The command should be immediately accessible at the prompt:
 
-```bash
-$ cdk
+{{% inline-embed file="embeds/cli/help/cdk.md" %}}
 
-Connector Development Kit
+### Steps
 
-Usage: cdk <COMMAND>
-
-Commands:
-  build       Build the Connector in the current working directory
-  test        Build and run the Connector in the current working directory
-  deploy      Deploy the Connector from the current working directory
-  publish     Publish Connector package to the Hub
-  set-public  Set connector visibility to public
-  help        Print this message or the help of the given subcommand(s)
-
-Options:
-  -h, --help  Print help
-```
+1. **[Install CDK]({{< ref "install" >}})**
+2. [Generate a SmartConnector]({{< ref "generate" >}})
+3. [Build and Test]({{< ref "build-test" >}})
+4. [Start and Shutdown]({{< ref "start-shutdown" >}})
+5. [List and Logs]({{< ref "list-log" >}})
+6. [Publish to SmartConnector Hub]({{< ref "publish" >}})
