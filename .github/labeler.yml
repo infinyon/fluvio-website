@@ -2,196 +2,205 @@
 
 ## /api
 
-'api':
-  - 'content/api/**'
+"api":
+  - "content/api/**"
 
-'api:community':
-  - 'content/api/community/**'
+"api:community":
+  - "content/api/community/**"
 
-'api:official':
-  - 'content/api/official/**'
+"api:official":
+  - "content/api/official/**"
 
 ## /cli
 
-'cli':
-  - 'content/cli/**'
+"cli":
+  - "content/cli/**"
 
-'cli:advanced':
-  - 'content/cli/advanced/**'
+"cli:advanced":
+  - "content/cli/advanced/**"
 
-'cli:client':
-  - 'content/cli/client/**'
+"cli:client":
+  - "content/cli/client/**"
 
-'cli:cloud':
-  - 'content/cli/cloud/**'
+"cli:cloud":
+  - "content/cli/cloud/**"
 
-'cli:commands':
-  - 'content/cli/commands/**'
+"cli:commands":
+  - "content/cli/commands/**"
 
-'cli:local':
-  - 'content/cli/local/**'
+"cli:local":
+  - "content/cli/local/**"
 
-'cli:smartmodules':
-  - 'content/cli/smartmodules/**'
+"cli:smartmodules":
+  - "content/cli/smartmodules/**"
 
-'cli:utilities':
-  - 'content/cli/utilities/**'
+"cli:connectors":
+  - "content/cli/connectors/**"
+
+"cli:utilities":
+  - "content/cli/utilities/**"
 
 ## /connectors
 
-'connectors':
-  - 'content/connectors/**'
+"connectors":
+  - "content/connectors/**"
 
-'connectors:examples':
-  - 'content/connectors/examples/**'
+"connectors:examples":
+  - "content/connectors/examples/**"
 
-'connectors:how-to':
-  - 'content/connectors/how-to/**'
+"connectors:how-to":
+  - "content/connectors/how-to/**"
 
-'connectors:images':
-  - 'content/connectors/images/**'
+"connectors:images":
+  - "content/connectors/images/**"
 
-'connectors:inbound':
-  - 'content/connectors/inbound/**'
+"connectors:inbound":
+  - "content/connectors/inbound/**"
 
-'connectors:outbound':
-  - 'content/connectors/outbound/**'
+"connectors:outbound":
+  - "content/connectors/outbound/**"
 
-'connectors:cloud-connectors':
-  - 'content/connectors/cloud-connectors.md'
+"connectors:cloud-connectors":
+  - "content/connectors/cloud-connectors.md"
 
-'connectors:connector-template':
-  - 'content/connectors/connector-template.md'
+"connectors:connector-template":
+  - "content/connectors/connector-template.md"
 
-'connectors:local-connectors':
-  - 'content/connectors/local-connectors.md'
+"connectors:local-connectors":
+  - "content/connectors/local-connectors.md"
+
+"connectors-beta":
+  - "content/connectors-beta/**"
+
+"cdk":
+  - "content/connectors-beta/cdk/**"
 
 ## /docs
-'docs':
-  - 'content/docs/**'
+"docs":
+  - "content/docs/**"
 
-'docs:architecture':
-  - 'content/docs/architecture/**'
+"docs:architecture":
+  - "content/docs/architecture/**"
 
-'docs:clients':
-  - 'content/docs/clients/**'
+"docs:clients":
+  - "content/docs/clients/**"
 
-'docs:concepts':
-  - 'content/docs/concepts/**'
+"docs:concepts":
+  - "content/docs/concepts/**"
 
-'docs:general':
-  - 'content/docs/general/**'
+"docs:general":
+  - "content/docs/general/**"
 
-'docs:get-started':
-  - 'content/docs/get-started/**'
+"docs:get-started":
+  - "content/docs/get-started/**"
 
-'docs:interfaces':
-  - 'content/docs/interfaces/**'
+"docs:interfaces":
+  - "content/docs/interfaces/**"
 
-'docs:kubernetes':
-  - 'content/docs/kubernetes/**'
+"docs:kubernetes":
+  - "content/docs/kubernetes/**"
 
-'docs:operations':
-  - 'content/docs/operations/**'
+"docs:operations":
+  - "content/docs/operations/**"
 
-'docs:tutorials':
-  - 'content/docs/tutorials/**'
+"docs:tutorials":
+  - "content/docs/tutorials/**"
 
-'docs:core-capabilities':
-  - 'content/docs/core-capabilities.md'
+"docs:core-capabilities":
+  - "content/docs/core-capabilities.md"
 
-'docs:key-features':
-  - 'content/docs/key-features.md'
+"docs:key-features":
+  - "content/docs/key-features.md"
 
-'docs:samples':
-  - 'content/docs/samples.md'
+"docs:samples":
+  - "content/docs/samples.md"
 
 ## /download
-'download':
-  - 'content/download/**'
+"download":
+  - "content/download/**"
 
 ## /news
-'this-week-in-fluvio':
-  - 'content/news/**'
-  - 'data/twif/**'
+"this-week-in-fluvio":
+  - "content/news/**"
+  - "data/twif/**"
 
 ## /smartmodules
-'smartmodules':
-  - 'content/smartmodules/**'
+"smartmodules":
+  - "content/smartmodules/**"
 
-'smartmodules:analytics':
-  - 'content/smartmodules/analytics/**'
+"smartmodules:analytics":
+  - "content/smartmodules/analytics/**"
 
-'smartmodules:certified':
-  - 'content/smartmodules/certified/**'
+"smartmodules:certified":
+  - "content/smartmodules/certified/**"
 
-'smartmodules:certified:jolt':
-  - 'content/smartmodules/certified/jolt.md'
+"smartmodules:certified:jolt":
+  - "content/smartmodules/certified/jolt.md"
 
-'smartmodules:certified:json-sql':
-  - 'content/smartmodules/certified/json-sql.md'
+"smartmodules:certified:json-sql":
+  - "content/smartmodules/certified/json-sql.md"
 
-'smartmodules:hub':
-  - 'content/smartmodules/hub/**'
+"smartmodules:hub":
+  - "content/smartmodules/hub/**"
 
-'smartmodules:images':
-  - 'content/smartmodules/images/**'
+"smartmodules:images":
+  - "content/smartmodules/images/**"
 
-'smartmodules:smdk':
-  - 'content/smartmodules/smdk/**'
+"smartmodules:smdk":
+  - "content/smartmodules/smdk/**"
 
-'smartmodules:transform':
-  - 'content/smartmodules//**'
+"smartmodules:transform":
+  - "content/smartmodules//**"
 
 # data for templates or automation
-'data-content':
-  - 'content/data/**'
+"data-content":
+  - "content/data/**"
 
 # embeddable content
-'embedded-content':
-  - 'content/docs/**'
+"embedded-content":
+  - "content/docs/**"
 
 # functions
-'functions':
-  - 'content/functions/**'
+"functions":
+  - "content/functions/**"
 
-'functions:newsletter':
-  - 'content/functions/newsletter/**'
+"functions:newsletter":
+  - "content/functions/newsletter/**"
 
 # Below is for Hugo or editor related
 
-'hugo':
-  - 'config.toml'
+"hugo":
+  - "config.toml"
 
 # layouts
-'hugo:layouts':
-  - 'content/layouts/**'
+"hugo:layouts":
+  - "content/layouts/**"
 
-'partials':
-  - 'content/layouts/partials/**'
+"partials":
+  - "content/layouts/partials/**"
 
-'shortcodes':
-  - 'content/layouts/shortcodes**'
+"shortcodes":
+  - "content/layouts/shortcodes**"
 
 # scripts
-'hugo:scripts':
-  - 'content/scripts/**'
-  - 'hugo-start.sh'
+"hugo:scripts":
+  - "content/scripts/**"
+  - "hugo-start.sh"
 
 # static content
-'hugo:static':
-  - 'content/static/**'
+"hugo:static":
+  - "content/static/**"
 
 # editor reference
-'editor:reference':
-  - 'WRITERS.md'
-  - 'README.md'
-  - '*.excalidraw'
+"editor:reference":
+  - "WRITERS.md"
+  - "README.md"
+  - "*.excalidraw"
 
 # CI
-'CI':
-  - '.github/**'
-  - 'bors.toml'
-  - 'netlify.toml'
-  - '.htmltest.yml'
-  - 'Makefile'
+"CI":
+  - ".github/**"
+  - "bors.toml"
+  - "netlify.toml"
+  - ".htmltest.yml"
+  - "Makefile"
