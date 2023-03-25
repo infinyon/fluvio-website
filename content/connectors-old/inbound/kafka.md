@@ -51,7 +51,7 @@ The Kafka group
 
 #### Example connector config
 
-{{<code file="embeds/connectors/inbound-examples/inbound-kafka.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors-old/inbound-examples/inbound-kafka.yaml" lang="yaml" copy=true >}}
 
 ## Data Events
 
