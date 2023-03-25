@@ -43,12 +43,6 @@ staticDir = ["static", "code"]
     identifier = "connectors"
     name = "Connectors"
     url = "/connectors/"
-    weight = 110
-
-  [[menu.fluvio]]
-    identifier = "connectors-beta"
-    name = "Connectors (beta)"
-    url = "/connectors-beta/"
     weight = 120
 
   [[menu.fluvio]]
@@ -101,3 +95,6 @@ staticDir = ["static", "code"]
     url = "https://www.infinyon.com/use-cases"
     pre = "fas fa-tools"
     weight = 120
+
+[permalinks]
+  connectors-old = '/deprecated/connectors-v2/:sections[1:]/:slug'

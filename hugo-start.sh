@@ -1,10 +1,10 @@
 #!/bin/bash
 WAIT=20
 
-printf "\nThis script is deprecated.\nInstead run:\ncargo run -- hugo"
+printf "\n**********\n* This script is deprecated!\n* Instead run:\n* cargo run -- hugo\n**********\n"
 
 if [[ -z "$CI" ]]; then
-    printf "\n\nStarting in $WAIT seconds..."
+    printf "\nStarting in $WAIT seconds..."
     sleep $WAIT
 fi
 

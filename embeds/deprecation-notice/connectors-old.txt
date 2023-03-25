@@ -1,0 +1,4 @@
+{{<caution>}}
+These connector docs are deprecated. They may not represent the current functionality, and may go away soon.<br><br>
+Please refer to the [current connector docs]({{<ref "/connectors">}}) instead for up-to-date information.
+{{</caution>}}

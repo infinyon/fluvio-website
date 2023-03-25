@@ -4,7 +4,7 @@ menu: CDK
 weight: 10
 ---
 
-Check out the [Connector Development Kit]({{<ref "/connectors-beta/cdk/overview.md">}}) page for more information.
+Check out the [Connector Development Kit]({{<ref "/connectors/cdk/overview.md">}}) page for more information.
 
 {{% inline-embed file="embeds/cli/help/cdk.md" %}}
 ## `cdk build`
