@@ -3,7 +3,7 @@ title: Smart Connectors
 menu: Overview
 section: Connectors
 toc: true
-hidden: true
+url: /deprecated/connectors-v2/
 ---
 
 Smart Connectors make the process of importing or exporting data simple.
@@ -13,7 +13,7 @@ Inbound and outbound connectors fundamentally work in the same way. The only dif
 
 There are 4 steps to the connector:
 
-<img src="./images/smart-connectors-extra.svg"
+<img src="/images/connectors/smart-connectors-extra.svg"
      alt="Smart Connectors"
      style="justify: center; max-width: 600px" />
 
@@ -37,10 +37,10 @@ Powered by WebAssembly (also called wasm), SmartModules are pre-packaged or user
 Supporting access to your data while it is in transit provides you the ability to clean, transform and enrich your data before it is stored in a topic, or it exits the Fluvio cluster.
 
 Use Connectors either as: 
-* a [Local Connector]({{<ref "/connectors/local-connectors.md">}})
+* a [Local Connector]({{<ref "/connectors-old/local-connectors.md">}})
   * Run your connector on your machine as a docker container
 
-* a [Cloud Connector]({{<ref "/connectors/cloud-connectors.md">}}),
+* a [Cloud Connector]({{<ref "/connectors-old/cloud-connectors.md">}}),
   * You can start a connector on [InfinyOn Cloud], and let us manage the infrastruture
 
 You can customize how your connectors run through a configuration file.

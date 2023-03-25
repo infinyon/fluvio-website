@@ -12,7 +12,7 @@ programmable streaming platform written in Rust.
 ## New Release - Fluvio v0.9.14
 
 ### Connector logs
-Logs from [connectors]({{<ref "/connectors" >}}) are now accessible from the CLI
+Logs from [connectors]({{<ref "/connectors-old" >}}) are now accessible from the CLI
 
 %copy first-line%
 ```shell

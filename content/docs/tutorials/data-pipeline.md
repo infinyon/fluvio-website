@@ -20,7 +20,7 @@ There are two main steps for this tutorial:
   * Basic insert
   * JSON to JSON transformation before insert
 
-We will be looking at the [Inbound HTTP Connector]({{<ref "/connectors/inbound/http.md">}}) setup, and connecting
+We will be looking at the [Inbound HTTP Connector]({{<ref "/connectors-old/inbound/http.md">}}) setup, and connecting
 to the <a href="https://catfact.ninja" target="_blank" rel="nofollow" > catfact.ninja</a> database to ingest and store JSON data into a topic.
 
 The Outbound connector will be using a PostgreSQL database. It will listen to the topic for new records and insert them into a table.
@@ -38,7 +38,7 @@ Fluvio can poll a multitude of input types.
 
 This is the template YAML connector file. To make it useful, it needs to be
 populated – which we will do in the next step. See
-[the documentation]({{<ref "/connectors/">}}) for the parameters available for use.
+[the documentation]({{<ref "/connectors-old/">}}) for the parameters available for use.
 
 {{<code file="embeds/templates/connector-template.yaml" lang="yaml" copy="true">}}
 
@@ -50,7 +50,7 @@ the connection type, and what topic to connect to.
 For the HTTP-specific parameters you will need to specify the link it is
 polling, and the interval at which it polls.
 
-{{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
+{{<code file="embeds/connectors-old/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
 
 This creates a connector named `cat-facts`, that reads from the website
 `https://catfact.ninja/fact` every 30 seconds, and produces to the topic
@@ -90,7 +90,7 @@ Consuming records starting 4 from the end of topic 'cat-facts-data'
 All Inbound Connectors support [transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}}) which are applied before the data is sent to the topic.
 We can extend our config file to add an additional JSON to JSON transformation to records.
 
-{{<code file="embeds/connectors/catfacts-basic-connector-with-transform.yaml" lang="yaml" copy="true">}}
+{{<code file="embeds/connectors-old/catfacts-basic-connector-with-transform.yaml" lang="yaml" copy="true">}}
 
 In this config, we add the field `source` with the static value `http` to every record. Note that if the field 
 already exists, it will not be overwritten.
@@ -258,7 +258,7 @@ With the Outbound SQL Connector, we utilized SmartModules in two different ways.
 * [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
 * [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
 * [Fluvio CLI profile]({{<ref "/cli/client/profile.md">}})
-* [Connectors]({{<ref "/connectors/">}})
+* [Connectors]({{<ref "/connectors-old/">}})
 * [Smart Modules]({{<ref "/smartmodules/">}})
 * [SmartModule Rust API](https://docs.rs/fluvio-smartmodule/latest/fluvio_smartmodule/)
-* [Transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}})
+* [Transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}}):

@@ -6,8 +6,8 @@ weight: 40
 At the end of this tutorial, we will see data starting from an MQTT broker and ending in a PostgreSQL table.
 
 We'll use 2 connectors:
-* [Inbound MQTT connector]({{<ref "/connectors/inbound/mqtt.md" >}})
-* [Outbound SQL connector]({{<ref "/connectors/outbound/sql.md" >}})
+* [Inbound MQTT connector]({{<ref "/connectors-old/inbound/mqtt.md" >}})
+* [Outbound SQL connector]({{<ref "/connectors-old/outbound/sql.md" >}})
     * There will be an example of combining multiple SmartModules, known as **SmartModule chaining**
 
 The Outbound connector will be using a PostgreSQL database. It will listen to the topic for new records and insert them into a table.

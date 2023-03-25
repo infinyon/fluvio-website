@@ -158,4 +158,4 @@ For additional examples checkout the tutorials:
 * [Build HTTP to SQL Pipeline]({{<ref "../../docs/tutorials/data-pipeline.md" >}})
 * [Build MQTT to SQL Pipeline]({{<ref "../../docs/tutorials/mqtt-to-sql.md" >}})
 
-[sql-sink-connector]: {{<ref "../../connectors/outbound/sql.md" >}}
+[sql-sink-connector]: {{<ref "../../connectors-old/outbound/sql.md" >}}

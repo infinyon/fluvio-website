@@ -32,9 +32,9 @@ $ git clone https://github.com/infinyon/fluvio-connectors.git
 ```
 
 ### Example HTTP connector
-This is the config file for the [Inbound HTTP connector]({{<ref "/connectors/inbound/http.md">}}) in this guide.
+This is the config file for the [Inbound HTTP connector]({{<ref "/connectors-old/inbound/http.md">}}) in this guide.
 
-{{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors-old/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
 
 In this config, we are creating a connector named `cat-facts`. It will request data from {{<link "https://catfact.ninja" "a cat fact API">}} once every 30 seconds and receive json data. The connector will store the json into a topic called `cat-facts-data`
 

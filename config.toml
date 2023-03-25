@@ -41,8 +41,8 @@ staticDir = ["static", "code"]
 
   [[menu.fluvio]]
     identifier = "connectors"
-    name = "Connectors"
-    url = "/connectors/"
+    name = "Connectors (deprecated)"
+    url = "/deprecated/connectors-v2/"
     weight = 110
 
   [[menu.fluvio]]
@@ -101,3 +101,6 @@ staticDir = ["static", "code"]
     url = "https://www.infinyon.com/use-cases"
     pre = "fas fa-tools"
     weight = 120
+
+[permalinks]
+  connectors-old = '/deprecated/connectors-v2/:sections[1:]/:slug'

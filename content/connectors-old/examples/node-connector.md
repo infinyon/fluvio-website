@@ -8,7 +8,7 @@ This example `Dockerfile` packages our [example Node Fluvio project]({{<ref "/ap
 
 {{<code file="embeds/client-examples/node/Dockerfile" lang="Dockerfile" copy=true >}}
 
-This `docker-compose.yml` used with `docker compose` CLI starts our previously built connector image as a [local connector]({{<ref "/connectors/local-connectors">}})
+This `docker-compose.yml` used with `docker compose` CLI starts our previously built connector image as a [local connector]({{<ref "/connectors-old/local-connectors">}})
 
 ### docker-compose.yml
 

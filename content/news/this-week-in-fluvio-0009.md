@@ -154,4 +154,4 @@ Until next week!
 [our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
 [our Discord channel]: https://discordapp.com/invite/bBG2dTz
 [Github Discussions]: https://github.com/infinyon/fluvio/discussions
-[connectors]: {{<ref "/connectors" >}}
+[connectors]: {{<ref "/connectors-old" >}}
