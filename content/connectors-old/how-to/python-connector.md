@@ -84,7 +84,7 @@ Then we create a new user `fluvio` with a home directory (in `/home/fluvio`).
 
 This is **required** for all connectors. The Fluvio cluster shares information with the `fluvio` user on startup.
 
-{{<code file="embeds/connectors/developer-guide/python-connector/Dockerfile" lang="dockerfile" copy=true >}}
+{{<code file="embeds/connectors-old/developer-guide/python-connector/Dockerfile" lang="dockerfile" copy=true >}}
 
 ### Build and Test the Container
 You can build the Docker image with this command.
