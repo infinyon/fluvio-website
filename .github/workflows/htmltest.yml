@@ -26,7 +26,6 @@ jobs:
     secrets: inherit
 
   htmltest:
-    if: ${{ false }}
     runs-on: ubuntu-latest
     name: Run htmltest to lint Hugo output
     needs: test-skip-check
@@ -48,8 +47,9 @@ jobs:
       - name: Run Hugo in the background
         if: ${{ needs.test-skip-check.outputs.no-skip }}
         run: ./hugo-start.sh &
+      # Skip running for now
       - name: Run htmltest
-        if: ${{ needs.test-skip-check.outputs.no-skip }}
+        if: ${{ false }}
         run: |
           make htmltest
 
