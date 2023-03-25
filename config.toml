@@ -39,12 +39,6 @@ staticDir = ["static", "code"]
     url = "/docs/"
     weight = 100
 
-  #[[menu.fluvio]]
-  #  identifier = "connectors"
-  #  name = "Connectors (deprecated)"
-  #  url = "/deprecated/connectors-v2/"
-  #  weight = 110
-
   [[menu.fluvio]]
     identifier = "connectors"
     name = "Connectors"

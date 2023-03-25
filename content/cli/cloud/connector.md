@@ -38,7 +38,7 @@ option.
 Example usage:
 
 %copy first-line%
-```bash:
+```bash
 $ fluvio cloud connector create --config=./cats.yaml
 connector "cat-facts" (http-source) created
 ```
