@@ -27,7 +27,7 @@ Check out the [`fluvio cloud` CLI docs]({{<ref "/cli/cloud/overview.md">}}) for 
 ### Example HTTP connector
 This is the config file for the [Inbound HTTP connector]({{<ref "/connectors-old/inbound/http.md">}}) in this guide.
 
-{{<code file="embeds/connectors-old/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
 
 In this config, we are creating a connector named `cat-facts`. It will request data from {{<link "https://catfact.ninja" "a cat fact API">}} once every 30 seconds and receive json data. The connector will store the json into a topic called `cat-facts-data`
 
@@ -48,8 +48,8 @@ After the connector is created, you can list the connectors you've created, and 
 %copy first-line%
 ```bash
 $ fluvio cloud connector list
- NAME                        TYPE         VERSION  STATUS
- cat-facts                   http-source  0.3.0    Running
+ NAME       TYPE         VERSION  CDK  STATUS
+ cat-facts  http-source  0.1.1    V3   Running
 ```
 
 #### Look at connector logs
@@ -59,16 +59,28 @@ If there is a need to debug the behavior of a connector, the logs are available 
 %copy first-line%
 ```bash
 $ fluvio cloud connector logs cat-facts
-2022-10-23T07:36:36.915928Z  INFO http_source: Starting HTTP source connector connector_version="0.3.0" git_hash="10ee08a94b7be7d91a31a01104b7f6e86e54b7d9"
-2022-10-23T07:36:36.915981Z  INFO http_source: interval=30s method=GET topic=cat-facts output_parts=body output_type=text endpoint=https://catfact.ninja/fact
-2022-10-23T07:36:36.916165Z  INFO fluvio::config::tls: Using verified TLS with certificates from paths domain="odd-butterfly-0dea7a035980a4679d0704f654e1a14e.c"
-2022-10-23T07:36:36.920362Z  INFO fluvio::fluvio: Connecting to Fluvio cluster fluvio_crate_version="0.12.14" fluvio_git_hash=""
-2022-10-23T07:36:36.979270Z  INFO connect: fluvio::sockets: connect to socket add=fluvio-sc-public:9003
-2022-10-23T07:36:37.025300Z  INFO connect:connect_with_config: fluvio::config::tls: Using verified TLS with certificates from paths domain="odd-butterfly-0dea7a035980a4679d0704f654e1a14e.c"
-2022-10-23T07:36:37.088073Z  INFO connect:connect_with_config:connect: fluvio::sockets: connect to socket add=fluvio-sc-public:9003
-2022-10-23T07:36:37.494092Z  INFO dispatcher_loop{self=MultiplexDisp(13)}: fluvio_socket::multiplexing: multiplexer terminated
-2022-10-23T07:36:37.544828Z  INFO http_source: Connected to Fluvio
-2022-10-23T07:36:38.060832Z  INFO run:create_serial_socket_from_leader{leader_id=0}:connect_to_leader{leader=0}:connect: fluvio::sockets: connect to socket add=fluvio-spu-main-0.acct-.svc.cluster.local:9005
+connector-startup infinyon/http-source@0.1.1
+2023-03-25T03:41:29.570294Z  INFO surf::middleware::logger::native: sending request    
+2023-03-25T03:41:29.702213Z  INFO surf::middleware::logger::native: request completed    
+2023-03-25T03:41:29.702258Z  INFO connector_startup::startup: downloading package url="https://hub-dev.infinyon.cloud/hub/v0/connector/pkg/infinyon/http-source/0.1.1"
+2023-03-25T03:41:29.702290Z  INFO surf::middleware::logger::native: sending request    
+2023-03-25T03:41:29.993001Z  INFO surf::middleware::logger::native: request completed    
+2023-03-25T03:41:30.108220Z  INFO connector_startup::startup: writing file file="connector.ipkg"
+... checking package
+2023-03-25T03:41:30.301199Z  INFO connector_startup::startup: connector binary from package path="./http-source"
+2023-03-25T03:41:30.301224Z  INFO connector_startup::startup: Starting deployment
+Connector runs with process id: 15
+2023-03-25T03:41:30.303333Z  INFO http_source: Reading config file from: /home/fluvio/config.yaml
+2023-03-25T03:41:30.303526Z  INFO http_source: starting processing
+2023-03-25T03:41:30.304337Z  INFO fluvio::config::tls: Using verified TLS with certificates from paths domain="odd-butterfly-0dea7a035980a4679d0704f654e1a14e.c.cloud-dev.fluvio.io"
+2023-03-25T03:41:30.308822Z  INFO fluvio::fluvio: Connecting to Fluvio cluster fluvio_crate_version="0.16.0" fluvio_git_hash="8d4023ee0dc7735aaa0c823dd2b235662112f090"
+2023-03-25T03:41:30.369634Z  INFO connect: fluvio_socket::versioned: connect to socket add=fluvio-sc-public:9003
+2023-03-25T03:41:30.412895Z  INFO connect:connect_with_config: fluvio::config::tls: Using verified TLS with certificates from paths domain="odd-butterfly-0dea7a035980a4679d0704f654e1a14e.c.cloud-dev.fluvio.io"
+2023-03-25T03:41:30.473242Z  INFO connect:connect_with_config:connect: fluvio_socket::versioned: connect to socket add=fluvio-sc-public:9003
+2023-03-25T03:41:30.582726Z  INFO dispatcher_loop{self=MultiplexDisp(12)}: fluvio_socket::multiplexing: multiplexer terminated
+2023-03-25T03:41:30.632722Z  INFO fluvio_connector_common::monitoring: using metric path: /fluvio_metrics/connector.sock
+2023-03-25T03:41:30.632795Z  INFO fluvio_connector_common::monitoring: monitoring started
+2023-03-25T03:41:31.172075Z  INFO run:create_serial_socket_from_leader{leader_id=0}:connect_to_leader{leader=0}:connect: fluvio_socket::versioned: connect to socket add=fluvio-spu-main-0.acct-ce0c1782-ca61-4c54-a08c-3ba985524553.svc.cluster.local:9005
 ```
 
 #### View data in topic
