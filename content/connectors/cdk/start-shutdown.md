@@ -10,7 +10,7 @@ This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-conn
 
 ### Connector start 
 
-[Testing]({{<ref "/connectors-beta/cdk/build-test#test---operation">}}) your connector runs the process in the foreground. 
+[Testing]({{<ref "/connectors/cdk/build-test#test---operation">}}) your connector runs the process in the foreground. 
 
 When you are ready, you can run `cdk deploy start` to run your connector in the background.
 

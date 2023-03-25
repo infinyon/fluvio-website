@@ -1,5 +1,6 @@
 ---
 title: System requirements 
+weight: 20
 ---
 
 CDK currently supports Rust programming language. Other languages will be added in future release.

@@ -6,7 +6,7 @@ weight: 10
 
 There are 4 steps to the connector:
 
-<img src="/images/smart-connectors-extra.svg"
+<img src="/images/connectors/smart-connectors-extra.svg"
      alt="Smart Connectors"
      style="justify: center; max-width: 600px" />
 

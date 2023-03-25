@@ -14,10 +14,10 @@ You can import data with an `Inbound` connector and export data with an `Outboun
 
 Inbound and outbound connectors fundamentally work in the same way. The only difference is the direction your data is streaming with respect to a Fluvio topic.
 
-<img src="/images/smart-connectors-extra.svg"
+<img src="/images/connectors/smart-connectors-extra.svg"
      alt="Smart Connectors"
      style="justify: center; max-width: 600px" />
 
 * Learn more about the connector's 4 steps of transformation in [core concepts]({{<ref "core-concepts.md">}})
 * To get started with using connectors, check out the requirements first before browsing through one of our Inbound or Outbound connectors.
-* For the development of your own connectors, continue on to the [Connector Development Kit docs]({{<ref "/connectors-beta/cdk/overview" >}})
+* For the development of your own connectors, continue on to the [Connector Development Kit docs]({{<ref "/connectors/cdk/overview" >}})

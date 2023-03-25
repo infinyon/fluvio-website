@@ -6,7 +6,7 @@ weight: 60
 
 This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-connector` project has been [generated]({{< ref "generate" >}}).
 
-After you [start your connectors]({{<ref "/connectors-beta/cdk/start-shutdown#connector-start">}}), you can review the list of all connectors, and view their logs with these commands
+After you [start your connectors]({{<ref "/connectors/cdk/start-shutdown#connector-start">}}), you can review the list of all connectors, and view their logs with these commands
 
 ### List
 
