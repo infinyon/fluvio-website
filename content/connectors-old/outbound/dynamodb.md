@@ -67,7 +67,7 @@ The [AWS Secret Access Key]
 
 #### Example connector config
 
-{{<code file="embeds/connectors/outbound-examples/outbound-dynamodb.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors-old/outbound-examples/outbound-dynamodb.yaml" lang="yaml" copy=true >}}
 
 [Dynamodb data types]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html
 [attribute types of the keys]: https://docs.aws.amazon.com/cli/latest/reference/dynamodb/create-table.html#options

@@ -76,7 +76,7 @@ The SSL CA pem text
 
 #### Example connector config
 
-{{<code file="embeds/connectors/outbound-examples/outbound-kafka.yaml" lang="yaml" copy=true >}}
+{{<code file="embeds/connectors-old/outbound-examples/outbound-kafka.yaml" lang="yaml" copy=true >}}
 
 
 ## Data Events
