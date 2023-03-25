@@ -2,6 +2,7 @@
 title: Connector template 
 weight: 40
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 ## Connector Template
 

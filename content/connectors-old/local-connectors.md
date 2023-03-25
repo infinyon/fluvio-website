@@ -2,6 +2,7 @@
 title: Local Connectors
 weight: 20
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 Local connectors are provided as Docker containers. Using our `connector-run` utility supports starting connectors in Kubernetes or Docker using a connector config file.
 

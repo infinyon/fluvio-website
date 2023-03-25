@@ -5,6 +5,7 @@ connector:
   name: "infinyon/fluvio-connect-mqtt-source"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/mqtt"
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 MQTT is a publish/subscribe protocol that allows clients to listen to a stream
 of events produced to a server.

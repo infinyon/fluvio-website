@@ -5,6 +5,7 @@ connector:
   name: "infinyon/fluvio-connect-http-source"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/http"
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 Fluvio's `http` connector allows you to periodically fetch data from an HTTP endpoint
 and feed the HTTP response into a Fluvio topic.

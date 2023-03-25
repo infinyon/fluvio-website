@@ -5,6 +5,7 @@ section: Source
 toc: false
 hidden: true
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 The TEMPLATE connector is a Source, which reads from an external data
 provider and produces data to Fluvio.

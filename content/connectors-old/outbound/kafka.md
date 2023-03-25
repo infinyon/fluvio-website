@@ -5,6 +5,7 @@ connector:
   name: "infinyon/fluvio-connect-kafka-sink"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sinks/kafka"
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 The Kafka Connector is quite simple. It will send every record of a fluvio topic to a kafka cluster for a given kafka topic.
 

@@ -5,6 +5,7 @@ section: Connectors
 toc: true
 url: /deprecated/connectors-v2/
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 Smart Connectors make the process of importing or exporting data simple.
 You can import data with an `Inbound` connector and export data with an `Outbound` connector.

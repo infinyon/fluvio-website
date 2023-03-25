@@ -5,6 +5,7 @@ connector:
   name: "infinyon/fluvio-connect-sql-sink"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sinks/sql"
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 -> SQL Connector is a preview with support for SmartModule chaining through `transforms`.<br>See [HTTP-to-SQL]({{<ref "/docs/tutorials/data-pipeline.md" >}}) and [MQTT-to-SQL]({{<ref "/docs/tutorials/mqtt-to-sql.md">}}) for examples of this connector in action.
 

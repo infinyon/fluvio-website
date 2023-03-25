@@ -5,6 +5,7 @@ connector:
   name: "infinyon/fluvio-connect-kafka-source"
   link: "https://github.com/infinyon/fluvio-connectors/tree/main/rust-connectors/sources/kafka"
 ---
+{{% inline-embed file="embeds/deprecation-notice/connectors-old.txt" %}}
 
 The inbound Kafka Connector will send every record on a Kafka topic/partition to a Fluvio topic/partition.
 
