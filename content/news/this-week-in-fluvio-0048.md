@@ -19,7 +19,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 * [Fluvio v0.10.0](https://github.com/infinyon/fluvio/releases/tag/v0.10.0)
   * [`smdk` - SmartModule Development Kit CLI](https://www.fluvio.io/smartmodules/smdk/overview/)
-* [SQL outbound connector](https://www.fluvio.io/connectors-old/outbound/sql/)
+* [SQL outbound connector]({{<ref "/connectors-old/outbound/sql">}})
 
 ### Deprecations
 The `fluvio connector` CLI and Fluvio's management of connectors has been removed in this release.
