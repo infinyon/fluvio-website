@@ -49,7 +49,7 @@ After the connector is created, you can list the connectors you've created, and 
 ```bash
 $ fluvio cloud connector list
  NAME       TYPE         VERSION  CDK  STATUS
- cat-facts  http-source  0.1.1    V3   Running
+ cat-facts  http-source  0.1.0    V3   Running
 ```
 
 #### Look at connector logs
@@ -59,10 +59,10 @@ If there is a need to debug the behavior of a connector, the logs are available 
 %copy first-line%
 ```bash
 $ fluvio cloud connector logs cat-facts
-connector-startup infinyon/http-source@0.1.1
+connector-startup infinyon/http-source@0.1.0
 2023-03-25T03:41:29.570294Z  INFO surf::middleware::logger::native: sending request    
 2023-03-25T03:41:29.702213Z  INFO surf::middleware::logger::native: request completed    
-2023-03-25T03:41:29.702258Z  INFO connector_startup::startup: downloading package url="https://hub-dev.infinyon.cloud/hub/v0/connector/pkg/infinyon/http-source/0.1.1"
+2023-03-25T03:41:29.702258Z  INFO connector_startup::startup: downloading package url="https://hub.infinyon.cloud/hub/v0/connector/pkg/infinyon/http-source/0.1.0"
 2023-03-25T03:41:29.702290Z  INFO surf::middleware::logger::native: sending request    
 2023-03-25T03:41:29.993001Z  INFO surf::middleware::logger::native: request completed    
 2023-03-25T03:41:30.108220Z  INFO connector_startup::startup: writing file file="connector.ipkg"
@@ -120,12 +120,12 @@ $ fluvio cloud connector delete cat-facts
 connector "cat-facts" deleted
 ```
 
-Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete cat-facts-data`
+Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete cat-facts`
 
 %copy first-line%
 ```shell
-$ fluvio topic delete cat-facts-data
-topic "cat-facts-data" deleted
+$ fluvio topic delete cat-facts
+topic "cat-facts" deleted
 ```
 
 ### Conclusion

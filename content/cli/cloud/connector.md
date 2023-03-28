@@ -13,7 +13,7 @@ $  fluvio cloud connector -h
 
 {{% inline-embed file="embeds/cli/help/fluvio-cloud-connector.md" %}}
 
--> For more info about using connectors, see the [Connectors page]({{<ref "/connectors-old">}}). The available connector types are listed under the *Inbound* and *Outbound* sections.
+-> For more info about using connectors, see the [Connectors page]({{<ref "/connectors">}}). The available connector types are listed under the *Inbound* and *Outbound* sections.
 
 ---
 
@@ -30,7 +30,7 @@ $  fluvio cloud connector create -h
 
 To create a connector, you need to create a YAML-based connector config file.
 
-For more about the connector config file, see the [Cloud connectors page]({{<ref "/connectors-old/cloud-connectors.md" >}}) or the [connector template]({{<ref "/connectors-old/connector-templates.md" >}})
+For more about the connector config file, see the [Cloud connectors page]({{<ref "/connectors/cloud-connectors.md" >}}).
 
 When running `fluvio cloud connector create`, pass the path to this file using the `--config`
 option.
@@ -58,19 +58,7 @@ $  fluvio cloud connector config -h
 
 Example usage:
 
-%copy first-line%
-```bash
-$ fluvio cloud connector config cat-facts
-
-name: cat-facts
-type: http-source
-topic: cat-facts
-version: 0.4.2
-parameters:
-  endpoint: https://catfact.ninja/fact
-  interval: 10s
-
-```
+{{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
 
 ---
 
