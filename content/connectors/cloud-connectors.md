@@ -120,12 +120,12 @@ $ fluvio cloud connector delete cat-facts
 connector "cat-facts" deleted
 ```
 
-Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete cat-facts-data`
+Deleting your connector will not delete the topic used by the connector. If you want to delete the topic, you can run `fluvio topic delete cat-facts`
 
 %copy first-line%
 ```shell
-$ fluvio topic delete cat-facts-data
-topic "cat-facts-data" deleted
+$ fluvio topic delete cat-facts
+topic "cat-facts" deleted
 ```
 
 ### Conclusion
