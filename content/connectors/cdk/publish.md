@@ -9,7 +9,7 @@ This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-conn
 
 ### Publish
 
-The final step in this scenario would be publishing the SmartModule to the Hub - where other users can download and integrate it into their data pipelines.
+The final step in this scenario would be publishing the Connector to the Hub - where other users can download and integrate it into their data pipelines.
 
 If run without arguments, it will pack everything needed into a package and push the package to the Hub. (`cdk build`must be executed beforehand)
 
