@@ -1,11 +1,11 @@
 # sql-chain.yaml
-name: transform-cat-facts-sql
-type: sql-sink
-version: 0.1.2
-topic: cat-facts-data
-parameters:
-  database-url: "postgres://user:password@db.postgreshost.example/dbname"
-  rust_log: "sql_sink=INFO,sqlx=WARN"
+meta:
+  name: transform-cat-facts-sql
+  type: sql-sink
+  version: 0.1.0
+  topic: cat-facts-data
+sql:
+  url: "postgres://user:password@db.postgreshost.example/dbname"
 transforms:
   - uses: infinyon/jolt@0.1.0
     with:
@@ -20,6 +20,7 @@ transforms:
               type: "cat"
   - uses: infinyon/json-sql@0.1.0
     with:
+      invoke: insert
       mapping:
         table: "animalfacts"
         map-columns:

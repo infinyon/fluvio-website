@@ -1,12 +1,16 @@
 # mqtt.yml
-version: 0.5.3
-name: fluvio-mqtt-connector
-type: mqtt-source
-topic: mqtt-topic
-direction: source
-create-topic: true
-parameters:
-  mqtt_topic: "ag-mqtt-topic"
+meta:
+  version: 0.1.0
+  name: fluvio-mqtt-connector
+  type: mqtt-source
+  topic: mqtt-topic
+  direction: source
+  create-topic: true
+mqtt:
+  url: "mqtt://test.mosquitto.org/"
+  topic: "ag-mqtt-topic"
+  client_id: "my_mqtt"
+  timeout:
+    secs: 30
+    nanos: 0
   payload_output_type: json
-secrets:
-  MQTT_URL: mqtt://test.mosquitto.org/
