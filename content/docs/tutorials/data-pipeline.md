@@ -20,10 +20,10 @@ There are two main steps for this tutorial:
   * Basic insert
   * JSON to JSON transformation before insert
 
-We will be looking at the [Inbound HTTP Connector]({{<ref "/connectors-old/inbound/http.md">}}) setup, and connecting
+We will be looking at the [Inbound HTTP Connector]({{<ref "/connectors/inbound/http.md">}}) setup, and connecting
 to the <a href="https://catfact.ninja" target="_blank" rel="nofollow" > catfact.ninja</a> database to ingest and store JSON data into a topic.
 
-The Outbound connector will be using a PostgreSQL database. It will listen to the topic for new records and insert them into a table.
+The Outbound connector will be using a [PostgreSQL](https://www.postgresql.org/) database. It will listen to the topic for new records and insert them into a table.
 
 You can use your own PostgreSQL instance, if it can be reached over the internet. But you can still follow along by creating a PostgreSQL database at a hosting service, such as [ElephantSQL](https://www.elephantsql.com/).
 
@@ -50,11 +50,11 @@ the connection type, and what topic to connect to.
 For the HTTP-specific parameters you will need to specify the link it is
 polling, and the interval at which it polls.
 
-{{<code file="embeds/connectors-old/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
+{{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy="true">}}
 
 This creates a connector named `cat-facts`, that reads from the website
-`https://catfact.ninja/fact` every 30 seconds, and produces to the topic
-`cat-facts-data`.
+`https://catfact.ninja/fact` every 10 seconds, and produces to the topic
+`cat-facts`.
 
 #### Testing the Inbound Connector
 
@@ -70,8 +70,8 @@ You can use `fluvio cloud connector list` to view the status of the connector.
 %copy first-line%
 ```shell
  $ fluvio cloud connector list
- NAME       TYPE         VERSION  STATUS
- cat-facts  http-source  0.4.3    Running
+ NAME       TYPE         VERSION  CDK  STATUS  
+ cat-facts  http-source  0.1.0    V3   Running 
  ```
 
 And `fluvio consume` to view the incoming data in the topic.
@@ -90,7 +90,7 @@ Consuming records starting 4 from the end of topic 'cat-facts-data'
 All Inbound Connectors support [transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}}) which are applied before the data is sent to the topic.
 We can extend our config file to add an additional JSON to JSON transformation to records.
 
-{{<code file="embeds/connectors-old/catfacts-basic-connector-with-transform.yaml" lang="yaml" copy="true">}}
+{{<code file="embeds/connectors/catfacts-basic-connector-with-transform.yaml" lang="yaml" copy="true">}}
 
 In this config, we add the field `source` with the static value `http` to every record. Note that if the field 
 already exists, it will not be overwritten.
@@ -155,7 +155,7 @@ $ fluvio hub download infinyon/jolt@0.1.0
 For more info about the SmartModule Hub, check out the [Hub Overview page]({{<ref "/smartmodules/hub/overview.md">}})
 
 #### Outbound SQL with basic SQL inserts
-In this connector, we will listen in on the `cat-facts-data` topic. Whenever a new fact is produced to the topic, the Outbound SQL connector will insert the record into a table named `animalfacts`. The length in one column called `length` and the entire JSON in another column `raw_fact_json`.
+In this connector, we will listen in on the `cat-facts` topic. Whenever a new fact is produced to the topic, the Outbound SQL connector will insert the record into a table named `animalfacts`. The length in one column called `length` and the entire JSON in another column `raw_fact_json`.
 
 {{<code file="embeds/tutorials/data-pipeline/sql-basic.yml" lang="yaml" copy="true">}}
 
@@ -187,7 +187,7 @@ After a few seconds, we can see data in the PostgreSQL table,
 
 
 #### Outbound SQL with JSON to JSON transformation before insert
-In this connector, we will listen in on the `cat-facts-data` topic.
+In this connector, we will listen in on the `cat-facts` topic.
 
 But before we insert into the database, we specify a transformation. The resulting JSON we see inserted in the table has the `length` removed, and adds `type: cat` to every JSON.
 
@@ -258,7 +258,7 @@ With the Outbound SQL Connector, we utilized SmartModules in two different ways.
 * [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
 * [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
 * [Fluvio CLI profile]({{<ref "/cli/client/profile.md">}})
-* [Connectors]({{<ref "/connectors-old/">}})
+* [Connectors]({{<ref "/connectors/">}})
 * [Smart Modules]({{<ref "/smartmodules/">}})
 * [SmartModule Rust API](https://docs.rs/fluvio-smartmodule/latest/fluvio_smartmodule/)
 * [Transformations]({{<ref "../../../docs/concepts/transformations-chain.md">}}):
