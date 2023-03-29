@@ -32,7 +32,7 @@ from fluvio import cloud
 cloud.login(email="my@email.com", password="mypassword")
 ```
 
-Login to Infinyon Cloud using `--ouath2`
+Alternatively, you can login using `--ouath2`. However, this method is only suitable for interactive mode, where you have the option to follow the link with a web browser.
 
 %copy%
 ```shell
