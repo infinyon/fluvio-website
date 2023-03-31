@@ -26,8 +26,8 @@ sends new records to the SQL database (via `INSERT` statements).
 | Json            | JSON, JSONB                  | TEXT         |
 
 ## Transformations
-The SQL Sink connector expects the data in Fluvio SQL Model in JSON format.
-In order to work with different data formats or data structures, [transformations](https://github.com/infinyon/fluvio-connectors/blob/main/rust-connectors/common/README.md#transforms) can be applied.
+The SQL Sink connector expects the data in [Fluvio SQL Model](./crates/fluvio-model-sql/README.md) in JSON format.
+In order to work with different data formats or data structures, `transformations` can be applied.
 The transformation is a SmartModule pulled from the SmartModule Hub. Transformations are chained according to the order
 in the config. If a SmartModule requires configuration, it is passed via `with` section of `transforms` entry. 
 
