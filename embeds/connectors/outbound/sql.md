@@ -39,7 +39,7 @@ in the config. If a SmartModule requires configuration, it is passed via `with` 
 ### Basic example:
 ```yaml
 meta:
-  version: latest
+  version: 0.1.0
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic

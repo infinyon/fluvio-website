@@ -1,3 +1,4 @@
+
 ## Sink Connector
 This is a connector for taking data from a Fluvio topic and sending to a Kafka topic.
 
@@ -27,7 +28,7 @@ Parameters `ssl_key`, `ssl_cert` and `ssl_ca` can be defined via `file` - path t
 Example without security:
 ```yaml
 meta:
-  version: latest
+  version: 0.1.0
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
@@ -41,7 +42,7 @@ kafka:
 Example with security enabled:
 ```yaml
 meta:
-  version: latest
+  version: 0.1.0
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic

@@ -15,7 +15,7 @@ See [docs](https://www.fluvio.io/connectors/inbound/kafka/) here.
 Example:
 ```yaml
 meta:
-  version: latest
+  version: 0.1.0
   name: my-kafka-connector
   type: kafka-source
   topic: kafka-topic
