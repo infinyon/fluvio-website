@@ -5,10 +5,6 @@ section: Connectors
 toc: true
 ---
 
-{{<caution>}}
-This version of connectors is in Beta
-{{</caution>}}
-
 Smart Connectors make the process of importing or exporting data simple.
 You can import data with an `Inbound` connector and export data with an `Outbound` connector.
 
