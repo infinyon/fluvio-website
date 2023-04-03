@@ -22,14 +22,21 @@ https://github.com/infinyon/fluvio/releases/tag/v0.10.6
 *Connector Development Kit Launch:*
 The goal of the Connector Development Kit (CDK) is to enable developers to write connectors to read data from data sources across different services using fluvio and Rust. We have been internally building our connectors using the CDK and are now ready to share it with the open source community.
 
-Here are the docs to get started: https://www.fluvio.io/connectors/cdk/install/
-
-We are excited to see what you are going to build with the CDK!
+To get started, install `cdk` with the `fluvio` CLI
 
 {{% inline-embed file="embeds/cli/example/cdk-install.md" %}}
 
+Generating a project 
+
 {{% inline-embed file="embeds/cli/example/cdk-generate-example.md" %}}
 
+This is what the generated rust code for the connector looks like 
+
+{{% inline-embed file="embeds/cdk/my-connector-code.md" %}}
+
+If you're interested in learning more, here are [the docs to CDK]({{<ref "connectors/cdk/install.md">}})
+
+We are excited to see what you are going to build with the CDK!
 
 We are currently working on a way to certify connectors built by the community and would love your inputs on [our Discord channel].
 
@@ -40,13 +47,13 @@ Full changelog available here: https://github.com/infinyon/fluvio/blob/master/CH
 ## Upcoming features
 We are aware of the frustrations of getting started with fluvio due to the clunky installation process. We are considering a clean binary install, as well as installing using a package manager. However, we have been busy with the CDK, SMDK and other Cloud Features.
 
-We would love to know what do you recommend we build next to make your development flow easier. Please comment in [our Discord channel] and let us know. Tag Deb (DRC) #7918 on your feedback and feature requests.
+We would love to know what do you recommend we build next to make your development flow easier. Please comment in [our Discord channel] and let us know. Tag [Deb (DRC)](https://discordapp.com/users/887863207232954418) on your feedback and feature requests.
 
 ## Bug fixes
-Enabled --file and --key-separator to be used together, fix --key handling when producing lines (#3092)
+Enabled --file and --key-separator to be used together, fix --key handling when producing lines ([#3092](https://github.com/infinyon/fluvio/pull/3092))
 
 ## Community update
-[Carson Rajcan](https://github.com/crajcan) presented to our team a really cool contribution to the Fluvio OSS. In the project Carson developed the functionality to apply Smart Module transformation for Producer. The team is evaluating the PR - https://github.com/infinyon/fluvio/pull/3014
+[Carson Rajcan](https://github.com/crajcan) presented to our team a really cool contribution to the Fluvio OSS. In the project Carson developed the functionality to apply Smart Module transformation for Producer - [PR #3014](crecdfhttps://github.com/infinyon/fluvio/pull/3014)
 
 As Winter is now over... We are planning community events to champion community contributors, as well as planning hackathons to build som cool stuff with the community using CDK, SMDK etc.
 
