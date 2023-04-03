@@ -7,11 +7,6 @@ Fluvio is a distributed, programmable streaming platform written in Rust.
 
 This Week in Fluvio is our weekly newsletter for development updates to [Fluvio open source].
 
-Please subscribe to This Week in Fluvio to receive new posts in your inbox
-{{< subscribe-button >}}
-
-
-{{< banner >}}
 
 ---
 Welcome to the 50th edition of this week in Fluvio.
@@ -30,6 +25,11 @@ The goal of the Connector Development Kit (CDK) is to enable developers to write
 Here are the docs to get started: https://www.fluvio.io/connectors/cdk/install/
 
 We are excited to see what you are going to build with the CDK!
+
+{{% inline-embed file="embeds/cli/example/cdk-install.md" %}}
+
+{{% inline-embed file="embeds/cli/example/cdk-generate-example.md" %}}
+
 
 We are currently working on a way to certify connectors built by the community and would love your inputs on [our Discord channel].
 

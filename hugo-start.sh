@@ -1,5 +1,5 @@
 #!/bin/bash
-WAIT=20
+WAIT=5
 
 printf "\n**********\n* This script is deprecated!\n* Instead run:\n* cargo run -- hugo\n**********\n"
 
