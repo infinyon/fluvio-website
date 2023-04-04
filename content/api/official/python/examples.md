@@ -27,17 +27,17 @@ fluvio topic create python-data
 Login to Infinyon Cloud using username/password
 
 %copy%
-```shell
+```python
 from fluvio import cloud
 cloud.login(email="my@email.com", password="mypassword")
 ```
 
-Alternatively, you can login using `--oauth2`. However, this method is only suitable for interactive mode, where you can copy/paste the link to a browser for authorization.
+You can also use the oauth method to log in. However this is only for interactive sessions.
 
 %copy%
-```shell
+```python
 from fluvio import cloud
-cloud.login()
+cloud.login(Oauth2=true)
 ```
 
 ### Producer
