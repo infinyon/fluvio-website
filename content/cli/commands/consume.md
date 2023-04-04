@@ -56,7 +56,7 @@ Records that were not given a key are printed with `[null]`.
 
 Fluvio SmartModules are WASM modules that can edit the contents of a stream
 inline, before the records of that stream are delivered to a consumer. In order
-to use SmartModules, you must supply the WASM module with the `--smarmodule` flag
+to use SmartModules, you must supply the WASM module with the `--smartmodule` flag
 to the `fluvio consume` command.
 
 The simplest SmartModule is the [filter example], which
