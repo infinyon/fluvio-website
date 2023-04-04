@@ -56,11 +56,8 @@ Records that were not given a key are printed with `[null]`.
 
 Fluvio SmartModules are WASM modules that can edit the contents of a stream
 inline, before the records of that stream are delivered to a consumer. In order
-to use SmartModules, you must supply the WASM module to the `fluvio consume`
-command using the SmartModule options: `--filter`, `--map`, `--aggregate`, `--filter-map`, `--array-map`.
-
-For Fluvio CLI >= 0.9.32 you can use the `--smartmodule` flag to specify the smartmodule name.
-This will defer the resolution of the SmartModule type to the SPU.
+to use SmartModules, you must supply the WASM module with the `--smartmodule` flag
+to the `fluvio consume` command.
 
 The simplest SmartModule is the [filter example], which
 filters records from the stream based on whether they contain the letter `a`
@@ -75,8 +72,6 @@ can apply it to the consumer as follows:
 
 %copy first-line%
 ```bash
-$ fluvio consume my-topic -B --filter="fluvio_wasm_filter.wasm"
-# or with the --smartmodule flag for fluvio 0.9.32 or later
 $ fluvio consume my-topic -B --smartmodule="fluvio_wasm_filter.wasm"
 ```
 
