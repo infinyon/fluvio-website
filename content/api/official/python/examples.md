@@ -22,6 +22,24 @@ Create the topic used to produce and consume records:
 fluvio topic create python-data
 ```
 
+### Login
+
+Login to Infinyon Cloud using username/password
+
+%copy%
+```python
+from fluvio import cloud
+cloud.login(email="my@email.com", password="mypassword")
+```
+
+You can also use the oauth method to log in. However this is only for interactive sessions.
+
+%copy%
+```python
+from fluvio import cloud
+cloud.login(Oauth2=true)
+```
+
 ### Producer
 
 Create a file called `python-produce.py`:
