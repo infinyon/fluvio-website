@@ -7,13 +7,12 @@ weight: 20
 
 CDK is an independent executable downloadable via [`Fluvio CLI`](https://www.fluvio.io/cli/utilities/install/):
 
-```bash
-$ fluvio install cdk
-```
+{{% inline-embed file="embeds/cli/example/cdk-install.md" %}}
+
+{{% inline-embed file="embeds/cli/help/cdk.md" %}}
 
 The executable is installed in `~/.fluvio/bin` directory, the same directory as `fluvio`. The command should be immediately accessible at the prompt:
 
-{{% inline-embed file="embeds/cli/help/cdk.md" %}}
 
 ### Steps
 
