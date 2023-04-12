@@ -37,7 +37,9 @@ Where was I going to start? Well, TDD is my friend.
 
 There were plenty of test cases for Consumer SmartModule transformations that used the CLI. All I had to do was move the SmartModule options from the Consumer commands over to the Producer commands.
 
-In this example, we are processing email addresses on the Consumer side
+In this example, we are processing email addresses on the Consumer side.
+
+Our test email is `FooBar@test.com` (*emphasis on the usage of capital letters*)
 
 ```
 echo "FooBar@test.com" | fluvio produce emails
