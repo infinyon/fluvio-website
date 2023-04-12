@@ -98,8 +98,8 @@ Keep the feedback flowing in [our Discord channel] and let us know if you'd like
 
 
 ## Open positions
-[Sr. Rust Cloud Software Engineer](https://infinyon.com/careers/cloud-engineer-senior-level/)
-[Developer Advocate](https://infinyon.com/careers/developer-advocate-mid-senior-level/)
+* [Sr. Rust Cloud Software Engineer](https://infinyon.com/careers/cloud-engineer-senior-level/)
+* [Developer Advocate](https://infinyon.com/careers/developer-advocate-mid-senior-level/)
 
 ---
 
