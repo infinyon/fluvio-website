@@ -41,21 +41,23 @@ In this example, we are processing email addresses on the Consumer side.
 
 Our test email is `FooBar@test.com` (*emphasis on the usage of capital letters*)
 
-```
+%copy%
+```shell
 echo "FooBar@test.com" | fluvio produce emails
 fluvio consume emails -B -d --smartmodule lowercase
 ```
 
 In this example, we are still processing email addresses, but now it is possible to do on the Producer side.
 
-```
+%copy%
+```shell
 echo "FooBar@test.com" | fluvio produce emails --smartmodule lowercase
 fluvio consume emails -B -d 
 ```
 
 Both result in the same output with the email address using only lowercase letters:
 
-```
+```shell
 foobar@test.com
 ```
 
@@ -64,32 +66,39 @@ foobar@test.com
 With my TDD workflow ready to go, I made the changes from the outside-in.
 
 ### In The CLI
-    1. Added the SmartModule options to the CLI Produce Command.
-    2. Used those arguments to build SmartModuleInvocation(s), a type used to model SmartModules during network requests.
-    3. Added the SmartModuleInvocation(s) to the ProduceRequest
+
+1. Added the SmartModule options to the CLI Produce Command.
+2. Used those arguments to build SmartModuleInvocation(s), a type used to model SmartModules during network requests.
+3. Added the SmartModuleInvocation(s) to the ProduceRequest
 
 ### For the transfer 
-    4. Had to define how the SmartModuleInvocation(s) would be encoded & decoded
+
+4. Had to define how the SmartModuleInvocation(s) would be encoded & decoded
 
 ### On the SPU
-    5. Translated the SmartModuleInvocation(s) into a SmartModuleChain, a type which can be passed to the Smart Engine.
-    6. Finally, I fed the SmartModuleChain and the Produce requests's records to the SmartEngine.
+5. Translated the SmartModuleInvocation(s) into a SmartModuleChain, a type which can be passed to the Smart Engine.
+6. Finally, I fed the SmartModuleChain and the Produce requests's records to the SmartEngine.
 
 ## Problems I Faced
 
 ### Types In A New Domain
 
-Learning to translate between types in someone else's codebase can be challenging. There are many types to become familiar with in the Stream Processing Unit. Notably, the SPU uses a few different types to model Records. You end up seeing `Batch<Records>`, `Batch<RawRecords>`, `Batch<MemoryRecords>` quite often. It took me a while to figure out when and where to use each, and how to convert between them.
+Learning to translate between types in someone else's codebase can be challenging.
+
+There are many types to become familiar with in the Stream Processing Unit. Notably, the SPU uses a few different [`Batch`](https://docs.rs/fluvio/0.18.0/fluvio/dataplane/record/struct.Batch.html) types to model using different Record types ([Record](https://docs.rs/fluvio/0.18.0/fluvio/dataplane/record/struct.Record.html), [RawRecords](https://docs.rs/fluvio/0.18.0/fluvio/dataplane/record/struct.RawRecords.html#), [MemoryRecords](https://docs.rs/fluvio/0.18.0/fluvio/dataplane/record/type.MemoryRecords.html)).
+
+You end up seeing `Batch<BatchRecords>`, `Batch<RawRecords>`, `Batch<MemoryRecords>` ... quite often. It took me a while to figure out when and where to use each, and how to convert between them.
 
 ### Compression and SmartModules
 
 What happens when a Producer sends compressed records and requests the SPU performs a SmartModule Transformation?
 
-The records must be decompressed so they can be fed to the SmartEngine, then compressed again before storage. To pull this off I had to dig up the code that performs the compression, decompression and figure out how to utilize it while handling Producer requests.
+The records must be decompressed so they can be fed to the SmartEngine, then compressed *again* before storage. To pull this off I had to dig up the code that performs the compression, decompression and figure out how to utilize it while handling Producer requests.
 
 ### What Next?
 
-SmartModules that perform filtering and aggregation can now be applied before commit to save storage. Time intensive SmartModule operations can be performed on write, rather than while consuming.
+1. SmartModules that perform filtering and aggregation can now be applied before commit to save storage.
+2. Time intensive SmartModule operations can be performed on write, rather than while consuming.
 
 ## Upcoming features
 Thank you for your feedback on Discord. We are working on a public road map that should be out soon.
