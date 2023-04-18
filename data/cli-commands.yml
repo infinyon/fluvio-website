@@ -87,6 +87,9 @@ cli-commands:
   - fluvio cloud connector update
   - fluvio cloud login
   - fluvio cloud logout
+  - fluvio cloud secret set
+  - fluvio cloud secret list
+  - fluvio cloud secret delete
   - fluvio cloud usage
 
   - smdk
