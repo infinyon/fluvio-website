@@ -64,12 +64,12 @@ Downloading from the public git repo:
 
 Ex. Download MQTT docs from github repo
 ```shell
-$ cargo run -- connector --protocol mqtt --direction inbound
+$ cargo run -- connector --service mqtt --direction inbound
 ```
 
 Using README from local git clone:
 
 Ex. Copy SQL docs
 ```shell
-$ cargo run -- connector --protocol sql --direction outbound --file /path/to/README
+$ cargo run -- connector --service sql --direction outbound --file /path/to/README
 ```

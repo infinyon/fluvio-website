@@ -28,7 +28,7 @@ Parameters `ssl_key`, `ssl_cert` and `ssl_ca` can be defined via `file` - path t
 Example without security:
 ```yaml
 meta:
-  version: 0.1.0
+  version: 0.1.1
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
@@ -42,7 +42,7 @@ kafka:
 Example with security enabled:
 ```yaml
 meta:
-  version: 0.1.0
+  version: 0.1.1
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic

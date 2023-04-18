@@ -2,7 +2,7 @@
 meta:
   name: simple-cat-facts-sql
   type: sql-sink
-  version: 0.1.0
+  version: 0.1.1
   topic: cat-facts
 sql:
   url: "postgres://user:password@db.postgreshost.example/dbname"
