@@ -21,6 +21,7 @@ NEW_FILENAME=this-week-in-fluvio-$NEXT_ISSUE_PAD4.md
 
 # Set up git stuff
 #git stash
+git remote add upstream git@github.com:infinyon/fluvio-website.git
 git fetch upstream
 git checkout master
 git rebase upstream/master
