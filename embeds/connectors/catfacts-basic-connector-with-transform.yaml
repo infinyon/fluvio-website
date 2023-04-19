@@ -1,6 +1,6 @@
 # catfacts-basic-connector-with-transform.yml
 meta:
-  version: 0.1.0
+  version: 0.1.1
   name: cat-facts-transformed
   type: http-source
   topic: cat-facts-data-transformed

@@ -1,3 +1,4 @@
+
 ## Source Connector
 This is a connector for taking data from a Kafka topic and sending to a Fluvio topic.
 
@@ -15,7 +16,7 @@ See [docs](https://www.fluvio.io/connectors/inbound/kafka/) here.
 Example:
 ```yaml
 meta:
-  version: 0.1.0
+  version: 0.1.1
   name: my-kafka-connector
   type: kafka-source
   topic: kafka-topic

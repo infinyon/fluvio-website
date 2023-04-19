@@ -39,7 +39,7 @@ in the config. If a SmartModule requires configuration, it is passed via `with` 
 ### Basic example:
 ```yaml
 meta:
-  version: 0.1.0
+  version: 0.1.1
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -48,6 +48,22 @@ sql:
   url: 'postgresql://USERNAME:PASSWORD@HOST:PORT/DB_NAME'
 ```
 
+### Secrets
+
+The connector can use secrets in order to hide sensitive information.
+
+```yaml
+meta:
+  version: 0.1.1
+  name: my-sql-connector
+  type: sql-sink
+  topic: sql-topic
+  create-topic: true
+sql:
+  url: 
+    secret:
+     name: DATABASE_URL
+```
 ## Usage Example
 Let's look at the example of the connector with one transformation named [infinyon/json-sql](https://github.com/infinyon/fluvio-connectors/blob/main/smartmodules/json-sql/README.md). The transformation takes
 records in JSON format and creates SQL insert operation to `topic_message` table. The value from `device.device_id`
@@ -71,7 +87,7 @@ Connector configuration file:
 ```yaml
 # connector-config.yaml
 meta:
-  version: latest
+  version: 0.1.1
   name: json-sql-connector
   type: sql-sink
   topic: sql-topic
