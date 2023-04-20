@@ -72,7 +72,7 @@ can apply it to the consumer as follows:
 
 %copy first-line%
 ```bash
-$ fluvio consume my-topic -B --smartmodule="fluvio_wasm_filter.wasm"
+$ fluvio consume my-topic -B --smartmodule-path="fluvio_wasm_filter.wasm"
 ```
 
 ### Consume from a topic with multiple partitions
