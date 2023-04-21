@@ -82,6 +82,21 @@ To use the SmartModule, compile it and provide the `.wasm` file to the producer:
 $ fluvio produce my-topic --smartmodule-path="fluvio_smartmodule_map.wasm"
 ```
 
+To avoid sending the SmartModule binary to the cluster with every producer session, you
+can ask the cluster to store it for you:
+
+%copy first-line%
+```bash
+$ fluvio smartmodule create --wasm-file="fluvio_smartmodule_map.wasm" my_map
+```
+
+Then just use use the name you provided to apply it:
+
+%copy first-line%
+```bash
+$ fluvio produce my-topic --smartmodule="my_map"
+```
+
 ### Produce key/value records to multiple partitions
 
 When producing to a topic with multiple partitions, the producer will send
