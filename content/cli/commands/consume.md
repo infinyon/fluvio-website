@@ -55,9 +55,9 @@ Records that were not given a key are printed with `[null]`.
 ### Consume using a SmartModule
 
 Fluvio SmartModules are WASM modules that can edit the contents of a stream
-inline, before the records of that stream are delivered to a consumer. In order
-to use SmartModules, you must supply the WASM module with the `--smartmodule` flag
-to the `fluvio consume` command.
+inline, before the records of that stream are delivered to a consumer. One way to use
+SmartModules is to supply the WASM module with the `--smartmodule-path` flag to
+the `fluvio consume` command.
 
 The simplest SmartModule is the [filter example], which
 filters records from the stream based on whether they contain the letter `a`
@@ -68,11 +68,26 @@ it to test out yourself.
 [in our GitHub repo]:https://github.com/infinyon/fluvio/blob/d63e3e2569e4d64a098e5c2189ac68e6e9cd2670/crates/fluvio-smartmodule/examples/filter_json
 
 Once you have compiled your SmartModule Filter and have a `.wasm` file for it, you
-can apply it to the consumer as follows:
+can apply it by sending the binary to the cluster when you start your CLI consumer:
 
 %copy first-line%
 ```bash
-$ fluvio consume my-topic -B --smartmodule="fluvio_wasm_filter.wasm"
+$ fluvio consume my-topic -B --smartmodule-path="fluvio_wasm_filter.wasm"
+```
+
+Alternatively, to avoid sending the SmartModule binary to the cluster with each
+`fluvio consume` session, you can have the cluster store it for you:
+
+%copy first-line%
+```bash
+$ fluvio smartmodule create --wasm-file="fluvio_wasm_filter.wasm" my_filter
+```
+
+Then you can apply the SmartModule by name:
+
+%copy first-line%
+```bash
+$ fluvio consume my-topic -B --smartmodule="my_filter"
 ```
 
 ### Consume from a topic with multiple partitions
