@@ -18,7 +18,7 @@ Actions possible with a fluvio cloud secret are:
 - list
 
 ```sh
-fluvio cloud secret set --connector <NAME> <VALUE>
+fluvio cloud secret set <NAME> <VALUE>
 fluvio cloud secret list
 fluvio cloud secret delete <NAME>
 ```
@@ -28,8 +28,7 @@ fluvio cloud secret delete <NAME>
 Setting a scret of `<NAME>` will allow it to be refrenced by that name in connector configuration parameters that can use secret references.
 
 ```
-fluvio cloud secret set --connector <NAME> <VALUE>
-fluvio cloud secret set -c <NAME> <VALUE>
+fluvio cloud secret set <NAME> <VALUE>
 ```
 All secrets are in a shared connector namespace, but a specific connector is only given access to secrects named in the configuration file of the connector.
 
@@ -80,7 +79,7 @@ An example of a connector that can use secret parameters, the http connector mig
 
 ```
 # setup a secret
-$ fluvio cloud secret set -c AUTH_HEADER "Authorization: bearer 1234abcd"
+$ fluvio cloud secret set AUTH_HEADER "Authorization: bearer 1234abcd"
 
 # write a connector config http-config-with-secret.yaml
 $ cat << END_CONFIG > http-config-with-secret.yaml
