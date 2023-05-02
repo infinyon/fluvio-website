@@ -70,6 +70,17 @@ lazy_static! {
             },
         );
 
+        m.insert(
+            DataService::Http,
+            DocsLocation {
+                hub_group: "infinyon",
+                hub_pkg_name: "http-sink",
+                hub_pkg_version: "0.1.0",
+                service: DataService::Http,
+                direction: DataDirection::Outbound,
+            },
+        );
+
         m
     };
 }

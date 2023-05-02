@@ -14,15 +14,18 @@ HTTP Sink is configured using a YAML file:
 
 ```yaml
 # config-example.yaml
+apiVersion: 0.1.0
 meta:
   version: 0.1.0
   name: my-http-sink
   type: http-sink
   topic: http-sink-topic
+  secrets:
+    - name: HTTP_TOKEN
 http:
   endpoint: "http://127.0.0.1/post"
   headers:
-    - "Authorization: token MySecretToken"
+    - "Authorization: token ${{ secrets.HTTP_TOKEN }}"
     - "Cache-Control: no-cache"
 ```
 
@@ -50,6 +53,7 @@ HTTP request to `http://httpbin.org/post`.
 
 ```yaml
 # config.yaml
+apiVersion: 0.1.0
 meta:
   version: 0.1.0
   name: httpbin
@@ -76,7 +80,7 @@ fluvio cloud connector create --config ./config.yaml
 Check connector logs by running
 
 ```bash
-fluvio cloud connector logs <NAME>
+fluvio cloud connector logs httpbin
 ```
 
 ```log
@@ -125,15 +129,18 @@ Fluvio HTTP Sink Connector supports [Transformations](https://www.fluvio.io/docs
 The previous example can be extended to add extra transformations to outgoing records:
 ```yaml
 # config-example.yaml
+apiVersion: 0.1.0
 meta:
   version: 0.1.0
   name: my-http-sink
-  type: infinyon/http-sink
+  type: http-sink
   topic: http-sink-topic
+  secrets:
+    - name: AUTHORIZATION_TOKEN
 http:
   endpoint: "http://127.0.0.1/post"
   headers:
-    - "Authorization: token MySecretToken"
+    - "Authorization: token ${{ secrets.AUTHORIZATION_TOKEN }}"
     - "Content-Type: application/json"
 transforms:
   - uses: infinyon/jolt@0.1.0
