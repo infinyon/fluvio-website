@@ -49,6 +49,7 @@ connector configuration schema. The following configuration will send a POST
 HTTP request to `http://httpbin.org/post`.
 
 ```yaml
+# config.yaml
 meta:
   version: 0.1.0
   name: httpbin
@@ -59,6 +60,63 @@ http:
   endpoint: http://httpbin.org/post
   interval: 3s
 ```
+
+Finally create your connector by running:
+
+```bash
+fluvio cloud connector create --config ./config.yaml
+```
+
+> You can see active connectors by running the following command:
+>
+> ```bash
+> fluvio cloud connector list
+> ```
+
+Check connector logs by running
+
+```bash
+fluvio cloud connector logs <NAME>
+```
+
+```log
+INFO connect:connect_with_config:connect: fluvio_socket::versioned: connect to socket add=fluvio-sc-public:9003
+INFO dispatcher_loop{self=MultiplexDisp(10)}: fluvio_socket::multiplexing: multiplexer terminated
+2023-05-02T20:59:50.192104Z  INFO stream_with_config:inner_stream_batches_with_config:request_stream{offset=Offset { inner: FromEnd(0) }}:create_serial_socket:create_serial_socket_from_leader{leader_id=0}:connect_to_leader{leader=0}:connect: fluvio_socket::versioned: connect to socket add=fluvio-spu-main-0.acct-584fd564-1d4a-4308-9061-09acea387bea.svc.cluster.local:9005
+INFO fluvio_connector_common::monitoring: using metric path: /fluvio_metrics/connector.sock
+INFO fluvio_connector_common::monitoring: monitoring started
+```
+
+### Produce Records to send as HTTP POST Requests
+
+You can produce records using `fluvio produce <TOPIC>`, values produced will
+be sent as HTTP Body payloads on HTTP Sink Connector.
+
+Running the following command will attach stdin to the topic stream, any data
+written to stdin will be sent as a record through the `httpbin-send-post` topic,
+and as a side effect of the HTTP Sink Connector, these records will also be sent
+as HTTP POST requests to http://httpbin.org/post, based on our configuration.
+
+```bash
+fluvio produce httpbin-send-post
+```
+
+Then send data:
+
+```log
+> {\"hello\": \"world\"}
+Ok!
+```
+
+### Teardown
+
+To stop your connector just use `fluvio cloud connector delete <CONNECTOR>`
+
+```bash
+fluvio cloud connector delete httpbin
+```
+
+> `httpbin` is our connector instance name from the configuration file shown above
 
 ### Transformations
 
