@@ -110,7 +110,7 @@ Ok!
 
 ### Teardown
 
-To stop your connector just use `fluvio cloud connector delete <CONNECTOR>`
+To stop your connector just use `fluvio cloud connector delete <NAME>`
 
 ```bash
 fluvio cloud connector delete httpbin
