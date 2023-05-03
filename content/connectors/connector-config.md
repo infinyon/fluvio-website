@@ -1,5 +1,5 @@
 ---
-title: Configuration layout 
+title: Connector configuration 
 weight: 20
 ---
 

@@ -36,7 +36,7 @@ Fluvio can poll a multitude of input types.
 
 ### Connector Config Layout
 
-A detailed description of the Connector configuration file can be found in the [Connector Config Layout]({{<ref "/connectors/connector-config-layout.md">}}) page.
+A detailed description of the Connector configuration file can be found in the [Connector Config Layout]({{<ref "/connectors/connector-config.md">}}) page.
 ### Inbound Connector
 
 For the HTTP-specific parameters you will need to specify the link it is
