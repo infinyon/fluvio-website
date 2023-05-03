@@ -32,6 +32,26 @@ $ cdk deploy start --ipkg infinyon-http-source-0.1.1.ipkg --config config-exampl
 ```
 {{</idea>}}
 
+#### Secrets
+
+In order to use [secrets]({{ ref "/connectors/secrets" }}), you can use the `--secrets` flag to pass a file with the secrets definition.
+
+##### Example:
+
+%copy first-line%
+```bash
+$ cdk deploy start --config config-example.yaml --secrets secrets.txt
+```
+
+In the secrets file, you should define a secret per line in the format `SECRET_NAME=SECRET_VALUE`.
+
+#####  Example:
+
+%copy%
+```
+SECRET_NAME=SECRET_VALUE
+SECRET_NAME_2=SUPER_SECRET_VALUE
+```
 
 ### Connector shutdown
 

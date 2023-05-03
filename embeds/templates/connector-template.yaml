@@ -4,56 +4,37 @@
 # Valid value is `0.1.0`
 apiVersion: 0.1.0
 
-# Config that is common to all connectors.
-# It contains common configurations like
-# connector name, connector type and version
 meta:
-  # The name attached to this instance of connector
-  # This is the name seen when listing the connectors
-  #
   name:
-
-  # The version of the connector type to use
-  # See the individual connector docs for the current release version
-  #
   version:
-
-  # The Connector type
-  #
-  # Inbound Connector choices:
-  # * http-source
-  # * kafka-source
-  # * mqtt-source
-  #
-  # Outbound Connector choices:
-  # * kafka-sink
-  # * sql-sink
-  #
   type:
-
-  # The topic to produce to or consume from
-  #
   topic:
 
-  # Optional content for producer type connector
-  #
-  #producer:
-  #  linger:
-  #  batch-size:
-  #  compression:
+  # optional
+  producer:
+    # optional
+    linger:
+    # optional
+    batch-size:
+    # optional
+    compression:
 
-  # Optional content for consumer type connector
-  #
-  #consumer:
-  #  partition:
-  #  max_bytes:
-# Optional list of transformations
-#
-#transforms:
-#  - uses: smartmodule_name
-#    with:
-#      param_name: param_value
+  # optional
+  consumer:
+    # optional
+    partition:
+    # optional
+    max_bytes:
 
+  # optional
+  secrets:
+    - name: secret_1
+
+# optional
+transforms:
+  - uses: smartmodule_name
+    with:
+      param_name: param_value
 # Type specific configs
 # key depends on connector
 # <custom_key>:

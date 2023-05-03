@@ -15,5 +15,5 @@ Inbound and outbound connectors fundamentally work in the same way. The only dif
      style="justify: center; max-width: 600px" />
 
 * Learn more about the connector's 4 steps of transformation in [core concepts]({{<ref "core-concepts.md">}})
-* To get started with using connectors, check out the [requirements]({{<ref "requirements.md">}}) first before browsing through one of our Inbound or Outbound connectors.
+
 * For the development of your own connectors, continue on to the [Connector Development Kit docs]({{<ref "/connectors/cdk/overview" >}})
