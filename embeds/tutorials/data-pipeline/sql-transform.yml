@@ -1,8 +1,9 @@
 # sql-chain.yaml
+apiVersion: 0.1.0
 meta:
   name: transform-cat-facts-sql
   type: sql-sink
-  version: 0.1.1
+  version: 0.2.0
   topic: cat-facts-data
 sql:
   url: "postgres://user:password@db.postgreshost.example/dbname"

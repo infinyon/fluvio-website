@@ -48,8 +48,9 @@ This is an example of connector config file:
 
 ```yaml
 # config-example.yaml
+apiVersion: 0.1.0
 meta:
-  version: 0.1.1
+  version: 0.2.0
   name: my-mqtt-connector
   type: mqtt-source
   topic: mqtt-topic
@@ -103,8 +104,9 @@ Fluvio MQTT Source Connector supports [Transformations](https://www.fluvio.io/do
 The previous example can be extended to add extra transformations to outgoing records:
 ```yaml
 # config-example.yaml
+apiVersion: 0.1.0
 meta:
-  version: 0.1.1
+  version: 0.2.0
   name: my-mqtt-connector
   type: mqtt-source
   topic: mqtt-topic

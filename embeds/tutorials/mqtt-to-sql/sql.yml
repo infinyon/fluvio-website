@@ -1,8 +1,9 @@
 # sql.yml
+apiVersion: 0.1.0
 meta:
   name: fluvio-sql-connector
   type: sql-sink
-  version: 0.1.1
+  version: 0.2.0
   topic: mqtt-topic
   create-topic: true
 sql:

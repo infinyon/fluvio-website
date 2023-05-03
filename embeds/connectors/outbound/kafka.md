@@ -1,5 +1,4 @@
-
-## Sink Connector
+# Fluvio Kafka Sink Connector
 This is a connector for taking data from a Fluvio topic and sending to a Kafka topic.
 
 See [docs](https://www.fluvio.io/connectors/outbound/kafka/) here.
@@ -27,6 +26,7 @@ Parameters `ssl_key`, `ssl_cert` and `ssl_ca` can be defined via `file` - path t
 
 Example without security:
 ```yaml
+apiVersion: 0.1.0
 meta:
   version: 0.1.1
   name: my-kafka-connector
@@ -41,21 +41,25 @@ kafka:
 
 Example with security enabled:
 ```yaml
+apiVersion: 0.1.0
 meta:
   version: 0.1.1
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
   create-topic: true
+  secrets:
+    - name: KAFKA_BROKER_URL
+    - name: SSL_CERT_PEM
 kafka:
-  url: "KAFKA_BROKER_URL"
+  url: ${{ secrets.KAFKA_BROKER_URL }}
   topic: fluvio-topic 
   create-topic: true
   security:
     ssl_key:
       file: /path/to/file
     ssl_cert:
-      pem: "CONTENT IN PEM FORMAT"
+      pem: "${{ secrets.SSL_CERT_PEM }}"
     ssl_ca:
       file: /path/to/file
     security_protocol: ssl
@@ -68,3 +72,6 @@ fluvio install cdk
 
 cdk deploy -p kafka-sink start --config crates/kafka-sink/config-example.yaml
 ```
+
+## Transformations
+Fluvio Kafka Connectors support [Transformations](https://www.fluvio.io/docs/concepts/transformations-chain/).
