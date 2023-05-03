@@ -1,4 +1,4 @@
-# Fluvio HTTP Connector
+# Fluvio HTTP Inbound Connector
 Official Infinyon HTTP connector
 
 ## Source Connector
