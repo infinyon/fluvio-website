@@ -52,25 +52,24 @@ This will delete the named secret.
 fluvio cloud secret delete <NAME>
 ```
 
-
 ## Connector config file references
 
-The connector config files can reference cloud secrets by NAME generically as follows:
+The connector config files can reference cloud secrets by NAME. They need to be referenced on meta section of connector config. And then we can use the secret name in the connector configuration parameters. The secret can be used in the configuration as `${{ secrets.<NAME> }}`.
 
 ```yaml
+apiVersion: 0.1.0
 meta:
-  version: 0.1.0
+  version: 0.2.0
   name: my-connector
   type: package-name
   topic: a-topic
-  create-topic: true
-<CUSTOM>:  # named section for custom config parameters, usually a short name like "http", or "mqtt"
-  param_client_id: 
-    secret:
-      name: CAT_FACTS_CLIENT_ID
-  param_client_secret:
-    secret: 
-      name: CAT_FACTS_SECRET
+  secrets:
+    - name: CAT_FACTS_CLIENT_ID
+    - name: CAT_FACTS_SECRET
+# named section for custom config parameters, usually a short name like "http", or "mqtt"
+<CUSTOM>:  
+  param_client_id: ${{ secrets.CAT_FACTS_CLIENT_ID }}
+  param_client_secret: ${{ secrets.CAT_FACTS_SECRET }}
 ```
 
 ## Example
@@ -79,22 +78,23 @@ An example of a connector that can use secret parameters, the http connector mig
 
 ```
 # setup a secret
-$ fluvio cloud secret set AUTH_HEADER "Authorization: bearer 1234abcd"
+$ fluvio cloud secret set AUTH_HEADER "1234abcd"
 
 # write a connector config http-config-with-secret.yaml
 $ cat << END_CONFIG > http-config-with-secret.yaml
+apiVersion: 0.1.0
 meta:
-  version: 0.1.1
+  version: 0.2.0
   name: cat-facts
   type: http-source
   topic: cat-facts-secret
-  create-topic: true
+  secrets:
+    - name: AUTH_HEADER
 http:
   endpoint: "https://catfact.ninja/fact"
   interval: 10s  
   headers:
-    - secret:
-        name: AUTH_HEADER
+    - "Authorization: bearer ${{ secrets.AUTH_HEADER }}"
 END_CONFIG
 
 # run the connector

@@ -1,0 +1,13 @@
+apiVersion: 0.1.0
+meta:
+  name: my-connector
+  type: http-source
+  version: 0.2.0
+  topic: my-topic
+  producer:
+    linger: 1ms
+    batch_size: "44.0 MB"
+    # possible values: `none`, `gzip`, `snappy` and `lz4`
+    compression: gzip
+  secrets:
+    - name: MY_SECRET
