@@ -10,18 +10,27 @@ meta:
   type:
   topic:
 
+  # optional
   producer:
+    # optional
     linger:
+    # optional
     batch-size:
+    # optional
     compression:
 
+  # optional
   consumer:
+    # optional
     partition:
+    # optional
     max_bytes:
 
+  # optional
   secrets:
     - name: secret_1
 
+# optional
 transforms:
   - uses: smartmodule_name
     with:

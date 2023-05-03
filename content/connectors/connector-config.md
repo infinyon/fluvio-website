@@ -21,9 +21,9 @@ The `meta` section contains the metadata for the connector:
 * The `type` is the type of the connector. e.g. `http-source`, `http-sink`, `mqtt-source`. See the [connectors](/connectors) section for the full list of connectors supported.
 * The `version` is the version of the connector. e.g. `0.2.0`.
 * The `topic` is the topic that the connector will connect to. e.g. `my-topic`. The topic will be created automatically if it does not exist.
-* The `secrets` is a list of secrets that the connector will use. This accepts a list of objects with the key `name`. See the [secrets]({{<ref "connectors/secrets.md">}}) section for more information.
-* The `producer` is the producer configuration for the connector. Currently, this is only used for `source`/`inbound` connectors. The current supported configurations are `linger`, `compression` and `batch_size`.
-* The `consumer` is the consumer configuration for the connector. Currently, this is only used for `sink`/`outbound` connectors. The current supported configurations are `partition` and `max_bytes`.
+* The `secrets`(optional) is a list of secrets that the connector will use. This accepts a list of objects with the key `name`. See the [secrets]({{<ref "connectors/secrets.md">}}) section for more information.
+* The `producer`(optional) is the producer configuration for the connector. Currently, this is only used for `source`/`inbound` connectors. The current supported configurations are `linger`, `compression` and `batch_size`. All configurations are optional. See examples to a list of valid values for each configuration.
+* The `consumer`(optional) is the consumer configuration for the connector. Currently, this is only used for `sink`/`outbound` connectors. The current supported configurations are `partition` and `max_bytes`. Both configurations are optional. See examples to a list of valid values for each configuration.
 
 An example with all the keys filled for a `http-source` connector:
 
