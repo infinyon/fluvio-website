@@ -1,5 +1,9 @@
 # connector.yaml
 
+# Version of the schema of the connector config
+# Valid value is `0.1.0`
+apiVersion: 0.1.0
+
 # Config that is common to all connectors.
 # It contains common configurations like
 # connector name, connector type and version
@@ -42,6 +46,7 @@ meta:
   #
   #consumer:
   #  partition:
+  #  max_bytes:
 # Optional list of transformations
 #
 #transforms:
