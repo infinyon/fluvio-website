@@ -28,14 +28,14 @@
 "cli:commands":
   - "content/cli/commands/**"
 
+"cli:connectors":
+  - "content/cli/connectors/**"
+
 "cli:local":
   - "content/cli/local/**"
 
 "cli:smartmodules":
   - "content/cli/smartmodules/**"
-
-"cli:connectors":
-  - "content/cli/connectors/**"
 
 "cli:utilities":
   - "content/cli/utilities/**"
@@ -45,14 +45,8 @@
 "connectors":
   - "content/connectors/**"
 
-"connectors:examples":
-  - "content/connectors/examples/**"
-
-"connectors:how-to":
-  - "content/connectors/how-to/**"
-
-"connectors:images":
-  - "content/connectors/images/**"
+"cdk":
+  - "content/connectors/cdk/**"
 
 "connectors:inbound":
   - "content/connectors/inbound/**"
@@ -63,17 +57,14 @@
 "connectors:cloud-connectors":
   - "content/connectors/cloud-connectors.md"
 
-"connectors:connector-template":
-  - "content/connectors/connector-template.md"
+"connectors:core-concepts":
+  - "content/connectors/core-concepts.md"
 
-"connectors:local-connectors":
-  - "content/connectors/local-connectors.md"
+"connectors:requirements":
+  - "content/connectors/requirements.md"
 
-"connectors-beta":
-  - "content/connectors-beta/**"
-
-"cdk":
-  - "content/connectors-beta/cdk/**"
+"connectors-old":
+  - "content/connectors-old/**"
 
 ## /docs
 "docs":
@@ -134,12 +125,6 @@
 "smartmodules:certified":
   - "content/smartmodules/certified/**"
 
-"smartmodules:certified:jolt":
-  - "content/smartmodules/certified/jolt.md"
-
-"smartmodules:certified:json-sql":
-  - "content/smartmodules/certified/json-sql.md"
-
 "smartmodules:hub":
   - "content/smartmodules/hub/**"
 
@@ -150,7 +135,7 @@
   - "content/smartmodules/smdk/**"
 
 "smartmodules:transform":
-  - "content/smartmodules//**"
+  - "content/smartmodules/transform/**"
 
 # data for templates or automation
 "data-content":
@@ -169,6 +154,11 @@
 
 # Below is for Hugo or editor related
 
+"fluvio-cms":
+  - "content/scripts/fluvio-cms"
+  - Cargo.toml
+  - Cargo.lock
+
 "hugo":
   - "config.toml"
 
@@ -176,10 +166,10 @@
 "hugo:layouts":
   - "content/layouts/**"
 
-"partials":
+"hugo:partials":
   - "content/layouts/partials/**"
 
-"shortcodes":
+"hugo:shortcodes":
   - "content/layouts/shortcodes**"
 
 # scripts
