@@ -3,7 +3,7 @@ apiVersion: 0.1.0
 meta:
   name: fluvio-sql-connector-chain
   type: sql-sink
-  version: 0.2.0
+  version: 0.2.1
   topic: mqtt-topic
   create-topic: true
 sql:
