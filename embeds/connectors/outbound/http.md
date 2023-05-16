@@ -16,7 +16,7 @@ HTTP Sink is configured using a YAML file:
 # config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.0
+  version: 0.2.1
   name: my-http-sink
   type: http-sink
   topic: http-sink-topic
@@ -29,12 +29,14 @@ http:
     - "Cache-Control: no-cache"
 ```
 
-| Option       | default                    | type            | description                                       |
-| :------------| :--------------------------| :-------------- | :-------------------------------------------------|
-| method       | POST                       | String          | POST, PUT                                         |
-| endpoint     | -                          | String          | HTTP URL endpoint                                 |
-| headers      | -                          | Array\<String\> | Request header(s) "Key:Value" pairs               |
-| user-agent   | `fluvio/http-sink 0.1.0`   | String          | Request user-agent                                |
+| Option               | default                    | type            | description                                       |
+| :--------------------| :--------------------------| :-------------- | :-------------------------------------------------|
+| method               | POST                       | String          | POST, PUT                                         |
+| endpoint             | -                          | String          | HTTP URL endpoint                                 |
+| headers              | -                          | Array\<String\> | Request header(s) "Key:Value" pairs               |
+| user-agent           | `fluvio/http-sink 0.1.0`   | String          | Request user-agent                                |
+| http_request_timeout | 1s                         | String          | HTTP Request Timeout                              |
+| http_connect_timeout | 15s                        | String          | HTTP Connect Timeout                              |
 
 > By default HTTP headers will use `Content-Type: text/html` unless anothed value
 > is provided to the Headers configuration.
@@ -55,7 +57,7 @@ HTTP request to `http://httpbin.org/post`.
 # config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.0
+  version: 0.2.1
   name: httpbin
   type: http-sink
   topic: httpbin-send-post
@@ -80,7 +82,7 @@ fluvio cloud connector create --config ./config.yaml
 Check connector logs by running
 
 ```bash
-fluvio cloud connector logs <NAME>
+fluvio cloud connector logs httpbin
 ```
 
 ```log
@@ -131,7 +133,7 @@ The previous example can be extended to add extra transformations to outgoing re
 # config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.0
+  version: 0.2.1
   name: my-http-sink
   type: http-sink
   topic: http-sink-topic
@@ -155,3 +157,10 @@ In this case, additional transformation will be performed before records are sen
 
 
 Read more about [JSON to JSON transformations](https://www.fluvio.io/smartmodules/certified/jolt/).
+
+## Contributing
+
+Follow on the conventional `CONTRIBUTING.md` file to setup your environment and
+contribute to this project.
+
+[1]: https://www.fluvio.io/connectors/outbound/http/

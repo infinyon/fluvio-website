@@ -55,7 +55,7 @@ lazy_static! {
                 hub_pkg_name: "http-sink",
                 hub_pkg_version: "0.2.1",
                 service: DataService::Http,
-                direction: DataDirection::Inbound,
+                direction: DataDirection::Outbound,
             },
         );
 
