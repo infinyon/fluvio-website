@@ -15,7 +15,7 @@ lazy_static! {
             DocsLocation {
                 hub_group: "infinyon",
                 hub_pkg_name: "http-source",
-                hub_pkg_version: "0.1.1",
+                hub_pkg_version: "0.2.1",
                 service: DataService::Http,
                 direction: DataDirection::Inbound,
             },
@@ -26,7 +26,7 @@ lazy_static! {
             DocsLocation {
                 hub_group: "infinyon",
                 hub_pkg_name: "mqtt-source",
-                hub_pkg_version: "0.1.2",
+                hub_pkg_version: "0.2.1",
                 service: DataService::Mqtt,
                 direction: DataDirection::Inbound,
             },
@@ -37,7 +37,7 @@ lazy_static! {
             DocsLocation {
                 hub_group: "infinyon",
                 hub_pkg_name: "kafka-source",
-                hub_pkg_version: "0.1.1",
+                hub_pkg_version: "0.2.1",
                 service: DataService::Kafka,
                 direction: DataDirection::Inbound,
             },
@@ -49,11 +49,22 @@ lazy_static! {
         let mut m = HashMap::new();
 
         m.insert(
+            DataService::Http,
+            DocsLocation {
+                hub_group: "infinyon",
+                hub_pkg_name: "http-sink",
+                hub_pkg_version: "0.2.1",
+                service: DataService::Http,
+                direction: DataDirection::Inbound,
+            },
+        );
+
+        m.insert(
             DataService::Sql,
             DocsLocation {
                 hub_group: "infinyon",
                 hub_pkg_name: "sql-sink",
-                hub_pkg_version: "0.1.1",
+                hub_pkg_version: "0.2.1",
                 service: DataService::Sql,
                 direction: DataDirection::Outbound,
             },
@@ -64,7 +75,7 @@ lazy_static! {
             DocsLocation {
                 hub_group: "infinyon",
                 hub_pkg_name: "kafka-sink",
-                hub_pkg_version: "0.1.1",
+                hub_pkg_version: "0.2.1",
                 service: DataService::Kafka,
                 direction: DataDirection::Outbound,
             },

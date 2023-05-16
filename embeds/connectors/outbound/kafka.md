@@ -1,4 +1,5 @@
-# Fluvio Kafka Sink Connector
+# Fluvio Kafka Outbound Connector
+
 This is a connector for taking data from a Fluvio topic and sending to a Kafka topic.
 
 See [docs](https://www.fluvio.io/connectors/outbound/kafka/) here.
@@ -28,7 +29,7 @@ Example without security:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.1
+  version: 0.2.1
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
@@ -43,7 +44,7 @@ Example with security enabled:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.1
+  version: 0.2.1
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
