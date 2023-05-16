@@ -1,4 +1,5 @@
-# Kafka Source Connector
+# Fluvio Kafka Inbound Connector
+
 This is a connector for taking data from a Kafka topic and sending to a Fluvio topic.
 
 See [docs](https://www.fluvio.io/connectors/inbound/kafka/) here.
@@ -16,7 +17,7 @@ Example:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.0
+  version: 0.2.1
   name: my-kafka-connector
   type: kafka-source
   topic: kafka-topic
@@ -33,7 +34,6 @@ fluvio install cdk
 
 cdk deploy -p kafka-source start --config crates/kafka-source/config-example.yaml
 ```
-
 
 ## Transformations
 Fluvio Kafka Connectors support [Transformations](https://www.fluvio.io/docs/concepts/transformations-chain/).
