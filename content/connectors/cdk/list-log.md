@@ -31,3 +31,20 @@ Starting my-connector source connector with CustomConfig { foo: "bar" }
 4. [Start and Shutdown]({{< ref "start-shutdown" >}})
 5. **[List and Logs]({{< ref "list-log" >}})**
 6. [Publish to SmartConnector Hub]({{< ref "publish" >}})
+
+#### Changing the Log Level
+
+By default connectors will use the `info` logging level, you can change the
+log level by using the `deploy` command argument `--log-level`.
+
+```bash
+cdk deploy my-my-connector-test-connector --log-level debug
+```
+
+Available values include:
+
+- `error`
+- `warn`
+- `info`
+- `debug`
+- `trace`
