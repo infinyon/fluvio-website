@@ -1,8 +1,9 @@
 ```
 Shutdown the Connector's deployment
-Usage: cdk deploy shutdown <CONNECTOR_NAME>
-Arguments:
-  <CONNECTOR_NAME>  
+Usage: cdk deploy shutdown <--config <PATH>|--name <CONNECTOR_NAME>>
+
 Options:
-  -h, --help  Print help
+  -c, --config <PATH>          Path to configuration file in YAML format
+  -n, --name <CONNECTOR_NAME>  Name of the connector to shutdown
+  -h, --help                   Print help
 ```
