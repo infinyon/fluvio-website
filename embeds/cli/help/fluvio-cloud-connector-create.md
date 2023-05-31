@@ -1,9 +1,11 @@
 ```
-fluvio-cloud-connector-create 
+fluvio cloud connector create
 Create a new Connector
-USAGE:
-    fluvio-cloud connector create [OPTIONS] --config <CONFIG>
-OPTIONS:
-    -c, --config <CONFIG>    Name of connector
-    -h, --help               Print help information
+
+Usage: fluvio cloud connector create [OPTIONS] --config <CONFIG>
+
+Options:
+  -c, --config <CONFIG>        Name of connector
+      --log-level <LOG_LEVEL>  Sets the log level [default: info]
+  -h, --help                   Print help
 ```
