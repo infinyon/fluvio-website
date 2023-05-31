@@ -8,7 +8,6 @@ use clap::Parser;
 use tracing::info;
 use xshell::{cmd, Shell};
 
-//use super::{Connectors, DataDirection, DataService, DocsLocation, INBOUND, OUTBOUND};
 use super::{ConnectorInfo, DataDirection, DataServiceType, OfficialConnector};
 
 const WORKING_DIR_BASE: &str = "./.tmp";
