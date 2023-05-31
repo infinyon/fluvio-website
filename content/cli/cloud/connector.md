@@ -122,6 +122,22 @@ Example usage:
 ...
 ```
 
+### Configure Logging Levels
+
+By default connectors will log using the `info` level.
+You can configure the log level for connectors running in the cloud using
+the `--log-level` option.
+
+The `--log-level` option is available for both, `fluvio cloud connector <create | update>`.
+
+Any of the following levels can be used:
+
+- `error`
+- `warn`
+- `info`
+- `debug`
+- `trace`
+
 ---
 
 ## `fluvio cloud connector delete`
