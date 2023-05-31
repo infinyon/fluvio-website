@@ -45,16 +45,24 @@ impl OfficialConnector {
     /// Collect list of public connectors, and their latest metadata
     pub fn get_all_public(prod: bool) -> Result<Vec<ConnectorInfo>> {
         let sh = Shell::new()?;
-        let hub_remote = if prod {
-            Vec::new()
-        } else {
-            vec!["--remote", "https://hub-dev.infinyon.cloud"]
-        };
-
         let cmd = cmd!(sh, "fluvio hub connector list -O json");
 
-        let latest_connectors_raw: Vec<PackageMeta> =
-            serde_json::from_str(cmd.args(hub_remote).read()?.as_str()).unwrap();
+        let hub_remote = if !prod {
+            Some(vec!["--remote", "https://hub-dev.infinyon.cloud"])
+        } else {
+            None
+        };
+
+        // This will fail if you're not logged into the correct cloud (dev vs prod)
+        // If this happens, run `fluvio cloud login`, and use `--prod` if needed
+        let latest_connectors_raw: Vec<PackageMeta> = if let Some(hub_dev_remote) = hub_remote {
+            serde_json::from_str(cmd.args(hub_dev_remote).read()?.as_str())
+                .expect("Error parsing output - Do you need to re-login to Dev?")
+        } else {
+            serde_json::from_str(cmd.read()?.as_str())
+                .expect("Error parsing output - Do you need to re-login to Prod?")
+        };
+
         let mut latest_connectors = Vec::new();
 
         for c in latest_connectors_raw.iter() {
