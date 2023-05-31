@@ -1,5 +1,5 @@
 ---
-menu: Kafka 
----
-
-{{% inline-embed file="embeds/connectors/inbound/kafka.md" %}}
+    menu: Kafka
+    ---
+    
+    {{% inline-embed file="embeds/connectors/inbound/kafka.md" %}}
