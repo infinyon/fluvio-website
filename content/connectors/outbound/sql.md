@@ -1,5 +1,5 @@
 ---
-    menu: SQL
-    ---
-    
-    {{% inline-embed file="embeds/connectors/outbound/sql.md" %}}
+menu: SQL
+---
+
+{{% inline-embed file="embeds/connectors/outbound/sql.md" %}}
