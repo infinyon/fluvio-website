@@ -1,8 +1,9 @@
 ---
-title: JSON to JSON Transformations
-menu: Jolt
-weight: 10
+title: Jolt
+weight: 20
 ---
+
+Jolt provides JSON to JSON transformation
 
 This is a certified by InfinyOn [map-type]({{<ref "../transform/map.md" >}}) SmartModule that transforms JSON records leveraging [Fluvio Jolt](https://github.com/infinyon/fluvio-jolt) library, which has its own DSL (Domain Specific Language) to remove the need for coding simple transformations.
 

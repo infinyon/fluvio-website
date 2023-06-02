@@ -1,7 +1,7 @@
 ---
 title: JSON to SQL Mapping
 menu: Json-Sql
-weight: 20
+weight: 30
 ---
 
 This is certified by InfinyOn [map-type]({{<ref "../transform/map.md" >}}) SmartModule that converts arbitrary JSON records into [SQL model](https://github.com/infinyon/fluvio-connectors/blob/main/rust-connectors/models/fluvio-model-sql), which is a self-describing representation of SQL INSERT statements. This SmartModule is intended to be used in [SQL Sink Connector][sql-sink-connector], to execute a command in a SQL database.
