@@ -37,3 +37,7 @@ cdk deploy -p kafka-source start --config crates/kafka-source/config-example.yam
 
 ## Transformations
 Fluvio Kafka Connectors support [Transformations](https://www.fluvio.io/docs/concepts/transformations-chain/).
+
+---
+
+This content is for testing only

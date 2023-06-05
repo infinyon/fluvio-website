@@ -76,3 +76,7 @@ cdk deploy -p kafka-sink start --config crates/kafka-sink/config-example.yaml
 
 ## Transformations
 Fluvio Kafka Connectors support [Transformations](https://www.fluvio.io/docs/concepts/transformations-chain/).
+
+---
+
+This content is for testing only

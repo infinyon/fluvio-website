@@ -139,3 +139,7 @@ cdk deploy shutdown --config connector-config.yaml
 After you run the connector you will see records in your database table.
 
 See more in our [Build MQTT to SQL Pipeline](https://www.fluvio.io/docs/tutorials/mqtt-to-sql/) and [Build HTTP to SQL Pipeline](https://www.fluvio.io/docs/tutorials/data-pipeline/) tutorials.
+
+---
+
+This content is for testing only

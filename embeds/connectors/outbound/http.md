@@ -164,3 +164,7 @@ Follow on the conventional `CONTRIBUTING.md` file to setup your environment and
 contribute to this project.
 
 [1]: https://www.fluvio.io/connectors/outbound/http/
+
+---
+
+This content is for testing only
