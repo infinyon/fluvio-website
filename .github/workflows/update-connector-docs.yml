@@ -37,7 +37,7 @@ jobs:
       # Run fluvio cms
 
       - name: Run connector docs update 
-        run: cargo run -- connector 
+        run: cargo run -- connector --prod
 
       # Create/Update PR
       - name: Create Pull Request
