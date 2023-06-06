@@ -2,6 +2,7 @@ name: Connector docs PR
 
 permissions:
   contents: write 
+  pull-requests: write
 
 concurrency:
   group: connector-docs-${{ github.ref }}
