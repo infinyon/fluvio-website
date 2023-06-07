@@ -3,11 +3,12 @@ title: SmartModules
 menu: Overview
 toc: false
 ---
+SmartModules are powerful components that enhance the functionality and flexibility of the Fluvio platform. They are programmable data streaming functions that They serve as intelligent building blocks that enable users to create complex workflows and automate tasks with ease.
 
-SmartModules are programmable data streaming functions exposed to WebAssembly, allowing developers to manipulate data in real-time inside the Fluvio cluster without needing external services such as Lambda or Functions.
+Think of SmartModules as specialized tools that can be combined and configured to perform specific actions or processes. They are designed to simplify and streamline various tasks, allowing users to achieve their objectives efficiently and reliably.
 
 See the `Transform` and `Analytics` section for more info about the available SmartModule functions. 
 
 If you are interested in building your own SmartModules, `smdk` will support your development
 
-With an InfinyOn Cloud account, you can access pre-built SmartModules via Hub. These are maintained by InfinyOn for general use. Check out the list of `Certified` SmartModules for details
+With an InfinyOn Cloud account, you can access pre-built SmartModules via Hub. These are maintained by InfinyOn for general use. Check out the list of `Certified` SmartModules for the most up to date details.

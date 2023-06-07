@@ -4,19 +4,11 @@ menu: Overview
 toc: false
 weight: 10
 ---
-SmartModules can be published to [SmartModule Hub] and downloaded to multiple clusters. Once downloaded, SmartModules can be chained together to build powerful data transformation pipelines.
-
 SmartModule Hub, powered by [`InfinyOn Cloud`], is a real-time apps store, where developers publish SmartModules, and users download and integrate them into their data pipelines. 
 
+Users can download SmartModules to use with multiple clusters. Once downloaded, multiple SmartModules can be chained together to build powerful data transformation pipelines.
+
 <img src="/smartmodules/images/hub.jpg" alt="SmartModule Hub" justify="center" style="width: 85%; min-width: 330px;" >
-
-Thie sections outlines core concepts of the SmartModule Hub.
-* [Unique Identifier](#unique-identifier)
-* [Personas](#personas)
-* [Certified SmartModules](#certified-smartmodules)
-* [Private/Public SmartModules](#privatepublic-smartmodules)
-
-If you want to skip ahead, checkout [SmartModule Operations](#smartmodule-operations). 
 
 ### Unique Identifier
 

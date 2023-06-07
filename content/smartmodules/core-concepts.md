@@ -2,13 +2,21 @@
 title: Core Concepts 
 ---
 
+SmartModules come equipped with pre-built intelligence and capabilities, making them readily usable even for users with limited technical expertise. By leveraging these modules, users can automate repetitive tasks, orchestrate data flows, and enable advanced functionalities without requiring deep technical knowledge or extensive coding.
 
-## Chaining
+By utilizing WebAssembly, SmartModules provide a secure and isolated environment for executing custom code. This ensures that the modules run safely within the Fluvio ecosystem, preventing potential security risks or conflicts with the underlying system. 
 
-Using multiple SmartModules is possible with SmartModule chaining. The output of the previous SmartModule is used as the input of the next SmartModule. Therefore the ordering of the SmartModules in the chain is important
+The beauty of SmartModules lies in their flexibility and adaptability. Users can configure them to suit their specific needs by adjusting parameters and settings. Naturally, producers and consumers can use SmartModules in order to shape data on both the client-side or server-side. This empowers individuals to tailor the behavior of the modules to match their unique requirements, all without writing complex code or dealing with intricate technical details.
 
-#### Chaining with SMDK
+## Using Multiple SmartModules
 
+Multiple SmartModules can be activated one after another to create a SmartModule transform chain. The output of the previous SmartModule is used as the input of the next SmartModule. Therefore the ordering of the SmartModules in the chain is important. This process is commonly referred to as **chaining**.
+
+## Examples
+
+## Chaining with SMDK
+
+TODO
 
 
 #### Cloud Pipelines with SmartModule Chaining
