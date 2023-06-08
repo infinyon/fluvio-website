@@ -36,7 +36,13 @@ An example with all the keys filled for a `http-sink` connector:
 
 ## Connector `transforms` configuration
 
-Connectors support `transforms`. Records can be modified before they are sent to the topic. The `transforms` section is a list of `transform` objects. Each `transform` object has an `uses` and a `with` section. The `uses` is the reference to the smartmodule used in the transform. The `with` is the configuration for the transform. The `with` section is different for each transform. See the [Transformations]({{<ref "docs/concepts/transformations-chain.md">}}) section for more information.
+Connectors support `transforms`. Records can be modified before they are sent to the topic. The `transforms` section is a list of `transform` objects. Each `transform` object has an `uses` and a `with` section.
+
+* `uses` is the reference to the smartmodule used in the transform.
+* `with` is the configuration for the transform.
+  * The section is different for each transform.
+
+See the [Transformations]({{<ref "docs/concepts/transformations-chain.md">}}) section for more information.
 
 See [Tutorials]({{<ref "docs/tutorials/data-pipeline.md">}}) for examples of using transforms.
 
