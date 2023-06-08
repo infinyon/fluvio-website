@@ -7,8 +7,10 @@ SmartModules are powerful components that enhance the functionality and flexibil
 
 Think of SmartModules as specialized tools that can be combined and configured to perform specific actions or processes. They are designed to simplify and streamline various tasks, allowing users to achieve their objectives efficiently and reliably.
 
+---
+
 See the `Transform` and `Analytics` section for more info about the available SmartModule functions. 
 
-If you are interested in building your own SmartModules, `smdk` will support your development
+If you are interested in building your own SmartModules, [`smdk`]({{<ref "/smartmodules/smdk/overview">}}) will support your development
 
-With an InfinyOn Cloud account, you can access pre-built SmartModules via Hub. These are maintained by InfinyOn for general use. Check out the list of `Certified` SmartModules for the most up to date details.
+With an InfinyOn Cloud account, you can access pre-built `Certified` SmartModules via [Hub]({{<ref "/smartmodules/hub/overview">}}). These are maintained by InfinyOn for general use.
