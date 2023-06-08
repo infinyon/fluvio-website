@@ -10,13 +10,30 @@ The beauty of SmartModules lies in their flexibility and adaptability. Users can
 
 ## Using Multiple SmartModules
 
-Multiple SmartModules can be activated one after another to create a SmartModule transform chain. The output of the previous SmartModule is used as the input of the next SmartModule. Therefore the ordering of the SmartModules in the chain is important. This process is commonly referred to as **chaining**.
+Multiple SmartModules can be activated in series. This process is commonly referred to as **chaining**.  The output of the previous SmartModule is used as the input of the next SmartModule. Therefore the ordering of the SmartModules in the chain is important.
 
 ## Examples
 
-## Chaining with SMDK
+## Chaining with CLI
 
-TODO
+You can define a SmartModule chain to use with `fluvio` or `smdk` with a yaml file.
+
+
+```yaml
+transforms:
+- uses: infinyon/jolt@0.3.0
+  with:
+    spec:
+      - operation: shift
+        spec:
+          fact: "animal.fact"
+          length: "length"
+- uses: infinyon/regex-filter@0.1.0
+  with:
+    regex: "[Cc]at" 
+```
+
+You can pass this file to the CLI with the `--transforms-file` option.
 
 
 #### Cloud Pipelines with SmartModule Chaining
