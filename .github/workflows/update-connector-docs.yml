@@ -16,8 +16,8 @@ on:
   #  branches: [master]
   workflow_call:
   workflow_dispatch:
-  schedule:
-      - cron:  '0 0 * * *'
+  #schedule:
+  #    - cron:  '0 0 * * *'
 
 
 jobs:
@@ -34,10 +34,10 @@ jobs:
           echo "$HOME/.fluvio/bin" >> $GITHUB_PATH
       - name: Fluvio Login
         run: fluvio cloud login --email ${{ secrets.CLOUD_USER_EMAIL }} --password ${{ secrets.CLOUD_USER_PASSWORD }}
-      # Run fluvio cms
 
+      # Run fluvio cms
       - name: Run connector docs update 
-        run: cargo run -- connector 
+        run: cargo run -- connector --prod
 
       # Create/Update PR
       - name: Create Pull Request
