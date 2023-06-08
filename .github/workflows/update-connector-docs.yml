@@ -1,0 +1,33 @@
+name: Connector docs PR 
+
+concurrency:
+  group: connector-docs-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  #schedule:
+  #    - cron:  '0 0 * * *'
+
+
+jobs:
+  update-connector-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Fluvio
+        run: |
+          curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+          echo "$HOME/.fluvio/bin" >> $GITHUB_PATH
+
+      - name: Fluvio Login
+        run: fluvio cloud login --email ${{ secrets.CLOUD_USER_EMAIL }} --password ${{ secrets.CLOUD_USER_PASSWORD }}
+
+      # Run fluvio cms
+      - name: Run connector docs update 
+        run: cargo run -- connector --prod
+
+      # Create/Update PR
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
