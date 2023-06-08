@@ -12,10 +12,6 @@ Fluvio local installation are managed through the Fluvio CLI. To install the CLI
 
 Checkout [`Fluvio Cluster`] to provision or check the states of a local cluster.
 
-#### Running Connectors Locally
-
-Fluvio gives operators the ability to manage and run their connectors outside of the cluster. Checkout [`Fluvio Connectors`] for additional information.
-
 [`Client - Getting Started`]: {{< ref "/cli/client/overview" >}}
 [`Fluvio Cluster`]: {{< relref "./cluster" >}}
 [`Fluvio Connectors`]: {{< relref "./connector" >}}

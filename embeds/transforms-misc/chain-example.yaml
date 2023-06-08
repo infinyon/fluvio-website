@@ -1,0 +1,11 @@
+transforms:
+  - uses: infinyon/jolt@0.3.0
+    with:
+      spec:
+        - operation: shift
+          spec:
+            fact: "animal.fact"
+            length: "length"
+  - uses: infinyon/regex-filter@0.1.0
+    with:
+      regex: "[Cc]at"

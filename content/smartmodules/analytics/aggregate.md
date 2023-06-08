@@ -4,8 +4,6 @@ weight: 60
 toc: true
 ---
 
--> **Note**: Currently, `aggregate` SmartModules are not supported in connectors.
-
 SmartModule Aggregates are functions that define how to combine each record
 in a stream with some accumulated value. In the functional programming world,
 this type of operation is also known as `folding`, since the function "folds"

@@ -1,10 +1,10 @@
 ---
 title: JSON to SQL Mapping
 menu: Json-Sql
-weight: 20
+weight: 30
 ---
 
-This is certified by InfinyOn [map-type]({{<ref "../transform/map.md" >}}) SmartModule that converts arbitrary JSON records into [SQL model](https://github.com/infinyon/fluvio-connectors/blob/main/rust-connectors/models/fluvio-model-sql), which is a self-describing representation of SQL INSERT statements. This SmartModule is intended to be used in [SQL Sink Connector][sql-sink-connector], to execute a command in a SQL database.
+This is a [map-type]({{<ref "../transform/map.md" >}}) SmartModule that converts arbitrary JSON records into [SQL model](https://github.com/infinyon/fluvio-connectors/blob/main/rust-connectors/models/fluvio-model-sql), which is a self-describing representation of SQL INSERT statements. This SmartModule is intended to be used in [SQL Sink Connector][sql-sink-connector], to execute a command in a SQL database.
 
 ### Mapping
 The mapping between incoming JSON records and the resulting SQL record is defined in the configuration of the SmartModule in the `mapping` init parameter. Let's look at the example:
@@ -113,33 +113,32 @@ First, we need to download it to our cluster from [SmartModule Hub]({{<ref "/sma
 $ fluvio hub download infinyon/json-sql@0.1.0
 ```
 
-Second, we need to create a file `transform.yaml` with the mapping used before:
+Second, we create a file `transform.yaml` with the mapping used before:
 
 %copy%
 ```yaml
 # transform.yaml
 transforms:
-- uses: infinyon/json-sql@0.1.0
-  with:
-    mapping:
-      table: "target_table"
-      map-columns:
-        "device_id":
-          json-key: "device.device_id"
-          value:
-            type: "int"
-            required: true
-        "device_type":
-          json-key: "device.type"
-          value:
-            type: "text"
-            default: "mobile"
-        "record":
-          json-key: "$"
-          value:
-            type: "jsonb"
-            required: true
-
+  - uses: infinyon/json-sql@0.1.0
+    with:
+      mapping:
+        table: "target_table"
+        map-columns:
+          "device_id":
+            json-key: "device.device_id"
+            value:
+              type: "int"
+              required: true
+          "device_type":
+            json-key: "device.type"
+            value:
+              type: "text"
+              default: "mobile"
+          "record":
+            json-key: "$"
+            value:
+              type: "jsonb"
+              required: true
 ```
 
 Now let's call `smdk test` to see the result:
@@ -147,8 +146,7 @@ Now let's call `smdk test` to see the result:
 
 %copy first-line%
 ```shell
-$ smdk test --text '{"device":{"device_id":1}}' --transforms-file ./transforms.yaml
-1 records outputed
+$ smdk test --text '{"device":{"device_id":1}}' --transforms-file ./transform.yaml
 {"Insert":{"table":"target_table","values":[{"column":"record","raw_value":"{\"device\":{\"device_id\":1}}","type":"Json"},{"column":"type","raw_value":"mobile","type":"Text"},{"column":"device_id","raw_value":"1","type":"Int"}]}}
 ```
 
