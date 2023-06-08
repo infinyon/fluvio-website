@@ -1,9 +1,10 @@
 ---
 title: Secrets
-weight: 30
+menu: Cloud Secrets
+weight: 40
 ---
 
-Connectors support secrets. Secrets are used to store sensitive information such as passwords, API keys, etc. The secrets can be referenced in the connector configuration file.
+Cloud Connectors support secrets. Secrets are used to store sensitive information such as passwords, API keys, etc. The secrets can be referenced in the connector configuration file.
 
 In order to use secrets, first, they need to be defined in the metadata section of the connector configuration file. The secrets are defined as a list of names. The names are used to reference the secret in the connector configuration file.
 

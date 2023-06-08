@@ -5,41 +5,9 @@ weight: 30
 toc: false
 ---
 
-Download operation sends a copy of the SmartModule from the Hub to the local or Cloud cluster, defined by [`the profile`] in the Fluvio Client. After downloading, all SmartModules, regardless of their source, are treated the same.
+Download operation sends a copy of the SmartModule from the Hub to the local or Cloud cluster, defined by [`the profile`] in the Fluvio Client.
 
-##### Prerequisites
-
-SmartModule Hub is powered by [`InfinyOn Cloud`], which requires a Cloud account and the CLI:
-
-* [Provision InfinyOn Cloud Account]
-* [Download Fluvio CLI] 
-
-### Download - Operation
-
-There are two methods for downloading SmartModules from SmartModule Hub: 
-* [Download with InfinyOn Cloud](#download-with-infinyon-cloud)
-* [Download with Fluvio CLI](#download-with-fluvio-cli)
-
-#### Download with InfinyOn Cloud
-
- In InfinyOn Cloud, the Hub collapses multiple versions of the same SmartModule in one object. For example:
-
-```
-    infinyon/regex-filter
-        -> `infinyon/regex-filter@0.1.0`
-        -> `infinyon/regex-filter@0.1.2`
-        -> `infinyon/regex-filter@0.2.1`
-        ...
-```
-
-1. Click Hub from the top menu.
-    
-    All Public and Public-Owned SmartModules are displayed.
-
-3. Choose the SmartModule you want to download, pick a version, and click Download
-
-    The SmartModule is downloaded to your cluster and the state of the button changes.
-
+After downloading, all SmartModules, regardless of their source, are treated the same.
 
 #### Download with Fluvio CLI
 
@@ -54,6 +22,25 @@ downloading infinyon/json-sql@0.1.0 to infinyon-json-sql-0.1.0.ipkg
 ... checking package
 ... cluster smartmodule install complete
 ```
+
+#### Download with InfinyOn Cloud
+
+ In InfinyOn Cloud, the Hub collapses multiple versions of the same SmartModule in one object. For example:
+
+```
+    infinyon/regex-filter
+        -> `infinyon/regex-filter@0.1.0`
+        -> `infinyon/regex-filter@0.1.2`
+        -> `infinyon/regex-filter@0.2.1`
+        ...
+```
+
+1. Click Hub from the top menu.
+    All Public and Public-Owned SmartModules are displayed.
+
+3. Choose the SmartModule you want to download, pick a version, and click Download
+    The SmartModule is downloaded to your cluster and the state of the button changes.
+
 
 [`the profile`]: {{< ref "/cli/client/profile" >}}
 [`InfinyOn Cloud`]: https://infinyon.cloud/
