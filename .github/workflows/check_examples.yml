@@ -75,6 +75,9 @@ jobs:
         run: |
           make cluster-verify
 
+      - uses: Swatinem/rust-cache@v2
+        if: matrix.client-type == 'rust' 
+
       - name: Build and test clients
         if: ${{ needs.test-skip-check.outputs.no-skip }}
         uses: nick-fields/retry@v2.8.3
