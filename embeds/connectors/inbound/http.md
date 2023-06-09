@@ -123,3 +123,4 @@ Now produced records will have a different shape, for example:
 ```
 
 Read more about [JSON to JSON transformations](https://www.fluvio.io/smartmodules/certified/jolt/).
+
