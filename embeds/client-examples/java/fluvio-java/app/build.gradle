@@ -10,7 +10,7 @@ repositories {
 
 dependencies {
      // Fluvio Java client
-     implementation 'com.infinyon:fluvio:0.12.12'
+     implementation 'com.infinyon:fluvio:0.12.14'
 }
 
 application {
