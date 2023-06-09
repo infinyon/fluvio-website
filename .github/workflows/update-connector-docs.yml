@@ -24,6 +24,7 @@ jobs:
       - name: Fluvio Login
         run: fluvio cloud login --email ${{ secrets.CLOUD_USER_EMAIL }} --password ${{ secrets.CLOUD_USER_PASSWORD }}
 
+      - uses: Swatinem/rust-cache@v2
       # Run fluvio cms
       - name: Run connector docs update 
         run: cargo run -- connector --prod
