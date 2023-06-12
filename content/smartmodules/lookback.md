@@ -2,7 +2,7 @@
 title: Lookback
 ---
 
-The Lookback feature in Fluvio SmartModule is the way to access records that existed before the SmartModule started allowing it to build its internal state depending on what the topic currently has.
+The Lookback feature in Fluvio SmartModule is the way to access records from the data stream before the SmartModule starts allowing it to build its internal state depending on what the topic currently has.
 
 If configured, the Lookback phase is guaranteed to take place after `init` method but before the first record is processed.
 
@@ -24,7 +24,7 @@ transforms:
 ---
 If Fluvio topic is empty, `look_back` is never called.
 
--> If you start processing not from the end, you may receive records both as lookback record and as regular processing
+-> If you start processing from an offset other than the end, you will receive records both as lookback record and as regular processing
 
 -> Lookback is only supported for SmartModules that are run on SPU
 
