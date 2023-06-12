@@ -26,7 +26,7 @@ If Fluvio topic is empty, `look_back` is never called.
 
 -> If you start processing from an offset other than the end, you will receive records both as lookback record and as regular processing
 
--> Lookback is only supported for SmartModules that are run on SPU
+-> Lookback is only supported for SmartModules that are run on SPU. This implies that Source Connectors don't support it.
 
 ## Examples
 
