@@ -1,0 +1,5 @@
+transforms:
+  - uses: local/filter-with-lookback@0.1.0
+    lookback:
+      last: 1
+
