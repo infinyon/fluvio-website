@@ -10,7 +10,6 @@ meta:
 mqtt:
   url: "mqtt://test.mosquitto.org/"
   topic: "ag-mqtt-topic"
-  client_id: "my_mqtt"
   timeout:
     secs: 30
     nanos: 0
