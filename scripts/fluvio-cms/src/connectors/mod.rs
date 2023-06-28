@@ -39,6 +39,10 @@ pub enum OfficialConnector {
     #[serde(alias = "sql-sink")]
     #[strum(serialize = "sql-sink")]
     SqlOutbound(String),
+    // duckdb
+    #[serde(alias = "duckdb-sink")]
+    #[strum(serialize = "duckdb-sink")]
+    DuckdbOutbound(String),
 }
 
 impl OfficialConnector {
@@ -135,7 +139,10 @@ impl ConnectorInfo {
                 self.connector,
                 OfficialConnector::KafkaInbound(_) | OfficialConnector::KafkaOutbound(_)
             ),
-            DataServiceType::Sql => matches!(self.connector, OfficialConnector::SqlOutbound(_)),
+            DataServiceType::Sql => matches!(
+                self.connector,
+                OfficialConnector::SqlOutbound(_) | OfficialConnector::DuckdbOutbound(_)
+            ),
             DataServiceType::Mqtt => matches!(self.connector, OfficialConnector::MqttInbound(_)),
         }
     }
@@ -177,7 +184,8 @@ impl ConnectorInfo {
             | OfficialConnector::KafkaInbound(v)
             | OfficialConnector::KafkaOutbound(v)
             | OfficialConnector::MqttInbound(v)
-            | OfficialConnector::SqlOutbound(v) => v.clone(),
+            | OfficialConnector::SqlOutbound(v)
+            | OfficialConnector::DuckdbOutbound(v) => v.clone(),
         }
     }
 
@@ -213,7 +221,7 @@ impl From<OfficialConnector> for DataServiceType {
             OfficialConnector::HttpInbound(_) | OfficialConnector::HttpOutbound(_) => Self::Http,
             OfficialConnector::KafkaInbound(_) | OfficialConnector::KafkaOutbound(_) => Self::Kafka,
             OfficialConnector::MqttInbound(_) => Self::Mqtt,
-            OfficialConnector::SqlOutbound(_) => Self::Sql,
+            OfficialConnector::SqlOutbound(_) | OfficialConnector::DuckdbOutbound(_) => Self::Sql,
         }
     }
 }
@@ -238,7 +246,8 @@ impl From<OfficialConnector> for DataDirection {
             | OfficialConnector::MqttInbound(_) => Self::Inbound,
             OfficialConnector::HttpOutbound(_)
             | OfficialConnector::KafkaOutbound(_)
-            | OfficialConnector::SqlOutbound(_) => Self::Outbound,
+            | OfficialConnector::SqlOutbound(_)
+            | OfficialConnector::DuckdbOutbound(_) => Self::Outbound,
         }
     }
 }
