@@ -91,7 +91,7 @@ impl OfficialConnector {
                     connector: supported,
                 })
             } else {
-                debug!("Skipping unsupported connector");
+                println!("Skipping unsupported connector");
                 continue;
             }
         }
@@ -139,10 +139,10 @@ impl ConnectorInfo {
                 self.connector,
                 OfficialConnector::KafkaInbound(_) | OfficialConnector::KafkaOutbound(_)
             ),
-            DataServiceType::Sql => matches!(
-                self.connector,
-                OfficialConnector::SqlOutbound(_) | OfficialConnector::DuckdbOutbound(_)
-            ),
+            DataServiceType::Sql => matches!(self.connector, OfficialConnector::SqlOutbound(_)),
+            DataServiceType::Duckdb => {
+                matches!(self.connector, OfficialConnector::DuckdbOutbound(_))
+            }
             DataServiceType::Mqtt => matches!(self.connector, OfficialConnector::MqttInbound(_)),
         }
     }
@@ -211,6 +211,7 @@ pub enum DataServiceType {
     Http,
     Sql,
     Mqtt,
+    Duckdb,
     //Salesforce,
     //Amplitude,
 }
@@ -221,7 +222,8 @@ impl From<OfficialConnector> for DataServiceType {
             OfficialConnector::HttpInbound(_) | OfficialConnector::HttpOutbound(_) => Self::Http,
             OfficialConnector::KafkaInbound(_) | OfficialConnector::KafkaOutbound(_) => Self::Kafka,
             OfficialConnector::MqttInbound(_) => Self::Mqtt,
-            OfficialConnector::SqlOutbound(_) | OfficialConnector::DuckdbOutbound(_) => Self::Sql,
+            OfficialConnector::SqlOutbound(_) => Self::Sql,
+            OfficialConnector::DuckdbOutbound(_) => Self::Duckdb,
         }
     }
 }
