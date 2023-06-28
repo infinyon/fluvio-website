@@ -16,7 +16,7 @@ Tutorial for [MQTT to SQL Pipeline](https://www.fluvio.io/docs/tutorials/mqtt-to
 | timeout             | 60s      | Duration       | mqtt broker connect timeout in seconds and nanoseconds                                                                                               |
 | url                 | -        | SecretString   | MQTT url which includes schema, domain, port and credentials such as username and password.                                                          |
 | topic               | -        | String         | mqtt topic to subscribe and source events from                                                                                                       |
-| client_id           | UUID V4  | String         | mqtt client ID                                                                                                                                       |
+| client_id           | UUID V4  | String         | mqtt client ID. Using same client id in different connectors may close connection                                                                                                                                       |
 | payload_output_type | binary   | String         | controls how the output of `payload` field is produced                                                                                               |
 
 `url` option with type `SecretString` can be set as raw string value:
@@ -50,7 +50,7 @@ This is an example of connector config file:
 # config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.2.4
   name: my-mqtt-connector
   type: mqtt-source
   topic: mqtt-topic
@@ -58,7 +58,6 @@ meta:
 mqtt:
   url: "mqtt://test.mosquitto.org/"
   topic: "mqtt-to-fluvio"
-  client_id: "my_mqtt"
   timeout:
     secs: 30
     nanos: 0
@@ -106,7 +105,7 @@ The previous example can be extended to add extra transformations to outgoing re
 # config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.2.4
   name: my-mqtt-connector
   type: mqtt-source
   topic: mqtt-topic
@@ -114,7 +113,6 @@ meta:
 mqtt:
   url: "mqtt://test.mosquitto.org/"
   topic: "mqtt-to-fluvio"
-  client_id: "my_mqtt"
   timeout:
     secs: 30
     nanos: 0
