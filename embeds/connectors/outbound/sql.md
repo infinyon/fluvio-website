@@ -40,7 +40,7 @@ in the config. If a SmartModule requires configuration, it is passed via `with` 
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.3.1
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -62,7 +62,7 @@ The connector can use secrets in order to hide sensitive information.
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.3.1
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -95,7 +95,7 @@ Connector configuration file:
 # connector-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.3.1
   name: json-sql-connector
   type: sql-sink
   topic: sql-topic
