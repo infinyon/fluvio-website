@@ -7,7 +7,7 @@ USER $USER
 WORKDIR /home/fluvio 
 
 # Copy your Rust project ng Fluvio CLI for creating topics in example
-RUN curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+RUN curl -fsS https://hub.infinyon.cloud/install/install.sh | bash
 
 ## Add `fluvio` to PATH
 ENV PATH="/home/fluvio/.fluvio/bin:${PATH}"
