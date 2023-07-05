@@ -38,6 +38,8 @@ jobs:
           add-paths: |
             embeds/connectors/inbound
             embeds/connectors/outbound
+            content/connectors/inbound
+            content/connectors/outbound
           labels: |
             bot
           title: 'docs: Update connector reference docs [bot]'
