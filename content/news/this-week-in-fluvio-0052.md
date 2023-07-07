@@ -85,8 +85,9 @@ We would love to know what do you recommend we build next to make your developme
 
 
 ## Open positions
-[Sr. Rust Cloud Software Engineer](https://infinyon.com/careers/cloud-engineer-senior-level/)
-[Developer Advocate](https://infinyon.com/careers/developer-advocate-mid-senior-level/)
+Advocate](https://infinyon.com/careers/developer-advocate-mid-senior-level/)
+* [Sr. Rust Cloud Software Engineer](https://infinyon.com/careers/cloud-engineer-senior-level/)
+* [Developer Advocate](https://infinyon.com/careers/developer-advocate-mid-senior-level/)
 
 ---
 

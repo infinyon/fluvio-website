@@ -1,0 +1,11 @@
+apiVersion: 0.1.0
+meta:
+  name: my-http-sink-connector
+  type: http-sink
+  version: 0.1.0
+  topic: my-topic
+  consumer:
+    max_bytes: 3 MB
+    partition: 0
+  secrets:
+    - name: MY_SECRET

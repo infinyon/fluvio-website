@@ -62,6 +62,41 @@ Ok!
 
 The producer splits the key from the value and prints it in a `[key] value` format.
 
+### Produce using a SmartModule
+
+Fluvio's SmartModules can be applied to the producer to edit the contents of a stream
+after the records are sent but before they are committed. One way to supply a WASM
+SmartModule to the `fluvio produce` command is with the `--smartmodule-path` option.
+
+Below is an example of how to apply a [Map] type SmartModule to transform each record in
+a stream. [This particular SmartModule] can be used to capitalize every letter in a
+string.
+
+[Map]: {{< ref "/smartmodules/transform/map" >}}
+[This particular SmartModule]:https://github.com/infinyon/fluvio/tree/fdcfce51067a44c06a91bc8e4aab518f0a193145/smartmodule/examples/map
+
+To use the SmartModule, compile it and provide the `.wasm` file to the producer:
+
+%copy first-line%
+```bash
+$ fluvio produce my-topic --smartmodule-path="fluvio_smartmodule_map.wasm"
+```
+
+To avoid sending the SmartModule binary to the cluster with every producer session, you
+can ask the cluster to store it for you:
+
+%copy first-line%
+```bash
+$ fluvio smartmodule create --wasm-file="fluvio_smartmodule_map.wasm" my_map
+```
+
+Then just use use the name you provided to apply it:
+
+%copy first-line%
+```bash
+$ fluvio produce my-topic --smartmodule="my_map"
+```
+
 ### Produce key/value records to multiple partitions
 
 When producing to a topic with multiple partitions, the producer will send

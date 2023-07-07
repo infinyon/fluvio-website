@@ -1,10 +1,11 @@
 ---
-title: JSON to JSON Transformations
-menu: Jolt
-weight: 10
+title: Jolt
+weight: 20
 ---
 
-This is a certified by InfinyOn [map-type]({{<ref "../transform/map.md" >}}) SmartModule that transforms JSON records leveraging [Fluvio Jolt](https://github.com/infinyon/fluvio-jolt) library, which has its own DSL (Domain Specific Language) to remove the need for coding simple transformations.
+Jolt provides JSON to JSON transformation
+
+This is a [map-type]({{<ref "../transform/map.md" >}}) SmartModule that transforms JSON records leveraging [Fluvio Jolt](https://github.com/infinyon/fluvio-jolt) library, which has its own DSL (Domain Specific Language) to remove the need for coding simple transformations.
 
 The transformations in **Jolt** are a set of operations that are sequentially performed over incoming records.
 
@@ -55,7 +56,7 @@ First, we need to download it to our cluster:
 $ fluvio hub download infinyon/jolt@0.1.0
 ```
 
-Second, we need to create a file `transform.yaml` with transformation specification defined above:
+Second, we create a file `transform.yaml` with transformation specification defined above:
 
 %copy%
 ```yaml
@@ -83,32 +84,28 @@ Let's use `smdk test` to see it in action:
 
 %copy first-line%
 ```shell
-$ smdk test --text '{}' --transforms-file ./transforms.yaml
+$ smdk test --text '{}' --transforms-file ./transform.yaml
 1 records outputed
 {"data":{"source":"http-connector"}}
 ```
 
 %copy first-line%
 ```shell
-$ smdk test --text '{"id":1, "name": "John Smith", "account": "1111" }' --transforms-file ./transforms.yaml
-1 records outputed
+$ smdk test --text '{"id":1, "name": "John Smith", "account": "1111" }' --transforms-file ./transform.yaml
 {"data":{"account":"1111","name":"John Smith","source":"http-connector"}}
 ```
 
 %copy first-line%
 ```shell
-$ smdk test --text '{"id":1, "name": "John Smith", "account": "1111", "type": "custom" }' --transforms-file ./transforms.yaml
-1 records outputed
+$ smdk test --text '{"id":1, "name": "John Smith", "account": "1111", "type": "custom" }' --transforms-file ./transform.yaml
 {"data":{"account":"1111","name":"John Smith","source":"http-connector","type":"custom"}}
 ```
 
 %copy first-line%
 ```shell
-$ smdk test --text '{"id":1, "name": "John Smith", "source":"mqtt-connector" }' --transforms-file ./transforms.yaml
-1 records outputed
+$ smdk test --text '{"id":1, "name": "John Smith", "source":"mqtt-connector" }' --transforms-file ./transform.yaml
 {"data":{"name":"John Smith","source":"mqtt-connector"}}
 ```
-
 
 
 For additional examples checkout the tutorials:

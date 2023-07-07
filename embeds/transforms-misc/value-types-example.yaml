@@ -1,0 +1,9 @@
+transforms:
+  - uses: mygroup/my_smartmodule@0.0.1
+    with:
+      map_param_name:
+        key1: value1
+        key2:
+          nested: "value2"
+      seq_param_name: ["value1", "value2"]
+      string_param_name: "value"

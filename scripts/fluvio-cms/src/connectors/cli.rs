@@ -1,14 +1,16 @@
-use std::fs::{self, File};
-use std::io::{BufReader, Read, Write};
+use std::fs::{self};
+use std::io::Write;
 use std::path::PathBuf;
 
 use anyhow::Result;
 use clap::Parser;
-use convert_case::{Case, Casing};
+
 use tracing::info;
 use xshell::{cmd, Shell};
 
-use super::{DataDirection, DataService, DocsLocation, INBOUND, OUTBOUND};
+use super::{ConnectorInfo, DataDirection, DataServiceType, OfficialConnector};
+
+const WORKING_DIR_BASE: &str = "./.tmp";
 
 /// Update the reference docs for a connector. By default, update all
 #[derive(Clone, Parser, Debug)]
@@ -17,7 +19,7 @@ pub struct ConnectorsOpt {
     //doc: DocScheme,
     /// Service or protocol used by connector to join data with Fluvio cluster
     #[clap(long)]
-    service: Option<DataService>,
+    service: Option<DataServiceType>,
     /// Direction data flows through connector wrt Fluvio cluster. Aliases: source, sink
     #[clap(long)]
     direction: Option<DataDirection>,
@@ -30,118 +32,88 @@ pub struct ConnectorsOpt {
     /// Display shell command output
     #[clap(long, action)]
     verbose: bool,
+    /// Don't clean up files created
+    #[clap(long, action)]
+    no_clean: bool,
 }
 
 impl ConnectorsOpt {
     pub fn run(&self) -> Result<()> {
-        let direction = self.direction.unwrap_or(DataDirection::All);
-        let protocol = self.service.unwrap_or(DataService::All);
-        let mut connectors = Vec::new();
+        let connectors = OfficialConnector::select(self.direction, self.service, self.prod)?;
 
-        match (direction, protocol) {
-            // All the connectors
-            (DataDirection::All, DataService::All) => {
-                info!("Update all the connectors");
-                connectors.extend(INBOUND.values());
-                connectors.extend(OUTBOUND.values());
-            }
-            // All the inbound
-            (DataDirection::Inbound, DataService::All) => {
-                info!("Update all the inbound connectors");
-                connectors.extend(INBOUND.values());
-            }
-            // All the outbound
-            (DataDirection::Outbound, DataService::All) => {
-                info!("Update all the outbound connectors");
-                connectors.extend(OUTBOUND.values());
-            }
-            // All of one type
-            (DataDirection::All, proto) => {
-                info!("Update all the {proto:?} connectors");
-                if let Some(inbound) = INBOUND.get(&proto) {
-                    connectors.push(inbound);
-                }
-                if let Some(outbound) = OUTBOUND.get(&proto) {
-                    connectors.push(outbound);
-                }
-            }
-            // Just one
-            (DataDirection::Inbound, proto) => {
-                info!("Update inbound {proto:?} connector");
-                if let Some(inbound) = INBOUND.get(&proto) {
-                    connectors.push(inbound);
-                }
-            }
-            (DataDirection::Outbound, proto) => {
-                info!("Update outbound {proto:?} connector");
-                if let Some(outbound) = OUTBOUND.get(&proto) {
-                    connectors.push(outbound);
-                }
-            }
-        }
+        let sh = Shell::new()?;
+        sh.remove_path(WORKING_DIR_BASE).unwrap_or_default();
 
-        for connector in connectors {
-            let sh = Shell::new()?;
-            let temp_dir = sh.create_temp_dir()?;
-            if let Some(f) = &self.localfile {
-                let f = File::open(f)?;
-                let mut reader = BufReader::new(f);
-                let mut buffer = Vec::new();
+        for c in connectors {
+            let working_dir =
+                sh.create_dir(format!("{}/{}", WORKING_DIR_BASE, c.get_connector_type()))?;
+            let _working_path_guard = sh.push_dir(working_dir.as_path());
 
-                // Read file into vector.
-                reader.read_to_end(&mut buffer)?;
+            let hub_pkg_fqn = format!(
+                "{}/{}@{}",
+                c.get_group(),
+                c.get_connector_type(),
+                c.get_version()
+            );
+
+            let ipkg_filename = format!(
+                "{}-{}-{}.ipkg",
+                c.get_group(),
+                c.get_connector_type(),
+                c.get_version()
+            );
+
+            let hub_remote = if self.prod {
+                Vec::new()
             } else {
-                sh.change_dir(temp_dir.path());
-
-                let hub_group = connector.hub_group;
-                let hub_pkg_name = connector.hub_pkg_name;
-                let hub_pkg_version = connector.hub_pkg_version;
-
-                let hub_remote = if self.prod {
-                    Vec::new()
-                } else {
-                    vec!["--remote", "https://hub-dev.infinyon.cloud"]
-                };
-
-                let mut cmd =
-                    cmd!(sh,
-                    "fluvio hub connector download {hub_group}/{hub_pkg_name}@{hub_pkg_version}"
-                );
-                cmd.set_ignore_stdout(!self.verbose);
-                cmd.set_ignore_stderr(!self.verbose);
-                cmd.args(hub_remote).run()?;
-
-                let mut cmd = cmd!(
-                    sh,
-                    "tar xvf {hub_group}-{hub_pkg_name}-{hub_pkg_version}.ipkg"
-                );
-                cmd.set_ignore_stdout(!self.verbose);
-                cmd.set_ignore_stderr(!self.verbose);
-                cmd.run()?;
-
-                let mut cmd = cmd!(sh, "tar xvf manifest.tar.gz");
-                cmd.set_ignore_stdout(!self.verbose);
-                cmd.set_ignore_stderr(!self.verbose);
-                cmd.run()?;
+                vec!["--remote", "https://hub-dev.infinyon.cloud"]
             };
 
-            let readme = temp_dir.path().join("README.md");
+            // Download
+            let mut cmd = cmd!(
+                sh,
+                "fluvio hub connector download {hub_pkg_fqn} --target aarch64-unknown-linux-gnu"
+            );
+            cmd.set_ignore_stdout(!self.verbose);
+            cmd.set_ignore_stderr(!self.verbose);
+            cmd.args(hub_remote).run()?;
 
-            self.write_ref_to_disk(connector, readme)?;
+            // Extract Hub raw package content
+            let mut cmd = cmd!(sh, "tar -xvf {ipkg_filename} manifest.tar.gz");
+            cmd.set_ignore_stdout(!self.verbose);
+            cmd.set_ignore_stderr(!self.verbose);
+            cmd.run()?;
+
+            // Extract package manifest
+            let mut cmd = cmd!(sh, "tar -xvf manifest.tar.gz README.md");
+            cmd.set_ignore_stdout(!self.verbose);
+            cmd.set_ignore_stderr(!self.verbose);
+            cmd.run()?;
+
+            // Select README.md and overwrite connector's current docs
+            let readme = working_dir.join("README.md");
+            self.write_ref_to_disk(&c, readme)?;
         }
+
+        if self.no_clean {
+            println!("Skipping cleanup of directory: {WORKING_DIR_BASE}");
+        } else {
+            sh.remove_path(WORKING_DIR_BASE).unwrap_or_default();
+        }
+
         Ok(())
     }
 
-    fn write_ref_to_disk(&self, connector: &DocsLocation, readme: PathBuf) -> Result<()> {
+    fn write_ref_to_disk(&self, connector: &ConnectorInfo, readme: PathBuf) -> Result<()> {
         let embed_connector_readme = format!(
             "embeds/connectors/{}/{}.md",
-            connector.direction,
-            connector.service.to_string().to_case(Case::Lower)
+            connector.get_direction(),
+            connector.get_service_type().to_string().to_lowercase()
         );
         let connector_hugo_template = format!(
             "content/connectors/{}/{}.md",
-            connector.direction,
-            connector.service.to_string().to_case(Case::Lower)
+            connector.get_direction(),
+            connector.get_service_type().to_string().to_lowercase()
         );
 
         let sh = Shell::new()?;
@@ -162,11 +134,11 @@ impl ConnectorsOpt {
         write!(
             &mut content_file,
             r#"---
-menu: {connector_name_title} 
+menu: {connector_name_title}
 ---
 
 {{{{% inline-embed file="{embed}" %}}}}"#,
-            connector_name_title = connector.service,
+            connector_name_title = connector.get_service_type(),
             embed = embed_connector_readme
         )?;
 

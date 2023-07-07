@@ -23,10 +23,15 @@ Hugo watches for file changes and automatically updates website.
 
 ## Public/Nightly Websites
 
-[Netlify](https://www.netlify.com/) watches the following branches and automatically updates websites:
+[Cloudflare Pages](https://pages.cloudflare.com/) watches the default branch, and updates the live site automatically after merge
 
-* `stable` updates [fluvio.io](https://fluvio.io)
-* `master` updates [nightly.fluvio.io](https://nightly.fluvio.io)
+* `master` updates [fluvio.io](https://fluvio.io)
+
+Preview pages are created for each PR. Their URLS are dynamic, based on the name of your branch + `.fluvio-website-preview.pages.dev`
+
+For more info read: https://developers.cloudflare.com/pages/platform/preview-deployments/#preview-aliases
+
+Or ask someone with access to the Pages dashboard to retrieve your preview URL
 
 ## Connector-beta reference docs
 
@@ -38,25 +43,14 @@ Connectors are organized in`scripts/fluvio-cms/src/connectors/mod.rs`, and defin
 - Location in Hugo repo where connector README is stored 
 - Location in Hugo repo where the content template is stored
 
-At the time of this writing, reference docs are downloaded from either the public github repo, or from a local clone, but this will transition to the Connector package data.
-
-From public repo:
-- Inbound HTTP
-- Inbound MQTT
-
-From local disk:
-- Inbound Kafka (*)
-- Outbound Kafka (*)
-- Outbound SQL
-
-(*) Kafka docs were manually separated from a single file into multiple
+At the time of this writing, the latest connector docs are collected by parsing the output of `fluvio hub connector list`
 
 ### Add new connector docs
 
 2 areas need to be updated before `fluvio-cms` will support a new connector's docs
 
-1. For new protocols, add to the `DataService` struct.
-2. Depending on the connector's data directionality, add an entry to the `INBOUND` or `OUTBOUND` hashmap 
+1. For new protocols, add to the `DataService` enum.
+2. For new connectors, add to the `OfficialConnector` enum
 
 ### Update existing connector docs
 

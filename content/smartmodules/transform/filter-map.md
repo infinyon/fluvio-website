@@ -4,8 +4,6 @@ weight: 40
 toc: true
 ---
 
--> **Note**: Currently, `filter-map` SmartModules are not supported in connectors.
-
 SmartModule FilterMaps are used to both transform _and_ potentially filter records from a stream at the same time. This can be useful for a number of
 scenarios including working with data with nullable fields, or working with subsets of event data. In these cases, FilterMap allows us discard irrelevant data - such as records with null fields or event types that we don't care about - while also performing meaningful work with relevant data - such as reformatting fields we've extracted or events we've gathered.
 

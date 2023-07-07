@@ -3,6 +3,9 @@ title: SmartModule Transform
 menu: Overview
 toc: true
 weight: 10
+_build:
+  render: never
+hidden: true
 ---
 
 Fluvio SmartModules support the following in-line data transformation patterns:

@@ -1,0 +1,7 @@
+transforms:
+  - uses: infinyon/jolt@0.3.0
+    with:
+      spec:
+        - operation: default
+          spec:
+            source: "http"

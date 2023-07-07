@@ -16,26 +16,20 @@ to the Consumers.
 
  ### Configuration
  As we previously noted, each Transformation is a SmartModule. More precisely, it is a SmartModule plus some custom parameters.
- Most often, **Transformation Chaining** is configured in `yaml` config file. In example:
+ Most often, **Transformation Chaining** is configured in `yaml` config file.
+ 
+Example:
 
-%copy%
-```yaml
-transforms:
-  - uses: infinyon/jolt@0.1.0
-    with:
-      spec:
-        - operation: default
-          spec:
-            source: "http"
-```
-we have one transformation, which is a SmartModule named [`infinyon/jolt@0.1.0`]({{<ref "../../smartmodules/certified/jolt.md" >}}). 
+{{<code file="embeds/transforms-misc/jolt-basic.yaml" lang="yaml" copy="true">}}
+
+we have one transformation, which is a SmartModule named [`infinyon/jolt@0.3.0`]({{<ref "../../smartmodules/certified/jolt.md" >}}). 
 The name must match a SmartModule previously downloaded to the Cluster:
 
 %copy%
 ```bash
 fluvio sm list
   SMARTMODULE              SIZE
-  infinyon/jolt@0.1.0      564.2 KB
+  infinyon/jolt@0.3.0      608.4 KB
 ```
 
 
@@ -73,14 +67,12 @@ fn init(params: SmartModuleExtraParams) -> Result<()> {
 
 The value in parameters can be strings, maps, or sequences. In this pseudo example, all values are valid:
 
-%copy%
-```yaml
- - uses: mygroup/my_smartmodule@0.0.1   
-    with:                       
-      map_param_name:                     
-        key1: value1
-        key2:
-            nested: "value2"
-      seq_param_name: ["value1", "value2"]
-      string_param_name: "value"
-```
+{{<code file="embeds/transforms-misc/value-types-example.yaml" lang="yaml" copy="true">}}
+
+#### Using Multiple SmartModules
+
+Multiple SmartModules can be activated in series. The output of the previous SmartModule is used as the input of the next SmartModule. Therefore the ordering of the SmartModules in the chain is important.
+
+{{<code file="embeds/transforms-misc/chain-example.yaml" lang="yaml" copy=true >}}
+
+In this example, the `jolt` transformation is performed first, then its output is the input the `regex-filter`.

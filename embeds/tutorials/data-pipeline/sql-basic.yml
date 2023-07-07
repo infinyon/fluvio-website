@@ -1,8 +1,9 @@
 # sql.yaml
+apiVersion: 0.1.0
 meta:
   name: simple-cat-facts-sql
   type: sql-sink
-  version: 0.1.1
+  version: 0.2.1
   topic: cat-facts
 sql:
   url: "postgres://user:password@db.postgreshost.example/dbname"

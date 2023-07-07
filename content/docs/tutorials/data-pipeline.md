@@ -36,15 +36,7 @@ Fluvio can poll a multitude of input types.
 
 ### Connector Config Layout
 
-This is the template YAML connector file. To make it useful, it needs to be
-populated – which we will do in the next step. See
-[the documentation]({{<ref "/connectors-old/">}}) for the parameters available for use.
-
-{{<code file="embeds/templates/connector-template.yaml" lang="yaml" copy="true">}}
-
-Thankfully, filling it out is simple. For any connection, you need a name,
-the connection type, and what topic to connect to.
-
+A detailed description of the Connector configuration file can be found in the [Connector Config Layout]({{<ref "/connectors/connector-config.md">}}) page.
 ### Inbound Connector
 
 For the HTTP-specific parameters you will need to specify the link it is

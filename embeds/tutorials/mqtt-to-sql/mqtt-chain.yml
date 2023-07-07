@@ -1,6 +1,7 @@
 # mqtt.yml
+apiVersion: 0.1.0
 meta:
-  version: 0.1.1
+  version: 0.2.1
   name: fluvio-mqtt-connector
   type: mqtt-source
   topic: mqtt-topic
@@ -9,7 +10,6 @@ meta:
 mqtt:
   url: "mqtt://test.mosquitto.org/"
   topic: "ag-mqtt-topic"
-  client_id: "my_mqtt"
   timeout:
     secs: 30
     nanos: 0
