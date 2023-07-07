@@ -211,6 +211,7 @@ pub enum DataServiceType {
     Http,
     Sql,
     Mqtt,
+    #[strum(serialize = "DuckDB")]
     Duckdb,
     //Salesforce,
     //Amplitude,
