@@ -83,11 +83,6 @@ We would love to know what do you recommend we build next to make your developme
 ## New blog post
 [Why 87% of all data projects are doomed to fail, and how you can improve the odds of success](https://www.infinyon.com/blog/2023/03/failing-data-projects/)
 
-
-## Open positions
-* [Sr. Rust Cloud Software Engineer](https://infinyon.com/careers/cloud-engineer-senior-level/)
-* [Developer Advocate](https://infinyon.com/careers/developer-advocate-mid-senior-level/)
-
 ---
 
 Get in touch with us on [Github Discussions] or join [our Discord channel] and come say hello!
