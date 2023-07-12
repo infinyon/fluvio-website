@@ -34,7 +34,7 @@ $ cdk deploy start --ipkg infinyon-http-source-0.1.1.ipkg --config config-exampl
 
 #### Secrets
 
-In order to use [secrets]({{ ref "/connectors/secrets" }}), you can use the `--secrets` flag to pass a file with the secrets definition.
+In order to use [secrets]({{<ref "/connectors/secrets">}}), you can use the `--secrets` flag to pass a file with the secrets definition.
 
 ##### Example:
 
