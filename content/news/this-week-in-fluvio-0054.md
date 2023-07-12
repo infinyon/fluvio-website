@@ -20,8 +20,12 @@ We are also looking at the Fluvio [Python]('https://github.com/infinyon/fluvio-c
 
 We are experimenting with how far we can push our core stream processor in terms of efficiency under significant storage and memory constraints.
 
+## Open positions
+We are hiring!
+* [Sr. Rust Cloud Software Engineer](https://infinyon.com/careers/cloud-engineer-senior-level/)
+
 ## New blog post
-[How to use SQL Sink Connector Upsert]('https://infinyon.com/blog/2023/07/sql-upsert/')
+[Upsert on SQL Sink Connector]('https://infinyon.com/blog/2023/07/sql-upsert/')
 
 ## New video
 [Collecting Hackernews RSS Feeds using InfinyOn Cloud]('https://youtu.be/fVzLoaIHQfM')
