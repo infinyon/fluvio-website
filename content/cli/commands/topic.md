@@ -64,6 +64,47 @@ topic "my-topic" created
 
 In this example, the topic `my-topic` will be created with compression type `gzip`.
 
+### replication assignment
+
+By default, Fluvio will automatically assign replicas to SPUs. However, you can manually assign replicas to SPUs by using the `--replica-assignment` flag.
+
+Please refer to following [replica]({{<ref "/docs/architecture/replica-.md">}}) sections for detail of replica assignment.
+
+Note that in order to replication assignment to work, you need to have at least 2 SPUs in your cluster.
+
+Example usage:
+
+In this example, we assign first replica to SPU 0, second replica to SPU 1.   
+First we create replica assignment file `replica.json`.
+```json
+[
+    {
+        "id": 0,
+        "replicas": [
+            0,
+            1
+        ]
+    }
+]
+```
+The `replicas` fields correspond to the SPU ids.  You can get SPU ids by running `fluvio cluster spu list`.
+
+Then we create topic with replica assignment file.
+```bash
+$ fluvio topic create my-topic --replica-assignment replica.json
+topic "my-topic" created
+```
+
+Use partition commands to show that topic has been created with replica assignment.
+
+```bash
+
+ $ fluvio partition list
+  TOPIC  PARTITION  LEADER  REPLICAS  RESOLUTION  SIZE  HW  LEO  LRS  FOLLOWER OFFSETS                                              
+  my-topic   0          0       [1]       Online      0 B   0   0    0    0     [ReplicaStatus { spu: 1, hw: -1, leo: -1 }] 
+
+```
+
 ## `fluvio topic list`
 
 This command shows you all the existing topics in your cluster, as well as some basic
