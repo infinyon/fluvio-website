@@ -31,9 +31,9 @@ The algorithm uses a **round-robin**, **gap-enabled** distribution assignment.
 
 In a cluster with **4** SPUs, a topic created with:
 
-|   Replicas   |   Partitions  |
-|:------------:|:-------------:|
-| **3**        | **15**        |
+| Replicas | Partitions |
+| :------: | :--------: |
+|  **3**   |   **15**   |
 
 The algorithm generates the following replica distribution:
  
@@ -110,9 +110,9 @@ The algorithm has the following 3 stages:
 
 On a cluster with **12** SPUs evenly distributed across **4** racks, a topic created with:
 
-|  Replicas    |  Partitions   |
-|:------------:|:-------------:|
-| **4**        | **12**        |
+| Replicas | Partitions |
+| :------: | :--------: |
+|  **4**   |   **12**   |
 
 
 The **3-stage** algorithm generates the following distribution:
@@ -164,9 +164,9 @@ On a cluster with **6** SPUs unevenly distributed across **3** racks:
 
 For a topic created with:
 
-|  Replicas    |  Partitions   |
-|:------------:|:-------------:|
-| **3**        |  **6**        |
+| Replicas | Partitions |
+| :------: | :--------: |
+|  **3**   |   **6**    |
 
 The **3-stage** algorithm generates the following distribution:
 
@@ -219,17 +219,15 @@ _Validate-only_ flag is available to verify a replica assignment file without ap
 **Replica assignment file** defines a **replica map** in JSON format. A replica map with 2 partitions and 3 replicas is defined as follows:
 
 ```json
-{ 
-    "partitions": [{
-            "id": 0,
-            "replicas": [0, 1, 2] 
-        }, 
-        {
-            "id": 1,
-            "replicas": [1, 2, 0] 
-        }
-    ]
+[{
+    "id": 0,
+    "replicas": [0, 1, 2] 
+}, 
+{
+    "id": 1,
+    "replicas": [1, 2, 0] 
 }
+]
 ```
 
 The **replica map** definition meet the following criteria:
