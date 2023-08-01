@@ -24,7 +24,7 @@ deduplication:
     age: 5s # remember records for at least 5 seconds
   filter:
     transform:
-      uses: infinyon-labs/dedup-filter@0.0.1  
+      uses: infinyon-labs/dedup-filter@0.0.2 
 ```
 A topic can be created using this config file like so:
 
