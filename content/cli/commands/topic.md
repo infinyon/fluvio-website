@@ -68,7 +68,7 @@ In this example, the topic `my-topic` will be created with compression type `gzi
 
 By default, Fluvio will automatically assign replicas to SPUs. However, you can manually assign replicas to SPUs by using the `--replica-assignment` flag.
 
-Please refer to following [replica]({{<ref "/docs/architecture/replica-.md">}}) sections for detail of replica assignment.
+Please refer to following [replica]({{<ref "/docs/architecture/replica-assignment.md">}}) sections for detail of replica assignment.
 
 Note that in order to replication assignment to work, you need to have at least 2 SPUs in your cluster.
 
