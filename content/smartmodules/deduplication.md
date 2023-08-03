@@ -4,7 +4,7 @@ title: Deduplication
 
 The `Deduplication` feature in Fluvio is the way to deduplicate records based on their keys.
 
-Deduplication can be used on a topic directly, or it can be used on connectors. It will drop the duplicate records on a configured window.
+Deduplication can be used on a topic. It will drop the duplicate records on a configured window.
 
 This window is defined by the parameters passed to the filter smartmodule.
 
