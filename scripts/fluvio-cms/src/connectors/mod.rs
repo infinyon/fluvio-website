@@ -43,6 +43,9 @@ pub enum OfficialConnector {
     #[serde(alias = "duckdb-sink")]
     #[strum(serialize = "duckdb-sink")]
     DuckdbOutbound(String),
+    #[serde(alias = "graphite-sink")]
+    #[strum(serialize = "graphite-sink")]
+    GraphiteOutbound(String),
 }
 
 impl OfficialConnector {
@@ -144,6 +147,9 @@ impl ConnectorInfo {
                 matches!(self.connector, OfficialConnector::DuckdbOutbound(_))
             }
             DataServiceType::Mqtt => matches!(self.connector, OfficialConnector::MqttInbound(_)),
+            DataServiceType::Graphite => {
+                matches!(self.connector, OfficialConnector::GraphiteOutbound(_))
+            }
         }
     }
 
@@ -185,7 +191,8 @@ impl ConnectorInfo {
             | OfficialConnector::KafkaOutbound(v)
             | OfficialConnector::MqttInbound(v)
             | OfficialConnector::SqlOutbound(v)
-            | OfficialConnector::DuckdbOutbound(v) => v.clone(),
+            | OfficialConnector::DuckdbOutbound(v)
+            | OfficialConnector::GraphiteOutbound(v) => v.clone(),
         }
     }
 
@@ -213,6 +220,8 @@ pub enum DataServiceType {
     Mqtt,
     #[strum(serialize = "DuckDB")]
     Duckdb,
+    #[strum(serialize = "Graphite")]
+    Graphite,
     //Salesforce,
     //Amplitude,
 }
@@ -225,6 +234,7 @@ impl From<OfficialConnector> for DataServiceType {
             OfficialConnector::MqttInbound(_) => Self::Mqtt,
             OfficialConnector::SqlOutbound(_) => Self::Sql,
             OfficialConnector::DuckdbOutbound(_) => Self::Duckdb,
+            OfficialConnector::GraphiteOutbound(_) => Self::Graphite,
         }
     }
 }
@@ -250,7 +260,8 @@ impl From<OfficialConnector> for DataDirection {
             OfficialConnector::HttpOutbound(_)
             | OfficialConnector::KafkaOutbound(_)
             | OfficialConnector::SqlOutbound(_)
-            | OfficialConnector::DuckdbOutbound(_) => Self::Outbound,
+            | OfficialConnector::DuckdbOutbound(_)
+            | OfficialConnector::GraphiteOutbound(_) => Self::Outbound,
         }
     }
 }
