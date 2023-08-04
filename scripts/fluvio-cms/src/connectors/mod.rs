@@ -220,6 +220,7 @@ pub enum DataServiceType {
     Mqtt,
     #[strum(serialize = "DuckDB")]
     Duckdb,
+    #[strum(serialize = "Graphite")]
     Graphite,
     //Salesforce,
     //Amplitude,
