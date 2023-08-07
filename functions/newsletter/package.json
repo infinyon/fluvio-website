@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@netlify/functions": "^1.6.0",
-    "@types/node": "^20.3.2",
+    "@types/node": "^20.4.8",
     "node-fetch": "^3.3.0",
     "typescript": "^5.1.3"
   }
