@@ -9,7 +9,7 @@ The website is generated using [Hugo Framework](https://gohugo.io/). To run the 
 1. [Install Hugo](https://gohugo.io/getting-started/installing/)
 2. Run Hugo
     ```
-   ./hugo-start.sh
+   cargo run -- hugo
     ```
 3. Website is rendered at
     ```
