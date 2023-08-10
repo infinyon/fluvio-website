@@ -27,7 +27,8 @@ The build process generated an binary optimized for WebAssembly. We are now read
 
 ### Test - Operation
 
-Testing a SmartModule takes `text` of `files` from the command line. 
+When testing a SmartModule you can provide the test input via direct `text`, specifying a `file`,
+or reading from the `stdin`.
 
 Let's perform the matching test for our `my-filter` that looks for letter `a`:
 
@@ -39,11 +40,11 @@ loading module at: ~/smdk/my-filter/target/wasm32-unknown-unknown/release-lto/my
 cat
 ```
 
-Next, an non-matching test:
+Next, a non-matching test, reading the input from the `stdin`:
 
 %copy first-line%
 ```bash
-$ smdk test --text dog
+$ echo -n dog | smdk test --stdin
 loading module at: ~/smdk/my-filter/target/wasm32-unknown-unknown/release-lto/my_filter.wasm
 0 records outputed
 ```
