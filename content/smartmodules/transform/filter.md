@@ -95,10 +95,10 @@ $ cd json-filter && cat ./src/lib.rs
 ```
 
 ```rust
-use fluvio_smartmodule::{smartmodule, Result, Record};
+use fluvio_smartmodule::{smartmodule, Result, SmartModuleRecord};
 
 #[smartmodule(filter)]
-pub fn filter(record: &Record) -> Result<bool> {
+pub fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let string = std::str::from_utf8(record.value.as_ref())?;
     Ok(string.contains('a'))
 }
@@ -146,10 +146,10 @@ Now, let's write the logic for our filter. We'll start by parsing our raw data i
 instances of `StructuredLog`.
 
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, Result};
 
 #[smartmodule(filter)]
-fn filter(record: &Record) -> Result<bool> {
+fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let log: StructuredLog = serde_json::from_slice(record.value.as_ref())?;
     
     todo!()
@@ -165,7 +165,7 @@ will be a piece of cake! Let's look at all the code for the finished filter.
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, Result};
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, serde::Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -184,7 +184,7 @@ struct StructuredLog {
 }
 
 #[smartmodule(filter)]
-fn filter(record: &Record) -> Result<bool> {
+fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let log: StructuredLog = serde_json::from_slice(record.value.as_ref())?;
 
     // We keep records that are "greater than" debug

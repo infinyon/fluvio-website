@@ -83,7 +83,7 @@ Now, let's jump right into the code. Copy and paste the following block into the
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, RecordData, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, RecordData, Result};
 use serde::{Deserialize, Serialize};
 
 /// Events that may take place in an online grocery service
@@ -104,7 +104,7 @@ enum GroceryEvent {
 }
 
 #[smartmodule(filter_map)]
-fn filter_map(record: &Record) -> Result<Option<(Option<RecordData>, RecordData)>> {
+fn filter_map(record: &SmartModuleRecord) -> Result<Option<(Option<RecordData>, RecordData)>> {
     let event: GroceryEvent = match serde_json::from_slice(record.value.as_ref()) {
         Ok(event) => event,
         Err(_) => return Ok(None), // Skip if we fail to parse JSON

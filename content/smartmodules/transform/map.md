@@ -56,10 +56,10 @@ $ cd map-example && cat ./src/lib.rs
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
+use fluvio_smartmodule::{smartmodule, Result, SmartModuleRecord, RecordData};
 
 #[smartmodule(map)]
-pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
+pub fn map(record: &SmartModuleRecord) -> Result<(Option<RecordData>, RecordData)> {
     let key = record.key.clone();
 
     let string = std::str::from_utf8(record.value.as_ref())?;
