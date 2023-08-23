@@ -1,7 +1,7 @@
 ---
 title: SMDK - Build & Test a SmartModule
 menu: Build & Test
-weight: 40
+weight: 50
 toc: false
 ---
 

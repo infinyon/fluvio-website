@@ -1,7 +1,7 @@
 ---
 title: SMDK - Load to Cluster
 menu: Load
-weight: 50
+weight: 60
 toc: false
 ---
 
