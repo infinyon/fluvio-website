@@ -10,7 +10,7 @@ To activate Lookback SmartModule must fit the following criteria:
 - A function annotated with `#[smartmodule(look_back)]` macro is present in the code. This function is used to pass requested records to SmartModule:
 ```rust
 #[smartmodule(look_back)]
-pub fn look_back(record: &Record) -> Result<()> {
+pub fn look_back(record: &SmartModuleRecord) -> Result<()> {
     ...
 }
 ```

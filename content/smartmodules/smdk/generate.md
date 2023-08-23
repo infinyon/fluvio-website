@@ -53,10 +53,10 @@ $ tree
 This is a simple SmartModule `filter` matching for all data records that contains letter `a`:
 
 ```bash
-use fluvio_smartmodule::{smartmodule, Result, Record};
+use fluvio_smartmodule::{smartmodule, Result, SmartModuleRecord};
 
 #[smartmodule(filter)]
-pub fn filter(record: &Record) -> Result<bool> {
+pub fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let string = std::str::from_utf8(record.value.as_ref())?;
     Ok(string.contains('a'))
 }

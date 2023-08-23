@@ -4,7 +4,7 @@ use regex::Regex;
 
 use fluvio_smartmodule::{
     dataplane::smartmodule::{SmartModuleExtraParams, SmartModuleInitError},
-    eyre, smartmodule, Record, Result,
+    eyre, smartmodule, SmartModuleRecord, Result,
 };
 
 static REGEX: OnceCell<Regex> = OnceCell::new();
@@ -21,7 +21,7 @@ fn init(params: SmartModuleExtraParams) -> Result<()> {
 }
 
 #[smartmodule(filter)]
-pub fn filter(record: &Record) -> Result<bool> {
+pub fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let string = std::str::from_utf8(record.value.as_ref())?;
     Ok(REGEX.get().unwrap().is_match(string))
 }
