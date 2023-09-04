@@ -35,7 +35,7 @@ jobs:
 
       - name: Checkout code
         if: ${{ needs.test-skip-check.outputs.no-skip }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
       - name: Setup Hugo
