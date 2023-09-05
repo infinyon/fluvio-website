@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v2.0.0
+        uses: crazy-max/ghaction-dump-context@v2.1.0
       - uses: actions/checkout@v4
         if: ${{ needs.test-skip-check.outputs.no-skip }}
 
