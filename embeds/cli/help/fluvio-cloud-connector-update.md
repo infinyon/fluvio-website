@@ -1,5 +1,4 @@
 ```
-fluvio cloud connector update
 Update and restart a Connector
 
 Usage: fluvio-cloud connector update [OPTIONS] --config <CONFIG>

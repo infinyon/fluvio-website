@@ -1,10 +1,11 @@
 ```
-fluvio-cloud-connector-logs 
 View connector logs
-USAGE:
-    fluvio-cloud connector logs [OPTIONS] <NAME>
-ARGS:
-    <NAME>    Name of connector
-OPTIONS:
-    -h, --help    Print help information
+
+Usage: fluvio-cloud connector logs <NAME>
+
+Arguments:
+  <NAME>  Name of connector
+
+Options:
+  -h, --help  Print help
 ```
