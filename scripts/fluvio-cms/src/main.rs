@@ -1,6 +1,9 @@
 pub mod connectors;
 use connectors::ConnectorsOpt;
 
+pub mod cli;
+use cli::CliOpt;
+
 pub mod hugo;
 use hugo::HugoOpt;
 
@@ -29,7 +32,7 @@ use tracing_subscriber::filter::{EnvFilter, LevelFilter};
 enum Subject {
     #[clap(visible_aliases = ["connector", "c"])]
     Connectors(ConnectorsOpt),
-    //Cli,
+    Cli(CliOpt),
     //Api,
     //Docs,
     //#[clap(alias = "sm")]
@@ -45,6 +48,7 @@ impl Subject {
         match self {
             Subject::Connectors(opt) => opt.run(),
             Subject::Hugo(opt) => opt.run(),
+            Subject::Cli(opt) => opt.run(),
         }
     }
 }
