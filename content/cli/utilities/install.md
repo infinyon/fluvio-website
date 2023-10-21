@@ -1,8 +1,13 @@
 ---
 title: Install
+menu: Install (deprecated)
 weight: 10
 toc: false
 ---
+
+{{<caution>}}
+This command is deprecated since 0.10.16, and has been replaced by [`fvm install`]({{<ref "cli/utilities/fluvio-version-manager.md#fvm-install">}})
+{{</caution>}}
 
 Some Fluvio CLI commands are distributed as separate executables that we call
 "extensions". This command installs and updates extensions by name, placing

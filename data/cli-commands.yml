@@ -25,14 +25,10 @@ cli-commands:
   - fluvio table-format list
   - fluvio table-format delete
 
-  - fluvio derived-stream
-  - fluvio derived-stream create
-  - fluvio derived-stream list
-  - fluvio derived-stream delete
-
   - fluvio hub
-  - fluvio hub download
-  - fluvio hub list
+  - fluvio hub smartmodule
+  - fluvio hub smartmodule list
+  - fluvio hub smartmodule download 
   - fluvio hub connector
   - fluvio hub connector list
   - fluvio hub connector download
@@ -111,3 +107,12 @@ cli-commands:
   - cdk deploy log
   - cdk publish
   - cdk set-public
+
+  - fvm
+  - fvm current
+  - fvm self
+  - fvm self install
+  - fvm self uninstall
+  - fvm install
+  - fvm show
+  - fvm switch

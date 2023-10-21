@@ -1,6 +1,8 @@
 ```
 Fluvio Command Line Interface
+
 fluvio-cli [OPTIONS] <COMMAND>
+
 Commands:
   consume       Read messages from a topic/partition
   produce       Write messages to a topic/partition
@@ -15,9 +17,7 @@ Commands:
   update        Update the Fluvio CLI
   version       Print Fluvio version information
   completions   Generate command-line completions for Fluvio
-  run           Run Fluvio cluster components (SC and SPU)
-  package       Package publishing and management
-  cloud         Cloud Operations
+
 Options:
   -c, --cluster <host:port>        Address of cluster
       --tls                        Enable TLS

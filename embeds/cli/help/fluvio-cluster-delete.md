@@ -1,6 +1,8 @@
 ```
 Uninstall a Fluvio cluster
+
 Usage: fluvio cluster delete [OPTIONS]
+
 Options:
       --namespace <Kubernetes namespace>  
       --local                             Remove only local spu/sc(custom) fluvio installation

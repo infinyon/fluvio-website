@@ -17,3 +17,4 @@ xshell = "0.2.3"
 
 fluvio-hub-util = { git = "https://github.com/infinyon/fluvio.git"}
 serde = { version = "1.0.163", features = ["derive", "alloc"] }
+serde_yaml = "0.9.25"

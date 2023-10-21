@@ -1,5 +1,10 @@
 ```
-Print the connector's logs		  <CONNECTOR_NAME>  
-Usage: cdk deploy log <CONNECTOR_NAME>	Options:
-Arguments:				  -h, --help  Print help
+Print the connector's logs
+
+Usage: cdk deploy log <--config <PATH>|--name <CONNECTOR_NAME>>
+
+Options:
+  -c, --config <PATH>          Path to configuration file in YAML format
+  -n, --name <CONNECTOR_NAME>  Name of the running connector
+  -h, --help                   Print help
 ```
