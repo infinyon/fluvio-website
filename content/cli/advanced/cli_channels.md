@@ -4,6 +4,20 @@ menu: Release Channels
 weight: 10
 ---
 
+The current version of release channels was introduced in 0.10.16 with the introduction of [`fvm`]({{<ref "/cli/utilities/fluvio-version-manager.md">}})
+
+
+{{<idea>}}
+This is currently in BETA
+
+%copy first-line%
+```shell
+$ https://hub-dev.infinyon.cloud/install_fvm/install_fvm.sh | bash
+```
+{{</idea>}}
+
+
+
 ## What is this for?
 
 Occasionally users report issues in our Discord. After a fix was found and committed, users wanted a way to verify their issue had been resolved before a release.
@@ -16,12 +30,20 @@ Inspired by [Rust's concept of channels](https://rust-lang.github.io/rustup/conc
 
 ## Installation
 
-Release channel support is provided by the [official installer script]({{<ref "/download">}}). The installer uses the `stable` channel by default. 
+Release channel support is provided by `fvm`. The installer uses the `stable` channel by default.
+
+%copy first-line%
+```shell
+$ https://hub-dev.infinyon.cloud/install_fvm/install_fvm.sh | bash
+```
+ 
 
 {{<caution>}}
-Fluvio release channels were introduced for the CLI in `0.9.16`.
+Fluvio release channels were introduced for the CLI in `0.9.16`, and the most recent implementation was introduced in `0.10.16`.
 <br><br>
-If you have an installation from a release earlier than `0.9.16`, you should re-install with the [official installer script]({{<ref "/download">}}) to install the Fluvio channel frontend.
+If you have an installation from a release earlier than `0.10.16`, you should delete `~/.fluvio` directory and re-install with the [official installer script]({{<ref "/download">}}) to install `fvm`, the Fluvio Version Manager CLI.
+<br><br>
+You can also run `fvm install` to migrate your existing installation
 {{</caution>}}
 
 ## Quick start: The Channels
@@ -35,7 +57,7 @@ To switch to the `stable` channel:
 
 %copy first-line%
 ```shell
-$ fluvio version switch stable
+$ fvm switch stable
 ```
 
 ### Latest
@@ -45,7 +67,7 @@ To switch to the `latest` channel:
 
 %copy first-line%
 ```shell
-$ fluvio version switch latest 
+$ fvm switch latest 
 ```
 
 The first time you switch to this channel, the binary will be downloaded.
@@ -59,49 +81,14 @@ At this step the binary will get downloaded.
 
 %copy first-line%
 ```shell
-$ fluvio version create X.Y.Z 
+$ fvm install X.Y.Z 
 ```
 
 Then you can switch to the version channel
 
 %copy first-line%
 ```shell
-$ fluvio version switch X.Y.Z 
+$ fvm switch X.Y.Z 
 ```
 
 Where `X.Y.Z` is the version of a release you want to switch to (e.g. `0.9.18`)
-
-## How it works?
-
-Release channel support is set up at install time through the [installer script]({{<ref "/download">}}).
-
-2 binaries are installed
-* The Fluvio CLI
-* A frontend binary to support switching channels
-
-By default, the `stable` channel is selected.
-
-This channel is registered in `~/.fluvio/channel` and is marked as the active channel.
-
-Example channel config:
-
-```toml
-current_channel = "stable"
-[channel.stable]
-binary_location = "/home/username/.fluvio/bin/fluvio-stable"
-extensions = "/home/username/.fluvio/extensions"
-image_tag_strategy = "Version"
-
-[channel.latest]
-binary_location = "/home/username/.fluvio/bin/fluvio-latest"
-extensions = "/home/username/.fluvio/extensions-latest"
-image_tag_strategy = "VersionGit"
-```
-
-When you run `fluvio update`, the Fluvio binary of your current channel will update to the newest version of the channel.
-
-{{<caution>}}
-Only the `stable` and `latest` channels can be updated. Version channels don't support `fluvio update`  because those binaries will always be pinned to its version.
-<br><br>
-Follow the [version channel]({{<ref "#version">}}) steps to switch to a different version.
-{{</caution>}}

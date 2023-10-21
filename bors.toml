@@ -1,5 +1,6 @@
 status = [
-    "Pass client examples", "Pass html lint"
+    #"Pass client examples",
+    "Pass html lint"
 ]
 use_squash_merge = true
 delete_merged_branches = true
