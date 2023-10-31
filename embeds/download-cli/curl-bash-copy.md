@@ -9,5 +9,5 @@ Beta installation method:
 
 %copy first-line%
 ```bash
-$ curl -fsS https://hub-dev.infinyon.cloud/install_fvm/install_fvm.sh | bash
+$ curl -fsS https://hub.infinyon.cloud/install_fvm/install_fvm.sh | bash
 ```
