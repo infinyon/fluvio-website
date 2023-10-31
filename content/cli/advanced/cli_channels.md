@@ -12,7 +12,7 @@ This is currently in BETA
 
 %copy first-line%
 ```shell
-$ https://hub-dev.infinyon.cloud/install_fvm/install_fvm.sh | bash
+$ https://hub.infinyon.cloud/install_fvm/install_fvm.sh | bash
 ```
 {{</idea>}}
 
@@ -34,7 +34,7 @@ Release channel support is provided by `fvm`. The installer uses the `stable` ch
 
 %copy first-line%
 ```shell
-$ https://hub-dev.infinyon.cloud/install_fvm/install_fvm.sh | bash
+$ https://hub.infinyon.cloud/install_fvm/install_fvm.sh | bash
 ```
  
 
