@@ -10,6 +10,7 @@ Commands:
   list    List all existing SmartModules
   watch   Watch for changes to SmartModules
   delete  Delete one or more SmartModules with the given name(s)
+  test    Test SmartModule
 
 Options:
   -h, --help

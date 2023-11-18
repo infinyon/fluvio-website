@@ -19,9 +19,9 @@ producer program would leverage [one of the programmatic APIs].
 In order to get started with producing streaming data, you'll need to:
 
 - [Have a Fluvio cluster up and running]({{< ref "/docs/get-started/linux" >}}),
-- [Create a Topic to produce data to]({{< ref "/cli/commands/topic#fluvio-topic-create" >}}), then
+- [Create a Topic to produce data to]({{< ref "/cli/cluster/topic#fluvio-topic-create" >}}), then
 - Choose one of the following producer interfaces to use:
-  - [Fluvio CLI]({{< ref "/cli/commands/consume" >}})
+  - [Fluvio CLI]({{< ref "/cli/client/consume" >}})
   - [Rust]({{< ref "/api/official/rust/installation" >}})
   - [Node]({{< ref "/api/official/node/installation" >}})
   - [Python]({{< ref "/api/official/python/installation" >}})

@@ -4,18 +4,7 @@ menu: Release Channels
 weight: 10
 ---
 
-The current version of release channels was introduced in 0.10.16 with the introduction of [`fvm`]({{<ref "/cli/utilities/fluvio-version-manager.md">}})
-
-
-{{<idea>}}
-This is currently in BETA
-
-%copy first-line%
-```shell
-$ https://hub.infinyon.cloud/install_fvm/install_fvm.sh | bash
-```
-{{</idea>}}
-
+The current version of release channels was introduced in 0.10.16 with the introduction of [`fvm`]({{<ref "/cli/install/fluvio-version-manager.md">}})
 
 
 ## What is this for?

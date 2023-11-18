@@ -1,11 +1,11 @@
 ```
 Manage FVM
 
-Usage: 
+Usage: fvm self <COMMAND>
 
 Commands:
-  install    Install `fvm` and setup the workspace
   uninstall  Uninstall `fvm` and removes the workspace
+  update     Prints `fvm` update instructions
   help       Print this message or the help of the given subcommand(s)
 
 Options:

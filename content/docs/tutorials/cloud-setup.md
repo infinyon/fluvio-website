@@ -293,8 +293,8 @@ Now you have a fully setup Fluvio system, and you know the basic commands to get
 
 ## References
 
-* [Fluvio CLI Produce]({{<ref "/cli/commands/produce.md">}})
-* [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
-* [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
+* [Fluvio CLI Produce]({{<ref "/cli/client/produce.md">}})
+* [Fluvio CLI Consume]({{<ref "/cli/client/consume.md">}})
+* [Fluvio CLI topic]({{<ref "/cli/cluster/topic.md">}})
 * [Fluvio CLI profile]({{<ref "/cli/client/profile.md">}})
 * [SmartModule]({{<ref "/smartmodules/">}})

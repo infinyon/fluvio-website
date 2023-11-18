@@ -244,4 +244,4 @@ The **replica map** definition meet the following criteria:
 
 For additional information on how to check the result of a replica assignment file, checkout [Topics CLI].
 
-[Topics CLI]: {{< ref "/cli/commands/topic" >}}
+[Topics CLI]: {{< ref "/cli/cluster/topic" >}}

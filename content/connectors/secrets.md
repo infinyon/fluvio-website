@@ -26,4 +26,4 @@ If running connectors with `CDK`, you can use the `--secrets` flag to pass a fil
 
 ## Set secret values on Cloud
 
-For cloud, we need to use `fluvio cloud secret` command. See the [Cloud documentation]({{<ref "cli/cloud/secret.md">}}) for more information.
+For cloud, we need to use `fluvio cloud secret` command. See the [Cloud documentation]() for more information.

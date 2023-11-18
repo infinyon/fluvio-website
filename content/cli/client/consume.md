@@ -11,7 +11,7 @@ The `consume` command will only read from one of those partitions, defaulting to
 
 {{% inline-embed file="embeds/cli/help/fluvio-consume.md" %}}
 
-The following `fluvio consume` examples come after the [`fluvio produce` examples]({{< ref "/cli/commands/produce" >}}).
+The following `fluvio consume` examples come after the [`fluvio produce` examples]({{< ref "/cli/client/produce" >}}).
 
 ## Examples
 ### Consume all records
@@ -99,7 +99,7 @@ records from the different partitions in a topic by using the `--partition (-p)`
 
 Start out by creating a new topic with multiple partitions using [`fluvio topic create`].
 
-[`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
+[`fluvio topic create`]: {{< ref "/cli/cluster/topic#fluvio-topic-create" >}}
 
 %copy first-line%
 ```bash
@@ -133,7 +133,7 @@ $ fluvio produce "consume-multi" -f records.txt
 After producing some data, let's take a look at how the records got distributed
 among our partitions using [`fluvio partition list`].
 
-[`fluvio partition list`]: {{< ref "/cli/commands/partition#fluvio-partition-list" >}}
+[`fluvio partition list`]: {{< ref "/cli/cluster/partition#fluvio-partition-list" >}}
 
 %copy first-line%
 ```bash
