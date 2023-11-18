@@ -105,7 +105,7 @@ a multi-partition topic, then sending some key/value records.
 
 First, we'll use [`fluvio topic create`] to create a topic called `multi-keys` with 5 partitions:
 
-[`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
+[`fluvio topic create`]: {{< ref "/cli/cluster/topic#fluvio-topic-create" >}}
 
 %copy first-line%
 ```bash
@@ -143,7 +143,7 @@ generated 2 events, and `tabitha` generated 3 events. When we look at the partit
 we should see the records distributed in groups of 5, 2, and 3. We can use the
 [`fluvio partition list`] command to view the distribution of records in our partitions:
 
-[`fluvio partition list`]: {{< ref "/cli/commands/partition#fluvio-partition-list" >}}
+[`fluvio partition list`]: {{< ref "/cli/cluster/partition#fluvio-partition-list" >}}
 
 %copy first-line%
 
@@ -163,7 +163,7 @@ were distributed in groups of 5, 3, and 2. Let's dig a little further, we know t
 `rafael` was the key used by the group of 5 records, so we should be able to see those
 records by using [`fluvio consume`] to consume from partition 3.
 
-[`fluvio consume`]: {{< ref "/cli/commands/consume" >}}
+[`fluvio consume`]: {{< ref "/cli/client/consume" >}}
 
 %copy first-line%
 
@@ -194,7 +194,7 @@ Let's produce some data to our topic. We'll use the same data from [Example 3],
 but this time we won't tell the Producer to interpret our input as key-value records
 (we'll do this by omitting the `--key-separator` flag).
 
-[Example 3]: {{< ref "/cli/commands/produce#example-3-produce-keyvalue-records-to-multiple-partitions" >}}
+[Example 3]: {{< ref "/cli/client/produce#example-3-produce-keyvalue-records-to-multiple-partitions" >}}
 
 ```bash
 # Put the following records into a text file using your favorite editor
@@ -247,7 +247,7 @@ Let's try to use `gzip` algorithm in the CLI.
 
 First, we'll use [`fluvio topic create`] to create a topic called `compressed` and other topic called `uncompressed`:
 
-[`fluvio topic create`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
+[`fluvio topic create`]: {{< ref "/cli/cluster/topic#fluvio-topic-create" >}}
 
 %copy first-line%
 ```bash
@@ -302,4 +302,4 @@ Notice how the SIZE field tell us that the `compressed` topic is using less disk
 
 Also note that, [`consuming`] from topics is done at the same way for both compressed and uncompressed data.
 
-[`consuming`]: {{< ref "/cli/commands/consume" >}}
+[`consuming`]: {{< ref "/cli/client/consume" >}}

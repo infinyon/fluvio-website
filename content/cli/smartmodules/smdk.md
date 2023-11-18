@@ -17,3 +17,7 @@ Check out the [SmartModule Development Kit]({{<ref "/smartmodules/smdk/overview.
 {{% inline-embed file="embeds/cli/help/smdk-load.md" %}}
 ## `smdk publish`
 {{% inline-embed file="embeds/cli/help/smdk-publish.md" %}}
+## `smdk set-public`
+{{% inline-embed file="embeds/cli/help/smdk-set-public.md" %}}
+## `smdk version`
+{{% inline-embed file="embeds/cli/help/smdk-version.md" %}}

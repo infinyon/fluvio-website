@@ -23,7 +23,7 @@ You will need a local Fluvio cluster for the connector to send data to.
 $ fluvio cluster start
 ```
 
-For more details about starting a cluster, [see `fluvio cluster` CLI docs]({{<ref "/cli/local/cluster.md">}}).
+For more details about starting a cluster, [see `fluvio cluster` CLI docs]({{<ref "/cli/cluster/cluster.md">}}).
 
 And you will need a Rust environment with a copy of our [`fluvio-connectors` repo](https://github.com/infinyon/fluvio-connectors.git)
 

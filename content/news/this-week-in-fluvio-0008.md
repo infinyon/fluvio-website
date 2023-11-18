@@ -71,7 +71,7 @@ Notice that the records don't appear in the exact order that we produced them in
 That's because ordering is only guaranteed for the records in the _same partition_.
 In this case, this means that `apple` will always come before `cranberry`, and
 `banana` will always come before `date`. To learn more about partitioning,
-[check out the docs on key/value records and partitions]({{<ref "/cli/commands/produce#example-3-produce-keyvalue-records-to-multiple-partitions">}}).
+[check out the docs on key/value records and partitions]({{<ref "/cli/client/produce#example-3-produce-keyvalue-records-to-multiple-partitions">}}).
 
 ### Addition of `{{partition}}` to the Fluvio Consumer `--format` string
 
