@@ -25,14 +25,11 @@
 "cli:cloud":
   - "content/cli/cloud/**"
 
-"cli:commands":
-  - "content/cli/commands/**"
-
 "cli:connectors":
   - "content/cli/connectors/**"
 
-"cli:local":
-  - "content/cli/local/**"
+"cli:install":
+  - "content/cli/install/**"
 
 "cli:smartmodules":
   - "content/cli/smartmodules/**"
