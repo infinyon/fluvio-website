@@ -23,7 +23,7 @@ Release channel support is provided by `fvm`. The installer uses the `stable` ch
 
 %copy first-line%
 ```shell
-$ https://hub.infinyon.cloud/install_fvm/install_fvm.sh | bash
+$ curl -fsS https://hub.infinyon.cloud/install/install.sh | bash
 ```
  
 
