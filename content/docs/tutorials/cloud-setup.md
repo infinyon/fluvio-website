@@ -1,6 +1,7 @@
 ---
 title: Setup InfinyOn Cloud
 weight: 10
+hidden: true
 ---
 
 This tutorial will walk you through setting up an InfinyOn account, and using Fluvio.

@@ -1,6 +1,7 @@
 ---
 title: Build MQTT to SQL Pipeline
 weight: 40
+hidden: true
 ---
 
 At the end of this tutorial, we will see data starting from an MQTT broker and ending in a PostgreSQL table.
