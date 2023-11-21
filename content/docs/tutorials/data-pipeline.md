@@ -1,6 +1,7 @@
 ---
 title: Build HTTP to SQL Pipeline
 weight: 30
+hidden: true
 ---
 
 ## Connector Pipeline

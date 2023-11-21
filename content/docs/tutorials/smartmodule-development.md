@@ -1,6 +1,7 @@
 ---
 title: SmartModule Development
 weight: 20
+hidden: true
 ---
 
 

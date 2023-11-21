@@ -1,6 +1,15 @@
 # Fluvio Website
 
-Fluvio website repository stores all documentation published in [fluvio.io](https://fluvio.io).
+## Public/Nightly Websites
+
+[Cloudflare Pages](https://pages.cloudflare.com/) watches the default branch, and updates the live site automatically after merge
+
+* master branch - [preview environment](https://master.fluvio-website-preview.pages.dev/)
+* stable branch - [prod environment (fluvio.io)](https://fluvio.io)
+
+If you create branches in this repo (i.e., not on a fork), Cloudflare will build and provide a url to the Hugo site for each PR. Their URLS are dynamic, based on the name of your branch + `.fluvio-website-preview.pages.dev`
+
+For more info read: https://developers.cloudflare.com/pages/platform/preview-deployments/#preview-aliases
 
 ## Run Website on Local Machine
 
@@ -8,8 +17,8 @@ The website is generated using [Hugo Framework](https://gohugo.io/). To run the 
 
 1. [Install Hugo](https://gohugo.io/getting-started/installing/)
 2. Run Hugo
-    ```
-   ./hugo-start.sh
+    ```shell
+    cargo run -- hugo 
     ```
 3. Website is rendered at
     ```
@@ -21,19 +30,7 @@ The website is generated using [Hugo Framework](https://gohugo.io/). To run the 
 Hugo watches for file changes and automatically updates website.
 
 
-## Public/Nightly Websites
-
-[Cloudflare Pages](https://pages.cloudflare.com/) watches the default branch, and updates the live site automatically after merge
-
-* `master` updates [fluvio.io](https://fluvio.io)
-
-Preview pages are created for each PR. Their URLS are dynamic, based on the name of your branch + `.fluvio-website-preview.pages.dev`
-
-For more info read: https://developers.cloudflare.com/pages/platform/preview-deployments/#preview-aliases
-
-Or ask someone with access to the Pages dashboard to retrieve your preview URL
-
-## Connector-beta reference docs
+## Connector reference docs
 
 A preview of the `fluvio-cms` CLI can be used to update the reference docs for connectors in the Hub.
 
@@ -67,3 +64,19 @@ Ex. Copy SQL docs
 ```shell
 $ cargo run -- connector --service sql --direction outbound --file /path/to/README
 ```
+
+## CLI docs
+
+### Update help text
+
+The list of CLI commands is located at `/data/cli-commands.yml`
+
+Running this command will iterate through the list of CLI commands and capture the output of the `--help` flag
+
+```shell
+$ cargo run -- cli
+```
+
+This creates files in `/embed/cli/help` with the filename pattern `<cmd>[-<subcmd1>][-<subcmd2][-subcmd3etc].md`. The help output for the command `fluvio cluster list` would be located at `/embed/cli/help/fluvio-cluster-list.md`
+
+The templates for the CLI pages in https://www.fluvio.io/cli/ are not generated. Any commands that are added or removed may need to modify additional files.

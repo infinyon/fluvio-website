@@ -77,10 +77,12 @@ jobs:
           find . -name "*.html" -exec diff --brief --new-file base/{} {} \; | awk '{print $4}' | sed 's/./http:\/\/localhost:1313/' | tee /tmp/changed-html.txt
           wc /tmp/changed-html.txt
 
+      - uses: Swatinem/rust-cache@v2
+
       - name: Start Hugo server and take screenshots
         run: |
           cd pr_repo
-          ./hugo-start.sh &
+          cargo run -- hugo &
           sleep 5
           mkdir /tmp/changed-screenshots
 
