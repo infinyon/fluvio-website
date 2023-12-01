@@ -7,6 +7,20 @@ twitter-card: summary_large_image
 ---
 
 
+Fluvio is an open-source data streaming platform that aggregates, correlates, and apply programmable intelligence to data in motion. 
+
+
+<img src="architecture/images/fluvio-stack.svg" alt="Fluvio Stack" justify="center" height="440">
+
+
+Written in Rust, Fluvio provides low-latency, high-performance programmable streaming on cloud-native architecture.
+
+SmartModules, powered by WebAssembly, provide users the ability to perform inline computations on streaming
+data without leaving the cluster. – [Learn more about SmartModules]({{<ref "/smartmodules" >}})
+
+Fluvio provides client libraries for several popular programming languages. – [Learn more about Fluvio's client libraries]({{<ref "/api" >}})
+
+
 This guide outlines using the `Fluvio CLI` for streaming data on your local machine or self-hosted environment.
 
 We will cover:
@@ -89,9 +103,9 @@ fluvio:       echo 'export PATH="${HOME}/.fvm/bin:${HOME}/.fluvio/bin:${PATH}"' 
 
 ## Start a cluster
 
-%copy first-list%
+%copy first-line%
 ```shell
-$ fluvio cluster start --local
+$ fluvio cluster start
 ```
 
 <TODO screenshots>
@@ -100,22 +114,25 @@ $ fluvio cluster start --local
 
 Topics store and send data streams. Create one with:
 
+%copy first-line%
 ```shell
-fluvio topic create quickstart-topic
+$ fluvio topic create quickstart-topic
 ```
 
 ## Produce data to your topic
 
 Send data to your topic with:
 
+%copy first-line%
 ```shell
-fluvio produce quickstart-topic
+$ fluvio produce quickstart-topic
 > hello world!
 Ok!
 ```
 
 Exit the prompt with `Ctrl+C`. You can also send files or stream output:
 
+%copy%
 ```shell
 fluvio produce -f ./path/to/file.txt
 echo "hello world!" | fluvio produce quickstart-topic
@@ -125,8 +142,9 @@ echo "hello world!" | fluvio produce quickstart-topic
 
 Read data from your topic with:
 
+%copy first-line%
 ```shell
-fluvio consume quickstart-topic -B -d
+$ fluvio consume quickstart-topic -B -d
 ```
 
 This will display data sent to the topic.
@@ -139,14 +157,16 @@ SmartModules are user-defined functions that process data streams.
 
 The SmartModules Development Kit (SMDK) is required for building SmartModules:
 
+%copy first-line%
 ```bash
-fluvio install smdk
+$ fluvio install smdk
 ```
 
 ### Build a Filter SmartModule
 
 Create and navigate to your SmartModule project:
 
+%copy%
 ```bash
 smdk generate
 cd quickstart
@@ -154,6 +174,7 @@ cd quickstart
 
 A filter SmartModule might look like this:
 
+%copy%
 ```rust
 use fluvio_smartmodule::{smartmodule, Result, Record};
 
@@ -166,6 +187,7 @@ pub fn filter(record: &Record) -> Result<bool> {
 
 Build and test it with:
 
+%copy%
 ```shell
 smdk build
 smdk test --text "cats"
@@ -187,6 +209,7 @@ fluvio smartmodule list
 
 Create a topic and use SmartModules with producers and consumers:
 
+%copy%
 ```shell
 fluvio topic create fruits
 fluvio consume fruits --smartmodule=quickstart
@@ -194,32 +217,4 @@ fluvio produce fruits
 ```
 
 Only records matching the SmartModule's filter will be shown.
-
-## Next Steps
-
-Now you're ready to build and run real-time data apps with Fluvio's open-source tools. Check out more [examples](/docs/examples) and [tutorials](/docs/tutorials) to continue learning.
-
----
-
-This version removes all steps related to the InfinyOn Cloud service, focusing on a generic, local setup or self-hosted environment for development. It also assumes that the reader will use the `smdk` CLI for SmartModule development and applies to a local or self-hosted Fluvio cluster.
-
-
-
-
-
-
-
-
-Fluvio is an open-source data streaming platform that aggregates, correlates, and apply programmable intelligence to data in motion. 
-
-
-<img src="architecture/images/fluvio-stack.svg" alt="Fluvio Stack" justify="center" height="440">
-
-
-Written in Rust, Fluvio provides low-latency, high-performance programmable streaming on cloud-native architecture.
-
-SmartModules, powered by WebAssembly, provide users the ability to perform inline computations on streaming
-data without leaving the cluster. – [Learn more about SmartModules]({{<ref "/smartmodules" >}})
-
-Fluvio provides client libraries for several popular programming languages. – [Learn more about Fluvio's client libraries]({{<ref "/api" >}})
 
