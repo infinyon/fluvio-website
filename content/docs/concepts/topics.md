@@ -20,7 +20,7 @@ Replicas have a leader and one or more followers and distributed across all avai
 For example, when provisioning a topic with **2** partitions and **3** replicas:
 
 ```bash
-$ fluvio topic create --topic topic-a --partitions 2 --replication 3
+$ fluvio topic create topic-a --partitions 2 --replication 3
 ```
 
 **Leaders** maintain the primary data set and **followers** store a copy of the data. Leader and follower replications are assigned to independent **SPUs**:

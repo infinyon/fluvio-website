@@ -1,6 +1,7 @@
 ---
 title: SmartModule Development
 weight: 20
+hidden: true
 ---
 
 
@@ -211,9 +212,9 @@ You now know the development workflow for SmartModules with `smdk`. You can now 
 
 ## References
 
-* [Fluvio CLI Produce]({{<ref "/cli/commands/produce.md">}})
-* [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
-* [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
+* [Fluvio CLI Produce]({{<ref "/cli/client/produce.md">}})
+* [Fluvio CLI Consume]({{<ref "/cli/client/consume.md">}})
+* [Fluvio CLI topic]({{<ref "/cli/cluster/topic.md">}})
 * [SmartModule]({{<ref "/smartmodules/">}})
 
 [SmartModule Hub]: {{< ref "/smartmodules/hub/overview" >}}

@@ -1,8 +1,11 @@
 ```
 Write messages to a topic/partition
+
 Usage: fluvio produce [OPTIONS] <topic>
+
 Arguments:
   <topic>  The name of the Topic to produce to
+
 Options:
   -v, --verbose
           Print progress output when sending records
@@ -13,7 +16,7 @@ Options:
       --raw
           Send all input as one record. Use this when producing binary files
       --compression <COMPRESSION>
-          Compression algorithm to use when sending records. Supported values: none, gzip, snappy and lz4
+          Compression algorithm to use when sending records. Supported values: none, gzip, snappy, zstd and lz4
   -f, --file <FILE>
           Path to a file to produce to the topic. Default: Each line treated as single record unless `--raw` specified. If absent, producer will read stdin
       --linger <LINGER>

@@ -1,6 +1,8 @@
 ```
 Upgrades an already-started Fluvio cluster
+
 Usage: fluvio cluster upgrade [OPTIONS]
+
 Options:
       --develop
           use local image
@@ -11,7 +13,7 @@ Options:
       --registry <REGISTRY>
           k8: use custom docker registry
       --namespace <NAMESPACE>
-          k8 [default: default]
+          k8 namespace [default: default]
       --group-name <GROUP_NAME>
           k8 [default: main]
       --install-name <INSTALL_NAME>
@@ -22,6 +24,8 @@ Options:
           chart values
       --use-k8-port-forwarding
           Uses port forwarding for connecting to SC during install
+      --use-cluster-ip
+          Uses port forwarding for connecting to SC during install
       --tls-client-secret-name <TLS_CLIENT_SECRET_NAME>
           TLS: Client secret name while adding to Kubernetes [default: fluvio-client-tls]
       --tls-server-secret-name <TLS_SERVER_SECRET_NAME>
@@ -29,16 +33,15 @@ Options:
       --spu-storage-size <SPU_STORAGE_SIZE>
           set spu storage size [default: 10]
       --skip-profile-creation
+          
       --spu <SPU>
           number of SPU [default: 1]
       --rust-log <RUST_LOG>
           RUST_LOG options
       --log-dir <LOG_DIR>
-          log dir [default: /tmp]
+          log dir [default: /usr/local/var/log/fluvio]
       --sys-only
           installing/upgrade sys only
-      --local
-          install local spu/sc(custom)
       --tls
           Whether to use TLS
       --domain <DOMAIN>
@@ -54,6 +57,7 @@ Options:
       --server-key <SERVER_KEY>
           TLS: path to server private key
       --authorization-config-map <AUTHORIZATION_CONFIG_MAP>
+          
       --skip-checks
           Whether to skip pre-install checks, defaults to false
       --setup
@@ -62,8 +66,14 @@ Options:
           Proxy address
       --service-type <SERVICE_TYPE>
           Service Type
-      --connector-prefix <connector_prefix>
-          Connector Prefix
+      --local
+          install local spu/sc
+      --local-k8
+          install local spu/sc with metadata stored in K8s
+      --k8
+          install on K8s
+      --read-only <config path>
+          Start SC in read only mode
   -h, --help
           Print help
 ```

@@ -1,5 +1,6 @@
 ---
 title: Core Capabilities 
+hidden: true
 ---
 
 The key tenets of this architecture are as follows

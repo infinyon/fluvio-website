@@ -1,14 +1,19 @@
 ```
 Run a new Streaming Controller (SC)
-Usage: fluvio-run sc [OPTIONS]
+
+Usage: fluvio-run sc [OPTIONS] <--local <metadata path>|--k8|--read-only <READ_ONLY>>
+
 Options:
-      --local
-          running in local mode only
+      --local <metadata path>
+          run in local mode
+      --k8
+          run on k8
       --bind-public <BIND_PUBLIC>
           Address for external service
       --bind-private <BIND_PRIVATE>
           Address for internal service
   -n, --namespace <namespace>
+          
       --tls
           enable tls
       --server-cert <SERVER_CERT>

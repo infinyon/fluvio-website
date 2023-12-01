@@ -1,10 +1,19 @@
 name: Connector docs PR 
 
+permissions:
+  contents: read
+
 concurrency:
   group: connector-docs-${{ github.ref }}
   cancel-in-progress: true
 
 on:
+  #push:
+  #  branches:
+  #    - staging
+  #    - trying
+  #pull_request:
+  #  branches: [master]
   workflow_call:
   workflow_dispatch:
   schedule:
@@ -17,19 +26,19 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Fluvio
         run: |
           curl -fsS https://hub.infinyon.cloud/install/install.sh | bash
           echo "$HOME/.fluvio/bin" >> $GITHUB_PATH
-
       - name: Fluvio Login
         run: fluvio cloud login --email ${{ secrets.CLOUD_USER_EMAIL }} --password ${{ secrets.CLOUD_USER_PASSWORD }}
 
       - uses: Swatinem/rust-cache@v2
       # Run fluvio cms
+
       - name: Run connector docs update 
-        run: cargo run -- connector --prod
+        run: cargo run -- connector 
 
       # Create/Update PR
       - name: Create Pull Request

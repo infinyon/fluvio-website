@@ -13,7 +13,7 @@ Port numbers do not change based on whether TLS is enabled, the same ports are u
 
 Service behavior can be configured at installation by overriding values in the helm charts.
 
-### Service Enpoint Details
+### Service Endpoint Details
 
 Run `kubectl describe svc fluvio-sc-public` to view address and port information for accessing the SC public endpoint.
 

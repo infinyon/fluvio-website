@@ -262,11 +262,11 @@ Copy and paste this code into the `src/lib.rs` file of the project.
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, RecordData, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, RecordData, Result};
 use serde_json::{json, Value as JsonValue};
 
 #[smartmodule(map)]
-fn shaper(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
+fn shaper(record: &SmartModuleRecord) -> Result<(Option<RecordData>, RecordData)> {
     let repo: JsonValue = serde_json::from_slice(record.value.as_ref())?;
 
     let shaped = json!({
@@ -569,11 +569,11 @@ Copy and paste this code into the `src/lib.rs` file of the project.
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, RecordData, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, RecordData, Result};
 use serde_json::{json, Value as JsonValue};
 
 #[smartmodule(map)]
-fn shaper(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
+fn shaper(record: &SmartModuleRecord) -> Result<(Option<RecordData>, RecordData)> {
     let repo: JsonValue = serde_json::from_slice(record.value.as_ref())?;
 
     let shaped = json!({

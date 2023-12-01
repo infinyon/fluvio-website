@@ -32,7 +32,7 @@ This feature was added in the previous release but was not mentioned in [last we
   your records to be transported from the producer to the SPU unit. It's either `at-most-once` guarantee or `at-least-once`.
   The first one is sending without waiting for the response, hence no reaction for errors. The latter one is sending and 
   retrying until succeeded (with certain assumptions). Check out more details in
-  [Delivery Semantics]({{< ref "/docs/clients/producer#delivery-semantics" >}}) section.
+  [Delivery Semantics]({{< ref "/docs/concepts/delivery-semantics" >}}) section.
 
 ## Upcoming events
 * Register for Webinar on Tue, Aug 16: [Enhance your Kafka Infrastructure with Fluvio](https://register.gotowebinar.com/register/7829882206451748624)

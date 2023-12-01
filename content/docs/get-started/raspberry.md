@@ -2,6 +2,7 @@
 title: Raspberry Pi Installation
 menu: Raspberry Pi
 weight: 40
+hidden: true
 ---
 
 The Fluvio CLI may be used to produce and consume data from a Raspberry Pi.

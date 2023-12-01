@@ -1,6 +1,8 @@
 ```
 Run a new Streaming Processing Unit (SPU)
+
 Usage: fluvio-run spu [OPTIONS]
+
 Options:
   -i, --id <integer>
           SPU unique identifier
@@ -20,6 +22,8 @@ Options:
           [env: FLV_LOG_INDEX_MAX_INTERVAL_BYTES=]
       --peer-max-bytes <integer>
           max bytes to transfer between leader and follower [env: FLV_PEER_MAX_BYTES=] [default: 1000000]
+      --smart-engine-max-memory <integer>
+          [env: FLV_SMART_ENGINE_MAX_MEMORY_BYTES=]
       --tls
           enable tls
       --server-cert <SERVER_CERT>

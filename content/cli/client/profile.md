@@ -11,7 +11,7 @@ Profile details are stored in the Fluvio configuration file at `~/.fluvio/config
 
 Prints out the name of the active Fluvio profile. 
 
-[`fluvio topic create greeting`]: {{< ref "/cli/commands/topic#fluvio-topic-create" >}}
+[`fluvio topic create greeting`]: {{< ref "/cli/cluster/topic#fluvio-topic-create" >}}
 
 {{% inline-embed file="embeds/cli/help/fluvio-profile-current.md" %}}
 
@@ -27,7 +27,7 @@ local
 
 Deletes the specified Fluvio cluster connection profile from your Fluvio configuration (`~/.fluvio/config`).
 
-This will not delete a cluster. See [`fluvio cluster delete`]({{<ref "/cli/local/cluster.md#fluvio-cluster-delete" >}}) for more info.
+This will not delete a cluster. See [`fluvio cluster delete`]({{<ref "/cli/cluster/cluster.md#fluvio-cluster-delete" >}}) for more info.
 
 {{% inline-embed file="embeds/cli/help/fluvio-profile-delete.md" %}}
 
@@ -36,7 +36,7 @@ This will not delete a cluster. See [`fluvio cluster delete`]({{<ref "/cli/local
 
 Deletes only cluster connection information from your profile. 
 
-This will not delete a cluster. See [`fluvio cluster delete`]({{<ref "/cli/local/cluster.md#fluvio-cluster-delete" >}}) for more info.
+This will not delete a cluster. See [`fluvio cluster delete`]({{<ref "/cli/cluster/cluster.md#fluvio-cluster-delete" >}}) for more info.
 
 [`fluvio cluster delete`]: {{< ref "/cli/local/cluster#fluvio-cluster-delete" >}}
 
@@ -49,12 +49,6 @@ Example usage:
 $ fluvio profile delete-cluster local
 Cluster local deleted
 ```
-
-## `fluvio profile switch`
-
-Changes the active CLI profile. 
-
-{{% inline-embed file="embeds/cli/help/fluvio-profile-switch.md" %}}
 
 ## `fluvio profile list`
 
@@ -73,3 +67,16 @@ $ fluvio profile list
  *  minikube   minikube   10.99.16.213:9003                Disabled
     local      local      localhost:9003                   Disabled
 ```
+
+## `fluvio profile rename`
+{{% inline-embed file="embeds/cli/help/fluvio-profile-rename.md" %}}
+
+## `fluvio profile switch`
+{{% inline-embed file="embeds/cli/help/fluvio-profile-switch.md" %}}
+
+## `fluvio profile sync`
+{{% inline-embed file="embeds/cli/help/fluvio-profile-sync.md" %}}
+## `fluvio profile export`
+{{% inline-embed file="embeds/cli/help/fluvio-profile-export.md" %}}
+## `fluvio profile add`
+{{% inline-embed file="embeds/cli/help/fluvio-profile-add.md" %}}
