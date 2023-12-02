@@ -1,7 +1,7 @@
 ```
 Print the current active Fluvio Version
 
-Usage: 
+Usage: fvm current
 
 Options:
   -h, --help  Print help

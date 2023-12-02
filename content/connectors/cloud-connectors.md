@@ -7,7 +7,7 @@ Connectors with [InfinyOn Cloud] is the best option for those who want to manage
 
 Configuring connectors works the same way with InfinyOn Cloud, as it does locally.
 
-You can create and maintain your connectors in a more streamlined way through the CLI with [`fluvio cloud`]({{<ref "/cli/cloud/overview.md">}}).
+You can create and maintain your connectors in a more streamlined way through the CLI with [`fluvio cloud`]().
 
 ## Create your first connector on InfinyOn Cloud
 
@@ -21,7 +21,7 @@ fluvio cloud login
 ```
 
 {{<idea>}}
-Check out the [`fluvio cloud` CLI docs]({{<ref "/cli/cloud/overview.md">}}) for more details about logging into the CLI. 
+Check out the [`fluvio cloud` CLI docs]() for more details about logging into the CLI. 
 {{</idea>}}
 
 ### Example HTTP connector

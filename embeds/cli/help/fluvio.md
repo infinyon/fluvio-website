@@ -13,7 +13,6 @@ Commands:
   hub           Work with the SmartModule Hub
   profile       Manage Profiles, which describe linked clusters
   cluster       Install or uninstall Fluvio cluster
-  install       Install Fluvio plugins
   update        Update the Fluvio CLI
   version       Print Fluvio version information
   completions   Generate command-line completions for Fluvio

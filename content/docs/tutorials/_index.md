@@ -1,7 +1,8 @@
 ---
 title: TUTORIALS
-weight: 20 
+weight: 200 
 twitter-card: summary_large_image
 _build:
   render: never
+hidden: true
 ---

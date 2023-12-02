@@ -19,6 +19,7 @@ cli-commands:
   - fluvio smartmodule list
   - fluvio smartmodule watch
   - fluvio smartmodule delete
+  - fluvio smartmodule test 
 
   - fluvio table-format
   - fluvio table-format create
@@ -42,6 +43,7 @@ cli-commands:
   - fluvio profile switch
   - fluvio profile sync
   - fluvio profile export
+  - fluvio profile add 
 
   - fluvio cluster
   - fluvio cluster start
@@ -56,9 +58,10 @@ cli-commands:
   - fluvio cluster spg create
   - fluvio cluster spg delete
   - fluvio cluster spg list
+  - fluvio cluster status 
+  - fluvio cluster shutdown 
   - fluvio cluster diagnostics
 
-  - fluvio install
   - fluvio update
   - fluvio version
   - fluvio completions
@@ -70,10 +73,10 @@ cli-commands:
   - fluvio run version
 
   - fluvio cloud
-  - fluvio cloud cluster
-  - fluvio cloud cluster create
-  - fluvio cloud cluster list
-  - fluvio cloud cluster delete
+  - fluvio cloud login
+  - fluvio cloud logout
+  - fluvio cloud version
+  - fluvio cloud usage
   - fluvio cloud connector
   - fluvio cloud connector config
   - fluvio cloud connector create
@@ -81,12 +84,22 @@ cli-commands:
   - fluvio cloud connector list
   - fluvio cloud connector logs
   - fluvio cloud connector update
-  - fluvio cloud login
-  - fluvio cloud logout
+  - fluvio cloud cluster
+  - fluvio cloud cluster create
+  - fluvio cloud cluster list
+  - fluvio cloud cluster delete
+  - fluvio cloud secret
   - fluvio cloud secret set
   - fluvio cloud secret list
   - fluvio cloud secret delete
-  - fluvio cloud usage
+  - fluvio cloud webhook
+  - fluvio cloud webhook create
+  - fluvio cloud webhook delete
+  - fluvio cloud webhook list
+  - fluvio cloud webhook update
+  - fluvio cloud webhook logs
+  - fluvio cloud metadata
+  - fluvio cloud edge 
 
   - smdk
   - smdk build
@@ -95,6 +108,7 @@ cli-commands:
   - smdk load
   - smdk publish
   - smdk set-public
+  - smdk version 
 
   - cdk
   - cdk build
@@ -106,13 +120,19 @@ cli-commands:
   - cdk deploy list
   - cdk deploy log
   - cdk publish
+  - cdk version 
+  - cdk hub 
+  - cdk hub list
+  - cdk hub download
   - cdk set-public
 
   - fvm
   - fvm current
   - fvm self
-  - fvm self install
   - fvm self uninstall
+  - fvm self update 
   - fvm install
-  - fvm show
+  - fvm list
   - fvm switch
+  - fvm update
+  - fvm version

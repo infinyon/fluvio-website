@@ -17,12 +17,6 @@ Options:
           Read the file as single record
   -k, --key-value
           Print records in "[key] value" format, with "[null]" for no key
-      --release <RELEASE>
-          Release profile name [default: release-lto]
-  -p, --package-name <PACKAGE_NAME>
-          Optional package/project name
-      --wasm-file <WASM_FILE>
-          Optional wasm file path
   -e, --params <PARAMS>
           (Optional) Extra input parameters passed to the smartmodule module. They should be passed
           using key=value format Eg. fluvio consume topic-name --filter filter.wasm -e foo=bar -e
@@ -40,6 +34,12 @@ Options:
           Useful for testing `lookback`. Multiple values are allowed
   -l, --lookback-last <LOOKBACK_LAST>
           Sets the lookback parameter to the last N records
+      --release <RELEASE>
+          Release profile name [default: release-lto]
+  -p, --package-name <PACKAGE_NAME>
+          Optional package/project name
+      --wasm-file <WASM_FILE>
+          
   -h, --help
           Print help
 ```

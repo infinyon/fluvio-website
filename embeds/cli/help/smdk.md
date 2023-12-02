@@ -10,6 +10,7 @@ Commands:
   load        Load SmartModule into Fluvio cluster
   publish     Publish SmartModule to Hub
   set-public  Set package as public
+  version     Print smdk version information
   help        Print this message or the help of the given subcommand(s)
 
 Options:
