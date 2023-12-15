@@ -98,7 +98,7 @@ jobs:
             ((ITER = ITER + 1))
           done
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: changed-screenshots
           path: /tmp/changed-screenshots
