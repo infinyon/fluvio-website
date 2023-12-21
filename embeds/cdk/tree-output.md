@@ -3,7 +3,7 @@ $ tree
 .
 ├── Cargo.toml
 ├── Connector.toml
-├── config-example.yaml
+├── sample-config.yaml
 └── src
     ├── config.rs
     └── main.rs
