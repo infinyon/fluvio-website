@@ -25,12 +25,6 @@ $ cdk deploy log --name my-connector-test-connector
 Starting my-connector source connector with CustomConfig { foo: "bar" }
 ```
 
-1. [Install CDK]({{< ref "install" >}})
-2. [Generate a SmartConnector]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. [Start and Shutdown]({{< ref "start-shutdown" >}})
-5. **[List and Logs]({{< ref "list-log" >}})**
-6. [Publish to SmartConnector Hub]({{< ref "publish" >}})
 
 #### Changing the Log Level
 
@@ -48,3 +42,12 @@ Available values include:
 - `info`
 - `debug`
 - `trace`
+
+### Steps
+
+1. [Install CDK]({{< ref "install" >}})
+2. [Generate a SmartConnector]({{< ref "generate" >}})
+3. [Build and Test]({{< ref "build-test" >}})
+4. [Start and Shutdown]({{< ref "start-shutdown" >}})
+5. **[List and Logs]({{< ref "list-log" >}})**
+6. [Publish to SmartConnector Hub]({{< ref "publish" >}})

@@ -1,18 +1,7 @@
 ---
-title: Install 
+title: Install
 weight: 20
 ---
-
-### Install
-
-CDK is an independent executable downloadable via [`Fluvio CLI`](https://www.fluvio.io/cli/utilities/install/):
-
-{{% inline-embed file="embeds/cli/example/cdk-install.md" %}}
-
-{{% inline-embed file="embeds/cli/help/cdk.md" %}}
-
-The executable is installed in `~/.fluvio/bin` directory, the same directory as `fluvio`. The command should be immediately accessible at the prompt:
-
 
 ### Steps
 
@@ -22,3 +11,13 @@ The executable is installed in `~/.fluvio/bin` directory, the same directory as 
 4. [Start and Shutdown]({{< ref "start-shutdown" >}})
 5. [List and Logs]({{< ref "list-log" >}})
 6. [Publish to SmartConnector Hub]({{< ref "publish" >}})
+
+### Install CDK
+
+CDK is an independent executable downloadable via [`Fluvio CLI`](https://www.fluvio.io/cli/utilities/install/):
+
+{{% inline-embed file="embeds/cli/example/cdk-install.md" %}}
+
+{{% inline-embed file="embeds/cli/help/cdk.md" %}}
+
+The executable is installed in `~/.fluvio/bin` directory, the same directory as `fluvio`. The command should be immediately accessible at the prompt:

@@ -1,5 +1,5 @@
 ---
-title: Build & Test 
+title: Build & Test
 weight: 40
 ---
 
@@ -25,13 +25,13 @@ The build process generated a binary for your custom connector. We are now ready
 
 If the connector builds successfully, it’s time to start an instance with `cdk test`:
 
-The `--config <PATH>` argument is required. It is a path to the configuration file in YAML format. 
+The `--config <PATH>` argument is required. It is a path to the configuration file in YAML format.
 
 Generating the project with `cdk generate` should have created a sample config for you named `sample-config.yaml`
 
 %copy first-line%
 ```bash
-$ cdk test --config sample-config.yaml 
+$ cdk test --config sample-config.yaml
     Finished release [optimized] target(s) in 0.16s
 Connector runs with process id: 80380
 Starting my-connector source connector with CustomConfig { foo: "bar" }
