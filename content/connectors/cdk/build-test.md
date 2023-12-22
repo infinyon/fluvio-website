@@ -27,11 +27,11 @@ If the connector builds successfully, it’s time to start an instance with `cdk
 
 The `--config <PATH>` argument is required. It is a path to the configuration file in YAML format. 
 
-Generating the project with `cdk generate` should have created a sample config for you named `config-example.yaml`
+Generating the project with `cdk generate` should have created a sample config for you named `sample-config.yaml`
 
 %copy first-line%
 ```bash
-$ cdk test --config config-example.yaml 
+$ cdk test --config sample-config.yaml 
     Finished release [optimized] target(s) in 0.16s
 Connector runs with process id: 80380
 Starting my-connector source connector with CustomConfig { foo: "bar" }

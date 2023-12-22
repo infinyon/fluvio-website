@@ -33,7 +33,7 @@ Tutorial for [HTTP to SQL Pipeline](https://www.fluvio.io/docs/tutorials/data-pi
 This is an example of simple connector config file:
 
 ```yaml
-# config-example.yaml
+# sample-config.yaml
 apiVersion: 0.1.0
 meta:
   version: 0.2.5
@@ -63,7 +63,7 @@ The produced record in Fluvio topic will be:
 Fluvio HTTP Source Connector supports Secrets in the `endpoint` and in the `headers` parameters:
 
 ```yaml
-# config-example.yaml
+# sample-config.yaml
 apiVersion: 0.1.0
 meta:
   version: 0.2.5
@@ -89,7 +89,7 @@ Fluvio HTTP Source Connector supports [Transformations](https://www.fluvio.io/do
 
 The previous example can be extended to add extra transformations to outgoing records:
 ```yaml
-# config-example.yaml
+# sample-config.yaml
 apiVersion: 0.1.0
 meta:
   version: 0.2.5
