@@ -32,7 +32,7 @@ To try out Kafka Source connector locally, you can use Fluvio CDK tool:
 ```bash
 fluvio install cdk
 
-cdk deploy -p kafka-source start --config crates/kafka-source/config-example.yaml
+cdk deploy -p kafka-source start --config crates/kafka-source/sample-config.yaml
 ```
 
 ## Transformations
