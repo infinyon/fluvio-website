@@ -21,7 +21,7 @@ $ cdk deploy list
 
 %copy first-line%
 ```bash
-$ cdk deploy --name log my-my-connector-test-connector
+$ cdk deploy log --name my-connector-test-connector
 Starting my-connector source connector with CustomConfig { foo: "bar" }
 ```
 
@@ -38,7 +38,7 @@ By default connectors will use the `info` logging level, you can change the
 log level by using the `deploy` command argument `--log-level`.
 
 ```bash
-cdk deploy start --config connector-config.yml --log-level debug
+cdk deploy start --config sample-config.yaml --log-level debug
 ```
 
 Available values include:
