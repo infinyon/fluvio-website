@@ -1,5 +1,5 @@
 ---
-title: Start & Shutdown 
+title: Start & Shutdown
 weight: 50
 ---
 
@@ -8,15 +8,15 @@ weight: 50
 This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-connector` project has been [generated]({{< ref "generate" >}}).
 
 
-### Connector start 
+### Connector start
 
-[Testing]({{<ref "/connectors/cdk/build-test#test---operation">}}) your connector runs the process in the foreground. 
+[Testing]({{<ref "/connectors/cdk/build-test#test---operation">}}) your connector runs the process in the foreground.
 
 When you are ready, you can run `cdk deploy start` to run your connector in the background.
 
 %copy first-line%
 ```bash
-$ cdk deploy start --config sample-config.yaml 
+$ cdk deploy start --config sample-config.yaml
 Log file: /private/tmp/my-connector/my-connector.log
 Connector runs with process id: 88589
 ```
@@ -57,11 +57,13 @@ SECRET_NAME_2=SUPER_SECRET_VALUE
 
 Conversely, when you want to stop running your connector, you can run `cdk deploy shutdown <connector name>` to stop the running process of your connector in background.
 
-You can access the connector name from the [list of your running connectors]({{< ref "list-log" >}}), or you can find the connector `name` in your config file. 
+You can access the connector name from the [list of your running connectors]({{< ref "list-log" >}}), or you can find the connector `name` in your config file.
 
 {{<caution>}}
 This command exits quietly
 {{</caution>}}
+
+## Steps
 
 1. [Install CDK]({{< ref "install" >}})
 2. [Generate a SmartConnector]({{< ref "generate" >}})

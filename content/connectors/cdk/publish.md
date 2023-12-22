@@ -1,5 +1,5 @@
 ---
-title:  Publish 
+title:  Publish
 weight: 70
 ---
 ##### Prerequisites
@@ -7,7 +7,7 @@ weight: 70
 This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-connector` project has been [generated]({{< ref "generate" >}}).
 
 
-### Publish
+### Publish to SmartConnector Hub
 
 The final step in this scenario would be publishing the Connector to the Hub - where other users can download and integrate it into their data pipelines.
 
@@ -31,7 +31,9 @@ Check the file and then push. The file is a Tar Gzip archive.
 $ cdk publish --push hub/my-connector-0.1.0.ipkg
 ```
 
-`publish` command uses `hub/package-meta.yml` file with the metadata needed for the Hub. If it doesn’t exist, `cdk` creates it for you. Then, you can modify it, and the changes will be picked up on the subsequent command execution. 
+`publish` command uses `hub/package-meta.yml` file with the metadata needed for the Hub. If it doesn’t exist, `cdk` creates it for you. Then, you can modify it, and the changes will be picked up on the subsequent command execution.
+
+## Steps
 
 1. [Install CDK]({{< ref "install" >}})
 2. [Generate a SmartConnector]({{< ref "generate" >}})
