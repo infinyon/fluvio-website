@@ -1,10 +1,10 @@
-FROM rust:1.66.0
+FROM rust:1.74.1
 
 # Run as the `fluvio` user instead of root
 ENV USER=fluvio
 RUN useradd --create-home "$USER"
 USER $USER
-WORKDIR /home/fluvio 
+WORKDIR /home/fluvio
 
 # Copy your Rust project and run it
 COPY --chown=$USER:$USER Cargo.toml .
