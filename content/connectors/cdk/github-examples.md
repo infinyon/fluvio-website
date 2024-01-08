@@ -26,14 +26,3 @@ These connectors are not guaranteed to work with latest fluvio:
 
 * https://github.com/infinyon/labs-redis-sink-connector
 * https://github.com/infinyon/duckdb-connector
-
-
-## Steps  
-
-1. [Generate a Connector]({{< ref "generate" >}})
-2. [Build and Test]({{< ref "build-test" >}})
-3. [Start and Shutdown]({{< ref "start-shutdown" >}})
-4. [Troubleshooting]({{< ref "troubleshooting" >}})
-5. [Secrets]({{< ref "secrets" >}})
-6. [Publish to Connector Hub]({{< ref "publish" >}})
-7. **[Use Examples in Github]({{< ref "github-examples" >}})**
