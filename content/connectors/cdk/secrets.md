@@ -36,4 +36,4 @@ In the [next section]({{< ref "publish" >}}) we'll publish our connector to the 
 4. [Troubleshooting]({{< ref "troubleshooting" >}})
 5. **[Secrets]({{< ref "secrets" >}})**
 6. [Publish to Connector Hub]({{< ref "publish" >}})
-7. [Start from Connector Hello]({{< ref "connector-hello" >}})
+7. [Start from Connector Hello]({{< ref "github-examples" >}})

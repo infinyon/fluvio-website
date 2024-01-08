@@ -23,7 +23,7 @@ CDK provides a set of commands to help developers build, test, and publish Conne
 4. [Troubleshooting]({{< ref "troubleshooting" >}})
 5. [Secrets]({{< ref "secrets" >}})
 6. [Publish to Connector Hub]({{< ref "publish" >}})
-7. [Start from Connector Hello]({{< ref "connector-hello" >}})
+7. [Start from Connector Hello]({{< ref "github-examples" >}})
 
 
 ### References

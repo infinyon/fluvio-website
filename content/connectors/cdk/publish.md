@@ -41,4 +41,4 @@ The `publish` command uses `hub/package-meta.yml` file with the metadata needed 
 4. [Troubleshooting]({{< ref "troubleshooting" >}})
 5. [Secrets]({{< ref "secrets" >}})
 6. **[Publish to Connector Hub]({{< ref "publish" >}})**
-7. [Start from Connector Hello]({{< ref "connector-hello" >}})
+7. [Start from Connector Hello]({{< ref "github-examples" >}})

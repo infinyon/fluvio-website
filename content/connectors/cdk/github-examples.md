@@ -1,9 +1,9 @@
 ---
-title: Connector Hello & More
+title: Github Examples
 weight: 90
 ---
 
-We have a library of connectors that you may use as inspiration as you build your own. `Connector-Hello` would be a good starting point, but feel free to checkout the others as well.
+We have a library of connectors in github you may use as inspiration as you build your own. `Connector-Hello` would be a good starting point, but feel free to checkout the others as well.
 
 #### Template Connectors
 
@@ -36,4 +36,4 @@ These connectors are not guaranteed to work with latest fluvio:
 4. [Troubleshooting]({{< ref "troubleshooting" >}})
 5. [Secrets]({{< ref "secrets" >}})
 6. [Publish to Connector Hub]({{< ref "publish" >}})
-7. **[Start from Connector Hello]({{< ref "connector-hello" >}})**
+7. **[Start from Connector Hello]({{< ref "github-examples" >}})**
