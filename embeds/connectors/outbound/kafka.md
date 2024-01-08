@@ -68,9 +68,8 @@ kafka:
 
 ### Usage
 To try out Kafka Sink connector locally, you can use Fluvio CDK tool:
-```bash
-fluvio install cdk
 
+```bash
 cdk deploy -p kafka-sink start --config crates/kafka-sink/sample-config.yaml
 ```
 

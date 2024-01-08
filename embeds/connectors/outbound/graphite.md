@@ -85,17 +85,18 @@ With the Graphite instance set, we can move into [Setting Up Fluvio with Graphit
 In this section we are going use the CDK to spin up the Graphite Sink Connector
 to send metrics from Fluvio Records to the Graphite instance.
 
-Make sure the Connector Development Kit is setup in your system by issuing
-the following command in your terminal.
+Make sure the Connector Development Kit is setup in your system by issuing the following command in your terminal.
 
+%copy%
 ```bash
-fluvio install cdk
+cdk
 ```
 
 > If you dont have the Fluvio CLI installed already visit the [CLI][2] section
 
 Create a YAML file with the name `weather-monitor-config.yaml` and specify connector settings:
 
+%copy%
 ```yaml
 apiVersion: 0.1.0
 meta:
@@ -111,15 +112,16 @@ graphite:
 
 Deploy the Connector using the CDK
 
+
 ```bash
 cdk deploy start --config weather-monitor-config.yaml
 ```
 
-> Make sure your Graphite instance is running on `localhost:2003`, use the
-> `cdk log` subcommand to read logs from the connector instance.
+> Make sure your Graphite instance is running on `localhost:2003`, use the `cdk log` subcommand to read logs from the connector instance.
 
 Then produce records as usual:
 
+%copy%
 ```bash
 echo 120 | fluvio produce weather-ca-sandiego
 ```
@@ -129,9 +131,11 @@ echo 120 | fluvio produce weather-ca-sandiego
 
 Use Graphite's REST API to check on the stored data.
 
+%copy%
 ```bash
 curl -o ./data.json http://localhost:12345/render\?target\=weather.temperature.ca.sandiego\&format\=json\&noNullPoints
 ```
+
 
 [1]: https://infinyon.cloud/login
 [2]: https://www.fluvio.io/cli/

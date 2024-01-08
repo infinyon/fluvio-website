@@ -1,19 +1,19 @@
 ---
 title:  Publish
-weight: 70
+weight: 80
 ---
-##### Prerequisites
 
-This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-connector` project has been [generated]({{< ref "generate" >}}).
+This section assumes `my-connector` project has been [generated]({{< ref "generate" >}}).
 
+Connector Hub is a public repository of connectors. You can publish your connector as `private` to use on different computers or `pubic` to share it with the community.
 
-### Publish to SmartConnector Hub
+### Publish to Connector Hub
 
-The final step in this scenario would be publishing the Connector to the Hub - where other users can download and integrate it into their data pipelines.
+The final step would be to use `cdk publish` and publish the Connector to the Hub.
 
-If run without arguments, it will pack everything needed into a package and push the package to the Hub. (`cdk build`must be executed beforehand)
+If run without arguments, it will pack everything needed into a package and push the package to the Hub. 
 
-If you need to inspect the package before the push:
+You inspect the package file and make modifications before the push:
 
 %copy first-line%
 ```bash
@@ -31,13 +31,14 @@ Check the file and then push. The file is a Tar Gzip archive.
 $ cdk publish --push hub/my-connector-0.1.0.ipkg
 ```
 
-`publish` command uses `hub/package-meta.yml` file with the metadata needed for the Hub. If it doesn’t exist, `cdk` creates it for you. Then, you can modify it, and the changes will be picked up on the subsequent command execution.
+The `publish` command uses `hub/package-meta.yml` file with the metadata needed for the Hub. If it doesn’t exist, `cdk` creates it for you. Then, you can modify it, and the changes will be picked up on the subsequent command execution.
 
 ## Steps
 
-1. [Install CDK]({{< ref "install" >}})
-2. [Generate a SmartConnector]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. [Start and Shutdown]({{< ref "start-shutdown" >}})
-5. [List and Logs]({{< ref "list-log" >}})
-6. **[Publish to SmartConnector Hub]({{< ref "publish" >}})**
+1. [Generate a Connector]({{< ref "generate" >}})
+2. [Build and Test]({{< ref "build-test" >}})
+3. [Start and Shutdown]({{< ref "start-shutdown" >}})
+4. [Troubleshooting]({{< ref "troubleshooting" >}})
+5. [Secrets]({{< ref "secrets" >}})
+6. **[Publish to Connector Hub]({{< ref "publish" >}})**
+7. [Start from Connector Hello]({{< ref "connector-hello" >}})

@@ -1,15 +1,13 @@
 ---
 title: Build & Test
-weight: 40
+weight: 30
 ---
 
-##### Prerequisites
+This section assumes `my-connector` project has been [generated]({{< ref "generate" >}}).
 
-This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-connector` project has been [generated]({{< ref "generate" >}}).
+### Build Connector
 
-### Build - Operation
-
-Navigate to `my-connector` project directory and run `build`
+Inside the `my-connector` project directory run `build`:
 
 %copy first-line%
 ```bash
@@ -21,13 +19,13 @@ Compiling my-connector v0.1.0 (~/cdk/my-connector)
 
 The build process generated a binary for your custom connector. We are now ready to test it.
 
-## Test - Operation
+### Test Connector
 
-If the connector builds successfully, it’s time to start an instance with `cdk test`:
+Staring an connector instance for testing requires a configuration file:
 
-The `--config <PATH>` argument is required. It is a path to the configuration file in YAML format.
+* `--config <PATH>` is a path to the configuration file in YAML format. The project automatically generated a sample config `sample-config.yaml` that we can use as a starting point.
 
-Generating the project with `cdk generate` should have created a sample config for you named `sample-config.yaml`
+Use `cdk test` to start the instance:
 
 %copy first-line%
 ```bash
@@ -37,15 +35,30 @@ Connector runs with process id: 80380
 Starting my-connector source connector with CustomConfig { foo: "bar" }
 ```
 
-SmartConnector output will be redirected to the current terminal output.
+Connector output will be redirected to the current terminal output. To stop running Connector in test mode, press Ctrl+C.
 
-To stop running SmartConnector in test mode, press Ctrl+C.
+#### Test Result
+
+The connector produces `Hello, Fluvio` to the topic `test-my-connector-topic`. Let's check it out:
+
+%copy first-line%
+```bash
+$ fluvio consume test-my-connector-topic -B
+Hello, Fluvio - 1
+Hello, Fluvio - 2
+Hello, Fluvio - 3
+Hello, Fluvio - 4
+...
+```
+
+Checkout the [next section]({{< ref "start-shutdown" >}}) for instructions on how to run the connector in the background.
 
 ### Steps
 
-1. [Install CDK]({{< ref "install" >}})
-2. [Generate a SmartConnector]({{< ref "generate" >}})
-3. **[Build and Test]({{< ref "build-test" >}})**
-4. [Start and Shutdown]({{< ref "start-shutdown" >}})
-5. [List and Logs]({{< ref "list-log" >}})
-6. [Publish to SmartConnector Hub]({{< ref "publish" >}})
+1. [Generate a Connector]({{< ref "generate" >}})
+2. **[Build and Test]({{< ref "build-test" >}})**
+3. [Start and Shutdown]({{< ref "start-shutdown" >}})
+4. [Troubleshooting]({{< ref "troubleshooting" >}})
+5. [Secrets]({{< ref "secrets" >}})
+6. [Publish to Connector Hub]({{< ref "publish" >}})
+7. [Start from Connector Hello]({{< ref "connector-hello" >}})
