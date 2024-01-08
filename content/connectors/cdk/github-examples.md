@@ -26,3 +26,8 @@ These connectors are not guaranteed to work with latest fluvio:
 
 * https://github.com/infinyon/labs-redis-sink-connector
 * https://github.com/infinyon/duckdb-connector
+
+#### Community Connectors
+
+Add your connector repository here:
+* ...
