@@ -45,4 +45,4 @@ The project is ready to build and test. Checkout the [next section]({{< ref "bui
 4. [Troubleshooting]({{< ref "troubleshooting" >}})
 5. [Secrets]({{< ref "secrets" >}})
 6. [Publish to Connector Hub]({{< ref "publish" >}})
-7. [Start from Connector Hello]({{< ref "github-examples" >}})
+7. [Use Examples in Github]({{< ref "github-examples" >}})

@@ -36,4 +36,4 @@ These connectors are not guaranteed to work with latest fluvio:
 4. [Troubleshooting]({{< ref "troubleshooting" >}})
 5. [Secrets]({{< ref "secrets" >}})
 6. [Publish to Connector Hub]({{< ref "publish" >}})
-7. **[Start from Connector Hello]({{< ref "github-examples" >}})**
+7. **[Use Examples in Github]({{< ref "github-examples" >}})**
