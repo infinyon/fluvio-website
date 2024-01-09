@@ -5,11 +5,8 @@ weight: 50
 toc: false
 ---
 
-SmartModules are binaries developed for real-time data stream processing, requiring in-line and live testing facilities. This section covers in-line testing, and the [next section] describes how to load SmartModules on the Cluster for live traffic testing.
+This section covers building and testing SmartModules locally, and the [next section] describes how to load them on the Cluster for live traffic testing.
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed] and `my-filter` project has been [generated].
 
 ### Build - Operation
 
@@ -55,15 +52,12 @@ Checkout the [next section] on how upload the SmartModule to your local cluster 
 
 ### Steps
 
-1. [Install SMDK]({{< ref "install" >}})
 2. [Generate a SmartModule]({{< ref "generate" >}})
 3. **[Build and Test]({{< ref "build-test" >}})**
 4. [Load to your Cluster]({{< ref "load" >}})
 5. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
 [next section]: {{< ref "load" >}}
-[installed]: {{< ref "install" >}}
-[generated]: {{< ref "generate" >}}
 [Load to your Cluster]: {{< ref "load" >}}
 [Publish to SmartModule Hub]: {{< ref "publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
