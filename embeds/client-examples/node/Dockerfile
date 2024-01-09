@@ -1,10 +1,10 @@
-FROM node:16
+FROM node:20
 
 # Run as the `fluvio` user instead of root
 ENV USER=fluvio
 RUN useradd --create-home "$USER"
 USER $USER
-WORKDIR /home/fluvio 
+WORKDIR /home/fluvio
 
 # Copy your Node project
 COPY --chown=$USER:$USER *.ts ./
@@ -14,7 +14,9 @@ COPY --chown=$USER:$USER *.json ./
 RUN mkdir -p ~/.local/bin && \
     npm config set prefix '~/.local/' && \
     npm init -y && \
-    npm install -D typescript ts-node @types/node && \
+    npm install -D typescript @tsconfig/recommended ts-node
+
+RUN npm config set prefix '~/.local/' && \
     npm install -S @fluvio/client
 
 # Run your Node project
