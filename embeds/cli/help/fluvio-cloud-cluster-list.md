@@ -1,8 +1,8 @@
 ```
-fluvio-cloud-cluster-list 
 List all Fluvio clusters
-USAGE:
-    fluvio-cloud cluster list
-OPTIONS:
-    -h, --help    Print help information
+
+Usage: fluvio-cloud cluster list
+
+Options:
+  -h, --help  Print help
 ```

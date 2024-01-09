@@ -40,7 +40,7 @@ in the config. If a SmartModule requires configuration, it is passed via `with` 
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.1
+  version: 0.3.3
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -62,7 +62,7 @@ The connector can use secrets in order to hide sensitive information.
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.1
+  version: 0.3.3
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -95,7 +95,7 @@ Connector configuration file:
 # connector-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.1
+  version: 0.3.3
   name: json-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -124,16 +124,15 @@ transforms:
 ```
 
 You can use Fluvio `cdk` tool to deploy the connector:
-```bash
-fluvio install cdk
-```
-and then:
+
 ```bash
 cdk deploy start --config connector-config.yaml
 ```
+
 To delete the connector run:
+
 ```bash
-cdk deploy shutdown --config connector-config.yaml
+cdk deploy shutdown --name json-sql-connector
 
 ```
 After you run the connector you will see records in your database table.
@@ -156,7 +155,7 @@ Connector configuration file for upsert (assuming `device_id` is a unique column
 # connector-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.1
+  version: 0.3.3
   name: json-sql-connector
   type: sql-sink
   topic: sql-topic

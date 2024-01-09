@@ -15,14 +15,14 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 ## New release
 * New Kafka Source and Sink connectors
-  * [Kafka Source docs]({{<ref "/connectors-old/inbound/kafka.md">}})
-  * [Kafka Sink docs]({{<ref "/connectors-old/outbound/kafka.md">}})
+  * [Kafka Source docs]({{<ref "/connectors/inbound/kafka.md">}})
+  * [Kafka Sink docs]({{<ref "/connectors/outbound/kafka.md">}})
 
 ## Developer experience improvements
 The Fluvio Java client is now [hosted in Maven Central](https://search.maven.org/artifact/com.infinyon/fluvio), which should reduce the friction for Java developers to install.
 
 ## InfinyOn Cloud updates
-We've added the capability to query your account's [CPU and memory usage via Cloud CLI]({{< ref "cli/cloud/usage" >}})
+We've added the capability to query your account's [CPU and memory usage via Cloud CLI]()
 
 ## New blog post
 * [Handling JSON data in Fluvio SmartModules](https://www.infinyon.com/blog/2022/06/smartmodule-json/)

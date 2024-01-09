@@ -12,7 +12,20 @@ over the components, then you can do so using `fluvio run`.
 
 [Streaming Controller (SC)]: {{< ref "/docs/architecture/sc" >}}
 [Streaming Processing Unit (SPU)]: {{< ref "/docs/architecture/spu" >}}
-[`fluvio cluster`]: {{< ref "/cli/local/cluster" >}}
+[`fluvio cluster`]: {{< ref "/cli/cluster/cluster" >}}
+
+{{% inline-embed file="embeds/cli/help/fluvio-run.md" %}}
+
+## `fluvio run spu`
+
+Directly invokes a Streaming Processing Unit (SPU) from the command line.
+An SPU has a public server which is used to stream data to and from Fluvio Clients, and
+a private server which is used to communicate with an SC. Most of the CLI options for
+the SPU involve configuring these servers. See the [SPU Architecture] for more details.
+
+[SPU Architecture]: {{< ref "/docs/architecture/spu" >}}
+
+{{% inline-embed file="embeds/cli/help/fluvio-run-spu.md" %}}
 
 ## `fluvio run sc`
 
@@ -26,15 +39,8 @@ the CLI options for the SC involve configuring these servers. See the
 
 {{% inline-embed file="embeds/cli/help/fluvio-run-sc.md" %}}
 
----
-
-## `fluvio run spu`
-
-Directly invokes a Streaming Processing Unit (SPU) from the command line.
-An SPU has a public server which is used to stream data to and from Fluvio Clients, and
-a private server which is used to communicate with an SC. Most of the CLI options for
-the SPU involve configuring these servers. See the [SPU Architecture] for more details.
-
-[SPU Architecture]: {{< ref "/docs/architecture/spu" >}}
-
-{{% inline-embed file="embeds/cli/help/fluvio-run-spu.md" %}}
+## `fluvio run metadata`
+{{% inline-embed file="embeds/cli/help/fluvio-run-metadata.md" %}}
+p
+## `fluvio run version`
+{{% inline-embed file="embeds/cli/help/fluvio-run-version.md" %}}

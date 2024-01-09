@@ -11,7 +11,9 @@ with parameters to tune the performance and semantics of record delivery.
 
 Topics also have a **replication factor** that defines durability, the number of copies for each data slice.
 
--> **Note**: Replication factor must be less or equal to the number of SPUs.  While topics that exceed the number of available SPUs may be created, they are not provisioned until additional SPUs join the cluster.
+-> **Note**: Replication factor must be less or equal to the number of SPUs ([Stream Processing Units]).  While topics that exceed the number of available SPUs may be created, they are not provisioned until additional SPUs join the cluster.
+
+[Stream Processing Units]: {{< ref "docs/architecture/spu">}}
 
 Replicas have a leader and one or more followers and distributed across all available SPUs according to the [replica assignment algorithm].
 
@@ -20,7 +22,7 @@ Replicas have a leader and one or more followers and distributed across all avai
 For example, when provisioning a topic with **2** partitions and **3** replicas:
 
 ```bash
-$ fluvio topic create --topic topic-a --partitions 2 --replication 3
+$ fluvio topic create topic-a --partitions 2 --replication 3
 ```
 
 **Leaders** maintain the primary data set and **followers** store a copy of the data. Leader and follower replications are assigned to independent **SPUs**:

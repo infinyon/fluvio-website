@@ -3,7 +3,6 @@
 {{ end }}  
 
 {{ define "menu" }}
-  {{- partial "top-menu.html" (dict "page" .  "menu" .Site.Menus.infinyon) -}}
   {{- partial "menu.html" (dict "page" . "menu" .Site.Menus.fluvio "bottomBorder" true) -}}
 {{ end }}
 

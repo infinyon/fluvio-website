@@ -17,7 +17,7 @@ Example:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.4
+  version: 0.2.5
   name: my-kafka-connector
   type: kafka-source
   topic: kafka-topic
@@ -28,11 +28,12 @@ kafka:
 ```
 
 ### Usage
-To try out Kafka Source connector locally, you can use Fluvio CDK tool:
-```bash
-fluvio install cdk
 
-cdk deploy -p kafka-source start --config crates/kafka-source/config-example.yaml
+To try out Kafka Source connector locally, you can use Fluvio CDK tool:
+
+%copy%
+```bash
+$ cdk deploy -p kafka-source start --config crates/kafka-source/sample-config.yaml
 ```
 
 ## Transformations

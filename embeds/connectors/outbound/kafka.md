@@ -29,7 +29,7 @@ Example without security:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.4
+  version: 0.2.7
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
@@ -44,7 +44,7 @@ Example with security enabled:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.4
+  version: 0.2.7
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
@@ -68,11 +68,15 @@ kafka:
 
 ### Usage
 To try out Kafka Sink connector locally, you can use Fluvio CDK tool:
-```bash
-fluvio install cdk
 
-cdk deploy -p kafka-sink start --config crates/kafka-sink/config-example.yaml
+```bash
+cdk deploy -p kafka-sink start --config crates/kafka-sink/sample-config.yaml
 ```
+
+### Testing with security
+[Instructions](https://github.com/galibey/kafka-docker-ssl) of how to deploy local kafka cluster with SSL using docker.
+After all steps done, in the `secrets` folder there will be `fluvio.key.pem`, `fluvio.pem` and `fake-ca-1.crt` files that can be used
+in the connector config as `ssl_key`, `ssl_cert` and `ssl_ca` correspondingly.
 
 ## Transformations
 Fluvio Kafka Connectors support [Transformations](https://www.fluvio.io/docs/concepts/transformations-chain/).

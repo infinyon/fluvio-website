@@ -26,7 +26,7 @@ For generated API Docs visit:
 </div>
 
 <div style="padding-left: 12px; display: inline">
-{{< icon-gopher link="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" external="true">}}
+{{< icon-gopher link="https://www.fluvio.io/api/community/go/" external="true">}}
 </div>
 
 <div style="padding-left: 12px; display: inline">

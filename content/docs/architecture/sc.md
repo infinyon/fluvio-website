@@ -156,7 +156,7 @@ The algorithm that computes partition/replica distribution is described in the [
 Fluvio also supports **manual** partition/replica distribution through a **replica assignment file**. The file format is described in the [Topics CLI] section.
 
 [Replica Assignment]: {{< ref "./replica-assignment" >}}
-[Topics CLI]: {{< ref "/cli/commands/topic" >}}
+[Topics CLI]: {{< ref "/cli/cluster/topic" >}}
 
 ##### Topic Status
 

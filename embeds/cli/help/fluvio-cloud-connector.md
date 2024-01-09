@@ -1,16 +1,17 @@
 ```
-fluvio-cloud-connector 
 View Fluvio Connector information
-USAGE:
-    fluvio-cloud connector <SUBCOMMAND>
-OPTIONS:
-    -h, --help    Print help information
-SUBCOMMANDS:
-    config    Show the connector configuration details
-    create    Create a new Connector
-    delete    Delete a Connector
-    help      Print this message or the help of the given subcommand(s)
-    list      List all Connectors
-    logs      View connector logs
-    update    Update and restart a Connector
+
+Usage: fluvio-cloud connector <COMMAND>
+
+Commands:
+  logs    View connector logs
+  create  Create a new Connector
+  delete  Delete a Connector
+  list    List all Connectors
+  update  Update and restart a Connector
+  config  Show the connector configuration details
+  help    Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help
 ```

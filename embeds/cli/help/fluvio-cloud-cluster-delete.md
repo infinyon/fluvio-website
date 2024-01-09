@@ -1,10 +1,11 @@
 ```
-fluvio-cloud-cluster-delete 
 Delete an existing Fluvio cluster
-USAGE:
-    fluvio-cloud cluster delete <email>
-ARGS:
-    <email>    The email for the cluster to be deleted
-OPTIONS:
-    -h, --help    Print help information
+
+Usage: fluvio-cloud cluster delete <email>
+
+Arguments:
+  <email>  The email for the cluster to be deleted
+
+Options:
+  -h, --help  Print help
 ```
