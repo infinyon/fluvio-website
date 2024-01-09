@@ -98,7 +98,7 @@ parameters:
   endpoint: https://catfact.ninja/fact
   interval: 10s
 transforms:
-  - uses: aj/my-filter@0.1.0
+  - uses: acme/my-filter@0.1.0
     invoke: filter
 ```
 
