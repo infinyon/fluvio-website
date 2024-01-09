@@ -5,11 +5,11 @@ weight: 90
 
 We have a library of connectors in github you may use as inspiration as you build your own. `Connector-Hello` would be a good starting point, but feel free to checkout the others as well.
 
-#### Template Connectors
+### Template Connectors
 
 * https://github.com/infinyon/connector-hello
 
-#### Official Connectors
+### Official Connectors
 
 Source code repo for the InfinyOn official connectors:
 
@@ -20,14 +20,17 @@ Source code repo for the InfinyOn official connectors:
 * https://github.com/infinyon/mqtt-connector
 * https://github.com/infinyon/graphite-sink-connector
 
-#### Experimental Connectors
+### Experimental Connectors
 
 These connectors are not guaranteed to work with latest fluvio:
 
 * https://github.com/infinyon/labs-redis-sink-connector
 * https://github.com/infinyon/duckdb-connector
 
-#### Community Connectors
+### Community Connectors
 
-Add your connector repository here:
-* ...
+Connectors built and maintained by the community:
+
+* 
+
+-> Please submit a pull request to add your connectors to this list!
