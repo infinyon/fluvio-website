@@ -18,7 +18,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 ## New release
 
 * [Fluvio v0.10.1](https://github.com/infinyon/fluvio/releases/tag/v0.10.1)
-* [Kafka outbound connector v0.3.1]({{< ref "/connectors-old/outbound/kafka" >}})
+* [Kafka outbound connector v0.3.1]({{< ref "/connectors/outbound/kafka" >}})
 
 ## New features
 
@@ -28,7 +28,7 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
   * SMDK: ([#2784](https://github.com/infinyon/fluvio/pull/2784))
   * Fluvio CLI:  ([#2812](https://github.com/infinyon/fluvio/pull/2812))
 
-SmartModule transformation chaining was [introduced in the last release]({{<ref "/news/this-week-in-fluvio-0048#smartmodule-chaining-preview" >}}) as a preview with our [SQL outbound connector]({{<ref "/connectors-old/outbound/sql">}}). 
+SmartModule transformation chaining was [introduced in the last release]({{<ref "/news/this-week-in-fluvio-0048#smartmodule-chaining-preview" >}}) as a preview with our [SQL outbound connector]({{<ref "/connectors/outbound/sql">}}). 
 
 In this release, support is now available to the Rust client, `fluvio` and `smdk` CLI, and connectors wit the keyword `transforms`.
 
@@ -38,7 +38,7 @@ To get familiar, check out the example configs from our tutorials.
 * [MQTT to SQL tutorial]({{< ref "/docs/tutorials/mqtt-to-sql" >}})
 
 
-* Kafka outbound connector now supports SSL - For more info check out the [Kafka outbound connector docs]({{< ref "/connectors-old/outbound/kafka" >}})
+* Kafka outbound connector now supports SSL - For more info check out the [Kafka outbound connector docs]({{< ref "/connectors/outbound/kafka" >}})
 
 ## Bug fixes
 

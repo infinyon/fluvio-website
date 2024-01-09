@@ -1,5 +1,5 @@
 ---
-title: Smart Connectors Core Concepts 
+title: Connectors Core Concepts 
 menu: Core Concepts
 weight: 10
 ---
@@ -7,7 +7,7 @@ weight: 10
 There are 4 steps to the connector:
 
 <img src="/images/connectors/smart-connectors-extra.svg"
-     alt="Smart Connectors"
+     alt="Connectors"
      style="justify: center; max-width: 600px" />
 
 - **Protocol**: Parses data according to the wire format of the connected data platform.
