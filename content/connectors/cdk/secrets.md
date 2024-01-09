@@ -28,7 +28,7 @@ SECRET_NAME_2=SUPER_SECRET_VALUE
 
 In the [next section]({{< ref "publish" >}}) we'll publish our connector to the Hub.
 
-## Steps
+### Steps
 
 1. [Generate a Connector]({{< ref "generate" >}})
 2. [Build and Test]({{< ref "build-test" >}})
