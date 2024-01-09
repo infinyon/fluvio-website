@@ -16,10 +16,6 @@ the record according to your needs and return it as `Some(record)`.
 
 Let's dive in and see how to use this in practice. You can find the full code for this doc's example [in the fluvio-smartmodule-examples repository][1].
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
-
 
 ## Getting Practical: Transform `Order Ready` events in a mobile shopping App
 
@@ -278,7 +274,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing an aggregate to sum numbers]({{< ref "aggregate" >}})
 
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}

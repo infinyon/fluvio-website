@@ -32,11 +32,6 @@ If Fluvio topic is empty, `look_back` is never called.
 
 -> Lookback is only supported for SmartModules that are run on SPU. This implies that Source Connectors don't support it.
 
-## Examples
-
-This section assumes that SMDK is [installed].
-
-
 ### Monotonically increasing values
 
 This is an example of SmartModule that leverages Lookback functionality. It reads the last record from a topic and
@@ -62,7 +57,9 @@ Using hub https://hub-dev.infinyon.cloud
 [2/7]   Done: Cargo.toml
 [3/7]   Done: README.md
 [4/7]   Done: SmartModule.toml
-[5/7]   Done: rust-toolchain.toml                                                                                                                                                                                                               [6/7]   Done: src/lib.rs                                                                                                                                                                                                                        [7/7]   Done: src
+[5/7]   Done: rust-toolchain.toml
+[6/7]   Done: src/lib.rs
+[7/7]   Done: src
 ```
 Then, put the code snippet from above into `src/lib.rs` file.
 
@@ -117,6 +114,4 @@ The output result is 4. But if we run:
 $ smdk test --text 1 --lookback-last 1 --record 2 --record 3
 ```
 the record will be filtered out as expected.
-
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 

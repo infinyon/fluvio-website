@@ -10,7 +10,9 @@ concurrency:
 on:
   merge_group:
   pull_request:
-    branches: [master]
+    branches:
+    - master
+    - stable
   workflow_dispatch:
 
 jobs:

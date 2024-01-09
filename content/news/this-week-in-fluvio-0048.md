@@ -19,12 +19,12 @@ Please subscribe to This Week in Fluvio to receive new posts in your inbox
 
 * [Fluvio v0.10.0](https://github.com/infinyon/fluvio/releases/tag/v0.10.0)
   * [`smdk` - SmartModule Development Kit CLI](https://www.fluvio.io/smartmodules/smdk/overview/)
-* [SQL outbound connector]({{<ref "/connectors-old/outbound/sql">}})
+* [SQL outbound connector]({{<ref "/connectors/outbound/sql">}})
 
 ### Deprecations
 The `fluvio connector` CLI and Fluvio's management of connectors has been removed in this release.
 
-You can still use local connectors with your local Fluvio cluster. For more about local connectors see the [local connectors docs]({{< ref "/connectors-old/local-connectors" >}})
+You can still use local connectors with your local Fluvio cluster. For more about local connectors see the [local connectors docs]({{< ref "/connectors/" >}})
 
 ## New features
 
@@ -43,7 +43,7 @@ The SmartModule Development kit reduces the number of steps required to get star
 [SmartModule Development Kit docs]({{< ref "/smartmodules/smdk/overview" >}})
 
 ### SmartModule chaining preview
-This release has a preview for SmartModule chaining. This functionality is offered with our [SQL outbound Cloud connector]({{< ref "/connectors-old/outbound/sql" >}}).
+This release has a preview for SmartModule chaining. This functionality is offered with our [SQL outbound Cloud connector]({{< ref "/connectors/outbound/sql" >}}).
 
 To see it in action, you can follow the following tutorials:
 
@@ -65,7 +65,7 @@ Check out the [New UI tutorial]({{< ref "/docs/tutorials/cloud-setup" >}}) for m
 ### Cloud connectors
 Management of connectors is now exclusive to InfinyOn Cloud. You can create connectors in InfinyOn with the `fluvio cloud connector` CLI.
 
-Check out the [Cloud connectors docs]({{< ref "/connectors-old/cloud-connectors" >}}) for more info
+Check out the [Cloud connectors docs]({{< ref "/connectors/cloud-connectors" >}}) for more info
 
 ### SmartModule Hub
 SmartModule Hub is a new service for offering public SmartModules. This removes the requirement of installing a SmartModule development environment in order to take advantage of SmartModules. You can download SmartModules from the Hub directly to your cluster to use.
