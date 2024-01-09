@@ -8,10 +8,6 @@ The simplest type of SmartModule is a filter, which can examine each record in a
 
 <img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="190">
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
-
 
 ## Getting Practical: Filter Records by JSON fields
 
@@ -336,7 +332,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}
