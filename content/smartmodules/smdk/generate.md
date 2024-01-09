@@ -1,7 +1,7 @@
 ---
 title: SMDK - Generate a SmartModule
 menu: Generate
-weight: 30
+weight: 20
 toc: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: SMDK - Publish to Hub
 menu: Publish
-weight: 70
+weight: 50
 toc: false
 ---
 
