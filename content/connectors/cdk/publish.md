@@ -1,37 +1,76 @@
 ---
-title:  Publish
+title: Publish to Connector Hub
+menu: Publish to Hub
 weight: 80
 ---
 
 This section assumes `my-connector` project has been [generated]({{< ref "generate" >}}).
 
-Connector Hub is a public repository of connectors. You can publish your connector as `private` to use on different computers or `pubic` to share it with the community.
+Connector Hub is a public repository for connectors. You can publish your connector as `private` to use on different computers or `pubic` to share it with the community.
 
-### Publish to Connector Hub
+### Publish Connector to Hub
 
-The final step would be to use `cdk publish` and publish the Connector to the Hub.
-
-If run without arguments, it will pack everything needed into a package and push the package to the Hub. 
-
-You inspect the package file and make modifications before the push:
+Use `cdk publish` to publish your connector to the Hub. If run without arguments, it will pack everything needed into a package and push the package to the Hub. 
 
 %copy first-line%
 ```bash
-% cdk publish --pack
-Using hub https://hub-dev.infinyon.cloud
-Creating package aj/my-connector@0.1.0
-.. fill out info in hub/package-meta.yaml
-Package hub/my-connector-0.1.0.ipkg created
+$ cdk publish
 ```
 
-Check the file and then push. The file is a Tar Gzip archive.
+The connector is now available for download from the Hub.
+
+
+### Show Hub Connectors
+
+Run `cdk hub list` to list connectors in the Hub.
 
 %copy first-line%
 ```bash
-$ cdk publish --push hub/my-connector-0.1.0.ipkg
+$ cdk hub list
+  CONNECTOR                          Visibility 
+  infinyon-labs/graphite-sink@0.1.2  public     
+  infinyon/duckdb-sink@0.1.0         public     
+  infinyon/http-sink@0.2.6           public     
+  infinyon/http-source@0.3.0         public     
+  infinyon/kafka-sink@0.2.7          public     
+  infinyon/kafka-source@0.2.5        public     
+  infinyon/mqtt-source@0.2.5         public     
+  infinyon/sql-sink@0.3.3            public   
+  acme/my-connector0.1.0             private
 ```
 
-The `publish` command uses `hub/package-meta.yml` file with the metadata needed for the Hub. If it doesn’t exist, `cdk` creates it for you. Then, you can modify it, and the changes will be picked up on the subsequent command execution.
+You will see all `public` connectors and your own `private` connectors.
+
+### Download from Hub & Run
+
+You can download and run any connector from the Hub. In this example, we'll create new directory to download and run `acme/my-connector0.1.0` connector:
+
+%copy first-line%
+```bash
+$ mkdir test-conn; cd test-conn
+```
+
+Download the connector:
+
+%copy first-line%
+```bash
+$ cdk hub download acme/my-connector0.1.0
+```
+
+Use connector `.ipkg` package file and run it with the `--ipkg` option:
+
+%copy first-line%
+```bash
+$ cdk deploy start --ipkg acme/my-connector0.1.0.ipkg --config ../sample-config.yaml
+```
+
+This command assumes that the sample config is the parent directory.
+
+
+#### Run an Official Connector
+
+You can use the same step-by-step to download and run an official connecgtor. Check the connector documetation to ensure the configuration file is correct.
+
 
 ## Steps
 

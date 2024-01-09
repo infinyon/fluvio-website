@@ -29,5 +29,8 @@ These connectors are not guaranteed to work with latest fluvio:
 
 #### Community Connectors
 
-Add your connector repository here:
-* ...
+Connectors built and maintained by the community:
+
+* 
+
+-> Please submit a pull request to add your connectors to this list!
