@@ -22,10 +22,6 @@ https://github.com/infinyon/fluvio/releases/tag/v0.10.6
 *Connector Development Kit Launch:*
 The goal of the Connector Development Kit (CDK) is to enable developers to write connectors to read data from data sources across different services using fluvio and Rust. We have been internally building our connectors using the CDK and are now ready to share it with the open source community.
 
-To get started, install `cdk` with the `fluvio` CLI
-
-{{% inline-embed file="embeds/cli/example/cdk-install.md" %}}
-
 Generating a project 
 
 {{% inline-embed file="embeds/cli/example/cdk-generate-example.md" %}}
@@ -34,7 +30,7 @@ This is what the generated rust code for the connector looks like
 
 {{% inline-embed file="embeds/cdk/my-connector-code.md" %}}
 
-If you're interested in learning more, here are [the docs to CDK]({{<ref "connectors/cdk/install.md">}})
+If you're interested in learning more, here are [the docs to CDK]({{<ref "connectors/cdk/overview.md">}})
 
 We are excited to see what you are going to build with the CDK!
 
