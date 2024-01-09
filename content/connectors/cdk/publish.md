@@ -69,7 +69,6 @@ $ cdk deploy start --ipkg acme/my-connector0.1.0.ipkg --config ../sample-config.
 This command assumes that the sample config is in the parent directory.
 
 
-
 #### Run an Official Connector
 
 You can use the same step-by-step to download and run an official connecgtor. Check the connector documetation to ensure the configuration file is correct.
