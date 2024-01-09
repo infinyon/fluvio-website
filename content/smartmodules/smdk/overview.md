@@ -20,11 +20,10 @@ SMDK helps developers build, test in-line, load to local or cloud Cluster, then 
 
 ### Steps
 
-1. **[Install SMDK]({{< ref "install" >}})**
-2. [Generate a SmartModule]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. [Load to your Cluster]({{< ref "load" >}})
-5. [Publish to SmartModule Hub]({{< ref "publish" >}})
+1. [Generate a SmartModule]({{< ref "generate" >}})
+2. [Build and Test]({{< ref "build-test" >}})
+3. [Load to your Cluster]({{< ref "load" >}})
+4. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
 [`Fluvio CLI`]: {{< ref "/cli/smartmodules/smdk" >}}
 [`Install Rust`]: https://www.rust-lang.org/tools/install
