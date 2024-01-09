@@ -74,7 +74,7 @@ This command assumes that the sample config is the parent directory.
 You can use the same step-by-step to download and run an official connecgtor. Check the connector documetation to ensure the configuration file is correct.
 
 
-## Steps
+### Steps
 
 1. [Generate a Connector]({{< ref "generate" >}})
 2. [Build and Test]({{< ref "build-test" >}})
