@@ -11,7 +11,9 @@ with parameters to tune the performance and semantics of record delivery.
 
 Topics also have a **replication factor** that defines durability, the number of copies for each data slice.
 
--> **Note**: Replication factor must be less or equal to the number of SPUs.  While topics that exceed the number of available SPUs may be created, they are not provisioned until additional SPUs join the cluster.
+-> **Note**: Replication factor must be less or equal to the number of SPUs ([Stream Processing Units]).  While topics that exceed the number of available SPUs may be created, they are not provisioned until additional SPUs join the cluster.
+
+[Stream Processing Units]: {{< ref "docs/architecture/spu">}}
 
 Replicas have a leader and one or more followers and distributed across all available SPUs according to the [replica assignment algorithm].
 

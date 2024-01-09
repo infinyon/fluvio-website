@@ -1,71 +1,57 @@
 ---
-title: Start & Shutdown 
-weight: 50
+title: Start & Shutdown
+weight: 40
 ---
 
-##### Prerequisites
+This section assumes `my-connector` project has been [generated]({{< ref "generate" >}}).
 
-This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-connector` project has been [generated]({{< ref "generate" >}}).
+### Connector start
 
-
-### Connector start 
-
-[Testing]({{<ref "/connectors/cdk/build-test#test---operation">}}) your connector runs the process in the foreground. 
-
-When you are ready, you can run `cdk deploy start` to run your connector in the background.
+[Testing]({{<ref "/connectors/cdk/build-test#test---operation">}}) your connector runs the process in the foreground. Use `cdk deploy start` to run your connector in the background: 
 
 %copy first-line%
 ```bash
-$ cdk deploy start --config config-example.yaml 
+$ cdk deploy start --config sample-config.yaml
 Log file: /private/tmp/my-connector/my-connector.log
 Connector runs with process id: 88589
 ```
 
-{{<idea>}}
-To start an official connector from a local `.ipkg` connector package file, you can provide it with the `--ipkg` option
+### List running connectors
 
-Example:
-
-%copy first-line%
-```bash
-$ cdk deploy start --ipkg infinyon-http-source-0.1.1.ipkg --config config-example.yaml
-```
-{{</idea>}}
-
-#### Secrets
-
-In order to use [secrets]({{<ref "/connectors/secrets">}}), you can use the `--secrets` flag to pass a file with the secrets definition.
-
-##### Example:
+CDK offers a convenience function to list running connectors:
 
 %copy first-line%
 ```bash
-$ cdk deploy start --config config-example.yaml --secrets secrets.txt
+$ cdk deploy list
+ NAME                            STATUS  
+ my-my-connector-test-connector  Running 
 ```
 
-In the secrets file, you should define a secret per line in the format `SECRET_NAME=SECRET_VALUE`.
-
-#####  Example:
-
-%copy%
-```
-SECRET_NAME=SECRET_VALUE
-SECRET_NAME_2=SUPER_SECRET_VALUE
-```
+You can use the connector name to shut it down.
 
 ### Connector shutdown
 
-Conversely, when you want to stop running your connector, you can run `cdk deploy shutdown <connector name>` to stop the running process of your connector in background.
+Stop a running your connector with `cdk deploy shutdown` 
 
-You can access the connector name from the [list of your running connectors]({{< ref "list-log" >}}), or you can find the connector `name` in your config file. 
+%copy first-line%
+```bash
+$ cdk deploy shutdown --name my-my-connector-test-connector
+Shutting down connector: my-my-connector-test-connector 
+pid: 56421
+ ```
 
-{{<caution>}}
-This command exits quietly
-{{</caution>}}
+In the [next section]({{< ref "troubleshooting" >}}) we'll take a look at the logs for troubleshooting.
 
-1. [Install CDK]({{< ref "install" >}})
-2. [Generate a SmartConnector]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. **[Start and Shutdown]({{< ref "start-shutdown" >}})**
-5. [List and Logs]({{< ref "list-log" >}})
-6. [Publish to SmartConnector Hub]({{< ref "publish" >}})
+
+### Steps
+
+1. [Generate a Connector]({{< ref "generate" >}})
+2. [Build and Test]({{< ref "build-test" >}})
+3. **[Start and Shutdown]({{< ref "start-shutdown" >}})**
+4. [Troubleshooting]({{< ref "troubleshooting" >}})
+5. [Secrets]({{< ref "secrets" >}})
+6. [Publish to Connector Hub]({{< ref "publish" >}})
+7. [Use Examples in Github]({{< ref "github-examples" >}})
+
+
+[InfinyOn Cloud]: https://infinyon.cloud

@@ -5,7 +5,7 @@ enableRobotsTXT = true
 pygmentsUseClasses = true
 enableEmoji = true
 
-disableKinds = ["taxonomyTerm"]
+disableKinds = ["tasonomy"]
 
 staticDir = ["static", "code"]
 

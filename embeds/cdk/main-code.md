@@ -2,7 +2,6 @@
 mod config;
 use config::CustomConfig;
 
-
 use fluvio::{RecordKey, TopicProducer};
 use fluvio_connector_common::{
     connector,
