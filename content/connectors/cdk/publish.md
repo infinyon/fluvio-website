@@ -66,7 +66,8 @@ Use connector `.ipkg` package file and run it with the `--ipkg` option:
 $ cdk deploy start --ipkg acme/my-connector0.1.0.ipkg --config ../sample-config.yaml
 ```
 
-This command assumes that the sample config is the parent directory.
+This command assumes that the sample config is in the parent directory.
+
 
 
 #### Run an Official Connector

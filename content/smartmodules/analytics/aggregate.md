@@ -14,9 +14,6 @@ each new value into the accumulator.
 Let's set up a new SmartModule project so that we can look at some code while
 introducing aggregators. 
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
 
 ## Generic Example: Aggregate Numbers
 
@@ -244,7 +241,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing a map to transform records]({{< ref "/smartmodules/transform/map" >}})
 
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}
