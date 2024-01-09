@@ -1,5 +1,6 @@
 ```
 Shutdown the Connector's deployment
+
 Usage: cdk deploy shutdown <--config <PATH>|--name <CONNECTOR_NAME>>
 
 Options:

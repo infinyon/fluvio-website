@@ -16,10 +16,6 @@ the record according to your needs and return it as `Some(record)`.
 
 Let's dive in and see how to use this in practice. You can find the full code for this doc's example [in the fluvio-smartmodule-examples repository][1].
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
-
 
 ## Getting Practical: Transform `Order Ready` events in a mobile shopping App
 
@@ -83,7 +79,7 @@ Now, let's jump right into the code. Copy and paste the following block into the
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, RecordData, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, RecordData, Result};
 use serde::{Deserialize, Serialize};
 
 /// Events that may take place in an online grocery service
@@ -104,7 +100,7 @@ enum GroceryEvent {
 }
 
 #[smartmodule(filter_map)]
-fn filter_map(record: &Record) -> Result<Option<(Option<RecordData>, RecordData)>> {
+fn filter_map(record: &SmartModuleRecord) -> Result<Option<(Option<RecordData>, RecordData)>> {
     let event: GroceryEvent = match serde_json::from_slice(record.value.as_ref()) {
         Ok(event) => event,
         Err(_) => return Ok(None), // Skip if we fail to parse JSON
@@ -278,7 +274,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing an aggregate to sum numbers]({{< ref "aggregate" >}})
 
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}

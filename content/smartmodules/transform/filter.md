@@ -8,10 +8,6 @@ The simplest type of SmartModule is a filter, which can examine each record in a
 
 <img src="/smartmodules/images/smartmodule-filter.svg" alt="SmartModule Filter" justify="center" height="190">
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
-
 
 ## Getting Practical: Filter Records by JSON fields
 
@@ -95,10 +91,10 @@ $ cd json-filter && cat ./src/lib.rs
 ```
 
 ```rust
-use fluvio_smartmodule::{smartmodule, Result, Record};
+use fluvio_smartmodule::{smartmodule, Result, SmartModuleRecord};
 
 #[smartmodule(filter)]
-pub fn filter(record: &Record) -> Result<bool> {
+pub fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let string = std::str::from_utf8(record.value.as_ref())?;
     Ok(string.contains('a'))
 }
@@ -146,10 +142,10 @@ Now, let's write the logic for our filter. We'll start by parsing our raw data i
 instances of `StructuredLog`.
 
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, Result};
 
 #[smartmodule(filter)]
-fn filter(record: &Record) -> Result<bool> {
+fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let log: StructuredLog = serde_json::from_slice(record.value.as_ref())?;
     
     todo!()
@@ -165,7 +161,7 @@ will be a piece of cake! Let's look at all the code for the finished filter.
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, Result};
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, serde::Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -184,7 +180,7 @@ struct StructuredLog {
 }
 
 #[smartmodule(filter)]
-fn filter(record: &Record) -> Result<bool> {
+fn filter(record: &SmartModuleRecord) -> Result<bool> {
     let log: StructuredLog = serde_json::from_slice(record.value.as_ref())?;
 
     // We keep records that are "greater than" debug
@@ -336,7 +332,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}

@@ -39,6 +39,13 @@ pub enum OfficialConnector {
     #[serde(alias = "sql-sink")]
     #[strum(serialize = "sql-sink")]
     SqlOutbound(String),
+    // duckdb
+    #[serde(alias = "duckdb-sink")]
+    #[strum(serialize = "duckdb-sink")]
+    DuckdbOutbound(String),
+    #[serde(alias = "graphite-sink")]
+    #[strum(serialize = "graphite-sink")]
+    GraphiteOutbound(String),
 }
 
 impl OfficialConnector {
@@ -87,7 +94,7 @@ impl OfficialConnector {
                     connector: supported,
                 })
             } else {
-                debug!("Skipping unsupported connector");
+                println!("Skipping unsupported connector");
                 continue;
             }
         }
@@ -136,7 +143,13 @@ impl ConnectorInfo {
                 OfficialConnector::KafkaInbound(_) | OfficialConnector::KafkaOutbound(_)
             ),
             DataServiceType::Sql => matches!(self.connector, OfficialConnector::SqlOutbound(_)),
+            DataServiceType::Duckdb => {
+                matches!(self.connector, OfficialConnector::DuckdbOutbound(_))
+            }
             DataServiceType::Mqtt => matches!(self.connector, OfficialConnector::MqttInbound(_)),
+            DataServiceType::Graphite => {
+                matches!(self.connector, OfficialConnector::GraphiteOutbound(_))
+            }
         }
     }
 
@@ -177,7 +190,9 @@ impl ConnectorInfo {
             | OfficialConnector::KafkaInbound(v)
             | OfficialConnector::KafkaOutbound(v)
             | OfficialConnector::MqttInbound(v)
-            | OfficialConnector::SqlOutbound(v) => v.clone(),
+            | OfficialConnector::SqlOutbound(v)
+            | OfficialConnector::DuckdbOutbound(v)
+            | OfficialConnector::GraphiteOutbound(v) => v.clone(),
         }
     }
 
@@ -203,6 +218,10 @@ pub enum DataServiceType {
     Http,
     Sql,
     Mqtt,
+    #[strum(serialize = "DuckDB")]
+    Duckdb,
+    #[strum(serialize = "Graphite")]
+    Graphite,
     //Salesforce,
     //Amplitude,
 }
@@ -214,6 +233,8 @@ impl From<OfficialConnector> for DataServiceType {
             OfficialConnector::KafkaInbound(_) | OfficialConnector::KafkaOutbound(_) => Self::Kafka,
             OfficialConnector::MqttInbound(_) => Self::Mqtt,
             OfficialConnector::SqlOutbound(_) => Self::Sql,
+            OfficialConnector::DuckdbOutbound(_) => Self::Duckdb,
+            OfficialConnector::GraphiteOutbound(_) => Self::Graphite,
         }
     }
 }
@@ -238,7 +259,9 @@ impl From<OfficialConnector> for DataDirection {
             | OfficialConnector::MqttInbound(_) => Self::Inbound,
             OfficialConnector::HttpOutbound(_)
             | OfficialConnector::KafkaOutbound(_)
-            | OfficialConnector::SqlOutbound(_) => Self::Outbound,
+            | OfficialConnector::SqlOutbound(_)
+            | OfficialConnector::DuckdbOutbound(_)
+            | OfficialConnector::GraphiteOutbound(_) => Self::Outbound,
         }
     }
 }

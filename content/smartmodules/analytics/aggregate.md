@@ -14,9 +14,6 @@ each new value into the accumulator.
 Let's set up a new SmartModule project so that we can look at some code while
 introducing aggregators. 
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
 
 ## Generic Example: Aggregate Numbers
 
@@ -59,10 +56,10 @@ $ cd example-aggregate && cat ./src/lib.rs
 ```
 
 ```rust
-use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
+use fluvio_smartmodule::{smartmodule, Result, SmartModuleRecord, RecordData};
 
 #[smartmodule(aggregate)]
-pub fn aggregate(accumulator: RecordData, current: &Record) -> Result<RecordData> {
+pub fn aggregate(accumulator: RecordData, current: &SmartModuleRecord) -> Result<RecordData> {
     // Parse the accumulator and current record as strings
     let accumulator_string = std::str::from_utf8(accumulator.as_ref())?;
     let current_string = std::str::from_utf8(current.value.as_ref())?;
@@ -244,7 +241,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing a map to transform records]({{< ref "/smartmodules/transform/map" >}})
 
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}

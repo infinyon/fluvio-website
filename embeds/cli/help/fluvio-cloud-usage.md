@@ -1,8 +1,8 @@
 ```
-fluvio-cloud-usage 
 Print cluster stats
-USAGE:
-    fluvio-cloud usage
-OPTIONS:
-    -h, --help    Print help information
+
+Usage: fluvio-cloud usage
+
+Options:
+  -h, --help  Print help
 ```

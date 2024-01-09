@@ -1,6 +1,7 @@
 ---
 title: SmartModule Development
 weight: 20
+hidden: true
 ---
 
 
@@ -119,12 +120,13 @@ loading module at: target/wasm32-unknown-unknown/release-lto/regex_filter.wasm
 
 #### Filter drop example 2
 
-We expect the input `abc123` will also drop because there are letters mixed with numbers
+We expect the input `abc123` will also drop because there are letters mixed with numbers.
 
+You can specify the input data in different ways, lets try passing `abc123` via `stdin` this time - the `--stdin` flag is specially useful when we're consuming data from an API and want to pipe the response to `smdk test`:
 
 %copy first-line%
 ```bash
-$ smdk test -e regex="^[0-9]*$" --text abc123
+$ echo -n abc123 | smdk test -e regex="^[0-9]*$" --stdin
 project name: "regex-filter"
 loading module at: target/wasm32-unknown-unknown/release-lto/regex_filter.wasm
 0 records outputed
@@ -210,9 +212,9 @@ You now know the development workflow for SmartModules with `smdk`. You can now 
 
 ## References
 
-* [Fluvio CLI Produce]({{<ref "/cli/commands/produce.md">}})
-* [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
-* [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
+* [Fluvio CLI Produce]({{<ref "/cli/client/produce.md">}})
+* [Fluvio CLI Consume]({{<ref "/cli/client/consume.md">}})
+* [Fluvio CLI topic]({{<ref "/cli/cluster/topic.md">}})
 * [SmartModule]({{<ref "/smartmodules/">}})
 
 [SmartModule Hub]: {{< ref "/smartmodules/hub/overview" >}}

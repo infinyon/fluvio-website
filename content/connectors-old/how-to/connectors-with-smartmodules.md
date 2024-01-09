@@ -77,11 +77,11 @@ to have the following contents:
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
+use fluvio_smartmodule::{smartmodule, Result, SmartModuleRecord, RecordData};
 use serde_json::Value;
 
 #[smartmodule(map)]
-pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
+pub fn map(record: &SmartModuleRecord) -> Result<(Option<RecordData>, RecordData)> {
     let input: Value = serde_json::from_slice(record.value.as_ref())?;
     let fact = &input["fact"];
     let output = serde_json::to_string(fact)?;

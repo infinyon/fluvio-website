@@ -10,10 +10,6 @@ SmartModule ArrayMaps are used to break apart Records into smaller pieces. This 
 
 Let's take a look at an example ArrayMap and walk through how it works and what some sample input and output data might look like.
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
-
 ## Generic Example: Transform JSON arrays to records
 
 A common use case is to transform JSON arrays and produce a stream of the records of those arrays. For example, suppose that each element we receive in Fluvio is a JSON array, though we want to interact with the _elements_ of these arrays rather than the arrays themselves. Then, using an ArrayMap, we can transform composite arrays to records that look like this (where this line is a single record):
@@ -70,10 +66,10 @@ $ cd array-map && cat src/lib.rs
 ```
 
 ```rust
-use fluvio_smartmodule::{smartmodule, Record, RecordData, Result};
+use fluvio_smartmodule::{smartmodule, SmartModuleRecord, RecordData, Result};
 
 #[smartmodule(array_map)]
-pub fn array_map(record: &Record) -> Result<Vec<(Option<RecordData>, RecordData)>> {
+pub fn array_map(record: &SmartModuleRecord) -> Result<Vec<(Option<RecordData>, RecordData)>> {
     // Deserialize a JSON array with any kind of values inside
     let array: Vec<serde_json::Value> = serde_json::from_slice(record.value.as_ref())?;
 
@@ -234,7 +230,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing a JSON filter]({{< ref "/smartmodules/transform/filter" >}})
 - [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}

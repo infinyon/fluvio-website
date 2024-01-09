@@ -37,7 +37,7 @@ let producer: TopicProducer = fluvio_client
 ```
 ### CLI consumer output change
 
-This is a fix to the CLI consumer using the `--format` output feature. Due to the default behavior of [handlebars](https://crates.io/crates/handlebars), the templating engine we use for [custom formatting on the CLI]({{<ref "/cli/commands/consume#example-6-print-consumed-records-with-custom-formatting">}}), we were unintentionally HTML escaping record data. But that is not longer the behavior.
+This is a fix to the CLI consumer using the `--format` output feature. Due to the default behavior of [handlebars](https://crates.io/crates/handlebars), the templating engine we use for [custom formatting on the CLI]({{<ref "/cli/client/consume#example-6-print-consumed-records-with-custom-formatting">}}), we were unintentionally HTML escaping record data. But that is not longer the behavior.
 
 Before:
 ```bash

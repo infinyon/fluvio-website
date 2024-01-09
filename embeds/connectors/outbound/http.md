@@ -13,10 +13,10 @@ HTTP sink connector reads records from data streaming and generates an HTTP requ
 HTTP Sink is configured using a YAML file:
 
 ```yaml
-# config-example.yaml
+# sample-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.2.5
   name: my-http-sink
   type: http-sink
   topic: http-sink-topic
@@ -57,7 +57,7 @@ HTTP request to `http://httpbin.org/post`.
 # config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.2.5
   name: httpbin
   type: http-sink
   topic: httpbin-send-post
@@ -130,10 +130,10 @@ Fluvio HTTP Sink Connector supports [Transformations](https://www.fluvio.io/docs
 
 The previous example can be extended to add extra transformations to outgoing records:
 ```yaml
-# config-example.yaml
+# sample-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.2.5
   name: my-http-sink
   type: http-sink
   topic: http-sink-topic

@@ -1,4 +1,8 @@
 ```
-Return plugin metadata as JSON	Options:
-Usage: fluvio-run metadata	  -h, --help  Print help
+Return plugin metadata as JSON
+
+Usage: fluvio-run metadata
+
+Options:
+  -h, --help  Print help
 ```

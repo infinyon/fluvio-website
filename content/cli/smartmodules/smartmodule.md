@@ -6,6 +6,8 @@ weight: 10
 The `fluvio smartmodule` family of commands is used to create and delete SmartModules,
 as well as to view basic information about existing SmartModules.
 
+{{% inline-embed file="embeds/cli/help/fluvio-smartmodule.md" %}}
+
 ## `fluvio smartmodule create`
 
 This command is used to create new Fluvio SmartModules. A SmartModule must be given
@@ -40,6 +42,9 @@ $ fluvio smartmodule list
 
 ---
 
+## `fluvio smartmodule watch`
+{{% inline-embed file="embeds/cli/help/fluvio-smartmodule-watch.md" %}}
+
 ## `fluvio smartmodule delete`
 
 This command will delete an existing SmartModule by name.
@@ -52,3 +57,6 @@ Example usage:
 ```bash
 $ fluvio smartmodule delete json-filter
 ```
+
+## `fluvio smartmodule test`
+{{% inline-embed file="embeds/cli/help/fluvio-smartmodule-test.md" %}}

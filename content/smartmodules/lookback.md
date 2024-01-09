@@ -10,16 +10,20 @@ To activate Lookback SmartModule must fit the following criteria:
 - A function annotated with `#[smartmodule(look_back)]` macro is present in the code. This function is used to pass requested records to SmartModule:
 ```rust
 #[smartmodule(look_back)]
-pub fn look_back(record: &Record) -> Result<()> {
+pub fn look_back(record: &SmartModuleRecord) -> Result<()> {
     ...
 }
 ```
-- `lookback` parameter is specified in transform configuration. It defines how many lookback records SmartModule receives:
+- `lookback` parameter is specified in transform configuration. It defines a set of lookback records that SmartModule receives. Supported ways to define the set:
+    - by size (last N records existing in the topic)
+    - by age (records that are younger than the specified age)
+    - by size and age (max N records younger than the specified age)
 ```yaml
 transforms:
   - uses: local/filter-with-lookback@0.1.0
     lookback:
-      last: 10 # we want last 10 records
+      age: 30m # we want only records that are younger than 30 minutes
+      last: 10 # we want maximum of 10 records (last)
 ```
 ---
 If Fluvio topic is empty, `look_back` is never called.
@@ -27,11 +31,6 @@ If Fluvio topic is empty, `look_back` is never called.
 -> If you start processing from an offset other than the end, you will receive records both as lookback record and as regular processing
 
 -> Lookback is only supported for SmartModules that are run on SPU. This implies that Source Connectors don't support it.
-
-## Examples
-
-This section assumes that SMDK is [installed].
-
 
 ### Monotonically increasing values
 
@@ -58,7 +57,9 @@ Using hub https://hub-dev.infinyon.cloud
 [2/7]   Done: Cargo.toml
 [3/7]   Done: README.md
 [4/7]   Done: SmartModule.toml
-[5/7]   Done: rust-toolchain.toml                                                                                                                                                                                                               [6/7]   Done: src/lib.rs                                                                                                                                                                                                                        [7/7]   Done: src
+[5/7]   Done: rust-toolchain.toml
+[6/7]   Done: src/lib.rs
+[7/7]   Done: src
 ```
 Then, put the code snippet from above into `src/lib.rs` file.
 
@@ -113,6 +114,4 @@ The output result is 4. But if we run:
 $ smdk test --text 1 --lookback-last 1 --record 2 --record 3
 ```
 the record will be filtered out as expected.
-
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 

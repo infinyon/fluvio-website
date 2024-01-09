@@ -1,19 +1,17 @@
 ---
 title: SMDK - Publish to Hub
 menu: Publish
-weight: 60
+weight: 70
 toc: false
 ---
 
-SMDK load give developers the ability to publish their own SmartModules to the [Hub]. 
+SMDK publish give developers the ability to publish their own SmartModules to the [Hub]. 
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed] and `my-filter` project has been [built].
+This section assumes that `my-filter` project has been [built].
 
 ### Publish - Operation
 
-Navigate to your `my-filter` directory and use the `publish` command:
+From your `my-filter` directory and use the `publish` command:
 
 %copy first-line%
 ```bash
@@ -44,14 +42,12 @@ Congratulations :tada:!  You are now ready to build, test, and publish your own 
 
 ### Steps
 
-1. [Install SMDK]({{< ref "install" >}})
-2. [Generate a SmartModule]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. [Load to your Cluster]({{< ref "load" >}})
-5. **[Publish to SmartModule Hub]({{< ref "publish" >}})**
+1. [Generate a SmartModule]({{< ref "generate" >}})
+2. [Build and Test]({{< ref "build-test" >}})
+3. [Load to your Cluster]({{< ref "load" >}})
+4. **[Publish to SmartModule Hub]({{< ref "publish" >}})**
 
 [Hub]: {{< ref "/smartmodules/hub/overview" >}}
 [SmartModule types]: {{< ref "/smartmodules/transform/overview" >}}
-[installed]: {{< ref "install" >}}
 [built]: {{< ref "build-test/#build---operation" >}}
 [download]: {{< ref "../hub/download" >}}

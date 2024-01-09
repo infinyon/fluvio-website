@@ -1,13 +1,13 @@
-FROM python:3
+FROM python:3.11
 
 # Run as the `fluvio` user instead of root
 ENV USER=fluvio
 RUN useradd --create-home "$USER"
 USER $USER
-WORKDIR /home/fluvio 
+WORKDIR /home/fluvio
 
 # Copy your Rust project ng Fluvio CLI for creating topics in example
-RUN curl -fsS https://packages.fluvio.io/v1/install.sh | bash
+RUN curl -fsS https://hub.infinyon.cloud/install/install.sh | bash
 
 ## Add `fluvio` to PATH
 ENV PATH="/home/fluvio/.fluvio/bin:${PATH}"

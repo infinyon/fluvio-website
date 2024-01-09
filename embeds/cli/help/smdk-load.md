@@ -1,6 +1,8 @@
 ```
 Load SmartModule into Fluvio cluster
+
 Usage: smdk load [OPTIONS]
+
 Options:
       --name <NAME>                  
       --package-path <PACKAGE_PATH>  Optional path to SmartModule package directory

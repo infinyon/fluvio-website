@@ -40,7 +40,7 @@ in the config. If a SmartModule requires configuration, it is passed via `with` 
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.3.3
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -62,7 +62,7 @@ The connector can use secrets in order to hide sensitive information.
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.3.3
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -71,7 +71,7 @@ meta:
 sql:
   url: ${{ secrets.DATABASE_URL }}
 ```
-## Usage Example
+## Insert Usage Example
 Let's look at the example of the connector with one transformation named [infinyon/json-sql](https://github.com/infinyon/fluvio-connectors/blob/main/smartmodules/json-sql/README.md). The transformation takes
 records in JSON format and creates SQL insert operation to `topic_message` table. The value from `device.device_id`
 JSON field will be put to `device_id` column and the entire json body to `record` column.
@@ -95,7 +95,7 @@ Connector configuration file:
 # connector-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.3
+  version: 0.3.3
   name: json-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -124,18 +124,67 @@ transforms:
 ```
 
 You can use Fluvio `cdk` tool to deploy the connector:
-```bash
-fluvio install cdk
-```
-and then:
+
 ```bash
 cdk deploy start --config connector-config.yaml
 ```
+
 To delete the connector run:
+
 ```bash
-cdk deploy shutdown --config connector-config.yaml
+cdk deploy shutdown --name json-sql-connector
 
 ```
 After you run the connector you will see records in your database table.
 
 See more in our [Build MQTT to SQL Pipeline](https://www.fluvio.io/docs/tutorials/mqtt-to-sql/) and [Build HTTP to SQL Pipeline](https://www.fluvio.io/docs/tutorials/data-pipeline/) tutorials.
+
+## Upsert Usage Example
+
+Every step would be same except the connector config and the behavior of the connector after deployment.
+
+We have a `operation` parameter which defaults to `insert` but we can pass `upsert` here to specify we want to do an upsert operation.
+
+Upsert additionaly takes an `unique-columns` argument. `unique-columns` specifies the list indices or column names to check for uniqueness of a record.
+If a record with same value in `unique-columns` exists in the database, it will be updated. If no record exists with same value, the given record will
+be inserted.
+
+Connector configuration file for upsert (assuming `device_id` is a unique column or an index in the database):
+
+```yaml
+# connector-config.yaml
+apiVersion: 0.1.0
+meta:
+  version: 0.3.3
+  name: json-sql-connector
+  type: sql-sink
+  topic: sql-topic
+  create-topic: true
+  secrets:
+    - name: DATABASE_URL
+sql:
+  url: ${{ secrets.DATABASE_URL }}
+transforms:
+  - uses: infinyon/json-sql
+    with:
+      mapping:
+        operation: "upsert"
+        unique-columns:
+          - "device_id"
+        table: "topic_message"
+        map-columns:
+          "device_id":
+            json-key: "device.device_id"
+            value:
+              type: "int"
+              default: "0"
+              required: true
+          "record":
+            json-key: "$"
+            value:
+              type: "jsonb"
+              required: true
+```
+
+See more about upsert in [our blog](https://infinyon.com/blog/2023/07/sql-upsert/).
+Note: the blog doesn't use `json-sql` smartmodule and has hardcoded records for demonstration. `sql-connector` is intended to be used with `json-sql`.

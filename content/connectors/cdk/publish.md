@@ -1,41 +1,85 @@
 ---
-title:  Publish 
-weight: 70
+title: Publish to Connector Hub
+menu: Publish to Hub
+weight: 80
 ---
-##### Prerequisites
 
-This section assumes that CDK is [installed]({{< ref "install" >}}) and `my-connector` project has been [generated]({{< ref "generate" >}}).
+This section assumes `my-connector` project has been [generated]({{< ref "generate" >}}).
 
+Connector Hub is a public repository for connectors. You can publish your connector as `private` to use on different computers or `pubic` to share it with the community.
 
-### Publish
+### Publish Connector to Hub
 
-The final step in this scenario would be publishing the Connector to the Hub - where other users can download and integrate it into their data pipelines.
-
-If run without arguments, it will pack everything needed into a package and push the package to the Hub. (`cdk build`must be executed beforehand)
-
-If you need to inspect the package before the push:
+Use `cdk publish` to publish your connector to the Hub. If run without arguments, it will pack everything needed into a package and push the package to the Hub. 
 
 %copy first-line%
 ```bash
-% cdk publish --pack
-Using hub https://hub-dev.infinyon.cloud
-Creating package aj/my-connector@0.1.0
-.. fill out info in hub/package-meta.yaml
-Package hub/my-connector-0.1.0.ipkg created
+$ cdk publish
 ```
 
-Check the file and then push. The file is a Tar Gzip archive.
+The connector is now available for download from the Hub.
+
+
+### Show Hub Connectors
+
+Run `cdk hub list` to list connectors in the Hub.
 
 %copy first-line%
 ```bash
-$ cdk publish --push hub/my-connector-0.1.0.ipkg
+$ cdk hub list
+  CONNECTOR                          Visibility 
+  infinyon-labs/graphite-sink@0.1.2  public     
+  infinyon/duckdb-sink@0.1.0         public     
+  infinyon/http-sink@0.2.6           public     
+  infinyon/http-source@0.3.0         public     
+  infinyon/kafka-sink@0.2.7          public     
+  infinyon/kafka-source@0.2.5        public     
+  infinyon/mqtt-source@0.2.5         public     
+  infinyon/sql-sink@0.3.3            public   
+  acme/my-connector0.1.0             private
 ```
 
-`publish` command uses `hub/package-meta.yml` file with the metadata needed for the Hub. If it doesn’t exist, `cdk` creates it for you. Then, you can modify it, and the changes will be picked up on the subsequent command execution. 
+You will see all `public` connectors and your own `private` connectors.
 
-1. [Install CDK]({{< ref "install" >}})
-2. [Generate a SmartConnector]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. [Start and Shutdown]({{< ref "start-shutdown" >}})
-5. [List and Logs]({{< ref "list-log" >}})
-6. **[Publish to SmartConnector Hub]({{< ref "publish" >}})**
+
+### Download from Hub & Run
+
+You can download and run any connector from the Hub. In this example, we'll create new directory to download and run `acme/my-connector0.1.0` connector:
+
+
+%copy first-line%
+```bash
+$ mkdir test-conn; cd test-conn
+```
+
+Download the connector:
+
+%copy first-line%
+```bash
+$ cdk hub download acme/my-connector0.1.0
+```
+
+Use connector `.ipkg` package file and run it with the `--ipkg` option:
+
+%copy first-line%
+```bash
+$ cdk deploy start --ipkg acme/my-connector0.1.0.ipkg --config ../sample-config.yaml
+```
+
+This command assumes that the sample config is in the parent directory.
+
+
+#### Run an Official Connector
+
+You can use the same step-by-step to download and run an official connecgtor. Check the connector documetation to ensure the configuration file is correct.
+
+
+### Steps
+
+1. [Generate a Connector]({{< ref "generate" >}})
+2. [Build and Test]({{< ref "build-test" >}})
+3. [Start and Shutdown]({{< ref "start-shutdown" >}})
+4. [Troubleshooting]({{< ref "troubleshooting" >}})
+5. [Secrets]({{< ref "secrets" >}})
+6. **[Publish to Connector Hub]({{< ref "publish" >}})**
+7. [Use Examples in Github]({{< ref "github-examples" >}})

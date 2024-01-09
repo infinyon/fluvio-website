@@ -16,11 +16,6 @@ example looks like.
 <img src="/smartmodules/images/smartmodule-map.svg" alt="SmartModule Map" justify="center" height="190">
 
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed].
-
-
 ### Create a SmartModule Project
 
 Run `smdk generate` with the name of the map and choose the "map" options:
@@ -56,10 +51,10 @@ $ cd map-example && cat ./src/lib.rs
 
 %copy%
 ```rust
-use fluvio_smartmodule::{smartmodule, Result, Record, RecordData};
+use fluvio_smartmodule::{smartmodule, Result, SmartModuleRecord, RecordData};
 
 #[smartmodule(map)]
-pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
+pub fn map(record: &SmartModuleRecord) -> Result<(Option<RecordData>, RecordData)> {
     let key = record.key.clone();
 
     let string = std::str::from_utf8(record.value.as_ref())?;
@@ -227,7 +222,6 @@ Congratulations! :tada: Your SmartModule is now available for download in the Sm
 - [Writing an aggregate to sum numbers]({{< ref "/smartmodules/analytics/aggregate" >}})
 
 
-[installed]: {{< ref "smartmodules/smdk/install" >}}
 [publish]: {{< ref "smartmodules/smdk/publish" >}}
 [InfinyOn Cloud]: https://infinyon.cloud
 [`current profile`]: {{< ref "cli/client/profile" >}}

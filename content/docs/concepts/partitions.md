@@ -45,7 +45,7 @@ is used to uphold the golden rule of key-based partitioning:
 The current implementation of key hashing uses the **sip-2-4** hashing algorithm,
 but that is subject to change in the future.
 
-- [Check out the key partitioning example in the CLI reference]({{< ref "/cli/commands/produce#example-3-produce-keyvalue-records-to-multiple-partitions" >}})
+- [Check out the key partitioning example in the CLI reference]({{< ref "/cli/client/produce#example-3-produce-keyvalue-records-to-multiple-partitions" >}})
 
 ##### Records with no keys
 
@@ -53,7 +53,7 @@ When producing records with no keys, producers will simply assign partition numb
 to incoming records in a round-robin fashion, spreading the load evenly across the
 available partitions.
 
-- [Check out the round-robin partitioning example in the CLI reference]({{< ref "/cli/commands/produce#example-4-producing-to-multiple-partitions-using-round-robin" >}})
+- [Check out the round-robin partitioning example in the CLI reference]({{< ref "/cli/client/produce#example-4-producing-to-multiple-partitions-using-round-robin" >}})
 
 #### Consuming with Multiple Partitions
 
@@ -61,4 +61,4 @@ Currently, consumers are limited to reading from one partition at a time. This m
 that in order to read all records from a given topic, it may be necessary to instantiate
 one consumer per partition in the topic.
 
-- [Check out the multi-consumer example in the CLI reference]({{< ref "cli/commands/consume#consume-from-a-topic-with-multiple-partitions" >}})
+- [Check out the multi-consumer example in the CLI reference]({{< ref "cli/client/consume#consume-from-a-topic-with-multiple-partitions" >}})
