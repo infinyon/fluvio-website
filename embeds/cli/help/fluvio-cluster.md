@@ -1,6 +1,8 @@
 ```
 Install or uninstall Fluvio cluster
+
 Usage: fluvio cluster <COMMAND>
+
 Commands:
   start        Install Fluvio cluster
   upgrade      Upgrades an already-started Fluvio cluster
@@ -11,6 +13,7 @@ Commands:
   diagnostics  Collect anonymous diagnostic information to help with debugging
   status       Check the status of a Fluvio cluster
   shutdown     Shutdown cluster processes without deleting data
+
 Options:
   -h, --help  Print help
 ```

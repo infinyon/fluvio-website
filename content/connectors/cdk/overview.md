@@ -3,23 +3,32 @@ title: Overview
 weight: 10
 ---
 
-## Intro
+### Intro
 
-Fluvio Connector Development Kit (CDK) is a command-line tool whose primary goal is to help developers build, test, deploy SmartConnectors, and publish them to the Hub.
+Fluvio Connector Development Kit (CDK) is a command-line tool whose primary goal is to help developers build, test, deploy Connectors, and publish them to the Hub. CDK only supports connectors developed in the Rust programming language. Other languages will be added in future releases.
 
-[Source code](https://github.com/infinyon/fluvio/tree/master/crates/cdk)
-
-## Installation
-
-CDK only supports connectors developed in the Rust programming language. Other languages will be added in future releases.
 
 ### Requirements
 
 Install Rust compiler and Cargo. See [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install) for installation instructions.
 
-1. **[Install CDK]({{< ref "install" >}})**
-2. [Generate a SmartConnector]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. [Start and Shutdown]({{< ref "start-shutdown" >}})
-5. [List and Logs]({{< ref "list-log" >}})
-6. [Publish to SmartConnector Hub]({{< ref "publish" >}})
+
+### Steps
+
+CDK provides a set of commands to help developers build, test, and publish Connector:
+
+1. [Generate a Connector]({{< ref "generate" >}})
+2. [Build and Test]({{< ref "build-test" >}})
+3. [Start and Shutdown]({{< ref "start-shutdown" >}})
+4. [Troubleshooting]({{< ref "troubleshooting" >}})
+5. [Secrets]({{< ref "secrets" >}})
+6. [Publish to Connector Hub]({{< ref "publish" >}})
+7. [Use Examples in Github]({{< ref "github-examples" >}})
+
+
+### References
+
+* [CDK Source code]
+
+
+[CDK Source code]: https://github.com/infinyon/fluvio/tree/master/crates/cdk

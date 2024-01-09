@@ -209,7 +209,7 @@ The following command creates a topic from a **replica assignment file**:
 
 %copy first-line%
 ```bash
-$ fluvio topic create --topic custom-topic --replica-assignment ./my-assignment
+$ fluvio topic create custom-topic --replica-assignment ./my-assignment
 ```
 
 _Validate-only_ flag is available to verify a replica assignment file without applying any changes.
@@ -244,4 +244,4 @@ The **replica map** definition meet the following criteria:
 
 For additional information on how to check the result of a replica assignment file, checkout [Topics CLI].
 
-[Topics CLI]: {{< ref "/cli/commands/topic" >}}
+[Topics CLI]: {{< ref "/cli/cluster/topic" >}}

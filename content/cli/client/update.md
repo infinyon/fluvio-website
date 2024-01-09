@@ -2,6 +2,7 @@
 title: Update
 weight: 20
 toc: false
+hidden: true
 ---
 
 ## `fluvio update`
