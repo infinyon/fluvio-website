@@ -41,9 +41,11 @@ $ cdk hub list
 
 You will see all `public` connectors and your own `private` connectors.
 
+
 ### Download from Hub & Run
 
 You can download and run any connector from the Hub. In this example, we'll create new directory to download and run `acme/my-connector0.1.0` connector:
+
 
 %copy first-line%
 ```bash
