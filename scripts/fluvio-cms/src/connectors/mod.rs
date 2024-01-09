@@ -1,16 +1,14 @@
 pub mod cli;
-use anyhow::Result;
 pub use cli::ConnectorsOpt;
-use fluvio_hub_util::{
-    http::http::convert::{Deserialize, Serialize},
-    PackageMeta,
-};
+
+use anyhow::Result;
+use clap::ValueEnum;
+use fluvio_hub_util::PackageMeta;
+use serde::{Deserialize, Serialize};
+use strum::Display;
 use tracing::debug;
 use xshell::{cmd, Shell};
 
-use clap::ValueEnum;
-
-use strum::Display;
 
 const INFINYON_GROUP: [&str; 2] = ["infinyon", "infinyon-labs"];
 
