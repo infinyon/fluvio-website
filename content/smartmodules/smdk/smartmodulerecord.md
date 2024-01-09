@@ -5,14 +5,9 @@ weight: 40
 toc: false
 ---
 
-Inside the SmartModule Context, Fluvio `Record` becomes `SmartModuleRecord`.
+`SmartModuleRecord` is a wrapper on the standard `Record`, which provides extra details on the `Record` such as the moment when the `Record` was produced.
 
-`SmartModuleRecord` is a wrapper on the standard `Record`, which provides extra
-details on the `Record` such as the moment when the `Record` was produced.
-
--> `SmartModuleRecord` was introduced on [Fluvio v0.10.14][1], we recommend upgrading to `SmartModuleRecord` as future versions will completely deprecate `Record` in the SmartModule Context.
-
-## Usage
+### Usage
 
 When building any type of SmartModules you will have access to each record, in
 the SmartModule function these records are represented with the
@@ -54,5 +49,3 @@ pub fn map(record: &SmartModuleRecord) -> Result<(Option<RecordData>, RecordData
 With this small change we are injecting insightful data to our record. This is
 a simple use case but we can have more based on the implementation and business
 requirements.
-
-[1]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md#platform-version-01014---2023-07-28

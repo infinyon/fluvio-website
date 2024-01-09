@@ -7,10 +7,6 @@ toc: false
 
 SMDK generate helps developers build a sample SmartModule project by answering a few simple questions
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed]
-
 ### Generate - Operation
 
 SMDK generate commands runs a wizard and builds a sample project in a subdirectory
@@ -25,7 +21,7 @@ fluvio-smartmodule-cargo-dependency => '"0.2.5"'
 ✔ 🤷   Will your SmartModule use init parameters? · false
 ✔ 🤷   Which type of SmartModule would you like? · filter
 ✔ 🤷   Will your SmartModule be public? · false
-🤷   Please set a group name : aj
+🤷   Please set a group name : acme
 Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpwXs6cl/cargo-generate.toml
 [1/5]   Done: Cargo.toml
 [2/5]   Done: README.md
@@ -35,7 +31,7 @@ Ignoring: /var/folders/5q/jwc86771549058kmbkbqjcdc0000gn/T/.tmpwXs6cl/cargo-gene
 🔧   Moving generated files into: `~/smdk/my-filter`...
 💡   Initializing a fresh Git repository
 ✨   Done! New project created ~/smdk/my-filter
-hub: hubid aj is set 
+hub: hubid acme is set 
 ```
 
 The generator created Rust project ready to compile:
@@ -89,13 +85,12 @@ The project is ready to build and test. Checkout the next section for instructio
 
 ### Steps
 
-1. [Install SMDK]({{< ref "install" >}})
-2. **[Generate a SmartModule]({{< ref "generate" >}})**
-3. [Build and Test]({{< ref "build-test" >}})
-4. [Load to your Cluster]({{< ref "load" >}})
-5. [Publish to SmartModule Hub]({{< ref "publish" >}})
+1. **[Generate a SmartModule]({{< ref "generate" >}})**
+2. [Build and Test]({{< ref "build-test" >}})
+3. [Load to your Cluster]({{< ref "load" >}})
+4. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
-[installed]: {{< ref "install" >}}
+
 [Build and Test]: {{< ref "build-test" >}}
 [Load to your Cluster]: {{< ref "load" >}}
 [Publish to SmartModule Hub]: {{< ref "publish" >}}

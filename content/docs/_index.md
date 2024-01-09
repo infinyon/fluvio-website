@@ -153,18 +153,9 @@ This will display data sent to the topic.
 
 SmartModules are user-defined functions that process data streams. 
 
-### Install SMDK
-
-The SmartModules Development Kit (SMDK) is required for building SmartModules:
-
-%copy first-line%
-```bash
-$ fluvio install smdk
-```
-
 ### Build a Filter SmartModule
 
-Create and navigate to your SmartModule project:
+Use the SmartModules Development Kit (smdk) binary to create your SmartModule project:
 
 %copy%
 ```bash

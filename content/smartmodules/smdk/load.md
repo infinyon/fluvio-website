@@ -7,13 +7,11 @@ toc: false
 
 SMDK load give developers the ability to upload their own SmartModules to a local or [InfinyOn Cloud] clusters. 
 
-##### Prerequisites
-
-This section assumes that SMDK is [installed] and `my-filter` project has been [built].
+This section assumes that `my-filter` project has been [built].
 
 ### Load - Operation
 
-Navigate to your `my-filter` directory and use the `load` command:
+From your `my-filter` directory and use the `load` command:
 
 %copy first-line%
 ```bash
@@ -98,7 +96,7 @@ parameters:
   endpoint: https://catfact.ninja/fact
   interval: 10s
 transforms:
-  - uses: aj/my-filter@0.1.0
+  - uses: acme/my-filter@0.1.0
     invoke: filter
 ```
 
@@ -115,13 +113,11 @@ The conector creates a topic called `cats` and filters out all records without l
 
 ### Steps
 
-1. [Install SMDK]({{< ref "install" >}})
-2. [Generate a SmartModule]({{< ref "generate" >}})
-3. [Build and Test]({{< ref "build-test" >}})
-4. **[Load to your Cluster]({{< ref "load" >}})**
-5. [Publish to SmartModule Hub]({{< ref "publish" >}})
+1. [Generate a SmartModule]({{< ref "generate" >}})
+2. [Build and Test]({{< ref "build-test" >}})
+3. **[Load to your Cluster]({{< ref "load" >}})**
+4. [Publish to SmartModule Hub]({{< ref "publish" >}})
 
 [InfinyOn Cloud]: https://infinyon.cloud
-[installed]: {{< ref "install" >}}
 [built]: {{< ref "build-test/#build---operation" >}}
 [`current profile`]: {{< ref "cli/client/profile" >}}
