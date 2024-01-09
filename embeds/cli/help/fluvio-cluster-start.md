@@ -42,8 +42,6 @@ Options:
           log dir [default: /usr/local/var/log/fluvio]
       --sys-only
           installing/upgrade sys only
-      --local
-          install local spu/sc(custom)
       --tls
           Whether to use TLS
       --domain <DOMAIN>
@@ -68,7 +66,13 @@ Options:
           Proxy address
       --service-type <SERVICE_TYPE>
           Service Type
-      --read-only <READ_ONLY>
+      --local
+          install local spu/sc
+      --local-k8
+          install local spu/sc with metadata stored in K8s
+      --k8
+          install on K8s
+      --read-only <config path>
           Start SC in read only mode
   -h, --help
           Print help

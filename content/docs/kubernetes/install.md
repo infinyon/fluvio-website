@@ -16,19 +16,22 @@ However, if you want to install multiple instances of Fluvio, you need to instal
 ## Managing a single instance of Fluvio
 
 This command will install Fluvio and it's dependencies in the default namespace.
-```
-$ fluvio cluster start 
+
+%copy first-line%
+```shell
+$ fluvio cluster start --k8
 ```
 
 This command will de-install Fluvio and it's dependencies (including all data) in the default namespace.
 
-```
-$ fluvio cluster delete
+%copy first-line%
+```shell
+$ fluvio cluster delete --k8
 ```
 
 This however, will not uninstall sys chart.  You can use the following command to uninstall sys chart.
-```
-$ fluvio cluster delete --sys
+```shell
+$ fluvio cluster delete --k8 --sys
 ```
 
 
@@ -40,22 +43,24 @@ First, install the `sys` chart.  This only has to be done once.
 
 %copy first-line%
 ```bash
-fluvio cluster start --sys
+fluvio cluster start --k8 --sys
 ```
 
 Then install each instance of Fluvio one by one on a different namespace.  
 
 First instance:
 
-```
-$ kubectl create namespace first
-$ fluvio cluster start --namespace first
+%copy%
+```shell
+kubectl create namespace first
+fluvio cluster start --k8 --namespace first
 ```
 
 Second instance:
-```
-$ kubectl create namespace second
-$ fluvio cluster start --namespace second
+%copy%
+```shell
+kubectl create namespace second
+fluvio cluster start --k8 --namespace second
 ```
 
 and so forth.
@@ -63,8 +68,9 @@ and so forth.
 
 To delete a Fluvio instances, supply namespace as an argument.
 
-```
-$ fluvio cluster delete --namespace first
+%copy first-line%
+```shell
+$ fluvio cluster delete --k8 --namespace first
 ```
 
 You can only a delete `sys` chart when you have deleted all the Fluvio instances.

@@ -1,5 +1,6 @@
 ---
 title: Key Features
+hidden: true
 ---
 
 A subset of key features are as follows:

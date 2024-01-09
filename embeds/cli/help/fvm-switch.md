@@ -1,7 +1,7 @@
 ```
 Set a installed Fluvio Version as active
 
-Usage: 
+Usage: fvm switch [VERSION]
 
 Arguments:
   [VERSION]  Version to set as active

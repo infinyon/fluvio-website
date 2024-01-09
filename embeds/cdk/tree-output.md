@@ -3,10 +3,9 @@ $ tree
 .
 ├── Cargo.toml
 ├── Connector.toml
-├── config-example.yaml
+├── README.md
+├── sample-config.yaml
 └── src
     ├── config.rs
     └── main.rs
-
-2 directories, 5 files
 ```

@@ -8,10 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 on:
+  merge_group:
   push:
-    branches:
-      - staging
-      - trying
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -39,6 +37,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           path: current_repo
+          
       # Checkout and build files of a head ref.
       - uses: actions/checkout@v4
         with:
@@ -78,10 +77,12 @@ jobs:
           find . -name "*.html" -exec diff --brief --new-file base/{} {} \; | awk '{print $4}' | sed 's/./http:\/\/localhost:1313/' | tee /tmp/changed-html.txt
           wc /tmp/changed-html.txt
 
+      - uses: Swatinem/rust-cache@v2
+
       - name: Start Hugo server and take screenshots
         run: |
           cd pr_repo
-          ./hugo-start.sh &
+          cargo run -- hugo &
           sleep 5
           mkdir /tmp/changed-screenshots
 
@@ -97,17 +98,7 @@ jobs:
             ((ITER = ITER + 1))
           done
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: changed-screenshots
           path: /tmp/changed-screenshots
-
-      #- uses: actions/upload-artifact@v3
-      #  with:
-      #    name: base-site
-      #    path: ./base
-
-      #- uses: actions/upload-artifact@v3
-      #  with:
-      #    name: pr-site
-      #    path: "./head"

@@ -2,3 +2,5 @@
 members = [
     "scripts/fluvio-cms"
 ]
+exclude = ["embeds/client-examples/rust"]
+resolver = "2"

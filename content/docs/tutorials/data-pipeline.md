@@ -1,6 +1,7 @@
 ---
 title: Build HTTP to SQL Pipeline
 weight: 30
+hidden: true
 ---
 
 ## Connector Pipeline
@@ -246,9 +247,9 @@ With the Outbound SQL Connector, we utilized SmartModules in two different ways.
 
 ## References
 
-* [Fluvio CLI Produce]({{<ref "/cli/commands/produce.md">}})
-* [Fluvio CLI Consume]({{<ref "/cli/commands/consume.md">}})
-* [Fluvio CLI topic]({{<ref "/cli/commands/topic.md">}})
+* [Fluvio CLI Produce]({{<ref "/cli/client/produce.md">}})
+* [Fluvio CLI Consume]({{<ref "/cli/client/consume.md">}})
+* [Fluvio CLI topic]({{<ref "/cli/cluster/topic.md">}})
 * [Fluvio CLI profile]({{<ref "/cli/client/profile.md">}})
 * [Connectors]({{<ref "/connectors/">}})
 * [Smart Modules]({{<ref "/smartmodules/">}})

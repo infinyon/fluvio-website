@@ -8,12 +8,11 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  push:
-    branches:
-      - staging
-      - trying
+  merge_group:
   pull_request:
-    branches: [master]
+    branches:
+    - master
+    - stable
   workflow_dispatch:
 
 jobs:
@@ -44,9 +43,11 @@ jobs:
         with:
           hugo-version: '0.97.3'
           extended: true
+
+      - uses: Swatinem/rust-cache@v2
       - name: Run Hugo in the background
         if: ${{ needs.test-skip-check.outputs.no-skip }}
-        run: ./hugo-start.sh &
+        run: cargo run -- hugo &
       # Skip running for now
       - name: Run htmltest
         if: ${{ false }}
@@ -57,7 +58,7 @@ jobs:
   # Used by Bors to detect that all required jobs have completed successfully
   done:
     name: Pass html lint
-    if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
+    if: github.event_name == 'merge_group'
     needs: htmltest
     runs-on: ubuntu-latest
     steps:

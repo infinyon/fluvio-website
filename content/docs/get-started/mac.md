@@ -97,9 +97,9 @@ Hello, Fluvio
 
 Way to go! You're well on your way to writing real-time distributed apps with Fluvio!
 
-[topic]: {{< ref "/cli/commands/topic.md" >}}
-[produce]: {{< ref "/cli/commands/produce.md" >}}
-[consume]: {{< ref "/cli/commands/consume.md" >}}
+[topic]: {{< ref "/cli/cluster/topic.md" >}}
+[produce]: {{< ref "/cli/client/produce.md" >}}
+[consume]: {{< ref "/cli/client/consume.md" >}}
 
 ---
 
