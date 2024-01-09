@@ -1,4 +1,3 @@
-
 ---
 title: SmartModule Development Kit (SMDK)
 menu: Overview
