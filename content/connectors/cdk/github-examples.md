@@ -7,7 +7,7 @@ We have a library of connectors in github you may use as inspiration as you buil
 
 ### Template Connectors
 
-* https://github.com/infinyon/connector-hello
+* https://github.com/infinyon/connector-hello-source
 
 ### Official Connectors
 
