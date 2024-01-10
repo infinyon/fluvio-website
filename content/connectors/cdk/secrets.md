@@ -5,7 +5,7 @@ weight: 70
 
 Connectors often connect to external entities such as `databases`, `message brokers`, or `APIs` that require a confidential authentication key.
 
-Connectors offers this facility through [secrets]({{<ref "/connectors/secrets">}}). 
+Connectors offers this facility through [secrets]({{<ref "/connectors/secrets">}}).
 
 ### Use Secrets
 
@@ -24,7 +24,38 @@ SECRET_NAME=SECRET_VALUE
 SECRET_NAME_2=SUPER_SECRET_VALUE
 ```
 
-**Todo** Provide sample code on how to implement secrets in a custom connector.
+Code to indicate that a connector config parameter can contain a secret should use the `SecretString` type. This allows the parameter to receive secrets which are not printable to logs.
+```rust
+use fluvio_connector_common::{connector, secret::SecretString};
+
+#[derive(Debug)]
+#[connector(config, name = "myconnector")]
+pub(crate) struct MyconnectorConfig {
+    /// A parameter receiving a secret string
+    pub a_param: SecretString,
+
+    ...
+}
+```
+
+This allows a config file to provision secrets to the connector.
+```yaml
+# config-example.yaml
+apiVersion: 0.1.0
+meta:
+  version: 0.3.0
+  name: instancename
+  type: my-connector
+  topic: atopicname
+  create-topic: true
+  secrets:
+    - name: SECRET_NAME
+myconnector:
+  a_param: "${{ secrets.SECRET_NAME }}_${{ secrets.SECRET_NAME_2 }}"
+
+```
+
+More extensive examples of secrets in connectors can be seen in use with the [Http Source]({{< ref "../inbound/http" >}}) connector and its repo https://github.com/infinyon/http-source-connector.
 
 In the [next section]({{< ref "publish" >}}) we'll publish our connector to the Hub.
 
