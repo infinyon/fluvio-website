@@ -25,7 +25,7 @@ Check out the [`fluvio cloud` CLI docs]() for more details about logging into th
 {{</idea>}}
 
 ### Example HTTP connector
-This is the config file for the [Inbound HTTP connector]({{<ref "/connectors-old/inbound/http.md">}}) in this guide.
+This is the config file for the [Inbound HTTP connector]({{<ref "/connectors/inbound/http.md">}}) in this guide.
 
 {{<code file="embeds/connectors/catfacts-basic-connector.yaml" lang="yaml" copy=true >}}
 

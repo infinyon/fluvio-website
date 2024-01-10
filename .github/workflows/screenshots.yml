@@ -25,7 +25,7 @@ jobs:
           hugo-version: '0.97.3'
           extended: true
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -98,7 +98,7 @@ jobs:
             ((ITER = ITER + 1))
           done
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: changed-screenshots
           path: /tmp/changed-screenshots

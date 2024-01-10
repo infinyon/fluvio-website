@@ -1,7 +1,7 @@
 ---
 title: SMDK - SmartModuleRecord
 menu: SmartModuleRecord
-weight: 40
+weight: 100
 toc: false
 ---
 
