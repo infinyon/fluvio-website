@@ -5,7 +5,7 @@ enableRobotsTXT = true
 pygmentsUseClasses = true
 enableEmoji = true
 
-disableKinds = ["tasonomy"]
+disableKinds = []
 
 staticDir = ["static", "code"]
 
@@ -96,5 +96,3 @@ staticDir = ["static", "code"]
     pre = "fas fa-tools"
     weight = 120
 
-[permalinks]
-  connectors-old = '/deprecated/connectors-v2/:sections[1:]/:slug'
