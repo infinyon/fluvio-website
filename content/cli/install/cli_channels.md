@@ -25,15 +25,7 @@ Release channel support is provided by `fvm`. The installer uses the `stable` ch
 ```shell
 $ curl -fsS https://hub.infinyon.cloud/install/install.sh | bash
 ```
- 
 
-{{<caution>}}
-Fluvio release channels were introduced for the CLI in `0.9.16`, and the most recent implementation was introduced in `0.10.16`.
-<br><br>
-If you have an installation from a release earlier than `0.10.16`, you should delete `~/.fluvio` directory and re-install with the [official installer script]({{<ref "/download">}}) to install `fvm`, the Fluvio Version Manager CLI.
-<br><br>
-You can also run `fvm install` to migrate your existing installation
-{{</caution>}}
 
 ## Quick start: The Channels
 

@@ -52,7 +52,6 @@ To get familiar, check out the example configs from our tutorials.
 * [Head of Product Management](https://www.infinyon.com/careers/head-of-product-management) [Remote - Global]
 * [SW Engineer (Cloud services)](https://www.infinyon.com/careers/cloud-engineer-mid-level) [Remote - Global]
 * [Sr. Rust engineer (Infrastructure)](https://www.infinyon.com/careers/infrastructure-engineer-senior-level) [Remote - US]
-* [Sr. SW engineer (Connectors)](https://www.infinyon.com/careers/connectors-old-engineer-senior-level) [Remote - Global]
 * [Developer Advocate](https://www.infinyon.com/careers/developer-advocate-mid-senior-level) [Remote - US timezones +/- 5hr]
 * [Solutions Architect](https://www.infinyon.com/careers/solutions-architect) [Remote - US timezones +/- 5hr]
 
