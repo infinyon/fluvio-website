@@ -32,7 +32,6 @@ We've added the capability to query your account's [CPU and memory usage via Clo
 ## Open positions
 * [Sr Rust Engineer (Frontend)](https://www.infinyon.com/careers/cloud-ui-engineer-senior-level) [Remote - Global]
 * [SW Engineer (Cloud services)](https://www.infinyon.com/careers/cloud-engineer-mid-level) [Remote - Global]
-* [Sr SW engineer (Connectors)](https://www.infinyon.com/careers/connectors-old-engineer-senior-level) [Remote - Global]
 * [Sr Rust engineer (Infrastructure)](https://www.infinyon.com/careers/infrastructure-engineer-senior-level) [Remote - US]
 * [Developer Advocate](https://www.infinyon.com/careers/developer-advocate-mid-senior-level) [Remote - US timezones +/- 5hr]
 * [Solutions Architect](https://www.infinyon.com/careers/solutions-architect) [Remote - US timezones +/- 5hr]
