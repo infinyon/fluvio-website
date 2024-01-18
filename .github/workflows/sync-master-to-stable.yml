@@ -14,4 +14,12 @@ jobs:
       - name: Generate PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./scripts/sync-master-to-stable.sh
+        run: |
+          # github doesn't do a full fetch by default
+          # these cmds get the git repo to the point
+          # that the script works as it does with
+          # a regular dev checkout
+          git fetch origin master
+          git fetch origin stable
+
+          ./scripts/sync-master-to-stable.sh
