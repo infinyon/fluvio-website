@@ -11,11 +11,7 @@ The Fluvio CLI is an all-in-one tool for setting up, interacting, and managing w
 
 ## Install Rancher Desktop
 
-Install [Rancher Desktop]({{< ref "#install-rancher-desktop" >}})
-`helm` and `kubectl` are also required but installing `Rancher Desktop` provide access to them.
-
-In order to install Rancher Desktop go to the Rancher Desktop [installation page](https://docs.rancherdesktop.io/getting-started/installation/) and follow the instructions. Rancher Desktop will provide access to other utilities needed to run Fluvio such as `kubectl` and `helm`.
-
+Navigate to the Rancher Desktop [installation page](https://docs.rancherdesktop.io/getting-started/installation/) and follow the instructions. Rancher Desktop will provide access to other utilities needed to run Fluvio such as `kubectl` and `helm`.
 
 Please make sure that the container runtime is `dockerd (moby)`. That configuration can be changed in the `Kubernetes Settings` section on the sidebar.
 
