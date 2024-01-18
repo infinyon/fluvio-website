@@ -17,7 +17,7 @@ Please make sure that the container runtime is `dockerd (moby)`. That configurat
 
 <img src="../images/rancher-dockerd.png"
      alt="A screenshot of the Rancher Desktop using dockerd as container runtime"
-     style="justify: center; max-width: 800px" />  
+     style="justify: center; max-width: 800px" />
 
 ## Start Fluvio cluster
 
@@ -25,7 +25,7 @@ You can start a Fluvio cluster by running `fluvio cluster start`.
 
 %copy first-line%
 ```bash
-$ fluvio cluster start --k8
+$ fluvio cluster start --k8 --use-k8-port-forwarding
 ```
 
 ### Verify cluster is running
