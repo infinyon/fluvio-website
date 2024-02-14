@@ -1,0 +1,12 @@
+name: Sync Master to Stable
+on:
+  workflow_dispatch:
+
+jobs:
+  generate_sync_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Generate PR
+        run: scripts/sync-master-to-stable.sh
