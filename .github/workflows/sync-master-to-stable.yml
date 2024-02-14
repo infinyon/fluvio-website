@@ -11,9 +11,11 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+        # with:
+        #   ref: stable
       - name: Generate PR
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # setup git repo
           # github doesn't do a full fetch by default
