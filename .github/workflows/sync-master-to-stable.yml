@@ -1,11 +1,13 @@
+# Generates a PR that syncs stable to master
 name: Sync Master to Stable
 on:
   workflow_dispatch:
-# Generates a PR that syncs stable to master
 
 jobs:
   generate_sync_pr:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
