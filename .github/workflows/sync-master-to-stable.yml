@@ -11,7 +11,20 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+        # with:
+        #   ref: stable
       - name: Generate PR
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./scripts/sync-master-to-stable.sh
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # setup git repo
+          # github doesn't do a full fetch by default
+          # these cmds get the git repo to the point
+          # that the script works as it does with
+          # a regular dev checkout
+          git config --global user.email "team@infinyon.com"
+          git config --global user.name "CI fluvio-website sync-master-to-stable"
+          git fetch origin master
+          git fetch origin stable
+
+          ./scripts/sync-master-to-stable.sh
