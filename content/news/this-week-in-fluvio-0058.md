@@ -1,91 +1,59 @@
 ---
 title: "This Week in Fluvio #58"
-date: 2024-03-06
+date: 2024-01-17
 weight: 20
 ---
 Fluvio is a distributed, programmable streaming platform written in Rust.
 
 ---
 
-We have moved away from a weekly updates. Fluvio open source project has grown significantly in terms of code and components. Our release cadence is divided into Fluvio Core, InfinyOn Cloud, Clients and SDKs. Moving forward our goal is to update the community with the relevant releases.
+We paused the weekly updates because we had several big changes in flight. We will refactor this blog to Fluvio Release Updates and remove the weekly cadence in the next iteration.
 
-Today is such an occassion.
+A lot has happened in the past couple of months that is relevant to update.
 
-We released Fluvio 0.11.5 this week.
-
+ 
 ## New release
-We are pleased share that Fluvio **v0.11.5** is now available!
+Fluvio moved to version 0.11.3 a couple of days ago. We have had a bunch of releases since we last published an update on our site.
 
-Thank you to new contributors to the fluvio project:
+Full Changelog of the release is here: [Fluvio Changelog](https://github.com/infinyon/fluvio/blob/7fbe42ca06ead90f1821a551ff258b868f3fff3c/CHANGELOG.md)
 
-- [k0i](https://github.com/k0i)
-- [AF](https://github.com/jdafont)
-- [ODudek](https://github.com/ODudek)
-- [shylock](https://github.com/Shylock-Hg)
-- [fraidev](https://github.com/fraidev)
-- [Urbit-pilled](https://github.com/urbit-pilled)
+ 
+## New features
+Fluvio has a bunch of exciting updates. The community has been asking for a single binary deployment that can be run locally, using Docker, using Nomad. That meant we needed to decouple our tigh coupling with Kubernetes. We did that in 2023 and the community started building with Fluvio!
 
-To update you can run `fvm update`
+We have been busy making documentation updates since then. So this update was delayed. Below are the main updates:
 
-```
-$ fvm update
-info: Updating fluvio stable to version 0.11.4. Current version is 0.11.5.
-info: Downloading (1/5): fluvio@0.11.5
-info: Downloading (2/5): fluvio-cloud@0.2.18
-info: Downloading (3/5): fluvio-run@0.11.5
-info: Downloading (4/5): cdk@0.11.5
-info: Downloading (5/5): smdk@0.11.5
-done: Installed fluvio version 0.11.5
-done: Now using fluvio version 0.11.5
-
-```
-
-If you don't have Fluvio in your machine run:
-
-```
+- Fluvio now has a version manager that manages multiple versions, installs, updates, etc. We are calling it Fluvio Version Manager(fvm)
+- fvm can be installed by simply running:
+```bash
 curl -fsS https://hub.infinyon.cloud/install/install.sh | bash
 ```
+- You can deploy Fluvio as a single compiled binary using fvm. The installer takes care of everything!
+- You can run a local self-hosted Fluvio cluster by simply running
+```bash
+fluvio cluster start
+```
+which will start a self hosted fluvio clsuter using local resources
 
-If you are enjoying Fluvio please share with your friends!
+In light of this our Quick Start docs has been updated to reflect the changes. Getting started with fluvio is the easiest it has ever been.
 
-## New features
+[Updated Quick Start Link](https://www.fluvio.io/docs/)
 
-We made the self hosted experience easier with the following:
-
-- Hub access to public smartmodules and connectors no longer requires a cloud login
-    - cdk, smdk, and fluvio hub commands should allow access to list and download public components
-- Consumers connected to a topic will receive a notification and shut down if the connected topic is deleted
-- Improvements to support async in our fluvio python client
-
+ 
 ## Upcoming features
-InfinyOn Stateful Service Development Kit is 2 releases away from a beta release.
+There are some exciting community projects that are in development:
 
-We have released 6 developer preview iterations and shared with 50 to 100 developers. If you'd like access to the private beta, please fill out [this form](https://infinyon.com/request/ss-early-access/).
-
-## Bug fixes
-This release includes a number of bug fixes, documentation improvements, and improved error messaging.
-
-See the [CHANGELOG](https://github.com/infinyon/fluvio/blob/v0.11.5/CHANGELOG.md) for details
-
-## New blog post
-[Marvin Hansen](https://github.com/marvin-hansen) wrote this amazing blog after building with Fluvio. [Real-time Streaming Analytics with Fluvio, DeepCausality, and Rust](https://infinyon.com/blog/2024/02/fluvio-deep-causality-rs/)
-
+- There are some awesome new contributions in the works which inclused integrations with Spider Web Crawler, OpenSearch, ElasticSearch, Qdrant, Surreal, OpenDAL etc.
+- We have an oversubscribed developer preview for Stateful Service Development Kit which makes stateful stream processing a reality.
+- We have docs on docker based deployment. [Link](https://www.infinyon.com/docs/tutorials/docker-installation/)
+ 
 ## Good First Issues
+If you are excited to contribute to Fluvio Open Source, here are 3 good first issues that you can consider:
 
-All the best. Here are some issues that you could contribute to:
-
-- [fvm switch fails on some systems with running local cluster](https://github.com/infinyon/fluvio/issues/3765)
+- [connector: fluvio-http-source, add an option to read data from a websocket](https://github.com/infinyon/fluvio/issues/3829)
 - [MQTT Connector: Prefix auto generated Client ID to prevent connection drops](https://github.com/infinyon/fluvio/issues/3825)
-- [Add new command fluvio cluster resume](https://github.com/infinyon/fluvio/issues/3810) (intermediate/expert difficulty)
+- [fluvio cluster delete should prompt with cluster and endpoint name confirmation](https://arc.net/l/quote/hcztknom)
 
+All the best.
 
----
-
-Get in touch with us on [Github Discussions] or join [our Discord channel] and come say hello!
-
-For the full list of changes this week, be sure to check out [our CHANGELOG].
-
-[Fluvio open source]: https://github.com/infinyon/fluvio
-[our CHANGELOG]: https://github.com/infinyon/fluvio/blob/master/CHANGELOG.md
-[our Discord channel]: https://discordapp.com/invite/bBG2dTz
-[Github Discussions]: https://github.com/infinyon/fluvio/discussions
+Get in touch with us on [Github Discussions](https://github.com/infinyon/fluvio/discussions) or join [our Discord channel](https://discordapp.com/invite/bBG2dTz) and come say hello!
