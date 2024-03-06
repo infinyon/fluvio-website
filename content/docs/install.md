@@ -32,7 +32,7 @@ $ echo 'export PATH="${HOME}/.fvm/bin:${HOME}/.fluvio/bin:${PATH}"' >> ~/.zshrc
 {{< h-item tabNum="3">}}
 %copy first-line%
 ```shell
-$ fish_add_path ~/.fluvio/bin
+$ fish_add_path ~/.fluvio/bin ~/.fvm/bin
 ```
 {{< /h-item>}}
 

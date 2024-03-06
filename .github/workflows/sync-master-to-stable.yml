@@ -1,0 +1,30 @@
+# Generates a PR that syncs stable to master
+name: Sync Master to Stable
+on:
+  workflow_dispatch:
+
+jobs:
+  generate_sync_pr:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        # with:
+        #   ref: stable
+      - name: Generate PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # setup git repo
+          # github doesn't do a full fetch by default
+          # these cmds get the git repo to the point
+          # that the script works as it does with
+          # a regular dev checkout
+          git config --global user.email "team@infinyon.com"
+          git config --global user.name "CI fluvio-website sync-master-to-stable"
+          git fetch origin master
+          git fetch origin stable
+
+          ./scripts/sync-master-to-stable.sh

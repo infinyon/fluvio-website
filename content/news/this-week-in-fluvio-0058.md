@@ -72,13 +72,11 @@ See the [CHANGELOG](https://github.com/infinyon/fluvio/blob/v0.11.5/CHANGELOG.md
 
 ## Good First Issues
 
-Here are some issues that you could contribute to:
+All the best. Here are some issues that you could contribute to:
 
-[fvm switch fails on some systems with running local cluster](https://github.com/infinyon/fluvio/issues/3765)
-
-[MQTT Connector: Prefix auto generated Client ID to prevent connection drops](https://github.com/infinyon/fluvio/issues/3825)
-
-[Add new command fluvio cluster resume](https://github.com/infinyon/fluvio/issues/3810) (intermediate/expert difficulty)
+- [fvm switch fails on some systems with running local cluster](https://github.com/infinyon/fluvio/issues/3765)
+- [MQTT Connector: Prefix auto generated Client ID to prevent connection drops](https://github.com/infinyon/fluvio/issues/3825)
+- [Add new command fluvio cluster resume](https://github.com/infinyon/fluvio/issues/3810) (intermediate/expert difficulty)
 
 
 ---
