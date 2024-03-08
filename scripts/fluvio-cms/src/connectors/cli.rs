@@ -72,7 +72,7 @@ impl ConnectorsOpt {
             // Download
             let mut cmd = cmd!(
                 sh,
-                "fluvio hub connector download {hub_pkg_fqn} --target aarch64-unknown-linux-gnu"
+                "cdk hub download {hub_pkg_fqn} --target aarch64-unknown-linux-gnu"
             );
             cmd.set_ignore_stdout(!self.verbose);
             cmd.set_ignore_stderr(!self.verbose);
