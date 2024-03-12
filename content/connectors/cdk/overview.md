@@ -1,5 +1,5 @@
 ---
-title: Overview 
+title: Overview
 weight: 10
 ---
 
@@ -12,6 +12,17 @@ Fluvio Connector Development Kit (CDK) is a command-line tool whose primary goal
 
 Install Rust compiler and Cargo. See [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install) for installation instructions.
 
+You can run and test CDK connectors with downloaded connectors from the hub, but
+if you want to build connectors, the rust compiler should have the `wasm` target
+installed.
+
+After installing the standard rust toolchain, add the musl toolchain:
+
+```
+rustup target add x86_64-unknown-linux-musl
+```
+
+Some Linux distributions will also require adding a musl compiler package.
 
 ### Steps
 
