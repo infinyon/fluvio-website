@@ -5,6 +5,8 @@ weight: 20
 
 The CLI takes a `--chart-values` option, during install and upgrade, which accepts a file path to a YAML file with values that are applied to the Fluvio Helm chart.
 
+The image.tag value should be replaced with a fluvio release version e.g. ("0.11.5").
+
 ## Chart Values
 
 Following are the default values:
@@ -20,7 +22,7 @@ image: # Fluvio image to deploy
   registry: infinyon
   tag: ""
   pullPolicy: IfNotPresent
-cert: 
+cert:
   caCert: fluvio-ca # K8s TLS Secret with CA certificate
   tls: fluvio-tls # K8s TLS Secret with server certificate and key
 scPod: # Passed to SC pod spec
@@ -42,5 +44,5 @@ rbac:
   create: true
 serviceAccount: # Service account used by SC for storing metadata and configuring managed SPU groups
   name: fluvio
-podSecurityContext: {}   # Override 
+podSecurityContext: {}   # Override
 ```

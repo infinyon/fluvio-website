@@ -7,9 +7,9 @@ weight: 10
 Fluvio is a Kubernetes-native containerized application.  It uses Helm internally to manage its installation.
 Fluvio CLI is a tool to manage Fluvio's installation.
 
-You can install multiple Fluvio instances on the same Kubernetes cluster by using different namespaces.  In order to do so, you need to specify the namespace when installing Fluvio otherwise Fluvio will install in the default namespace.
-
 If you only want to install a single Instance of Fluvio, Fluvio will automatically install all necessary dependencies and run the Fluvio service.
+
+You can install multiple Fluvio instances on the same Kubernetes cluster by using different namespaces.  In order to do so, you need to specify the namespace when installing Fluvio otherwise Fluvio will install in the default namespace.
 
 However, if you want to install multiple instances of Fluvio, you need to install the helm chart manually.  There are two charts. First is a cluster side chart (`sys` chart) which is common to all Fluvio instances. Second is a `app` chart which can be configured for each instance.
 
