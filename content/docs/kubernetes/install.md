@@ -4,7 +4,7 @@ menu: Install
 weight: 10
 ---
 
-Fluvio is a Kubernetes-native containerized application.  It uses Helm internally to manage its installation.  
+Fluvio is a Kubernetes-native containerized application.  It uses Helm internally to manage its installation.
 Fluvio CLI is a tool to manage Fluvio's installation.
 
 You can install multiple Fluvio instances on the same Kubernetes cluster by using different namespaces.  In order to do so, you need to specify the namespace when installing Fluvio otherwise Fluvio will install in the default namespace.
@@ -37,30 +37,53 @@ $ fluvio cluster delete --k8 --sys
 
 ## Install Multiple Instances of Fluvio
 
-For this scenario, you need to install the charts manually. 
+For this scenario, you need to install the charts manually.
 
-First, install the `sys` chart.  This only has to be done once.
+First, install the `sys` chart.  This only has to be done once. Helm needs access
+to a working `kubectl` context.
 
 %copy first-line%
 ```bash
-fluvio cluster start --k8 --sys
+helm upgrade --install fluvio-sys ./k8-util/helm/fluvio-sys
 ```
 
-Then install each instance of Fluvio one by one on a different namespace.  
+Then install each instance of Fluvio one by one on a different namespace,
+setting the image tag to the fluvio release version, and spacing
+the scPod ports apart.
+
+Depending on the implementation of the kubernetes cluster being used,
+the `fluvio profile add NAME  HOST:PORT`, the host might be a dns name,
+local host, or an IP.  The example below assumes a local host access to
+the nodeport.
+
+Other networking configurations besides nodePort configuration are beyond
+the scope of this guide and require modification of the helm chart values.
 
 First instance:
 
 %copy%
 ```shell
 kubectl create namespace first
-fluvio cluster start --k8 --namespace first
+helm install fluvio-app k8-util/helm/fluvio-app  --values ./k8-util/helm/fluvio-app/values.yaml \
+  --namespace third \
+  --set "image.tag=0.11.5" \
+  --set "scPod.nodePort=30003"
+
+fluvio profile add k1 127.0.0.1:30003
+fluvio cluster create spg default
 ```
 
 Second instance:
 %copy%
 ```shell
 kubectl create namespace second
-fluvio cluster start --k8 --namespace second
+helm install fluvio-app k8-util/helm/fluvio-app  --values ./k8-util/helm/fluvio-app/values.yaml \
+  --namespace third \
+  --set "image.tag=0.11.5" \
+  --set "scPod.nodePort=30103"
+
+fluvio profile add k2 127.0.0.1:30103
+fluvio cluster create spg default
 ```
 
 and so forth.
@@ -83,7 +106,7 @@ The CLI takes a `--chart-values` option which accepts a file path to a YAML file
 
 For installing on a remote Kubernetes cluster where the machine running the CLI does not have network access to the cluster pods/services via NodePort, use the `--use-k8-port-forwarding` option. This will tunnel traffic to Fluvio cluster components via the Kubernetes API server. After installation you will need to manually configure a load balancer to expose Fluvio services externally.
 
-See other options by running 
+See other options by running
 
 %copy first-line%
 ```bash
