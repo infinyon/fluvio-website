@@ -33,7 +33,7 @@ This however, will not uninstall sys chart.  You can use the following command t
 ```shell
 $ fluvio cluster delete --k8 --sys
 ```
-
+For installing on a remote Kubernetes cluster where the machine running the CLI is not the local host, you may want to use the use the `--proxy-addr <DNS or IP>` option. To specify how to connect to the kubernetes cluster.
 
 ## Install Multiple Instances of Fluvio
 
@@ -54,7 +54,7 @@ the scPod ports apart.
 Depending on the implementation of the kubernetes cluster being used,
 the `fluvio profile add NAME  HOST:PORT`, the host might be a dns name,
 local host, or an IP.  The example below assumes a local host access to
-the nodeport.
+the nodeport, and a copy of the [fluvio repository](https://github.com/infinyon/fluvio).
 
 Other networking configurations besides nodePort configuration are beyond
 the scope of this guide and require modification of the helm chart values.
@@ -103,8 +103,6 @@ You can only a delete `sys` chart when you have deleted all the Fluvio instances
 The CLI takes a `--chart-values` option which accepts a file path to a YAML file with values that are applied to the Fluvio [Helm chart].
 
 [Helm chart]: {{< ref "./helm" >}}
-
-For installing on a remote Kubernetes cluster where the machine running the CLI does not have network access to the cluster pods/services via NodePort, use the `--use-k8-port-forwarding` option. This will tunnel traffic to Fluvio cluster components via the Kubernetes API server. After installation you will need to manually configure a load balancer to expose Fluvio services externally.
 
 See other options by running
 
