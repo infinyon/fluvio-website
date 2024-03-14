@@ -1,10 +1,10 @@
 ---
-title: Access Fluvio Externally
+title: Fluvio Network Access
 menu: External Access
 weight: 40
 ---
 
-By default Fluvio services are exposed via NodePorts.
+By default Fluvio helm charts setup services exposed via NodePorts.
 
 Port numbers do not change based on whether TLS is enabled, the same ports are used regardless. Additional tls ports may be used.
 
