@@ -2,6 +2,8 @@
 title: Install Fluvio on Kubernetes
 menu: "Kubernetes Install"
 weight: 10
+aliases:
+  - /docs/kubernetes/install/
 ---
 
 Fluvio is a Kubernetes-native containerized application.  There are multiple ways to install Fluvio in a kubernetes cluster.
