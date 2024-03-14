@@ -4,6 +4,9 @@ menu: CRDs
 weight: 30
 ---
 
+The fluvio-sys chart installs the CRDs. This chart can be found in the fluvio repo at [fluvio/k8-util/helm/fluvio-sys](https://github.com/infinyon/fluvio/tree/master/k8-util/helm/fluvio-sys)
+
+
 ## SPU Group
 ##### spugroups.fluvio.infinyon.com
 
