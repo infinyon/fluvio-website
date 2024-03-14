@@ -1,6 +1,8 @@
 ---
 title: Install on Rancher
 weight: 100
+aliases:
+  - /docs/kubernetes/rancher/
 ---
 
 ## Install Fluvio CLI
