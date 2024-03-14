@@ -1,6 +1,6 @@
 ---
 title: Install Fluvio on Kubernetes
-menu: Install
+menu: "Kubernetes Install"
 weight: 10
 ---
 
@@ -10,7 +10,7 @@ Fluvio CLI is a tool to manage Fluvio's installation, or the helm charts can be 
 Installing with the cli will install a simple default configuration for many types of kubernetes clusters.
 If you only want to install a single instance of Fluvio, Fluvio will automatically install and run the Fluvio service.
 
-However, if you want a particulr networking configuration, or wish to install multiple instances of Fluvio, you should install the helm chart manually (modifying them as needed for your needs).
+However, if you want a particular networking configuration, or wish to install multiple instances of Fluvio, you should install the helm chart manually (modifying them for your needs).
 
 If you run into any problems along the way, make sure to check out our [troubleshooting] page to find a fix.
 
@@ -115,18 +115,4 @@ To delete a Fluvio instances, supply namespace as an argument.
 $ fluvio cluster delete --k8 --namespace first
 ```
 
-You can only a delete `sys` chart when you have deleted all the Fluvio instances.
-
-### Options
-
-The CLI takes a `--chart-values` option which accepts a file path to a YAML file with values that are applied to the Fluvio [Helm chart].
-
-[Helm chart]: {{< ref "./helm" >}}
-
-See other options by running
-
-%copy first-line%
-```bash
-$ fluvio cluster start -h
-```
-
+You can only a delete `fluvio-sys` chart when you have deleted all the Fluvio instances.

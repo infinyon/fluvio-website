@@ -1,6 +1,6 @@
 ---
 title: Fluvio Network Access
-menu: External Access
+menu: Network Access
 weight: 40
 ---
 
