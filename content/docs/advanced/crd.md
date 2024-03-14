@@ -2,6 +2,8 @@
 title: Custom Resource Definitions
 menu: CRDs
 weight: 30
+aliases:
+  - /docs/kubernetes/crd/
 ---
 
 The fluvio-sys chart installs the CRDs. This chart can be found in the fluvio repo at [fluvio/k8-util/helm/fluvio-sys](https://github.com/infinyon/fluvio/tree/master/k8-util/helm/fluvio-sys)
