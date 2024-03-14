@@ -12,7 +12,7 @@ impl HugoOpt {
 
         cmd!(
             sh,
-            "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender --buildFuture --ignoreCache --baseURL http://localhost --appendPort --navigateToChanged --renderToDisk"
+            "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender --buildFuture --ignoreCache --baseURL http://localhost --appendPort --navigateToChanged"
         )
         .run()?;
         Ok(())
