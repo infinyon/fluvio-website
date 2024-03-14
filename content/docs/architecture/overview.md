@@ -15,7 +15,7 @@ This choice of programming language makes Fluvio a low memory, high performance 
 
 #### Cloud Native by Design
 
-Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>**. Any infrastructure running **Kubernetes** can install the **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, check out the [Kubernetes install]({{< ref "/docs/kubernetes/install" >}}) section. 
+Fluvio is a **Cloud Native** platform designed to work with any infrastructure type from bare bones hardware to containerized platforms. As a **Cloud Native** first product, Fluvio is natively integrated with **<a href="https://kubernetes.io" target="_blank">Kubernetes</a>**. Any infrastructure running **Kubernetes** can install the **Fluvio Helm Chart** and get up and running in a matter of minutes. For additional details, check out the [Kubernetes install]({{< ref "/docs/advanced/install" >}}) section.
 
 ## High Level Architecture
 
@@ -27,9 +27,9 @@ Fluvio's architecture centers around **real time streaming**, and the platform c
 
 A **Streaming Controller (SC)** manages the **SPU life cycle** and optimizes the distribution of data streams across the cluster. The **Streaming Processing Units (SPUs)** are responsible for data streaming.
 
-SCs and SPUs are **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic. 
+SCs and SPUs are **independent**, **loosely coupled** services. Each service can be **restarted**, **upgraded**, or **scaled** independently without impacting traffic.
 
- 
+
 ## Streaming Controller (SC)
 
 Fluvio is designed to address a variety of **deployment scenarios** from public clouds to private data centers, edge networks and IOT devices. **SC** maintains the **topology map** of the **SPUs** and serves as the first point of contact for producers and consumers.
@@ -56,7 +56,7 @@ SPUs are also responsible for **data replication**. Data streams that are create
 
 [Replica Election]: {{< ref "replica-election" >}}
 
-Each SPU performs **leader** and **follower** duties **on multiple data streams** in parallel. For optimal performance, Fluvio utilizes all available **CPU cores**. 
+Each SPU performs **leader** and **follower** duties **on multiple data streams** in parallel. For optimal performance, Fluvio utilizes all available **CPU cores**.
 
 For a deep dive into the SPU design, check out the [SPU Architecture] section.
 
@@ -74,7 +74,7 @@ topic to be distributed between multiple SPUs in parallel, increasing your traff
 
 For example, a configuration with the 2 topics generates the replication map in the diagram:
 
-* **topic-a** => 2 partitions, 2 replicas 
+* **topic-a** => 2 partitions, 2 replicas
 * **topic-b** => 1 partition, 3 replicas
 
 SPU-1 is the leader for **topic-a/0** , SPU-2 for **topic-a/1**, and SPU-3 for **topic-b/0**.
@@ -95,28 +95,28 @@ SPU leaders **save** all data stream messages received from producers on **local
      alt="Data Storage"
      style="justify: center; max-width: 720px" />
 
-SPU persistence is designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.  
+SPU persistence is designed as **single-writer, multi-reader** with **zero-copy writes**. Each SPU can save large volumes of data at **wire speed**, and serve consumers and producers in **near real-time**.
 
-Fluvio persists messages in the local storage until any eviction condition is met. It supports **time-based** and 
-**size-based** conditions. Both always are checked and do not exclude each other. The time-based condition 
-is specified by using `retention-time` property of the topic. The retention time is an **age** after which older 
-segments will be **deleted** from the partition. The size-based condition allows setting max size per partition. 
+Fluvio persists messages in the local storage until any eviction condition is met. It supports **time-based** and
+**size-based** conditions. Both always are checked and do not exclude each other. The time-based condition
+is specified by using `retention-time` property of the topic. The retention time is an **age** after which older
+segments will be **deleted** from the partition. The size-based condition allows setting max size per partition.
 If **partition size** exceeds the configured max size, Fluvio **deletes the oldest segment** in the partition.
 
-The data eviction operates on a **segments level**. Hence, the frequency and accuracy depend on the **granularity** of 
-segments. The higher the segment size, the less often it is **evicted**, and the longer the records stay alive. 
+The data eviction operates on a **segments level**. Hence, the frequency and accuracy depend on the **granularity** of
+segments. The higher the segment size, the less often it is **evicted**, and the longer the records stay alive.
 The **real retention period** of all records within a segment will be the age of **the latest record** in the segment.
 
-Fluvio provides the **best-effort** guarantee of size-based and time-based eviction. For short periods of time these 
+Fluvio provides the **best-effort** guarantee of size-based and time-based eviction. For short periods of time these
 rules may be violated. The retention periods and max partition size should be set to cover **up to 80%** of the disk size.
-If the disk is full before the eviction is triggered, the SPU stops accepting messages and the overall health of the 
+If the disk is full before the eviction is triggered, the SPU stops accepting messages and the overall health of the
 system may be compromised.
 
 For additional information on retention conditions, checkout [Data Retention]({{< ref "/docs/operations/retention" >}}).
 
 ## APIs
 
-The Fluvio architecture places heavy emphasis on clean, **user-friendly APIs**. There are two types of APIs, **external** and **internal**. The APIs use **TLS** to ensure secure communication. 
+The Fluvio architecture places heavy emphasis on clean, **user-friendly APIs**. There are two types of APIs, **external** and **internal**. The APIs use **TLS** to ensure secure communication.
 
 ### External APIs
 
@@ -126,16 +126,16 @@ The Fluvio architecture places heavy emphasis on clean, **user-friendly APIs**. 
      alt="External APIs"
      style="justify: center; max-width: 500px" />
 
-API reference guides for programming languages are available at: 
+API reference guides for programming languages are available at:
 
-* <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API</a> 
+* <a href="https://infinyon.github.io/fluvio-client-node/" target="_blank">Node API</a>
 * <a href="https://docs.rs/fluvio/" target="_blank">Rust API</a>
 * <a href="https://infinyon.github.io/fluvio-client-java/com/infinyon/fluvio/package-summary.html" target="_blank">Java API</a>
 * <a href="https://infinyon.github.io/fluvio-client-python/fluvio.html" target="_blank">Python API</a>
 
 ### Internal APIs
 
-**Internal APIs** are used by the **SC** communicate with the **SPUs** and for the **SPUs** to communicate with their peers to elect leaders and exchange replica information. 
+**Internal APIs** are used by the **SC** communicate with the **SPUs** and for the **SPUs** to communicate with their peers to elect leaders and exchange replica information.
 
 <img src="../images/internal-apis.svg"
      alt="Internal APIs"
