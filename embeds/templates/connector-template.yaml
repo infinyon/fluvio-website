@@ -1,8 +1,8 @@
 # connector.yaml
 
 # Version of the schema of the connector config
-# Valid value is `0.1.0`
-apiVersion: 0.1.0
+# Valid value is `0.2.0`
+apiVersion: 0.2.0
 
 meta:
   name:
@@ -22,9 +22,18 @@ meta:
   # optional
   consumer:
     # optional
+    id:
+    # optional
     partition:
     # optional
-    max_bytes:
+    max_bytes: 
+    # optional
+    offset:
+      # optional
+      start:
+      strategy: 
+      # optional
+      flush-period:
 
   # optional
   secrets:

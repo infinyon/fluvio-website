@@ -14,6 +14,9 @@ cli-commands:
   - fluvio partition
   - fluvio partition list
 
+  - fluvio consumer list
+  - fluvio consumer delete
+
   - fluvio smartmodule
   - fluvio smartmodule create
   - fluvio smartmodule list
@@ -62,7 +65,6 @@ cli-commands:
   - fluvio cluster shutdown 
   - fluvio cluster diagnostics
 
-  - fluvio update
   - fluvio version
   - fluvio completions
 
@@ -76,7 +78,6 @@ cli-commands:
   - fluvio cloud login
   - fluvio cloud logout
   - fluvio cloud version
-  - fluvio cloud usage
   - fluvio cloud connector
   - fluvio cloud connector config
   - fluvio cloud connector create
