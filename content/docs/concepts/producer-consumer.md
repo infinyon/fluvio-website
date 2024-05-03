@@ -36,7 +36,7 @@ not expire after being consumed.
 The offset value is maintained separately for each topic partition. Once created, it remains stored until explicitly deleted.  
 Users can delete the offset either programmatically through their application code or via the Fluvio CLI.
 
-#### Auto commits
+#### Commit Strategy
 Fluvio offers different approaches to offset management, allowing users to choose the one that best fits their use case and requirements. There are **manual** and **auto** offset management strategies:  
 1. **Manual Strategy**  
 In this strategy, offsets are managed manually by the user. This means that the user is responsible for committing offsets explicitly when needed. No automatic commits or flushes occur, and all offset management operations must be initiated by the user.
@@ -175,4 +175,33 @@ async fn do_consume_with_auto_commits(fluvio: &Fluvio) -> anyhow::Result<()> {
    Ok(())
 }
 ```
+#### Using with connectors
+The following example demonstrates how to enable **Consumer Offsets** on [Fluvio Http Sink connector]. The same configuration applies to all official Fluvio `sink` connectors.
+```yaml
+apiVersion: 0.2.0
+meta:
+  version: 0.2.7
+  name: my-http-sink
+  type: http-sink 
+  topic:
+    meta:
+      name: http-sink-topic
+  consumer:
+    id: my-http-sink
+    offset:
+      strategy: auto
+      start: beginning
+      flush-period: 
+        secs: 2
+        nanos: 0
+http:
+  endpoint: "http://127.0.0.1/post"
+```
+
+In this setup, the Consumer initially attempts to retrieve the offset value for the identifier `my-http-sink` upon starting. If this value not found, it will commence from the beginning. Offset flushes occur automatically every 2 seconds.  
+More information about [connectors configuration].
+
 [offset]: {{< ref "/docs/concepts/offsets" >}}
+[Fluvio Http Sink connector]: {{< ref "/connectors/outbound/http" >}}
+[connectors configuration]: {{< ref "/connectors/connector-config" >}}
+
