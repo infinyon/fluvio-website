@@ -310,9 +310,9 @@ dependencies = [
 
 [[package]]
 name = "base64"
-version = "0.21.6"
+version = "0.22.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c79fed4cdb43e993fcdadc7e58a09fd0e3e649c4436fa11da71c9f1f3ee7feb9"
+checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
 name = "bitflags"
@@ -384,6 +384,12 @@ name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "cfg_aliases"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fd16c4719339c4530435d38e511904438d07cce7950afa3718a84ac36c10e89e"
 
 [[package]]
 name = "chrono"
@@ -650,9 +656,9 @@ dependencies = [
 
 [[package]]
 name = "fluvio"
-version = "0.21.3"
+version = "0.22.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c4117a72f05d65f1ca17fe3b846162a5cb1175f1446570040734ebb3360dc8bf"
+checksum = "75d29b3a2a776befb81bd884a18d7e7e03112cd7774e2af3042cef918b982783"
 dependencies = [
  "anyhow",
  "async-channel 1.9.0",
@@ -704,9 +710,9 @@ dependencies = [
 
 [[package]]
 name = "fluvio-controlplane-metadata"
-version = "0.25.0"
+version = "0.28.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b8328c851ecad841923904cdbf39a9adfef1f2d35e3f79e4c1563d6e9f9efcad"
+checksum = "6dc5b415f21931d170296b1823925ad487139677e0a5ceb720f2e940a486dff2"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -757,9 +763,9 @@ dependencies = [
 
 [[package]]
 name = "fluvio-protocol"
-version = "0.10.7"
+version = "0.10.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "70228d5c0d411c218887400d140658cb4430a18a91a633b88e87d1886eb5800e"
+checksum = "dafcbc8ac07d590f3991bbd46b226d2f43d49b3b00e385b5d5f8ad94ade86dbc"
 dependencies = [
  "bytes",
  "content_inspector",
@@ -800,9 +806,9 @@ dependencies = [
 
 [[package]]
 name = "fluvio-sc-schema"
-version = "0.21.1"
+version = "0.24.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c966e2fd6f5928fceed461496350b93314c97054d429ae2faedb28877d8ca1a9"
+checksum = "740652bff5ceec510aa9badc83058d83a9e5c0fb8e91642040e50a4c400e68f0"
 dependencies = [
  "anyhow",
  "fluvio-controlplane-metadata",
@@ -842,9 +848,9 @@ dependencies = [
 
 [[package]]
 name = "fluvio-socket"
-version = "0.14.6"
+version = "0.14.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a46d41a5958604b7c05e340c500acde224e03a845dd4eb2aad3e2ed9ebf9e18"
+checksum = "f7702a4274ea494084e16695f2bbe1c091fcbd0a851644f6fd35ce583cc92c58"
 dependencies = [
  "async-channel 1.9.0",
  "async-lock 2.8.0",
@@ -868,9 +874,9 @@ dependencies = [
 
 [[package]]
 name = "fluvio-spu-schema"
-version = "0.14.5"
+version = "0.14.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "566fff6ae2df7d4e673a82f8e7a0343ee8eadb3c4c7b3b3831d2d4f96e226963"
+checksum = "2bae41a36b3b19bcbf3bab1e13cac75dbf335150dfee3cdbc8bb492d00e338fc"
 dependencies = [
  "bytes",
  "derive_builder",
@@ -887,9 +893,9 @@ dependencies = [
 
 [[package]]
 name = "fluvio-stream-model"
-version = "0.10.0"
+version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4dcdfed11cbc1164a1e60e0e4c74a082c7c5c0e14390f4ff2f321744c3dc914e"
+checksum = "e0696ad6161fc5e90d1f874a9cb61f8ada34ab907f8be6a9080ddfbd63f3bee1"
 dependencies = [
  "async-rwlock",
  "event-listener 3.1.0",
@@ -901,12 +907,14 @@ dependencies = [
 
 [[package]]
 name = "fluvio-types"
-version = "0.4.4"
+version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1765d5df0c44810c67a6fabc9fcd1a8a7134ea7a7744a5b88d2b21034b6d3670"
+checksum = "6274f015746dff62bff57ed4a7b0f175b93a6a4bc7abda7431e7d74724b59506"
 dependencies = [
  "event-listener 3.1.0",
+ "serde",
  "thiserror",
+ "toml",
  "tracing",
 ]
 
@@ -1272,9 +1280,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.152"
+version = "0.2.154"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "13e3bf6590cbc649f4d1a3eefc9d5d6eb746f5200ffb04e5e142700b8faa56e7"
+checksum = "ae743338b92ff9146ce83992f766a31066a91a8c84a45e0e9f21e7cf6de6d346"
 
 [[package]]
 name = "libredox"
@@ -1344,12 +1352,13 @@ dependencies = [
 
 [[package]]
 name = "nix"
-version = "0.27.1"
+version = "0.28.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2eb04e9c688eff1c89d72b407f168cf79bb9e867a9d3323ed6c01519eb9cc053"
+checksum = "ab2156c4fce2f8df6c499cc1c763e4394b7482525bf2a9701c9d79d215f519e4"
 dependencies = [
  "bitflags 2.4.1",
  "cfg-if",
+ "cfg_aliases",
  "libc",
 ]
 
