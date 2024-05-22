@@ -80,14 +80,17 @@ Options:
   -e, --params <PARAMS>
           (Optional) Extra input parameters passed to the smartmodule. They should be passed using key=value format Eg. fluvio consume topic-name --smartmodule my_filter -e foo=bar -e key=value -e one=1
 
-      --transforms-file <TRANSFORMS_FILE>
+  -t, --transforms <TRANSFORMS>
           (Optional) Path to a file with transformation specification
 
-  -t, --transform <TRANSFORM>
-          (Optional) Transformation specification as JSON formatted string. E.g. fluvio consume topic-name --transform='{"uses":"infinyon/jolt@0.1.0","with":{"spec":"[{\"operation\":\"default\",\"spec\":{\"source\":\"test\"}}]"}}'
+      --transforms-line <TRANSFORMS_LINE>
+          (Optional) Transformation specification as JSON formatted string. E.g. fluvio consume topic-name --transforms-line='{"uses":"infinyon/jolt@0.1.0","with":{"spec":"[{\"operation\":\"default\",\"spec\":{\"source\":\"test\"}}]"}}'
 
       --truncate
           Truncate the output to one line
+
+  -c, --consumer <CONSUMER>
+          Consumer id
 
   -h, --help
           Print help (see a summary with '-h')
