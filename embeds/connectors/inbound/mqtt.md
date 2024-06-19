@@ -47,7 +47,7 @@ JSON Serialized string with fields `mqtt_topic` and `payload`
 This is an example of connector config file:
 
 ```yaml
-# sample-config.yaml
+# config-example.yaml
 apiVersion: 0.1.0
 meta:
   version: 0.2.5
@@ -67,7 +67,7 @@ mqtt:
 Run connector locally using `cdk` tool (from root directory or any sub-directory):
 
 ```bash
-cdk deploy start --config sample-config.yaml
+cdk deploy start --config config-example.yaml
 
 cdk deploy list # to see the status
 cdk deploy log my-mqtt-connector # to see connector's logs
@@ -101,7 +101,7 @@ Fluvio MQTT Source Connector supports [Transformations](https://www.fluvio.io/do
 
 The previous example can be extended to add extra transformations to outgoing records:
 ```yaml
-# sample-config.yaml
+# config-example.yaml
 apiVersion: 0.1.0
 meta:
   version: 0.2.5
@@ -117,7 +117,7 @@ mqtt:
     nanos: 0
   payload_output_type: json
 transforms:
-  - uses: infinyon/jolt@0.1.0
+  - uses: infinyon/jolt@0.4.1
     with:
       spec:
         - operation: shift

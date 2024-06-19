@@ -13,10 +13,10 @@ HTTP sink connector reads records from data streaming and generates an HTTP requ
 HTTP Sink is configured using a YAML file:
 
 ```yaml
-# sample-config.yaml
+# config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.5
+  version: 0.2.9
   name: my-http-sink
   type: http-sink
   topic: http-sink-topic
@@ -34,7 +34,7 @@ http:
 | method               | POST                       | String          | POST, PUT                                         |
 | endpoint             | -                          | String          | HTTP URL endpoint                                 |
 | headers              | -                          | Array\<String\> | Request header(s) "Key:Value" pairs               |
-| user-agent           | `fluvio/http-sink 0.2.2`   | String          | Request user-agent                                |
+| user-agent           | `fluvio/http-sink 0.2.9`   | String          | Request user-agent                                |
 | http_request_timeout | 1s                         | String          | HTTP Request Timeout                              |
 | http_connect_timeout | 15s                        | String          | HTTP Connect Timeout                              |
 
@@ -57,7 +57,7 @@ HTTP request to `http://httpbin.org/post`.
 # config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.5
+  version: 0.2.9
   name: httpbin
   type: http-sink
   topic: httpbin-send-post
@@ -130,10 +130,10 @@ Fluvio HTTP Sink Connector supports [Transformations](https://www.fluvio.io/docs
 
 The previous example can be extended to add extra transformations to outgoing records:
 ```yaml
-# sample-config.yaml
+# config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.5
+  version: 0.2.9
   name: my-http-sink
   type: http-sink
   topic: http-sink-topic
@@ -158,6 +158,33 @@ In this case, additional transformation will be performed before records are sen
 
 Read more about [JSON to JSON transformations](https://www.fluvio.io/smartmodules/certified/jolt/).
 
+### Offset Management
+Fluvio Consumer Offset feature allows for a connector to store the offset in the Fluvio cluster and use it on restart.
+To activate it, you need to provide the `consumer` name and set the `strategy: auto`.
+See the example below:
+```yaml
+apiVersion: 0.2.0
+meta:
+  version: 0.2.9
+  name: my-http-sink
+  type: http-sink
+  topic:
+    meta:
+      name: http-sink-topic
+  consumer:
+    id: my-http-sink
+    offset:
+      strategy: auto
+http:
+  endpoint: "http://127.0.0.1/post"
+```
+
+After the connector processed any records, you can check the last stored offset value via:
+```bash
+$ fluvio consumer list
+  CONSUMER      TOPIC            PARTITION  OFFSET  LAST SEEN
+  my-http-sink  http-sink-topic  0          0       3s
+```
 ## Contributing
 
 Follow on the conventional `CONTRIBUTING.md` file to setup your environment and
