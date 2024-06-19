@@ -134,7 +134,7 @@ impl ConnectorsOpt {
         write!(
             &mut content_file,
             r#"---
-menu: {connector_name_title}
+title: {connector_name_title}
 ---
 
 {{{{% inline-embed file="{embed}" %}}}}"#,
