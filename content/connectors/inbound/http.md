@@ -1,5 +1,5 @@
 ---
-menu: HTTP
+title: HTTP
 ---
 
 {{% inline-embed file="embeds/connectors/inbound/http.md" %}}
