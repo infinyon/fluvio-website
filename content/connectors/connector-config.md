@@ -11,7 +11,7 @@ populated. In the next section we will go over the different sections of the con
 
 ## Connector `apiVersion` configuration
 
-The `apiVersion` is the version of the connector API that the connector uses to parse the configuration file. The current only accepted version is `0.1.0`.
+The `apiVersion` is the version of the connector API that the connector uses to parse the configuration file. The current accepted versions: `0.1.0` and `0.2.0`.
 
 ## Connector `meta` configuration
 
@@ -25,7 +25,7 @@ The `meta` section contains the metadata for the connector:
 * The `secrets`(optional) is a list of secrets that the connector will use. This accepts a list of objects with the key `name`.
   * See the [secrets]({{<ref "connectors/secrets.md">}}) section for more information.
 * The `producer`(optional) is the producer configuration for the connector. Currently, this is only used for `source`/`inbound` connectors. The current supported configurations are `linger`, `compression` and `batch_size`. All configurations are optional. See examples to a list of valid values for each configuration.
-* The `consumer`(optional) is the consumer configuration for the connector. Currently, this is only used for `sink`/`outbound` connectors. The current supported configurations are `partition` and `max_bytes`. Both configurations are optional. See examples to a list of valid values for each configuration.
+* The `consumer`(optional) is the consumer configuration for the connector. Currently, this is only used for `sink`/`outbound` connectors. The current supported configurations are `id`, `partition`, `max_bytes` and `offset`. All configurations are optional. See examples to a list of valid values for each configuration.
 
 An example with all the keys filled for a `http-source` connector:
 

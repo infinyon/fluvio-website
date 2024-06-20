@@ -1,7 +1,7 @@
 use async_std::stream::StreamExt;
 use chrono::Local;
 use fluvio::metadata::topic::TopicSpec;
-use fluvio::{Fluvio, RecordKey};
+use fluvio::{consumer::ConsumerConfigExtBuilder, Fluvio, RecordKey};
 
 const TOPIC_NAME: &str = "hello-rust";
 const PARTITION_NUM: u32 = 0;
@@ -9,7 +9,7 @@ const PARTITIONS: u32 = 1;
 const REPLICAS: u32 = 1;
 
 /// This is an example of a basic Fluvio workflow in Rust
-///  
+///
 /// 1. Establish a connection to the Fluvio cluster
 /// 2. Create a topic to store data in
 /// 3. Create a producer and send some bytes
@@ -36,8 +36,15 @@ async fn main() {
     producer.flush().await.unwrap();
 
     // Consume last record from topic
-    let consumer = fluvio::consumer(TOPIC_NAME, PARTITION_NUM).await.unwrap();
-    let mut stream = consumer.stream(fluvio::Offset::from_end(1)).await.unwrap();
+    let fluvio = Fluvio::connect().await.unwrap();
+    let config = ConsumerConfigExtBuilder::default()
+        .topic(TOPIC_NAME)
+        .partition(PARTITION_NUM)
+        .offset_start(fluvio::Offset::from_end(1))
+        .build()
+        .unwrap();
+
+    let mut stream = fluvio.consumer_with_config(config).await.unwrap();
     if let Some(Ok(record)) = stream.next().await {
         let string = String::from_utf8_lossy(record.value());
         println!("{}", string);

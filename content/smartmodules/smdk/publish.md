@@ -28,7 +28,7 @@ Ensure that your SmartModule has been uploaded to the [Hub]:
 
 %copy first-line%
 ```bash
-$ fluvio hub list
+$ fluvio hub smartmodule list
   SMARTMODULE                 Visibility 
   john/my-filter@0.1.0        private    
   ...
