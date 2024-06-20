@@ -50,7 +50,7 @@ This is an example of connector config file:
 # config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.5
+  version: 0.2.7
   name: my-mqtt-connector
   type: mqtt-source
   topic: mqtt-topic
@@ -65,7 +65,6 @@ mqtt:
 ```
 
 Run connector locally using `cdk` tool (from root directory or any sub-directory):
-
 ```bash
 cdk deploy start --config config-example.yaml
 
@@ -104,7 +103,7 @@ The previous example can be extended to add extra transformations to outgoing re
 # config-example.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.5
+  version: 0.2.7
   name: my-mqtt-connector
   type: mqtt-source
   topic: mqtt-topic
