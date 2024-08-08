@@ -40,7 +40,7 @@ in the config. If a SmartModule requires configuration, it is passed via `with` 
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.3
+  version: 0.4.3
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -62,7 +62,7 @@ The connector can use secrets in order to hide sensitive information.
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.3
+  version: 0.4.3
   name: my-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -71,6 +71,37 @@ meta:
 sql:
   url: ${{ secrets.DATABASE_URL }}
 ```
+
+### Offset Management
+Fluvio Consumer Offset feature allows for a connector to store the offset in the Fluvio cluster and use it on restart.  
+To activate it, you need to provide the `consumer` name and set the `strategy: auto`.  
+See the example below:
+```yaml
+apiVersion: 0.2.0
+meta:
+  version: 0.4.3
+  name: my-sql-connector
+  type: sql-sink
+  topic:
+    meta:
+      name: sql-sink-topic
+  consumer:
+    id: my-sql-sink
+    offset:
+    strategy: auto
+  secrets:
+    - name: DATABASE_URL
+sql:
+  url: ${{ secrets.DATABASE_URL }}
+```
+
+After the connector processed any records, you can check the last stored offset value via:
+```bash
+$ fluvio consumer list
+  CONSUMER      TOPIC            PARTITION  OFFSET  LAST SEEN
+  my-http-sink  http-sink-topic  0          0       3s
+```
+
 ## Insert Usage Example
 Let's look at the example of the connector with one transformation named [infinyon/json-sql](https://github.com/infinyon/fluvio-connectors/blob/main/smartmodules/json-sql/README.md). The transformation takes
 records in JSON format and creates SQL insert operation to `topic_message` table. The value from `device.device_id`
@@ -95,7 +126,7 @@ Connector configuration file:
 # connector-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.3
+  version: 0.4.3
   name: json-sql-connector
   type: sql-sink
   topic: sql-topic
@@ -133,8 +164,8 @@ To delete the connector run:
 
 ```bash
 cdk deploy shutdown --name json-sql-connector
-
 ```
+
 After you run the connector you will see records in your database table.
 
 See more in our [Build MQTT to SQL Pipeline](https://www.fluvio.io/docs/tutorials/mqtt-to-sql/) and [Build HTTP to SQL Pipeline](https://www.fluvio.io/docs/tutorials/data-pipeline/) tutorials.
@@ -155,7 +186,7 @@ Connector configuration file for upsert (assuming `device_id` is a unique column
 # connector-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.3.3
+  version: 0.4.3
   name: json-sql-connector
   type: sql-sink
   topic: sql-topic
