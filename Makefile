@@ -28,8 +28,8 @@ htmltest:
 
 run-client-example:
 	cd $(CLIENT_EXAMPLE_ROOT)/$(LANG); \
-	docker-compose build; \
-	docker-compose run example;
+	docker compose build; \
+	docker compose run example;
 
 run-client-example-rust: LANG=rust
 run-client-example-rust: run-client-example
