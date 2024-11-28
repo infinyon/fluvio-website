@@ -29,7 +29,7 @@ Example without security:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.7
+  version: 0.2.10
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
@@ -44,7 +44,7 @@ Example with security enabled:
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.2.7
+  version: 0.2.10
   name: my-kafka-connector
   type: kafka-sink
   topic: kafka-topic
@@ -68,9 +68,38 @@ kafka:
 
 ### Usage
 To try out Kafka Sink connector locally, you can use Fluvio CDK tool:
-
 ```bash
-cdk deploy -p kafka-sink start --config crates/kafka-sink/sample-config.yaml
+cdk deploy -p kafka-sink start --config crates/kafka-sink/config-example.yaml
+```
+
+### Offset Management
+Fluvio Consumer Offset feature allows for a connector to store the offset in the Fluvio cluster and use it on restart.  
+To activate it, you need to provide the `consumer` name and set the `strategy: auto`.  
+See the example below:
+```yaml
+apiVersion: 0.2.0
+meta:
+  version: 0.2.10
+  name: my-kafka-connector
+  type: kafka-sink
+  topic:
+    meta:
+      name: kafka-sink-topic
+  consumer:
+    id: my-kafka-sink
+    offset:
+      strategy: auto
+kafka:
+  url: "localhost:9092"
+  topic: fluvio-topic 
+  create-topic: true
+```
+
+After the connector processed any records, you can check the last stored offset value via:
+```bash
+$ fluvio consumer list
+  CONSUMER      TOPIC            PARTITION  OFFSET  LAST SEEN
+  my-kafka-sink kafka-sink-topic 0          0       3s
 ```
 
 ### Testing with security

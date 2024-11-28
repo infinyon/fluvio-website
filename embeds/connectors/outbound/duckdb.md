@@ -41,7 +41,7 @@ To connect to Motherduck server, use prefix: `md`.  For example, `md://motherduc
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.0
+  version: 0.1.3
   name: duckdb-connector
   type: duckdb-sink
   topic: fluvio-topic-source
@@ -99,7 +99,7 @@ Connector configuration file:
 apiVersion: 0.1.0
 meta:
   version: 0.1.0
-  name: duckdb-connector
+  name: json-sql-connector
   type: duckdb-sink
   topic: sql-topic
   create-topic: true
@@ -127,14 +127,16 @@ transforms:
 ```
 
 You can use Fluvio `cdk` tool to deploy the connector:
-
+```bash
+fluvio install cdk
+```
+and then:
 ```bash
 cdk deploy start --config connector-config.yaml
 ```
-
 To delete the connector run:
 ```bash
-cdk deploy shutdown --name duckdb-connector
+cdk deploy shutdown --config connector-config.yaml
 
 ```
 After you run the connector you will see records in your database table.
